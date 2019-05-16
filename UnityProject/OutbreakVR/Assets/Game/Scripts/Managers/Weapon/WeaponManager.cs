@@ -93,20 +93,28 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
+            m_dictWeaponCategories = new Dictionary<WEAPON_CATEGORY_TYPE, WeaponCategory>(3);
+
+            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.MELEE,      new WeaponCategory(WEAPON_CATEGORY_TYPE.MELEE));
+            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.SECONDARY,  new WeaponCategory(WEAPON_CATEGORY_TYPE.SECONDARY));
+            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.PRIMARY,    new WeaponCategory(WEAPON_CATEGORY_TYPE.PRIMARY));
+
             m_dictWeapons = new Dictionary<WEAPON_TYPE, WeaponBase>(10);
             int l_iWeaponCount = m_lstWeapons.Count;
             for (int l_iWeaponIndex = 0; l_iWeaponIndex < l_iWeaponCount; l_iWeaponIndex++)
             {
                 WeaponBase l_CurrentWeaponBase = m_lstWeapons[l_iWeaponIndex];
                 m_dictWeapons.Add(l_CurrentWeaponBase.m_WeaponType, l_CurrentWeaponBase);
+
+                WeaponCategory l_FoundWeaponCategory = null;
+                if (m_dictWeaponCategories.TryGetValue(l_CurrentWeaponBase.m_WeaponCategoryType, out l_FoundWeaponCategory))
+                {
+                    l_FoundWeaponCategory.addWeaponTypeToCategory(l_CurrentWeaponBase.m_WeaponType);
+                }
             }
             disableAllWeapons();
 
-            m_dictWeaponCategories = new Dictionary<WEAPON_CATEGORY_TYPE, WeaponCategory>(3);
 
-            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.MELEE,      new WeaponCategory(WEAPON_CATEGORY_TYPE.MELEE));
-            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.SECONDARY,  new WeaponCategory(WEAPON_CATEGORY_TYPE.SECONDARY));
-            m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.PRIMARY,    new WeaponCategory(WEAPON_CATEGORY_TYPE.PRIMARY));
 
             SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.MELEE, WEAPON_TYPE.UNARMED);
             SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.PRIMARY, WEAPON_TYPE.AK47);
@@ -146,13 +154,10 @@ namespace ns_Mashmo
         {
             WeaponCategory l_WeaponCategory = null;
             s_Instance.m_dictWeaponCategories.TryGetValue(a_WeaponCategoryType, out l_WeaponCategory);
-            WeaponBase l_WeaponBase = null;
-            s_Instance.m_dictWeapons.TryGetValue(a_WeaponType, out l_WeaponBase);
-
+            
             if (l_WeaponCategory != null &&
-                l_WeaponBase != null && 
                 l_WeaponCategory.m_WeaponType != a_WeaponType && // Same weapon is not already set in the weapon category
-                l_WeaponBase.m_WeaponCategoryType == a_WeaponCategoryType)  //The category of the weapon type is the same as the category to set
+                l_WeaponCategory.isWeaponTypeinCategoryExist(a_WeaponType))  //The category of the weapon type is the same as the category to set
             {
                 s_Instance.onDispatchWeaponOrCategoryChanged(a_WeaponCategoryType, a_WeaponType, a_WeaponCategoryType, l_WeaponCategory.m_WeaponType);
             }
@@ -199,6 +204,7 @@ namespace ns_Mashmo
         private void onDispatchWeaponOrCategoryChanged(WEAPON_CATEGORY_TYPE a_newWeaponCategoryType, WEAPON_TYPE a_newWeaponType,
             WEAPON_CATEGORY_TYPE a_oldWeaponCategoryType, WEAPON_TYPE a_oldWeaponType)
         {
+            /// Change weapon in category
             if (a_newWeaponCategoryType == a_oldWeaponCategoryType)
             {
                 WeaponCategory l_WeaponCategory = null;
@@ -208,6 +214,7 @@ namespace ns_Mashmo
                 }
             }
 
+            /// Set new weapon category as current
             if (m_CurrentWeaponCategoryType == a_oldWeaponCategoryType)
             {
                 m_CurrentWeaponCategoryType = a_newWeaponCategoryType;
