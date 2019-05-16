@@ -398,12 +398,6 @@ namespace ns_Mashmo
         public const float MAX_CURSOR_DISTANCE = 10.0f;
 
         /// <summary>
-        /// The line renderer to render the controller-pointer.
-        /// </summary>
-        [SerializeField]
-        private LineRenderer m_LineRenderer = null;
-
-        /// <summary>
         /// Is the controller laser pointer active.
         /// </summary>
         [SerializeField]
@@ -484,17 +478,6 @@ namespace ns_Mashmo
             
             return l_RaycastHit;
         }
-
-        ///// <summary>
-        ///// Enables the line renderer depending on if the m_bIsLaserActive == true or the current controller is not the Touchpad.
-        ///// Enables the pointer if the current controller is the touchpad and the m_bIsLaserActive == true.
-        ///// </summary>
-        //private void setPointerVisibility()
-        //{
-        //    // Disable line renderer if headset is the current controller or laser pointer is explicity turned off.
-        //    m_LineRenderer.enabled = m_bIsLaserActive && (m_CurrentControllerType != CONTROLLER_TYPE.CONTROLLER_HEADSET && m_CurrentControllerType != CONTROLLER_TYPE.CONTROLLER_NONE);
-        //    m_Pointer.SetActive(m_bIsLaserActive && (m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_HEADSET || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_NONE));
-        //}
 
 #endregion Controller laser pointer
 

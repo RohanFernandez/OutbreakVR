@@ -2,10 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+namespace ns_Mashmo
 {
-    public void onClickCanvasButton()
+    public class Test : MonoBehaviour
     {
-        Debug.LogError("onClickCanvasButton!!");
+        public void onClickCanvasButton()
+        {
+            Debug.LogError("onClickCanvasButton!!");
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                WeaponManager.SetPreviousCategory();
+            }
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                WeaponManager.SetNextCategory();
+            }
+        }
     }
 }
