@@ -1737,6 +1737,8 @@ GameObject:
   - component: {fileID: 1857882334}
   - component: {fileID: 1857882335}
   - component: {fileID: 1857882336}
+  - component: {fileID: 1857882337}
+  - component: {fileID: 1857882338}
   m_Layer: 0
   m_Name: Main_DontDestroy
   m_TagString: Untagged
@@ -1781,6 +1783,7 @@ MonoBehaviour:
   - {fileID: 1667637791}
   - {fileID: 1857882336}
   - {fileID: 642286414}
+  - {fileID: 1857882337}
 --- !u!114 &1857882335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1817,36 @@ MonoBehaviour:
     m_Bits: 0
   m_Pointer: {fileID: 1857976486}
   m_bIsLaserActive: 1
+--- !u!114 &1857882337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857882332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8cd5f7cc2ebed4d9d730f691920cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lstRegisteredManagedStates:
+  - {fileID: 1857882338}
+  m_strStartState: INIT
+  m_strCurrentState: 
+  m_bAllowTransitionToSelf: 1
+--- !u!114 &1857882338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857882332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0859da7c678c945439359e26f4c7f1f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_strStateID: INIT
 --- !u!1 &1857976486
 GameObject:
   m_ObjectHideFlags: 0
