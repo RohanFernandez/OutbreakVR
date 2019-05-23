@@ -8,6 +8,7 @@ namespace ns_Mashmo
     {
         void execute();
         void onComplete();
-        void onDestroy();
+
+        void executeJob();
     }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
+    public enum LEVEL_TYPE
+    {
+        LEVEL1
+    }
+
     public class GameManager : AbsGroupComponentHandler
     {
         /// <summary>

@@ -7,6 +7,6 @@ namespace ns_Mashmo
     public interface IJob
     {
         void onExecute();
-        void onDestroy();
+        void onComplete();
     }
 }

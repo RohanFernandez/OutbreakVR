@@ -8,13 +8,16 @@ namespace ns_Mashmo
     public class TaskList : ScriptableObject
     {
         /// <summary>
+        /// The name of the tasklist
+        /// </summary>
+        [SerializeField]
+        public string m_strName = string.Empty;
+
+        /// <summary>
         /// XML node name that spcifies the biggest parent
         /// </summary>
         [SerializeField]
         public List<SequenceBase> m_lstSequences = null;
-
-        [SerializeField]
-        public string m_strTaskListName = string.Empty;
 
         private TaskList() { }
 
@@ -39,13 +42,12 @@ namespace ns_Mashmo
             System.Xml.XmlNodeList l_lstXMLNode = l_TaskListXML.GetElementsByTagName(TaskListConsts.XML_NODE_TASK_LIST);
             if (l_lstXMLNode == null)
             {
-                LogXMLSearchError(a_strPath, TaskListConsts.XML_NODE_TASK_LIST, true);
+                TaskListConsts.LogXMLSearchError(a_strPath, TaskListConsts.XML_NODE_TASK_LIST, true);
                 return null;
             }
 
             System.Xml.XmlNode l_TaskListNode = l_lstXMLNode[0];
-            
-            l_TaskList.m_strTaskListName = l_TaskListNode.Attributes[TaskListConsts.XML_KEYWORD_ID].Value;
+            l_TaskList.m_strName = l_TaskListNode.Attributes[0].Value;
 
             System.Xml.XmlNodeList l_lstSequenceNodes = l_TaskListNode.ChildNodes;
             int l_iSequenceCount = l_lstSequenceNodes.Count;
@@ -59,17 +61,6 @@ namespace ns_Mashmo
                 l_TaskList.m_lstSequences.Add(l_CreatedSequence);
             }
             return l_TaskList;
-        }
-
-        /// <summary>
-        /// Logs an error if while searching for a keyword in the XML returned null
-        /// </summary>
-        /// <param name="a_strXMLPath"></param>
-        /// <param name="a_strKeyword"></param>
-        /// <param name="a_bIsXMLNodeMissing"></param>
-        private static void LogXMLSearchError(string a_strXMLPath, string a_strKeyword, bool a_bIsXMLNodeMissing)
-        {
-            Debug.LogError("XML search failed for keyword "+ a_strKeyword + " when attempting to find " + (a_bIsXMLNodeMissing ? "NODE" : "ELEMENT") + " at path "+ a_strXMLPath);
         }
 #endif
     }

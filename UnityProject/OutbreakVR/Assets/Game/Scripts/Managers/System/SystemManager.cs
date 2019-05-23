@@ -47,5 +47,55 @@ namespace ns_Mashmo
             base.destroy();
             s_Instance = null;
         }
+
+        /// <summary>
+        /// Function called to load any scene.
+        /// On scene load complete will call the actionOnSceneLoaded function.
+        /// </summary>
+        /// <param name="a_strSceneName"></param>
+        /// <param name="actionOnSceneLoaded"></param>
+        public static void LoadScene(string a_strSceneName, System.Action actionOnSceneLoaded)
+        {
+            s_Instance.StartCoroutine(s_Instance.loadSceneAsync(a_strSceneName, actionOnSceneLoaded));
+        }
+
+        /// <summary>
+        /// Async loads the scene.
+        /// </summary>
+        /// <param name="a_strSceneName"></param>
+        /// <param name="actionOnSceneLoaded"></param>
+        /// <returns></returns>
+        private IEnumerator loadSceneAsync(string a_strSceneName, System.Action actionOnSceneLoaded)
+        {
+            UnityEngine.SceneManagement.Scene l_OldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            UnityEngine.SceneManagement.Scene l_NewScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(a_strSceneName);
+
+            if (l_NewScene == null)
+            {
+                Debug.LogError("SystemManager::loadSceneAsync:: Scene with name '" + a_strSceneName + "' does not exist in the registered scene list.");
+                yield break;
+            }
+            else if (l_OldScene == l_NewScene)
+            {
+                Debug.LogError("SystemManager::loadSceneAsync:: New scene to load is the same as the current active scene.");
+                yield break;
+            }
+
+            AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(l_NewScene.name, UnityEngine.SceneManagement.LoadSceneMode.Single);
+            while (!l_AsyncOperation.isDone)
+            {
+                yield return null;
+            }
+
+            if (actionOnSceneLoaded != null)
+            {
+                actionOnSceneLoaded();
+            }
+
+            Hashtable l_Hashtable = new Hashtable(2);
+            l_Hashtable.Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
+            l_Hashtable.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, l_NewScene.name);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_Hashtable);
+        }
     }
 }
