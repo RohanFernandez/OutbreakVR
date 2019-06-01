@@ -41,5 +41,10 @@ namespace ns_Mashmo
             base.destroy();
             s_Instance = null;
         }
+
+        public static void StartCoroutineExecution(IEnumerator a_Enumerator)
+        {
+            s_Instance.StartCoroutine(a_Enumerator);
+        }
     }
 }

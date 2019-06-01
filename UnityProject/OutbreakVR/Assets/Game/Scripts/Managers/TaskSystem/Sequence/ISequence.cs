@@ -6,9 +6,12 @@ namespace ns_Mashmo
 {
     public interface ISequence
     {
-        void execute();
+        void onInitialize(string a_strSequenceID);
+
+        void onExecute();
+
         void onComplete();
 
-        void executeJob();
+        void addTask(ITask a_Task);
     }
 }

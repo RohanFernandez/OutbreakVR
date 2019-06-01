@@ -1,53 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace ns_Mashmo
 {
-    [Serializable]
-    public class ObjectPool<T> where T : UnityEngine.Object
+    [System.Serializable]
+    public class ObjectPool<T> where T : class
     {
+        /// <summary>
+        /// The stack that contains the objects of the pool.
+        /// </summary>
+        private Stack<T> m_Pool = null;
+
+        /// <summary>
+        /// The type of the pooled object
+        /// </summary>
+        private System.Type m_Type = null;
+
         /// <summary>
         /// Constructor.
         /// Sets the Prefab from which the objects in the pool are generated
         /// </summary>
         /// <param name="a_ObjPrefab"></param>
-        public ObjectPool(UnityEngine.Object a_Obj, int a_iStartPoolObjects = 0)
+        public ObjectPool(string a_strObjectType, int a_iStartSize = 0)
         {
-            if (a_Obj == null)
+            m_Type = System.Type.GetType(a_strObjectType);
+            m_Pool = new Stack<T>(a_iStartSize);
+
+            for (int l_iIndex = 0; l_iIndex < a_iStartSize; l_iIndex++)
             {
-                Debug.LogError("ObjectPool::ObjectPool:: Object to create an Object pool if is null.");
-                return;
-            }
-            for (int l_iPoolIndex = 0; l_iPoolIndex < a_iStartPoolObjects; l_iPoolIndex++)
-            {
-                ReturnToPool((a_Obj) as T);
+                createObj();
             }
         }
 
         /// <summary>
-        /// The stack that contains the objects of the pool.
+        /// Creates object of type T and pushes into the pool
         /// </summary>
-        private Stack<T> m_Pool = new Stack<T>();
-
-        /// <summary>
-        /// Gets an object from the pool.
-        /// If the pool is empty then the pool will instantiate a object and return it.
-        /// </summary>
-        /// <returns></returns>
-        public T GetFromPool(T a_ObjPrefab)
+        public void createObj()
         {
-            return m_Pool.Count == 0 ? MonoBehaviour.Instantiate(a_ObjPrefab) as T : m_Pool.Pop();
+            T l_CreatedObj = System.Activator.CreateInstance(m_Type) as T;
+            
+            m_Pool.Push(l_CreatedObj);
         }
 
         /// <summary>
-        /// Returns the object into the pool.
+        /// Returns back into the pool for reuse in the future
         /// </summary>
         /// <param name="a_Obj"></param>
-        public void ReturnToPool(T a_Obj)
+        public void returnToPool(T a_Obj)
         {
             m_Pool.Push(a_Obj);
+        }
+
+        /// <summary>
+        /// Gets object of type from the pool
+        /// sets the task variables
+        /// </summary>
+        public T getObject()
+        {
+            if (m_Pool.Count == 0)
+            {
+                createObj();
+            }
+            return m_Pool.Pop();
         }
     }
 }

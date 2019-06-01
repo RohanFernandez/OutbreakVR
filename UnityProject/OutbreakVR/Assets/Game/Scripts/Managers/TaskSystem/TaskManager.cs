@@ -11,21 +11,40 @@ namespace ns_Mashmo
         /// </summary>
         private static TaskManager s_Instance = null;
 
-        private const string TASK_LIST_DIRECTORY = "TaskListAssets\\";
-
         /// <summary>
-        /// The dictionary that will hold all the sequences so that it will be easier to retriece the sequence by its name
-        /// </summary>
-        private Dictionary<string, SequenceBase> m_dictSequences = null;
-
-        /// <summary>
-        /// List of all sequences that are running at the moment
+        /// The list of all tasks list that are currently loaded
         /// </summary>
         [SerializeField]
-        private List<SequenceBase> m_lstRunningSequences = null;
+        private List<TaskList> m_lstLoadedTaskLists = null;
 
         /// <summary>
-        /// sets singleton instance
+        /// The current loaded task list
+        /// </summary>
+        [SerializeField]
+        private TaskList m_CurrentTaskList = null;
+
+        /// <summary>
+        /// Dictionary of the level name to its corresponding task list asset
+        /// </summary>
+        private Dictionary<LEVEL_TYPE, TaskList> m_dictLevelTaskList = null;
+
+        /// <summary>
+        /// Manages the tasks pools, creates and reuses the tasks of different types
+        /// </summary>
+        private TaskPoolManager m_TaskPoolManager = null;
+
+        /// <summary>
+        /// Task list assets path
+        /// </summary>
+        private const string TASK_LIST_ASSETS_PATH = "TaskListAssets";
+
+        /// <summary>
+        /// List of all currently running sequences
+        /// </summary>
+        private List<ISequence> m_RunningSequneces = null;
+
+        /// <summary>
+        /// Sets singleton instance
         /// </summary>
         public override void initialize()
         {
@@ -34,13 +53,35 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
 
-            m_lstRunningSequences = new List<SequenceBase>(15);
-            loadTaskList("TaskListLevel1");
+            m_TaskPoolManager = new TaskPoolManager();
+            m_RunningSequneces = new List<ISequence>(10);
+
+            initializeTaskLists();
+
+            ///initialize dictionary of level type to task list
+            int l_iTotalTaskLists = m_lstLoadedTaskLists.Count;
+            m_dictLevelTaskList = new Dictionary<LEVEL_TYPE, TaskList>(l_iTotalTaskLists);
+            for (int l_iTaskListIndex = 0; l_iTaskListIndex < l_iTotalTaskLists; l_iTaskListIndex++)
+            {
+                TaskList l_TaskList = m_lstLoadedTaskLists[l_iTaskListIndex];
+                LEVEL_TYPE l_LevelType;
+                if (System.Enum.TryParse<LEVEL_TYPE>(l_TaskList.m_strName, out l_LevelType))
+                {
+                    m_dictLevelTaskList.Add(l_LevelType, l_TaskList);
+                }
+                else
+                {
+                    Debug.LogError("TaskManager::initialize:: Failed to convert '"+ l_TaskList.m_strName + " to LEVEL_TYPE enum to add it into the dictionary");
+                }
+            }
+
+            SetTaskList(LEVEL_TYPE.LEVEL1);
         }
 
         /// <summary>
-        /// destroys singleton instance
+        /// Sets singleton instance to null
         /// </summary>
         public override void destroy()
         {
@@ -48,97 +89,86 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             s_Instance = null;
         }
 
         /// <summary>
-        /// Loads task list asset from resource folder
-        /// instantiates it and sets it as the current TaskList
+        /// Intializes all task lists
+        /// Creates 
         /// </summary>
-        /// <param name="a_strTaskListName"></param>
-        private void loadTaskList(string a_strTaskListName)
+        private void initializeTaskLists()
         {
-            //if (a_strTaskListName.Equals(m_TaskList.m_strName, System.StringComparison.OrdinalIgnoreCase))
-            //{
-            //    Debug.LogError("TaskManager::loadTaskList:: Attempting to initialize the already loaded tasklist.");
-            //    return;
-            //}
-
-            m_dictSequences = null;
-            UnityEngine.Object l_objTaskList = (Resources.Load(TASK_LIST_DIRECTORY + a_strTaskListName, typeof(TaskList)));
-            TaskList l_TaskList = (TaskList)Instantiate(l_objTaskList);
-
-            if (l_TaskList == null)
+            Object[] l_arrAssets = Resources.LoadAll(TASK_LIST_ASSETS_PATH);
+            int l_iAssetCount = l_arrAssets.Length;
+            for (int l_iAssetIndex = 0; l_iAssetIndex < l_iAssetCount; l_iAssetIndex++)
             {
-                Debug.LogError("TaskManager::loadTaskList::Failed to load TaskList Asset with name :: '" + a_strTaskListName + "'");
-                return;
-            }
-
-            setUpSequenceDictionary(l_TaskList);
-            Resources.UnloadAsset(l_objTaskList);
-
-        }
-
-        /// <summary>
-        /// Sets up the dictionary 
-        /// </summary>
-        private void setUpSequenceDictionary(TaskList a_TaskList)
-        {
-            int l_iSequenceCount = a_TaskList.m_lstSequences.Count;
-            m_dictSequences = new Dictionary<string, SequenceBase>(l_iSequenceCount);
-
-            for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iSequenceCount; l_iSequenceIndex++)
-            {
-                SequenceBase l_CurrentSequence = a_TaskList.m_lstSequences[l_iSequenceIndex];
-                m_dictSequences.Add(l_CurrentSequence.m_strSequenceID, l_CurrentSequence);
+                Object l_AssetObject = l_arrAssets[l_iAssetIndex];
+                TaskList l_TaskList = Instantiate(l_AssetObject) as TaskList;
+                m_lstLoadedTaskLists.Add(l_TaskList);
+                l_TaskList.initialize();
             }
         }
 
         /// <summary>
-        /// Returns sequence in dictionary with ID
+        /// Sets the tasklist as the current
         /// </summary>
-        /// <param name="a_strSequenceID"></param>
-        /// <returns></returns>
-        private SequenceBase getSequenceWithID(string a_strSequenceID)
+        public static void SetTaskList(LEVEL_TYPE a_LevelType)
         {
-            SequenceBase l_SequenceBase = null;
-            m_dictSequences.TryGetValue(a_strSequenceID, out l_SequenceBase);
-            return l_SequenceBase;
+            TaskList l_TaskList = null;
+            if (s_Instance.m_dictLevelTaskList.TryGetValue(a_LevelType, out l_TaskList))
+            {
+                s_Instance.m_CurrentTaskList = l_TaskList;
+            }
+            else
+            {
+                Debug.LogError("TaskManager::SetTaskList:: Task list for level type '"+ a_LevelType.ToString() + "' does not exist");
+            }
         }
 
         /// <summary>
-        /// Starts executing the sequence
+        /// Executes the sequence with the ID from the current task list
+        /// </summary>
+        public static void ExecuteSequence(string a_strSequenceID)
+        {
+            if (s_Instance.m_CurrentTaskList == null)
+            {
+                Debug.LogError("TaskManager::ExecuteSequence:: CurrentTask list is not set.");
+            }
+            else
+            {
+                ScriptableSequence l_Sequence = s_Instance.m_CurrentTaskList.getSequenceWithID(a_strSequenceID);
+                if (l_Sequence == null)
+                {
+                    Debug.LogError("TaskManager::ExecuteSequence:: Failed to find a sequence with ID: '" + a_strSequenceID + "' in task list with name '" + s_Instance.m_CurrentTaskList.m_strName + "'");
+                }
+                else
+                {
+                    s_Instance.executeSequence(l_Sequence);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Executes sequence
+        /// Adds sequence to list of executing sequences
         /// </summary>
         /// <param name="a_Sequence"></param>
-        private void executeSequence(SequenceBase a_Sequence)
+        private void executeSequence(ScriptableSequence a_Sequence)
         {
-            m_lstRunningSequences.Add(a_Sequence);
-            a_Sequence.execute();
+            ISequence l_Sequence = m_TaskPoolManager.getSequenceFromPool(a_Sequence);
+            m_RunningSequneces.Add(l_Sequence);
+            l_Sequence.onExecute();
         }
 
         /// <summary>
-        /// Removes given sequence from list of running sequences
+        /// Event called on any sequence complete
         /// </summary>
-        /// <param name="a_Sequence"></param>
-        public static void OnSequenceComplete(SequenceBase a_Sequence)
+        /// <param name="a_Hashtable"></param>
+        public void onSequenceComplete(Hashtable a_Hashtable)
         {
-            s_Instance.m_lstRunningSequences.Remove(a_Sequence);
-        }
-
-        /// <summary>
-        /// Starts executing the sequence with name
-        /// </summary>
-        /// <param name="a_strSequenceName"></param>
-        public static void ExecuteSequece(string a_strSequenceName)
-        {
-            SequenceBase l_Sequence =  s_Instance.getSequenceWithID(a_strSequenceName);
-            if (l_Sequence == null)
-            {
-                Debug.LogError("TaskManager::ExecuteSequece:: Sequence with name :'"+ a_strSequenceName + "' could not be found in the dictionary");
-                return;
-            }
-
-            s_Instance.executeSequence(l_Sequence);
+            ISequence l_Sequence = (ISequence)a_Hashtable[GameEventTypeConst.ID_SEQUENCE_REF];
+            m_RunningSequneces.Remove(l_Sequence);
         }
     }
 }

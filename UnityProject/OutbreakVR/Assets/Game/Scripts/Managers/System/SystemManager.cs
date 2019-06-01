@@ -11,6 +11,10 @@ namespace ns_Mashmo
         /// </summary>
         private static SystemManager s_Instance = null;
 
+        #region SYSTEM CONSTS
+        public const string NAMESPACE_MASHMO = "ns_Mashmo.";
+        #endregion SYSTEM CONSTS
+
         /// <summary>
         /// This object is the initial manager hence initialize is called by awake
         /// </summary>

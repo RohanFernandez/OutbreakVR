@@ -4,107 +4,83 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    [System.Serializable]
-    public class SequenceBase : ISequence
+    public abstract class SequenceBase : ISequence
     {
         /// <summary>
-        /// The unique sequence identity
+        /// List of all tasks to be executed in this sequence
         /// </summary>
-        [SerializeField]
-        public string m_strSequenceID = string.Empty;
-        public string SequenceID
+        protected List<ITask> m_lstTasks = new List<ITask>(5);
+
+        /// <summary>
+        /// The index of the currently running task
+        /// </summary>
+        protected int m_iRunningTask = 0;
+
+        /// <summary>
+        /// Total tasks in this sequence
+        /// </summary>
+        protected int m_iTotalTasks = 0;
+
+        /// <summary>
+        /// The unique sequence ID
+        /// </summary>
+        protected string m_strSequenceID = string.Empty;
+
+        public void addTask(ITask a_Task)
         {
-            get { return m_strSequenceID; }
+            m_lstTasks.Add(a_Task);
+        }
+
+        public virtual void onInitialize(string a_strSequenceID)
+        {
+            m_iRunningTask = 0;
+            m_strSequenceID = a_strSequenceID;
+            m_iTotalTasks = m_lstTasks.Count;
         }
 
         /// <summary>
-        /// List of all tasks to be executed in a single sequence
+        /// On execution begin of the sequence
         /// </summary>
-        [SerializeField]
-        public List<JobBase> m_lstJobs = null;
-
-        /// <summary>
-        /// The current job at which the sequence is executing
-        /// </summary>
-        private int m_iCurrentJobIndex = 0;
-
-        /// <summary>
-        /// The total number of jobs in this sequence
-        /// </summary>
-        private int m_iJobCount = 0;
-
-        public virtual void execute()
+        public virtual void onExecute()
         {
-            m_iCurrentJobIndex = 0;
-            m_iJobCount = m_lstJobs.Count;
-            executeJob();
+            executeTask();
         }
 
         /// <summary>
-        /// Executes the current job in the index
+        /// Callback on sequence complete
         /// </summary>
-        public virtual void executeJob()
+        public virtual void onComplete()
         {
-            if (m_iCurrentJobIndex < m_iJobCount)
+            m_lstTasks.Clear();
+
+            Hashtable l_hash = new Hashtable(1);
+            l_hash.Add(GameEventTypeConst.ID_SEQUENCE_REF, this);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, l_hash);
+        }
+
+        /// <summary>
+        /// Executes the next task in line
+        /// </summary>
+        public virtual void executeTask()
+        {
+            if (m_iRunningTask < m_iTotalTasks)
             {
-                m_lstJobs[m_iCurrentJobIndex].onExecute();
-            }
-        }
-
-        public virtual void onJobComplete()
-        {
-            ++m_iCurrentJobIndex;
-            if (m_iCurrentJobIndex >= m_iJobCount)
-            {
-                onComplete();
+                m_lstTasks[m_iRunningTask].onStartExecution(onTaskComplete);
             }
             else
             {
-                executeJob();
+                onComplete();
             }
         }
 
-        public virtual void onComplete()
-        {
-            
-        }
-
-#if UNITY_EDITOR
         /// <summary>
-        /// Creates a sequence from the Sequence node
-        /// Adds all the jobs inside the sequence
+        /// on any task complete
         /// </summary>
-        /// <param name="a_SequenceNode"></param>
-        /// <returns></returns>
-        public static SequenceBase GetSequence(System.Xml.XmlNode a_SequenceNode)
+        public virtual void onTaskComplete()
         {
-            SequenceBase l_Sequence = new SequenceBase();
-            System.Xml.XmlAttributeCollection l_arrAttributes = a_SequenceNode.Attributes;
-            int l_iAttribCount = l_arrAttributes.Count;
-
-            for (int l_iAttribIndex = 0; l_iAttribIndex < l_iAttribCount; l_iAttribIndex++)
-            {
-                System.Xml.XmlAttribute l_CurrentAttrib = l_arrAttributes[l_iAttribIndex];
-
-                if (TaskListConsts.XML_KEYWORD_ID.Equals(l_CurrentAttrib.Name, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    l_Sequence.m_strSequenceID = l_CurrentAttrib.Value;
-                }
-            }
-
-            System.Xml.XmlNodeList l_lstJobsNodes = a_SequenceNode.ChildNodes;
-            int l_iJobCount = l_lstJobsNodes.Count;
-            l_Sequence.m_lstJobs = new List<JobBase>(l_iJobCount);
-
-            for (int l_iJobIndex = 0; l_iJobIndex < l_iJobCount; l_iJobIndex++)
-            {
-                System.Xml.XmlNode l_CurrentJobNode = l_lstJobsNodes[l_iJobIndex];
-                JobBase l_CurrentJob = JobBase.GetJob(l_CurrentJobNode, l_Sequence);
-                l_Sequence.m_lstJobs.Add(l_CurrentJob);
-            }
-
-            return l_Sequence;
+            //execute next task
+            m_iRunningTask++;
+            executeTask();
         }
-#endif
     }
 }

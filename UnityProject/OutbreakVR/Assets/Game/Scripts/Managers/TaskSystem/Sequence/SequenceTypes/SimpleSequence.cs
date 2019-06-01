@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface IJob
+    public class SimpleSequence : SequenceBase
     {
-        void onExecute();
-        void onComplete();
+        
     }
 }

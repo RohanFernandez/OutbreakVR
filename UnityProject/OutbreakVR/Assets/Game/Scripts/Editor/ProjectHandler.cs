@@ -33,7 +33,7 @@ namespace ns_Mashmo
         /// <param name="a_strAssetNameToSave"></param>
         static void CreateTaskListScriptableObject(string a_strAssetNameToSave)
         {
-            UnityEditor.AssetDatabase.CreateAsset(TaskList.GetParsedXML(XML_PATH_TASK_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_TASK_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
+            UnityEditor.AssetDatabase.CreateAsset(TaskList.GetTaskListFromXML(XML_PATH_TASK_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_TASK_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
             UnityEditor.AssetDatabase.SaveAssets();
         }
 
@@ -75,7 +75,7 @@ namespace ns_Mashmo
             m_strSequenceToExecute = EditorGUILayout.TextField("Sequence Name:", m_strSequenceToExecute);
             if (GUILayout.Button("Execute Sequence", GUILayout.Width(120)))
             {
-                TaskManager.ExecuteSequece(m_strSequenceToExecute);
+                TaskManager.ExecuteSequence(m_strSequenceToExecute);
             }
         }
 
