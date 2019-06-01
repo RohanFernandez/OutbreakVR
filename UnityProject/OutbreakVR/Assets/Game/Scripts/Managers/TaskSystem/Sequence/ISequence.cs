@@ -6,7 +6,7 @@ namespace ns_Mashmo
 {
     public interface ISequence
     {
-        void onInitialize(string a_strSequenceID);
+        void onInitialize(string a_strSequenceID, string a_strSequenceType);
 
         void onExecute();
 
@@ -17,5 +17,9 @@ namespace ns_Mashmo
         void onUpdate();
 
         string getSequenceID();
+
+        string getSequenceType();
+
+        void onReturnedToPool();
     }
 }

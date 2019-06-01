@@ -11,6 +11,11 @@ namespace ns_Mashmo
         /// </summary>
         System.Action m_SequenceCallbackTaskComplete = null;
 
+        /// <summary>
+        /// The name of the task type class
+        /// </summary>
+        private string m_strTaskType = string.Empty;
+
         public virtual void onStartExecution(System.Action a_SequenceCallbackTaskComplete)
         {
             m_SequenceCallbackTaskComplete = a_SequenceCallbackTaskComplete;
@@ -23,7 +28,7 @@ namespace ns_Mashmo
 
         public virtual void onInitialize(Hashtable a_hashAttributes)
         {
-            
+            m_strTaskType = a_hashAttributes[ScriptableTask.KEY_TASK_TYPE].ToString();
         }
 
         public virtual void onComplete()
@@ -34,6 +39,12 @@ namespace ns_Mashmo
         public virtual void onUpdate()
         {
 
+        }
+
+        //Returns the type of task
+        public string getTaskType()
+        {
+            return m_strTaskType;
         }
     }
 }

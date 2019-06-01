@@ -9,7 +9,12 @@ namespace ns_Mashmo
         /// <summary>
         /// List of all tasks to be executed in this sequence
         /// </summary>
-        protected List<ITask> m_lstTasks = new List<ITask>(5);
+        public List<ITask> m_lstTasks = new List<ITask>(5);
+
+        /// <summary>
+        /// The name of the sequence class type
+        /// </summary>
+        private string m_strSequenceType = string.Empty;
 
         /// <summary>
         /// The index of the currently running task
@@ -31,11 +36,12 @@ namespace ns_Mashmo
             m_lstTasks.Add(a_Task);
         }
 
-        public virtual void onInitialize(string a_strSequenceID)
+        public virtual void onInitialize(string a_strSequenceID, string a_strSequenceType)
         {
             m_iRunningTask = 0;
             m_strSequenceID = a_strSequenceID;
             m_iTotalTasks = m_lstTasks.Count;
+            m_strSequenceType = a_strSequenceType;
         }
 
         /// <summary>
@@ -51,11 +57,17 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void onComplete()
         {
-            m_lstTasks.Clear();
-
             Hashtable l_hash = new Hashtable(1);
             l_hash.Add(GameEventTypeConst.ID_SEQUENCE_REF, this);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, l_hash);
+        }
+
+        /// <summary>
+        /// Called on returned the sequence back into the pool
+        /// </summary>
+        public virtual void onReturnedToPool()
+        {
+            m_lstTasks.Clear();
         }
 
         /// <summary>
@@ -99,6 +111,15 @@ namespace ns_Mashmo
         public string getSequenceID()
         {
             return m_strSequenceID;
+        }
+
+        /// <summary>
+        /// Returns the type of sequence
+        /// </summary>
+        /// <returns></returns>
+        public string getSequenceType()
+        {
+            return m_strSequenceType;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ns_Mashmo
         /// <summary>
         /// The stack that contains the objects of the pool.
         /// </summary>
-        private Stack<T> m_Pool = null;
+        protected Stack<T> m_Pool = null;
 
         /// <summary>
         /// The type of the pooled object
@@ -39,7 +39,6 @@ namespace ns_Mashmo
         public void createObj()
         {
             T l_CreatedObj = System.Activator.CreateInstance(m_Type) as T;
-            
             m_Pool.Push(l_CreatedObj);
         }
 

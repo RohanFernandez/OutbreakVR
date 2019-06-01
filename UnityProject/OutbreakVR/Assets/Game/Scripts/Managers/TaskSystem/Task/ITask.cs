@@ -10,5 +10,6 @@ namespace ns_Mashmo
         void onStartExecution(System.Action a_SequenceCallbackTaskComplete);
         void onComplete();
         void onUpdate();
+        string getTaskType();
     }
 }

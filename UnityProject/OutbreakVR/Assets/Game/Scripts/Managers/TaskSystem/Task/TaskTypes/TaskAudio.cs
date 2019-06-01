@@ -11,6 +11,7 @@ namespace ns_Mashmo
         public override void onInitialize(Hashtable a_hashAttributes)
         {
             base.onInitialize(a_hashAttributes);
+            timePassed = 0.0f;
             m_fWaitTime = float.Parse(a_hashAttributes["WaitTime"].ToString());
 
         }
@@ -32,7 +33,7 @@ namespace ns_Mashmo
             timePassed += Time.deltaTime;
             if (timePassed >= m_fWaitTime)
             {
-                Debug.LogError("Completed : " + m_fWaitTime);
+                Debug.LogWarning("Completed : " + m_fWaitTime);
                 onComplete();
             }
         }

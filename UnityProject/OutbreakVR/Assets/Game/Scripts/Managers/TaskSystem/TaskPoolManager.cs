@@ -43,6 +43,19 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Returns the task to its respective pool
+        /// </summary>
+        /// <param name="a_Task"></param>
+        public void returnTaskToPool(ITask a_Task)
+        {
+            ITaskPool l_TaskPool = null;
+            if (m_dictTasksPools.TryGetValue(a_Task.getTaskType(), out l_TaskPool))
+            {
+                l_TaskPool.returnToPool(a_Task);
+            }
+        }
+
+        /// <summary>
         /// Returns sequence from the pool and sets it as the arguement
         /// </summary>
         /// <param name="a_SequenceBase"></param>
@@ -62,9 +75,29 @@ namespace ns_Mashmo
                 l_Sequence.addTask(getTaskFromPool(a_SequenceBase.m_lstTasks[l_iTaskIndex]));
             }
 
-            l_Sequence.onInitialize(a_SequenceBase.m_strSequenceID);
+            l_Sequence.onInitialize(a_SequenceBase.m_strSequenceID, a_SequenceBase.m_strSequenceType);
 
             return l_Sequence;
+        }
+
+        /// <summary>
+        /// Returns the sequence back to its respective pool
+        /// </summary>
+        /// <param name="a_Sequence"></param>
+        public void returnSequenceToPool(ISequence a_Sequence)
+        {
+            ISequencePool l_SequencePool = null;
+            if (m_dictSequencePools.TryGetValue(a_Sequence.getSequenceType(), out l_SequencePool))
+            {
+                SequenceBase l_Sequencebase = (SequenceBase)a_Sequence;
+                int l_iTaskCount = l_Sequencebase.m_lstTasks.Count;
+                for (int l_iTaskIndex = 0; l_iTaskIndex < l_iTaskCount; l_iTaskIndex++)
+                {
+                    returnTaskToPool(l_Sequencebase.m_lstTasks[l_iTaskIndex]);
+                }
+                a_Sequence.onReturnedToPool();
+                l_SequencePool.returnToPool(a_Sequence);
+            }
         }
     }
 }

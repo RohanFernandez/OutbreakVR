@@ -209,6 +209,7 @@ namespace ns_Mashmo
             if (m_stackEndedLastFrame.Count != 0)
             {
                 ISequence l_Sequence = m_stackEndedLastFrame.Pop();
+                m_TaskPoolManager.returnSequenceToPool(l_Sequence);
                 m_RunningSequneces.Remove(l_Sequence);
             }
 
