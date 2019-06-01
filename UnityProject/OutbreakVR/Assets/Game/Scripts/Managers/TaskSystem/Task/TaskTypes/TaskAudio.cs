@@ -15,22 +15,26 @@ namespace ns_Mashmo
 
         }
 
-        IEnumerator waitForAudio()
-        {
-            yield return new WaitForSeconds(m_fWaitTime);
-            Debug.LogError("AudioCompleted : Wait Time :"+ m_fWaitTime);
-            onComplete();
-        }
-
         public override void onExecute()
         {
             base.onExecute();
-            GameManager.StartCoroutineExecution(waitForAudio());
         }
 
         public override void onComplete()
         {
             base.onComplete();
+        }
+
+        float timePassed = 0.0f;
+        public override void onUpdate()
+        {
+            Debug.Log("Executing : " + m_fWaitTime);
+            timePassed += Time.deltaTime;
+            if (timePassed >= m_fWaitTime)
+            {
+                Debug.LogError("Completed : " + m_fWaitTime);
+                onComplete();
+            }
         }
     }
 }

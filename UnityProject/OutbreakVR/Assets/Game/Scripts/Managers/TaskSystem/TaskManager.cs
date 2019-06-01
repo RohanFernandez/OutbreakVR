@@ -44,6 +44,11 @@ namespace ns_Mashmo
         private List<ISequence> m_RunningSequneces = null;
 
         /// <summary>
+        /// Stack of all sequences that ended in the last frame
+        /// </summary>
+        private Stack<ISequence> m_stackEndedLastFrame = null;
+
+        /// <summary>
         /// Sets singleton instance
         /// </summary>
         public override void initialize()
@@ -57,6 +62,7 @@ namespace ns_Mashmo
 
             m_TaskPoolManager = new TaskPoolManager();
             m_RunningSequneces = new List<ISequence>(10);
+            m_stackEndedLastFrame = new Stack<ISequence>(10);
 
             initializeTaskLists();
 
@@ -150,6 +156,23 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Stops execution of the sequence
+        /// </summary>
+        /// <param name="a_strSequenceID"></param>
+        public static void StopSequence(string a_strSequenceID)
+        {
+            int l_iRunningSequenceCount = s_Instance.m_RunningSequneces.Count;
+            for (int l_iRunningSequenceIndex = 0; l_iRunningSequenceIndex < l_iRunningSequenceCount; l_iRunningSequenceIndex++)
+            {
+                if (s_Instance.m_RunningSequneces[l_iRunningSequenceIndex].getSequenceID().Equals(a_strSequenceID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    s_Instance.stopSequence(s_Instance.m_RunningSequneces[l_iRunningSequenceIndex]);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Executes sequence
         /// Adds sequence to list of executing sequences
         /// </summary>
@@ -168,7 +191,52 @@ namespace ns_Mashmo
         public void onSequenceComplete(Hashtable a_Hashtable)
         {
             ISequence l_Sequence = (ISequence)a_Hashtable[GameEventTypeConst.ID_SEQUENCE_REF];
-            m_RunningSequneces.Remove(l_Sequence);
+            stopSequence(l_Sequence);
         }
+
+        /// <summary>
+        /// Stops sequence
+        /// Adds sequence to stack that will be removed from running sequences in the next frame
+        /// </summary>
+        /// <param name="a_Sequence"></param>
+        public void stopSequence(ISequence a_Sequence)
+        {
+            m_stackEndedLastFrame.Push(a_Sequence);
+        }
+
+        void Update()
+        {
+            if (m_stackEndedLastFrame.Count != 0)
+            {
+                ISequence l_Sequence = m_stackEndedLastFrame.Pop();
+                m_RunningSequneces.Remove(l_Sequence);
+            }
+
+            int l_iRunningSeqeuenceCount = m_RunningSequneces.Count;
+            for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iRunningSeqeuenceCount; l_iSequenceIndex++)
+            {
+                m_RunningSequneces[l_iSequenceIndex].onUpdate();
+            }
+        }
+
+#if UNITY_EDITOR
+
+        /// <summary>
+        /// Prints all running sequences
+        /// </summary>
+        public static void LogRunningSequences()
+        {
+            System.Text.StringBuilder l_StringBuilder = new System.Text.StringBuilder(200);
+            l_StringBuilder.AppendLine("<color=BLUE> RUNNING SEQUENCES </color>\n");
+
+            int l_iRunningSequenceCount = s_Instance.m_RunningSequneces.Count; ;
+            for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iRunningSequenceCount; l_iSequenceIndex++)
+            {
+                l_StringBuilder.AppendLine(l_iSequenceIndex+": \t"+s_Instance.m_RunningSequneces[l_iSequenceIndex].getSequenceID()+ "\n");
+            }
+            Debug.Log(l_StringBuilder);
+        }
+
+#endif
     }
 }

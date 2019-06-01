@@ -82,5 +82,23 @@ namespace ns_Mashmo
             m_iRunningTask++;
             executeTask();
         }
+
+        /// <summary>
+        /// Updates with delta time on running sequence
+        /// </summary>
+        /// <param name="a_fDeltaTime"></param>
+        public virtual void onUpdate()
+        {
+            m_lstTasks[m_iRunningTask].onUpdate();
+        }
+
+        /// <summary>
+        /// Returns the unique sequence id
+        /// </summary>
+        /// <returns></returns>
+        public string getSequenceID()
+        {
+            return m_strSequenceID;
+        }
     }
 }

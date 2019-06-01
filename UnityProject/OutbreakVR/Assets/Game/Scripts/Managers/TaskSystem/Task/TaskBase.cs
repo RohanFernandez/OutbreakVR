@@ -30,5 +30,10 @@ namespace ns_Mashmo
         {
             m_SequenceCallbackTaskComplete();
         }
+
+        public virtual void onUpdate()
+        {
+
+        }
     }
 }

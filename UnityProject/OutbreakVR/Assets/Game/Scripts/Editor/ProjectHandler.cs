@@ -77,6 +77,17 @@ namespace ns_Mashmo
             {
                 TaskManager.ExecuteSequence(m_strSequenceToExecute);
             }
+            if (GUILayout.Button("Stop Sequence", GUILayout.Width(120)))
+            {
+                TaskManager.StopSequence(m_strSequenceToExecute);
+            }
+
+            GUILayout.Space(10.0f);
+            GUILayout.Label("LOGGER", EditorStyles.boldLabel);
+            if (GUILayout.Button("Log Running Tasks", GUILayout.Width(120)))
+            {
+                TaskManager.LogRunningSequences();
+            }
         }
 
 

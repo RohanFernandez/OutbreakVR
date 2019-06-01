@@ -9,5 +9,6 @@ namespace ns_Mashmo
         void onInitialize(Hashtable a_hashAttributes);
         void onStartExecution(System.Action a_SequenceCallbackTaskComplete);
         void onComplete();
+        void onUpdate();
     }
 }

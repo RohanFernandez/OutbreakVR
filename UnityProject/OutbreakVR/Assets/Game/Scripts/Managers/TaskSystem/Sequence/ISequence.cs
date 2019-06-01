@@ -13,5 +13,9 @@ namespace ns_Mashmo
         void onComplete();
 
         void addTask(ITask a_Task);
+
+        void onUpdate();
+
+        string getSequenceID();
     }
 }
