@@ -231,14 +231,15 @@ namespace ns_Mashmo
                     if (l_goNewWeapon != null) { l_goNewWeapon.gameObject.SetActive(true); }
                 }
 
-                Hashtable l_Hashtable = new Hashtable(6);
-                l_Hashtable.Add(GameEventTypeConst.ID_NEW_WEAPON_CATEGORY_TYPE, a_newWeaponCategoryType);
-                l_Hashtable.Add(GameEventTypeConst.ID_NEW_WEAPON_TYPE, a_newWeaponType);
-                l_Hashtable.Add(GameEventTypeConst.ID_NEW_WEAPON_BASE, l_goNewWeapon);
-                l_Hashtable.Add(GameEventTypeConst.ID_OLD_WEAPON_CATEGORY_TYPE, a_oldWeaponCategoryType);
-                l_Hashtable.Add(GameEventTypeConst.ID_OLD_WEAPON_TYPE, a_oldWeaponType);
-                l_Hashtable.Add(GameEventTypeConst.ID_OLD_WEAPON_BASE, l_goOldWeapon);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, l_Hashtable);
+                Hashtable l_hash = EventManager.GetHashtable();
+                l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_CATEGORY_TYPE, a_newWeaponCategoryType);
+                l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_TYPE, a_newWeaponType);
+                l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_BASE, l_goNewWeapon);
+                l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_CATEGORY_TYPE, a_oldWeaponCategoryType);
+                l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_TYPE, a_oldWeaponType);
+                l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_BASE, l_goOldWeapon);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, l_hash);
+                EventManager.ReturnHashtableToPool(l_hash);
             }
         }
 

@@ -92,12 +92,13 @@ namespace ns_Mashmo
             m_Pointer.transform.localPosition = Vector3.zero;
             m_bIsRemoteAttached = m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_RIGHT_REMOTE;
 
-            Hashtable l_hash = new Hashtable(4);
+            Hashtable l_hash = EventManager.GetHashtable();
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_TYPE, a_OldControllerType);
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_ANCHOR, a_OldControllerAnchor);
             l_hash.Add(GameEventTypeConst.ID_NEW_CONTROLLER_TYPE, a_NewControllerType);
             l_hash.Add(GameEventTypeConst.ID_NEW_CONTROLLER_ANCHOR, a_NewControllerAnchor);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, l_hash);
+            EventManager.ReturnHashtableToPool(l_hash);
         }
 
         /// <summary>

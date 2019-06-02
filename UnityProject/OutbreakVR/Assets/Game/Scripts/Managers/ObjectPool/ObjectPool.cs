@@ -36,7 +36,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Creates object of type T and pushes into the pool
         /// </summary>
-        public void createObj()
+        public virtual void createObj()
         {
             T l_CreatedObj = System.Activator.CreateInstance(m_Type) as T;
             m_Pool.Push(l_CreatedObj);

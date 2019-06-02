@@ -17,7 +17,7 @@ MonoBehaviour:
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: StartGame
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskAudio
@@ -32,11 +32,21 @@ MonoBehaviour:
       - m_strKey: WaitTime
         m_strValue: 5.0
     - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 5.0
+    - m_strTaskID: 3
       m_strTaskType: TaskAudio
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 2
+        m_strValue: 3
       - m_strKey: TaskType
         m_strValue: TaskAudio
       - m_strKey: ClipID

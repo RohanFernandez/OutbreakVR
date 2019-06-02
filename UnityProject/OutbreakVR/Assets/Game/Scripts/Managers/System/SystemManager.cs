@@ -96,10 +96,11 @@ namespace ns_Mashmo
                 actionOnSceneLoaded();
             }
 
-            Hashtable l_Hashtable = new Hashtable(2);
-            l_Hashtable.Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
-            l_Hashtable.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, l_NewScene.name);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_Hashtable);
+            Hashtable l_hash = EventManager.GetHashtable();
+            l_hash .Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
+            l_hash.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, l_NewScene.name);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_hash);
+            EventManager.ReturnHashtableToPool(l_hash);
         }
     }
 }

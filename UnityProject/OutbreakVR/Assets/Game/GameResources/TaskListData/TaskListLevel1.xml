@@ -2,6 +2,8 @@
 <TaskList Name = "LEVEL1" >
 	<Sequence ID = "StartGame" SequenceType="SimpleSequence">
 		<Task ID="1" TaskType="TaskAudio" ClipID="Footsteps" WaitTime="5.0"/>
-		<Task ID="2" TaskType="TaskAudio" ClipID="Shoot" WaitTime="10.0"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="5.0"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" Name="" />
+		<Task ID="4" TaskType="TaskAudio" ClipID="Shoot" WaitTime="10.0"/>
 	</Sequence>
 </TaskList>

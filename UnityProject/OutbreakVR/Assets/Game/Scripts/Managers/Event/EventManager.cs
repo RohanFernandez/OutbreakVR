@@ -17,6 +17,11 @@ namespace ns_Mashmo
         private Dictionary<GAME_EVENT_TYPE, GameEventContainer> m_dictGameEvents = null;
 
         /// <summary>
+        /// Pool of hashtable used for arguements of an event
+        /// </summary>
+        private HashtablePool m_HashPool = null;
+
+        /// <summary>
         /// Sets singleton instance
         /// </summary>
         public override void initialize()
@@ -26,6 +31,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            m_HashPool = new HashtablePool(10);
             m_dictGameEvents = new Dictionary<GAME_EVENT_TYPE, GameEventContainer>(10);
         }
 
@@ -39,6 +45,24 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = null;
+        }
+
+        /// <summary>
+        /// Gets hashtable from the pool
+        /// </summary>
+        /// <returns></returns>
+        public static Hashtable GetHashtable()
+        {
+            return s_Instance.m_HashPool.getObject();
+        }
+
+        /// <summary>
+        /// Returns a hashtable back into the pool
+        /// </summary>
+        /// <param name="a_Hashtable"></param>
+        public static void ReturnHashtableToPool(Hashtable a_Hashtable)
+        {
+            s_Instance.m_HashPool.returnToPool(a_Hashtable);
         }
 
         /// <summary>

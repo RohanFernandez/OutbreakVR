@@ -46,5 +46,35 @@ namespace ns_Mashmo
         {
             return m_strTaskType;
         }
+
+        #region GET VARIABLE FROM OBJECT
+
+        public static string GetString(Object a_Object)
+        {
+            return a_Object.ToString();
+        }
+
+        public static int GetInt(Object a_Object)
+        {
+            int l_iReturn = 0;
+            int.TryParse( a_Object.ToString(), out l_iReturn);
+            return l_iReturn;
+        }
+
+        public static float GetFloat(Object a_Object)
+        {
+            float l_fReturn = 0.0f;
+            float.TryParse(a_Object.ToString(), out l_fReturn);
+            return l_fReturn;
+        }
+
+        public static bool GetBool(Object a_Object)
+        {
+            bool l_bReturn = false;
+            bool.TryParse(a_Object.ToString(), out l_bReturn);
+            return l_bReturn;
+        }
+
+        #endregion GET VARIABLE FROM OBJECT
     }
 }

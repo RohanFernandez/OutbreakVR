@@ -57,9 +57,10 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void onComplete()
         {
-            Hashtable l_hash = new Hashtable(1);
+            Hashtable l_hash = EventManager.GetHashtable();
             l_hash.Add(GameEventTypeConst.ID_SEQUENCE_REF, this);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, l_hash);
+            EventManager.ReturnHashtableToPool(l_hash);
         }
 
         /// <summary>

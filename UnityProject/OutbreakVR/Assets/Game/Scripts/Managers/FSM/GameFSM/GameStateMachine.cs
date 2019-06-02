@@ -51,10 +51,11 @@ namespace ns_Mashmo
         {
             base.onStateChanged(a_strOldStateID, a_strNewStateID);
 
-            Hashtable l_Hash = new Hashtable(2);
-            l_Hash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, a_strOldStateID);
-            l_Hash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, a_strNewStateID);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, l_Hash);
+            Hashtable l_hash = EventManager.GetHashtable();
+            l_hash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, a_strOldStateID);
+            l_hash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, a_strNewStateID);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, l_hash);
+            EventManager.ReturnHashtableToPool(l_hash);
         }
     }
 }
