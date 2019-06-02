@@ -17,14 +17,24 @@ namespace ns_Mashmo
 
         #region SCRIPTABLE OBJECT CREATION
 
-        private const string XML_PATH_TASK_LIST = "Assets\\Game\\GameResources\\TaskListData\\";
+        private const string XML_PATH_TASK_LIST         = "Assets\\Game\\GameResources\\TaskListData\\";
+        private const string XML_PATH_OBJECTIVE_LIST    = "Assets\\Game\\GameResources\\ObjectiveListData\\";
+
         private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
         private const string XML_TASK_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\TaskListAssets\\";
+
+        private const string XML_OBJECTIVE_LIST_LEVEL1_NAME = "ObjectiveListLevel1";
+        private const string XML_OBJECTIVE_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\ObjectiveListAssets\\";
+
         private const string XML_EXTENSION = ".xml";
 
         static void CreateAllScriptableObject()
         {
+            ///Task list creation
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL1_NAME);
+
+            ///Objective list creation
+            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
         }
 
         /// <summary>
@@ -34,6 +44,16 @@ namespace ns_Mashmo
         static void CreateTaskListScriptableObject(string a_strAssetNameToSave)
         {
             UnityEditor.AssetDatabase.CreateAsset(TaskList.GetTaskListFromXML(XML_PATH_TASK_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_TASK_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
+            UnityEditor.AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Creates objective list asset with given name and stores it into the location
+        /// </summary>
+        /// <param name="a_strAssetNameToSave"></param>
+        static void CreateObjectiveListScriptableObject(string a_strAssetNameToSave)
+        {
+            UnityEditor.AssetDatabase.CreateAsset(ObjectiveList.GetObjectiveList(XML_PATH_OBJECTIVE_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_OBJECTIVE_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
             UnityEditor.AssetDatabase.SaveAssets();
         }
 
@@ -64,7 +84,7 @@ namespace ns_Mashmo
         void OnGUI()
         {
             GUILayout.Label("Scriptable Objects", EditorStyles.boldLabel);
-            if (GUILayout.Button("Create Task List Scriptable Objects", GUILayout.Width(250)))
+            if (GUILayout.Button("Create All Scriptable Objects", GUILayout.Width(250)))
             {
                 CreateAllScriptableObject();
             }

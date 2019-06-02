@@ -5,22 +5,6 @@ using UnityEngine;
 namespace ns_Mashmo
 {
     [System.Serializable]
-    public class TaskAttribute
-    {
-        /// <summary>
-        /// Key of the attribute in the xml
-        /// </summary>
-        [SerializeField]
-        public string m_strKey = string.Empty;
-
-        /// <summary>
-        /// The value of the attribute
-        /// </summary>
-        [SerializeField]
-        public string m_strValue = string.Empty;
-    }
-
-    [System.Serializable]
     public class ScriptableTask
     {
         #region Attribute Keys
@@ -50,7 +34,7 @@ namespace ns_Mashmo
         /// The list of all attributes
         /// </summary>
         [SerializeField]
-        private List<TaskAttribute> m_lstTaskAttributes = null;
+        private List<KeyValueAttribute> m_lstTaskAttributes = null;
 
         /// <summary>
         /// The hash of TaskAttributes taken from the list for easier access from the derived class.
@@ -65,20 +49,9 @@ namespace ns_Mashmo
             m_hashAttributes = new Hashtable(m_iAttributeCount);
             for (int l_iAttributesIndex = 0; l_iAttributesIndex < m_iAttributeCount; l_iAttributesIndex++)
             {
-                TaskAttribute l_CurrentAttribute = m_lstTaskAttributes[l_iAttributesIndex];
+                KeyValueAttribute l_CurrentAttribute = m_lstTaskAttributes[l_iAttributesIndex];
                 m_hashAttributes.Add(l_CurrentAttribute.m_strKey, l_CurrentAttribute.m_strValue);
             }
-        }
-
-        /// <summary>
-        /// Task variables are set with the arguement task base
-        /// </summary>
-        /// <param name="a_TaskBase"></param>
-        public virtual void onInitialize(Hashtable a_hashAttributes)
-        {
-            m_hashAttributes = a_hashAttributes;
-            m_strTaskID = m_hashAttributes[KEY_TASK_ID].ToString();
-            m_strTaskType = m_hashAttributes[KEY_TASK_TYPE].ToString();
         }
 
 #if UNITY_EDITOR
@@ -98,12 +71,12 @@ namespace ns_Mashmo
             string l_strTaskType = string.Empty;
             string l_strTaskID = string.Empty;
 
-            List<TaskAttribute> l_lstAttributes = new List<TaskAttribute>(l_iAttributeCount);
+            List<KeyValueAttribute> l_lstAttributes = new List<KeyValueAttribute>(l_iAttributeCount);
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributeCount; l_iAttributeIndex++)
             {
                 System.Xml.XmlAttribute l_CurrentTaskAttribute = l_TaskAttributes[l_iAttributeIndex];
 
-                TaskAttribute l_TaskAttribute = new TaskAttribute();
+                KeyValueAttribute l_TaskAttribute = new KeyValueAttribute();
                 l_TaskAttribute.m_strKey = l_CurrentTaskAttribute.Name;
                 l_TaskAttribute.m_strValue = l_CurrentTaskAttribute.Value;
 

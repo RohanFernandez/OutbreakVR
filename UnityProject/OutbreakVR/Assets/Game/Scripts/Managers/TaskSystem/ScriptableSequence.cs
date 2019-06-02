@@ -47,19 +47,6 @@ namespace ns_Mashmo
             }
         }
 
-        ///// <summary>
-        ///// Gets a replica of the sequence without the task list
-        ///// </summary>
-        ///// <returns></returns>
-        //public ScriptableSequence getClone()
-        //{
-        //    ScriptableSequence l_Sequence = new ScriptableSequence();
-        //    l_Sequence.m_iTaskCount = m_iTaskCount;
-        //    l_Sequence.m_lstTasks = new List<ScriptableTask>(m_iTaskCount);
-        //    l_Sequence.m_strSequenceID = m_strSequenceID;
-        //    return l_Sequence;
-        //}
-
 #if UNITY_EDITOR
 
         /// <summary>
