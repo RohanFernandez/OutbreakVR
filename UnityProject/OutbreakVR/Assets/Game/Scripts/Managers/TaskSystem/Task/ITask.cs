@@ -6,7 +6,7 @@ namespace ns_Mashmo
 {
     public interface ITask
     {
-        void onInitialize(Hashtable a_hashAttributes);
+        void onStartInitialization(Hashtable a_hashAttributes);
         void onStartExecution(System.Action a_SequenceCallbackTaskComplete);
         void onComplete();
         void onUpdate();

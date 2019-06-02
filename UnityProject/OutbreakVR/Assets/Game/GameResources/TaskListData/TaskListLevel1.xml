@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TaskList Name = "LEVEL1" >
 	<Sequence ID = "StartGame" SequenceType="SimpleSequence">
-		<Task ID="1" TaskType="TaskAudio" ClipID="Footsteps" WaitTime="5.0"/>
-		<Task ID="2" TaskType="TaskWait" WaitTime="5.0"/>
-		<Task ID="3" TaskType="TaskGameObject" IsActive="false" Name="" />
-		<Task ID="4" TaskType="TaskAudio" ClipID="Shoot" WaitTime="10.0"/>
+		<Task ID="1" TaskType="TaskAudio" AudSrc="Ambient" AudClip="AudClip_Ambient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="1"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="10.0"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject="Test" />
+		<Task ID="4" TaskType="TaskAudio" AudSrc="Ambient" IsStart="false"/>
 	</Sequence>
 </TaskList>

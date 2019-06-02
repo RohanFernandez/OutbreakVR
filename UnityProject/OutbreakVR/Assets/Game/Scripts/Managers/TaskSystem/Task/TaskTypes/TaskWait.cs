@@ -6,14 +6,18 @@ namespace ns_Mashmo
 {
     public class TaskWait : TaskBase
     {
+        #region ATTRIBUTE_KEY
+        private const string ATTRIBUTE_WAIT_TIME = "WaitTime";
+        #endregion ATTRIBUTE_KEY
+
         private float m_fWaitTime = 0.0f;
         private float m_fTimePassed = 0.0f;
 
-        public override void onInitialize(Hashtable a_hashAttributes)
+        public override void onInitialize()
         {
-            base.onInitialize(a_hashAttributes);
+            base.onInitialize();
 
-            m_fWaitTime = float.Parse(a_hashAttributes["WaitTime"].ToString());
+            m_fWaitTime = getFloat(ATTRIBUTE_WAIT_TIME);
         }
 
         public override void onExecute()

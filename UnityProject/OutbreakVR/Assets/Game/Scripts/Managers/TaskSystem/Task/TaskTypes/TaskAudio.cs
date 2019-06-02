@@ -6,36 +6,45 @@ namespace ns_Mashmo
 {
     public class TaskAudio : TaskBase
     {
-        private float m_fWaitTime = 0.0f;
+        #region ATTRIBUTE_KEY
+        private const string ATTRIBUTE_AUDIO_SRC_ID     = "AudSrc";
+        private const string ATTRIBUTE_AUDIO_CLIP_ID    = "AudClip";
+        private const string ATTRIBUTE_IS_START         = "IsStart";
+        private const string ATTRIBUTE_IS_LOOP          = "IsLoop";
+        private const string ATTRIBUTE_VOLUME           = "Volume";
+        private const string ATTRIBUTE_AUD_SRC_TYPE     = "SrcType";
+        #endregion ATTRIBUTE_KEY
 
-        public override void onInitialize(Hashtable a_hashAttributes)
+        private string m_strAudSrcID    = string.Empty;
+        private string m_strAudClipID   = string.Empty;
+        private bool m_bIsStart         = false;
+        private bool m_bIsLoop          = false;
+        private float m_fVolume         = 1.0f;
+        private int m_iSrcType          = 0;
+
+        public override void onInitialize()
         {
-            base.onInitialize(a_hashAttributes);
-            timePassed = 0.0f;
-            m_fWaitTime = float.Parse(a_hashAttributes["WaitTime"].ToString());
-
+            base.onInitialize();
+            m_strAudSrcID   = getString(ATTRIBUTE_AUDIO_SRC_ID);
+            m_strAudClipID  = getString(ATTRIBUTE_AUDIO_CLIP_ID);
+            m_bIsStart      = getBool(ATTRIBUTE_IS_START);
+            m_bIsLoop       = getBool(ATTRIBUTE_IS_LOOP);
+            m_fVolume       = getFloat(ATTRIBUTE_VOLUME);
+            m_iSrcType      = getInt(ATTRIBUTE_AUD_SRC_TYPE);
         }
 
         public override void onExecute()
         {
             base.onExecute();
-        }
-
-        public override void onComplete()
-        {
-            base.onComplete();
-        }
-
-        float timePassed = 0.0f;
-        public override void onUpdate()
-        {
-            Debug.Log("Executing : " + m_fWaitTime);
-            timePassed += Time.deltaTime;
-            if (timePassed >= m_fWaitTime)
+            if (m_bIsStart)
             {
-                Debug.LogWarning("Completed : " + m_fWaitTime);
-                onComplete();
+                SoundManager.PlayAudio(m_strAudSrcID, m_strAudClipID, m_bIsLoop, m_fVolume, (AUDIO_SRC_TYPES)m_iSrcType);
             }
+            else
+            {
+                SoundManager.StopAudioSrcWithID(m_strAudSrcID);
+            }
+            onComplete();
         }
     }
 }

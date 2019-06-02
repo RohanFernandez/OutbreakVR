@@ -53,7 +53,9 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static Hashtable GetHashtable()
         {
-            return s_Instance.m_HashPool.getObject();
+            Hashtable l_hash = s_Instance.m_HashPool.getObject();
+            l_hash.Clear();
+            return l_hash;
         }
 
         /// <summary>

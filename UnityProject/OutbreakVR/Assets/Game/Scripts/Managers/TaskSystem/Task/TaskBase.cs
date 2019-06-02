@@ -12,9 +12,21 @@ namespace ns_Mashmo
         System.Action m_SequenceCallbackTaskComplete = null;
 
         /// <summary>
+        /// Hashtable of key to value of the task attributes
+        /// </summary>
+        Hashtable m_hashAttributes = null;
+
+        /// <summary>
         /// The name of the task type class
         /// </summary>
         private string m_strTaskType = string.Empty;
+
+        public virtual void onStartInitialization(Hashtable a_hashAttributes)
+        {
+            m_hashAttributes = a_hashAttributes;
+            m_strTaskType = getString(ScriptableTask.KEY_TASK_TYPE);
+            onInitialize();
+        }
 
         public virtual void onStartExecution(System.Action a_SequenceCallbackTaskComplete)
         {
@@ -22,13 +34,12 @@ namespace ns_Mashmo
             onExecute();
         }
 
-        public virtual void onExecute()
-        {
+        public virtual void onInitialize()
+        {   
         }
 
-        public virtual void onInitialize(Hashtable a_hashAttributes)
+        public virtual void onExecute()
         {
-            m_strTaskType = a_hashAttributes[ScriptableTask.KEY_TASK_TYPE].ToString();
         }
 
         public virtual void onComplete()
@@ -49,29 +60,72 @@ namespace ns_Mashmo
 
         #region GET VARIABLE FROM OBJECT
 
-        public static string GetString(Object a_Object)
+        /// <summary>
+        /// Returns string from hashtable object
+        /// Returns string.Empty if object is null
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public string getString(string a_strAttributeKey)
         {
-            return a_Object.ToString();
+            System.Object l_Obj = m_hashAttributes[a_strAttributeKey];
+            return (l_Obj == null) ? string.Empty : l_Obj.ToString();
         }
 
-        public static int GetInt(Object a_Object)
+        /// <summary>
+        /// Returns string from hashtable object
+        /// Returns 0 if object is null
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public int getInt(string a_strAttributeKey)
         {
+            System.Object l_Obj = m_hashAttributes[a_strAttributeKey];
+            string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
+
             int l_iReturn = 0;
-            int.TryParse( a_Object.ToString(), out l_iReturn);
+            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            {
+                int.TryParse(l_strAtrributeValue, out l_iReturn);
+            }
             return l_iReturn;
         }
 
-        public static float GetFloat(Object a_Object)
+        /// <summary>
+        /// Returns string from hashtable object
+        /// Returns 0.0f if object is null
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public float getFloat(string a_strAttributeKey)
         {
+            System.Object l_Obj = m_hashAttributes[a_strAttributeKey];
+            string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
+
             float l_fReturn = 0.0f;
-            float.TryParse(a_Object.ToString(), out l_fReturn);
+            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            {
+                float.TryParse(l_strAtrributeValue, out l_fReturn);
+            }
             return l_fReturn;
         }
 
-        public static bool GetBool(Object a_Object)
+        /// <summary>
+        /// Returns string from hashtable object
+        /// Return false if key is null or empty
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public bool getBool(string a_strAttributeKey)
         {
+            System.Object l_Obj = m_hashAttributes[a_strAttributeKey];
+            string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
+
             bool l_bReturn = false;
-            bool.TryParse(a_Object.ToString(), out l_bReturn);
+            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            {
+                bool.TryParse(l_strAtrributeValue, out l_bReturn);
+            }
             return l_bReturn;
         }
 

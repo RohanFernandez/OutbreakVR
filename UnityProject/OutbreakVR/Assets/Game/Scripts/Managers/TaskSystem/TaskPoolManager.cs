@@ -37,7 +37,7 @@ namespace ns_Mashmo
                 m_dictTasksPools.Add(a_Task.m_strTaskType, l_TaskPool);
             }
             ITask l_Task = l_TaskPool.getTask();
-            l_Task.onInitialize(a_Task.m_hashAttributes);
+            l_Task.onStartInitialization(a_Task.m_hashAttributes);
 
             return l_Task;
         }
