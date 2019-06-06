@@ -26,7 +26,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Dictionary of the level name to its corresponding task list asset
         /// </summary>
-        private Dictionary<LEVEL_TYPE, TaskList> m_dictLevelTaskList = null;
+        private Dictionary<string, TaskList> m_dictLevelTaskList = null;
 
         /// <summary>
         /// Manages the tasks pools, creates and reuses the tasks of different types
@@ -59,6 +59,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
 
             m_TaskPoolManager = new TaskPoolManager();
             m_RunningSequneces = new List<ISequence>(10);
@@ -68,22 +69,12 @@ namespace ns_Mashmo
 
             ///initialize dictionary of level type to task list
             int l_iTotalTaskLists = m_lstLoadedTaskLists.Count;
-            m_dictLevelTaskList = new Dictionary<LEVEL_TYPE, TaskList>(l_iTotalTaskLists);
+            m_dictLevelTaskList = new Dictionary<string, TaskList>(l_iTotalTaskLists);
             for (int l_iTaskListIndex = 0; l_iTaskListIndex < l_iTotalTaskLists; l_iTaskListIndex++)
             {
                 TaskList l_TaskList = m_lstLoadedTaskLists[l_iTaskListIndex];
-                LEVEL_TYPE l_LevelType;
-                if (System.Enum.TryParse<LEVEL_TYPE>(l_TaskList.m_strName, out l_LevelType))
-                {
-                    m_dictLevelTaskList.Add(l_LevelType, l_TaskList);
-                }
-                else
-                {
-                    Debug.LogError("TaskManager::initialize:: Failed to convert '"+ l_TaskList.m_strName + " to LEVEL_TYPE enum to add it into the dictionary");
-                }
+                m_dictLevelTaskList.Add(l_TaskList.m_strName, l_TaskList);
             }
-
-            SetTaskList(LEVEL_TYPE.LEVEL1);
         }
 
         /// <summary>
@@ -96,6 +87,7 @@ namespace ns_Mashmo
                 return;
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
             s_Instance = null;
         }
 
@@ -119,16 +111,16 @@ namespace ns_Mashmo
         /// <summary>
         /// Sets the tasklist as the current
         /// </summary>
-        public static void SetTaskList(LEVEL_TYPE a_LevelType)
+        public static void SetTaskList(string a_strLevelName)
         {
             TaskList l_TaskList = null;
-            if (s_Instance.m_dictLevelTaskList.TryGetValue(a_LevelType, out l_TaskList))
+            if (s_Instance.m_dictLevelTaskList.TryGetValue(a_strLevelName, out l_TaskList))
             {
                 s_Instance.m_CurrentTaskList = l_TaskList;
             }
             else
             {
-                Debug.LogError("TaskManager::SetTaskList:: Task list for level type '"+ a_LevelType.ToString() + "' does not exist");
+                Debug.LogError("TaskManager::SetTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist");
             }
         }
 
@@ -218,6 +210,16 @@ namespace ns_Mashmo
             {
                 m_RunningSequneces[l_iSequenceIndex].onUpdate();
             }
+        }
+
+        /// <summary>
+        /// Event called on a level is selected
+        /// </summary>
+        /// <param name="a_Hashtable"></param>
+        public void onLevelSelected(Hashtable a_Hashtable)
+        {
+            LEVEL_TYPE a_LevelType = (LEVEL_TYPE)a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE];
+            SetTaskList(a_LevelType.ToString());
         }
 
 #if UNITY_EDITOR

@@ -17,6 +17,24 @@ namespace ns_Mashmo
         private static GameManager s_Instance = null;
 
         /// <summary>
+        /// The current Game level
+        /// </summary>
+        private LEVEL_TYPE m_CurrentLevel;
+
+        /// <summary>
+        /// Sets the current level as arguement as fires an event if the old event is not the new
+        /// </summary>
+        /// <param name="a_LevelType"></param>
+        public static void SetGameLevel(LEVEL_TYPE a_LevelType)
+        {
+            s_Instance.m_CurrentLevel = a_LevelType;
+            Hashtable l_Hashtable = EventManager.GetHashtable();
+            l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_LevelType);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
+            EventManager.ReturnHashtableToPool(l_Hashtable);
+        }
+
+        /// <summary>
         /// Sets singleton instance
         /// </summary>
         public override void initialize()
@@ -45,6 +63,21 @@ namespace ns_Mashmo
         public static void StartCoroutineExecution(IEnumerator a_Enumerator)
         {
             s_Instance.StartCoroutine(a_Enumerator);
+        }
+
+        /// <summary>
+        /// Displays the load panel
+        /// Loads scene name
+        /// Hides the load panel
+        /// Calls action sent on complete
+        /// </summary>
+        public static void LoadScene(string a_strSceneName, System.Action a_actionOnLoadComplete = null)
+        {
+            //Show load panel
+            SystemManager.LoadScene(a_strSceneName,
+                a_actionOnLoadComplete += () => {
+                    /// Add action of hiding loading panel
+                } );
         }
     }
 }

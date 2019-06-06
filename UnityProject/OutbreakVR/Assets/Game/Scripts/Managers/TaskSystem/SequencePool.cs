@@ -13,7 +13,7 @@ namespace ns_Mashmo
     public class SequencePool : ObjectPool<ISequence>, ISequencePool
     {
         public SequencePool(string a_SequenceType, int a_iStartSize = 0)
-            : base(SystemManager.NAMESPACE_MASHMO + a_SequenceType, a_iStartSize)
+            : base(SystemConsts.NAMESPACE_MASHMO + a_SequenceType, a_iStartSize)
         {
         }
 

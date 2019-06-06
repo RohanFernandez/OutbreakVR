@@ -4,58 +4,52 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public abstract class TaskBase : ITask
+    [System.Serializable]
+    public class ObjectiveBase : IObjective
     {
-        /// <summary>
-        /// Callback for the sequence on task is complete
-        /// </summary>
-        System.Action m_SequenceCallbackTaskComplete = null;
+        [SerializeField]
+        private string m_strID = string.Empty;
 
         /// <summary>
-        /// Hashtable of key to value of the task attributes
+        /// The type of the objective
         /// </summary>
-        Hashtable m_hashAttributes = null;
+        [SerializeField]
+        private string m_strType = string.Empty;
 
         /// <summary>
-        /// The name of the task type class
+        /// Attributes in this objective
         /// </summary>
-        private string m_strTaskType = string.Empty;
+        private Hashtable m_hashAttributes = null;
 
-        public virtual void onStartInitialization(Hashtable a_hashAttributes)
+        /// <summary>
+        /// called on start of initialization
+        /// Sets the attributes to the member variable
+        /// </summary>
+        /// <param name="a_hashAttributes"></param>
+        public void onStartInitialization(Hashtable a_hashAttributes)
         {
             m_hashAttributes = a_hashAttributes;
-            m_strTaskType = getString(ScriptableTask.KEY_TASK_TYPE);
-            onInitialize();
+            m_strType = getString(ScriptableObjective.KEY_TASK_TYPE);
+            m_strID = getString(ScriptableObjective.KEY_TASK_ID);
         }
 
-        public virtual void onStartExecution(System.Action a_SequenceCallbackTaskComplete)
+        /// <summary>
+        /// Returns the objective type name
+        /// </summary>
+        /// <returns></returns>
+        public string getObjectiveType()
         {
-            m_SequenceCallbackTaskComplete = a_SequenceCallbackTaskComplete;
-            onExecute();
-        }
-
-        public virtual void onInitialize()
-        {   
-        }
-
-        public virtual void onExecute()
-        {
+            return null;
         }
 
         public virtual void onComplete()
         {
-            m_SequenceCallbackTaskComplete();
+            
         }
 
         public virtual void onUpdate()
         {
-
-        }
-
-        //Returns the type of task
-        public string getTaskType()
-        {
-            return m_strTaskType;
+            
         }
 
         #region GET VARIABLE FROM OBJECT

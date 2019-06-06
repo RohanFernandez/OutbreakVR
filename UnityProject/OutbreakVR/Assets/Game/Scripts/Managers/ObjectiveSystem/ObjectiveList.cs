@@ -25,11 +25,34 @@ namespace ns_Mashmo
         public List<ScriptableObjectiveGroup> m_lstObjectiveGroup = null;
 
         /// <summary>
+        /// Dictionary of the Scriptable group id to the Scriptable group
+        /// </summary>
+        public Dictionary<string, ScriptableObjectiveGroup> m_dictObjectiveGroup = null;
+
+        /// <summary>
+        /// Returns scriptable objective group if exists in dict with given ID else returns null
+        /// </summary>
+        /// <param name="a_strID"></param>
+        /// <returns></returns>
+        public ScriptableObjectiveGroup getScriptableObjectiveGroup(string a_strID)
+        {
+            ScriptableObjectiveGroup l_Return = null;
+            m_dictObjectiveGroup.TryGetValue(a_strID, out l_Return);
+            return l_Return;
+        }
+
+        /// <summary>
         /// Sets the 
         /// </summary>
         public void initialize()
         {
-
+            m_dictObjectiveGroup = new Dictionary<string, ScriptableObjectiveGroup>(m_iObjectiveGroupCount);
+            for (int l_iObjectiveGroupIndex = 0; l_iObjectiveGroupIndex < m_iObjectiveGroupCount; l_iObjectiveGroupIndex++)
+            {
+                ScriptableObjectiveGroup l_ObjectiveGroup = m_lstObjectiveGroup[l_iObjectiveGroupIndex];
+                l_ObjectiveGroup.initialize();
+                m_dictObjectiveGroup.Add(l_ObjectiveGroup.m_strID, l_ObjectiveGroup);
+            }
         }
 
 #if UNITY_EDITOR

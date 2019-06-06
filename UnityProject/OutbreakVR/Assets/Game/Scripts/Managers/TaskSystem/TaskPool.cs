@@ -13,7 +13,7 @@ namespace ns_Mashmo
     public class TaskPool: ObjectPool<ITask>, ITaskPool
     {
         public TaskPool(string a_strTaskType, int a_iStartSize = 0)
-            : base(SystemManager.NAMESPACE_MASHMO + a_strTaskType, a_iStartSize)
+            : base(SystemConsts.NAMESPACE_MASHMO + a_strTaskType, a_iStartSize)
         {
         }
 

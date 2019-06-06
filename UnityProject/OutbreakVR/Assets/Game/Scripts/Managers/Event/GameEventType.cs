@@ -10,7 +10,8 @@ namespace ns_Mashmo
         ON_GAME_STATE_CHANGED,                      /* <ID_OLD_GAME_STATE, ID_OLD_GAME_STATE> */
         ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED,      /* <ID_NEW_WEAPON_CATEGORY_TYPE, ID_NEW_WEAPON_TYPE, ID_NEW_WEAPON_BASE, ID_OLD_WEAPON_CATEGORY_TYPE, ID_OLD_WEAPON_TYPE, ID_OLD_WEAPON_BASE> */
         ON_SCENE_CHANGED,                           /* <NAME_OLD_SCENE, NAME_NEW_SCENE> */
-        ON_SEQUENCE_COMPLETE                        /* <ISEQUENCE> */
+        ON_SEQUENCE_COMPLETE,                       /* <ISEQUENCE> */
+        ON_LEVEL_SELECTED                           /* <LEVEL_TYPE>*/
     }
 
     public struct GameEventTypeConst
@@ -44,5 +45,9 @@ namespace ns_Mashmo
         #region ON_SEQUENCE_COMPLETE
         public const string ID_SEQUENCE_REF = "ID_SEQUENCE_REF";        /* ISEQUENCE */
         #endregion ON_SEQUENCE_COMPLETE
+
+        #region ON_LEVEL_SELECTED
+        public const string ID_LEVEL_TYPE = "ID_LEVEL_TYPE";        /* LEVELTYPE */
+        #endregion ON_LEVEL_SELECTED
     }
 }

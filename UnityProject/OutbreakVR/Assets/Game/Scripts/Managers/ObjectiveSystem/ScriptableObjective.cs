@@ -34,7 +34,22 @@ namespace ns_Mashmo
         /// The list of all attributes
         /// </summary>
         [SerializeField]
-        private List<KeyValueAttribute> m_lstTaskAttributes = null;
+        private List<KeyValueAttribute> m_lstAttributes = null;
+
+        /// <summary>
+        /// Hashtable of attributes
+        /// </summary>
+        public Hashtable m_hashAttributes = null; 
+
+        public void initialize()
+        {
+            m_hashAttributes = new Hashtable(m_iAttributeCount);
+            for (int l_iAttributesIndex = 0; l_iAttributesIndex < m_iAttributeCount; l_iAttributesIndex++)
+            {
+                KeyValueAttribute l_CurrentAttribute = m_lstAttributes[l_iAttributesIndex];
+                m_hashAttributes.Add(l_CurrentAttribute.m_strKey, l_CurrentAttribute.m_strValue);
+            }
+        }
 
 #if UNITY_EDITOR
         public static ScriptableObjective GetObjectiveFromXML(System.Xml.XmlNode a_ObjectiveNode)
@@ -67,7 +82,7 @@ namespace ns_Mashmo
 
             ScriptableObjective l_ScriptableObjective = new ScriptableObjective();
             l_ScriptableObjective.m_iAttributeCount = l_iAttributeCount;
-            l_ScriptableObjective.m_lstTaskAttributes = l_lstAttributes;
+            l_ScriptableObjective.m_lstAttributes = l_lstAttributes;
             l_ScriptableObjective.m_strType = l_strType;
             l_ScriptableObjective.m_strID = l_strID;
 

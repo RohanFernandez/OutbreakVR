@@ -11,26 +11,33 @@ namespace ns_Mashmo
         /// Unique group ID
         /// </summary>
         [SerializeField]
-        private string m_strID = string.Empty;
+        public string m_strID = string.Empty;
 
         /// <summary>
         /// Objective group type
         /// </summary>
         [SerializeField]
-        private string m_strType = string.Empty;
+        public string m_strType = string.Empty;
 
         /// <summary>
         /// Total count of objectives in the list
         /// </summary>
         [SerializeField]
-        private int m_iObjectiveCount = 0;
+        public int m_iObjectiveCount = 0;
 
         /// <summary>
         /// List of all objectives
         /// </summary>
         [SerializeField]
-        private List<ScriptableObjective> m_lstScriptibeObjective = null;
+        public List<ScriptableObjective> m_lstScriptibeObjective = null;
 
+        public void initialize()
+        {
+            for (int l_iObjectiveIndex = 0; l_iObjectiveIndex < m_iObjectiveCount; l_iObjectiveIndex++)
+            {
+                m_lstScriptibeObjective[l_iObjectiveIndex].initialize();
+            }
+        }
 
         #region Attribute Keys
         public const string KEY_OBJECTIVE_GROUP_TYPE = "Type";

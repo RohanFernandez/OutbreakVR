@@ -11,10 +11,6 @@ namespace ns_Mashmo
         /// </summary>
         private static SystemManager s_Instance = null;
 
-        #region SYSTEM CONSTS
-        public const string NAMESPACE_MASHMO = "ns_Mashmo.";
-        #endregion SYSTEM CONSTS
-
         /// <summary>
         /// This object is the initial manager hence initialize is called by awake
         /// </summary>
@@ -72,20 +68,15 @@ namespace ns_Mashmo
         private IEnumerator loadSceneAsync(string a_strSceneName, System.Action actionOnSceneLoaded)
         {
             UnityEngine.SceneManagement.Scene l_OldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            UnityEngine.SceneManagement.Scene l_NewScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(a_strSceneName);
 
-            if (l_NewScene == null)
-            {
-                Debug.LogError("SystemManager::loadSceneAsync:: Scene with name '" + a_strSceneName + "' does not exist in the registered scene list.");
-                yield break;
-            }
-            else if (l_OldScene == l_NewScene)
+            if (l_OldScene.name.Equals(a_strSceneName, System.StringComparison.OrdinalIgnoreCase))
             {
                 Debug.LogError("SystemManager::loadSceneAsync:: New scene to load is the same as the current active scene.");
                 yield break;
             }
 
-            AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(l_NewScene.name, UnityEngine.SceneManagement.LoadSceneMode.Single);
+            Debug.Log("<color=BLUE>SystemManager::loadSceneAsync::</color> Loading scene with name : '"+ a_strSceneName + "'");
+            AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
             while (!l_AsyncOperation.isDone)
             {
                 yield return null;
@@ -98,7 +89,7 @@ namespace ns_Mashmo
 
             Hashtable l_hash = EventManager.GetHashtable();
             l_hash .Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
-            l_hash.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, l_NewScene.name);
+            l_hash.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, a_strSceneName);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_hash);
             EventManager.ReturnHashtableToPool(l_hash);
         }

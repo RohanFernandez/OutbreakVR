@@ -48,13 +48,13 @@ namespace ns_Mashmo
 
             if (l_OldManagedState != null)
             {
-                l_OldManagedState.onStateExit(l_strOldStateId);
+                l_OldManagedState.onStateExit(l_strNewStateId);
             }
             m_strCurrentState = l_strNewStateId;
 
             if (l_NewManagedState != null)
             {
-                l_NewManagedState.onStateEnter(l_strNewStateId);
+                l_NewManagedState.onStateEnter(l_strOldStateId);
             }
 
             onStateChanged(l_strOldStateId, l_strNewStateId);

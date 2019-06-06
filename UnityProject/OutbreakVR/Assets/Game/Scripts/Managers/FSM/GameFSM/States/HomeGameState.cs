@@ -8,12 +8,21 @@ namespace ns_Mashmo
     {
         public override void onStateEnter(string a_strNewState)
         {
-            Debug.LogError("StateEntered :"+ a_strNewState);
+            base.onStateEnter(a_strNewState);
+            GameManager.LoadScene(SystemConsts.SCENE_NAME_HOME_SCENE);
         }
 
         public override void onStateExit(string a_strOldState)
         {
-            Debug.LogError("StateExited : "+ a_strOldState);
+            base.onStateExit(a_strOldState);
+        }
+
+        /// <summary>
+        /// On loading on home scene complete do what you want to initialize
+        /// </summary>
+        private void onLoadHomeSceneComplete()
+        {
+
         }
     }
 }
