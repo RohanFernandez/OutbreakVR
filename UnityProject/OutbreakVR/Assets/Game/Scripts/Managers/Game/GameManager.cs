@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public enum LEVEL_TYPE
-    {
-        LEVEL1
-    }
+    //public enum LEVEL_TYPE
+    //{
+    //    LEVEL1
+    //}
 
     public class GameManager : AbsGroupComponentHandler
     {
@@ -19,17 +19,18 @@ namespace ns_Mashmo
         /// <summary>
         /// The current Game level
         /// </summary>
-        private LEVEL_TYPE m_CurrentLevel;
+        [SerializeField]
+        private string m_strCurrentLevel = string.Empty;
 
         /// <summary>
         /// Sets the current level as arguement as fires an event if the old event is not the new
         /// </summary>
         /// <param name="a_LevelType"></param>
-        public static void SetGameLevel(LEVEL_TYPE a_LevelType)
+        public static void SetGameLevel(string a_strLevelType)
         {
-            s_Instance.m_CurrentLevel = a_LevelType;
+            s_Instance.m_strCurrentLevel = a_strLevelType;
             Hashtable l_Hashtable = EventManager.GetHashtable();
-            l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_LevelType);
+            l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
             EventManager.ReturnHashtableToPool(l_Hashtable);
         }

@@ -47,7 +47,7 @@ namespace ns_Mashmo
         #endregion ON_SEQUENCE_COMPLETE
 
         #region ON_LEVEL_SELECTED
-        public const string ID_LEVEL_TYPE = "ID_LEVEL_TYPE";        /* LEVELTYPE */
+        public const string ID_LEVEL_TYPE = "ID_LEVEL_TYPE";        /* STRING */
         #endregion ON_LEVEL_SELECTED
     }
 }

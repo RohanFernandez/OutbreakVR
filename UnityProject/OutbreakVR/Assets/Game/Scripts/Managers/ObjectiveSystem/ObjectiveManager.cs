@@ -159,8 +159,8 @@ namespace ns_Mashmo
         /// <param name="a_hashtable"></param>
         public void onLevelSet(Hashtable a_hashtable)
         {
-            LEVEL_TYPE a_LevelType = (LEVEL_TYPE)a_hashtable[GameEventTypeConst.ID_LEVEL_TYPE];
-            SetObjectiveList(a_LevelType.ToString());
+            string l_strLevelType = a_hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
+            SetObjectiveList(l_strLevelType);
         }
     }
 }

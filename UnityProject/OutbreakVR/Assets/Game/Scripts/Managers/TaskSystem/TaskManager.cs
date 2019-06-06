@@ -24,6 +24,12 @@ namespace ns_Mashmo
         private TaskList m_CurrentTaskList = null;
 
         /// <summary>
+        /// The Common loaded task list, be loaded automatically on start
+        /// </summary>
+        [SerializeField]
+        private TaskList m_CommonTaskList = null;
+
+        /// <summary>
         /// Dictionary of the level name to its corresponding task list asset
         /// </summary>
         private Dictionary<string, TaskList> m_dictLevelTaskList = null;
@@ -37,6 +43,11 @@ namespace ns_Mashmo
         /// Task list assets path
         /// </summary>
         private const string TASK_LIST_ASSETS_PATH = "TaskListAssets";
+
+        /// <summary>
+        /// Name of the common task list
+        /// </summary>
+        private const string TASK_LIST_NAME_COMMON = "COMMON_LIST";
 
         /// <summary>
         /// List of all currently running sequences
@@ -74,6 +85,11 @@ namespace ns_Mashmo
             {
                 TaskList l_TaskList = m_lstLoadedTaskLists[l_iTaskListIndex];
                 m_dictLevelTaskList.Add(l_TaskList.m_strName, l_TaskList);
+
+                if (l_TaskList.m_strName.Equals(TASK_LIST_NAME_COMMON, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    m_CommonTaskList = l_TaskList;
+                }
             }
         }
 
@@ -129,21 +145,21 @@ namespace ns_Mashmo
         /// </summary>
         public static void ExecuteSequence(string a_strSequenceID)
         {
-            if (s_Instance.m_CurrentTaskList == null)
+            ScriptableSequence l_Sequence = null;
+            l_Sequence = s_Instance.m_CommonTaskList.getSequenceWithID(a_strSequenceID);
+
+            if (l_Sequence == null && s_Instance.m_CurrentTaskList != null)
             {
-                Debug.LogError("TaskManager::ExecuteSequence:: CurrentTask list is not set.");
+                l_Sequence = s_Instance.m_CurrentTaskList.getSequenceWithID(a_strSequenceID);
+            }
+
+            if (l_Sequence == null)
+            {
+                Debug.LogError("TaskManager::ExecuteSequence:: Failed to find a sequence with ID: '" + a_strSequenceID + "' in task list with name '" + s_Instance.m_CurrentTaskList.m_strName + "'");
             }
             else
             {
-                ScriptableSequence l_Sequence = s_Instance.m_CurrentTaskList.getSequenceWithID(a_strSequenceID);
-                if (l_Sequence == null)
-                {
-                    Debug.LogError("TaskManager::ExecuteSequence:: Failed to find a sequence with ID: '" + a_strSequenceID + "' in task list with name '" + s_Instance.m_CurrentTaskList.m_strName + "'");
-                }
-                else
-                {
-                    s_Instance.executeSequence(l_Sequence);
-                }
+                s_Instance.executeSequence(l_Sequence);
             }
         }
 
@@ -218,8 +234,8 @@ namespace ns_Mashmo
         /// <param name="a_Hashtable"></param>
         public void onLevelSelected(Hashtable a_Hashtable)
         {
-            LEVEL_TYPE a_LevelType = (LEVEL_TYPE)a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE];
-            SetTaskList(a_LevelType.ToString());
+            string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
+            SetTaskList(a_strLevelType);
         }
 
 #if UNITY_EDITOR

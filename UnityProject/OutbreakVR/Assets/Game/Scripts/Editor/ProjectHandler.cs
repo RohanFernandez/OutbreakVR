@@ -20,6 +20,7 @@ namespace ns_Mashmo
         private const string XML_PATH_TASK_LIST         = "Assets\\Game\\GameResources\\TaskListData\\";
         private const string XML_PATH_OBJECTIVE_LIST    = "Assets\\Game\\GameResources\\ObjectiveListData\\";
 
+        private const string XML_TASK_LIST_COMMON_NAME = "TaskListCommon";
         private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
         private const string XML_TASK_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\TaskListAssets\\";
 
@@ -32,6 +33,7 @@ namespace ns_Mashmo
         {
             ///Task list creation
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL1_NAME);
+            CreateTaskListScriptableObject(XML_TASK_LIST_COMMON_NAME);
 
             ///Objective list creation
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
