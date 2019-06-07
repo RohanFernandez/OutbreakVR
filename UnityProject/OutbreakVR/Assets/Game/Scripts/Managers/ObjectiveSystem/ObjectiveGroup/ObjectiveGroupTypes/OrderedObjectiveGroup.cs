@@ -18,9 +18,9 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strID"></param>
         /// <param name="a_strType"></param>
-        public override void onInitialize(string a_strID, string a_strType)
+        public override void onInitialize(string a_strID, string a_strType, string a_strStateChangeOnComplete)
         {
-            base.onInitialize(a_strID, a_strType);
+            base.onInitialize(a_strID, a_strType, a_strStateChangeOnComplete);
             m_iCurrentObjectiveIndex = 0;
         }
 

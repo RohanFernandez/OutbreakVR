@@ -50,6 +50,16 @@ namespace ns_Mashmo
         private const string TASK_LIST_NAME_COMMON = "COMMON_LIST";
 
         /// <summary>
+        /// Postfix of task name "statename" + TASK_POSTFIX_ON_BEGIN to execute on state enter
+        /// </summary>
+        private const string TASK_POSTFIX_ON_BEGIN = "_OnBegin";
+
+        /// <summary>
+        /// Prefix of task name "statename" + TASK_POSTFIX_ON_END to execute on state end
+        /// </summary>
+        private const string TASK_POSTFIX_ON_END = "_OnEnd";
+
+        /// <summary>
         /// List of all currently running sequences
         /// </summary>
         private List<ISequence> m_RunningSequneces = null;
@@ -71,6 +81,7 @@ namespace ns_Mashmo
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
 
             m_TaskPoolManager = new TaskPoolManager();
             m_RunningSequneces = new List<ISequence>(10);
@@ -104,6 +115,7 @@ namespace ns_Mashmo
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
             s_Instance = null;
         }
 
@@ -155,7 +167,7 @@ namespace ns_Mashmo
 
             if (l_Sequence == null)
             {
-                Debug.LogError("TaskManager::ExecuteSequence:: Failed to find a sequence with ID: '" + a_strSequenceID + "' in task list with name '" + s_Instance.m_CurrentTaskList.m_strName + "'");
+                Debug.Log("<color=ORANGE>TaskManager::ExecuteSequence::</color> Failed to find a sequence with ID: '" + a_strSequenceID + "' in task list");
             }
             else
             {
@@ -236,6 +248,21 @@ namespace ns_Mashmo
         {
             string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
             SetTaskList(a_strLevelType);
+        }
+
+        /// <summary>
+        /// Event called on state changed
+        /// Executes NewGameStateID + "_OnBegin"
+        /// Executes OldGameStateID + "_OnEnd"
+        /// </summary>
+        /// <param name="a_Hashtable"></param>
+        public void onStateChanged(Hashtable a_Hashtable)
+        {
+            string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+            string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+
+            ExecuteSequence(l_strOldStateId + TASK_POSTFIX_ON_END);
+            ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_BEGIN);
         }
 
 #if UNITY_EDITOR

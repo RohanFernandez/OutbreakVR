@@ -71,8 +71,8 @@ namespace ns_Mashmo
             {
                 l_ObjectiveGroup.addObjective((ObjectiveBase)getObjectiveFromPool(a_ScriptableObjectiveGroup.m_lstScriptibeObjective[l_iObjIndex]));
             }
-
-            l_ObjectiveGroup.onInitialize(a_ScriptableObjectiveGroup.m_strID, a_ScriptableObjectiveGroup.m_strType);
+            
+            l_ObjectiveGroup.onInitialize(a_ScriptableObjectiveGroup.m_strID, a_ScriptableObjectiveGroup.m_strType, a_ScriptableObjectiveGroup.m_strChangeStateOnComplete);
 
             return l_ObjectiveGroup;
         }

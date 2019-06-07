@@ -147,12 +147,30 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// On state changed manage the checklist
+        /// Checks if an objective in the current objective group is complete
         /// </summary>
-        public void onStateChanged(Hashtable a_hashtable)
+        private void manageObjectiveCompletion(Hashtable a_Hashtable)
         {
-            string l_strNewState = a_hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
-            setCurrentObjectiveGroup(l_strNewState);
+            if (m_CurrentObjectiveGroup == null || (m_CurrentObjectiveGroup.m_lstObjectives.Count == 0))
+            {
+                return;
+            }
+
+            m_CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
+            if (m_CurrentObjectiveGroup.IsComplete() &&
+                !string.IsNullOrEmpty(m_CurrentObjectiveGroup.m_strChangeStateOnComplete))
+            {
+                GameStateMachine.Transition(m_CurrentObjectiveGroup.m_strChangeStateOnComplete);
+            }
+        }
+
+        /// <summary>
+        /// Level objective is complete
+        /// check for objective in the current objective group is complete
+        /// </summary>
+        public void onLevelObjectiveTriggered(Hashtable a_Hashtable)
+        {
+            manageObjectiveCompletion(a_Hashtable);
         }
 
         /// <summary>
@@ -167,25 +185,12 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Checks if an objective in the current objective group is complete
+        /// On state changed manage the checklist
         /// </summary>
-        private void manageObjectiveCompletion(Hashtable a_Hashtable)
+        public void onStateChanged(Hashtable a_hashtable)
         {
-            if (m_CurrentObjectiveGroup == null || (m_CurrentObjectiveGroup.m_lstObjectives.Count == 0))
-            {
-                return;
-            }
-
-            m_CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
-        }
-
-        /// <summary>
-        /// Level objective is complete
-        /// check for objective in the current objective group is complete
-        /// </summary>
-        public void onLevelObjectiveTriggered(Hashtable a_Hashtable)
-        {
-            manageObjectiveCompletion(a_Hashtable);
+            string l_strNewState = a_hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+            setCurrentObjectiveGroup(l_strNewState);
         }
     }
 }

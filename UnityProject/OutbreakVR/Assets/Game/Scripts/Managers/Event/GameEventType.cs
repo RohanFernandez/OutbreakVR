@@ -13,7 +13,6 @@ namespace ns_Mashmo
         ON_SEQUENCE_COMPLETE,                       /* <ISEQUENCE> */
         ON_LEVEL_SELECTED,                          /* <LEVEL_TYPE>*/
         ON_LEVEL_OBJECTIVE_TRIGGERED,               /* <OBJECTIVE_ID> */
-        ON_OBJECTIVE_GROUP_COMPLETED                /* <OBJECTIVE_GROUP_ID> */
     }
 
     public struct GameEventTypeConst
@@ -53,12 +52,8 @@ namespace ns_Mashmo
         #endregion ON_LEVEL_SELECTED
 
         #region ON_LEVEL_OBJECTIVE_TRIGGERED
-        public const string ID_OBJECTIVE_TYPE = "ID_OBJECTIVE_TYPE";        /* STRING */
-        #endregion ON_LEVEL_OBJECTIVE_TRIGGERED
-
-        #region ON_OBJECTIVE_GROUP_COMPLETED
-        public const string ID_OBJECTIVE_GROUP_ID = "ID_OBJECTIVE_GROUP_ID";        /* STRING */
+        public const string ID_OBJECTIVE_TYPE = "ID_OBJECTIVE_TYPE";                    /* STRING */
         public const string ID_OBJECTIVE_TRIGGER_ID = "ID_OBJECTIVE_TRIGGER_ID";        /* STRING */
-        #endregion ON_OBJECTIVE_GROUP_COMPLETED
+        #endregion ON_LEVEL_OBJECTIVE_TRIGGERED
     }
 }

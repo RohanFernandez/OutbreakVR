@@ -11,7 +11,8 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strID"></param>
         /// <param name="a_strType"></param>
-        void onInitialize(string a_strID, string a_strType);
+        /// <param name="a_strStateChangeOnComplete"></param>
+        void onInitialize(string a_strID, string a_strType, string a_strStateChangeOnComplete);
 
         /// <summary>
         /// Adds an objective to its list

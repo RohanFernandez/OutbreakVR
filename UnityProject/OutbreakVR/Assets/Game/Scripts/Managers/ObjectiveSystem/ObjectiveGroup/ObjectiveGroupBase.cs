@@ -26,6 +26,12 @@ namespace ns_Mashmo
         protected bool m_bIsComplete = false;
 
         /// <summary>
+        /// Change state to on all objectives are complete
+        /// </summary>
+        [SerializeField]
+        public string m_strChangeStateOnComplete = string.Empty;
+
+        /// <summary>
         /// List of all objectives in this group
         /// </summary>
         [SerializeField]
@@ -36,11 +42,12 @@ namespace ns_Mashmo
         /// </summary>
         protected int m_iTotalObjectiveCount = 0;
 
-        public virtual void onInitialize(string a_strID, string a_strType)
+        public virtual void onInitialize(string a_strID, string a_strType, string a_strStateChangeOnComplete)
         {
             m_bIsComplete = false;
             m_strID = a_strID;
             m_strObjGroupType = a_strType;
+            m_strChangeStateOnComplete = a_strStateChangeOnComplete;
             m_iTotalObjectiveCount = m_lstObjectives.Count;
         }
 
@@ -70,10 +77,6 @@ namespace ns_Mashmo
         public virtual void onComplete()
         {
             m_bIsComplete = true;
-            Hashtable l_Hashtable = EventManager.GetHashtable();
-            l_Hashtable.Add(GameEventTypeConst.ID_OBJECTIVE_GROUP_ID, m_strID);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, l_Hashtable);
-            EventManager.ReturnHashtableToPool(l_Hashtable);
         }
 
         /// <summary>

@@ -46,7 +46,7 @@ namespace ns_Mashmo
         {
             if (string.IsNullOrEmpty(a_strNewState))
             {
-                Debug.LogError("GameStateMachine::Transition:: ID of game state to stransition to is empty.");
+                Debug.LogError("GameStateMachine::Transition:: ID of game state to transition to is empty.");
                 return false;
             }
 

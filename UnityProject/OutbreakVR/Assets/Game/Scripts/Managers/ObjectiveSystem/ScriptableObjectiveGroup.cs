@@ -26,6 +26,12 @@ namespace ns_Mashmo
         public int m_iObjectiveCount = 0;
 
         /// <summary>
+        /// Change state on complete
+        /// </summary>
+        [SerializeField]
+        public string m_strChangeStateOnComplete = string.Empty;
+
+        /// <summary>
         /// List of all objectives
         /// </summary>
         [SerializeField]
@@ -40,8 +46,9 @@ namespace ns_Mashmo
         }
 
         #region Attribute Keys
-        public const string KEY_OBJECTIVE_GROUP_TYPE = "Type";
-        public const string KEY_GROUP_ID = "ID";
+        public const string KEY_OBJECTIVE_GROUP_TYPE    = "Type";
+        public const string KEY_GROUP_ID                = "ID";
+        public const string KEY_START_STATE_ON_COMPLETE = "StartStateOnComplete";
         #endregion Attribute Keys
 
 #if UNITY_EDITOR
@@ -55,6 +62,7 @@ namespace ns_Mashmo
         {
             string l_strObjectiveGroupId = string.Empty;
             string l_strObjectiveGroupType = string.Empty;
+            string l_strChangeStateOnComplete = string.Empty;
 
             int l_iAttributesCount = a_ObjectiveGroupNode.Attributes.Count;
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributesCount; l_iAttributeIndex++)
@@ -67,6 +75,10 @@ namespace ns_Mashmo
                 else if (l_Attribute.Name.Equals(KEY_OBJECTIVE_GROUP_TYPE, System.StringComparison.OrdinalIgnoreCase))
                 {
                     l_strObjectiveGroupType = l_Attribute.Value;
+                }
+                else if (l_Attribute.Name.Equals(KEY_START_STATE_ON_COMPLETE, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_strChangeStateOnComplete = l_Attribute.Value;
                 }
             }
 
@@ -82,10 +94,11 @@ namespace ns_Mashmo
             }
 
             ScriptableObjectiveGroup l_ScriptableObjectiveGroup = new ScriptableObjectiveGroup();
-            l_ScriptableObjectiveGroup.m_strID = l_strObjectiveGroupId;
-            l_ScriptableObjectiveGroup.m_iObjectiveCount = l_iObjectiveCount;
-            l_ScriptableObjectiveGroup.m_strType = l_strObjectiveGroupType;
-            l_ScriptableObjectiveGroup.m_lstScriptibeObjective = l_lstScriptableObjective;
+            l_ScriptableObjectiveGroup.m_strID                      = l_strObjectiveGroupId;
+            l_ScriptableObjectiveGroup.m_iObjectiveCount            = l_iObjectiveCount;
+            l_ScriptableObjectiveGroup.m_strType                    = l_strObjectiveGroupType;
+            l_ScriptableObjectiveGroup.m_lstScriptibeObjective      = l_lstScriptableObjective;
+            l_ScriptableObjectiveGroup.m_strChangeStateOnComplete   = l_strChangeStateOnComplete;
 
             return l_ScriptableObjectiveGroup;
         }
