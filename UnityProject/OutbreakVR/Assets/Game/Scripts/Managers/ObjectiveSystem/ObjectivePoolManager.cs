@@ -35,7 +35,7 @@ namespace ns_Mashmo
                 m_dictObjectivePool.Add(a_ScriptableObjective.m_strType, l_ObjectivePool);
             }
             IObjective l_Objective = l_ObjectivePool.getObjective();
-            l_Objective.onStartInitialization(a_ScriptableObjective.m_hashAttributes);
+            l_Objective.onInitialize(a_ScriptableObjective.m_hashAttributes);
 
             return l_Objective;
         }

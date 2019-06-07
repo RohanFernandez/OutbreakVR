@@ -23,7 +23,7 @@ namespace ns_Mashmo
         /// </summary>
         private void onLevelSceneLoaded()
         {
-
+            GameStateMachine.Transition("100");
         }
     }
 }

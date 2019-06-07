@@ -44,6 +44,12 @@ namespace ns_Mashmo
         /// <param name="a_strNewState"></param>
         public static bool Transition(string a_strNewState)
         {
+            if (string.IsNullOrEmpty(a_strNewState))
+            {
+                Debug.LogError("GameStateMachine::Transition:: ID of game state to stransition to is empty.");
+                return false;
+            }
+
             return s_Instance.transition(a_strNewState);
         }
 

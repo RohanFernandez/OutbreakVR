@@ -28,6 +28,7 @@ namespace ns_Mashmo
         /// <param name="a_LevelType"></param>
         public static void SetGameLevel(string a_strLevelType)
         {
+            Debug.Log("<color=BLUE>GameManager::SetGameLevel::</color> Setting level type '" + a_strLevelType + "'");
             s_Instance.m_strCurrentLevel = a_strLevelType;
             Hashtable l_Hashtable = EventManager.GetHashtable();
             l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);

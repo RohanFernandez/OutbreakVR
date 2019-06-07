@@ -15,20 +15,20 @@ MonoBehaviour:
   m_strName: LEVEL1
   m_iObjectiveGroupCount: 1
   m_lstObjectiveGroup:
-  - m_strID: StartGame
+  - m_strID: 100
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 2
+    m_iObjectiveCount: 4
     m_lstScriptibeObjective:
     - m_strID: 1
-      m_strType: ObjectiveKillEnemy
+      m_strType: ObjectiveTrigger
       m_iAttributeCount: 3
       m_lstAttributes:
       - m_strKey: ID
         m_strValue: 1
       - m_strKey: Type
-        m_strValue: ObjectiveKillEnemy
-      - m_strKey: EnemyCount
-        m_strValue: 
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: DoThis1
     - m_strID: 2
       m_strType: ObjectiveTrigger
       m_iAttributeCount: 3
@@ -38,4 +38,24 @@ MonoBehaviour:
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
-        m_strValue: 
+        m_strValue: DoThis2
+    - m_strID: 3
+      m_strType: ObjectiveTrigger
+      m_iAttributeCount: 3
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: DoThis3
+    - m_strID: 4
+      m_strType: ObjectiveTrigger
+      m_iAttributeCount: 3
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: DoThis4

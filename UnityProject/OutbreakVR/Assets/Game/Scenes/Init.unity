@@ -347,6 +347,7 @@ MonoBehaviour:
   - {fileID: 642286415}
   - {fileID: 642286416}
   - {fileID: 642286417}
+  m_strCurrentLevel: 
 --- !u!114 &642286415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lstLoadedTaskLists: []
   m_CurrentTaskList: {fileID: 0}
+  m_CommonTaskList: {fileID: 0}
 --- !u!114 &642286417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lstObjectiveLists: []
   m_CurrentObjectiveList: {fileID: 0}
+  m_CurrentObjectiveGroup:
+    m_lstObjectives: []
 --- !u!1 &692271659
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1161907109
 Transform:
   m_ObjectHideFlags: 0
@@ -1148,7 +1152,7 @@ MonoBehaviour:
   m_fMovementSpeedMax: 4
   m_fCurrentMovementSpeed: 0
   m_fMovementAcceleraion: 8
-  m_fMovementDeceleraion: 11
+  m_fMovementDeceleraion: 15
   m_v3MovementVelocity: {x: 0, y: 0, z: 0}
   m_v3GravityModifier: {x: 0, y: -9.8, z: 0}
   m_bIsMoving: 0

@@ -57,6 +57,7 @@ namespace ns_Mashmo
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
 
             m_ObjectivePoolManager = new ObjectivePoolManager();
 
@@ -84,6 +85,7 @@ namespace ns_Mashmo
 
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
             s_Instance = null;
         }
 
@@ -92,19 +94,20 @@ namespace ns_Mashmo
         /// </summary>
         private void setCurrentObjectiveGroup(string a_strObjectiveGroupID)
         {
-            if (m_CurrentObjectiveList == null)
+            if (string.IsNullOrEmpty(a_strObjectiveGroupID) || m_CurrentObjectiveList == null)
             {
                 m_CurrentObjectiveGroup = null;
                 return;
             }
 
             ScriptableObjectiveGroup l_ObjectiveGroup = m_CurrentObjectiveList.getScriptableObjectiveGroup(a_strObjectiveGroupID);
-            if (string.IsNullOrEmpty(a_strObjectiveGroupID) || l_ObjectiveGroup == null)
+            if (l_ObjectiveGroup == null)
             {
                 m_CurrentObjectiveGroup = null;
             }
             else
             {
+                Debug.Log("<color=BLUE>ObjectiveManager::setCurrentObjectiveGroup::</color> Setting objective group with ID '" + a_strObjectiveGroupID + "'");
                 m_CurrentObjectiveGroup = (ObjectiveGroupBase)m_ObjectivePoolManager.getObjectiveGroupFromPool(l_ObjectiveGroup);
             }
         }
@@ -161,6 +164,28 @@ namespace ns_Mashmo
         {
             string l_strLevelType = a_hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
             SetObjectiveList(l_strLevelType);
+        }
+
+        /// <summary>
+        /// Checks if an objective in the current objective group is complete
+        /// </summary>
+        private void manageObjectiveCompletion(Hashtable a_Hashtable)
+        {
+            if (m_CurrentObjectiveGroup == null || (m_CurrentObjectiveGroup.m_lstObjectives.Count == 0))
+            {
+                return;
+            }
+
+            m_CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
+        }
+
+        /// <summary>
+        /// Level objective is complete
+        /// check for objective in the current objective group is complete
+        /// </summary>
+        public void onLevelObjectiveTriggered(Hashtable a_Hashtable)
+        {
+            manageObjectiveCompletion(a_Hashtable);
         }
     }
 }

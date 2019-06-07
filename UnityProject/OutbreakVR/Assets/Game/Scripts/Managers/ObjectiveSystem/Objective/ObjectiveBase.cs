@@ -17,17 +17,24 @@ namespace ns_Mashmo
         private string m_strType = string.Empty;
 
         /// <summary>
+        /// Is objective complete
+        /// </summary>
+        [SerializeField]
+        protected bool m_bIsComplete = false;
+
+        /// <summary>
         /// Attributes in this objective
         /// </summary>
-        private Hashtable m_hashAttributes = null;
+        protected Hashtable m_hashAttributes = null;
 
         /// <summary>
         /// called on start of initialization
         /// Sets the attributes to the member variable
         /// </summary>
         /// <param name="a_hashAttributes"></param>
-        public void onStartInitialization(Hashtable a_hashAttributes)
+        public virtual void onInitialize(Hashtable a_hashAttributes)
         {
+            m_bIsComplete = false;
             m_hashAttributes = a_hashAttributes;
             m_strType = getString(ScriptableObjective.KEY_TASK_TYPE);
             m_strID = getString(ScriptableObjective.KEY_TASK_ID);
@@ -44,10 +51,22 @@ namespace ns_Mashmo
 
         public virtual void onComplete()
         {
-            
+            m_bIsComplete = true;
         }
 
-        public virtual void onUpdate()
+        /// <summary>
+        /// Is complete
+        /// </summary>
+        public bool isComplete()
+        {
+            return m_bIsComplete;
+        }
+
+        /// <summary>
+        /// Checks if the objective is complete with the args
+        /// </summary>
+        /// <returns></returns>
+        public virtual void checkObjectiveCompletion(Hashtable a_Hashtable)
         {
             
         }

@@ -11,6 +11,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onLevelOptionSelected(string a_strLevelName)
         {
+            GameManager.SetGameLevel(a_strLevelName);
             GameStateMachine.Transition(a_strLevelName);
         }
     }
