@@ -17,6 +17,12 @@ namespace ns_Mashmo
         /// </summary>
         private System.Type m_Type = null;
 
+
+        /// <summary>
+        /// List of all the unpooled game objects
+        /// </summary>
+        private List<T> m_lstActivePooledObjects = new List<T>(5);
+
         /// <summary>
         /// Constructor.
         /// Sets the Prefab from which the objects in the pool are generated
@@ -36,18 +42,19 @@ namespace ns_Mashmo
         /// <summary>
         /// Creates object of type T and pushes into the pool
         /// </summary>
-        public virtual void createObj()
+        protected virtual void createObj()
         {
             T l_CreatedObj = System.Activator.CreateInstance(m_Type) as T;
-            m_Pool.Push(l_CreatedObj);
+            returnToPool(l_CreatedObj);
         }
 
         /// <summary>
         /// Returns back into the pool for reuse in the future
         /// </summary>
         /// <param name="a_Obj"></param>
-        public void returnToPool(T a_Obj)
+        public virtual void returnToPool(T a_Obj)
         {
+            m_lstActivePooledObjects.Remove(a_Obj);
             m_Pool.Push(a_Obj);
         }
 
@@ -55,13 +62,36 @@ namespace ns_Mashmo
         /// Gets object of type from the pool
         /// sets the task variables
         /// </summary>
-        public T getObject()
+        public virtual T getObject()
         {
             if (m_Pool.Count == 0)
             {
                 createObj();
             }
-            return m_Pool.Pop();
+            T l_ReturnObj = m_Pool.Pop();
+            m_lstActivePooledObjects.Add(l_ReturnObj);
+            return l_ReturnObj;
+        }
+
+        /// <summary>
+        /// Returns all active game objects back into the pool
+        /// </summary>
+        public virtual void returnAll()
+        {
+            int l_iActiveCount = m_lstActivePooledObjects.Count;
+            for (int l_iActiveObjIndex = l_iActiveCount - 1; l_iActiveObjIndex >= 0; l_iActiveObjIndex--)
+            {
+                returnToPool(m_lstActivePooledObjects[l_iActiveObjIndex]);
+            }
+        }
+
+        /// <summary>
+        /// Returns list of all active game objects
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<T> getActiveList()
+        {
+            return m_lstActivePooledObjects;
         }
     }
 }

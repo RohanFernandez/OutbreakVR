@@ -87,7 +87,7 @@ namespace ns_Mashmo
         /// <summary>
         /// The pool to use for reuse of managed audio source object
         /// </summary>
-        private MonoObjectPool<ManagedAudioSource> m_AudioSrcPool = null;
+        private ManagedAudioSrcPool m_AudioSrcPool = null;
 
         /// <summary>
         /// Sets singleton instance
@@ -99,7 +99,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            m_AudioSrcPool = new MonoObjectPool<ManagedAudioSource>(m_ManagedAudioSrcPrefab);
+            m_AudioSrcPool = new ManagedAudioSrcPool(m_ManagedAudioSrcPrefab, this.gameObject);
         }
 
         /// <summary>
@@ -112,11 +112,7 @@ namespace ns_Mashmo
                 return;
             }
 
-            int l_iActiveCount = m_AudioSrcPool.m_lstActivePooledObjects.Count;
-            for (int l_iActiveIndex = 0; l_iActiveIndex < l_iActiveCount; l_iActiveIndex++)
-            {
-                ReturnAudSrcToPool(m_AudioSrcPool.m_lstActivePooledObjects[l_iActiveIndex]);
-            }
+            m_AudioSrcPool.returnAll();
 
             s_Instance = null;
         }
@@ -143,7 +139,7 @@ namespace ns_Mashmo
             ManagedAudioSource l_ManagedAudSrc = s_Instance.getCurrentlyPlayingAudSrc(a_strAudioSrcId);
             if (l_ManagedAudSrc == null)
             {
-                l_ManagedAudSrc = s_Instance.m_AudioSrcPool.getPooledObj(s_Instance.transform);
+                l_ManagedAudSrc = s_Instance.m_AudioSrcPool.getObject();
             }
             
             l_ManagedAudSrc.gameObject.SetActive(true);
@@ -178,7 +174,6 @@ namespace ns_Mashmo
         public static void ReturnAudSrcToPool(ManagedAudioSource a_AudSrc)
         {
             a_AudSrc.stop();
-            a_AudSrc.gameObject.SetActive(false);
             s_Instance.m_AudioSrcPool.returnToPool(a_AudSrc);
         }
 
@@ -189,10 +184,10 @@ namespace ns_Mashmo
         /// <returns></returns>
         private ManagedAudioSource getCurrentlyPlayingAudSrc(string a_strAudSrcId)
         {
-            int l_iCurrentlyPlayingCount = s_Instance.m_AudioSrcPool.m_lstActivePooledObjects.Count;
+            int l_iCurrentlyPlayingCount = s_Instance.m_AudioSrcPool.getActiveList().Count;
             for (int l_iCurrentIndex = 0; l_iCurrentIndex < l_iCurrentlyPlayingCount; l_iCurrentIndex++)
             {
-                ManagedAudioSource l_CurrentManagedAudSrc = s_Instance.m_AudioSrcPool.m_lstActivePooledObjects[l_iCurrentIndex];
+                ManagedAudioSource l_CurrentManagedAudSrc = s_Instance.m_AudioSrcPool.getActiveList()[l_iCurrentIndex];
                 if (l_CurrentManagedAudSrc.AudioSrcID.Equals(a_strAudSrcId))
                 {
                     return l_CurrentManagedAudSrc;
@@ -227,10 +222,10 @@ namespace ns_Mashmo
         /// <param name="a_AudSrcType"></param>
         private void toggleMuteAllActive(bool a_bIsMute, AUDIO_SRC_TYPES a_AudSrcType)
         {
-            int l_iActiveSrcCount = m_AudioSrcPool.m_lstActivePooledObjects.Count;
+            int l_iActiveSrcCount = m_AudioSrcPool.getActiveList().Count;
             for (int l_iCurrentindex = 0; l_iCurrentindex < l_iActiveSrcCount; l_iCurrentindex++)
             {
-                ManagedAudioSource l_CurrentManagedAudSrc = m_AudioSrcPool.m_lstActivePooledObjects[l_iCurrentindex];
+                ManagedAudioSource l_CurrentManagedAudSrc = m_AudioSrcPool.getActiveList()[l_iCurrentindex];
 
                 if (l_CurrentManagedAudSrc.AudSrcType == a_AudSrcType)
                 {

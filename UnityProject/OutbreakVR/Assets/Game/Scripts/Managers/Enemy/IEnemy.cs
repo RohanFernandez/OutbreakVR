@@ -1,0 +1,13 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ns_Mashmo
+{
+    public interface IEnemy
+    {
+        ENEMY_TYPE getEnemyType();
+
+        ENEMY_ATTACK_TYPE getEnemyAttackType();
+    }
+}
