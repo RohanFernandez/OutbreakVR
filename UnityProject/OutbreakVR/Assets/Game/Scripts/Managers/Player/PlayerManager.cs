@@ -39,5 +39,23 @@ namespace ns_Mashmo
             m_PlayerController.destroy();
             s_Instance = null;
         }
+
+        /// <summary>
+        /// Gets position of the player
+        /// </summary>
+        /// <returns></returns>
+        public static Vector3 GetPosition()
+        {
+            return s_Instance.m_PlayerController.transform.position;
+        }
+
+        /// <summary>
+        /// Gets position of the player
+        /// </summary>
+        /// <returns></returns>
+        public static void SetPosition(Vector3 a_v3Position)
+        {
+            s_Instance.m_PlayerController.transform.position = a_v3Position;
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class SecurityOfficer : MeleeEnemy
+    public class SecurityOfficer : MeleeAttackEnemy
     {
 
     }

@@ -10,6 +10,7 @@ namespace ns_Mashmo
         #region Attribute Keys
         public const string KEY_TASK_TYPE = "Type";
         public const string KEY_TASK_ID = "ID";
+        public const string KEY_SEQUENCE_ON_COMPLETE_ID = "SequenceOnComplete";
         #endregion Attribute Keys
 
         /// <summary>
@@ -23,6 +24,12 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         public string m_strType = string.Empty;
+
+        /// <summary>
+        /// The sequence to execute on completed
+        /// </summary>
+        [SerializeField]
+        public string m_strSeqOnComplete = string.Empty;
 
         /// <summary>
         /// The total number of attributes in this objective
@@ -59,6 +66,7 @@ namespace ns_Mashmo
 
             string l_strType = string.Empty;
             string l_strID = string.Empty;
+            string l_strSeqOnComplete = string.Empty;
 
             List<KeyValueAttribute> l_lstAttributes = new List<KeyValueAttribute>(l_iAttributeCount);
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributeCount; l_iAttributeIndex++)
@@ -77,12 +85,17 @@ namespace ns_Mashmo
                 {
                     l_strID = l_Attribute.m_strValue;
                 }
+                else if (l_Attribute.m_strKey.Equals(KEY_SEQUENCE_ON_COMPLETE_ID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_strSeqOnComplete = l_Attribute.m_strValue;
+                }
                 l_lstAttributes.Add(l_Attribute);
             }
 
             ScriptableObjective l_ScriptableObjective = new ScriptableObjective();
             l_ScriptableObjective.m_iAttributeCount = l_iAttributeCount;
             l_ScriptableObjective.m_lstAttributes = l_lstAttributes;
+            l_ScriptableObjective.m_strSeqOnComplete = l_strSeqOnComplete;
             l_ScriptableObjective.m_strType = l_strType;
             l_ScriptableObjective.m_strID = l_strID;
 

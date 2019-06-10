@@ -10,6 +10,7 @@ namespace ns_Mashmo
         #region Attribute Keys
         public const string KEY_SEQUENCE_TYPE   = "SequenceType";
         public const string KEY_SEQUENCE_ID     = "ID";
+        public const string VALUE_SIMPLE_SEQUENCE = "SimpleSequence";
         #endregion Attribute Keys
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace ns_Mashmo
         public static ScriptableSequence GetSequenceFromXML(System.Xml.XmlNode a_SequenceNode)
         {
             string l_strSequenceId = string.Empty;
-            string l_strSequenceType = string.Empty;
+            string l_strSequenceType = VALUE_SIMPLE_SEQUENCE;
 
             int l_iAttributesCount = a_SequenceNode.Attributes.Count;
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributesCount; l_iAttributeIndex++)

@@ -17,6 +17,12 @@ namespace ns_Mashmo
         private string m_strType = string.Empty;
 
         /// <summary>
+        /// Exectues sequence on complete
+        /// </summary>
+        [SerializeField]
+        private string m_strSequenceOnComplete = string.Empty;
+
+        /// <summary>
         /// Is objective complete
         /// </summary>
         [SerializeField]
@@ -38,6 +44,7 @@ namespace ns_Mashmo
             m_hashAttributes = a_hashAttributes;
             m_strType = getString(ScriptableObjective.KEY_TASK_TYPE);
             m_strID = getString(ScriptableObjective.KEY_TASK_ID);
+            m_strSequenceOnComplete = getString(ScriptableObjective.KEY_SEQUENCE_ON_COMPLETE_ID);
         }
 
         /// <summary>
@@ -52,6 +59,7 @@ namespace ns_Mashmo
         public virtual void onComplete()
         {
             m_bIsComplete = true;
+            TaskManager.ExecuteSequence(m_strSequenceOnComplete);
         }
 
         /// <summary>

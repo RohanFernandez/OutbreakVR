@@ -9,5 +9,8 @@ namespace ns_Mashmo
         ENEMY_TYPE getEnemyType();
 
         ENEMY_ATTACK_TYPE getEnemyAttackType();
+
+        void activateEnemy();
+        void deactivateEnemy();
     }
 }

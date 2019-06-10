@@ -46,8 +46,6 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
-
-
             int l_iEnemyPrefabCount = m_lstEnemyPrefabs.Count;
             m_dictEnemyPools = new Dictionary<ENEMY_TYPE, EnemyPool>(l_iEnemyPrefabCount);
 
@@ -98,6 +96,8 @@ namespace ns_Mashmo
             if (l_EnemyPool != null)
             {
                 l_Enemy = l_EnemyPool.getObject();
+                l_Enemy.gameObject.SetActive(true);
+                l_Enemy.activateEnemy();
             }
             return l_Enemy;
         }
@@ -111,6 +111,7 @@ namespace ns_Mashmo
             EnemyPool l_EnemyPool = getPoolOfEnemyType(a_Enemy.getEnemyType());
             if (l_EnemyPool != null)
             {
+                a_Enemy.deactivateEnemy();
                 l_EnemyPool.returnToPool(a_Enemy);
             }
         }

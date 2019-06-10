@@ -62,7 +62,7 @@ namespace ns_Mashmo
         /// <summary>
         /// List of all currently running sequences
         /// </summary>
-        private List<ISequence> m_RunningSequneces = null;
+        private List<ISequence> m_lstRunningSequneces = null;
 
         /// <summary>
         /// Stack of all sequences that ended in the last frame
@@ -84,7 +84,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
 
             m_TaskPoolManager = new TaskPoolManager();
-            m_RunningSequneces = new List<ISequence>(10);
+            m_lstRunningSequneces = new List<ISequence>(10);
             m_stackEndedLastFrame = new Stack<ISequence>(10);
 
             initializeTaskLists();
@@ -157,6 +157,11 @@ namespace ns_Mashmo
         /// </summary>
         public static void ExecuteSequence(string a_strSequenceID)
         {
+            if (string.IsNullOrEmpty(a_strSequenceID))
+            {
+                return;
+            }
+
             ScriptableSequence l_Sequence = null;
             l_Sequence = s_Instance.m_CommonTaskList.getSequenceWithID(a_strSequenceID);
 
@@ -181,12 +186,12 @@ namespace ns_Mashmo
         /// <param name="a_strSequenceID"></param>
         public static void StopSequence(string a_strSequenceID)
         {
-            int l_iRunningSequenceCount = s_Instance.m_RunningSequneces.Count;
+            int l_iRunningSequenceCount = s_Instance.m_lstRunningSequneces.Count;
             for (int l_iRunningSequenceIndex = 0; l_iRunningSequenceIndex < l_iRunningSequenceCount; l_iRunningSequenceIndex++)
             {
-                if (s_Instance.m_RunningSequneces[l_iRunningSequenceIndex].getSequenceID().Equals(a_strSequenceID, System.StringComparison.OrdinalIgnoreCase))
+                if (s_Instance.m_lstRunningSequneces[l_iRunningSequenceIndex].getSequenceID().Equals(a_strSequenceID, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    s_Instance.stopSequence(s_Instance.m_RunningSequneces[l_iRunningSequenceIndex]);
+                    s_Instance.stopSequence(s_Instance.m_lstRunningSequneces[l_iRunningSequenceIndex]);
                     break;
                 }
             }
@@ -200,7 +205,7 @@ namespace ns_Mashmo
         private void executeSequence(ScriptableSequence a_Sequence)
         {
             ISequence l_Sequence = m_TaskPoolManager.getSequenceFromPool(a_Sequence);
-            m_RunningSequneces.Add(l_Sequence);
+            m_lstRunningSequneces.Add(l_Sequence);
             l_Sequence.onExecute();
         }
 
@@ -224,19 +229,31 @@ namespace ns_Mashmo
             m_stackEndedLastFrame.Push(a_Sequence);
         }
 
+        /// <summary>
+        /// Stop all running sequences
+        /// </summary>
+        public static void StopAll()
+        {
+            int l_iRunningSequenceCount = s_Instance.m_lstRunningSequneces.Count;
+            for (int l_iCurRunningSeqIndex = 0; l_iCurRunningSeqIndex < l_iRunningSequenceCount; l_iCurRunningSeqIndex++)
+            {
+                s_Instance.stopSequence(s_Instance.m_lstRunningSequneces[l_iCurRunningSeqIndex]);
+            }
+        }
+
         void Update()
         {
             if (m_stackEndedLastFrame.Count != 0)
             {
                 ISequence l_Sequence = m_stackEndedLastFrame.Pop();
                 m_TaskPoolManager.returnSequenceToPool(l_Sequence);
-                m_RunningSequneces.Remove(l_Sequence);
+                m_lstRunningSequneces.Remove(l_Sequence);
             }
 
-            int l_iRunningSeqeuenceCount = m_RunningSequneces.Count;
+            int l_iRunningSeqeuenceCount = m_lstRunningSequneces.Count;
             for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iRunningSeqeuenceCount; l_iSequenceIndex++)
             {
-                m_RunningSequneces[l_iSequenceIndex].onUpdate();
+                m_lstRunningSequneces[l_iSequenceIndex].onUpdate();
             }
         }
 
@@ -275,10 +292,10 @@ namespace ns_Mashmo
             System.Text.StringBuilder l_StringBuilder = new System.Text.StringBuilder(200);
             l_StringBuilder.AppendLine("<color=BLUE> RUNNING SEQUENCES </color>\n");
 
-            int l_iRunningSequenceCount = s_Instance.m_RunningSequneces.Count; ;
+            int l_iRunningSequenceCount = s_Instance.m_lstRunningSequneces.Count; ;
             for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iRunningSequenceCount; l_iSequenceIndex++)
             {
-                l_StringBuilder.AppendLine(l_iSequenceIndex+": \t"+s_Instance.m_RunningSequneces[l_iSequenceIndex].getSequenceID()+ "\n");
+                l_StringBuilder.AppendLine(l_iSequenceIndex+": \t"+s_Instance.m_lstRunningSequneces[l_iSequenceIndex].getSequenceID()+ "\n");
             }
             Debug.Log(l_StringBuilder);
         }

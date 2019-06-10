@@ -103,6 +103,10 @@ namespace ns_Mashmo
             {
                 TaskManager.StopSequence(m_strSequenceToExecute);
             }
+            if (GUILayout.Button("Stop All", GUILayout.Width(120)))
+            {
+                TaskManager.StopAll();
+            }
 
             GUILayout.Space(10.0f);
             GUILayout.Label("LOGGER", EditorStyles.boldLabel);

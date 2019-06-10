@@ -14,6 +14,12 @@ namespace ns_Mashmo
         protected ENEMY_TYPE m_EnemyType;
 
         /// <summary>
+        /// Is the enemy active to attack
+        /// </summary>
+        [SerializeField]
+        protected bool m_bIsEnemyReady = false;
+
+        /// <summary>
         /// Returns the tyoe of the enemy
         /// </summary>
         /// <returns></returns>
@@ -27,5 +33,26 @@ namespace ns_Mashmo
         /// </summary>
         /// <returns></returns>
         public abstract ENEMY_ATTACK_TYPE getEnemyAttackType();
+
+        /// <summary>
+        /// Activates use of enemy
+        /// </summary>
+        public virtual void activateEnemy()
+        {
+            m_bIsEnemyReady = true;
+        }
+
+        /// <summary>
+        /// Deactivates use of enemy
+        /// </summary>
+        public virtual void deactivateEnemy()
+        {
+            m_bIsEnemyReady = false;
+        }
+
+        public virtual void Update()
+        {
+
+        }
     }
 }
