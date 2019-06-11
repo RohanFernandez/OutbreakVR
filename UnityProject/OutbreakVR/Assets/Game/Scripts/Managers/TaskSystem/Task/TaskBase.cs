@@ -124,6 +124,15 @@ namespace ns_Mashmo
             return GeneralUtils.GetVec3(m_hashAttributes, a_strAttributeKey);
         }
 
+        /// <summary>
+        /// Returns a string array with the given char separated string arguement
+        /// </summary>
+        /// <returns></returns>
+        public string[] getStrArr(string a_strAttributeKey, char a_chSeparation)
+        {
+            return GeneralUtils.GetStrArr(m_hashAttributes, a_strAttributeKey, a_chSeparation);
+        }
+
         #endregion GET VARIABLE FROM OBJECT
     }
 }

@@ -70,14 +70,14 @@ namespace ns_Mashmo
         #region EDITOR POP UP WINDOW
 
         [UnityEditor.MenuItem("Outbreak//Project Helper Window")]
-        static void OpenPopUpWindow()
+        private static void OpenPopUpWindow()
         {
             if (s_Instance == null)
             {
-                s_Instance = EditorWindow.CreateInstance<ProjectHandler>() as ProjectHandler;
+                s_Instance = (ProjectHandler)EditorWindow.GetWindow(typeof(ProjectHandler));//EditorWindow.CreateInstance<ProjectHandler>() as ProjectHandler;
+                s_Instance.title = "Project Helper Window";
+                s_Instance.Show();
             }
-            s_Instance.title = "Project Helper Window";
-            s_Instance.Show();
         }
 
         Rect m_RectSequenceExecute;
@@ -127,11 +127,7 @@ namespace ns_Mashmo
             }
         }
 
-
         #endregion EDITOR POP UP WINDOW
     }
-
-
-
 }
 #endif

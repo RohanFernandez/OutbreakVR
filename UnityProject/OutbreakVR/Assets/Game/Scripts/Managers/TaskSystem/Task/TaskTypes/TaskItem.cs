@@ -56,6 +56,7 @@ namespace ns_Mashmo
                 l_ItemDrop.gameObject.SetActive(true);
                 l_ItemDrop.transform.position = m_v3Position;
             }
+            onComplete();
         }
     }
 }

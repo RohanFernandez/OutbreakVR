@@ -103,6 +103,22 @@ namespace ns_Mashmo
             return l_v3Return;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetStrArr(Hashtable m_hashAttributes, string a_strAttributeKey, char a_chSeparation)
+        {
+            System.Object l_Obj = m_hashAttributes[a_strAttributeKey];
+            string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
+            string[] l_strarrReturn = null;
+            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            {
+                l_strarrReturn = l_strAtrributeValue.Split(a_chSeparation);
+            }
+            return l_strarrReturn;
+        }
+
         #endregion Hashtable Utils
     }
 }

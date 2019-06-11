@@ -17,7 +17,7 @@ MonoBehaviour:
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: StartGame
-    m_iTaskCount: 5
+    m_iTaskCount: 6
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskAudio
@@ -85,6 +85,20 @@ MonoBehaviour:
         m_strValue: ITEM_FN57
       - m_strKey: Position
         m_strValue: 1.0,-13.5,1.0
+    - m_strTaskID: 6
+      m_strTaskType: TaskFunctionCall
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskFunctionCall
+      - m_strKey: ClassName
+        m_strValue: TestUserInput
+      - m_strKey: Parameters
+        m_strValue: abc,def,ghi
+      - m_strKey: FunctionName
+        m_strValue: PrintThis
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
     m_iTaskCount: 1

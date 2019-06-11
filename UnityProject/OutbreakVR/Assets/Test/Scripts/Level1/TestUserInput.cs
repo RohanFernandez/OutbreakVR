@@ -21,5 +21,10 @@ namespace ns_Mashmo
             }
             m_txt.text = "X: "+ m_v2Swipe.x +"   ,Y: " + m_v2Swipe.y;
         }
+
+        public static void PrintThis(string a_str1, string a_str2, string a_str3)
+        {
+            Debug.LogError(a_str1 + "\n" + a_str2 +"\n"+ a_str3);
+        }
     }
 }
