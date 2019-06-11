@@ -79,6 +79,16 @@ namespace ns_Mashmo
             
         }
 
+        public virtual void onReturnedToPool()
+        {
+            
+        }
+
+        public virtual void onRetrievedFromPool()
+        {
+            
+        }
+
         #region GET VARIABLE FROM OBJECT
 
         /// <summary>
@@ -124,7 +134,6 @@ namespace ns_Mashmo
         {
             return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey);
         }
-
         #endregion GET VARIABLE FROM OBJECT
     }
 }

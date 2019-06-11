@@ -71,6 +71,10 @@ namespace ns_Mashmo
             m_lstObjectives.Clear();
         }
 
+        public void onRetrievedFromPool()
+        {
+        }
+
         /// <summary>
         /// When all the objectives in this group is completed
         /// </summary>

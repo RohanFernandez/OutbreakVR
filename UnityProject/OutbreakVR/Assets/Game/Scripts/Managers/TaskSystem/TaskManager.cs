@@ -213,7 +213,7 @@ namespace ns_Mashmo
         /// Event called on any sequence complete
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public void onSequenceComplete(Hashtable a_Hashtable)
+        public void onSequenceComplete(EventHash a_Hashtable)
         {
             ISequence l_Sequence = (ISequence)a_Hashtable[GameEventTypeConst.ID_SEQUENCE_REF];
             stopSequence(l_Sequence);
@@ -261,7 +261,7 @@ namespace ns_Mashmo
         /// Event called on a level is selected
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public void onLevelSelected(Hashtable a_Hashtable)
+        public void onLevelSelected(EventHash a_Hashtable)
         {
             string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
             SetTaskList(a_strLevelType);
@@ -273,7 +273,7 @@ namespace ns_Mashmo
         /// Executes OldGameStateID + "_OnEnd"
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public void onStateChanged(Hashtable a_Hashtable)
+        public void onStateChanged(EventHash a_Hashtable)
         {
             string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
             string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();

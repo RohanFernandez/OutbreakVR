@@ -17,7 +17,7 @@ namespace ns_Mashmo
         /// Is the enemy active to attack
         /// </summary>
         [SerializeField]
-        protected bool m_bIsEnemyReady = false;
+        protected bool m_bIsActivated = false;
 
         /// <summary>
         /// Returns the tyoe of the enemy
@@ -39,7 +39,7 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void activateEnemy()
         {
-            m_bIsEnemyReady = true;
+            m_bIsActivated = true;
         }
 
         /// <summary>
@@ -47,12 +47,22 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void deactivateEnemy()
         {
-            m_bIsEnemyReady = false;
+            m_bIsActivated = false;
         }
 
         public virtual void Update()
         {
 
+        }
+
+        public virtual void onReturnedToPool()
+        {
+            deactivateEnemy();
+        }
+
+        public virtual void onRetrievedFromPool()
+        {
+            activateEnemy();
         }
     }
 }

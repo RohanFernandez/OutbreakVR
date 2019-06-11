@@ -3,7 +3,12 @@
 	<Sequence ID = "StartGame" >
 		<Task ID="1" TaskType="TaskAudio" AudSrc="Ambient" AudClip="AudClip_Ambient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
 		<Task ID="2" TaskType="TaskWait" WaitTime="10.0"/>
-		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Test" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="TestGameObj" />
 		<Task ID="4" TaskType="TaskAudio" AudSrc="Ambient" IsStart="false"/>
+		<Task ID="5" TaskType="TaskItem" ItemType="ITEM_FN57" Position="1.0,-13.5,1.0"/>
+	</Sequence>
+	
+	<Sequence ID = "ReturnItems" >
+		<Task ID="1" TaskType="TaskItem" IsReturnAll="true"/>
 	</Sequence>
 </TaskList>

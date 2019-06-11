@@ -92,7 +92,7 @@ namespace ns_Mashmo
             m_Pointer.transform.localPosition = Vector3.zero;
             m_bIsRemoteAttached = m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_RIGHT_REMOTE;
 
-            Hashtable l_hash = EventManager.GetHashtable();
+            EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_TYPE, a_OldControllerType);
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_ANCHOR, a_OldControllerAnchor);
             l_hash.Add(GameEventTypeConst.ID_NEW_CONTROLLER_TYPE, a_NewControllerType);
@@ -465,6 +465,19 @@ namespace ns_Mashmo
             }
         }
 
+        private Vector2 m_v2LastControllerSwipe = Vector2.zero;
+        private Vector2 m_v2ControllerSwipe = Vector2.zero;
+        private Vector2 m_v2StartSwipePos = Vector2.zero;
+
+        ///// <summary>
+        ///// Returns swipe in the last frame
+        ///// </summary>
+        ///// <returns></returns>
+        public static Vector2 GetSwipe()
+        {
+            return s_Instance.m_bIsRemoteAttached ? s_Instance.m_v2ControllerSwipe : GetPrimaryTouchpadPosition();
+        }
+
         /// <summary>
         /// Create a raycast from the remote controller anchor to its forward.
         /// </summary>
@@ -480,7 +493,44 @@ namespace ns_Mashmo
             return l_RaycastHit;
         }
 
-#endregion Controller laser pointer
+        /// <summary>
+        /// Updates the controller swipe value
+        /// If controller is not attached or headset is not active will set to (0.0, 0.0)
+        /// </summary>
+        private void updateControllerSwipe()
+        {
+            // Set the swipe value
+            if (IsPrimaryTouchpadBtnDown() || 
+                !m_bIsInputActive ||
+                !m_bIsRemoteAttached)
+            {
+                m_v2ControllerSwipe = Vector2.zero;
+                m_v2LastControllerSwipe = Vector2.zero;
+                m_v2StartSwipePos = Vector2.zero;
+            }
+            else
+            {
+                Vector2 l_v2TouchpadPos = GetPrimaryTouchpadPosition();
+                m_v2ControllerSwipe = Vector2.zero;
+                ///swipe start
+                if (m_v2LastControllerSwipe == Vector2.zero &&
+                    l_v2TouchpadPos != Vector2.zero)
+                {
+                    m_v2StartSwipePos = l_v2TouchpadPos;
+                }
+                ///swipe end
+                else if ((m_v2LastControllerSwipe != Vector2.zero) &&
+                    l_v2TouchpadPos == Vector2.zero)
+                {
+                    m_v2StartSwipePos = Vector2.zero;
+                    m_v2ControllerSwipe = (l_v2TouchpadPos - m_v2StartSwipePos).normalized;
+                }
+
+                m_v2LastControllerSwipe = l_v2TouchpadPos;
+            }
+        }
+
+        #endregion Controller laser pointer
 
         private void Update()
         {
@@ -493,6 +543,7 @@ namespace ns_Mashmo
 #endif
             updateControllerSource(m_CurrentControllerType);
             updateControllerPointer();
+            updateControllerSwipe();
         }
     }
 }

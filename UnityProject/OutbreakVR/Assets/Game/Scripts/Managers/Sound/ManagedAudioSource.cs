@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class ManagedAudioSource : MonoBehaviour
+    public class ManagedAudioSource : MonoBehaviour, IReusable
     {
         /// <summary>
         /// unique audio src ID
@@ -113,6 +113,16 @@ namespace ns_Mashmo
                     m_actionOnComplete();
                 }
             }
+        }
+
+        public virtual void onReturnedToPool()
+        {
+            
+        }
+
+        public virtual void onRetrievedFromPool()
+        {
+            
         }
     }
 }

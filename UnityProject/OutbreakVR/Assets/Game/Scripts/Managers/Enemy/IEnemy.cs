@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface IEnemy
+    public interface IEnemy : IReusable
     {
         ENEMY_TYPE getEnemyType();
 

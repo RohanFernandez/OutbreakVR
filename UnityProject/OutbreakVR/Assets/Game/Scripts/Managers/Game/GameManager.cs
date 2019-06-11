@@ -30,7 +30,7 @@ namespace ns_Mashmo
         {
             Debug.Log("<color=BLUE>GameManager::SetGameLevel::</color> Setting level type '" + a_strLevelType + "'");
             s_Instance.m_strCurrentLevel = a_strLevelType;
-            Hashtable l_Hashtable = EventManager.GetHashtable();
+            EventHash l_Hashtable = EventManager.GetEventHashtable();
             l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
             EventManager.ReturnHashtableToPool(l_Hashtable);

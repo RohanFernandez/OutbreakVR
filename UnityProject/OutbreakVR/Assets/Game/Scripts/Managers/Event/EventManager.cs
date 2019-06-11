@@ -19,7 +19,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Pool of hashtable used for arguements of an event
         /// </summary>
-        private HashtablePool m_HashPool = null;
+        private EventHashPool m_HashPool = null;
 
         /// <summary>
         /// Sets singleton instance
@@ -31,7 +31,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            m_HashPool = new HashtablePool(10);
+            m_HashPool = new EventHashPool(10);
             m_dictGameEvents = new Dictionary<GAME_EVENT_TYPE, GameEventContainer>(10);
         }
 
@@ -51,9 +51,9 @@ namespace ns_Mashmo
         /// Gets hashtable from the pool
         /// </summary>
         /// <returns></returns>
-        public static Hashtable GetHashtable()
+        public static EventHash GetEventHashtable()
         {
-            Hashtable l_hash = s_Instance.m_HashPool.getObject();
+            EventHash l_hash = s_Instance.m_HashPool.getObject();
             l_hash.Clear();
             return l_hash;
         }
@@ -62,15 +62,15 @@ namespace ns_Mashmo
         /// Returns a hashtable back into the pool
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public static void ReturnHashtableToPool(Hashtable a_Hashtable)
+        public static void ReturnHashtableToPool(EventHash a_EventHash)
         {
-            s_Instance.m_HashPool.returnToPool(a_Hashtable);
+            s_Instance.m_HashPool.returnToPool(a_EventHash);
         }
 
         /// <summary>
         /// Subscribes to the game event
         /// </summary>
-        public static void SubscribeTo(GAME_EVENT_TYPE a_GameEventType, System.Action<Hashtable> a_EventCallback)
+        public static void SubscribeTo(GAME_EVENT_TYPE a_GameEventType, System.Action<EventHash> a_EventCallback)
         {
             GameEventContainer l_EventContainer = null;
             if(!s_Instance.m_dictGameEvents.TryGetValue(a_GameEventType, out l_EventContainer))
@@ -84,7 +84,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Unsubscribes from the game event
         /// </summary>
-        public static void UnsubscribeFrom(GAME_EVENT_TYPE a_GameEventType, System.Action<Hashtable> a_EventCallback)
+        public static void UnsubscribeFrom(GAME_EVENT_TYPE a_GameEventType, System.Action<EventHash> a_EventCallback)
         {
             GameEventContainer l_EventContainer = null;
             if (s_Instance.m_dictGameEvents.TryGetValue(a_GameEventType, out l_EventContainer))
@@ -98,7 +98,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_GameEventType"></param>
         /// <param name="a_HashtableArgs"></param>
-        public static void Dispatch(GAME_EVENT_TYPE a_GameEventType, Hashtable a_HashtableArgs)
+        public static void Dispatch(GAME_EVENT_TYPE a_GameEventType, EventHash a_HashtableArgs)
         {
             GameEventContainer l_EventContainer = null;
             if (s_Instance.m_dictGameEvents.TryGetValue(a_GameEventType, out l_EventContainer))

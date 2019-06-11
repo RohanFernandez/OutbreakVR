@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface IObjectiveGroup
+    public interface IObjectiveGroup: IReusable
     {
         /// <summary>
         /// Sets the initial data
@@ -19,12 +19,6 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_Objective"></param>
         void addObjective(ObjectiveBase a_Objective);
-
-        /// <summary>
-        /// Called on returning the objective group back into the pool
-        /// clears all the objectives that are stored in the list
-        /// </summary>
-        void onReturnedToPool();
 
         /// <summary>
         /// Gets the objective group class type name

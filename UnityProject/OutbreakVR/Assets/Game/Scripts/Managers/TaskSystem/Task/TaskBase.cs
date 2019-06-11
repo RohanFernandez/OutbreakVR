@@ -14,7 +14,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Hashtable of key to value of the task attributes
         /// </summary>
-        Hashtable m_hashAttributes = null;
+        protected Hashtable m_hashAttributes = null;
 
         /// <summary>
         /// The name of the task type class
@@ -56,6 +56,15 @@ namespace ns_Mashmo
         public string getTaskType()
         {
             return m_strTaskType;
+        }
+
+        public virtual void onReturnedToPool()
+        {
+        }
+
+        public virtual void onRetrievedFromPool()
+        {
+            
         }
 
         #region GET VARIABLE FROM OBJECT
@@ -102,6 +111,17 @@ namespace ns_Mashmo
         public bool getBool(string a_strAttributeKey)
         {
             return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey);
+        }
+
+        /// <summary>
+        /// Returns vec3 from a string
+        /// if unable to parse returns vec0
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public Vector3 getVec3(string a_strAttributeKey)
+        {
+            return GeneralUtils.GetVec3(m_hashAttributes, a_strAttributeKey);
         }
 
         #endregion GET VARIABLE FROM OBJECT

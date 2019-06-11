@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface IObjective
+    public interface IObjective : IReusable
     {
         /// <summary>
         /// called on start of initialization

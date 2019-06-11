@@ -231,7 +231,7 @@ namespace ns_Mashmo
                     if (l_goNewWeapon != null) { l_goNewWeapon.gameObject.SetActive(true); }
                 }
 
-                Hashtable l_hash = EventManager.GetHashtable();
+                EventHash l_hash = EventManager.GetEventHashtable();
                 l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_CATEGORY_TYPE, a_newWeaponCategoryType);
                 l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_TYPE, a_newWeaponType);
                 l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_BASE, l_goNewWeapon);

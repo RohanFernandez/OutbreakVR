@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class MonoObjectPool<T> : ObjectPool<T> where T : MonoBehaviour
+    public class MonoObjectPool<T> : ObjectPool<T> where T : MonoBehaviour, IReusable
     {
         /// <summary>
         /// The pool will manage the creation of this Prefab.

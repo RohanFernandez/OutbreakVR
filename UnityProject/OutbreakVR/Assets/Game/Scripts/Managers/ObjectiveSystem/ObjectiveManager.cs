@@ -168,7 +168,7 @@ namespace ns_Mashmo
         /// Level objective is complete
         /// check for objective in the current objective group is complete
         /// </summary>
-        public void onLevelObjectiveTriggered(Hashtable a_Hashtable)
+        public void onLevelObjectiveTriggered(EventHash a_Hashtable)
         {
             manageObjectiveCompletion(a_Hashtable);
         }
@@ -178,7 +178,7 @@ namespace ns_Mashmo
         /// Sets the Objective list to the given level type
         /// </summary>
         /// <param name="a_hashtable"></param>
-        public void onLevelSet(Hashtable a_hashtable)
+        public void onLevelSet(EventHash a_hashtable)
         {
             string l_strLevelType = a_hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
             SetObjectiveList(l_strLevelType);
@@ -187,7 +187,7 @@ namespace ns_Mashmo
         /// <summary>
         /// On state changed manage the checklist
         /// </summary>
-        public void onStateChanged(Hashtable a_hashtable)
+        public void onStateChanged(EventHash a_hashtable)
         {
             string l_strNewState = a_hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
             setCurrentObjectiveGroup(l_strNewState);

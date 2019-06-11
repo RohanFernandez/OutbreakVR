@@ -82,9 +82,19 @@ namespace ns_Mashmo
 
         Rect m_RectSequenceExecute;
         string m_strSequenceToExecute = string.Empty;
+        string m_strLevelToTransition = string.Empty;
 
         void OnGUI()
         {
+            GUILayout.Label("Level", EditorStyles.boldLabel);
+            m_strLevelToTransition = EditorGUILayout.TextField("Level Name:", m_strLevelToTransition);
+            if (GUILayout.Button("Transition", GUILayout.Width(120)))
+            {
+                GameStateMachine.Transition(m_strLevelToTransition);
+            }
+
+            GUILayout.Space(10.0f);
+
             GUILayout.Label("Scriptable Objects", EditorStyles.boldLabel);
             if (GUILayout.Button("Create All Scriptable Objects", GUILayout.Width(250)))
             {
@@ -109,6 +119,7 @@ namespace ns_Mashmo
             }
 
             GUILayout.Space(10.0f);
+
             GUILayout.Label("LOGGER", EditorStyles.boldLabel);
             if (GUILayout.Button("Log Running Tasks", GUILayout.Width(120)))
             {

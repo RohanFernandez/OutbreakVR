@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface ISequence
+    public interface ISequence : IReusable
     {
         void onInitialize(string a_strSequenceID, string a_strSequenceType);
 
@@ -19,7 +19,5 @@ namespace ns_Mashmo
         string getSequenceID();
 
         string getSequenceType();
-
-        void onReturnedToPool();
     }
 }

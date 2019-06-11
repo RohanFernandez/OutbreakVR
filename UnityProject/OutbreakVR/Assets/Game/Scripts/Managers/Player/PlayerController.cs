@@ -104,7 +104,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_ControllerType"></param>
         /// <param name="a_NewControllerAnchor"></param>
-        void onControllerChanged(Hashtable a_Hashtable)
+        void onControllerChanged(EventHash a_Hashtable)
         {
             CONTROLLER_TYPE l_NewControllerType = (CONTROLLER_TYPE)a_Hashtable[GameEventTypeConst.ID_NEW_CONTROLLER_TYPE];
             GameObject l_goControllerAnchor = (GameObject)a_Hashtable[GameEventTypeConst.ID_NEW_CONTROLLER_ANCHOR];

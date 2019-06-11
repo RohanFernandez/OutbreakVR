@@ -75,6 +75,34 @@ namespace ns_Mashmo
             }
             return l_bReturn;
         }
+
+        /// <summary>
+        /// Returns vec3 from a string
+        /// if unable to parse returns vec0
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public static Vector3 GetVec3(Hashtable a_Hashtable, string a_strAttributeKey)
+        {
+            System.Object l_Obj = a_Hashtable[a_strAttributeKey];
+            string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
+
+            Vector3 l_v3Return = Vector3.zero;
+            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            {
+                string[] l_strVec3 = l_strAtrributeValue.Split(',');
+                if (l_strVec3.Length == 3)
+                {
+                    l_v3Return = new Vector3();
+                    l_v3Return.x = float.Parse(l_strVec3[0]);
+                    l_v3Return.y = float.Parse(l_strVec3[1]);
+                    l_v3Return.z = float.Parse(l_strVec3[2]);
+                }
+            }
+
+            return l_v3Return;
+        }
+
         #endregion Hashtable Utils
     }
 }

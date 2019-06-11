@@ -9,7 +9,7 @@ namespace ns_Mashmo
         /// <summary>
         /// The event list
         /// </summary>
-        private System.Action<Hashtable> m_Event = null;
+        private System.Action<EventHash> m_Event = null;
 
         private GAME_EVENT_TYPE m_GameEventType;
 
@@ -26,7 +26,7 @@ namespace ns_Mashmo
         /// Adds specified callback to event
         /// </summary>
         /// <param name="a_Callback"></param>
-        public void addCallback(System.Action<Hashtable> a_Callback)
+        public void addCallback(System.Action<EventHash> a_Callback)
         {
             m_Event += a_Callback;
         }
@@ -35,16 +35,16 @@ namespace ns_Mashmo
         /// Removes specified callback from event
         /// </summary>
         /// <param name="a_Callback"></param>
-        public void removeCallback(System.Action<Hashtable> a_Callback)
+        public void removeCallback(System.Action<EventHash> a_Callback)
         {
             m_Event -= a_Callback;
         }
 
-        public void dispatch(Hashtable a_Hashtable)
+        public void dispatch(EventHash a_EventHash)
         {
             if (m_Event != null)
             {
-                m_Event.Invoke(a_Hashtable);
+                m_Event.Invoke(a_EventHash);
             }
         }
 

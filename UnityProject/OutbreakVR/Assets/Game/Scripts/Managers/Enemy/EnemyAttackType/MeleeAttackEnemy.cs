@@ -33,6 +33,27 @@ namespace ns_Mashmo
         public override void Update()
         {
             base.Update();
+
+            if (m_bIsActivated)
+            {
+                float l_fDistanceToPlayer = Vector3.Distance(PlayerManager.GetPosition(), transform.position);
+                if (l_fDistanceToPlayer < 15.0f)
+                {
+                    if (l_fDistanceToPlayer <= m_NavMeshAgent.stoppingDistance)
+                    {
+                        m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
+                    }
+                    else
+                    {
+                        m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
+                        m_NavMeshAgent.SetDestination(PlayerManager.GetPosition());
+                    }
+                }
+                else
+                {
+                    m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                }
+            }
         }
     }
 }

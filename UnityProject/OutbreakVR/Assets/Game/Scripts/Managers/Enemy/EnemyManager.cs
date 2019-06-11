@@ -16,7 +16,7 @@ namespace ns_Mashmo
         RANGED
     }
 
-    public class EnemyManager : AbsComponentHandler
+    public class EnemyManager : AbsComponentHandler, IReuseManager
     {
         /// <summary>
         /// Singleton instance
@@ -97,7 +97,6 @@ namespace ns_Mashmo
             {
                 l_Enemy = l_EnemyPool.getObject();
                 l_Enemy.gameObject.SetActive(true);
-                l_Enemy.activateEnemy();
             }
             return l_Enemy;
         }
@@ -111,8 +110,18 @@ namespace ns_Mashmo
             EnemyPool l_EnemyPool = getPoolOfEnemyType(a_Enemy.getEnemyType());
             if (l_EnemyPool != null)
             {
-                a_Enemy.deactivateEnemy();
                 l_EnemyPool.returnToPool(a_Enemy);
+            }
+        }
+
+        /// <summary>
+        /// Returns all enemies back into its respective pools
+        /// </summary>
+        public void returnAllToPool()
+        {
+            foreach (KeyValuePair<ENEMY_TYPE, EnemyPool> l_EnemyPool in m_dictEnemyPools)
+            {
+                l_EnemyPool.Value.returnAll();
             }
         }
     }

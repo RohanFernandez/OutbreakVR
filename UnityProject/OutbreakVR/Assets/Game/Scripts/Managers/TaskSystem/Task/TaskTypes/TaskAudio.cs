@@ -15,12 +15,12 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_AUD_SRC_TYPE     = "SrcType";
         #endregion ATTRIBUTE_KEY
 
-        private string m_strAudSrcID    = string.Empty;
-        private string m_strAudClipID   = string.Empty;
-        private bool m_bIsStart         = false;
-        private bool m_bIsLoop          = false;
-        private float m_fVolume         = 1.0f;
-        private AUDIO_SRC_TYPES m_AudSrcType          = 0;
+        private string m_strAudSrcID                = string.Empty;
+        private string m_strAudClipID               = string.Empty;
+        private bool m_bIsStart                     = false;
+        private bool m_bIsLoop                      = false;
+        private float m_fVolume                     = 1.0f;
+        private AUDIO_SRC_TYPES m_AudSrcType        = 0;
 
         public override void onInitialize()
         {

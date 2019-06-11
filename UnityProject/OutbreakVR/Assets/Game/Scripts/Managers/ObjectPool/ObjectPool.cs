@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ns_Mashmo
 {
     [System.Serializable]
-    public class ObjectPool<T> where T : class
+    public class ObjectPool<T> where T : class, IReusable
     {
         /// <summary>
         /// The stack that contains the objects of the pool.
@@ -54,6 +54,7 @@ namespace ns_Mashmo
         /// <param name="a_Obj"></param>
         public virtual void returnToPool(T a_Obj)
         {
+            a_Obj.onReturnedToPool();
             m_lstActivePooledObjects.Remove(a_Obj);
             m_Pool.Push(a_Obj);
         }
@@ -70,6 +71,7 @@ namespace ns_Mashmo
             }
             T l_ReturnObj = m_Pool.Pop();
             m_lstActivePooledObjects.Add(l_ReturnObj);
+            l_ReturnObj.onRetrievedFromPool();
             return l_ReturnObj;
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface ITask
+    public interface ITask : IReusable
     {
         void onStartInitialization(Hashtable a_hashAttributes);
         void onStartExecution(System.Action a_SequenceCallbackTaskComplete);
