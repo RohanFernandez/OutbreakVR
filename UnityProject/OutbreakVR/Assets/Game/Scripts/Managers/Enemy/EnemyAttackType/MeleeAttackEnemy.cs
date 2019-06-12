@@ -6,6 +6,11 @@ namespace ns_Mashmo
 {
     public abstract class MeleeAttackEnemy : NonStaticEnemy
     {
+        /// <summary>
+        /// Distance between the player and enemy below which the enemy will start striking
+        /// </summary>
+        private float m_fStrikeDistance = 2.0f;
+
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
             return ENEMY_ATTACK_TYPE.MELEE;
@@ -37,9 +42,9 @@ namespace ns_Mashmo
             if (m_bIsActivated)
             {
                 float l_fDistanceToPlayer = Vector3.Distance(PlayerManager.GetPosition(), transform.position);
-                if (l_fDistanceToPlayer < 15.0f)
+                if (l_fDistanceToPlayer < m_fAttackRadius)
                 {
-                    if (l_fDistanceToPlayer <= m_NavMeshAgent.stoppingDistance)
+                    if (l_fDistanceToPlayer <= m_fStrikeDistance)
                     {
                         m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
                     }
@@ -54,6 +59,12 @@ namespace ns_Mashmo
                     m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                 }
             }
+        }
+
+        void OnDrawGizmoSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,m_fAttackRadius) ;
         }
     }
 }

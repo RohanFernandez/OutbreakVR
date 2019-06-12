@@ -20,6 +20,12 @@ namespace ns_Mashmo
         protected bool m_bIsActivated = false;
 
         /// <summary>
+        /// The radius inside, if the player comes within this radius the enemy will start attacking
+        /// </summary>
+        [SerializeField]
+        protected float m_fAttackRadius = 15.0f;
+
+        /// <summary>
         /// Returns the tyoe of the enemy
         /// </summary>
         /// <returns></returns>

@@ -124,5 +124,10 @@ namespace ns_Mashmo
                 l_EnemyPool.Value.returnAll();
             }
         }
+
+        public static void ReturnAllToPool()
+        {
+            s_Instance.returnAllToPool();
+        }
     }
 }
