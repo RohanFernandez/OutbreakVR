@@ -14,7 +14,8 @@ namespace ns_Mashmo
         ON_LEVEL_SELECTED,                          /* <LEVEL_TYPE>*/
         ON_LEVEL_OBJECTIVE_TRIGGERED,               /* <OBJECTIVE_ID> */
         ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
-        ON_GAMEPLAY_ENDED                           /* <BOOL>*/
+        ON_GAMEPLAY_ENDED,                          /* <BOOL>*/
+        ON_PLAYER_STATE_CHANGED                     /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
     }
 
     public struct GameEventTypeConst
@@ -64,5 +65,10 @@ namespace ns_Mashmo
 
         #region ON_GAMEPLAY_ENDED
         #endregion ON_GAMEPLAY_ENDED
+
+        #region ON_PLAYER_STATE_CHANGED
+        public const string ID_OLD_PLAYER_STATE = "ID_OLD_PLAYER_STATE";                    /* PLAYER_STATE */
+        public const string ID_NEW_PLAYER_STATE = "ID_NEW_PLAYER_STATE";                    /* PLAYER_STATE */
+        #endregion ON_PLAYER_STATE_CHANGED
     }
 }

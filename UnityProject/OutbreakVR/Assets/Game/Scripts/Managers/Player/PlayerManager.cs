@@ -4,6 +4,14 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
+    public enum PLAYER_STATE
+    {
+        NO_INTERACTION,
+        MENU_SELECTION,
+        IN_GAME_MOVEMENT,
+        IN_GAME_HALTED
+    }
+
     public class PlayerManager : AbsComponentHandler
     {
         /// <summary>
@@ -13,6 +21,16 @@ namespace ns_Mashmo
 
         [SerializeField]
         private PlayerController m_PlayerController = null;
+
+        /// <summary>
+        /// The state the player is in
+        /// </summary>
+        [SerializeField]
+        private PLAYER_STATE m_PlayerState;
+        public static PLAYER_STATE PlayerState
+        {
+            get { return s_Instance.m_PlayerState; }
+        }
 
         /// <summary>
         /// Sets singleton instance
@@ -25,6 +43,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
             m_PlayerController.initialize();
+            SetPlayerState(m_PlayerState, true );
         }
 
         /// <summary>
@@ -56,6 +75,27 @@ namespace ns_Mashmo
         public static void SetPosition(Vector3 a_v3Position)
         {
             s_Instance.m_PlayerController.transform.position = a_v3Position;
+        }
+
+        /// <summary>
+        /// The state the player is in
+        /// sets its movement
+        /// </summary>
+        public static void SetPlayerState(PLAYER_STATE a_PlayerState, bool a_bForceEventDispatch = false)
+        {
+            if (a_PlayerState == s_Instance.m_PlayerState &&
+                !a_bForceEventDispatch)
+            {
+                return;
+            }
+            PLAYER_STATE l_OldPlayerState = s_Instance.m_PlayerState;
+            s_Instance.m_PlayerState = a_PlayerState;
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_OLD_PLAYER_STATE, l_OldPlayerState);
+            l_EventHash.Add(GameEventTypeConst.ID_NEW_PLAYER_STATE, a_PlayerState);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, l_EventHash);
+            EventManager.ReturnHashtableToPool(l_EventHash);
         }
     }
 }

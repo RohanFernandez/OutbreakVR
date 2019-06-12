@@ -516,14 +516,16 @@ namespace ns_Mashmo
                 if (m_v2LastControllerSwipe == Vector2.zero &&
                     l_v2TouchpadPos != Vector2.zero)
                 {
-                    m_v2StartSwipePos = l_v2TouchpadPos;
+                    m_v2StartSwipePos = new Vector3(l_v2TouchpadPos.x, l_v2TouchpadPos.y);
                 }
                 ///swipe end
                 else if ((m_v2LastControllerSwipe != Vector2.zero) &&
                     l_v2TouchpadPos == Vector2.zero)
                 {
+                    m_v2ControllerSwipe = (m_v2LastControllerSwipe - m_v2StartSwipePos).normalized;
+                    m_v2ControllerSwipe = (Mathf.Abs(m_v2ControllerSwipe.x) == 1.0f || Mathf.Abs(m_v2ControllerSwipe.y) == 1.0f) ?
+                        Vector2.zero : m_v2ControllerSwipe;
                     m_v2StartSwipePos = Vector2.zero;
-                    m_v2ControllerSwipe = (l_v2TouchpadPos - m_v2StartSwipePos).normalized;
                 }
 
                 m_v2LastControllerSwipe = l_v2TouchpadPos;

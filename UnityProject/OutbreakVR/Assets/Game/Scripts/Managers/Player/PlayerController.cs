@@ -23,17 +23,12 @@ namespace ns_Mashmo
         [SerializeField]
         private Transform m_HeadsetPlayerCamera = null;
 
-        #region PLAYER MOVEMENT
-
         /// <summary>
-        /// Is player movement allowed.
+        /// The controls to manage the player depending on PLAYER STATE
         /// </summary>
-        private bool m_bIsMovementAllowed = true;
-        public bool IsMovementAllowed
-        {
-            set { m_bIsMovementAllowed = value; }
-            get { return m_bIsMovementAllowed; }
-        }
+        private System.Action m_actPlayerStateControl = null;
+
+        #region PLAYER MOVEMENT
 
         /// <summary>
         /// The speed of movement of the character.
@@ -86,7 +81,9 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
         }
 
         public override void destroy()
@@ -96,6 +93,7 @@ namespace ns_Mashmo
                 return;
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
             s_Instance = null;
         }
 
@@ -112,7 +110,10 @@ namespace ns_Mashmo
 
         void Update()
         {
-            manageMovement();
+            if (m_actPlayerStateControl != null)
+            {
+                m_actPlayerStateControl();
+            }
 
             if (
 #if UNITY_EDITOR
@@ -127,92 +128,139 @@ namespace ns_Mashmo
         /// <summary>
         /// Manage input with the movement.
         /// </summary>
-        void manageMovement()
+        private void managePlayerState_InGameMovement()
         {
-            if (IsMovementAllowed)
-            {
-                Vector2 l_v2RemoteTouchPadPosition = ControllerManager.GetPrimaryTouchpadPosition();
-                bool l_bIsMovingLastFrame = m_bIsMoving;
-                m_bIsMoving = false;
-                Vector3 l_v3MovementDirection = Vector3.zero;
+            manageMovement();
+        }
+
+        /// <summary>
+        /// Manages movement of the player
+        /// </summary>
+        private void manageMovement()
+        {
+            Vector2 l_v2RemoteTouchPadPosition = ControllerManager.GetPrimaryTouchpadPosition();
+            bool l_bIsMovingLastFrame = m_bIsMoving;
+            m_bIsMoving = false;
+            Vector3 l_v3MovementDirection = Vector3.zero;
 
 #if !UNITY_EDITOR
         if (ControllerManager.IsPrimaryTouchpadBtnDown())
         {
 #endif
-                //forward Pressed, move player forward
-                if (
+            //forward Pressed, move player forward
+            if (
 #if UNITY_EDITOR
                     Input.GetKey(KeyCode.W) ||
 #endif
                     l_v2RemoteTouchPadPosition.y > 0.5f)
-                {
-                    l_v3MovementDirection += (m_HeadsetPlayerCamera.forward);
-                    m_bIsMoving = true;
-                }
-                //back Pressed, move player backwards
-                else if (
-#if UNITY_EDITOR 
+            {
+                l_v3MovementDirection += (m_HeadsetPlayerCamera.forward);
+                m_bIsMoving = true;
+            }
+            //back Pressed, move player backwards
+            else if (
+#if UNITY_EDITOR
                     Input.GetKey(KeyCode.S) ||
 #endif
                     l_v2RemoteTouchPadPosition.y < -0.5f)
-                {
-                    l_v3MovementDirection += (-m_HeadsetPlayerCamera.forward);
-                    m_bIsMoving = true;
-                }
+            {
+                l_v3MovementDirection += (-m_HeadsetPlayerCamera.forward);
+                m_bIsMoving = true;
+            }
 
-                //Right Pressed, move player left
-                if (
+            //Right Pressed, move player left
+            if (
 #if UNITY_EDITOR
                     Input.GetKey(KeyCode.D) ||
 #endif
                     l_v2RemoteTouchPadPosition.x > 0.5f)
-                {
-                    l_v3MovementDirection += (m_HeadsetPlayerCamera.right);
-                    m_bIsMoving = true;
-                }
-                //Left Pressed, move player left
-                else if (
+            {
+                l_v3MovementDirection += (m_HeadsetPlayerCamera.right);
+                m_bIsMoving = true;
+            }
+            //Left Pressed, move player left
+            else if (
 #if UNITY_EDITOR
                     Input.GetKey(KeyCode.A) ||
 #endif
                     l_v2RemoteTouchPadPosition.x < -0.5f)
-                {
-                    l_v3MovementDirection += (-m_HeadsetPlayerCamera.right);
-                    m_bIsMoving = true;
-                }
+            {
+                l_v3MovementDirection += (-m_HeadsetPlayerCamera.right);
+                m_bIsMoving = true;
+            }
 #if !UNITY_EDITOR
         }
 #endif
-                if (m_bIsMoving)
+            if (m_bIsMoving)
+            {
+                if (m_bIsMoving != l_bIsMovingLastFrame)
                 {
-                    if (m_bIsMoving != l_bIsMovingLastFrame)
-                    {
-                        SoundManager.PlayAudio(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS, SoundConst.AUD_CLIP_PLAYER_CONCRETE_FOOTSTEPS, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
-                    }
-
-                    m_fCurrentMovementSpeed += m_fMovementAcceleraion * Time.deltaTime;
-                    if (m_fCurrentMovementSpeed > m_fMovementSpeedMax)
-                    {
-                        m_fCurrentMovementSpeed = m_fMovementSpeedMax;
-                    }
-                }
-                else
-                {
-                    if (m_fCurrentMovementSpeed != 0.0f)
-                    {
-                        m_fCurrentMovementSpeed -= m_fMovementDeceleraion * Time.deltaTime;
-                    }
-
-                    if (m_fCurrentMovementSpeed < 0.0f)
-                    {
-                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
-                        m_fCurrentMovementSpeed = 0.0f;
-                    }
+                    SoundManager.PlayAudio(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS, SoundConst.AUD_CLIP_PLAYER_CONCRETE_FOOTSTEPS, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
                 }
 
-                m_v3MovementVelocity = Vector3.RotateTowards(m_v3MovementVelocity.normalized, (m_v3MovementVelocity.normalized + l_v3MovementDirection.normalized).normalized, Mathf.PI * Time.deltaTime, Mathf.PI) * m_fCurrentMovementSpeed * Time.deltaTime;
-                m_CharacterController.Move(m_v3MovementVelocity + (m_v3GravityModifier * Time.deltaTime));
+                m_fCurrentMovementSpeed += m_fMovementAcceleraion * Time.deltaTime;
+                if (m_fCurrentMovementSpeed > m_fMovementSpeedMax)
+                {
+                    m_fCurrentMovementSpeed = m_fMovementSpeedMax;
+                }
+            }
+            else
+            {
+                if (m_fCurrentMovementSpeed != 0.0f)
+                {
+                    m_fCurrentMovementSpeed -= m_fMovementDeceleraion * Time.deltaTime;
+                }
+
+                if (m_fCurrentMovementSpeed < 0.0f)
+                {
+                    SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                    m_fCurrentMovementSpeed = 0.0f;
+                }
+            }
+
+            m_v3MovementVelocity = Vector3.RotateTowards(m_v3MovementVelocity.normalized, (m_v3MovementVelocity.normalized + l_v3MovementDirection.normalized).normalized, Mathf.PI * Time.deltaTime, Mathf.PI) * m_fCurrentMovementSpeed * Time.deltaTime;
+            m_CharacterController.Move(m_v3MovementVelocity + (m_v3GravityModifier * Time.deltaTime));
+        }
+
+        /// <summary>
+        /// Event called on player state changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onPlayerStateChanged(EventHash a_EventHash)
+        {
+            PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
+
+            switch (l_NewPlayerState)
+            {
+                case PLAYER_STATE.IN_GAME_HALTED:
+                    {
+                        m_actPlayerStateControl = null;
+                        ControllerManager.ToggleLaser(true);
+                        break;
+                    }
+                case PLAYER_STATE.IN_GAME_MOVEMENT:
+                    {
+                        m_actPlayerStateControl = managePlayerState_InGameMovement;
+                        ControllerManager.ToggleLaser(true);
+                        break;
+                    }
+                case PLAYER_STATE.MENU_SELECTION:
+                    {
+                        m_actPlayerStateControl = null;
+                        ControllerManager.ToggleLaser(true);
+                        break;
+                    }
+                case PLAYER_STATE.NO_INTERACTION:
+                    {
+                        m_actPlayerStateControl = null;
+                        ControllerManager.ToggleLaser(false);
+                        break;
+                    }
+                default:
+                    {
+                        m_actPlayerStateControl = null;
+                        break;
+                    }
             }
         }
     }
