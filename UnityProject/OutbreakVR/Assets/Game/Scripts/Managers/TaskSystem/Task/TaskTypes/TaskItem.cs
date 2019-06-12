@@ -8,8 +8,10 @@ namespace ns_Mashmo
     {
         #region ATTRIBUTE_KEY
         private const string ATTRIBUTE_ITEM_TYPE = "ItemType";
-        private const string ATTRIBUTE_IS_RETURN_ALL = "IsReturnAll";
+        private const string ATTRIBUTE_CODE = "Code";
         private const string ATTRIBUTE_POSITION = "Position";
+
+        private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -18,9 +20,9 @@ namespace ns_Mashmo
         private ITEM_TYPE m_ItemType;
 
         /// <summary>
-        /// If true returns all items back into the pool
+        /// code of instructions
         /// </summary>
-        private bool m_bIsReturnAllItems = false;
+        private string m_strCode = string.Empty;
 
         /// <summary>
         /// The position to spawn the item
@@ -32,7 +34,7 @@ namespace ns_Mashmo
             base.onInitialize();
 
             string l_strItemType = getString(ATTRIBUTE_ITEM_TYPE);
-            m_bIsReturnAllItems = getBool(ATTRIBUTE_IS_RETURN_ALL);
+            m_strCode = getString(ATTRIBUTE_CODE);
 
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
 
@@ -46,15 +48,26 @@ namespace ns_Mashmo
         {
             base.onExecute();
 
-            if (m_bIsReturnAllItems)
-            {
-                ItemDropManager.ReturnAllToPool();
-            }
-            else
+            if (string.IsNullOrEmpty(m_strCode))
             {
                 ItemDropBase l_ItemDrop = ItemDropManager.GetItemDrop(m_ItemType);
                 l_ItemDrop.gameObject.SetActive(true);
                 l_ItemDrop.transform.position = m_v3Position;
+            }
+            else
+            {
+                switch (m_strCode)
+                {
+                    case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
+                        {
+                            ItemDropManager.ReturnAllToPool();
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
             }
             onComplete();
         }

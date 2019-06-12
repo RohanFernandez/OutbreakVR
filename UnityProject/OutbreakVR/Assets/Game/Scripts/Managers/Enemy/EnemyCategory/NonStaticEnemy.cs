@@ -31,5 +31,39 @@ namespace ns_Mashmo
         {
             base.Update();
         }
+
+        /// <summary>
+        /// Starts navigation of the enemy
+        /// </summary>
+        public void startNavigation()
+        {
+            m_NavMeshAgent.isStopped = false;
+        }
+
+        /// <summary>
+        /// Stops navigation of the enemy
+        /// </summary>
+        public void stopNavigation()
+        {
+            m_NavMeshAgent.isStopped = true;
+        }
+
+        /// <summary>
+        /// Pauses enemy movement or action
+        /// </summary>
+        public override void pauseEnemy()
+        {
+            base.pauseEnemy();
+            stopNavigation();
+        }
+
+        /// <summary>
+        /// Unpauses enemy movement and action
+        /// </summary>
+        public override void unpauseEnemy()
+        {
+            base.unpauseEnemy();
+            startNavigation();
+        }
     }
 }

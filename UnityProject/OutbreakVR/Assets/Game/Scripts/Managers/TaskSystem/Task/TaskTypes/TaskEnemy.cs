@@ -8,8 +8,12 @@ namespace ns_Mashmo
     {
         #region ATTRIBUTE_KEY
         private const string ATTRIBUTE_ENEMY_TYPE = "ItemType";
-        private const string ATTRIBUTE_IS_RETURN_ALL = "IsReturnAll";
         private const string ATTRIBUTE_POSITION = "Position";
+        private const string ATTRIBUTE_CODE = "Code";
+
+        private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
+        private const string ATTRIBUTE_VALUE_CODE_PAUSE_ALL = "PauseAll";
+        private const string ATTRIBUTE_VALUE_CODE_UNPAUSE_ALL = "UnpauseAll";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -18,9 +22,9 @@ namespace ns_Mashmo
         private ENEMY_TYPE m_EnemyType;
 
         /// <summary>
-        /// If true returns all items back into the pool
+        /// code of instructions
         /// </summary>
-        private bool m_bIsReturnAllItems = false;
+        private string m_strCode = string.Empty;
 
         /// <summary>
         /// The position to spawn the item
@@ -32,7 +36,7 @@ namespace ns_Mashmo
             base.onInitialize();
 
             string l_strEnemyType = getString(ATTRIBUTE_ENEMY_TYPE);
-            m_bIsReturnAllItems = getBool(ATTRIBUTE_IS_RETURN_ALL);
+            m_strCode = getString(ATTRIBUTE_CODE);
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
 
             if (!string.IsNullOrEmpty(l_strEnemyType))
@@ -45,15 +49,37 @@ namespace ns_Mashmo
         {
             base.onExecute();
 
-            if (m_bIsReturnAllItems)
-            {
-                EnemyManager.ReturnAllToPool();
-            }
-            else
+            if (string.IsNullOrEmpty(m_strCode))
             {
                 EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType);
                 l_Enemy.transform.position = m_v3Position;
                 l_Enemy.gameObject.SetActive(true);
+            }
+            else
+            {
+                switch (m_strCode)
+                {
+                    case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
+                        {
+                            EnemyManager.ReturnAllToPool();
+                            break;
+                        }
+                    case ATTRIBUTE_VALUE_CODE_PAUSE_ALL:
+                        {
+                            EnemyManager.PauseAllEnemies(true);
+                            break;
+                        }
+                    case ATTRIBUTE_VALUE_CODE_UNPAUSE_ALL:
+                        {
+                            EnemyManager.PauseAllEnemies(false);
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+
+                }
             }
             onComplete();
         }

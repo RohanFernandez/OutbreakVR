@@ -36,6 +36,12 @@ namespace ns_Mashmo
         private Dictionary<ENEMY_TYPE, EnemyPool> m_dictEnemyPools = null;
 
         /// <summary>
+        /// Are all enemies movement or action paused
+        /// </summary>
+        [SerializeField]
+        private bool m_bIsEnemiesPaused = false;
+
+        /// <summary>
         /// Sets the singleton instance
         /// </summary>
         public override void initialize()
@@ -97,6 +103,15 @@ namespace ns_Mashmo
             {
                 l_Enemy = l_EnemyPool.getObject();
                 l_Enemy.gameObject.SetActive(true);
+
+                if (s_Instance.m_bIsEnemiesPaused)
+                {
+                    l_Enemy.pauseEnemy();
+                }
+                else
+                {
+                    l_Enemy.unpauseEnemy();
+                }
             }
             return l_Enemy;
         }
@@ -128,6 +143,46 @@ namespace ns_Mashmo
         public static void ReturnAllToPool()
         {
             s_Instance.returnAllToPool();
+        }
+
+        /// <summary>
+        /// Static function to Pause or Unpause enemy movement/ action
+        /// </summary>
+        /// <param name="a_bIsPaused"></param>
+        public static void PauseAllEnemies(bool a_bIsPaused)
+        {
+            s_Instance.pauseAllEnemies(a_bIsPaused);
+        }
+
+        /// <summary>
+        /// Pauses or Unpauses enemy movement/ action
+        /// </summary>
+        /// <param name="a_bIsPaused"></param>
+        private void pauseAllEnemies(bool a_bIsPaused)
+        {
+            if (a_bIsPaused == m_bIsEnemiesPaused)
+            {
+                return;
+            }
+            s_Instance.m_bIsEnemiesPaused = a_bIsPaused;
+            foreach (KeyValuePair<ENEMY_TYPE, EnemyPool> l_EnemyPool in m_dictEnemyPools)
+            {
+                List<EnemyBase> l_lstActiveEnemies = l_EnemyPool.Value.getActiveList();
+                int l_iActiveEnemyCount = l_lstActiveEnemies.Count;
+
+                for (int l_iEnemyIndex = 0; l_iEnemyIndex < l_iActiveEnemyCount; l_iEnemyIndex++)
+                {
+                    EnemyBase l_EnemyBase = l_lstActiveEnemies[l_iEnemyIndex];
+                    if (a_bIsPaused)
+                    {
+                        l_EnemyBase.pauseEnemy();
+                    }
+                    else
+                    {
+                        l_EnemyBase.unpauseEnemy();
+                    }
+                }
+            }
         }
     }
 }

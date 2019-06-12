@@ -70,5 +70,21 @@ namespace ns_Mashmo
         {
             activateEnemy();
         }
+
+        /// <summary>
+        /// Pauses enemy movement or action
+        /// </summary>
+        public virtual void pauseEnemy()
+        {
+
+        }
+
+        /// <summary>
+        /// Unpauses enemy movement and action
+        /// </summary>
+        public virtual void unpauseEnemy()
+        {
+
+        }
     }
 }

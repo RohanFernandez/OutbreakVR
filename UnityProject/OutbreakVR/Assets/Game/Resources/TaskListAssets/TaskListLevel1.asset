@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: LEVEL1
-  m_iSequenceCount: 2
+  m_iSequenceCount: 5
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: StartGame
-    m_iTaskCount: 7
+    m_iTaskCount: 6
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskAudio
@@ -101,18 +101,6 @@ MonoBehaviour:
         m_strValue: PrintThis
       - m_strKey: GameObject_ID
         m_strValue: TestGameObj
-    - m_strTaskID: 7
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 7
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 1.0,-13.5,1.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
     m_iTaskCount: 2
@@ -125,8 +113,8 @@ MonoBehaviour:
         m_strValue: 1
       - m_strKey: TaskType
         m_strValue: TaskItem
-      - m_strKey: IsReturnAll
-        m_strValue: true
+      - m_strKey: Code
+        m_strValue: ReturnAll
     - m_strTaskID: 2
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 3
@@ -135,5 +123,49 @@ MonoBehaviour:
         m_strValue: 2
       - m_strKey: TaskType
         m_strValue: TaskEnemy
-      - m_strKey: IsReturnAll
-        m_strValue: true
+      - m_strKey: Code
+        m_strValue: ReturnAll
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: PauseEnemies
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: PauseAll
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: UnpauseEnemies
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: UnpauseAll
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: SpawnEnemy
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 7
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: EnemyType
+        m_strValue: SECURITY_OFFICER
+      - m_strKey: Position
+        m_strValue: 1.0,-13.5,1.0
