@@ -49,7 +49,7 @@ namespace ns_Mashmo
 
             if (Input.GetKeyUp(KeyCode.E))
             {
-                EnemyManager.GetEnemyFromPool(ENEMY_TYPE.SECURITY_OFFICER);
+                GameManager.GoToHomeOnEnd();
             }
         }
     }

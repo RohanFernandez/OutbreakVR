@@ -23,6 +23,12 @@ namespace ns_Mashmo
         private string m_strCurrentLevel = string.Empty;
 
         /// <summary>
+        /// Is the game pause currently
+        /// </summary>
+        [SerializeField]
+        private bool m_bIsGamePaused = false;
+
+        /// <summary>
         /// Sets the current level as arguement as fires an event if the old event is not the new
         /// </summary>
         /// <param name="a_LevelType"></param>
@@ -80,6 +86,39 @@ namespace ns_Mashmo
                 a_actionOnLoadComplete += () => {
                     /// Add action of hiding loading panel
                 } );
+        }
+
+        /// <summary>
+        /// Goes to the home scene
+        /// </summary>
+        public static void GoToHomeOnEnd()
+        {
+            PauseGame(false);
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
+            EventManager.ReturnHashtableToPool(l_EventHash);
+
+            GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
+        }
+
+        /// <summary>
+        /// Pause /unpause game game
+        /// </summary>
+        /// <param name="a_bIsPaused"></param>
+        public static void PauseGame(bool a_bIsPaused)
+        {
+            if (s_Instance.m_bIsGamePaused == a_bIsPaused)
+            {
+                return;
+            }
+            s_Instance.m_bIsGamePaused = a_bIsPaused;
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
+            EventManager.ReturnHashtableToPool(l_EventHash);
+
+            Time.timeScale = a_bIsPaused ? 0.0f : 1.0f;
         }
     }
 }

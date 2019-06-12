@@ -70,7 +70,6 @@ namespace ns_Mashmo
                 Debug.Log("<color = ORANGE> GameObjectManager::registerGameObj:: </color> Cannot register because gameobject with ID '"+ a_strID + "' already exists.");
                 return;
             }
-
             s_Instace.m_dictGameObjectIDs.Add(a_strID, a_GameObject);
         }
 

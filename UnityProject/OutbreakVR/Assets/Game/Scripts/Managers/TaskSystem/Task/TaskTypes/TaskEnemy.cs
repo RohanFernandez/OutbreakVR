@@ -12,8 +12,6 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
-        private const string ATTRIBUTE_VALUE_CODE_PAUSE_ALL = "PauseAll";
-        private const string ATTRIBUTE_VALUE_CODE_UNPAUSE_ALL = "UnpauseAll";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -62,16 +60,6 @@ namespace ns_Mashmo
                     case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
                         {
                             EnemyManager.ReturnAllToPool();
-                            break;
-                        }
-                    case ATTRIBUTE_VALUE_CODE_PAUSE_ALL:
-                        {
-                            EnemyManager.PauseAllEnemies(true);
-                            break;
-                        }
-                    case ATTRIBUTE_VALUE_CODE_UNPAUSE_ALL:
-                        {
-                            EnemyManager.PauseAllEnemies(false);
                             break;
                         }
                     default:

@@ -82,6 +82,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
 
             m_TaskPoolManager = new TaskPoolManager();
             m_lstRunningSequneces = new List<ISequence>(10);
@@ -116,6 +117,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             s_Instance = null;
         }
 
@@ -280,6 +282,15 @@ namespace ns_Mashmo
 
             ExecuteSequence(l_strOldStateId + TASK_POSTFIX_ON_END);
             ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_BEGIN);
+        }
+
+        /// <summary>
+        /// Event called on gameplay ended and return to home
+        /// </summary>
+        /// <param name="a_Hashtable"></param>
+        public void onGameplayEnded(EventHash a_Hashtable)
+        {
+            StopAll();
         }
 
 #if UNITY_EDITOR

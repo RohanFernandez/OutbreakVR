@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: LEVEL1
-  m_iSequenceCount: 5
+  m_iSequenceCount: 3
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: StartGame
@@ -125,34 +125,6 @@ MonoBehaviour:
         m_strValue: TaskEnemy
       - m_strKey: Code
         m_strValue: ReturnAll
-  - m_strSequenceType: SimpleSequence
-    m_strSequenceID: PauseEnemies
-    m_iTaskCount: 1
-    m_lstTasks:
-    - m_strTaskID: 1
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 3
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 1
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: PauseAll
-  - m_strSequenceType: SimpleSequence
-    m_strSequenceID: UnpauseEnemies
-    m_iTaskCount: 1
-    m_lstTasks:
-    - m_strTaskID: 1
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 3
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 1
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: UnpauseAll
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: SpawnEnemy
     m_iTaskCount: 1

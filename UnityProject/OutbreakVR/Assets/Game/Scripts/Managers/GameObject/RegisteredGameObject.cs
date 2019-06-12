@@ -21,7 +21,7 @@ namespace ns_Mashmo
             gameObject.SetActive(m_bIsActiveOnStart);
         }
 
-        void Destroy()
+        void OnDestroy()
         {
             GameObjectManager.unregisterGameObj(m_strRegisteredID);
         }

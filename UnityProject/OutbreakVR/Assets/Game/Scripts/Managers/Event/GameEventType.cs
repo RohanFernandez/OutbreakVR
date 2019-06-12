@@ -13,6 +13,8 @@ namespace ns_Mashmo
         ON_SEQUENCE_COMPLETE,                       /* <ISEQUENCE> */
         ON_LEVEL_SELECTED,                          /* <LEVEL_TYPE>*/
         ON_LEVEL_OBJECTIVE_TRIGGERED,               /* <OBJECTIVE_ID> */
+        ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
+        ON_GAMEPLAY_ENDED                           /* <BOOL>*/
     }
 
     public struct GameEventTypeConst
@@ -55,5 +57,12 @@ namespace ns_Mashmo
         public const string ID_OBJECTIVE_TYPE = "ID_OBJECTIVE_TYPE";                    /* STRING */
         public const string ID_OBJECTIVE_TRIGGER_ID = "ID_OBJECTIVE_TRIGGER_ID";        /* STRING */
         #endregion ON_LEVEL_OBJECTIVE_TRIGGERED
+
+        #region ON_GAME_PAUSED_TOGGLED
+        public const string ID_GAME_PAUSED = "ID_GAME_PAUSED";                    /* BOOl */
+        #endregion ON_GAME_PAUSED_TOGGLED
+
+        #region ON_GAMEPLAY_ENDED
+        #endregion ON_GAMEPLAY_ENDED
     }
 }

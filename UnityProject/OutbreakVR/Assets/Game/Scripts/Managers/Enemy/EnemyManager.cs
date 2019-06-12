@@ -51,6 +51,8 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
 
             int l_iEnemyPrefabCount = m_lstEnemyPrefabs.Count;
             m_dictEnemyPools = new Dictionary<ENEMY_TYPE, EnemyPool>(l_iEnemyPrefabCount);
@@ -72,6 +74,8 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             s_Instance = null;
         }
 
@@ -146,15 +150,6 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Static function to Pause or Unpause enemy movement/ action
-        /// </summary>
-        /// <param name="a_bIsPaused"></param>
-        public static void PauseAllEnemies(bool a_bIsPaused)
-        {
-            s_Instance.pauseAllEnemies(a_bIsPaused);
-        }
-
-        /// <summary>
         /// Pauses or Unpauses enemy movement/ action
         /// </summary>
         /// <param name="a_bIsPaused"></param>
@@ -183,6 +178,25 @@ namespace ns_Mashmo
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// event called on game is paused / unpaused
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onGamePauseToggled(EventHash a_EventHash)
+        {
+            bool a_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
+            pauseAllEnemies(a_bIsGamePaused);
+        }
+
+        /// <summary>
+        /// Event called on gameplay ended
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onGameplayEnded(EventHash a_EventHash)
+        {
+            returnAllToPool();
         }
     }
 }

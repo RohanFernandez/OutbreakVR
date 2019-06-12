@@ -37,6 +37,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             m_dictItemDropPool = new Dictionary<ITEM_TYPE, ItemDropPool>(10);
             initItemDropDictionary();
         }
@@ -50,6 +51,7 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             s_Instance = null;
         }
 
@@ -115,6 +117,15 @@ namespace ns_Mashmo
             {
                 l_Item.Value.returnAll();
             }
+        }
+
+        /// <summary>
+        /// Event called on gameplay ended
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onGameplayEnded(EventHash a_EventHash)
+        {
+            returnAllToPool();
         }
     }
 }

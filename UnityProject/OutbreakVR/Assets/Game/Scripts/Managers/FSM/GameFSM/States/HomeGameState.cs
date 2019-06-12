@@ -9,7 +9,7 @@ namespace ns_Mashmo
         public override void onStateEnter(string a_strNewState)
         {
             base.onStateEnter(a_strNewState);
-            GameManager.LoadScene(SystemConsts.SCENE_NAME_HOME_SCENE);
+            GameManager.LoadScene(SystemConsts.SCENE_NAME_HOME_SCENE, onLoadHomeSceneComplete);
         }
 
         public override void onStateExit(string a_strOldState)
