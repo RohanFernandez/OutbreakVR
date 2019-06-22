@@ -18,7 +18,7 @@ namespace ns_Mashmo
         ON_PLAYER_STATE_CHANGED                     /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
     }
 
-    public struct GameEventTypeConst
+    public static class GameEventTypeConst
     {
         #region ON_CONTROLLER_CHANGED
         public const string ID_NEW_CONTROLLER_TYPE      = "ID_NEW_CONTROLLER_TYPE";     /* CONTROLLER_TYPE */

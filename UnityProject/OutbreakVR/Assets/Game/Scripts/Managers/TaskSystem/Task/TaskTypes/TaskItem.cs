@@ -8,10 +8,14 @@ namespace ns_Mashmo
     {
         #region ATTRIBUTE_KEY
         private const string ATTRIBUTE_ITEM_TYPE = "ItemType";
-        private const string ATTRIBUTE_CODE = "Code";
         private const string ATTRIBUTE_POSITION = "Position";
+        private const string ATTRIBUTE_ROTATION = "Rotation";
+        private const string ATTRIBUTE_ITEM_ID = "Item_ID";
+        private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
+        private const string ATTRIBUTE_VALUE_CODE_DEACTIVATE = "Deactivate";
+        private const string ATTRIBUTE_VALUE_CODE_ACTIVATE = "Activate";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -28,6 +32,8 @@ namespace ns_Mashmo
         /// The position to spawn the item
         /// </summary>
         private Vector3 m_v3Position = Vector3.zero;
+        private Vector3 m_v3Rotation = Vector3.zero;
+        private string m_strItemID = string.Empty;
 
         public override void onInitialize()
         {
@@ -37,6 +43,8 @@ namespace ns_Mashmo
             m_strCode = getString(ATTRIBUTE_CODE);
 
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
+            m_v3Rotation = getVec3(ATTRIBUTE_ROTATION);
+            m_strItemID = getString(ATTRIBUTE_ITEM_ID);
 
             if (!string.IsNullOrEmpty(l_strItemType))
             {
@@ -48,26 +56,30 @@ namespace ns_Mashmo
         {
             base.onExecute();
 
-            if (string.IsNullOrEmpty(m_strCode))
+            switch (m_strCode)
             {
-                ItemDropBase l_ItemDrop = ItemDropManager.GetItemDrop(m_ItemType);
-                l_ItemDrop.gameObject.SetActive(true);
-                l_ItemDrop.transform.position = m_v3Position;
-            }
-            else
-            {
-                switch (m_strCode)
-                {
-                    case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
-                        {
-                            ItemDropManager.ReturnAllToPool();
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
-                }
+                case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
+                    {
+                        ItemDropManager.ReturnAllToPool();
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_DEACTIVATE:
+                    {
+                        ItemDropManager.ReturnActiveItemToPool(m_ItemType, m_strItemID);
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_ACTIVATE:
+                    {
+                        ItemDropBase l_Item = ItemDropManager.GetItemDrop(m_ItemType, m_strItemID);
+                        l_Item.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
+                        l_Item.gameObject.SetActive(true);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+
             }
             onComplete();
         }

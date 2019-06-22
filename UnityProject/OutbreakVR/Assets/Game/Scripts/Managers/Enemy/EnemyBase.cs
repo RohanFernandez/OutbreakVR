@@ -14,6 +14,12 @@ namespace ns_Mashmo
         protected ENEMY_TYPE m_EnemyType;
 
         /// <summary>
+        /// The ID to refer this enemy
+        /// </summary>
+        [SerializeField]
+        private string m_strEnemyID = string.Empty;
+
+        /// <summary>
         /// Is the enemy active to attack
         /// </summary>
         [SerializeField]
@@ -85,6 +91,21 @@ namespace ns_Mashmo
         public virtual void unpauseEnemy()
         {
 
+        }
+
+        public string getID()
+        {
+            return m_strEnemyID;
+        }
+
+        /// <summary>
+        /// Sets ID
+        /// </summary>
+        /// <param name="a_strID"></param>
+        /// <returns></returns>
+        public void setID(string a_strID)
+        {
+            m_strEnemyID = a_strID;
         }
     }
 }

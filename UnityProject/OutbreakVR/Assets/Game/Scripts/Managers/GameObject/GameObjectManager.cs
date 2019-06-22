@@ -50,6 +50,11 @@ namespace ns_Mashmo
         public static GameObject GetGameObjectById(string a_strGameObjectID)
         {
             RegisteredGameObject l_GameObj = null;
+            if (s_Instace == null)
+            {
+                return null;
+            }
+
             if (!s_Instace.m_dictGameObjectIDs.TryGetValue(a_strGameObjectID, out l_GameObj))
             {
                 Debug.Log("<color=ORANGE>GameObjectManager::GetGameObjectById:: </color> Failed to find registered gameobject with ID: " + a_strGameObjectID);

@@ -24,6 +24,20 @@ namespace ns_Mashmo
         /// </summary>
         private void initializeGame()
         {
+            //Entitlement check
+
+            //Get username and userid
+
+            //Set player data with username
+
+            //Check internet connection
+
+            //Get Game Constant data
+
+            //Get Achievement data
+
+            //Get player data
+
             // Add player initilization and platform initializations
             onInitializationSuccessful();
         }

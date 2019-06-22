@@ -99,13 +99,14 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_Enemytype"></param>
         /// <returns></returns>
-        public static EnemyBase GetEnemyFromPool(ENEMY_TYPE a_Enemytype)
+        public static EnemyBase GetEnemyFromPool(ENEMY_TYPE a_Enemytype, string a_strID)
         {
             EnemyPool l_EnemyPool = s_Instance.getPoolOfEnemyType(a_Enemytype);
             EnemyBase l_Enemy = null;
             if (l_EnemyPool != null)
             {
                 l_Enemy = l_EnemyPool.getObject();
+                l_Enemy.setID(a_strID);
                 l_Enemy.gameObject.SetActive(true);
 
                 if (s_Instance.m_bIsEnemiesPaused)
@@ -121,15 +122,22 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Return enemy back into its respective pool
+        /// Returns active enemy back into the pool
         /// </summary>
         /// <param name="a_Enemy"></param>
-        private void returnToPool(EnemyBase a_Enemy)
+        public static void ReturnActiveEnemyToPool(ENEMY_TYPE a_EnemyType, string a_strEnemyID)
         {
-            EnemyPool l_EnemyPool = getPoolOfEnemyType(a_Enemy.getEnemyType());
-            if (l_EnemyPool != null)
+            EnemyPool l_EnemyPool = s_Instance.getPoolOfEnemyType(a_EnemyType);
+            List<EnemyBase> l_lstAcitveEnemies = l_EnemyPool.getActiveList();
+            int l_iActiveEnemyCount = l_lstAcitveEnemies.Count;
+
+            for (int l_iActiveIndex = 0; l_iActiveIndex < l_iActiveEnemyCount; l_iActiveIndex++)
             {
-                l_EnemyPool.returnToPool(a_Enemy);
+                if (l_lstAcitveEnemies[l_iActiveIndex].getID().Equals(a_strEnemyID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_EnemyPool.returnToPool(l_lstAcitveEnemies[l_iActiveIndex]);
+                    break;
+                }
             }
         }
 

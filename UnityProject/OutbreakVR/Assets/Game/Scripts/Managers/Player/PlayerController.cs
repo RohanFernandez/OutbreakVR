@@ -28,6 +28,34 @@ namespace ns_Mashmo
         /// </summary>
         private System.Action m_actPlayerStateControl = null;
 
+        /// <summary>
+        /// Component to manage registration to GameObjectManager
+        /// </summary>
+        [SerializeField]
+        private RegisteredGameObject m_RegisteredGameObj = null;
+
+        #region SWIPE
+
+        ///// <summary>
+        ///// The direction of swipe the player performed
+        ///// </summary>
+        //private enum SWIPE_DIRECTION
+        //{
+        //    NONE,
+        //    TOP_BOTTOM,
+        //    BOTTOM_TOP,
+        //    LEFT_RIGHT,
+        //    RIGHT_LEFT
+        //}
+
+        /// <summary>
+        /// Min swipe per dimension to register as swipe direction,
+        /// else will register as none
+        /// </summary>
+        private const float MIN_SWIPE_VALUE = 0.6f;
+
+        #endregion SWIPE
+
         #region PLAYER MOVEMENT
 
         /// <summary>
@@ -81,6 +109,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            m_RegisteredGameObj.registerGameObject();
             
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
@@ -92,6 +121,7 @@ namespace ns_Mashmo
             {
                 return;
             }
+            m_RegisteredGameObj.unregisterGameObject();
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
             s_Instance = null;
@@ -131,6 +161,7 @@ namespace ns_Mashmo
         private void managePlayerState_InGameMovement()
         {
             manageMovement();
+            managerSwipeInteraction();
         }
 
         /// <summary>
@@ -220,6 +251,55 @@ namespace ns_Mashmo
 
             m_v3MovementVelocity = Vector3.RotateTowards(m_v3MovementVelocity.normalized, (m_v3MovementVelocity.normalized + l_v3MovementDirection.normalized).normalized, Mathf.PI * Time.deltaTime, Mathf.PI) * m_fCurrentMovementSpeed * Time.deltaTime;
             m_CharacterController.Move(m_v3MovementVelocity + (m_v3GravityModifier * Time.deltaTime));
+        }
+
+        /// <summary>
+        /// Manages the swipe interactions
+        /// </summary>
+        private void managerSwipeInteraction()
+        {
+            Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
+
+            // Swipe from left to right
+            if (l_v2CurrentSwipe.x > MIN_SWIPE_VALUE
+#if UNITY_EDITOR
+                || Input.GetKeyUp(KeyCode.RightArrow)
+#endif
+                )
+            {
+                WeaponManager.SetNextCategory();
+            }
+            // Swipe from right to left
+            else if (l_v2CurrentSwipe.x < -MIN_SWIPE_VALUE
+#if UNITY_EDITOR
+                || Input.GetKeyUp(KeyCode.LeftArrow)
+#endif
+                )
+            {
+                WeaponManager.SetPreviousCategory();
+            }
+            // Swipe from top to bottom
+            else if (l_v2CurrentSwipe.y < -MIN_SWIPE_VALUE
+#if UNITY_EDITOR
+                || Input.GetKeyUp(KeyCode.DownArrow)
+#endif
+                )
+            {
+
+            }
+            // Swipe from bottom to top
+            else if (l_v2CurrentSwipe.y > MIN_SWIPE_VALUE
+#if UNITY_EDITOR
+                || Input.GetKeyUp(KeyCode.UpArrow)
+#endif
+                )
+            {
+                IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
+                if (l_IPointerOver != null)
+                {
+                    l_IPointerOver.onPointerInteract();
+                }
+            }
         }
 
         /// <summary>

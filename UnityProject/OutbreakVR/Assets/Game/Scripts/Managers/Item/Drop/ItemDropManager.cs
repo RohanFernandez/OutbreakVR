@@ -73,10 +73,17 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_ItemType"></param>
         /// <returns></returns>
-        public static ItemDropBase GetItemDrop(ITEM_TYPE a_ItemType)
+        public static ItemDropBase GetItemDrop(ITEM_TYPE a_ItemType, string a_strID)
         {
             ItemDropPool l_ItemDropPool = s_Instance.getPool(a_ItemType);
-            return (l_ItemDropPool == null) ? null : l_ItemDropPool.getObject();
+            if (l_ItemDropPool == null)
+            {
+                return null;
+            }
+
+            ItemDropBase l_ItemDrop = l_ItemDropPool.getObject();
+            l_ItemDrop.setID(a_strID);
+            return l_ItemDrop;
         }
 
         /// <summary>
@@ -126,6 +133,27 @@ namespace ns_Mashmo
         public void onGameplayEnded(EventHash a_EventHash)
         {
             returnAllToPool();
+        }
+
+        /// <summary>
+        /// Returns item of type and id back into the pool
+        /// </summary>
+        /// <param name="a_ItemType"></param>
+        /// <param name="a_strItemID"></param>
+        public static void ReturnActiveItemToPool(ITEM_TYPE a_ItemType, string a_strItemID)
+        {
+            ItemDropPool l_ItemDropPool = s_Instance.getPool(a_ItemType);
+            List<ItemDropBase> l_lstAcitveItems = l_ItemDropPool.getActiveList();
+            int l_iActiveItemCount = l_lstAcitveItems.Count;
+
+            for (int l_iActiveIndex = 0; l_iActiveIndex < l_iActiveItemCount; l_iActiveIndex++)
+            {
+                if (l_lstAcitveItems[l_iActiveIndex].getID().Equals(a_strItemID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_ItemDropPool.returnToPool(l_lstAcitveItems[l_iActiveIndex]);
+                    break;
+                }
+            }
         }
     }
 }

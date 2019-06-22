@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public interface IItemDrop : IReusable
+    public interface IItemDrop : IReusable, IPointerOver
     {
         
     }

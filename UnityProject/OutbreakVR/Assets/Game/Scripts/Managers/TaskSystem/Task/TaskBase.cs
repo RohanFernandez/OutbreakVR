@@ -119,9 +119,9 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAttributeKey"></param>
         /// <returns></returns>
-        public Vector3 getVec3(string a_strAttributeKey)
+        public Vector3 getVec3(string a_strAttributeKey, Vector3 a_v3Default = default(Vector3))
         {
-            return GeneralUtils.GetVec3(m_hashAttributes, a_strAttributeKey);
+            return GeneralUtils.GetVec3(m_hashAttributes, a_strAttributeKey, a_v3Default);
         }
 
         /// <summary>

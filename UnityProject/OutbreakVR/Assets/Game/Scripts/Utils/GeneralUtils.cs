@@ -82,12 +82,12 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAttributeKey"></param>
         /// <returns></returns>
-        public static Vector3 GetVec3(Hashtable a_Hashtable, string a_strAttributeKey)
+        public static Vector3 GetVec3(Hashtable a_Hashtable, string a_strAttributeKey, Vector3 a_v3Default = default(Vector3))
         {
             System.Object l_Obj = a_Hashtable[a_strAttributeKey];
             string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
 
-            Vector3 l_v3Return = Vector3.zero;
+            Vector3 l_v3Return = a_v3Default;
             if (!string.IsNullOrEmpty(l_strAtrributeValue))
             {
                 string[] l_strVec3 = l_strAtrributeValue.Split(',');

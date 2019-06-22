@@ -6,10 +6,22 @@ namespace ns_Mashmo
 {
     public enum PLAYER_KEYS
     {
-        BW_USERNAME_            = 0, // Oculus user name
-        BW_USER_ID_             = 1, // Unique ID set by Mashmo server for all games
-        BW_COINS_               = 2,
-        BW_UNSYNCD_COINS_       = 3,
+        OUTBREAK_USERNAME_                              = 0, // Oculus user name
+        OUTBREAK_USER_ID_                               = 1, // Unique ID set by Mashmo server for all games
+        OUTBREAK_SYNCD_COINS_                           = 2,
+        OUTBREAK_UNSYNCD_COINS_                         = 3,
+        OUTBREAK_SYNCD_LEVELS_                          = 4,
+        OUTBREAK_UNSYNCD_LEVELS_                        = 5,
+        OUTBREAK_SYNCD_PRIMARY_BULLETS_                 = 6,
+        OUTBREAK_UNSYNCD_PRIMARY_BULLETS_               = 7,
+        OUTBREAK_SYNCD_SECONDARY_BULLETS_               = 8,
+        OUTBREAK_UNSYNCD_SECONDARY_BULLETS_             = 9,
+        OUTBREAK_SYNCD_CURRENT_PRIMARY_WEAPON_          = 10,
+        OUTBREAK_UNSYNCD_CURRENT_PRIMARY_WEAPON_        = 11,
+        OUTBREAK_SYNCD_CURRENT_MELEE_WEAPON_            = 12,
+        OUTBREAK_UNSYNCD_CURRENT_MELEE_WEAPON_          = 13,
+        OUTBREAK_SYNCD_CURRENT_LIFEMETER_               = 14,
+        OUTBREAK_UNSYNCD_CURRENT_LIFEMETER_             = 15,
     }
 
     public class PlayerDataManager : AbsComponentHandler
@@ -73,7 +85,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static bool IsPlayerDataExistOnDevice(string a_strUsername)
         {
-            return PlayerPrefs.HasKey(PLAYER_KEYS.BW_USERNAME_.ToString() + a_strUsername);
+            return PlayerPrefs.HasKey(PLAYER_KEYS.OUTBREAK_USERNAME_.ToString() + a_strUsername);
         }
 
         /// <summary>
@@ -139,19 +151,7 @@ namespace ns_Mashmo
             //s_Instance.m_lstPlayerDataEntries = null;
         }
 
-        /// <summary>
-        /// Does the key with id exist in saved data.
-        /// </summary>
-        /// <param name="a_strEntryID"></param>
-        /// <returns></returns>
-        private PlayerDataEntry getDataEntryWithKey(PLAYER_KEYS a_PlayerKey)
-        {
-            PlayerDataEntry l_ReturnDataEntry = null;
-            m_dictPlayerPrefsData.TryGetValue(a_PlayerKey, out l_ReturnDataEntry);
-            return l_ReturnDataEntry;
-        }
-
-
+        
         #region Set Player Data Entry
 
         /// <summary>
@@ -293,6 +293,18 @@ namespace ns_Mashmo
         #endregion Set Player Data Entry
 
         #region Get Player Data Entry
+
+        /// <summary>
+        /// Does the key with id exist in saved data.
+        /// </summary>
+        /// <param name="a_strEntryID"></param>
+        /// <returns></returns>
+        private PlayerDataEntry getDataEntryWithKey(PLAYER_KEYS a_PlayerKey)
+        {
+            PlayerDataEntry l_ReturnDataEntry = null;
+            m_dictPlayerPrefsData.TryGetValue(a_PlayerKey, out l_ReturnDataEntry);
+            return l_ReturnDataEntry;
+        }
 
         /// <summary>
         /// Returns Player Data Entry stored player prefs string with given Entry ID.

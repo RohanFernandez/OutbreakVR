@@ -15,13 +15,37 @@ namespace ns_Mashmo
         [SerializeField]
         private bool m_bIsActiveOnStart = true;
 
+        /// <summary>
+        /// Is not registered on Awake or OnDestroy functions
+        /// </summary>
+        [SerializeField]
+        private bool m_bIsManagedExternally = false;
+
         void Awake()
+        {
+            if (m_bIsManagedExternally)
+            {
+                return;
+            }
+            registerGameObject();
+        }
+
+        public void registerGameObject()
         {
             GameObjectManager.registerGameObj(m_strRegisteredID, this);
             gameObject.SetActive(m_bIsActiveOnStart);
         }
 
         void OnDestroy()
+        {
+            if (m_bIsManagedExternally)
+            {
+                return;
+            }
+            unregisterGameObject();
+        }
+
+        public void unregisterGameObject()
         {
             GameObjectManager.unregisterGameObj(m_strRegisteredID);
         }

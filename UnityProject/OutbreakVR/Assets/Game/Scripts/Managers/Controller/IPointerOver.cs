@@ -8,5 +8,6 @@ namespace ns_Mashmo
     {
         void onPointerEnter();
         void onPointerExit();
+        void onPointerInteract();
     }
 }

@@ -125,6 +125,10 @@ namespace ns_Mashmo
         /// The game object collider the pointer is currently over
         /// </summary>
         private IPointerOver m_IPointerOver = null;
+        public static IPointerOver GetPointerOverObject()
+        {
+            return s_Instance.m_IPointerOver;
+        }
 
         /// <summary>
         /// The gameobject of the tracked right controller.
@@ -182,6 +186,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Cureent ray - controller source.
         /// </summary>
+        [SerializeField]
         private GameObject m_CurrentControllerAnchor = null;
         public static GameObject CurrentControllerAnchor
         {
@@ -489,7 +494,8 @@ namespace ns_Mashmo
             Ray l_ray = new Ray(a_goController.transform.position, a_goController.transform.forward);
         
             Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_DISTANCE, m_InteractionLayer);
-            
+            //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
+
             return l_RaycastHit;
         }
 

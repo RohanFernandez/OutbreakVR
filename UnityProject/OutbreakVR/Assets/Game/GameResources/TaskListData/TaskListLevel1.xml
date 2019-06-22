@@ -15,6 +15,22 @@
 	</Sequence>
 	
 	<Sequence ID = "SpawnEnemy" >
-		<Task ID="7" TaskType="TaskEnemy" EnemyType="SECURITY_OFFICER" Position="1.0,-13.5,1.0"/>
+		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" Position="1.0,-13.5,1.0" Rotation="0.0,180.0,0.0"/>
+	</Sequence>
+	
+	<Sequence ID = "DestroyEnemy" >
+		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" />
+	</Sequence>
+	
+	<Sequence ID = "100_OnBegin" >
+		<Task ID="0" TaskType="TaskItem" Code="Activate" Item_ID="Officer1" ItemType="ITEM_FN57" Position="1.0,-13.5,1.0" Rotation="0.0,0.0,0.0"/>
+	</Sequence>
+	
+	<Sequence ID = "DestroyItem" >
+		<Task ID="1" TaskType="TaskItem" Code="Deactivate" Item_ID="Officer1" ItemType="ITEM_FN57" />
+	</Sequence>
+	
+	<Sequence ID = "SetTransform" >
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="Player" Position="10.0,0.0,0.0" Rotation="0.0,0.0,0.0" />
 	</Sequence>
 </TaskList>

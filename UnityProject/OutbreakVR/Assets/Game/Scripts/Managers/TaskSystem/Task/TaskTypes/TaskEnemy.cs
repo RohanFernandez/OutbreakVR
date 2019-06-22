@@ -7,11 +7,15 @@ namespace ns_Mashmo
     public class TaskEnemy : TaskBase
     {
         #region ATTRIBUTE_KEY
-        private const string ATTRIBUTE_ENEMY_TYPE = "ItemType";
+        private const string ATTRIBUTE_ENEMY_TYPE = "EnemyType";
         private const string ATTRIBUTE_POSITION = "Position";
+        private const string ATTRIBUTE_ROTATION = "Rotation";
+        private const string ATTRIBUTE_ENEMY_ID = "Enemy_ID";
         private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
+        private const string ATTRIBUTE_VALUE_CODE_DEACTIVATE = "Deactivate";
+        private const string ATTRIBUTE_VALUE_CODE_ACTIVATE = "Activate";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -28,6 +32,15 @@ namespace ns_Mashmo
         /// The position to spawn the item
         /// </summary>
         private Vector3 m_v3Position = Vector3.zero;
+        /// <summary>
+        /// The rotation to spawn the item
+        /// </summary>
+        private Vector3 m_v3Rotation = Vector3.zero;
+
+        /// <summary>
+        /// ID of the gameobject
+        /// </summary>
+        private string m_strEnemyID = string.Empty;
 
         public override void onInitialize()
         {
@@ -36,6 +49,8 @@ namespace ns_Mashmo
             string l_strEnemyType = getString(ATTRIBUTE_ENEMY_TYPE);
             m_strCode = getString(ATTRIBUTE_CODE);
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
+            m_v3Rotation = getVec3(ATTRIBUTE_ROTATION);
+            m_strEnemyID = getString(ATTRIBUTE_ENEMY_ID);
 
             if (!string.IsNullOrEmpty(l_strEnemyType))
             {
@@ -47,28 +62,32 @@ namespace ns_Mashmo
         {
             base.onExecute();
 
-            if (string.IsNullOrEmpty(m_strCode))
+            switch (m_strCode)
             {
-                EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType);
-                l_Enemy.transform.position = m_v3Position;
-                l_Enemy.gameObject.SetActive(true);
-            }
-            else
-            {
-                switch (m_strCode)
-                {
-                    case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
-                        {
-                            EnemyManager.ReturnAllToPool();
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
+                case ATTRIBUTE_VALUE_CODE_RETURN_ALL:
+                    {
+                        EnemyManager.ReturnAllToPool();
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_DEACTIVATE:
+                    {
+                        EnemyManager.ReturnActiveEnemyToPool(m_EnemyType, m_strEnemyID);
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_ACTIVATE:
+                    {
+                        EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType, m_strEnemyID);
+                        l_Enemy.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
+                        l_Enemy.gameObject.SetActive(true);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
 
-                }
             }
+
             onComplete();
         }
     }
