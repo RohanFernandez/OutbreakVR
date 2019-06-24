@@ -1,6 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7286090952727900971
+--- !u!65 &2124963218651645090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009858899164164482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.166637, y: 0.09272168, z: 1.686738}
+  m_Center: {x: 0, y: 0.001833111, z: -1.7054942e-18}
+--- !u!1 &8055840395801488801
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +21,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7791219837950014501}
+  - component: {fileID: 2862077989883946486}
   m_Layer: 0
   m_Name: DoorPlankSet_T01
   m_TagString: Untagged
@@ -16,27 +29,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7791219837950014501
+--- !u!4 &2862077989883946486
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7286090952727900971}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 8055840395801488801}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5531494408592935655}
+  - {fileID: 7009858899164392866}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1001 &5531494408592805991
+--- !u!1001 &7009858899164264226
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7791219837950014501}
+    m_TransformParent: {fileID: 2862077989883946486}
     m_Modifications:
     - target: {fileID: 100000, guid: e2dbbdf2166e7294cb3a670d12873829, type: 3}
       propertyPath: m_Name
@@ -100,9 +113,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1b4d9a93b29805d44b950212fc458e95, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2dbbdf2166e7294cb3a670d12873829, type: 3}
---- !u!4 &5531494408592935655 stripped
+--- !u!1 &7009858899164164482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: e2dbbdf2166e7294cb3a670d12873829,
+    type: 3}
+  m_PrefabInstance: {fileID: 7009858899164264226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7009858899164392866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e2dbbdf2166e7294cb3a670d12873829,
     type: 3}
-  m_PrefabInstance: {fileID: 5531494408592805991}
+  m_PrefabInstance: {fileID: 7009858899164264226}
   m_PrefabAsset: {fileID: 0}
