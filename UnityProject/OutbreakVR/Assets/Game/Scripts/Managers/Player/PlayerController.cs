@@ -316,24 +316,28 @@ namespace ns_Mashmo
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
+                        WeaponManager.IsWeaponActive = true;
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_MOVEMENT:
                     {
                         m_actPlayerStateControl = managePlayerState_InGameMovement;
                         ControllerManager.ToggleLaser(true);
+                        WeaponManager.IsWeaponActive = true;
                         break;
                     }
                 case PLAYER_STATE.MENU_SELECTION:
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
+                        WeaponManager.IsWeaponActive = false;
                         break;
                     }
                 case PLAYER_STATE.NO_INTERACTION:
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
+                        WeaponManager.IsWeaponActive = false;
                         break;
                     }
                 default:

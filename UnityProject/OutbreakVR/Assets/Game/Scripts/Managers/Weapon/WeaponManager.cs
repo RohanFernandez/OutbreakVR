@@ -113,11 +113,6 @@ namespace ns_Mashmo
                 }
             }
             disableAllWeapons();
-
-            SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.MELEE, WEAPON_TYPE.UNARMED);
-            SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.PRIMARY, WEAPON_TYPE.AK47);
-            SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.SECONDARY, WEAPON_TYPE.FN57);
-            SetCategoryAsCurrent(WEAPON_CATEGORY_TYPE.MELEE);
         }
 
         /// <summary>

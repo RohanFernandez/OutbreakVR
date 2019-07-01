@@ -25,6 +25,10 @@
 	<Sequence ID = "100_OnBegin" >
 		<Task ID="0" TaskType="TaskItem" Code="Activate" Item_ID="Officer1" ItemType="ITEM_FN57" Position="1.0,-13.5,1.0" Rotation="0.0,0.0,0.0"/>
 		<Task ID="1" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
+		<Task ID="2" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="MELEE" WeaponType="UNARMED"/>
+		<Task ID="3" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="PRIMARY" WeaponType="AK47"/>
+		<Task ID="4" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="SECONDARY" WeaponType="FN57"/>
+		<Task ID="5" TaskType="TaskWeapon" Code="SetCurrentCategory" CategoryType="MELEE"/>
 	</Sequence>
 	
 	<Sequence ID = "DestroyItem" >

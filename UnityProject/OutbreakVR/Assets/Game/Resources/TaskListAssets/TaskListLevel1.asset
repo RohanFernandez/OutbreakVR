@@ -167,7 +167,7 @@ MonoBehaviour:
         m_strValue: SECURITY_OFFICER
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: 100_OnBegin
-    m_iTaskCount: 2
+    m_iTaskCount: 6
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskItem
@@ -199,6 +199,60 @@ MonoBehaviour:
         m_strValue: SetPlayerState
       - m_strKey: PlayerState
         m_strValue: IN_GAME_MOVEMENT
+    - m_strTaskID: 2
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
+        m_strValue: SetCategoryWeapon
+      - m_strKey: CategoryType
+        m_strValue: MELEE
+      - m_strKey: WeaponType
+        m_strValue: UNARMED
+    - m_strTaskID: 3
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
+        m_strValue: SetCategoryWeapon
+      - m_strKey: CategoryType
+        m_strValue: PRIMARY
+      - m_strKey: WeaponType
+        m_strValue: AK47
+    - m_strTaskID: 4
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
+        m_strValue: SetCategoryWeapon
+      - m_strKey: CategoryType
+        m_strValue: SECONDARY
+      - m_strKey: WeaponType
+        m_strValue: FN57
+    - m_strTaskID: 5
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
+        m_strValue: SetCurrentCategory
+      - m_strKey: CategoryType
+        m_strValue: MELEE
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: DestroyItem
     m_iTaskCount: 1
