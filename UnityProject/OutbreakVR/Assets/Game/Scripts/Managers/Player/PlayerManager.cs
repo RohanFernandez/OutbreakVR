@@ -6,10 +6,10 @@ namespace ns_Mashmo
 {
     public enum PLAYER_STATE
     {
-        NO_INTERACTION,
-        MENU_SELECTION,
-        IN_GAME_MOVEMENT,
-        IN_GAME_HALTED
+        NO_INTERACTION,     //No movement, no pointer
+        MENU_SELECTION,     //No movement, menu pointer available
+        IN_GAME_MOVEMENT,   //Movement available, in game pointer available
+        IN_GAME_HALTED      //No movement, in game pointer available
     }
 
     public class PlayerManager : AbsComponentHandler

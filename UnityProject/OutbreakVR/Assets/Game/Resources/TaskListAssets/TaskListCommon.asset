@@ -13,5 +13,35 @@ MonoBehaviour:
   m_Name: TaskListCommon
   m_EditorClassIdentifier: 
   m_strName: COMMON_LIST
-  m_iSequenceCount: 0
-  m_lstSequences: []
+  m_iSequenceCount: 1
+  m_lstSequences:
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: HOME_OnBegin
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskPlayer
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskPlayer
+      - m_strKey: Code
+        m_strValue: SetPlayerState
+      - m_strKey: PlayerState
+        m_strValue: MENU_SELECTION
+    - m_strTaskID: 2
+      m_strTaskType: TaskSetTransform
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskSetTransform
+      - m_strKey: GameObject_ID
+        m_strValue: Player
+      - m_strKey: Position
+        m_strValue: 0.0,-12.97,-0.34
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0

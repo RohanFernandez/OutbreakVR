@@ -14,11 +14,11 @@ namespace ns_Mashmo
 
     public enum WEAPON_TYPE
     {
-        NONE               = 0,
-        UNARMED            = 1,
-        CHAINSAW           = 2,
-        FN57               = 3,
-        AK47               = 4,
+        NONE               = 0, //PRIMARY, SECONDARY
+        UNARMED            = 1, //MELEE
+        CHAINSAW           = 2, //MELEE
+        FN57               = 3, //SECONDARY
+        AK47               = 4, //PRIMARY
     }
 
     public class WeaponManager : AbsComponentHandler
