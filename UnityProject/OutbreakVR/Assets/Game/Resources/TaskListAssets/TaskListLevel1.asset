@@ -169,14 +169,28 @@ MonoBehaviour:
         m_strValue: SECURITY_OFFICER
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: 100_OnBegin
-    m_iTaskCount: 7
+    m_iTaskCount: 10
     m_lstTasks:
     - m_strTaskID: 0
+      m_strTaskType: TaskSetTransform
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskSetTransform
+      - m_strKey: GameObject_ID
+        m_strValue: Player
+      - m_strKey: Position
+        m_strValue: -2.854,32.169,-4.412
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 1
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -188,15 +202,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 20
       - m_strKey: Position
-        m_strValue: 1.0,-13.5,1.0
+        m_strValue: -1.74,31.165,5.426
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 0
+    - m_strTaskID: 2
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 2
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -208,49 +222,21 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 20
       - m_strKey: Position
-        m_strValue: 5.0,-13.5,1.0
+        m_strValue: 0.84,31.165,1.27
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 1
+    - m_strTaskID: 3
       m_strTaskType: TaskPlayer
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 1
+        m_strValue: 3
       - m_strKey: TaskType
         m_strValue: TaskPlayer
       - m_strKey: Code
         m_strValue: SetPlayerState
       - m_strKey: PlayerState
         m_strValue: IN_GAME_MOVEMENT
-    - m_strTaskID: 2
-      m_strTaskType: TaskWeapon
-      m_iAttributeCount: 5
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 2
-      - m_strKey: TaskType
-        m_strValue: TaskWeapon
-      - m_strKey: Code
-        m_strValue: SetCategoryWeapon
-      - m_strKey: CategoryType
-        m_strValue: MELEE
-      - m_strKey: WeaponType
-        m_strValue: UNARMED
-    - m_strTaskID: 3
-      m_strTaskType: TaskWeapon
-      m_iAttributeCount: 5
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 3
-      - m_strKey: TaskType
-        m_strValue: TaskWeapon
-      - m_strKey: Code
-        m_strValue: SetCategoryWeapon
-      - m_strKey: CategoryType
-        m_strValue: PRIMARY
-      - m_strKey: WeaponType
-        m_strValue: AK47
     - m_strTaskID: 4
       m_strTaskType: TaskWeapon
       m_iAttributeCount: 5
@@ -262,21 +248,85 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: SetCategoryWeapon
       - m_strKey: CategoryType
-        m_strValue: SECONDARY
+        m_strValue: MELEE
       - m_strKey: WeaponType
-        m_strValue: FN57
+        m_strValue: UNARMED
     - m_strTaskID: 5
       m_strTaskType: TaskWeapon
-      m_iAttributeCount: 4
+      m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 5
       - m_strKey: TaskType
         m_strValue: TaskWeapon
       - m_strKey: Code
+        m_strValue: SetCategoryWeapon
+      - m_strKey: CategoryType
+        m_strValue: PRIMARY
+      - m_strKey: WeaponType
+        m_strValue: AK47
+    - m_strTaskID: 6
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
+        m_strValue: SetCategoryWeapon
+      - m_strKey: CategoryType
+        m_strValue: SECONDARY
+      - m_strKey: WeaponType
+        m_strValue: FN57
+    - m_strTaskID: 7
+      m_strTaskType: TaskWeapon
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskWeapon
+      - m_strKey: Code
         m_strValue: SetCurrentCategory
       - m_strKey: CategoryType
         m_strValue: MELEE
+    - m_strTaskID: 8
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie1
+      - m_strKey: EnemyType
+        m_strValue: SECURITY_OFFICER
+      - m_strKey: Position
+        m_strValue: 9.24,31.165,4.03
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 9
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie2
+      - m_strKey: EnemyType
+        m_strValue: SECURITY_OFFICER
+      - m_strKey: Position
+        m_strValue: 0.7,31.165,-3.02
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: DestroyItem
     m_iTaskCount: 1
@@ -297,19 +347,5 @@ MonoBehaviour:
         m_strValue: ITEM_FN57
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: SetTransform
-    m_iTaskCount: 1
-    m_lstTasks:
-    - m_strTaskID: 1
-      m_strTaskType: TaskSetTransform
-      m_iAttributeCount: 5
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 1
-      - m_strKey: TaskType
-        m_strValue: TaskSetTransform
-      - m_strKey: GameObject_ID
-        m_strValue: Player
-      - m_strKey: Position
-        m_strValue: 10.0,0.0,0.0
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+    m_iTaskCount: 0
+    m_lstTasks: []

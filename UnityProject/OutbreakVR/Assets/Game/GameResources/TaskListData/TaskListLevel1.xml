@@ -23,13 +23,16 @@
 	</Sequence>
 	
 	<Sequence ID = "100_OnBegin" >
-		<Task ID="0" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="20" Position="1.0,-13.5,1.0" Rotation="0.0,0.0,0.0"/>
-		<Task ID="0" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="20" Position="5.0,-13.5,1.0" Rotation="0.0,0.0,0.0"/>
-		<Task ID="1" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
-		<Task ID="2" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="MELEE" WeaponType="UNARMED"/>
-		<Task ID="3" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="PRIMARY" WeaponType="AK47"/>
-		<Task ID="4" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="SECONDARY" WeaponType="FN57"/>
-		<Task ID="5" TaskType="TaskWeapon" Code="SetCurrentCategory" CategoryType="MELEE"/>
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="-2.854,32.169,-4.412" Rotation="0.0,0.0,0.0" />
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="20" Position="-1.74,31.165,5.426" Rotation="0.0,0.0,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="20" Position="0.84,31.165,1.27" Rotation="0.0,0.0,0.0"/>
+		<Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
+		<Task ID="4" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="MELEE" WeaponType="UNARMED"/>
+		<Task ID="5" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="PRIMARY" WeaponType="AK47"/>
+		<Task ID="6" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="SECONDARY" WeaponType="FN57"/>
+		<Task ID="7" TaskType="TaskWeapon" Code="SetCurrentCategory" CategoryType="MELEE"/>
+		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="9.24,31.165,4.03" Rotation="0.0,0.0,0.0"/>
+		<Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="0.7,31.165,-3.02" Rotation="0.0,0.0,0.0"/>
 	</Sequence>
 	
 	<Sequence ID = "DestroyItem" >
@@ -37,6 +40,6 @@
 	</Sequence>
 	
 	<Sequence ID = "SetTransform" >
-		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="Player" Position="10.0,0.0,0.0" Rotation="0.0,0.0,0.0" />
+		
 	</Sequence>
 </TaskList>
