@@ -15,7 +15,8 @@ namespace ns_Mashmo
         ON_LEVEL_OBJECTIVE_TRIGGERED,               /* <OBJECTIVE_ID> */
         ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
         ON_GAMEPLAY_ENDED,                          /* <BOOL>*/
-        ON_PLAYER_STATE_CHANGED                     /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
+        ON_PLAYER_STATE_CHANGED,                    /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
+        ON_ITEM_PICKED_UP                           /* <ITEMID, ITEM_BASE> */
     }
 
     public static class GameEventTypeConst
@@ -60,7 +61,7 @@ namespace ns_Mashmo
         #endregion ON_LEVEL_OBJECTIVE_TRIGGERED
 
         #region ON_GAME_PAUSED_TOGGLED
-        public const string ID_GAME_PAUSED = "ID_GAME_PAUSED";                    /* BOOl */
+        public const string ID_GAME_PAUSED = "ID_GAME_PAUSED";                    /* BOOL */
         #endregion ON_GAME_PAUSED_TOGGLED
 
         #region ON_GAMEPLAY_ENDED
@@ -70,5 +71,10 @@ namespace ns_Mashmo
         public const string ID_OLD_PLAYER_STATE = "ID_OLD_PLAYER_STATE";                    /* PLAYER_STATE */
         public const string ID_NEW_PLAYER_STATE = "ID_NEW_PLAYER_STATE";                    /* PLAYER_STATE */
         #endregion ON_PLAYER_STATE_CHANGED
+
+        #region ON_ITEM_PICKED_UP
+        public const string ID_ITEM_DROP_TYPE = "ID_ITEM_DROP_TYPE";                      /* ITEM_TYPE */
+        public const string ID_ITEM_BASE = "ID_ITEM_DROP_BASE";                 /* ITEM DROP BASE */
+        #endregion ON_ITEM_PICKED_UP
     }
 }

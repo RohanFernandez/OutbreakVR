@@ -13,6 +13,7 @@ namespace ns_Mashmo
 
         private const string ATTRIBUTE_VALUE_CODE_CURRENT_CATEGORY = "SetCurrentCategory";
         private const string ATTRIBUTE_VALUE_CODE_WEAPON_IN_CATEGORY = "SetCategoryWeapon";
+        private const string ATTRIBUTE_VALUE_CODE_BULLETS_IN_WEAPON = "SetBullets";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>

@@ -19,15 +19,16 @@ namespace ns_Mashmo
             return m_ItemType;
         }
 
+        public abstract ITEM_CATEGORY getItemCategoryType();
+
         /// <summary>
         /// The rotation speed in the Y axis
         /// </summary>
-        [SerializeField]
-        protected float m_fRotationSpeed = 20.0f;
+        protected const float ROTATION_SPEED = 20.0f;
 
         public virtual void Update()
         {
-            transform.Rotate(Vector3.up, m_fRotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
         }
 
         public virtual void onReturnedToPool()
@@ -79,6 +80,12 @@ namespace ns_Mashmo
         {
             Debug.LogError("onPointerInteract");
             m_MeshRenderer.material.color = new Color(0.0f, 0.0f, 1.0f);
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_ITEM_DROP_TYPE, m_ItemType);
+            l_EventHash.Add(GameEventTypeConst.ID_ITEM_BASE, this);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP, l_EventHash);
+            EventManager.ReturnHashtableToPool(l_EventHash);
         }
         #endregion IPointerOver Interface Implemetation
     }

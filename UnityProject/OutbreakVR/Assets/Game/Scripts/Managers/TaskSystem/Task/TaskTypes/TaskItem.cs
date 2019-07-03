@@ -11,6 +11,7 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_POSITION = "Position";
         private const string ATTRIBUTE_ROTATION = "Rotation";
         private const string ATTRIBUTE_ITEM_ID = "Item_ID";
+        private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
         private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
@@ -72,7 +73,33 @@ namespace ns_Mashmo
                     {
                         ItemDropBase l_Item = ItemDropManager.GetItemDrop(m_ItemType, m_strItemID);
                         l_Item.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
-                        l_Item.gameObject.SetActive(true);
+
+                        ITEM_CATEGORY l_ItemCategory = l_Item.getItemCategoryType();
+                        int l_iBullets = getInt(ATTRIBUTE_BULLET_COUNT);
+                        switch (l_ItemCategory)
+                        {
+                            case ITEM_CATEGORY.BULLET:
+                            {
+                                BulletDrop l_BulletsDrop = (BulletDrop)l_Item;
+                                l_BulletsDrop.BulletCount = l_iBullets;
+                                break;
+                            }
+                            case ITEM_CATEGORY.GUN:
+                            {
+                                GunWeaponDrop l_GunDrop = (GunWeaponDrop)l_Item;
+                                l_GunDrop.BulletCount = l_iBullets;
+                                break;
+                            }
+                            case ITEM_CATEGORY.MELEE:
+                            {
+                                break;
+                            }
+                            default:
+                            {
+                                break;
+                            }
+                        }
+
                         break;
                     }
                 default:

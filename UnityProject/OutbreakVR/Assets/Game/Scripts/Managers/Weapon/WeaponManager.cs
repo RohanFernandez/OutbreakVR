@@ -19,6 +19,14 @@ namespace ns_Mashmo
         CHAINSAW           = 2, //MELEE
         FN57               = 3, //SECONDARY
         AK47               = 4, //PRIMARY
+        SHOTGUN1           = 5, //PRIMARY
+    }
+
+    public enum BULLETS_TYPE
+    {
+        SECONDARY,
+        PRIMARY_ASSAULT,
+        PRIMARY_SHOTGUN
     }
 
     public class WeaponManager : AbsComponentHandler
@@ -150,10 +158,20 @@ namespace ns_Mashmo
             
             if (l_WeaponCategory != null &&
                 l_WeaponCategory.m_WeaponType != a_WeaponType && // Same weapon is not already set in the weapon category
-                l_WeaponCategory.isWeaponTypeinCategoryExist(a_WeaponType))  //The category of the weapon type is the same as the category to set
+                l_WeaponCategory.isWeaponTypeInCategoryExist(a_WeaponType))  //The category of the weapon type is the same as the category to set
             {
                 s_Instance.onDispatchWeaponOrCategoryChanged(a_WeaponCategoryType, a_WeaponType, a_WeaponCategoryType, l_WeaponCategory.m_WeaponType);
             }
+        }
+
+        /// <summary>
+        /// Sets weapon in the category
+        /// Finds the category of the given weapon type
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        public static void SetCurrentWeaponInCategory(WEAPON_TYPE a_WeaponType)
+        {
+            SetCurrentWeaponInCategory(GetCategory(a_WeaponType), a_WeaponType);
         }
 
         /// <summary>
@@ -273,5 +291,37 @@ namespace ns_Mashmo
                 l_bIsNewCategorySet = SetCategoryAsCurrent((WEAPON_CATEGORY_TYPE)l_iPrevWeaponCategoryIndex);
             }
         }
+
+        /// <summary>
+        /// Returns the weapon category of the given weapon type
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        /// <returns></returns>
+        public static WEAPON_CATEGORY_TYPE GetCategory(WEAPON_TYPE a_WeaponType)
+        {
+            WEAPON_CATEGORY_TYPE l_Return = WEAPON_CATEGORY_TYPE.MELEE;
+            WeaponBase l_WeaponBase = null;
+            if (s_Instance.m_dictWeapons.TryGetValue(a_WeaponType, out l_WeaponBase))
+            {
+                l_Return = l_WeaponBase.m_WeaponCategoryType;
+            }
+            return l_Return;
+        }
+
+        /// <summary>
+        /// Returns the weapon type in the given category
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        /// <returns></returns>
+        public static WEAPON_TYPE GetWeaponInCategory(WEAPON_CATEGORY_TYPE a_WeaponCategoryType)
+        {
+            WEAPON_TYPE l_Return = WEAPON_TYPE.NONE;
+            WeaponCategory l_WeaponCategory = null;
+            if (s_Instance.m_dictWeaponCategories.TryGetValue(a_WeaponCategoryType, out l_WeaponCategory))
+            {
+                l_Return = l_WeaponCategory.m_WeaponType;
+            }
+            return l_Return;
+        } 
     }
 }

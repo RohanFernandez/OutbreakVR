@@ -11,5 +11,15 @@ namespace ns_Mashmo
 
         [SerializeField]
         public WEAPON_TYPE m_WeaponType;
+
+        /// <summary>
+        /// Reloads weapon if it has a capability
+        /// </summary>
+        public virtual void reload() { }
+
+        /// <summary>
+        /// Fires weapon if it has the feature
+        /// </summary>
+        public virtual void fire() { }
     }
 }

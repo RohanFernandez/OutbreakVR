@@ -35,7 +35,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_WeaponType"></param>
         /// <returns></returns>
-        public bool isWeaponTypeinCategoryExist(WEAPON_TYPE a_WeaponType)
+        public bool isWeaponTypeInCategoryExist(WEAPON_TYPE a_WeaponType)
         {
             return m_RegisteredWeaponTypes.Contains(a_WeaponType);
         }

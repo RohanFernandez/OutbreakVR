@@ -7,6 +7,13 @@ namespace ns_Mashmo
     public class GunWeaponBase : WeaponBase
     {
         [SerializeField]
+        private BULLETS_TYPE m_BulletsType;
+        public BULLETS_TYPE BulletsType
+        {
+            get { return m_BulletsType; }
+        }
+
+        [SerializeField]
         private int m_iMaxMagazinesAllowed = 10;
 
         [SerializeField]
@@ -17,5 +24,15 @@ namespace ns_Mashmo
 
         [SerializeField]
         private int m_iCurrentMagazineCount = 10;
+
+        public override void fire()
+        {
+            
+        }
+
+        public override void reload()
+        {
+
+        }
     }
 }
