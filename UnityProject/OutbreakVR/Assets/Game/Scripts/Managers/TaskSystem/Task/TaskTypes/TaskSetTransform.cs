@@ -39,11 +39,26 @@ namespace ns_Mashmo
             base.onExecute();
             if (m_GameObject != null)
             {
-                m_GameObject.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
-                m_GameObject.transform.localScale = m_v3Scale;
+                CharacterController l_CharController = m_GameObject.GetComponent<CharacterController>();
+                if (l_CharController != null)
+                {
+                    l_CharController.enabled = false;
+                    setGameObjTransform();
+                    l_CharController.enabled = true;
+                }
+                else
+                {
+                    setGameObjTransform();
+                }
             }
             
             onComplete();
+        }
+
+        private void setGameObjTransform()
+        {
+            m_GameObject.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
+            m_GameObject.transform.localScale = m_v3Scale;
         }
     }
 }
