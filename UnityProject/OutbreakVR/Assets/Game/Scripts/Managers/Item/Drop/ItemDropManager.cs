@@ -6,13 +6,15 @@ namespace ns_Mashmo
 {
     public enum ITEM_TYPE
     {
+        ITEM_NONE,
         ITEM_FN57,
         ITEM_AK47,
         ITEM_SHOTGUN1,
         ITEM_SECONDARY_BULLETS,
         ITEM_PRIMARY_ASSAULT_BULLETS,
         ITEM_PRIMARY_SHOTGUN_BULLETS,
-        ITEM_CHAINSAW
+        ITEM_CHAINSAW,
+        ITEM_REVOLVER,
     }
 
     /// <summary>
@@ -116,6 +118,16 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Returns an Item Drop game object from the pool with a unique ID
+        /// </summary>
+        /// <param name="a_ItemType"></param>
+        /// <returns></returns>
+        public static ItemDropBase GetItemDrop(ITEM_TYPE a_ItemType)
+        {
+            return GetItemDrop(a_ItemType, (++s_Instance.m_iItemUniqueID).ToString());
+        }
+
+        /// <summary>
         /// Returns item drop back into its respective pool
         /// </summary>
         public static void ReturnItemToPool(ItemDropBase a_ItemDrop)
@@ -196,23 +208,25 @@ namespace ns_Mashmo
 
             ITEM_CATEGORY l_ItemCategory = l_ItemDropBase.getItemCategoryType();
 
+            bool l_bIsItemConsumed = false;
             switch (l_ItemCategory)
             {
                 case ITEM_CATEGORY.GUN:
                     {
                         GunWeaponDrop l_GunDrop = (GunWeaponDrop)l_ItemDropBase;
-                        
+                        l_bIsItemConsumed = WeaponManager.PickupWeapon(l_GunDrop);
                         break;
                     }
                 case ITEM_CATEGORY.BULLET:
                     {
                         BulletDrop l_BulletDrop = (BulletDrop)l_ItemDropBase;
+                        l_bIsItemConsumed = WeaponManager.PickupBullets(l_BulletDrop);
                         break;
                     }
                 case ITEM_CATEGORY.MELEE:
                     {
                         MeleeWeaponDrop l_MeleeDrop = (MeleeWeaponDrop)l_ItemDropBase;
-                        
+                        l_bIsItemConsumed = WeaponManager.PickupWeapon(l_MeleeDrop);
                         break;
                     }
                 default:
@@ -221,7 +235,10 @@ namespace ns_Mashmo
                     }
             }
 
-            ReturnItemToPool(l_ItemDropBase);
+            if (l_bIsItemConsumed)
+            {
+                ReturnItemToPool(l_ItemDropBase);
+            }
 
             //WeaponDropBase l_WeaponBase = (WeaponDropBase)l_ItemDropBase;
             //if (l_WeaponBase != null)

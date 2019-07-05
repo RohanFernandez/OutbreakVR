@@ -162,6 +162,7 @@ namespace ns_Mashmo
         {
             manageMovement();
             managerSwipeInteraction();
+            manageWeaponAttack();
         }
 
         /// <summary>
@@ -299,6 +300,36 @@ namespace ns_Mashmo
                 {
                     l_IPointerOver.onPointerInteract();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Fires/Reloads the weapon
+        /// </summary>
+        public void manageWeaponAttack()
+        {
+            ///Fire weapon
+            if (ControllerManager.IsPrimaryTriggerBtnDown()
+#if UNITY_EDITOR
+                || Input.GetKeyDown(KeyCode.Mouse0)
+#endif
+                )
+            {
+                WeaponManager.FireWeapon();
+            }
+
+
+            float l_fDotFacingDown = Vector3.Dot(ControllerManager.GetPrimaryControllerDirection(), Vector3.down);
+
+            ///Reload weapon
+            if (
+                (l_fDotFacingDown > 0.6)
+#if UNITY_EDITOR
+                || Input.GetKeyDown(KeyCode.Mouse1)
+#endif
+                )
+            {
+                WeaponManager.ReloadWeapon();
             }
         }
 

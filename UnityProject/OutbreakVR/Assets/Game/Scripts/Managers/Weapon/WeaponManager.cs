@@ -20,6 +20,7 @@ namespace ns_Mashmo
         FN57               = 3, //SECONDARY
         AK47               = 4, //PRIMARY
         SHOTGUN1           = 5, //PRIMARY
+        REVOLVER           = 6, //SECONDARY
     }
 
     public enum BULLETS_TYPE
@@ -238,8 +239,16 @@ namespace ns_Mashmo
 
                 if (m_bIsWeaponActive)
                 {
-                    if (l_goOldWeapon != null) { l_goOldWeapon.gameObject.SetActive(false); }
-                    if (l_goNewWeapon != null) { l_goNewWeapon.gameObject.SetActive(true); }
+                    if (l_goOldWeapon != null)
+                    {
+                        l_goOldWeapon.gameObject.SetActive(false);
+                    }
+
+                    if (l_goNewWeapon != null)
+                    {
+                        l_goNewWeapon.gameObject.SetActive(true);
+                        l_goNewWeapon.onWeaponSelected();
+                    }
                 }
 
                 EventHash l_hash = EventManager.GetEventHashtable();
@@ -322,6 +331,159 @@ namespace ns_Mashmo
                 l_Return = l_WeaponCategory.m_WeaponType;
             }
             return l_Return;
-        } 
+        }
+
+        /// <summary>
+        /// Get weapon whose WeaponItemType is a_WeaponItemType
+        /// </summary>
+        /// <param name="a_WeaponItemType"></param>
+        /// <returns></returns>
+        private WeaponBase getWeaponBaseByItem(ITEM_TYPE a_WeaponItemType)
+        {
+            WeaponBase l_Return = null;
+            foreach (KeyValuePair<WEAPON_TYPE, WeaponBase> l_Pair in m_dictWeapons)
+            {
+                if (l_Pair.Value.WeaponItemType == a_WeaponItemType)
+                {
+                    l_Return = l_Pair.Value;
+                    break;
+                }
+            }
+
+            return l_Return;
+        }
+
+        /// <summary>
+        /// Gets weapon base by weapon type
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        /// <returns></returns>
+        private WeaponBase getWeaponBaseByWeaponType(WEAPON_TYPE a_WeaponType)
+        {
+            WeaponBase l_Return = null;
+            if (m_dictWeapons.ContainsKey(a_WeaponType))
+            {
+                l_Return = m_dictWeapons[a_WeaponType];
+            }
+            return l_Return;
+        }
+
+        /// <summary>
+        /// Get weaponwhose BulletItemType is a_BulletItemType
+        /// </summary>
+        /// <param name="a_BulletItemType"></param>
+        /// <returns></returns>
+        private WeaponBase getWeaponBaseByBullet(ITEM_TYPE a_BulletItemType)
+        {
+            WeaponBase l_Return = null;
+            foreach (KeyValuePair<WEAPON_TYPE, WeaponBase> l_Pair in m_dictWeapons)
+            {
+                if (l_Pair.Value.BulletItemType == a_BulletItemType)
+                {
+                    l_Return = l_Pair.Value;
+                    break;
+                }
+            }
+
+            return l_Return;
+        }
+
+        /// <summary>
+        /// Picks up the weapon and replaces the one in the current slot
+        /// Sets the replaced gun in the environment
+        /// If the gun is already possessed with the player then only take its bullets if it can
+        /// </summary>
+        /// <returns></returns>
+        public static bool PickupWeapon(WeaponDropBase a_WeaponDrop)
+        {
+            bool l_bIsWeaponPickedUp = false;
+
+            ///Get picked up weapon data
+            ITEM_CATEGORY l_PickedUpItemCategory = a_WeaponDrop.getItemCategoryType();
+            ITEM_TYPE l_PickedUpItemType = a_WeaponDrop.getItemType();
+            WeaponBase l_PickedUpWeaponBase = s_Instance.getWeaponBaseByItem(l_PickedUpItemType);
+            WEAPON_TYPE l_PickedUpWeaponType = l_PickedUpWeaponBase.m_WeaponType;
+            WEAPON_CATEGORY_TYPE l_PickedUpWeaponCategoryType = l_PickedUpWeaponBase.m_WeaponCategoryType;
+            int l_iBulletsInPickup = 0;
+            if (l_PickedUpItemCategory == ITEM_CATEGORY.GUN)
+            {
+                l_iBulletsInPickup = ((GunWeaponDrop)a_WeaponDrop).BulletCount;
+            }
+
+            ///Get current weapon data in category
+            WEAPON_TYPE l_CurrentWeaponType = GetWeaponInCategory(l_PickedUpWeaponCategoryType);
+            WeaponBase l_CurrentWeaponBase = s_Instance.getWeaponBaseByWeaponType(l_CurrentWeaponType);
+
+            if (l_CurrentWeaponType == l_PickedUpWeaponType)
+            {
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
+                if (l_iBulletsInPickup > 0 &&
+                    l_GunWeaponBase != null &&
+                    l_GunWeaponBase.canAddBullets()
+                    )
+                {
+                    l_GunWeaponBase.addBullets(l_iBulletsInPickup);
+                    l_bIsWeaponPickedUp = true;
+                }
+            }
+            else
+            {
+
+            }
+
+            return l_bIsWeaponPickedUp;
+        }
+
+        /// <summary>
+        /// Picks up bullets and sets it into the correct gun
+        /// If the gun that takes the bullets exists with the player or bullets can be added to the gun
+        /// then add the bullets into the gun and returns true
+        /// else returns false 
+        /// </summary>
+        public static bool PickupBullets(BulletDrop a_BulletDrop)
+        {
+
+            return false;
+        }
+
+        /// <summary>
+        /// Sets the bullet count into the weapon if the possessed by the player
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        public static void SetBulletCountInWeapon(WEAPON_TYPE a_WeaponType)
+        {
+
+        }
+
+        /// <summary>
+        /// gets the bullet count of the weapon if the possessed by the player
+        /// </summary>
+        /// <param name="a_WeaponType"></param>
+        public static int GetBulletCountInWeapon(WEAPON_TYPE a_WeaponType)
+        {
+            int l_Bullets = 0;
+
+            
+
+            return l_Bullets;
+        }
+
+        /// <summary>
+        /// Fires the current weapon
+        /// </summary>
+        public static void FireWeapon()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            l_WeaponBase.fire();
+        }
+
+        /// <summary>
+        /// reloads the current weapon
+        /// </summary>
+        public static void ReloadWeapon()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            l_WeaponBase.reload();
+        }
     }
 }

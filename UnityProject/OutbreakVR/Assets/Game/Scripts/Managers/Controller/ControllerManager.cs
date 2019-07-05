@@ -382,6 +382,30 @@ namespace ns_Mashmo
             return false;
         }
 
+        /// <summary>
+        /// Is the primary trigger button down
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsPrimaryTriggerBtnDown()
+        {
+#if _MASHMO_OVR_
+            return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
+#endif
+            return false;
+        }
+
+        /// <summary>
+        /// Gets the current primary remotes forward direction
+        /// </summary>
+        /// <returns></returns>
+        public static Vector3 GetPrimaryControllerDirection()
+        {
+#if _MASHMO_OVR_
+            return s_Instance.m_CurrentControllerAnchor.transform.forward;
+#endif
+            return Vector3.forward;
+        }
+
         #endregion Controller Components
 
         #region Controller laser pointer
