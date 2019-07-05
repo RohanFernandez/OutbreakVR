@@ -46,5 +46,39 @@ namespace ns_Mashmo
         /// Called on weapon selected to use
         /// </summary>
         public virtual void onWeaponSelected() { }
+
+        /// <summary>
+        /// is a reload required
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool isReloadRequired() { return false; }
+
+        /// <summary>
+        /// Can the current weapon be reloaded
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool isReloadPossible()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The time taken to reload the weapon
+        /// </summary>
+        /// <returns></returns>
+        public virtual float getReloadWaitTime()
+        {
+            return 0.0f;
+        }
+
+        /// <summary>
+        /// Can the current weapon be fired.
+        /// If its a gun then checks the number of bullets currently
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool canCurrentWeaponBeFired()
+        {
+            return true;
+        }
     }
 }

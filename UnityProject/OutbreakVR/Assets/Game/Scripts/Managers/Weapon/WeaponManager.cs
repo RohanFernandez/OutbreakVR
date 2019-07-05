@@ -369,22 +369,27 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Get weaponwhose BulletItemType is a_BulletItemType
+        /// Get weaponwhose currently acquired by the player whose BulletItemType is a_BulletItemType
         /// </summary>
         /// <param name="a_BulletItemType"></param>
         /// <returns></returns>
-        private WeaponBase getWeaponBaseByBullet(ITEM_TYPE a_BulletItemType)
+        private WeaponBase getAcquiredWeaponBaseByBullet(ITEM_TYPE a_BulletItemType)
         {
             WeaponBase l_Return = null;
-            foreach (KeyValuePair<WEAPON_TYPE, WeaponBase> l_Pair in m_dictWeapons)
+
+            foreach (KeyValuePair<WEAPON_CATEGORY_TYPE, WeaponCategory> l_Pair in m_dictWeaponCategories)
             {
-                if (l_Pair.Value.BulletItemType == a_BulletItemType)
+                WEAPON_TYPE l_WeaponType = l_Pair.Value.m_WeaponType;
+                if (m_dictWeapons.ContainsKey(l_WeaponType))
                 {
-                    l_Return = l_Pair.Value;
-                    break;
+                    WeaponBase l_WeaponBase = m_dictWeapons[l_WeaponType];
+                    if (l_WeaponBase.BulletItemType == a_BulletItemType)
+                    {
+                        l_Return = l_WeaponBase;
+                        break;
+                    }
                 }
             }
-
             return l_Return;
         }
 
@@ -414,6 +419,9 @@ namespace ns_Mashmo
             WEAPON_TYPE l_CurrentWeaponType = GetWeaponInCategory(l_PickedUpWeaponCategoryType);
             WeaponBase l_CurrentWeaponBase = s_Instance.getWeaponBaseByWeaponType(l_CurrentWeaponType);
 
+            ///Picks up weapon of the same type
+            ///if is gun type weapon, then check if you can add the bullets from the pickup else dont pickup
+            ///else dont pick up at all
             if (l_CurrentWeaponType == l_PickedUpWeaponType)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
@@ -424,11 +432,39 @@ namespace ns_Mashmo
                 {
                     l_GunWeaponBase.addBullets(l_iBulletsInPickup);
                     l_bIsWeaponPickedUp = true;
+                    SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
                 }
             }
             else
             {
+                SetCurrentWeaponInCategory(l_PickedUpWeaponCategoryType, l_PickedUpWeaponType);
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
+                if (l_GunWeaponBase != null)
+                {
+                    l_GunWeaponBase.initBulletCount(l_iBulletsInPickup);
+                }
 
+                SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
+
+                // Replace item with the weapon that the player had
+                if (l_CurrentWeaponType != WEAPON_TYPE.NONE &&
+                    l_CurrentWeaponType != WEAPON_TYPE.UNARMED)
+                {
+
+                    ItemDropBase l_ItemDropBase = ItemDropManager.GetItemDrop(l_CurrentWeaponBase.WeaponItemType);
+                    l_ItemDropBase.transform.SetPositionAndRotation(a_WeaponDrop.transform.position, a_WeaponDrop.transform.rotation);
+
+                    ///set the bullet count of the previously acquired gun to the item drop if its a gun
+                    GunWeaponBase l_CurrentGunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
+                    GunWeaponDrop l_GunWeaponDrop = (GunWeaponDrop)l_ItemDropBase;
+                    if(l_GunWeaponDrop != null &&
+                        l_CurrentGunWeaponBase != null)
+                    {
+                        l_GunWeaponDrop.BulletCount = l_CurrentGunWeaponBase.TotalBullets;
+                    }
+                }
+
+                l_bIsWeaponPickedUp = true;
             }
 
             return l_bIsWeaponPickedUp;
@@ -442,30 +478,40 @@ namespace ns_Mashmo
         /// </summary>
         public static bool PickupBullets(BulletDrop a_BulletDrop)
         {
+            bool l_bIsBulletsPickedUp = false;
 
-            return false;
+            ITEM_TYPE l_PickedUpItemType = a_BulletDrop.getItemType();
+            ITEM_CATEGORY l_PickedUpCategoryType = a_BulletDrop.getItemCategoryType();
+            int l_iBulletsToAdd = a_BulletDrop.BulletCount;
+            
+            WeaponBase l_CurrentWeapon = s_Instance.getAcquiredWeaponBaseByBullet(l_PickedUpItemType);
+
+            if (l_CurrentWeapon != null)
+            {
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_CurrentWeapon;
+                if (l_GunWeaponBase != null &&
+                    l_GunWeaponBase.canAddBullets())
+                {
+                    l_GunWeaponBase.addBullets(l_iBulletsToAdd);
+                    l_bIsBulletsPickedUp = true;
+                }
+            }
+
+            return l_bIsBulletsPickedUp;
         }
 
         /// <summary>
         /// Sets the bullet count into the weapon if the possessed by the player
         /// </summary>
         /// <param name="a_WeaponType"></param>
-        public static void SetBulletCountInWeapon(WEAPON_TYPE a_WeaponType)
+        public static void SetBulletCountInWeapon(WEAPON_TYPE a_WeaponType, int a_iTotalBullets)
         {
-
-        }
-
-        /// <summary>
-        /// gets the bullet count of the weapon if the possessed by the player
-        /// </summary>
-        /// <param name="a_WeaponType"></param>
-        public static int GetBulletCountInWeapon(WEAPON_TYPE a_WeaponType)
-        {
-            int l_Bullets = 0;
-
-            
-
-            return l_Bullets;
+            WeaponBase l_WeaponBase = s_Instance.getWeaponBaseByWeaponType(a_WeaponType);
+            GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
+            if (l_GunWeaponBase != null)
+            {
+                l_GunWeaponBase.initBulletCount(a_iTotalBullets);
+            }
         }
 
         /// <summary>
@@ -484,6 +530,35 @@ namespace ns_Mashmo
         {
             WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.reload();
+        }
+
+        /// <summary>
+        /// Can the current weapon be reloaded, is there more bullets that can be put in the first mag
+        /// </summary>
+        /// <returns></returns>
+        public static bool CanCurrentWeaponBeReloaded()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            return l_WeaponBase.isReloadPossible();
+        }
+
+        /// <summary>
+        /// Returns the current weapon reload time
+        /// </summary>
+        /// <returns></returns>
+        public static float getCurrentWeaponReloadTime()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            return l_WeaponBase.getReloadWaitTime();
+        }
+        /// <summary>
+        /// Can the current weapon be fired on click, melee weapon can be fired always
+        /// </summary>
+        /// <returns></returns>
+        public static bool CanCurrentWeaponBeFired()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            return l_WeaponBase.canCurrentWeaponBeFired();
         }
     }
 }

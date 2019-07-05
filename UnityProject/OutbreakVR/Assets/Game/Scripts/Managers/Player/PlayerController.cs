@@ -34,19 +34,30 @@ namespace ns_Mashmo
         [SerializeField]
         private RegisteredGameObject m_RegisteredGameObj = null;
 
-        #region SWIPE
+        /// <summary>
+        /// The current time taken to reload the weapon
+        /// </summary>
+        [SerializeField]
+        private float m_fCurrentReloadWaitTime = 0.0f;
+        private float CurrentReloadWaitTime
+        {
+            get { return m_fCurrentReloadWaitTime; }
+            set {
+                if (m_fCurrentReloadWaitTime == 0.0f &&
+                    value > 0.0f)
+                {
+                    ///Start reload UI
+                }
+                else if (m_fCurrentReloadWaitTime > 0.0f &&
+                    value == 0.0f)
+                {
+                    ///End reload UI
+                }
+                m_fCurrentReloadWaitTime = value;
+            }
+        }
 
-        ///// <summary>
-        ///// The direction of swipe the player performed
-        ///// </summary>
-        //private enum SWIPE_DIRECTION
-        //{
-        //    NONE,
-        //    TOP_BOTTOM,
-        //    BOTTOM_TOP,
-        //    LEFT_RIGHT,
-        //    RIGHT_LEFT
-        //}
+        #region SWIPE
 
         /// <summary>
         /// Min swipe per dimension to register as swipe direction,
@@ -113,6 +124,7 @@ namespace ns_Mashmo
             
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
         }
 
         public override void destroy()
@@ -124,6 +136,7 @@ namespace ns_Mashmo
             m_RegisteredGameObj.unregisterGameObject();
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             s_Instance = null;
         }
 
@@ -315,21 +328,39 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                WeaponManager.FireWeapon();
+                if (WeaponManager.CanCurrentWeaponBeFired())
+                {
+                    WeaponManager.FireWeapon();
+                }
+                else
+                {
+                    /// Indicate weapon cannot be fired
+                }
             }
 
-
-            float l_fDotFacingDown = Vector3.Dot(ControllerManager.GetPrimaryControllerDirection(), Vector3.down);
-
             ///Reload weapon
-            if (
-                (l_fDotFacingDown > 0.6)
-#if UNITY_EDITOR
-                || Input.GetKeyDown(KeyCode.Mouse1)
-#endif
-                )
+            float l_fDotFacingDown = Vector3.Dot(ControllerManager.GetPrimaryControllerDirection(), Vector3.down);
+            if (WeaponManager.CanCurrentWeaponBeReloaded())
             {
-                WeaponManager.ReloadWeapon();
+                if (
+                    (l_fDotFacingDown > 0.6)
+                )
+                {
+                    CurrentReloadWaitTime += Time.deltaTime;
+                    if (CurrentReloadWaitTime > WeaponManager.getCurrentWeaponReloadTime())
+                    {
+                        CurrentReloadWaitTime = 0.0f;
+                        WeaponManager.ReloadWeapon();
+                    }
+                }
+                else
+                {
+                    CurrentReloadWaitTime = 0.0f;
+                }
+            }
+            else
+            {
+                CurrentReloadWaitTime = 0.0f;
             }
         }
 
@@ -339,6 +370,8 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         public void onPlayerStateChanged(EventHash a_EventHash)
         {
+            CurrentReloadWaitTime = 0.0f;
+
             PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
 
             switch (l_NewPlayerState)
@@ -377,6 +410,15 @@ namespace ns_Mashmo
                         break;
                     }
             }
+        }
+
+        /// <summary>
+        /// Event called on weapon changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onWeaponChanged(EventHash a_EventHash)
+        {
+            CurrentReloadWaitTime = 0.0f;
         }
     }
 }

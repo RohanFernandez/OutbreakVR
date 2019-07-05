@@ -13,14 +13,21 @@ namespace ns_Mashmo
         private int m_iMaxSingleMagazineBulletCapacity = 10;
 
         [SerializeField]
-        private int m_iBulletCountInFirstMag = 10;  
+        private int m_iBulletCountInFirstMag = 10; 
+        public int BulletCountInFirstMag
+        {
+            get { return m_iBulletCountInFirstMag; }
+            set {
+                m_iBulletCountInFirstMag = Mathf.Clamp(value, 0, m_iMaxSingleMagazineBulletCapacity);
+            }
+        }
 
         public int CurrentMagCount
         {
             get
             {
                 int l_iCurrentMagCount = 0;
-                if (m_iBulletCountInFirstMag > 0) { l_iCurrentMagCount++; }
+                if (BulletCountInFirstMag > 0) { l_iCurrentMagCount++; }
 
                 int l_iBulletsNotInFirstMag = getBulletsNotInFirstMag();
                 l_iCurrentMagCount += (l_iBulletsNotInFirstMag / m_iMaxSingleMagazineBulletCapacity);
@@ -31,25 +38,53 @@ namespace ns_Mashmo
             }
         }
 
+        /// <summary>
+        /// The time taken to reload this weapon
+        /// </summary>
+        [Range(0.0f, 100.0f)]
+        [SerializeField]
+        private float m_fWeaponReloadTime = 0.0f;
+
+        /// <summary>
+        /// The total bullets currently in the weapon
+        /// Total bullets of this weapon should be between 0 and the Max bullets(inclusive)
+        /// </summary>
         [SerializeField]
         private int m_iTotalBullets = 0;
+        public int TotalBullets
+        {
+            get { return m_iTotalBullets; }
+            private set {
+                m_iTotalBullets = Mathf.Clamp(value, 0, getMaxBullets());
+            }
+        }
 
         /// <summary>
         /// Is the first mag empty
         /// </summary>
         /// <returns></returns>
-        public bool isReloadRequired()
+        public override bool isReloadRequired()
         {
-            return m_iBulletCountInFirstMag == 0;
+            return BulletCountInFirstMag == 0 && TotalBullets > 0;
+        }
+
+        /// <summary>
+        /// Can the current weapon be fired
+        /// Checks if there are bullets in the first mag
+        /// </summary>
+        /// <returns></returns>
+        public override bool canCurrentWeaponBeFired()
+        {
+            return (BulletCountInFirstMag != 0);
         }
 
         /// <summary>
         /// Can the gun be reloaded
         /// </summary>
         /// <returns></returns>
-        public bool isReloadPossible()
+        public override bool isReloadPossible()
         {
-            return (m_iBulletCountInFirstMag < m_iMaxSingleMagazineBulletCapacity) &&
+            return (BulletCountInFirstMag < m_iMaxSingleMagazineBulletCapacity) &&
                 (getBulletsNotInFirstMag() > 0);
         }
 
@@ -58,8 +93,8 @@ namespace ns_Mashmo
             ///Reload required
             if (isReloadRequired()) { return; }
 
-            m_iTotalBullets--;
-            m_iBulletCountInFirstMag--;
+            --TotalBullets;
+            --BulletCountInFirstMag;
             updateBulletData();
         }
 
@@ -67,12 +102,11 @@ namespace ns_Mashmo
         {
             if (!isReloadPossible()) { return; }
 
-            int l_iBulletsEmptyInFirstMag = (m_iMaxSingleMagazineBulletCapacity - m_iBulletCountInFirstMag);
+            int l_iBulletsEmptyInFirstMag = (m_iMaxSingleMagazineBulletCapacity - BulletCountInFirstMag);
 
             int l_iBulletsNotInFirstMag = getBulletsNotInFirstMag();
 
-            m_iBulletCountInFirstMag += ((l_iBulletsNotInFirstMag > l_iBulletsEmptyInFirstMag) ?
-                l_iBulletsEmptyInFirstMag : l_iBulletsNotInFirstMag);
+            BulletCountInFirstMag += l_iBulletsNotInFirstMag;
 
             updateBulletData();
         }
@@ -110,7 +144,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public int getBulletsNotInFirstMag()
         {
-            return (m_iTotalBullets - m_iBulletCountInFirstMag);
+            return (TotalBullets - BulletCountInFirstMag);
         }
 
         /// <summary>
@@ -129,7 +163,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public int getBulletsThatCanBeAdded()
         {
-            return getMaxBulletsNotInFirstMag() - getMaxBulletsNotInFirstMag();
+            return getMaxBulletsNotInFirstMag() - getBulletsNotInFirstMag();
         }
 
         /// <summary>
@@ -140,14 +174,18 @@ namespace ns_Mashmo
         {
             int l_iBulletsCanBeAdded = getBulletsThatCanBeAdded();
             int l_iBulletsToAdd = (a_iBullets > l_iBulletsCanBeAdded) ? l_iBulletsCanBeAdded : a_iBullets;
-            m_iTotalBullets += l_iBulletsToAdd;
+            TotalBullets += l_iBulletsToAdd;
             updateBulletData();
         }
 
-        public void resetBulletCount()
+        /// <summary>
+        /// Init bullet count, should be called on weapon is acquired for the first time
+        /// </summary>
+        /// <param name="a_iTotalBulletCount"></param>
+        public void initBulletCount(int a_iTotalBulletCount)
         {
-            m_iTotalBullets = 0;
-            m_iBulletCountInFirstMag = 0;
+            TotalBullets = a_iTotalBulletCount;
+            BulletCountInFirstMag = a_iTotalBulletCount;
             updateBulletData();
         }
 
@@ -157,6 +195,15 @@ namespace ns_Mashmo
         public void updateBulletData()
         {
 
+        }
+
+        /// <summary>
+        /// The time taken by the gun to reload
+        /// </summary>
+        /// <returns></returns>
+        public override float getReloadWaitTime()
+        {
+            return m_fWeaponReloadTime;
         }
     }
 }
