@@ -19,5 +19,14 @@ namespace ns_Mashmo
         /// </summary>
         public const string LAYER_NAME_INTERACTIVE = "INTERACTIVE";
         #endregion GAME LAYERS
+
+        #region AUDIO SOURCE
+
+        /// <summary>
+        /// Audio source of the gun fire
+        /// </summary>
+        public const string AUD_SRC_GUN_FIRE = "AudSrc_GunFire";
+
+        #endregion AUDIO SOURCE
     }
 }

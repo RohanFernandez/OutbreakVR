@@ -125,6 +125,8 @@ namespace ns_Mashmo
             if (m_ChamberBulletRelease != null) { m_ChamberBulletRelease.Play(); }
             if (m_MuzzleFlash != null)          { m_MuzzleFlash.Play(); }
 
+            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDOnShoot ,false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+
             m_fTimeSinceLastShot = 0.0f;
             updateBulletData();
         }
