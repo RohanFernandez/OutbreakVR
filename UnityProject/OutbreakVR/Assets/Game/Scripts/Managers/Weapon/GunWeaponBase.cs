@@ -6,11 +6,37 @@ namespace ns_Mashmo
 {
     public class GunWeaponBase : WeaponBase
     {
+        #region EFFECTS AND SOUNDS
+        [SerializeField]
+        private ParticleSystem m_ChamberBulletRelease = null;
+
+        [SerializeField]
+        private ParticleSystem m_MuzzleFlash = null;
+
+        #endregion EFFECTS AND SOUNDS
+
         [SerializeField]
         private int m_iMaxMagazinesAllowed = 10;
 
         [SerializeField]
         private int m_iMaxSingleMagazineBulletCapacity = 10;
+
+        /// <summary>
+        /// Audio clip id to play on fire
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDOnShoot = string.Empty;
+
+        /// <summary>
+        /// The time after which the next shot can be fired.
+        /// </summary>
+        [SerializeField]
+        private float m_fTimeBetweenEachShoot = 0.0f;
+
+        /// <summary>
+        /// The time calculated since the last shot
+        /// </summary>
+        private float m_fTimeSinceLastShot = 0.0f;
 
         [SerializeField]
         private int m_iBulletCountInFirstMag = 10; 
@@ -75,7 +101,8 @@ namespace ns_Mashmo
         /// <returns></returns>
         public override bool canCurrentWeaponBeFired()
         {
-            return (BulletCountInFirstMag != 0);
+            return (BulletCountInFirstMag != 0) &&
+                (m_fTimeSinceLastShot > m_fTimeBetweenEachShoot);
         }
 
         /// <summary>
@@ -95,6 +122,10 @@ namespace ns_Mashmo
 
             --TotalBullets;
             --BulletCountInFirstMag;
+            if (m_ChamberBulletRelease != null) { m_ChamberBulletRelease.Play(); }
+            if (m_MuzzleFlash != null)          { m_MuzzleFlash.Play(); }
+
+            m_fTimeSinceLastShot = 0.0f;
             updateBulletData();
         }
 
@@ -204,6 +235,14 @@ namespace ns_Mashmo
         public override float getReloadWaitTime()
         {
             return m_fWeaponReloadTime;
+        }
+
+        void Update()
+        {
+            if (m_fTimeSinceLastShot < m_fTimeBetweenEachShoot)
+            {
+                m_fTimeSinceLastShot += Time.deltaTime;
+            }
         }
     }
 }

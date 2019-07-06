@@ -46,16 +46,21 @@ namespace ns_Mashmo
                 if (m_fCurrentReloadWaitTime == 0.0f &&
                     value > 0.0f)
                 {
-                    ///Start reload UI
+                    m_bIsReloadInProgress = true;
                 }
                 else if (m_fCurrentReloadWaitTime > 0.0f &&
                     value == 0.0f)
                 {
-                    ///End reload UI
+                    m_bIsReloadInProgress = false;
                 }
                 m_fCurrentReloadWaitTime = value;
             }
         }
+
+        /// <summary>
+        /// Is the reload of the current weapon in progress
+        /// </summary>
+        private bool m_bIsReloadInProgress = false;
 
         #region SWIPE
 
@@ -299,7 +304,11 @@ namespace ns_Mashmo
 #endif
                 )
             {
-
+                IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
+                if (l_IPointerOver != null)
+                {
+                    l_IPointerOver.onPointerInteract();
+                }
             }
             // Swipe from bottom to top
             else if (l_v2CurrentSwipe.y > MIN_SWIPE_VALUE
@@ -308,11 +317,7 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
-                if (l_IPointerOver != null)
-                {
-                    l_IPointerOver.onPointerInteract();
-                }
+                
             }
         }
 
@@ -328,7 +333,8 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                if (WeaponManager.CanCurrentWeaponBeFired())
+                if (WeaponManager.CanCurrentWeaponBeFired() &&
+                    !m_bIsReloadInProgress)
                 {
                     WeaponManager.FireWeapon();
                 }
