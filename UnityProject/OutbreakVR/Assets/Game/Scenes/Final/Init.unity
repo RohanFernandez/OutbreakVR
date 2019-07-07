@@ -167,6 +167,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
 --- !u!4 &36291168 stripped
@@ -346,11 +351,11 @@ MonoBehaviour:
   m_ChamberBulletRelease: {fileID: 750157935}
   m_MuzzleFlash: {fileID: 36291169}
   m_iMaxMagazinesAllowed: 10
-  m_iMaxSingleMagazineBulletCapacity: 10
-  m_strAudClipIDOnShoot: AudClip_WeaponFireDefault
-  m_fTimeBetweenEachShoot: 0.15
+  m_iMaxSingleMagazineBulletCapacity: 8
+  m_strAudClipIDOnShoot: AudClip_RevolverFIre
+  m_fTimeBetweenEachShoot: 0.8
   m_iBulletCountInFirstMag: 10
-  m_fWeaponReloadTime: 5
+  m_fWeaponReloadTime: 2
   m_iTotalBullets: 25
 --- !u!1001 &218116386
 PrefabInstance:
@@ -405,6 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
+        type: 3}
+      propertyPath: LightsModule.enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1417,11 +1427,11 @@ MonoBehaviour:
   m_ChamberBulletRelease: {fileID: 1602666006}
   m_MuzzleFlash: {fileID: 115101344}
   m_iMaxMagazinesAllowed: 10
-  m_iMaxSingleMagazineBulletCapacity: 10
+  m_iMaxSingleMagazineBulletCapacity: 17
   m_strAudClipIDOnShoot: AudClip_WeaponFireDefault
   m_fTimeBetweenEachShoot: 0.3
   m_iBulletCountInFirstMag: 10
-  m_fWeaponReloadTime: 5
+  m_fWeaponReloadTime: 1
   m_iTotalBullets: 25
 --- !u!1 &1089914893
 GameObject:
@@ -2144,6 +2154,8 @@ MonoBehaviour:
     m_AudClip: {fileID: 8300000, guid: 46513966aedbf8044a65eb44d029dc96, type: 3}
   - m_strAudioID: AudClip_WeaponFireDefault
     m_AudClip: {fileID: 8300000, guid: 68fddbf1df10ff64ea99ac62ec570efd, type: 3}
+  - m_strAudioID: AudClip_RevolverFIre
+    m_AudClip: {fileID: 8300000, guid: 05c7e59e74a2d9e43a290a973d87d637, type: 3}
   m_ManagedAudioSrcPrefab: {fileID: 9180928869446884030, guid: 0274dfe80706aaa46acc5f28abbcbcdd,
     type: 3}
 --- !u!1001 &1684875816
