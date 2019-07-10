@@ -16,7 +16,9 @@ namespace ns_Mashmo
         ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
         ON_GAMEPLAY_ENDED,                          /* <BOOL>*/
         ON_PLAYER_STATE_CHANGED,                    /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
-        ON_ITEM_PICKED_UP                           /* <ITEMID, ITEM_BASE> */
+        ON_ITEM_PICKED_UP,                          /* <ITEMID, ITEM_BASE> */
+        ON_WEAPON_RELOADED,                         /* <WEAPON_TYPE>*/
+        ON_WEAPON_FIRED,                            /* <WEAPON_TYPE>*/
     }
 
     public static class GameEventTypeConst
@@ -76,5 +78,17 @@ namespace ns_Mashmo
         public const string ID_ITEM_DROP_TYPE = "ID_ITEM_DROP_TYPE";                      /* ITEM_TYPE */
         public const string ID_ITEM_BASE = "ID_ITEM_DROP_BASE";                 /* ITEM DROP BASE */
         #endregion ON_ITEM_PICKED_UP
+
+        #region ON_WEAPON_RELOADED
+        public const string ID_WEAPON_TYPE = "ID_WEAPON_TYPE";                      /* WEAPON_TYPE */
+        public const string ID_TOTAL_BULLETS = "ID_TOTAL_BULLETS";                  /* INT */
+        public const string ID_FIRST_MAG_COUNT = "ID_FIRST_MAG_COUNT";              /* INT */
+        #endregion ON_WEAPON_RELOADED
+
+        #region ON_WEAPON_FIRED
+        //public const string ID_WEAPON_TYPE = "ID_WEAPON_TYPE";                      /* WEAPON_TYPE */
+        //public const string ID_TOTAL_BULLETS = "ID_TOTAL_BULLETS";                  /* INT */
+        //public const string ID_FIRST_MAG_COUNT = "ID_FIRST_MAG_COUNT";              /* INT */
+        #endregion ON_WEAPON_FIRED
     }
 }

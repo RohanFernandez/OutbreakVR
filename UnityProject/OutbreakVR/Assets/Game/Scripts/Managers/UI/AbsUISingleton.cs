@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public abstract class AbsComponentHandler : MonoBehaviour, IComponentHandler
+    public abstract class AbsUISingleton : AbsUIPanel, IComponentHandler
     {
-        public abstract void initialize();
         public abstract void destroy();
+        public abstract void initialize();
     }
 }

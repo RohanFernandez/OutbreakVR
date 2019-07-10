@@ -245,6 +245,8 @@ namespace ns_Mashmo
 
         void Update()
         {
+            if (s_Instance == null) { return; }
+
             if (m_stackEndedLastFrame.Count != 0)
             {
                 ISequence l_Sequence = m_stackEndedLastFrame.Pop();

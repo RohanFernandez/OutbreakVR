@@ -521,6 +521,18 @@ namespace ns_Mashmo
         {
             WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.fire();
+
+            bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
+            if (l_bIsWeaponAGun)
+            {
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_WEAPON_TYPE, l_GunWeaponBase.m_WeaponType);
+                l_EventHash.Add(GameEventTypeConst.ID_FIRST_MAG_COUNT, l_GunWeaponBase.BulletCountInFirstMag);
+                l_EventHash.Add(GameEventTypeConst.ID_TOTAL_BULLETS, l_GunWeaponBase.TotalBullets);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_WEAPON_FIRED, l_EventHash);
+                EventManager.ReturnHashtableToPool(l_EventHash);
+            }
         }
 
         /// <summary>
@@ -530,6 +542,18 @@ namespace ns_Mashmo
         {
             WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.reload();
+
+            bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
+            if (l_bIsWeaponAGun)
+            {
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_WEAPON_TYPE, l_GunWeaponBase.m_WeaponType);
+                l_EventHash.Add(GameEventTypeConst.ID_FIRST_MAG_COUNT, l_GunWeaponBase.BulletCountInFirstMag);
+                l_EventHash.Add(GameEventTypeConst.ID_TOTAL_BULLETS, l_GunWeaponBase.TotalBullets);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, l_EventHash);
+                EventManager.ReturnHashtableToPool(l_EventHash);
+            }
         }
 
         /// <summary>
@@ -559,6 +583,15 @@ namespace ns_Mashmo
         {
             WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
             return l_WeaponBase.canCurrentWeaponBeFired();
+        }
+
+        /// <summary>
+        /// Returns the weapon base of the current selected weapon base
+        /// </summary>
+        /// <returns></returns>
+        public static WeaponBase GetCurrentWeaponBase()
+        {
+            return s_Instance.getWeaponBaseByWeaponType(CurrentWeaponType);
         }
     }
 }
