@@ -435,6 +435,17 @@ namespace ns_Mashmo
         public static bool IsLaserActive
         {
             get { return s_Instance.m_bIsLaserActive; }
+            set { s_Instance.m_bIsLaserActive = value; }
+        }
+
+        /// <summary>
+        /// The line renderer of the laser be on/off
+        /// </summary>
+        [SerializeField]
+        private bool m_bIsLineRendererOn = false;
+        public static bool IsLineRendererOn
+        {
+            get { return s_Instance.m_bIsLineRendererOn && IsLaserActive; }
         }
 
         /// <summary>

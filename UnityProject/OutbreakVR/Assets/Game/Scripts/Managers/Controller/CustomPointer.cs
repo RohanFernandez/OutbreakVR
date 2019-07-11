@@ -68,12 +68,15 @@ namespace ns_Mashmo
 
             if (ControllerManager.IsRemoteAttached)
             {
-                m_LineRenderer.enabled = true;
                 m_HeadsetCursor.SetActive(m_bIsTargetHit);
                 m_HeadsetCursor.transform.position = m_v3LaserEndPosition;
 
-                m_LineRenderer.SetPosition(0, m_v3LaserStartPosition);
-                m_LineRenderer.SetPosition(1, m_v3LaserEndPosition);
+                if (ControllerManager.IsLineRendererOn)
+                {
+                    m_LineRenderer.enabled = true;
+                    m_LineRenderer.SetPosition(0, m_v3LaserStartPosition);
+                    m_LineRenderer.SetPosition(1, m_v3LaserEndPosition);
+                }
             }
             else
             {

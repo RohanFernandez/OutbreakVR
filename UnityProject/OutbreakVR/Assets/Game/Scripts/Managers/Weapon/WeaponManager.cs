@@ -44,6 +44,18 @@ namespace ns_Mashmo
         private List<WeaponBase> m_lstWeapons = null;
 
         /// <summary>
+        /// The transform that holds all the weapons
+        /// </summary>
+        [SerializeField]
+        private Transform m_WeaponHolder = null;
+
+        /// <summary>
+        /// The custom position of the weapon holder when the current controller is the headset
+        /// </summary>
+        [SerializeField]
+        private Vector3 m_v3HeadsetWeaponHolderOffset = Vector3.zero;
+
+        /// <summary>
         /// Dictionary of weapon type to Weapon GameObject
         /// </summary>
         private Dictionary<WEAPON_TYPE, WeaponBase> m_dictWeapons = null;
@@ -94,6 +106,12 @@ namespace ns_Mashmo
             }
         }
 
+        /// <summary>
+        /// Interaction layer mask on raycast a gun weapon is fired.
+        /// </summary>
+        [SerializeField]
+        private LayerMask m_GunHitInteractionLayer;
+
         public override void initialize()
         {
             if (s_Instance != null)
@@ -102,6 +120,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             m_dictWeaponCategories = new Dictionary<WEAPON_CATEGORY_TYPE, WeaponCategory>(3);
 
             m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.MELEE,      new WeaponCategory(WEAPON_CATEGORY_TYPE.MELEE));
@@ -122,6 +141,7 @@ namespace ns_Mashmo
                 }
             }
             disableAllWeapons();
+            onControllerChanged(null);
         }
 
         /// <summary>
@@ -133,6 +153,8 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+
             s_Instance = null;
         }
 
@@ -526,6 +548,10 @@ namespace ns_Mashmo
             if (l_bIsWeaponAGun)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
+
+                s_Instance.manageRaycastHitOnGunFire(l_GunWeaponBase);
+
+                //Dispatch weapon fire evetn
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_WEAPON_TYPE, l_GunWeaponBase.m_WeaponType);
                 l_EventHash.Add(GameEventTypeConst.ID_FIRST_MAG_COUNT, l_GunWeaponBase.BulletCountInFirstMag);
@@ -592,6 +618,40 @@ namespace ns_Mashmo
         public static WeaponBase GetCurrentWeaponBase()
         {
             return s_Instance.getWeaponBaseByWeaponType(CurrentWeaponType);
+        }
+
+        /// <summary>
+        /// Callback called on controller changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onControllerChanged(EventHash a_EventHash)
+        {
+            if (ControllerManager.IsRemoteAttached)
+            {
+                m_WeaponHolder.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            }
+            else
+            {
+                m_WeaponHolder.SetPositionAndRotation(m_v3HeadsetWeaponHolderOffset, Quaternion.identity);
+            }
+        }
+
+        /// <summary>
+        /// Returns a raycast hit on weapon fire
+        /// </summary>
+        private void manageRaycastHitOnGunFire(GunWeaponBase a_GunWeaponBase)
+        {
+            RaycastHit l_RaycastHit;
+
+            Transform l_transCurrentControllerAnchor = ControllerManager.CurrentControllerAnchor.transform;
+            Ray l_ray = new Ray(l_transCurrentControllerAnchor.position, l_transCurrentControllerAnchor.forward);
+            Physics.Raycast(l_ray, out l_RaycastHit, ControllerManager.MAX_CURSOR_DISTANCE, m_GunHitInteractionLayer);
+
+            Debug.LogError("Managing raycast");
+            if (l_RaycastHit.collider != null)
+            {
+                Debug.LogError("HIT::" + l_RaycastHit.collider.gameObject.name);
+            }
         }
     }
 }
