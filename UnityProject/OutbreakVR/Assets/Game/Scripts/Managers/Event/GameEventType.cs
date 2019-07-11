@@ -19,6 +19,7 @@ namespace ns_Mashmo
         ON_ITEM_PICKED_UP,                          /* <ITEMID, ITEM_BASE> */
         ON_WEAPON_RELOADED,                         /* <WEAPON_TYPE>*/
         ON_WEAPON_FIRED,                            /* <WEAPON_TYPE>*/
+        ON_BULLETS_ADDED,                           /* <>*/
     }
 
     public static class GameEventTypeConst
@@ -89,6 +90,10 @@ namespace ns_Mashmo
         //public const string ID_WEAPON_TYPE = "ID_WEAPON_TYPE";                      /* WEAPON_TYPE */
         //public const string ID_TOTAL_BULLETS = "ID_TOTAL_BULLETS";                  /* INT */
         //public const string ID_FIRST_MAG_COUNT = "ID_FIRST_MAG_COUNT";              /* INT */
+        #endregion ON_WEAPON_FIRED
+
+        #region ON_WEAPON_FIRED
+        public const string ID_GUN_WEAPON = "ID_GUN_WEAPON";                           /* GUN_WEAPON_BASE */
         #endregion ON_WEAPON_FIRED
     }
 }

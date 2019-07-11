@@ -78,6 +78,15 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Gets forward of the player
+        /// </summary>
+        /// <returns></returns>
+        public static Vector3 GetForward()
+        {
+            return s_Instance.m_PlayerController.transform.forward;
+        }
+
+        /// <summary>
         /// The state the player is in
         /// sets its movement
         /// </summary>

@@ -35,7 +35,7 @@ namespace ns_Mashmo
         public virtual void Update()
         {
             transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
-            m_goItemTitle.transform.LookAt(PlayerManager.GetPosition());
+            m_goItemTitle.transform.LookAt(ControllerManager.GetHeadsetAnchor().transform);
         }
 
         public virtual void onReturnedToPool()

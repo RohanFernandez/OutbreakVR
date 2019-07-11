@@ -284,6 +284,15 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Returns the headset anchor gameobject
+        /// </summary>
+        /// <returns></returns>
+        public static GameObject GetHeadsetAnchor()
+        {
+            return s_Instance.m_goHeadsetControllerAnchor;
+        }
+
+        /// <summary>
         /// Returns the current controller rotation if either of the remotes are connected
         /// </summary>
         /// <returns></returns>

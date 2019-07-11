@@ -126,16 +126,16 @@ namespace ns_Mashmo
             if (m_iCurrentLifeCounter <= 0 &&
                 l_iLifeCounterBeforeInflicted > 0)
             {
-                
+                onKilled();
             }
         }
 
         /// <summary>
-        /// called on killed
+        /// called on killed fire event 
         /// </summary>
         public void onKilled()
         {
-
+            EnemyManager.OnEnemyKilled(this);
         }
     }
 }

@@ -206,5 +206,14 @@ namespace ns_Mashmo
         {
             returnAllToPool();
         }
+
+        /// <summary>
+        /// Called on an enemy is killed
+        /// </summary>
+        /// <param name="a_EnemyBase"></param>
+        public static void OnEnemyKilled(EnemyBase a_EnemyBase)
+        {
+            ReturnActiveEnemyToPool(a_EnemyBase.getEnemyType(), a_EnemyBase.getID());
+        }
     }
 }

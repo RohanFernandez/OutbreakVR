@@ -516,6 +516,11 @@ namespace ns_Mashmo
                 {
                     l_GunWeaponBase.addBullets(l_iBulletsToAdd);
                     l_bIsBulletsPickedUp = true;
+
+                    EventHash l_EventHash = EventManager.GetEventHashtable();
+                    l_EventHash.Add(GameEventTypeConst.ID_GUN_WEAPON, l_GunWeaponBase);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_BULLETS_ADDED, l_EventHash);
+                    EventManager.ReturnHashtableToPool(l_EventHash);
                 }
             }
 
@@ -652,7 +657,7 @@ namespace ns_Mashmo
                 EnemyBase l_HitEnemyBase = l_RaycastHit.collider.GetComponent<EnemyBase>();
                 if (l_HitEnemyBase != null)
                 {
-
+                    l_HitEnemyBase.inflictDamage(a_GunWeaponBase.DamagePerBullet);
                 }
             }
         }

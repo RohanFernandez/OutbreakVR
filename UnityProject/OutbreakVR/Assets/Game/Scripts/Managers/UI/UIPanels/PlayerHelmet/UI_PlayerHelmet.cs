@@ -55,6 +55,8 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
+            
             updateWeaponInterface();
         }
 
@@ -70,6 +72,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
             s_Instance = null;
         }
 
@@ -125,7 +128,7 @@ namespace ns_Mashmo
         /// Event callback on weapon reloaded
         /// </summary>
         /// <param name="a_EventHash"></param>
-        public void onWeaponReloaded(EventHash a_EventHash)
+        private void onWeaponReloaded(EventHash a_EventHash)
         {
             updateWeaponInterface();
         }
@@ -134,7 +137,16 @@ namespace ns_Mashmo
         /// Event callback on weapon fired
         /// </summary>
         /// <param name="a_EventHash"></param>
-        public void onWeaponFired(EventHash a_EventHash)
+        private void onWeaponFired(EventHash a_EventHash)
+        {
+            updateWeaponInterface();
+        }
+
+        /// <summary>
+        /// Event callback on bullets added
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onBulletsAdded(EventHash a_EventHash)
         {
             updateWeaponInterface();
         }

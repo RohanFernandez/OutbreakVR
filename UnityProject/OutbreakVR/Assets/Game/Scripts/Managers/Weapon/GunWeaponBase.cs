@@ -48,6 +48,16 @@ namespace ns_Mashmo
             }
         }
 
+        /// <summary>
+        /// The damage inflicted on an enemy on bullet fired on an enemy
+        /// </summary>
+        [SerializeField]
+        private int m_iDamagePerBullet = 15;
+        public int DamagePerBullet
+        {
+            get { return m_iDamagePerBullet; }
+        }
+
         public int CurrentMagCount
         {
             get
