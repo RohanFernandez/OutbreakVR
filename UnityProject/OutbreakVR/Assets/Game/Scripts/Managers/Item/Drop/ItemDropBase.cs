@@ -10,6 +10,12 @@ namespace ns_Mashmo
         private string m_strID = string.Empty;
 
         /// <summary>
+        /// The gameobject that parents the title of the item
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goItemTitle = null;
+
+        /// <summary>
         /// the unique type of item
         /// </summary>
         [SerializeField]
@@ -29,6 +35,7 @@ namespace ns_Mashmo
         public virtual void Update()
         {
             transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
+            m_goItemTitle.transform.LookAt(PlayerManager.GetPosition());
         }
 
         public virtual void onReturnedToPool()

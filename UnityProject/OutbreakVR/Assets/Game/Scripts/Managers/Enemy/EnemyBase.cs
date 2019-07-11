@@ -31,6 +31,12 @@ namespace ns_Mashmo
         [SerializeField]
         protected float m_fAttackRadius = 15.0f;
 
+        [SerializeField]
+        protected int m_iMaxLifeCapacityCounter = 100;
+
+        [SerializeField]
+        protected int m_iCurrentLifeCounter = 100;
+
         /// <summary>
         /// Returns the tyoe of the enemy
         /// </summary>
@@ -75,6 +81,7 @@ namespace ns_Mashmo
         public virtual void onRetrievedFromPool()
         {
             activateEnemy();
+            m_iCurrentLifeCounter = m_iMaxLifeCapacityCounter;
         }
 
         /// <summary>
@@ -106,6 +113,29 @@ namespace ns_Mashmo
         public void setID(string a_strID)
         {
             m_strEnemyID = a_strID;
+        }
+
+        /// <summary>
+        /// reduces the life counter of the enemy
+        /// </summary>
+        /// <param name="a_iDamage"></param>
+        public void inflictDamage(int a_iDamage)
+        {
+            int l_iLifeCounterBeforeInflicted = m_iCurrentLifeCounter;
+            m_iCurrentLifeCounter -= a_iDamage;
+            if (m_iCurrentLifeCounter <= 0 &&
+                l_iLifeCounterBeforeInflicted > 0)
+            {
+                
+            }
+        }
+
+        /// <summary>
+        /// called on killed
+        /// </summary>
+        public void onKilled()
+        {
+
         }
     }
 }

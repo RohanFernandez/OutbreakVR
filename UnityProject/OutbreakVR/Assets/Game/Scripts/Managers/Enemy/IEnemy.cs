@@ -12,5 +12,7 @@ namespace ns_Mashmo
 
         void activateEnemy();
         void deactivateEnemy();
+
+        void inflictDamage(int a_iDamage);
     }
 }

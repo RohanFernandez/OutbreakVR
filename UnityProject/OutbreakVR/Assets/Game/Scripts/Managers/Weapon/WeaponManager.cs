@@ -647,10 +647,13 @@ namespace ns_Mashmo
             Ray l_ray = new Ray(l_transCurrentControllerAnchor.position, l_transCurrentControllerAnchor.forward);
             Physics.Raycast(l_ray, out l_RaycastHit, ControllerManager.MAX_CURSOR_DISTANCE, m_GunHitInteractionLayer);
 
-            Debug.LogError("Managing raycast");
             if (l_RaycastHit.collider != null)
             {
-                Debug.LogError("HIT::" + l_RaycastHit.collider.gameObject.name);
+                EnemyBase l_HitEnemyBase = l_RaycastHit.collider.GetComponent<EnemyBase>();
+                if (l_HitEnemyBase != null)
+                {
+
+                }
             }
         }
     }
