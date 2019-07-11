@@ -92,7 +92,6 @@ namespace ns_Mashmo
             l_EventHash.Add(GameEventTypeConst.ID_ITEM_DROP_TYPE, m_ItemType);
             l_EventHash.Add(GameEventTypeConst.ID_ITEM_BASE, this);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP, l_EventHash);
-            EventManager.ReturnHashtableToPool(l_EventHash);
         }
         #endregion IPointerOver Interface Implemetation
     }

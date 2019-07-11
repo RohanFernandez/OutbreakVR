@@ -28,6 +28,12 @@ namespace ns_Mashmo
         private string m_strAudClipIDOnShoot = string.Empty;
 
         /// <summary>
+        /// Audio clip id to play on reload
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDOnReload = string.Empty;
+
+        /// <summary>
         /// The time after which the next shot can be fired.
         /// </summary>
         [SerializeField]
@@ -150,6 +156,8 @@ namespace ns_Mashmo
             int l_iBulletsNotInFirstMag = getBulletsNotInFirstMag();
 
             BulletCountInFirstMag += l_iBulletsNotInFirstMag;
+
+            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_RELOAD, m_strAudClipIDOnReload, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
 
             updateBulletData();
         }

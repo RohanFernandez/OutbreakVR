@@ -281,7 +281,6 @@ namespace ns_Mashmo
                 l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_TYPE, a_oldWeaponType);
                 l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_BASE, l_goOldWeapon);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, l_hash);
-                EventManager.ReturnHashtableToPool(l_hash);
             }
         }
 
@@ -520,7 +519,6 @@ namespace ns_Mashmo
                     EventHash l_EventHash = EventManager.GetEventHashtable();
                     l_EventHash.Add(GameEventTypeConst.ID_GUN_WEAPON, l_GunWeaponBase);
                     EventManager.Dispatch(GAME_EVENT_TYPE.ON_BULLETS_ADDED, l_EventHash);
-                    EventManager.ReturnHashtableToPool(l_EventHash);
                 }
             }
 
@@ -562,7 +560,6 @@ namespace ns_Mashmo
                 l_EventHash.Add(GameEventTypeConst.ID_FIRST_MAG_COUNT, l_GunWeaponBase.BulletCountInFirstMag);
                 l_EventHash.Add(GameEventTypeConst.ID_TOTAL_BULLETS, l_GunWeaponBase.TotalBullets);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_WEAPON_FIRED, l_EventHash);
-                EventManager.ReturnHashtableToPool(l_EventHash);
             }
         }
 
@@ -583,7 +580,6 @@ namespace ns_Mashmo
                 l_EventHash.Add(GameEventTypeConst.ID_FIRST_MAG_COUNT, l_GunWeaponBase.BulletCountInFirstMag);
                 l_EventHash.Add(GameEventTypeConst.ID_TOTAL_BULLETS, l_GunWeaponBase.TotalBullets);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, l_EventHash);
-                EventManager.ReturnHashtableToPool(l_EventHash);
             }
         }
 

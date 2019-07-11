@@ -98,7 +98,6 @@ namespace ns_Mashmo
             l_hash.Add(GameEventTypeConst.ID_NEW_CONTROLLER_TYPE, a_NewControllerType);
             l_hash.Add(GameEventTypeConst.ID_NEW_CONTROLLER_ANCHOR, a_NewControllerAnchor);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, l_hash);
-            EventManager.ReturnHashtableToPool(l_hash);
         }
 
         /// <summary>

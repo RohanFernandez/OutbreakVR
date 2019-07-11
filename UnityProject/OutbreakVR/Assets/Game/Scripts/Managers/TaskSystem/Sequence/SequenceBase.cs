@@ -60,7 +60,6 @@ namespace ns_Mashmo
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_SEQUENCE_REF, this);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, l_hash);
-            EventManager.ReturnHashtableToPool(l_hash);
         }
 
         /// <summary>

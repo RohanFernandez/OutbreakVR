@@ -42,6 +42,12 @@ namespace ns_Mashmo
         private GameObject m_goBulletPanelParent = null;
 
         /// <summary>
+        /// The panel that holds all the components of the reload progress panel
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goReloadProgressPanel = null;
+
+        /// <summary>
         /// initializes, sets singleton to this
         /// </summary>
         public override void initialize()
@@ -149,6 +155,25 @@ namespace ns_Mashmo
         private void onBulletsAdded(EventHash a_EventHash)
         {
             updateWeaponInterface();
+        }
+
+        /// <summary>
+        /// Shows Hide the reload progress bar
+        /// </summary>
+        /// <param name="a_bIsReloadInProgress"></param>
+        public static void ToggleReloadProgressBar(bool a_bIsReloadInProgress)
+        {
+            s_Instance.m_goReloadProgressPanel.SetActive(a_bIsReloadInProgress);
+        }
+
+        /// <summary>
+        /// Updates the reload progress bar
+        /// </summary>
+        /// <param name="a_fReloadTimeElapsed"></param>
+        /// <param name="a_fCurrentWeaponReloadTime"></param>
+        public static void UpdateReloadProgressBar(float a_fReloadTimeElapsed, float a_fCurrentWeaponReloadTime)
+        {
+            
         }
     }
 }

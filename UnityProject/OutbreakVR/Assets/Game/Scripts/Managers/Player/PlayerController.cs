@@ -47,11 +47,13 @@ namespace ns_Mashmo
                     value > 0.0f)
                 {
                     m_bIsReloadInProgress = true;
+                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
                 }
                 else if (m_fCurrentReloadWaitTime > 0.0f &&
                     value == 0.0f)
                 {
                     m_bIsReloadInProgress = false;
+                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
                 }
                 m_fCurrentReloadWaitTime = value;
             }
@@ -353,7 +355,10 @@ namespace ns_Mashmo
                 )
                 {
                     CurrentReloadWaitTime += Time.deltaTime;
-                    if (CurrentReloadWaitTime > WeaponManager.getCurrentWeaponReloadTime())
+                    float l_fCurrentWeaponReloadTime = WeaponManager.getCurrentWeaponReloadTime();
+                    UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
+
+                    if (CurrentReloadWaitTime > l_fCurrentWeaponReloadTime)
                     {
                         CurrentReloadWaitTime = 0.0f;
                         WeaponManager.ReloadWeapon();

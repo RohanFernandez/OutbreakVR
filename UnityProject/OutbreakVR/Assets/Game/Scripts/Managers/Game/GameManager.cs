@@ -39,7 +39,6 @@ namespace ns_Mashmo
             EventHash l_Hashtable = EventManager.GetEventHashtable();
             l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
-            EventManager.ReturnHashtableToPool(l_Hashtable);
         }
 
         /// <summary>
@@ -96,7 +95,6 @@ namespace ns_Mashmo
             PauseGame(false);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
-            EventManager.ReturnHashtableToPool(l_EventHash);
 
             GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
         }
@@ -113,12 +111,10 @@ namespace ns_Mashmo
             }
             s_Instance.m_bIsGamePaused = a_bIsPaused;
 
+            Time.timeScale = a_bIsPaused ? 0.0f : 1.0f;
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
-            EventManager.ReturnHashtableToPool(l_EventHash);
-
-            Time.timeScale = a_bIsPaused ? 0.0f : 1.0f;
         }
     }
 }

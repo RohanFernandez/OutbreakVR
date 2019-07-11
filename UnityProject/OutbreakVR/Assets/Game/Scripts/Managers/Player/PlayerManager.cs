@@ -104,7 +104,6 @@ namespace ns_Mashmo
             l_EventHash.Add(GameEventTypeConst.ID_OLD_PLAYER_STATE, l_OldPlayerState);
             l_EventHash.Add(GameEventTypeConst.ID_NEW_PLAYER_STATE, a_PlayerState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, l_EventHash);
-            EventManager.ReturnHashtableToPool(l_EventHash);
         }
     }
 }

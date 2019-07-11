@@ -27,6 +27,11 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_SRC_GUN_FIRE = "AudSrc_GunFire";
 
+        /// <summary>
+        /// Audio source of the gun reload
+        /// </summary>
+        public const string AUD_SRC_GUN_RELOAD = "AudSrc_GunReload";
+
         #endregion AUDIO SOURCE
     }
 }

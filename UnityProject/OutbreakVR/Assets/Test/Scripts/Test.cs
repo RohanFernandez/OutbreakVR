@@ -24,7 +24,6 @@ namespace ns_Mashmo
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, a_strObjectiveId);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
-            EventManager.ReturnHashtableToPool(l_hash);
         }
 
         void Update()

@@ -62,9 +62,9 @@ namespace ns_Mashmo
         /// Returns a hashtable back into the pool
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public static void ReturnHashtableToPool(EventHash a_EventHash)
+        private void returnHashtableToPool(EventHash a_EventHash)
         {
-            s_Instance.m_HashPool.returnToPool(a_EventHash);
+            m_HashPool.returnToPool(a_EventHash);
         }
 
         /// <summary>
@@ -105,6 +105,7 @@ namespace ns_Mashmo
             {
                 l_EventContainer.dispatch(a_HashtableArgs);
             }
+            s_Instance.returnHashtableToPool(a_HashtableArgs);
         }
 
 #if UNITY_EDITOR
