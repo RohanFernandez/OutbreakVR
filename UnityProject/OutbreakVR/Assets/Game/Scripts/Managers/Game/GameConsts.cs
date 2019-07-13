@@ -33,5 +33,12 @@ namespace ns_Mashmo
         public const string AUD_SRC_GUN_RELOAD = "AudSrc_GunReload";
 
         #endregion AUDIO SOURCE
+
+        #region TAG
+        /// <summary>
+        /// Tag on the Player
+        /// </summary>
+        public const string TAG_PLAYER = "Player";
+        #endregion TAG
     }
 }
