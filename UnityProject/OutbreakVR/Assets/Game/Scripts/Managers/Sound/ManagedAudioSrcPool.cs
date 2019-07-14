@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class ManagedAudioSrcPool : MonoObjectPool<ManagedAudioSource>
+    public class ManagedAudioSrcPool : MonoObjectPool<PooledAudioSource>
     {
-        public ManagedAudioSrcPool(ManagedAudioSource a_ManagedAudSrcPrefab, GameObject a_Parent)
+        public ManagedAudioSrcPool(PooledAudioSource a_ManagedAudSrcPrefab, GameObject a_Parent)
             : base(a_ManagedAudSrcPrefab, a_Parent)
         {
 

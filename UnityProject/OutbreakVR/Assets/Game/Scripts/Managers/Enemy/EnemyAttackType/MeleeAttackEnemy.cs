@@ -7,6 +7,12 @@ namespace ns_Mashmo
     public abstract class MeleeAttackEnemy : NonStaticEnemy
     {
         /// <summary>
+        /// Ref to the audio source
+        /// </summary>
+        [SerializeField]
+        private UnpooledAudioSource m_ManagedAudioSource = null;
+
+        /// <summary>
         /// Distance between the player and enemy below which the enemy will start striking
         /// </summary>
         private float m_fStrikeDistance = 2.0f;

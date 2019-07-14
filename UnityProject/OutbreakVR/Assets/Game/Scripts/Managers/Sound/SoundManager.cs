@@ -52,7 +52,17 @@ namespace ns_Mashmo
         {
             get { return s_Instance.m_bSFXOn; }
             set {
+                bool l_bSFXBeforeToggle = s_Instance.m_bSFXOn;
                 s_Instance.m_bSFXOn = value;
+
+                if (l_bSFXBeforeToggle != value)
+                {
+                    EventHash l_Eventhash = EventManager.GetEventHashtable();
+                    l_Eventhash.Add(GameEventTypeConst.ID_AUDIO_SRC_TYPE, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                    l_Eventhash.Add(GameEventTypeConst.ID_IS_AUDIO_MODE_ACTIVATED, value);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_AUDIO_MODE_TOGGLED, l_Eventhash);
+                }
+
                 s_Instance.toggleMuteAllActive(!s_Instance.m_bSFXOn, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
         }
@@ -67,7 +77,18 @@ namespace ns_Mashmo
         {
             get { return s_Instance.m_bIsMusicOn; }
             set {
+                bool l_bMusicBeforeToggle = s_Instance.m_bSFXOn;
+
                 s_Instance.m_bIsMusicOn = value;
+
+                if (l_bMusicBeforeToggle != value)
+                {
+                    EventHash l_Eventhash = EventManager.GetEventHashtable();
+                    l_Eventhash.Add(GameEventTypeConst.ID_AUDIO_SRC_TYPE, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                    l_Eventhash.Add(GameEventTypeConst.ID_IS_AUDIO_MODE_ACTIVATED, value);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_AUDIO_MODE_TOGGLED, l_Eventhash);
+                }
+
                 s_Instance.toggleMuteAllActive(!s_Instance.m_bIsMusicOn, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
             }
         }
@@ -82,7 +103,7 @@ namespace ns_Mashmo
         /// The prefab of the audio src that will be placed in the pool
         /// </summary>
         [SerializeField]
-        private ManagedAudioSource m_ManagedAudioSrcPrefab = null;
+        private PooledAudioSource m_ManagedAudioSrcPrefab = null;
 
         /// <summary>
         /// The pool to use for reuse of managed audio source object
@@ -129,14 +150,14 @@ namespace ns_Mashmo
         public static void PlayAudio(string a_strAudioSrcId, string a_strAudioID, bool a_bIsLoop, float a_fVolume,
             AUDIO_SRC_TYPES a_AudSrcType, System.Action a_actionOnComplete = null)
         {
-            AudioData l_AudData = s_Instance.getAudDataWithID(a_strAudioID);
+            AudioData l_AudData = GetAudDataWithID(a_strAudioID);
             if (l_AudData == null)
             {
                 Debug.LogError("SoundManager::PlayAudio:: Cannot Play Audio Data with id : '"+ a_strAudioID + "'");
                 return;
             }
 
-            ManagedAudioSource l_ManagedAudSrc = s_Instance.getCurrentlyPlayingAudSrc(a_strAudioSrcId);
+            PooledAudioSource l_ManagedAudSrc = s_Instance.getCurrentlyPlayingAudSrc(a_strAudioSrcId);
             if (l_ManagedAudSrc == null)
             {
                 l_ManagedAudSrc = s_Instance.m_AudioSrcPool.getObject();
@@ -158,7 +179,7 @@ namespace ns_Mashmo
                 return;
             }
 
-            ManagedAudioSource l_ManagedAudSrc = s_Instance.getCurrentlyPlayingAudSrc(m_strAudioSrcId);
+            PooledAudioSource l_ManagedAudSrc = s_Instance.getCurrentlyPlayingAudSrc(m_strAudioSrcId);
             if (l_ManagedAudSrc == null)
             {
                 Debug.Log("Soundmanager::StopAudioSrcWithID:: Cannot find audio source with ID: '" + m_strAudioSrcId + "'");
@@ -171,7 +192,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Returns current active audio src to pool
         /// </summary>
-        public static void ReturnAudSrcToPool(ManagedAudioSource a_AudSrc)
+        public static void ReturnAudSrcToPool(PooledAudioSource a_AudSrc)
         {
             a_AudSrc.stop();
             s_Instance.m_AudioSrcPool.returnToPool(a_AudSrc);
@@ -182,12 +203,12 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAudSrcId"></param>
         /// <returns></returns>
-        private ManagedAudioSource getCurrentlyPlayingAudSrc(string a_strAudSrcId)
+        private PooledAudioSource getCurrentlyPlayingAudSrc(string a_strAudSrcId)
         {
             int l_iCurrentlyPlayingCount = s_Instance.m_AudioSrcPool.getActiveList().Count;
             for (int l_iCurrentIndex = 0; l_iCurrentIndex < l_iCurrentlyPlayingCount; l_iCurrentIndex++)
             {
-                ManagedAudioSource l_CurrentManagedAudSrc = s_Instance.m_AudioSrcPool.getActiveList()[l_iCurrentIndex];
+                PooledAudioSource l_CurrentManagedAudSrc = s_Instance.m_AudioSrcPool.getActiveList()[l_iCurrentIndex];
                 if (l_CurrentManagedAudSrc.AudioSrcID.Equals(a_strAudSrcId))
                 {
                     return l_CurrentManagedAudSrc;
@@ -201,12 +222,12 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAudioID"></param>
         /// <returns></returns>
-        private AudioData getAudDataWithID(string a_strAudioID)
+        public static AudioData GetAudDataWithID(string a_strAudioID)
         {
-            int l_iAudDataCount = m_lstAudioData.Count;
+            int l_iAudDataCount = s_Instance.m_lstAudioData.Count;
             for (int l_iAudDataIndex = 0; l_iAudDataIndex < l_iAudDataCount; l_iAudDataIndex++)
             {
-                AudioData l_CurrentAudData = m_lstAudioData[l_iAudDataIndex];
+                AudioData l_CurrentAudData = s_Instance.m_lstAudioData[l_iAudDataIndex];
                 if (l_CurrentAudData.AudioID.Equals(a_strAudioID))
                 {
                     return l_CurrentAudData;
@@ -225,7 +246,7 @@ namespace ns_Mashmo
             int l_iActiveSrcCount = m_AudioSrcPool.getActiveList().Count;
             for (int l_iCurrentindex = 0; l_iCurrentindex < l_iActiveSrcCount; l_iCurrentindex++)
             {
-                ManagedAudioSource l_CurrentManagedAudSrc = m_AudioSrcPool.getActiveList()[l_iCurrentindex];
+                PooledAudioSource l_CurrentManagedAudSrc = m_AudioSrcPool.getActiveList()[l_iCurrentindex];
 
                 if (l_CurrentManagedAudSrc.AudSrcType == a_AudSrcType)
                 {
