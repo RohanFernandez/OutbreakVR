@@ -351,7 +351,7 @@ namespace ns_Mashmo
             if (WeaponManager.CanCurrentWeaponBeReloaded())
             {
                 if (
-                    (l_fDotFacingDown > 0.6)
+                    (l_fDotFacingDown > 0.85f)
                 )
                 {
                     CurrentReloadWaitTime += Time.deltaTime;

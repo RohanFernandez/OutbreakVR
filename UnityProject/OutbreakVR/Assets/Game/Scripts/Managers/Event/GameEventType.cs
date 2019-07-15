@@ -21,6 +21,7 @@ namespace ns_Mashmo
         ON_WEAPON_FIRED,                            /* <WEAPON_TYPE>*/
         ON_BULLETS_ADDED,                           /* <>*/
         ON_AUDIO_MODE_TOGGLED,                      /* <AUDIO_SRC_TYPES,BOOL> */
+        ON_PLAYER_KILLED,                           /* */
     }
 
     public static class GameEventTypeConst
@@ -101,5 +102,8 @@ namespace ns_Mashmo
         public const string ID_AUDIO_SRC_TYPE = "ID_AUDIO_SRC_TYPE";                            /* AUDIO_SRC_TYPE */
         public const string ID_IS_AUDIO_MODE_ACTIVATED = "ID_IS_AUDIO_MODE_ACTIVATED";          /* BOOL */
         #endregion ON_AUDIO_MODE_TOGGLED
+
+        #region ON_PLAYER_KILLED
+        #endregion ON_PLAYER_KILLED
     }
 }

@@ -22,7 +22,6 @@ namespace ns_Mashmo
         /// <summary>
         /// Is the enemy active to attack
         /// </summary>
-        [SerializeField]
         protected bool m_bIsActivated = false;
 
         /// <summary>
@@ -36,6 +35,9 @@ namespace ns_Mashmo
 
         [SerializeField]
         protected int m_iCurrentLifeCounter = 100;
+
+        [SerializeField]
+        protected float m_fWaitTimeAfterKilled = 2.0f;
 
         /// <summary>
         /// Returns the tyoe of the enemy
@@ -133,9 +135,30 @@ namespace ns_Mashmo
         /// <summary>
         /// called on killed fire event 
         /// </summary>
-        public void onKilled()
+        protected virtual void onKilled()
         {
             EnemyManager.OnEnemyKilled(this);
+            StartCoroutine(startEnemyDeactivateAfterTimer());
         }
+
+        /// <summary>
+        /// Waits for time and then deactivates and returns enemy back to pool
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator startEnemyDeactivateAfterTimer()
+        {
+            yield return new WaitForSeconds(m_fWaitTimeAfterKilled);
+            EnemyManager.ReturnActiveEnemyToPool(m_EnemyType, m_strEnemyID);
+        }
+
+        #region ATTACK CALLBACK
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void onStrikeAttack() { }
+
+        #endregion ATTACK CALLBACK
     }
+
 }

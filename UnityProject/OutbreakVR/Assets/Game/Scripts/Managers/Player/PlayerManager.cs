@@ -32,6 +32,17 @@ namespace ns_Mashmo
             get { return s_Instance.m_PlayerState; }
         }
 
+        [SerializeField]
+        private int m_iLifeMeter = 100;
+        public int LifeMeter
+        {
+            get { return m_iLifeMeter; }
+            set {
+                m_iLifeMeter = (m_iLifeMeter <= 0 ||
+                    value <= 0) ? 0 : value;
+            }
+        }
+
         /// <summary>
         /// Sets singleton instance
         /// </summary>
@@ -104,6 +115,32 @@ namespace ns_Mashmo
             l_EventHash.Add(GameEventTypeConst.ID_OLD_PLAYER_STATE, l_OldPlayerState);
             l_EventHash.Add(GameEventTypeConst.ID_NEW_PLAYER_STATE, a_PlayerState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, l_EventHash);
+        }
+
+        /// <summary>
+        /// Enemy inflicting damage on the player
+        /// </summary>
+        /// <param name="a_iDamage"></param>
+        public static void InflictDamage(int a_iDamage)
+        {
+            int l_iDamageBefore = s_Instance.LifeMeter;
+            s_Instance.LifeMeter -= a_iDamage;
+
+            if (l_iDamageBefore > 0 &&
+                s_Instance.LifeMeter <= 0)
+            {
+                s_Instance.playerKilled();
+            }
+        }
+
+        /// <summary>
+        /// Called when player is killed
+        /// </summary>
+        private void playerKilled()
+        {
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
+            Debug.LogError("playerKilled!!!!!!!!!!!!!!!!!!");
         }
     }
 }

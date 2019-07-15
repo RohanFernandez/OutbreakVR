@@ -218,8 +218,6 @@ namespace ns_Mashmo
         /// <param name="a_EnemyBase"></param>
         public static void OnEnemyKilled(EnemyBase a_EnemyBase)
         {
-            ReturnActiveEnemyToPool(a_EnemyBase.getEnemyType(), a_EnemyBase.getID());
-
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, ENEMY_OBJECTIVE_ID);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
