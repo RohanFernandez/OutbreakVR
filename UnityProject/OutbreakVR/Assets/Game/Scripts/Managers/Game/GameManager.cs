@@ -107,10 +107,10 @@ namespace ns_Mashmo
         /// </summary>
         public static void LoadScene(string a_strSceneName, System.Action a_actionOnLoadComplete = null)
         {
-            //Show load panel
+            UI_LoadingPanel.Show();
             SystemManager.LoadScene(a_strSceneName,
                 a_actionOnLoadComplete += () => {
-                    /// Add action of hiding loading panel
+                    UI_LoadingPanel.Hide();
                 } );
         }
 
