@@ -9,10 +9,9 @@ namespace ns_Mashmo
         /// <summary>
         /// On level option selected set go to state
         /// </summary>
-        public void onLevelOptionSelected(string a_strLevelName)
+        public void onLevelOptionSelected(string a_strGameStateName)
         {
-            GameManager.SetGameLevel(a_strLevelName);
-            GameStateMachine.Transition(a_strLevelName);
+            GameManager.SetGameState(a_strGameStateName);
         }
     }
 }

@@ -32,14 +32,29 @@ namespace ns_Mashmo
             get { return s_Instance.m_PlayerState; }
         }
 
+        /// <summary>
+        /// Max player life
+        /// </summary>
+        private const int MAX_PLAYER_LIFE_METER = 100;
+
         [SerializeField]
         private int m_iLifeMeter = 100;
         public int LifeMeter
         {
             get { return m_iLifeMeter; }
             set {
-                m_iLifeMeter = (m_iLifeMeter <= 0 ||
-                    value <= 0) ? 0 : value;
+                if(value <= 0)
+                {
+                    m_iLifeMeter = 0;
+                }
+                else if (value >= MAX_PLAYER_LIFE_METER)
+                {
+                    m_iLifeMeter = MAX_PLAYER_LIFE_METER;
+                }
+                else
+                {
+                    m_iLifeMeter = value;
+                }
             }
         }
 
@@ -140,7 +155,6 @@ namespace ns_Mashmo
         {
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
-            Debug.LogError("playerKilled!!!!!!!!!!!!!!!!!!");
         }
     }
 }

@@ -40,16 +40,6 @@ namespace ns_Mashmo
             //{
             //    WeaponManager.SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.MELEE, WEAPON_TYPE.CHAINSAW);
             //}
-
-            if (Input.GetKeyUp(KeyCode.O))
-            {
-                triggerObjective(m_strObjectiveTrigger);
-            }
-
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                GameManager.GoToHomeOnEnd();
-            }
         }
     }
 }

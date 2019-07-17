@@ -21,6 +21,20 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private string m_strCurrentLevel = string.Empty;
+        public static string CurrentLevel
+        {
+            get { return s_Instance.m_strCurrentLevel; }
+        }
+
+        /// <summary>
+        /// Current In game state
+        /// </summary>
+        [SerializeField]
+        private string m_strInGameState = string.Empty;
+        public static string InGameState
+        {
+            get { return s_Instance.m_strInGameState; }
+        }
 
         /// <summary>
         /// Is the game pause currently
@@ -32,13 +46,25 @@ namespace ns_Mashmo
         /// Sets the current level as arguement as fires an event if the old event is not the new
         /// </summary>
         /// <param name="a_LevelType"></param>
-        public static void SetGameLevel(string a_strLevelType)
+        private void setGameLevel(string a_strLevelType)
         {
-            Debug.Log("<color=BLUE>GameManager::SetGameLevel::</color> Setting level type '" + a_strLevelType + "'");
+            Debug.Log("<color=BLUE>GameManager::setGameLevel::</color> Setting level type '" + a_strLevelType + "'");
             s_Instance.m_strCurrentLevel = a_strLevelType;
             EventHash l_Hashtable = EventManager.GetEventHashtable();
             l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
+        }
+
+        /// <summary>
+        /// Sets game state to play
+        /// </summary>
+        public static void SetGameState(string a_strGameState)
+        {
+            s_Instance.m_strInGameState = a_strGameState;
+            string[] l_strarr = a_strGameState.Split('_');
+
+            s_Instance.setGameLevel(l_strarr[0]);
+            GameStateMachine.Transition(s_Instance.m_strCurrentLevel);
         }
 
         /// <summary>
@@ -64,13 +90,14 @@ namespace ns_Mashmo
                 return;
             }
             base.destroy();
+
             s_Instance = null;
         }
 
-        public static void StartCoroutineExecution(IEnumerator a_Enumerator)
-        {
-            s_Instance.StartCoroutine(a_Enumerator);
-        }
+        //public static void StartCoroutineExecution(IEnumerator a_Enumerator)
+        //{
+        //    s_Instance.StartCoroutine(a_Enumerator);
+        //}
 
         /// <summary>
         /// Displays the load panel
@@ -85,18 +112,6 @@ namespace ns_Mashmo
                 a_actionOnLoadComplete += () => {
                     /// Add action of hiding loading panel
                 } );
-        }
-
-        /// <summary>
-        /// Goes to the home scene
-        /// </summary>
-        public static void GoToHomeOnEnd()
-        {
-            PauseGame(false);
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
-
-            GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
         }
 
         /// <summary>
@@ -115,6 +130,52 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
+        }
+
+        /// <summary>
+        /// Returns all reusable
+        /// </summary>
+        private static void ReturnAllReusables()
+        {
+            EnemyManager.ReturnAllToPool();
+            ItemDropManager.ReturnAllToPool();
+        }
+
+        /// <summary>
+        /// Callback called on level restarted
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public static void RestartLevel()
+        {
+            PauseGame(false);
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
+
+            GameStateMachine.Transition(GameStateMachine.GetCurrentState());
+        }
+
+        /// <summary>
+        /// Goes to the home scene
+        /// </summary>
+        public static void GoToHome()
+        {
+            PauseGame(false);
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
+
+            GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.H))
+            {
+                GoToHome();
+            }
+            else if (Input.GetKeyUp(KeyCode.J))
+            {
+                RestartLevel();
+            }
         }
     }
 }
