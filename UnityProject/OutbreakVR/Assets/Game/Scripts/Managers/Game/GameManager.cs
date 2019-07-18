@@ -41,6 +41,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private bool m_bIsGamePaused = false;
+        public static bool IsGamePaused
+        {
+            get { return s_Instance.m_bIsGamePaused; }
+        }
 
         /// <summary>
         /// Sets the current level as arguement as fires an event if the old event is not the new
@@ -62,9 +66,13 @@ namespace ns_Mashmo
         {
             s_Instance.m_strInGameState = a_strGameState;
             string[] l_strarr = a_strGameState.Split('_');
-
             s_Instance.setGameLevel(l_strarr[0]);
+
             GameStateMachine.Transition(s_Instance.m_strCurrentLevel);
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, a_strGameState);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
+
         }
 
         /// <summary>
@@ -77,6 +85,8 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+
             base.initialize();
         }
 
@@ -89,8 +99,9 @@ namespace ns_Mashmo
             {
                 return;
             }
-            base.destroy();
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
 
+            base.destroy();
             s_Instance = null;
         }
 
@@ -130,6 +141,15 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
+
+            if (s_Instance.m_bIsGamePaused)
+            {
+                UI_PausePanel.Show();
+            }
+            else
+            {
+                UI_PausePanel.Hide();
+            }
         }
 
         /// <summary>
@@ -147,7 +167,6 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         public static void RestartLevel()
         {
-            PauseGame(false);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
@@ -159,15 +178,27 @@ namespace ns_Mashmo
         /// </summary>
         public static void GoToHome()
         {
-            PauseGame(false);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
             GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
         }
 
+        /// <summary>
+        /// Callback called on gameplay ended
+        /// Hide pause panel
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onGameplayEnded(EventHash a_EventHash)
+        {
+            PauseGame(false);
+            PlayerManager.SetPlayerState(PLAYER_STATE.NO_INTERACTION);
+        }
+
         private void Update()
         {
+            /// TODO:: Testing INput
+            #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.H))
             {
                 GoToHome();
@@ -176,6 +207,7 @@ namespace ns_Mashmo
             {
                 RestartLevel();
             }
+            #endif
         }
     }
 }

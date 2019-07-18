@@ -32,6 +32,12 @@ namespace ns_Mashmo
             get { return s_Instance.m_PlayerState; }
         }
 
+        private PLAYER_STATE m_LastPlayerState = PLAYER_STATE.NO_INTERACTION;
+        public static PLAYER_STATE LastPlayerState
+        {
+            get { return s_Instance.m_LastPlayerState; }
+        }
+
         /// <summary>
         /// Max player life
         /// </summary>
@@ -70,6 +76,8 @@ namespace ns_Mashmo
             s_Instance = this;
             m_PlayerController.initialize();
             SetPlayerState(m_PlayerState, true );
+
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
         }
 
         /// <summary>
@@ -81,6 +89,8 @@ namespace ns_Mashmo
             {
                 return;
             }
+
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             m_PlayerController.destroy();
             s_Instance = null;
         }
@@ -124,6 +134,7 @@ namespace ns_Mashmo
                 return;
             }
             PLAYER_STATE l_OldPlayerState = s_Instance.m_PlayerState;
+            s_Instance.m_LastPlayerState = l_OldPlayerState;
             s_Instance.m_PlayerState = a_PlayerState;
 
             EventHash l_EventHash = EventManager.GetEventHashtable();
@@ -155,6 +166,23 @@ namespace ns_Mashmo
         {
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
+        }
+
+        /// <summary>
+        /// event called on game is paused / unpaused
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        public void onGamePauseToggled(EventHash a_EventHash)
+        {
+            bool a_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
+            if (a_bIsGamePaused)
+            {
+                SetPlayerState(PLAYER_STATE.MENU_SELECTION);
+            }
+            else
+            {
+                SetPlayerState(LastPlayerState);
+            }
         }
     }
 }

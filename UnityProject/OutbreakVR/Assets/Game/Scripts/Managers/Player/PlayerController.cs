@@ -183,6 +183,7 @@ namespace ns_Mashmo
             manageMovement();
             managerSwipeInteraction();
             manageWeaponAttack();
+            manageInGamePause();
         }
 
         /// <summary>
@@ -372,6 +373,21 @@ namespace ns_Mashmo
             else
             {
                 CurrentReloadWaitTime = 0.0f;
+            }
+        }
+
+        /// <summary>
+        /// Manages back button pressed while in game
+        /// </summary>
+        private void manageInGamePause()
+        {
+            if (
+#if UNITY_EDITOR
+                Input.GetKeyUp(KeyCode.P) ||
+#endif
+                ControllerManager.IsBackBtnUp())
+            {
+                GameManager.PauseGame(true);
             }
         }
 

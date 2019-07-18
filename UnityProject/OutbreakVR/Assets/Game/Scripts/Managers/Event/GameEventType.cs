@@ -22,6 +22,7 @@ namespace ns_Mashmo
         ON_BULLETS_ADDED,                           /* <>*/
         ON_AUDIO_MODE_TOGGLED,                      /* <AUDIO_SRC_TYPES,BOOL> */
         ON_PLAYER_KILLED,                           /* */
+        ON_GAMEPLAY_BEGIN,                          /* <STRING>*/
     }
 
     public static class GameEventTypeConst
@@ -105,5 +106,9 @@ namespace ns_Mashmo
 
         #region ON_PLAYER_KILLED
         #endregion ON_PLAYER_KILLED
+
+        #region ON_GAMEPLAY_BEGIN
+        public const string ID_GAME_STATE_ID = "ID_GAME_STATE_ID";                            /* STRING */
+        #endregion ON_GAMEPLAY_BEGIN
     }
 }

@@ -8,7 +8,8 @@ namespace ns_Mashmo
     {
         public override void onStateEnter(string a_strNewState)
         {
-            base.onStateEnter(a_strNewState);   
+            base.onStateEnter(a_strNewState);
+            PlayerManager.SetPlayerState(PLAYER_STATE.MENU_SELECTION);
         }
 
         public override string getSceneName
