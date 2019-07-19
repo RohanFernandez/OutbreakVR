@@ -42,7 +42,7 @@ namespace ns_Mashmo
         /// returns if the transition was successful
         /// </summary>
         /// <param name="a_strNewState"></param>
-        public static bool Transition(string a_strNewState)
+        public static bool Transition(string a_strNewState, bool a_bIsStateLoad = false)
         {
             if (string.IsNullOrEmpty(a_strNewState))
             {
@@ -50,16 +50,17 @@ namespace ns_Mashmo
                 return false;
             }
 
-            return s_Instance.transition(a_strNewState);
+            return s_Instance.transition(a_strNewState, a_bIsStateLoad);
         }
 
-        protected override void onStateChanged(string a_strOldStateID, string a_strNewStateID)
+        protected override void onStateChanged(string a_strOldStateID, string a_strNewStateID, bool a_bIsStateLoad)
         {
-            base.onStateChanged(a_strOldStateID, a_strNewStateID);
+            base.onStateChanged(a_strOldStateID, a_strNewStateID, a_bIsStateLoad);
 
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, a_strOldStateID);
             l_hash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, a_strNewStateID);
+            l_hash.Add(GameEventTypeConst.ID_IS_STATE_LOAD, a_bIsStateLoad);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, l_hash);
         }
     }

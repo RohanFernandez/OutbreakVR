@@ -25,7 +25,8 @@ namespace ns_Mashmo
 
         public string m_CurrentWeaponCategory = string.Empty;
 
-        public int m_iLifeCounter = 0;
+        public int m_iPlayerHealth = 0;
+        public int m_iPlayerHealthOnCurrentLevelStart = 100;
 
         public string m_strCurrentLevel = string.Empty;
     }

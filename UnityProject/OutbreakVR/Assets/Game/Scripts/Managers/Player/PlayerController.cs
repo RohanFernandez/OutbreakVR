@@ -18,6 +18,12 @@ namespace ns_Mashmo
         private CharacterController m_CharacterController = null;
 
         /// <summary>
+        /// The pointer to controll the crosshair/ UI pointer
+        /// </summary>
+        [SerializeField]
+        private CustomPointer m_CustomPointer = null;
+
+        /// <summary>
         /// Player camera transform
         /// </summary>
         [SerializeField]
@@ -409,6 +415,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(true);
                         WeaponManager.IsWeaponActive = true;
                         UI_PlayerHelmet.Show();
+                        m_CustomPointer.setPointerAsCrosshair(true);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_MOVEMENT:
@@ -417,6 +424,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(true);
                         WeaponManager.IsWeaponActive = true;
                         UI_PlayerHelmet.Show();
+                        m_CustomPointer.setPointerAsCrosshair(true);
                         break;
                     }
                 case PLAYER_STATE.MENU_SELECTION:
@@ -425,6 +433,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(true);
                         WeaponManager.IsWeaponActive = false;
                         UI_PlayerHelmet.Hide();
+                        m_CustomPointer.setPointerAsCrosshair(false);
                         break;
                     }
                 case PLAYER_STATE.NO_INTERACTION:

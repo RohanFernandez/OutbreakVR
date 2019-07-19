@@ -9,8 +9,10 @@ namespace ns_Mashmo
         #region ATTRIBUTE_KEY
         private const string ATTRIBUTE_CODE = "Code";
         private const string ATTRIBUTE_PLAYER_STATE = "PlayerState";
+        private const string ATTRIBUTE_PLAYER_HEALTH = "PlayerHealth";
 
         private const string ATTRIBUTE_VALUE_CODE_PLAYER_STATE = "SetPlayerState";
+        private const string ATTRIBUTE_VALUE_CODE_PLAYER_HEALTH = "SetPlayerHealth";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -18,22 +20,10 @@ namespace ns_Mashmo
         /// </summary>
         private string m_strCode = string.Empty;
 
-        /// <summary>
-        /// The player state to change to
-        /// </summary>
-        private PLAYER_STATE m_PlayerState;
-
         public override void onInitialize()
         {
             base.onInitialize();
             m_strCode = getString(ATTRIBUTE_CODE);
-
-            //parse player state
-            string l_strPlayerState = getString(ATTRIBUTE_PLAYER_STATE);
-            if (!string.IsNullOrEmpty(l_strPlayerState))
-            {
-                m_PlayerState = (PLAYER_STATE)System.Enum.Parse(typeof(PLAYER_STATE), l_strPlayerState);
-            }
         }
 
         public override void onExecute()
@@ -44,7 +34,20 @@ namespace ns_Mashmo
             {
                 case ATTRIBUTE_VALUE_CODE_PLAYER_STATE:
                     {
-                        PlayerManager.SetPlayerState(m_PlayerState);
+                        //parse player state
+                        string l_strPlayerState = getString(ATTRIBUTE_PLAYER_STATE);
+                        if (!string.IsNullOrEmpty(l_strPlayerState))
+                        {
+                            PLAYER_STATE l_PlayerState = (PLAYER_STATE)System.Enum.Parse(typeof(PLAYER_STATE), l_strPlayerState);
+                            PlayerManager.SetPlayerState(l_PlayerState);
+                        }
+                        
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_PLAYER_HEALTH:
+                    {
+                        PlayerManager.HealthMeter = getInt(ATTRIBUTE_PLAYER_HEALTH);
+
                         break;
                     }
                 default:

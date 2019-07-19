@@ -11,6 +11,8 @@ namespace ns_Mashmo
         /// </summary>
         private static UI_PlayerHelmet s_Instance = null;
 
+        #region WEAPON
+
         /// <summary>
         /// The current weapon type text
         /// </summary>
@@ -41,11 +43,30 @@ namespace ns_Mashmo
         [SerializeField]
         private GameObject m_goBulletPanelParent = null;
 
+        #endregion WEAPON
+
+        #region RELOAD
+
         /// <summary>
         /// The panel that holds all the components of the reload progress panel
         /// </summary>
         [SerializeField]
         private GameObject m_goReloadProgressPanel = null;
+
+        #endregion RELOAD
+
+        #region HEALTH
+
+        /// <summary>
+        /// The panel that displays the player health
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goHealthPanel = null;
+
+        [SerializeField]
+        private TMPro.TMP_Text m_txtPlayerHealth = null;
+
+        #endregion HEALTH
 
         /// <summary>
         /// initializes, sets singleton to this
@@ -62,7 +83,8 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
-            
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
+
             updateWeaponInterface();
         }
 
@@ -79,6 +101,8 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
+            
             s_Instance = null;
         }
 
@@ -174,6 +198,15 @@ namespace ns_Mashmo
         public static void UpdateReloadProgressBar(float a_fReloadTimeElapsed, float a_fCurrentWeaponReloadTime)
         {
             
+        }
+
+        /// <summary>
+        /// Callback called on player health is updated
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onPlayerHealthUpdated(EventHash a_EventHash)
+        {
+            m_txtPlayerHealth.text = a_EventHash[GameEventTypeConst.ID_PLAYER_HEALTH].ToString();
         }
     }
 }

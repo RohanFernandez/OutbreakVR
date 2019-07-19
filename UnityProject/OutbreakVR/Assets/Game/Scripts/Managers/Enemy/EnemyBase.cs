@@ -40,6 +40,11 @@ namespace ns_Mashmo
         protected float m_fWaitTimeAfterKilled = 2.0f;
 
         /// <summary>
+        /// Coroutine that is called to wait for time after killed and then deactivate
+        /// </summary>
+        private Coroutine m_coDeactiveOnKilled = null;
+
+        /// <summary>
         /// Returns the tyoe of the enemy
         /// </summary>
         /// <returns></returns>
@@ -78,6 +83,10 @@ namespace ns_Mashmo
         public virtual void onReturnedToPool()
         {
             deactivateEnemy();
+            if (m_coDeactiveOnKilled != null)
+            {
+                StopCoroutine(m_coDeactiveOnKilled);
+            }
         }
 
         public virtual void onRetrievedFromPool()
@@ -138,7 +147,7 @@ namespace ns_Mashmo
         protected virtual void onKilled()
         {
             EnemyManager.OnEnemyKilled(this);
-            StartCoroutine(startEnemyDeactivateAfterTimer());
+            m_coDeactiveOnKilled = StartCoroutine(startEnemyDeactivateAfterTimer());
         }
 
         /// <summary>
@@ -149,6 +158,7 @@ namespace ns_Mashmo
         {
             yield return new WaitForSeconds(m_fWaitTimeAfterKilled);
             EnemyManager.ReturnActiveEnemyToPool(m_EnemyType, m_strEnemyID);
+            m_coDeactiveOnKilled = null;
         }
 
         #region ATTACK CALLBACK

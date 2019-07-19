@@ -23,6 +23,7 @@ namespace ns_Mashmo
         ON_AUDIO_MODE_TOGGLED,                      /* <AUDIO_SRC_TYPES,BOOL> */
         ON_PLAYER_KILLED,                           /* */
         ON_GAMEPLAY_BEGIN,                          /* <STRING>*/
+        ON_PLAYER_HEALTH_UPDATED                    /* <INT>*/
     }
 
     public static class GameEventTypeConst
@@ -37,6 +38,7 @@ namespace ns_Mashmo
         #region ON_GAME_STATE_CHANGED
         public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
         public const string ID_NEW_GAME_STATE = "ID_NEW_GAME_STATE";     /* STRING */
+        public const string ID_IS_STATE_LOAD = "ID_IS_STATE_LOAD";     /* BOOL */
         #endregion ON_GAME_STATE_CHANGED
 
         #region ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED
@@ -110,5 +112,9 @@ namespace ns_Mashmo
         #region ON_GAMEPLAY_BEGIN
         public const string ID_GAME_STATE_ID = "ID_GAME_STATE_ID";                            /* STRING */
         #endregion ON_GAMEPLAY_BEGIN
+
+        #region ON_PLAYER_HEALTH_UPDATED
+        public const string ID_PLAYER_HEALTH = "ID_PLAYER_HEALTH";                            /* INT */
+        #endregion ON_PLAYER_HEALTH_UPDATED
     }
 }

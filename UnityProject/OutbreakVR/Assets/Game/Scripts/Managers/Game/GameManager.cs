@@ -62,7 +62,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Sets game state to play
         /// </summary>
-        public static void SetGameState(string a_strGameState)
+        public static void SetGamePlayState(string a_strGameState)
         {
             s_Instance.m_strInGameState = a_strGameState;
             string[] l_strarr = a_strGameState.Split('_');
@@ -104,11 +104,6 @@ namespace ns_Mashmo
             base.destroy();
             s_Instance = null;
         }
-
-        //public static void StartCoroutineExecution(IEnumerator a_Enumerator)
-        //{
-        //    s_Instance.StartCoroutine(a_Enumerator);
-        //}
 
         /// <summary>
         /// Displays the load panel

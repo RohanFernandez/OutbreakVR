@@ -41,26 +41,30 @@ namespace ns_Mashmo
         /// <summary>
         /// Max player life
         /// </summary>
-        private const int MAX_PLAYER_LIFE_METER = 100;
+        private const int MAX_PLAYER_HEALTH = 100;
 
         [SerializeField]
-        private int m_iLifeMeter = 100;
-        public int LifeMeter
+        private int m_iHealthMeter = 100;
+        public static int HealthMeter
         {
-            get { return m_iLifeMeter; }
+            get { return s_Instance.m_iHealthMeter; }
             set {
                 if(value <= 0)
                 {
-                    m_iLifeMeter = 0;
+                    s_Instance.m_iHealthMeter = 0;
                 }
-                else if (value >= MAX_PLAYER_LIFE_METER)
+                else if (value >= MAX_PLAYER_HEALTH)
                 {
-                    m_iLifeMeter = MAX_PLAYER_LIFE_METER;
+                    s_Instance.m_iHealthMeter = MAX_PLAYER_HEALTH;
                 }
                 else
                 {
-                    m_iLifeMeter = value;
+                    s_Instance.m_iHealthMeter = value;
                 }
+
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_PLAYER_HEALTH, s_Instance.m_iHealthMeter);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, l_EventHash);
             }
         }
 
@@ -149,11 +153,11 @@ namespace ns_Mashmo
         /// <param name="a_iDamage"></param>
         public static void InflictDamage(int a_iDamage)
         {
-            int l_iDamageBefore = s_Instance.LifeMeter;
-            s_Instance.LifeMeter -= a_iDamage;
+            int l_iDamageBefore = HealthMeter;
+            HealthMeter -= a_iDamage;
 
             if (l_iDamageBefore > 0 &&
-                s_Instance.LifeMeter <= 0)
+                HealthMeter <= 0)
             {
                 s_Instance.playerKilled();
             }
@@ -164,8 +168,11 @@ namespace ns_Mashmo
         /// </summary>
         private void playerKilled()
         {
+            SetPlayerState(PLAYER_STATE.NO_INTERACTION);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
+
+            UI_ScreenFader.Show();
         }
 
         /// <summary>

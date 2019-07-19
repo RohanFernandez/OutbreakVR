@@ -55,9 +55,14 @@ namespace ns_Mashmo
         private const string TASK_POSTFIX_ON_BEGIN = "_OnBegin";
 
         /// <summary>
-        /// Prefix of task name "statename" + TASK_POSTFIX_ON_END to execute on state end
+        /// Postfix of task name "statename" + TASK_POSTFIX_ON_END to execute on state end
         /// </summary>
         private const string TASK_POSTFIX_ON_END = "_OnEnd";
+
+        /// <summary>
+        /// Postfix of task name "statename" + TASK_POSTFIX_ON_STATE_LOAD to execute on state begins to load.
+        /// </summary>
+        private const string TASK_POSTFIX_ON_STATE_LOAD = "_OnStateLoad";
 
         /// <summary>
         /// List of all currently running sequences
@@ -281,8 +286,14 @@ namespace ns_Mashmo
         {
             string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
             string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+            bool l_bIsStateLoad = (bool)a_Hashtable[GameEventTypeConst.ID_IS_STATE_LOAD];
 
             ExecuteSequence(l_strOldStateId + TASK_POSTFIX_ON_END);
+            if(l_bIsStateLoad)
+            {
+                /// Loads state specific task. To be called if loading a state directly
+                ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_STATE_LOAD);
+            }
             ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_BEGIN);
         }
 

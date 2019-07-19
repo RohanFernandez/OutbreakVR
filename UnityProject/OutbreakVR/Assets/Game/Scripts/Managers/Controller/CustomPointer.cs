@@ -9,7 +9,6 @@ namespace ns_Mashmo
         /// <summary>
         /// Is target hit with the cursor
         /// </summary>
-        [SerializeField]
         private bool m_bIsTargetHit = false;
 
         /// <summary>
@@ -17,6 +16,18 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private GameObject m_HeadsetCursor = null;
+
+        /// <summary>
+        /// The mesh renderer UI
+        /// </summary>
+        [SerializeField]
+        private MeshRenderer m_meshrendUICursor = null;
+
+        /// <summary>
+        /// The crosshair sprite renderer
+        /// </summary>
+        [SerializeField]
+        private SpriteRenderer m_spriterendCrosshair = null;
 
         /// <summary>
         /// The laser pointer
@@ -84,6 +95,16 @@ namespace ns_Mashmo
                 m_HeadsetCursor.SetActive(true);
                 m_HeadsetCursor.transform.position = m_v3LaserEndPosition;
             }
+        }
+
+        /// <summary>
+        /// If true enables the crosshair sprite renderer and disables the pointer mesh renderer
+        /// </summary>
+        /// <param name="a_bIsCrossHair"></param>
+        public void setPointerAsCrosshair(bool a_bIsCrossHair)
+        {
+            m_meshrendUICursor.enabled = !a_bIsCrossHair;
+            m_spriterendCrosshair.enabled = a_bIsCrossHair;
         }
     }
 }

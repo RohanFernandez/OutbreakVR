@@ -11,7 +11,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onLevelOptionSelected(string a_strGameStateName)
         {
-            GameManager.SetGameState(a_strGameStateName);
+            GameManager.SetGamePlayState(a_strGameStateName);
         }
     }
 }

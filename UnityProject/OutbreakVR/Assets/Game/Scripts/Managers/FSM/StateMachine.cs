@@ -33,7 +33,7 @@ namespace ns_Mashmo
         /// Fires an event on state changed
         /// </summary>
         /// <param name="a_strNewState"></param>
-        public bool transition(string a_strNewState)
+        public bool transition(string a_strNewState, bool a_bIsStateLoad = false)
         {
             string l_strOldStateId = m_strCurrentState;
             string l_strNewStateId = a_strNewState;
@@ -57,7 +57,7 @@ namespace ns_Mashmo
                 l_NewManagedState.onStateEnter(l_strOldStateId);
             }
 
-            onStateChanged(l_strOldStateId, l_strNewStateId);
+            onStateChanged(l_strOldStateId, l_strNewStateId, a_bIsStateLoad);
             return true;
         }
 
@@ -66,7 +66,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strOldStateID"></param>
         /// <param name="a_strNewStateID"></param>
-        protected virtual void onStateChanged(string a_strOldStateID, string a_strNewStateID)
+        protected virtual void onStateChanged(string a_strOldStateID, string a_strNewStateID, bool a_bIsStateLoad)
         {
 
         }
