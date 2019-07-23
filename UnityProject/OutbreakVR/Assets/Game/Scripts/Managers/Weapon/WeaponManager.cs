@@ -103,6 +103,8 @@ namespace ns_Mashmo
                 {
                     s_Instance.disableAllWeapons();
                 }
+
+                s_Instance.setRayTransformParent();
             }
         }
 
@@ -140,6 +142,9 @@ namespace ns_Mashmo
                     l_FoundWeaponCategory.addWeaponTypeToCategory(l_CurrentWeaponBase.m_WeaponType);
                 }
             }
+
+            SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.MELEE, WEAPON_TYPE.UNARMED);
+
             disableAllWeapons();
             onControllerChanged(null);
         }
@@ -281,6 +286,8 @@ namespace ns_Mashmo
                 l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_TYPE, a_oldWeaponType);
                 l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_BASE, l_goOldWeapon);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, l_hash);
+
+                setRayTransformParent();
             }
         }
 
@@ -652,6 +659,23 @@ namespace ns_Mashmo
                     l_HitEnemyBase.inflictDamage(a_GunWeaponBase.DamagePerBullet);
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the pointer ray transform start to start at the local origin of the a_transParent
+        /// Is set as the child of the current active weapon if the weapon is on
+        /// Sets it as the child of the weapon holder if the weapon is off
+        /// resets the position and rotation
+        /// </summary>
+        private void setRayTransformParent()
+        {
+            Transform l_transRayPointer = ControllerManager.RayTransform;
+            
+            Transform l_transNewParent = IsWeaponActive ? GetCurrentWeaponBase().transform : m_WeaponHolder;
+
+            l_transRayPointer.SetParent(l_transNewParent);
+            l_transRayPointer.localPosition = Vector3.zero;
+            l_transRayPointer.localRotation = Quaternion.identity;
         }
     }
 }

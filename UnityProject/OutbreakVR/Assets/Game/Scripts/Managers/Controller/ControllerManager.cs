@@ -64,7 +64,6 @@ namespace ns_Mashmo
             {
                 return;
             }
-
             OVRManager.HMDMounted -= onHMDFound;
             OVRManager.HMDUnmounted -= onHMDLost;
             s_Instance = null;
@@ -87,7 +86,6 @@ namespace ns_Mashmo
             m_CurrentControllerType = a_NewControllerType;
             m_CurrentControllerAnchor = a_NewControllerAnchor;
 
-            m_OVRInputModule.rayTransform = m_CurrentControllerAnchor.transform;
             m_Pointer.transform.SetParent(m_CurrentControllerAnchor.transform);
             m_Pointer.transform.localPosition = Vector3.zero;
             m_Pointer.transform.localRotation = Quaternion.identity;
@@ -430,6 +428,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private GameObject m_Pointer = null;
+        public static Transform RayTransform
+        {
+            get { return s_Instance.m_OVRInputModule.rayTransform; }
+        }
 
         /// <summary>
         /// Max laser ray hit distance.
