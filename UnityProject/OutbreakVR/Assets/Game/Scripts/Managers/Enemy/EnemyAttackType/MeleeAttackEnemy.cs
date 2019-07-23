@@ -24,9 +24,9 @@ namespace ns_Mashmo
         private float m_fStrikeDistance = 2.0f;
 
         /// <summary>
-        /// True if dead
+        /// Action called on update, will update the current state the enemy is in
         /// </summary>
-        private bool m_bIsDead = false;
+        private System.Action m_actNavStateUpdate = null;
 
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
@@ -39,7 +39,6 @@ namespace ns_Mashmo
         public override void activateEnemy()
         {
             base.activateEnemy();
-            m_bIsDead = false;
         }
 
         /// <summary>
@@ -57,30 +56,57 @@ namespace ns_Mashmo
         {
             base.Update();
 
-            if (m_bIsDead)
+            if (m_actNavStateUpdate != null)
             {
-                return;
+                m_actNavStateUpdate();
             }
+        }
 
-            if (m_bIsActivated)
+        /// <summary>
+        /// update action called when the enemy is in the idle state 
+        /// </summary>
+        protected virtual void onIdleStateUpdate()
+        {
+            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
+            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
+            if ((m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete) &&
+                (m_NavMeshAgent.remainingDistance <= m_fAttackRadius))
             {
-                float l_fDistanceToPlayer = Vector3.Distance(PlayerManager.GetPosition(), transform.position);
-                if (l_fDistanceToPlayer < m_fAttackRadius)
+                NavState = NON_STATIC_ENEMY_STATE.ALERT;
+            }
+            else
+            {
+                m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                //EnemyManager.SetPatrolDestination(this, null);
+            }
+        }
+
+        /// <summary>
+        /// update action called when the enemy is in the alert state 
+        /// </summary>
+        protected virtual void onAlertStateUpdate()
+        {
+            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
+            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
+            if ((m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete))
+            {
+                if (m_NavMeshAgent.remainingDistance <= m_fStrikeDistance)
                 {
-                    if (l_fDistanceToPlayer <= m_fStrikeDistance)
-                    {
-                        m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
-                    }
-                    else
-                    {
-                        m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
-                        m_NavMeshAgent.SetDestination(PlayerManager.GetPosition());
-                    }
+                    m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
+                }
+                else if (m_NavMeshAgent.remainingDistance <= m_fAttackRadius)
+                {
+                    m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
+                    m_NavMeshAgent.SetDestination(l_v3PlayerPos);
                 }
                 else
                 {
-                    m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                    NavState = NON_STATIC_ENEMY_STATE.IDLE;
                 }
+            }
+            else
+            {
+                NavState = NON_STATIC_ENEMY_STATE.IDLE;
             }
         }
 
@@ -95,9 +121,7 @@ namespace ns_Mashmo
         /// </summary>
         protected override void onKilled()
         {
-            m_bIsDead = true;
             base.onKilled();
-            m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
         }
 
         /// <summary>
@@ -116,6 +140,39 @@ namespace ns_Mashmo
                 l_v3EnemyToPlayerDot > 0.6f)
             {
                 PlayerManager.InflictDamage(m_iStrikeDamage);
+            }
+        }
+
+        /// <summary>
+        /// On enemy state changed
+        /// </summary>
+        protected override void onStateChanged(NON_STATIC_ENEMY_STATE a_NavState)
+        {
+            switch (a_NavState)
+            {
+                case NON_STATIC_ENEMY_STATE.IDLE:
+                    {
+                        m_actNavStateUpdate = onIdleStateUpdate;
+                        m_NavMeshAgent.SetDestination(PlayerManager.GetPosition());
+                        break;
+                    }
+                case NON_STATIC_ENEMY_STATE.ALERT:
+                    {
+                        m_actNavStateUpdate = onAlertStateUpdate;
+                        
+                        break;
+                    }
+                case NON_STATIC_ENEMY_STATE.DEAD:
+                    {
+                        m_actNavStateUpdate = null;
+                        m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
+                        break;
+                    }
+                case NON_STATIC_ENEMY_STATE.NONE:
+                    {
+                        m_actNavStateUpdate = null;
+                        break;
+                    }
             }
         }
     }

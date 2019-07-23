@@ -79,9 +79,6 @@ namespace ns_Mashmo
 
             if (ControllerManager.IsRemoteAttached)
             {
-                m_HeadsetCursor.SetActive(m_bIsTargetHit);
-                m_HeadsetCursor.transform.position = m_v3LaserEndPosition;
-
                 if (ControllerManager.IsLineRendererOn)
                 {
                     m_LineRenderer.enabled = true;
@@ -92,9 +89,9 @@ namespace ns_Mashmo
             else
             {
                 m_LineRenderer.enabled = false;
-                m_HeadsetCursor.SetActive(true);
-                m_HeadsetCursor.transform.position = m_v3LaserEndPosition;
             }
+            m_HeadsetCursor.transform.position = m_v3LaserEndPosition;
+            m_HeadsetCursor.SetActive(true);
         }
 
         /// <summary>

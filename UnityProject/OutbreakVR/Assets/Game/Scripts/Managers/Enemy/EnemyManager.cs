@@ -47,6 +47,14 @@ namespace ns_Mashmo
         public const string ENEMY_OBJECTIVE_ID = "ENEMY_OBJECTIVE_ID";
 
         /// <summary>
+        /// The list of all enemy patrol points in current scene
+        /// </summary>
+        #if UNITY_EDITOR
+        [SerializeField]
+        #endif
+        private List<EnemyPatrolPoint> m_lstPatrolPoints = null;
+
+        /// <summary>
         /// Sets the singleton instance
         /// </summary>
         public override void initialize()
@@ -58,6 +66,8 @@ namespace ns_Mashmo
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+
+            m_lstPatrolPoints = new List<EnemyPatrolPoint>(30);
 
             int l_iEnemyPrefabCount = m_lstEnemyPrefabs.Count;
             m_dictEnemyPools = new Dictionary<ENEMY_TYPE, EnemyPool>(l_iEnemyPrefabCount);
@@ -104,7 +114,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_Enemytype"></param>
         /// <returns></returns>
-        public static EnemyBase GetEnemyFromPool(ENEMY_TYPE a_Enemytype, string a_strID)
+        public static EnemyBase GetEnemyFromPool(ENEMY_TYPE a_Enemytype, string a_strID, Vector3 a_v3Pos, Quaternion a_quatRot)
         {
             EnemyPool l_EnemyPool = s_Instance.getPoolOfEnemyType(a_Enemytype);
             EnemyBase l_Enemy = null;
@@ -112,7 +122,9 @@ namespace ns_Mashmo
             {
                 l_Enemy = l_EnemyPool.getObject();
                 l_Enemy.setID(a_strID);
-                l_Enemy.gameObject.SetActive(true);
+                l_Enemy.transform.position = a_v3Pos;
+                l_Enemy.transform.rotation = a_quatRot;
+                l_Enemy.activateEnemy();
 
                 if (s_Instance.m_bIsEnemiesPaused)
                 {
@@ -140,7 +152,7 @@ namespace ns_Mashmo
             {
                 if (l_lstAcitveEnemies[l_iActiveIndex].getID().Equals(a_strEnemyID, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    l_EnemyPool.returnToPool(l_lstAcitveEnemies[l_iActiveIndex]);
+                    s_Instance.returnEnemyToPool(l_EnemyPool, l_lstAcitveEnemies[l_iActiveIndex]);
                     break;
                 }
             }
@@ -153,8 +165,24 @@ namespace ns_Mashmo
         {
             foreach (KeyValuePair<ENEMY_TYPE, EnemyPool> l_EnemyPool in m_dictEnemyPools)
             {
-                l_EnemyPool.Value.returnAll();
+                List<EnemyBase> l_lstActiveEnemyBase = l_EnemyPool.Value.getActiveList();
+                int l_iActiveEnemyCount = l_lstActiveEnemyBase.Count;
+                for (int l_iEnemyIndex = l_iActiveEnemyCount - 1; l_iEnemyIndex >= 0; l_iEnemyIndex--)
+                {
+                    returnEnemyToPool(l_EnemyPool.Value, l_lstActiveEnemyBase[l_iEnemyIndex]);
+                }
             }
+        }
+
+        /// <summary>
+        /// Returns given enemy to enemy pool
+        /// </summary>
+        /// <param name="a_EnemyPool"></param>
+        /// <param name="a_EnemyBase"></param>
+        private void returnEnemyToPool(EnemyPool a_EnemyPool, EnemyBase a_EnemyBase)
+        {
+            a_EnemyBase.deactivateEnemy();
+            a_EnemyPool.returnToPool(a_EnemyBase);
         }
 
         public static void ReturnAllToPool()
@@ -222,5 +250,38 @@ namespace ns_Mashmo
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, ENEMY_OBJECTIVE_ID);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
         }
+
+        #region ENEMY PATROL POINT
+
+        /// <summary>
+        /// Registers the Patrol point
+        /// </summary>
+        public static void RegisterPatrolPoint(EnemyPatrolPoint a_PatrolPoint)
+        {
+            if (!s_Instance.m_lstPatrolPoints.Contains(a_PatrolPoint))
+            {
+                s_Instance.m_lstPatrolPoints.Add(a_PatrolPoint);
+            }
+        }
+
+        /// <summary>
+        /// Unregisters the Patrol point
+        /// </summary>
+        public static void UnregisterPatrolPoint(EnemyPatrolPoint a_PatrolPoint)
+        {
+            if (s_Instance != null &&
+                s_Instance.m_lstPatrolPoints.Contains(a_PatrolPoint))
+            {
+                s_Instance.m_lstPatrolPoints.Remove(a_PatrolPoint);
+            }
+        }
+
+        //public static SetPatrolDestination(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_PatrolPoint)
+        //{
+
+        //}
+
+        #endregion ENEMY PATROL POINT
+
     }
 }

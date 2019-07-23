@@ -20,11 +20,6 @@ namespace ns_Mashmo
         private string m_strEnemyID = string.Empty;
 
         /// <summary>
-        /// Is the enemy active to attack
-        /// </summary>
-        protected bool m_bIsActivated = false;
-
-        /// <summary>
         /// The radius inside, if the player comes within this radius the enemy will start attacking
         /// </summary>
         [SerializeField]
@@ -64,7 +59,7 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void activateEnemy()
         {
-            m_bIsActivated = true;
+            gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -72,7 +67,11 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void deactivateEnemy()
         {
-            m_bIsActivated = false;
+            if (m_coDeactiveOnKilled != null)
+            {
+                StopCoroutine(m_coDeactiveOnKilled);
+            }
+            gameObject.SetActive(false);
         }
 
         public virtual void Update()
@@ -82,16 +81,11 @@ namespace ns_Mashmo
 
         public virtual void onReturnedToPool()
         {
-            deactivateEnemy();
-            if (m_coDeactiveOnKilled != null)
-            {
-                StopCoroutine(m_coDeactiveOnKilled);
-            }
+            
         }
 
         public virtual void onRetrievedFromPool()
         {
-            activateEnemy();
             m_iCurrentLifeCounter = m_iMaxLifeCapacityCounter;
         }
 

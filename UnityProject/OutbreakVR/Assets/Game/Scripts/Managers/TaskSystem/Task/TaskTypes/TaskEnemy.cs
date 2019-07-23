@@ -76,19 +76,7 @@ namespace ns_Mashmo
                     }
                 case ATTRIBUTE_VALUE_CODE_ACTIVATE:
                     {
-                        EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType, m_strEnemyID);
-
-                        UnityEngine.AI.NavMeshAgent l_NavMeshAgent = l_Enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                        if (l_NavMeshAgent != null)
-                        {
-                            l_Enemy.transform.rotation = Quaternion.Euler(m_v3Rotation);
-                            l_NavMeshAgent.Warp(m_v3Position);
-                        }
-                        else
-                        {
-                            l_Enemy.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
-                        }
-                        l_Enemy.gameObject.SetActive(true);
+                        EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType, m_strEnemyID, m_v3Position, Quaternion.Euler(m_v3Rotation));
                         break;
                     }
                 default:
