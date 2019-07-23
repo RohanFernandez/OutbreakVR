@@ -90,6 +90,7 @@ namespace ns_Mashmo
             m_OVRInputModule.rayTransform = m_CurrentControllerAnchor.transform;
             m_Pointer.transform.SetParent(m_CurrentControllerAnchor.transform);
             m_Pointer.transform.localPosition = Vector3.zero;
+            m_Pointer.transform.localRotation = Quaternion.identity;
             m_bIsRemoteAttached = m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_RIGHT_REMOTE;
 
             EventHash l_hash = EventManager.GetEventHashtable();

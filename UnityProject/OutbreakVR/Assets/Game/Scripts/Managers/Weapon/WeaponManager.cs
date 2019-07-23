@@ -627,14 +627,10 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onControllerChanged(EventHash a_EventHash)
         {
-            if (ControllerManager.IsRemoteAttached)
-            {
-                m_WeaponHolder.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            }
-            else
-            {
-                m_WeaponHolder.SetPositionAndRotation(m_v3HeadsetWeaponHolderOffset, Quaternion.identity);
-            }
+            m_WeaponHolder.localPosition = ControllerManager.IsRemoteAttached ?
+                Vector3.zero : m_v3HeadsetWeaponHolderOffset;
+            
+            m_WeaponHolder.localRotation = Quaternion.identity;
         }
 
         /// <summary>
