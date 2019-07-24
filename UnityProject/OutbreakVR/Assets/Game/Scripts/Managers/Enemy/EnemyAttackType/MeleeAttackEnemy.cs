@@ -23,11 +23,6 @@ namespace ns_Mashmo
         /// </summary>
         private float m_fStrikeDistance = 2.0f;
 
-        /// <summary>
-        /// Action called on update, will update the current state the enemy is in
-        /// </summary>
-        private System.Action m_actNavStateUpdate = null;
-
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
             return ENEMY_ATTACK_TYPE.MELEE;
@@ -50,64 +45,19 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Updates movements
-        /// </summary>
-        public override void Update()
-        {
-            base.Update();
-
-            if (m_actNavStateUpdate != null)
-            {
-                m_actNavStateUpdate();
-            }
-        }
-
-        /// <summary>
         /// update action called when the enemy is in the idle state 
         /// </summary>
-        protected virtual void onIdleStateUpdate()
+        protected override void onIdleStateUpdate()
         {
-            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
-            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
-            if ((m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete) &&
-                (m_NavMeshAgent.remainingDistance <= m_fAttackRadius))
-            {
-                NavState = NON_STATIC_ENEMY_STATE.ALERT;
-            }
-            else
-            {
-                m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
-                //EnemyManager.SetPatrolDestination(this, null);
-            }
+            base.onIdleStateUpdate();
         }
 
         /// <summary>
         /// update action called when the enemy is in the alert state 
         /// </summary>
-        protected virtual void onAlertStateUpdate()
+        protected override void onAlertStateUpdate()
         {
-            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
-            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
-            if ((m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete))
-            {
-                if (m_NavMeshAgent.remainingDistance <= m_fStrikeDistance)
-                {
-                    m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
-                }
-                else if (m_NavMeshAgent.remainingDistance <= m_fAttackRadius)
-                {
-                    m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
-                    m_NavMeshAgent.SetDestination(l_v3PlayerPos);
-                }
-                else
-                {
-                    NavState = NON_STATIC_ENEMY_STATE.IDLE;
-                }
-            }
-            else
-            {
-                NavState = NON_STATIC_ENEMY_STATE.IDLE;
-            }
+            base.onAlertStateUpdate();
         }
 
         void OnDrawGizmoSelected()
@@ -140,39 +90,6 @@ namespace ns_Mashmo
                 l_v3EnemyToPlayerDot > 0.6f)
             {
                 PlayerManager.InflictDamage(m_iStrikeDamage);
-            }
-        }
-
-        /// <summary>
-        /// On enemy state changed
-        /// </summary>
-        protected override void onStateChanged(NON_STATIC_ENEMY_STATE a_NavState)
-        {
-            switch (a_NavState)
-            {
-                case NON_STATIC_ENEMY_STATE.IDLE:
-                    {
-                        m_actNavStateUpdate = onIdleStateUpdate;
-                        m_NavMeshAgent.SetDestination(PlayerManager.GetPosition());
-                        break;
-                    }
-                case NON_STATIC_ENEMY_STATE.ALERT:
-                    {
-                        m_actNavStateUpdate = onAlertStateUpdate;
-                        
-                        break;
-                    }
-                case NON_STATIC_ENEMY_STATE.DEAD:
-                    {
-                        m_actNavStateUpdate = null;
-                        m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
-                        break;
-                    }
-                case NON_STATIC_ENEMY_STATE.NONE:
-                    {
-                        m_actNavStateUpdate = null;
-                        break;
-                    }
             }
         }
     }

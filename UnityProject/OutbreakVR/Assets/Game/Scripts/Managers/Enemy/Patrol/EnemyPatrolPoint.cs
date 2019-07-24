@@ -8,12 +8,12 @@ namespace ns_Mashmo
     {
         private void OnEnable()
         {
-            EnemyManager.RegisterPatrolPoint(this);
+            PatrolManager.RegisterPatrolPoint(this);
         }
 
         private void OnDisable()
         {
-            EnemyManager.UnregisterPatrolPoint(this);
+            PatrolManager.UnregisterPatrolPoint(this);
         }
 
         private void OnDrawGizmoSelected()

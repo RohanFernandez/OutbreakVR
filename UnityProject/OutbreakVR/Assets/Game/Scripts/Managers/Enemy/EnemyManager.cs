@@ -46,13 +46,16 @@ namespace ns_Mashmo
         /// </summary>
         public const string ENEMY_OBJECTIVE_ID = "ENEMY_OBJECTIVE_ID";
 
-        /// <summary>
-        /// The list of all enemy patrol points in current scene
-        /// </summary>
-        #if UNITY_EDITOR
+        ///// <summary>
+        ///// The list of all enemy patrol points in current scene
+        ///// </summary>
+        //#if UNITY_EDITOR
+        //[SerializeField]
+        //#endif
+        //private List<EnemyPatrolPoint> m_lstPatrolPoints = null;
+
         [SerializeField]
-        #endif
-        private List<EnemyPatrolPoint> m_lstPatrolPoints = null;
+        private PatrolManager m_PatrolManager = null;
 
         /// <summary>
         /// Sets the singleton instance
@@ -64,10 +67,12 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+
+            m_PatrolManager = new PatrolManager();
+            m_PatrolManager.initialize();
+
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
-
-            m_lstPatrolPoints = new List<EnemyPatrolPoint>(30);
 
             int l_iEnemyPrefabCount = m_lstEnemyPrefabs.Count;
             m_dictEnemyPools = new Dictionary<ENEMY_TYPE, EnemyPool>(l_iEnemyPrefabCount);
@@ -91,6 +96,7 @@ namespace ns_Mashmo
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+            m_PatrolManager.destroy();
             s_Instance = null;
         }
 
@@ -250,38 +256,5 @@ namespace ns_Mashmo
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, ENEMY_OBJECTIVE_ID);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
         }
-
-        #region ENEMY PATROL POINT
-
-        /// <summary>
-        /// Registers the Patrol point
-        /// </summary>
-        public static void RegisterPatrolPoint(EnemyPatrolPoint a_PatrolPoint)
-        {
-            if (!s_Instance.m_lstPatrolPoints.Contains(a_PatrolPoint))
-            {
-                s_Instance.m_lstPatrolPoints.Add(a_PatrolPoint);
-            }
-        }
-
-        /// <summary>
-        /// Unregisters the Patrol point
-        /// </summary>
-        public static void UnregisterPatrolPoint(EnemyPatrolPoint a_PatrolPoint)
-        {
-            if (s_Instance != null &&
-                s_Instance.m_lstPatrolPoints.Contains(a_PatrolPoint))
-            {
-                s_Instance.m_lstPatrolPoints.Remove(a_PatrolPoint);
-            }
-        }
-
-        //public static SetPatrolDestination(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_PatrolPoint)
-        //{
-
-        //}
-
-        #endregion ENEMY PATROL POINT
-
     }
 }
