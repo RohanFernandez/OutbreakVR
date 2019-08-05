@@ -118,7 +118,6 @@ namespace ns_Mashmo
             UnityEngine.AI.NavMeshAgent l_NavMeshAgent = a_NonStaticEnemy.NavMeshAgent;
 
             int l_iPatrolPointCount = l_lstPatrolPointsInRange.Count;
-            Debug.LogError("l_lstPatrolPointsInRange: " + l_iPatrolPointCount);
             for (int l_iCurrentPatrolPoint = 0; l_iCurrentPatrolPoint < l_iPatrolPointCount; l_iCurrentPatrolPoint++)
             {
                 EnemyPatrolPoint l_CurrentEnemyPatrolPoint = l_lstPatrolPointsInRange[l_iCurrentPatrolPoint];
@@ -138,7 +137,6 @@ namespace ns_Mashmo
                 }
             }
 
-            Debug.LogError("Count :" + s_Instance.m_lstCurrentValidPatrolPoints.Count);
             if (s_Instance.m_lstCurrentValidPatrolPoints.Count > 0)
             {
                 l_NextPatrolPoint = s_Instance.m_lstCurrentValidPatrolPoints[Random.Range(0, s_Instance.m_lstCurrentValidPatrolPoints.Count)];

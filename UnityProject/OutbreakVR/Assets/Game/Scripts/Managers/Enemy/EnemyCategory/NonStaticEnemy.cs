@@ -8,6 +8,7 @@ namespace ns_Mashmo
     {
         NONE,
         IDLE,
+        PATROL,
         ALERT,
         DEAD
     }
@@ -46,6 +47,30 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Time that will be spent in the idle state and then transitioning to patrol
+        /// </summary>
+        [SerializeField]
+        private float m_fMaxIdleTime = 5.0f;
+
+        /// <summary>
+        /// Current time passed that is spent in the idle state
+        /// </summary>
+        [SerializeField]
+        private float m_fCurrIdleTimeCounter = 0.0f;
+
+        /// <summary>
+        /// max Time in alert modeafter which alert of that enemy will go off
+        /// </summary>
+        [SerializeField]
+        private float m_fMaxAlertTime = 0.0f;
+
+        /// <summary>
+        /// Time in alert mode, will start since last scene the player
+        /// </summary>
+        [SerializeField]
+        private float m_fCurrAlertTimeCounter = 0.0f;
+
+        /// <summary>
         /// The state of the enemy
         /// </summary>
         private NON_STATIC_ENEMY_STATE m_NavState = NON_STATIC_ENEMY_STATE.NONE;
@@ -65,6 +90,7 @@ namespace ns_Mashmo
             get { return m_NavState; }
             set
             {
+                Debug.LogError("onStateChanged =  OldState: " + NavState.ToString() + "  NewState: " + value.ToString());
                 if (m_NavState == value)
                 {
                     return;
@@ -195,12 +221,24 @@ namespace ns_Mashmo
             {
                 case NON_STATIC_ENEMY_STATE.IDLE:
                     {
-                        patrolToPoint(false);
+                        m_fCurrIdleTimeCounter = 0.0f;
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
+                        m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                         m_actNavStateUpdate = onIdleStateUpdate;
+                        break;
+                    }
+                case NON_STATIC_ENEMY_STATE.PATROL:
+                    {
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
+                        m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
+                        patrolToPoint(m_NextPatrolDestination != null);
+                        m_actNavStateUpdate = onPatrolStateUpdate;
                         break;
                     }
                 case NON_STATIC_ENEMY_STATE.ALERT:
                     {
+                        m_fCurrAlertTimeCounter = 0.0f;
+                        m_NextPatrolDestination = null;
                         m_actNavStateUpdate = onAlertStateUpdate;
                         break;
                     }
@@ -212,6 +250,7 @@ namespace ns_Mashmo
                     }
                 case NON_STATIC_ENEMY_STATE.NONE:
                     {
+                        m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
                         break;
                     }
@@ -223,8 +262,16 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onIdleStateUpdate()
         {
+            m_fCurrIdleTimeCounter += Time.deltaTime;
 
-
+            if (isEnemyWithinAttackRange())
+            {
+                NavState = NON_STATIC_ENEMY_STATE.ALERT;
+            }
+            else if (m_fCurrIdleTimeCounter > m_fMaxIdleTime)
+            {
+                NavState = NON_STATIC_ENEMY_STATE.PATROL;
+            }
         }
 
         /// <summary>
@@ -232,16 +279,35 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onAlertStateUpdate()
         {
+
         }
 
+        /// <summary>
+        /// update action called when the enemy is in the patrol state 
+        /// </summary>
+        protected virtual void onPatrolStateUpdate()
+        {
+
+        }
 
         private void OnTriggerEnter(Collider a_Collider)
         {
             EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
-            if (l_EnemyPatrolPoint != null && l_EnemyPatrolPoint == m_NextPatrolDestination)
+            if (l_EnemyPatrolPoint != null 
+                && l_EnemyPatrolPoint == m_NextPatrolDestination 
+                && NavState == NON_STATIC_ENEMY_STATE.PATROL)
             {
-                patrolToPoint(true);
+                NavState = NON_STATIC_ENEMY_STATE.IDLE;
             }
+        }
+
+        /// <summary>
+        /// Is enemy within attack range of player
+        /// </summary>
+        /// <returns></returns>
+        private bool isEnemyWithinAttackRange()
+        {
+            return false;
         }
     }
 }
