@@ -30,6 +30,15 @@ namespace ns_Mashmo
         {
             get { return m_NavMeshAgent; }
         }
+        
+        /// <summary>
+        /// Path of this agent
+        /// </summary>
+        protected UnityEngine.AI.NavMeshPath m_NavMeshPath = null;
+        public UnityEngine.AI.NavMeshPath NavMeshPath
+        {
+            get { return m_NavMeshPath; }
+        }
 
         [SerializeField]
         protected Animator m_Animator = null;
@@ -97,6 +106,17 @@ namespace ns_Mashmo
         /// </summary>
         private System.Action m_actNavStateUpdate = null;
 
+        /// <summary>
+        /// Radius under which will go into alert mode attempting to reach the player to attack.
+        /// </summary>
+        [SerializeField]
+        private float m_fAlertRadius = 15.0f;
+
+        /// <summary>
+        /// The ray that detects from the transform to the player to check if the player is in the line of sight
+        /// </summary>
+        private Ray m_RayDetector = new Ray();
+
         protected NON_STATIC_ENEMY_STATE NavState
         {
             get { return m_NavState; }
@@ -115,6 +135,8 @@ namespace ns_Mashmo
         public override void activateEnemy()
         {
             base.activateEnemy();
+
+            if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
             m_RangeDetector.onActivated();
 
             m_NavMeshAgent.Warp(transform.position);
@@ -233,6 +255,7 @@ namespace ns_Mashmo
             {
                 case NON_STATIC_ENEMY_STATE.IDLE:
                     {
+                        m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
                         m_NavMeshAgent.ResetPath();
                         m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
@@ -251,8 +274,9 @@ namespace ns_Mashmo
                     }
                 case NON_STATIC_ENEMY_STATE.ALERT:
                     {
+                        m_NavMeshAgent.ResetPath();
                         m_NavMeshAgent.stoppingDistance = m_fAlertStoppingDistance;
-                        m_fCurrAlertTimeCounter = 0.0f;
+                        m_fCurrAlertTimeCounter = m_fMaxAlertTime;
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = onAlertStateUpdate;
                         break;
@@ -279,7 +303,7 @@ namespace ns_Mashmo
         {
             m_fCurrIdleTimeCounter += Time.deltaTime;
 
-            if (isEnemyWithinAttackRange())
+            if (isPlayerDetected())
             {
                 NavState = NON_STATIC_ENEMY_STATE.ALERT;
             }
@@ -294,7 +318,28 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onAlertStateUpdate()
         {
+            m_fCurrAlertTimeCounter = isPlayerDetected() ? m_fMaxAlertTime : (m_fCurrAlertTimeCounter - Time.deltaTime);
+            
+            if (m_fCurrAlertTimeCounter <= 0.0f)
+            {
+                NavState = NON_STATIC_ENEMY_STATE.IDLE;
+            }
+            else
+            {
+                setDestination(PlayerManager.GetPosition());
+                m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
 
+                if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) <= m_fAttackRadius)
+                {    
+                    m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
+                    m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
+                }
+                else
+                {
+                    m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
+                    m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
+                }
+            }
         }
 
         /// <summary>
@@ -302,7 +347,10 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onPatrolStateUpdate()
         {
-
+            if (isPlayerDetected())
+            {
+                NavState = NON_STATIC_ENEMY_STATE.ALERT;
+            }
         }
 
         private void OnTriggerEnter(Collider a_Collider)
@@ -317,12 +365,37 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Is enemy within attack range of player
+        /// can the player be detected
+        /// is the player within range and raycast to player is true
         /// </summary>
         /// <returns></returns>
-        private bool isEnemyWithinAttackRange()
+        private bool isPlayerDetected()
         {
-            return false;
+            bool l_bIsDetected = false;
+
+            RaycastHit l_RaycastHit;
+            m_RayDetector.origin = transform.position;
+            Vector3 l_v3PlayerPos =  PlayerManager.GetPosition();
+            m_RayDetector.direction = (l_v3PlayerPos - transform.position).normalized;
+
+            if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius))
+            {
+                if (l_RaycastHit.collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase) &&
+                    Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.5f)
+                {
+                    l_bIsDetected = true;
+                }
+            }
+
+            return l_bIsDetected;
+        }
+
+        /// <summary>
+        /// called on enemy starts to attack
+        /// </summary>
+        protected virtual void onAttack()
+        {
+
         }
     }
 }

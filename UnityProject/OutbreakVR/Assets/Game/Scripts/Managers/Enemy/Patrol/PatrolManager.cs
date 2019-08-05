@@ -26,11 +26,6 @@ namespace ns_Mashmo
         private List<EnemyPatrolPoint> m_lstCurrentValidPatrolPoints = new List<EnemyPatrolPoint>(15);
 
         /// <summary>
-        /// The nav mesh path of this body to manage movement towards the player
-        /// </summary>
-        protected UnityEngine.AI.NavMeshPath m_NavMeshPath = null;
-
-        /// <summary>
         /// sets singleton to this
         /// </summary>
         public void initialize()
@@ -40,7 +35,6 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
         }
 
         /// <summary>
@@ -126,11 +120,11 @@ namespace ns_Mashmo
                     continue;
                 }
 
-                l_NavMeshAgent.CalculatePath(l_CurrentEnemyPatrolPoint.transform.position, s_Instance.m_NavMeshPath);
+                l_NavMeshAgent.CalculatePath(l_CurrentEnemyPatrolPoint.transform.position, a_NonStaticEnemy.NavMeshPath);
                 
-                if (s_Instance.m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+                if (a_NonStaticEnemy.NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
                 {
-                    if (GetNavDistanceToTarget(s_Instance.m_NavMeshPath) < MIN_PATROL_POINT_DISTANCE)
+                    if (GetNavDistanceToTarget(a_NonStaticEnemy.NavMeshPath) < MIN_PATROL_POINT_DISTANCE)
                     {
                         s_Instance.m_lstCurrentValidPatrolPoints.Add(l_CurrentEnemyPatrolPoint);
                     }
