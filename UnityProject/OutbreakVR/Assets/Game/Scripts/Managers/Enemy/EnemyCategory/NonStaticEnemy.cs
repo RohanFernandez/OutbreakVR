@@ -71,6 +71,18 @@ namespace ns_Mashmo
         private float m_fCurrAlertTimeCounter = 0.0f;
 
         /// <summary>
+        /// Stopping distance when patrolling towards a patrol point
+        /// </summary>
+        [SerializeField]
+        private float m_fPatrolStoppingDistance = 2.0f;
+
+        /// <summary>
+        /// Stopping distance when attacking an enemy
+        /// </summary>
+        [SerializeField]
+        private float m_fAlertStoppingDistance = 1.0f;
+
+        /// <summary>
         /// The state of the enemy
         /// </summary>
         private NON_STATIC_ENEMY_STATE m_NavState = NON_STATIC_ENEMY_STATE.NONE;
@@ -222,6 +234,7 @@ namespace ns_Mashmo
                 case NON_STATIC_ENEMY_STATE.IDLE:
                     {
                         m_fCurrIdleTimeCounter = 0.0f;
+                        m_NavMeshAgent.ResetPath();
                         m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                         m_actNavStateUpdate = onIdleStateUpdate;
@@ -229,6 +242,7 @@ namespace ns_Mashmo
                     }
                 case NON_STATIC_ENEMY_STATE.PATROL:
                     {
+                        m_NavMeshAgent.stoppingDistance = m_fPatrolStoppingDistance;
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
                         patrolToPoint(m_NextPatrolDestination != null);
@@ -237,6 +251,7 @@ namespace ns_Mashmo
                     }
                 case NON_STATIC_ENEMY_STATE.ALERT:
                     {
+                        m_NavMeshAgent.stoppingDistance = m_fAlertStoppingDistance;
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = onAlertStateUpdate;
