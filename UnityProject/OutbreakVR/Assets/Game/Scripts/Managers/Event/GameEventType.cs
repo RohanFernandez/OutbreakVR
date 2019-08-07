@@ -23,7 +23,9 @@ namespace ns_Mashmo
         ON_AUDIO_MODE_TOGGLED,                      /* <AUDIO_SRC_TYPES,BOOL> */
         ON_PLAYER_KILLED,                           /* */
         ON_GAMEPLAY_BEGIN,                          /* <STRING>*/
-        ON_PLAYER_HEALTH_UPDATED                    /* <INT>*/
+        ON_PLAYER_HEALTH_UPDATED,                   /* <INT>*/
+        ON_ENEMY_ALERT_STARTED,                     /* <ENEMY_BASE>*/
+        ON_ENEMY_ALERT_ENDED,                     /* <ENEMY_BASE>*/
     }
 
     public static class GameEventTypeConst
@@ -116,5 +118,13 @@ namespace ns_Mashmo
         #region ON_PLAYER_HEALTH_UPDATED
         public const string ID_PLAYER_HEALTH = "ID_PLAYER_HEALTH";                            /* INT */
         #endregion ON_PLAYER_HEALTH_UPDATED
+
+        #region ON_ENEMY_ALERT_STARTED
+        public const string ID_ENEMY_BASE = "ID_ENEMY_BASE";                            /* INT */
+        #endregion ON_ENEMY_ALERT_STARTED
+
+        #region ON_ENEMY_ALERT_ENDED
+        //public const string ID_ENEMY_BASE = "ID_ENEMY_BASE";                            /* INT */
+        #endregion ON_ENEMY_ALERT_ENDED
     }
 }

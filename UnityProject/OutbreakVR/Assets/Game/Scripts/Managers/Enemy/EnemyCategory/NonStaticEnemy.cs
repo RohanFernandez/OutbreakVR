@@ -64,7 +64,6 @@ namespace ns_Mashmo
         /// <summary>
         /// Current time passed that is spent in the idle state
         /// </summary>
-        [SerializeField]
         private float m_fCurrIdleTimeCounter = 0.0f;
 
         /// <summary>
@@ -76,7 +75,6 @@ namespace ns_Mashmo
         /// <summary>
         /// Time in alert mode, will start since last scene the player
         /// </summary>
-        [SerializeField]
         private float m_fCurrAlertTimeCounter = 0.0f;
 
         /// <summary>
@@ -113,6 +111,13 @@ namespace ns_Mashmo
         private float m_fAlertRadius = 15.0f;
 
         /// <summary>
+        /// Radius under which will go into alert mode attempting to reach the player to attack.
+        /// This radius is when a gunshot is firedby the player
+        /// </summary>
+        [SerializeField]
+        private float m_fExtendedAlertRadius = 23.0f;
+
+        /// <summary>
         /// The ray that detects from the transform to the player to check if the player is in the line of sight
         /// </summary>
         private Ray m_RayDetector = new Ray();
@@ -127,14 +132,18 @@ namespace ns_Mashmo
                 {
                     return;
                 }
+                NON_STATIC_ENEMY_STATE l_OldNavState = m_NavState;
                 m_NavState = value;
-                onStateChanged(m_NavState);
+                onStateChanged(l_OldNavState, m_NavState);
             }
         }
 
         public override void activateEnemy()
         {
             base.activateEnemy();
+
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
 
             if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
             m_RangeDetector.onActivated();
@@ -152,6 +161,9 @@ namespace ns_Mashmo
         public override void deactivateEnemy()
         {
             base.deactivateEnemy();
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
+
             m_RangeDetector.onDeactivated();
 
             NavState = NON_STATIC_ENEMY_STATE.NONE;
@@ -249,7 +261,7 @@ namespace ns_Mashmo
         /// <summary>
         /// On enemy state changed
         /// </summary>
-        protected virtual void onStateChanged(NON_STATIC_ENEMY_STATE a_NavState)
+        protected virtual void onStateChanged(NON_STATIC_ENEMY_STATE l_OldNavState, NON_STATIC_ENEMY_STATE a_NavState)
         {
             switch (a_NavState)
             {
@@ -279,6 +291,11 @@ namespace ns_Mashmo
                         m_fCurrAlertTimeCounter = m_fMaxAlertTime;
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = onAlertStateUpdate;
+
+                        EventHash l_EventHash = EventManager.GetEventHashtable();
+                        l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
+                        EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, l_EventHash);
+
                         break;
                     }
                 case NON_STATIC_ENEMY_STATE.DEAD:
@@ -293,6 +310,14 @@ namespace ns_Mashmo
                         m_actNavStateUpdate = null;
                         break;
                     }
+            }
+
+            /// Specific OLD to NEW state
+            if (l_OldNavState == NON_STATIC_ENEMY_STATE.ALERT)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, l_EventHash);
             }
         }
 
@@ -396,6 +421,47 @@ namespace ns_Mashmo
         protected virtual void onAttack()
         {
 
+        }
+
+        /// <summary>
+        /// Callback called on player's weapon fired
+        /// </summary>
+        protected virtual void onPlayerWeaponFired(EventHash a_EventHash)
+        {
+            alertEnemyOnPlayerProximity();
+        }
+
+        /// <summary>
+        /// Callback called on enemy alerted
+        /// </summary>
+        protected virtual void onEnemyAlertStarted(EventHash a_EventHash)
+        {
+            NonStaticEnemy l_NonStaticEnemy =(NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            if (l_NonStaticEnemy == this)
+            {
+                return;
+            }
+
+            alertEnemyOnPlayerProximity();
+        }
+
+
+        /// <summary>
+        /// Alerts the enemy if the player is within a certain distance from the player
+        /// </summary>
+        private void alertEnemyOnPlayerProximity()
+        {
+            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
+
+            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
+            if (m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+            {
+                float l_fDistanceToPlayer = PatrolManager.GetNavDistanceToTarget(m_NavMeshPath);
+                if (l_fDistanceToPlayer < m_fExtendedAlertRadius)
+                {
+                    NavState = NON_STATIC_ENEMY_STATE.ALERT;
+                }
+            }
         }
     }
 }
