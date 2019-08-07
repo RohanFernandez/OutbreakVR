@@ -302,7 +302,14 @@ namespace ns_Mashmo
         /// </summary>
         private void onEnemyAlertListChanged()
         {
-
+            if (m_lstAlertedEnemies.Count > 0)
+            {
+                SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, GameConsts.AUD_CLIP_ALERT_AMBIENT, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+            }
+            else
+            {
+                SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, GameConsts.AUD_CLIP_AMBIENT, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+            }
         }
     }
 }

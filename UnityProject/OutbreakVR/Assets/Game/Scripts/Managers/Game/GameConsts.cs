@@ -23,6 +23,11 @@ namespace ns_Mashmo
         #region AUDIO SOURCE
 
         /// <summary>
+        /// The major ambient audio source
+        /// </summary>
+        public const string AUD_SRC_AMBIENT = "AUD_SRC_AmbientSrc1"; 
+
+        /// <summary>
         /// Audio source of the gun fire
         /// </summary>
         public const string AUD_SRC_GUN_FIRE = "AudSrc_GunFire";
@@ -38,12 +43,22 @@ namespace ns_Mashmo
         public const string AUD_SRC_ITEM_PICKUP = "AudSrc_ItemPickedUp";
 
         #endregion AUDIO SOURCE
+
+        #region AUDIO CLIP
         /// <summary>
         /// Audio source to be played on item picked up
         /// </summary>
         public const string AUD_CLIP_ITEM_PICKUP = "AudClip_ItemPickUp";
 
-        #region AUDIO CLIP
+        /// <summary>
+        /// Audio clip to be played on enemy is in alert mode
+        /// </summary>
+        public const string AUD_CLIP_ALERT_AMBIENT = "AudClip_AlertAmbient";
+
+        /// <summary>
+        /// Audio clip ambient music
+        /// </summary>
+        public const string AUD_CLIP_AMBIENT = "AmbientAudio1";
 
         #endregion AUDIO CLIP
 

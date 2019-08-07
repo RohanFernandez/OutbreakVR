@@ -122,6 +122,12 @@ namespace ns_Mashmo
         /// </summary>
         private Ray m_RayDetector = new Ray();
 
+        /// <summary>
+        /// The layer mask that a ray from the enemy pointed to the player will be detected
+        /// </summary>
+        [SerializeField]
+        private LayerMask m_AttackLayerMask;
+
         protected NON_STATIC_ENEMY_STATE NavState
         {
             get { return m_NavState; }
@@ -401,12 +407,13 @@ namespace ns_Mashmo
             RaycastHit l_RaycastHit;
             m_RayDetector.origin = transform.position;
             Vector3 l_v3PlayerPos =  PlayerManager.GetPosition();
-            m_RayDetector.direction = (l_v3PlayerPos - transform.position).normalized;
+            Vector3 l_v3EnemyToPlayerDir = (l_v3PlayerPos - transform.position).normalized;
+            m_RayDetector.direction = l_v3EnemyToPlayerDir;
 
-            if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius))
+            if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius, m_AttackLayerMask))
             {
                 if (l_RaycastHit.collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase) &&
-                    Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.5f)
+                    Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.1f)
                 {
                     l_bIsDetected = true;
                 }
