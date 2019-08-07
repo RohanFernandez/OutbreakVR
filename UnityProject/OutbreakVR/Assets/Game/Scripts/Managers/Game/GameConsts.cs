@@ -32,7 +32,20 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_SRC_GUN_RELOAD = "AudSrc_GunReload";
 
+        /// <summary>
+        /// Audio source to be played on item picked up
+        /// </summary>
+        public const string AUD_SRC_ITEM_PICKUP = "AudSrc_ItemPickedUp";
+
         #endregion AUDIO SOURCE
+        /// <summary>
+        /// Audio source to be played on item picked up
+        /// </summary>
+        public const string AUD_CLIP_ITEM_PICKUP = "AudClip_ItemPickUp";
+
+        #region AUDIO CLIP
+
+        #endregion AUDIO CLIP
 
         #region TAG
         /// <summary>

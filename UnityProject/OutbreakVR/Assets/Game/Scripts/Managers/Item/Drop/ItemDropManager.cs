@@ -66,7 +66,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP, onItemPickedUp);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ITEM_PICK_UP_ATTEMPTED, onItemPickUpAttempted);
             m_dictItemDropPool = new Dictionary<ITEM_TYPE, ItemDropPool>(10);
             initItemDropDictionary();
         }
@@ -80,7 +80,7 @@ namespace ns_Mashmo
             {
                 return;
             }
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP, onItemPickedUp);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ITEM_PICK_UP_ATTEMPTED, onItemPickUpAttempted);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             s_Instance = null;
         }
@@ -201,7 +201,7 @@ namespace ns_Mashmo
         /// Callback called on event picked up event dispatched
         /// </summary>
         /// <param name="a_EventHash"></param>
-        private void onItemPickedUp(EventHash a_EventHash)
+        private void onItemPickUpAttempted(EventHash a_EventHash)
         {
             ITEM_TYPE l_ItemType = (ITEM_TYPE)a_EventHash[GameEventTypeConst.ID_ITEM_DROP_TYPE];
             ItemDropBase l_ItemDropBase = (ItemDropBase)a_EventHash[GameEventTypeConst.ID_ITEM_BASE];
@@ -238,6 +238,7 @@ namespace ns_Mashmo
             if (l_bIsItemConsumed)
             {
                 ReturnItemToPool(l_ItemDropBase);
+                SoundManager.PlayAudio(GameConsts.AUD_SRC_ITEM_PICKUP, GameConsts.AUD_CLIP_ITEM_PICKUP, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
 
             //WeaponDropBase l_WeaponBase = (WeaponDropBase)l_ItemDropBase;

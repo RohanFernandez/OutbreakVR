@@ -16,7 +16,7 @@ namespace ns_Mashmo
         ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
         ON_GAMEPLAY_ENDED,                          /* <BOOL>*/
         ON_PLAYER_STATE_CHANGED,                    /* <OLD_PLAYER_STATE, NEW_PLAYER_STATE> */
-        ON_ITEM_PICKED_UP,                          /* <ITEMID, ITEM_BASE> */
+        ON_ITEM_PICK_UP_ATTEMPTED,                          /* <ITEMID, ITEM_BASE> */
         ON_WEAPON_RELOADED,                         /* <WEAPON_TYPE>*/
         ON_WEAPON_FIRED,                            /* <WEAPON_TYPE>*/
         ON_BULLETS_ADDED,                           /* <>*/
