@@ -76,7 +76,7 @@ namespace ns_Mashmo
         /// Min swipe per dimension to register as swipe direction,
         /// else will register as none
         /// </summary>
-        private const float MIN_SWIPE_VALUE = 0.6f;
+        private const float MIN_SWIPE_VALUE = 0.7f;
 
         #endregion SWIPE
 

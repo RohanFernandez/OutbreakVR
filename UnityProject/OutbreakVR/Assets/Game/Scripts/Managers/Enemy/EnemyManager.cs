@@ -31,6 +31,12 @@ namespace ns_Mashmo
         private List<EnemyBase> m_lstEnemyPrefabs = null;
 
         /// <summary>
+        /// List of all enemies that are alerted at the moment
+        /// </summary>
+        [SerializeField]
+        private List<NonStaticEnemy> m_lstAlertedEnemies = null;
+
+        /// <summary>
         /// Dictionary of enemy type to Pool
         /// </summary>
         private Dictionary<ENEMY_TYPE, EnemyPool> m_dictEnemyPools = null;
@@ -71,8 +77,12 @@ namespace ns_Mashmo
             m_PatrolManager = new PatrolManager();
             m_PatrolManager.initialize();
 
+            m_lstAlertedEnemies = new List<NonStaticEnemy>(10);
+
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, onEnemyAlertEnded);
 
             int l_iEnemyPrefabCount = m_lstEnemyPrefabs.Count;
             m_dictEnemyPools = new Dictionary<ENEMY_TYPE, EnemyPool>(l_iEnemyPrefabCount);
@@ -96,6 +106,8 @@ namespace ns_Mashmo
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, onEnemyAlertEnded);
             m_PatrolManager.destroy();
             s_Instance = null;
         }
@@ -255,6 +267,42 @@ namespace ns_Mashmo
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, ENEMY_OBJECTIVE_ID);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
+        }
+
+        /// <summary>
+        /// Callback called on an enemy being alerted
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onEnemyAlertStarted(EventHash a_EventHash)
+        {
+            NonStaticEnemy l_AlertedEnemy = (NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            if (l_AlertedEnemy != null)
+            {
+                m_lstAlertedEnemies.Add(l_AlertedEnemy);
+            }
+            onEnemyAlertListChanged();
+        }
+
+        /// <summary>
+        /// Callback called on an enemy's state changed from alert state
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onEnemyAlertEnded(EventHash a_EventHash)
+        {
+            NonStaticEnemy l_AlertedEnemy = (NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            if (l_AlertedEnemy != null)
+            {
+                m_lstAlertedEnemies.Remove(l_AlertedEnemy);
+            }
+            onEnemyAlertListChanged();
+        }
+
+        /// <summary>
+        /// Called on the list of enemy list changed
+        /// </summary>
+        private void onEnemyAlertListChanged()
+        {
+
         }
     }
 }

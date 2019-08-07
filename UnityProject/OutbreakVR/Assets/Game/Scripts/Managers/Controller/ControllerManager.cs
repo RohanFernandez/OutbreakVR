@@ -574,7 +574,7 @@ namespace ns_Mashmo
                 else if ((m_v2LastControllerSwipe != Vector2.zero) &&
                     l_v2TouchpadPos == Vector2.zero)
                 {
-                    m_v2ControllerSwipe = (m_v2LastControllerSwipe - m_v2StartSwipePos).normalized;
+                    m_v2ControllerSwipe = (m_v2LastControllerSwipe - m_v2StartSwipePos);
                     m_v2ControllerSwipe = (Mathf.Abs(m_v2ControllerSwipe.x) == 1.0f || Mathf.Abs(m_v2ControllerSwipe.y) == 1.0f) ?
                         Vector2.zero : m_v2ControllerSwipe;
                     m_v2StartSwipePos = Vector2.zero;
