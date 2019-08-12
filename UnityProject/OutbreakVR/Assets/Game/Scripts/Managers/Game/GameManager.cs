@@ -53,6 +53,9 @@ namespace ns_Mashmo
         private void setGameLevel(string a_strLevelType)
         {
             Debug.Log("<color=BLUE>GameManager::setGameLevel::</color> Setting level type '" + a_strLevelType + "'");
+
+            if (s_Instance.m_strCurrentLevel.Equals(a_strLevelType)) { return; }
+
             s_Instance.m_strCurrentLevel = a_strLevelType;
             EventHash l_Hashtable = EventManager.GetEventHashtable();
             l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
@@ -62,17 +65,40 @@ namespace ns_Mashmo
         /// <summary>
         /// Sets game state to play
         /// </summary>
-        public static void SetGamePlayState(string a_strGameState)
+        public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
         {
+            if (a_bIsSaveGameProgress)
+            {
+                //TODO:: Save game progress
+            }
+
             s_Instance.m_strInGameState = a_strGameState;
             string[] l_strarr = a_strGameState.Split('_');
-            s_Instance.setGameLevel(l_strarr[0]);
 
-            GameStateMachine.Transition(s_Instance.m_strCurrentLevel);
+            string l_strLevelName = l_strarr[0];
+            s_Instance.setGameLevel(l_strLevelName);
+
+            LoadScene(l_strLevelName, s_Instance.onLevelSceneLoadComplete);
+        }
+
+        /// <summary>
+        /// On the scene of the level is complete
+        /// </summary>
+        private void onLevelSceneLoadComplete()
+        {
+            GameStateMachine.Transition(m_strInGameState);
+
             EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, a_strGameState);
+            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, m_strInGameState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
+        }
 
+        /// <summary>
+        /// Starts the level that was last saved
+        /// </summary>
+        public static void ContinueFromLastSavedState()
+        {
+            
         }
 
         /// <summary>

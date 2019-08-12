@@ -25,7 +25,8 @@ namespace ns_Mashmo
         ON_GAMEPLAY_BEGIN,                          /* <STRING>*/
         ON_PLAYER_HEALTH_UPDATED,                   /* <INT>*/
         ON_ENEMY_ALERT_STARTED,                     /* <ENEMY_BASE>*/
-        ON_ENEMY_ALERT_ENDED,                     /* <ENEMY_BASE>*/
+        ON_ENEMY_ALERT_ENDED,                       /* <ENEMY_BASE>*/
+        ON_OBJECTIVE_GROUP_COMPLETED,               /* <OLD LEVEL STRING,NEW LEVEL STRING>*/
     }
 
     public static class GameEventTypeConst
@@ -126,5 +127,10 @@ namespace ns_Mashmo
         #region ON_ENEMY_ALERT_ENDED
         //public const string ID_ENEMY_BASE = "ID_ENEMY_BASE";                            /* INT */
         #endregion ON_ENEMY_ALERT_ENDED
+
+        #region ON_OBJECTIVE_GROUP_COMPLETED
+        //public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
+        //public const string ID_NEW_GAME_STATE = "ID_NEW_GAME_STATE";     /* STRING */
+        #endregion ON_OBJECTIVE_GROUP_COMPLETED
     }
 }

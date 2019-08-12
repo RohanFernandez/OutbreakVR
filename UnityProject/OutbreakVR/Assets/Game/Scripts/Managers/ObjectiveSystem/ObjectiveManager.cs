@@ -160,7 +160,12 @@ namespace ns_Mashmo
             if (m_CurrentObjectiveGroup.IsComplete() &&
                 !string.IsNullOrEmpty(m_CurrentObjectiveGroup.m_strChangeStateOnComplete))
             {
-                GameStateMachine.Transition(m_CurrentObjectiveGroup.m_strChangeStateOnComplete);
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_CurrentObjectiveGroup.getObjGroupID());
+                l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_CurrentObjectiveGroup.m_strChangeStateOnComplete);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, l_EventHash);
+
+                GameManager.SetGamePlayState(m_CurrentObjectiveGroup.m_strChangeStateOnComplete, true);
             }
         }
 

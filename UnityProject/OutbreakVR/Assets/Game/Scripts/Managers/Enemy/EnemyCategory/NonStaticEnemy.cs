@@ -133,7 +133,6 @@ namespace ns_Mashmo
             get { return m_NavState; }
             set
             {
-                Debug.LogError("onStateChanged =  OldState: " + NavState.ToString() + "  NewState: " + value.ToString());
                 if (m_NavState == value)
                 {
                     return;

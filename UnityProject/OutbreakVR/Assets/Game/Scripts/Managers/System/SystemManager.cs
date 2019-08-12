@@ -69,28 +69,24 @@ namespace ns_Mashmo
         {
             UnityEngine.SceneManagement.Scene l_OldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 
-            if (l_OldScene.name.Equals(a_strSceneName, System.StringComparison.OrdinalIgnoreCase))
+            if (!l_OldScene.name.Equals(a_strSceneName, System.StringComparison.OrdinalIgnoreCase))
             {
-                Debug.LogError("SystemManager::loadSceneAsync:: New scene to load is the same as the current active scene.");
-                yield break;
-            }
-
-            Debug.Log("<color=BLUE>SystemManager::loadSceneAsync::</color> Loading scene with name : '"+ a_strSceneName + "'");
-            AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
-            while (!l_AsyncOperation.isDone)
-            {
-                yield return null;
+                Debug.Log("<color=BLUE>SystemManager::loadSceneAsync::</color> Loading scene with name : '"+ a_strSceneName + "'");
+                AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+                while (!l_AsyncOperation.isDone)
+                {
+                    yield return null;
+                }
+                EventHash l_hash = EventManager.GetEventHashtable();
+                l_hash.Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
+                l_hash.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, a_strSceneName);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_hash);
             }
 
             if (actionOnSceneLoaded != null)
             {
                 actionOnSceneLoaded();
             }
-
-            EventHash l_hash = EventManager.GetEventHashtable();
-            l_hash .Add(GameEventTypeConst.ID_OLD_SCENE_NAME, l_OldScene.name);
-            l_hash.Add(GameEventTypeConst.ID_NEW_SCENE_NAME, a_strSceneName);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_SCENE_CHANGED, l_hash);
         }
     }
 }

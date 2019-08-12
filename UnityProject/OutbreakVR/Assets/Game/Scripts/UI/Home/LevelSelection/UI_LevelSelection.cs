@@ -13,5 +13,13 @@ namespace ns_Mashmo
         {
             GameManager.SetGamePlayState(a_strGameStateName);
         }
+
+        /// <summary>
+        /// On btn selected to continue the game from the last saved level
+        /// </summary>
+        public void onContinueLevelOptionSelected()
+        {
+            GameManager.ContinueFromLastSavedState();
+        }
     }
 }
