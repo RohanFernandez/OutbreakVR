@@ -25,6 +25,24 @@ namespace ns_Mashmo
             return m_ItemType;
         }
 
+        /// <summary>
+        /// The outline hightlighter
+        /// </summary>
+        [SerializeField]
+        private OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
+
+        /// <summary>
+        /// The normal outline color
+        /// </summary>
+        [SerializeField]
+        private Color m_colorOutlineNormal;
+
+        /// <summary>
+        /// The highlighted outline color
+        /// </summary>
+        [SerializeField]
+        private Color m_colorOutlineHighlighted;
+
         public abstract ITEM_CATEGORY getItemCategoryType();
 
         /// <summary>
@@ -40,12 +58,18 @@ namespace ns_Mashmo
 
         public virtual void onReturnedToPool()
         {
-
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(false, m_colorOutlineNormal);
+            }
         }
 
         public virtual void onRetrievedFromPool()
         {
-
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+            }
         }
 
         /// <summary>
@@ -68,25 +92,25 @@ namespace ns_Mashmo
 
         #region IPointerOver Interface Implemetation
 
-        [SerializeField]
-        MeshRenderer m_MeshRenderer = null;
-
         public virtual void onPointerEnter()
         {
-            Debug.LogError("onPointerEnter");
-            m_MeshRenderer.material.color = new Color(1.0f, 0.0f, 0.0f);
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineHighlighted);
+            }
         }
 
         public virtual void onPointerExit()
         {
-            Debug.LogError("onPointerExit");
-            m_MeshRenderer.material.color = new Color(0.0f, 1.0f, 0.0f);
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+            }
         }
 
         public virtual void onPointerInteract()
         {
             Debug.LogError("onPointerInteract");
-            m_MeshRenderer.material.color = new Color(0.0f, 0.0f, 1.0f);
 
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_ITEM_DROP_TYPE, m_ItemType);

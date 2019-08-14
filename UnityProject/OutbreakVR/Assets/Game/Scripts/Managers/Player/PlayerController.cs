@@ -287,7 +287,6 @@ namespace ns_Mashmo
                 )
             {
                 WeaponManager.SetNextCategory();
-                Debug.LogError(l_v2CurrentSwipe);
             }
             // Swipe from right to left
             else if (l_v2CurrentSwipe.x < -MIN_SWIPE_VALUE
@@ -297,7 +296,6 @@ namespace ns_Mashmo
                 )
             {
                 WeaponManager.SetPreviousCategory();
-                Debug.LogError(l_v2CurrentSwipe);
             }
             // Swipe from top to bottom
             else if (l_v2CurrentSwipe.y < -MIN_SWIPE_VALUE
@@ -311,7 +309,7 @@ namespace ns_Mashmo
                 {
                     l_IPointerOver.onPointerInteract();
                 }
-                Debug.LogError(l_v2CurrentSwipe);
+                
             }
             // Swipe from bottom to top
             else if (l_v2CurrentSwipe.y > MIN_SWIPE_VALUE
@@ -320,7 +318,7 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                Debug.LogError(l_v2CurrentSwipe);
+                
             }
         }
 
