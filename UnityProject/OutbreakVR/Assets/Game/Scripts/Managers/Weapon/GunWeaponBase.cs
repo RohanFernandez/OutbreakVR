@@ -64,6 +64,17 @@ namespace ns_Mashmo
             get { return m_iDamagePerBullet; }
         }
 
+        /// <summary>
+        /// animation recoil
+        /// </summary>
+        [SerializeField]
+        protected Animation m_animRecoil = null;
+
+        /// <summary>
+        /// The name of the recoil anim state name
+        /// </summary>
+        private const string RECOIL_ANIM_STATE_NAME = "Recoil";
+
         public int CurrentMagCount
         {
             get
@@ -143,6 +154,11 @@ namespace ns_Mashmo
 
             SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDOnShoot ,false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
 
+            if (m_animRecoil != null)
+            {
+                m_animRecoil.Play();
+            }
+
             m_fTimeSinceLastShot = 0.0f;
             updateBulletData();
         }
@@ -168,6 +184,16 @@ namespace ns_Mashmo
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
+
+            if (m_animRecoil != null)
+            {
+                AnimationState l_AnimState = m_animRecoil[RECOIL_ANIM_STATE_NAME];
+                if (l_AnimState != null)
+                {
+                    l_AnimState.speed = 1.0f / m_fTimeBetweenEachShoot;
+                }
+            }
+
             updateBulletData();
         }
 
@@ -226,6 +252,11 @@ namespace ns_Mashmo
             int l_iBulletsCanBeAdded = getBulletsThatCanBeAdded();
             int l_iBulletsToAdd = (a_iBullets > l_iBulletsCanBeAdded) ? l_iBulletsCanBeAdded : a_iBullets;
             TotalBullets += l_iBulletsToAdd;
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_GUN_WEAPON, this);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_BULLETS_ADDED, l_EventHash);
+
             updateBulletData();
         }
 

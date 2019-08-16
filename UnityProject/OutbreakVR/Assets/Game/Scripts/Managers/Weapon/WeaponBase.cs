@@ -33,6 +33,17 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The transform that will hold the ray transform game object of the controller
+        /// The laser/ line renderer or aim will start from this point
+        /// </summary>
+        [SerializeField]
+        private Transform m_GunRayTransformParent = null;
+        public Transform GunRayTransformParent
+        {
+            get { return m_GunRayTransformParent; }
+        }
+
+        /// <summary>
         /// Reloads weapon if it has a capability
         /// </summary>
         public virtual void reload() { }

@@ -522,10 +522,6 @@ namespace ns_Mashmo
                 {
                     l_GunWeaponBase.addBullets(l_iBulletsToAdd);
                     l_bIsBulletsPickedUp = true;
-
-                    EventHash l_EventHash = EventManager.GetEventHashtable();
-                    l_EventHash.Add(GameEventTypeConst.ID_GUN_WEAPON, l_GunWeaponBase);
-                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_BULLETS_ADDED, l_EventHash);
                 }
             }
 
@@ -671,7 +667,7 @@ namespace ns_Mashmo
         {
             Transform l_transRayPointer = ControllerManager.RayTransform;
             
-            Transform l_transNewParent = IsWeaponActive ? GetCurrentWeaponBase().transform : m_WeaponHolder;
+            Transform l_transNewParent = IsWeaponActive ? GetCurrentWeaponBase().GunRayTransformParent : m_WeaponHolder;
 
             l_transRayPointer.SetParent(l_transNewParent);
             l_transRayPointer.localPosition = Vector3.zero;
