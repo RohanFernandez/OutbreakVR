@@ -29,6 +29,7 @@ namespace ns_Mashmo
             //Get username and userid
 
             //Set player data with username
+            PlayerDataManager.InitDataWithUsername("FretBuzz");
 
             //Check internet connection
 

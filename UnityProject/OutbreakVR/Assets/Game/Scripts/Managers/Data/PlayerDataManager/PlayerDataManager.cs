@@ -6,22 +6,22 @@ namespace ns_Mashmo
 {
     public enum PLAYER_KEYS
     {
-        OUTBREAK_USERNAME_                              = 0, // Oculus user name
-        OUTBREAK_USER_ID_                               = 1, // Unique ID set by Mashmo server for all games
-        OUTBREAK_SYNCD_COINS_                           = 2,
-        OUTBREAK_UNSYNCD_COINS_                         = 3,
-        OUTBREAK_SYNCD_LEVELS_                          = 4,
-        OUTBREAK_UNSYNCD_LEVELS_                        = 5,
-        OUTBREAK_SYNCD_PRIMARY_BULLETS_                 = 6,
-        OUTBREAK_UNSYNCD_PRIMARY_BULLETS_               = 7,
-        OUTBREAK_SYNCD_SECONDARY_BULLETS_               = 8,
-        OUTBREAK_UNSYNCD_SECONDARY_BULLETS_             = 9,
-        OUTBREAK_SYNCD_CURRENT_PRIMARY_WEAPON_          = 10,
-        OUTBREAK_UNSYNCD_CURRENT_PRIMARY_WEAPON_        = 11,
-        OUTBREAK_SYNCD_CURRENT_MELEE_WEAPON_            = 12,
-        OUTBREAK_UNSYNCD_CURRENT_MELEE_WEAPON_          = 13,
-        OUTBREAK_SYNCD_CURRENT_LIFEMETER_               = 14,
-        OUTBREAK_UNSYNCD_CURRENT_LIFEMETER_             = 15,
+        _OUTBREAK_USERNAME                              = 0, // Oculus user name
+        _OUTBREAK_USER_ID                               = 1, // Unique ID set by Mashmo server for all games
+        _OUTBREAK_SYNCD_COINS                           = 2,
+        _OUTBREAK_UNSYNCD_COINS                         = 3,
+        _OUTBREAK_SYNCD_LEVELS                          = 4,
+        _OUTBREAK_UNSYNCD_LEVELS                        = 5,
+        _OUTBREAK_SYNCD_PRIMARY_BULLETS                 = 6,
+        _OUTBREAK_UNSYNCD_PRIMARY_BULLETS               = 7,
+        _OUTBREAK_SYNCD_SECONDARY_BULLETS               = 8,
+        _OUTBREAK_UNSYNCD_SECONDARY_BULLETS             = 9,
+        _OUTBREAK_SYNCD_CURRENT_PRIMARY_WEAPON          = 10,
+        _OUTBREAK_UNSYNCD_CURRENT_PRIMARY_WEAPON        = 11,
+        _OUTBREAK_SYNCD_CURRENT_MELEE_WEAPON            = 12,
+        _OUTBREAK_UNSYNCD_CURRENT_MELEE_WEAPON          = 13,
+        _OUTBREAK_SYNCD_CURRENT_LIFEMETER               = 14,
+        _OUTBREAK_UNSYNCD_CURRENT_LIFEMETER             = 15,
     }
 
     public class PlayerDataManager : AbsComponentHandler
@@ -85,15 +85,16 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static bool IsPlayerDataExistOnDevice(string a_strUsername)
         {
-            return PlayerPrefs.HasKey(PLAYER_KEYS.OUTBREAK_USERNAME_.ToString() + a_strUsername);
+            return PlayerPrefs.HasKey(PLAYER_KEYS._OUTBREAK_USERNAME.ToString() + a_strUsername);
         }
 
         /// <summary>
         /// Initializes all player prefs
         /// Sets name of player pref key with prefix as username
         /// </summary>
-        public static void InitDataWithUsername()
+        public static void InitDataWithUsername(string a_strUsername)
         {
+            PlayerDataManager.PlayerUsername = a_strUsername;
             int l_iKeyCount = s_Instance.m_lstPlayerDataEntries.Count;
 
             s_Instance.m_dictPlayerPrefsData = new Dictionary<PLAYER_KEYS, PlayerDataEntry>(l_iKeyCount);
@@ -101,7 +102,7 @@ namespace ns_Mashmo
             for (int l_iCurrentDataEntry = 0; l_iCurrentDataEntry < l_iKeyCount; l_iCurrentDataEntry++)
             {
                 PlayerDataEntry l_CurrentPlayerDataEntry = s_Instance.m_lstPlayerDataEntries[l_iCurrentDataEntry];
-                l_CurrentPlayerDataEntry.m_strEntryID = l_CurrentPlayerDataEntry.m_PlayerKeyType.ToString() + s_Instance.m_strPlayerUsername;
+                l_CurrentPlayerDataEntry.m_strEntryID = PlayerUsername + l_CurrentPlayerDataEntry.m_PlayerKeyType.ToString();
 
                 s_Instance.m_dictPlayerPrefsData.Add(l_CurrentPlayerDataEntry.m_PlayerKeyType, l_CurrentPlayerDataEntry);
 

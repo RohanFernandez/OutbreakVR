@@ -643,16 +643,16 @@ namespace ns_Mashmo
         {
             RaycastHit l_RaycastHit;
 
-            Transform l_transCurrentControllerAnchor = ControllerManager.CurrentControllerAnchor.transform;
+            Transform l_transCurrentControllerAnchor = ControllerManager.RayTransform;
             Ray l_ray = new Ray(l_transCurrentControllerAnchor.position, l_transCurrentControllerAnchor.forward);
             Physics.Raycast(l_ray, out l_RaycastHit, ControllerManager.MAX_CURSOR_DISTANCE, m_GunHitInteractionLayer);
 
             if (l_RaycastHit.collider != null)
             {
-                EnemyBase l_HitEnemyBase = l_RaycastHit.collider.GetComponent<EnemyBase>();
-                if (l_HitEnemyBase != null)
+                EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
+                if (l_EnemyHitCollider != null)
                 {
-                    l_HitEnemyBase.inflictDamage(a_GunWeaponBase.DamagePerBullet);
+                    l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet);
                 }
             }
         }

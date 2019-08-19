@@ -67,18 +67,28 @@ namespace ns_Mashmo
         /// </summary>
         public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
         {
-            if (a_bIsSaveGameProgress)
-            {
-                //TODO:: Save game progress
-            }
-
             s_Instance.m_strInGameState = a_strGameState;
             string[] l_strarr = a_strGameState.Split('_');
 
             string l_strLevelName = l_strarr[0];
             s_Instance.setGameLevel(l_strLevelName);
 
-            LoadScene(l_strLevelName, s_Instance.onLevelSceneLoadComplete);
+            if (a_bIsSaveGameProgress)
+            {
+                //onSaveGameComplete
+            }
+            else
+            {
+                LoadScene(s_Instance.m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
+            }
+        }
+
+        /// <summary>
+        /// Callback called on game save completed successfully or unsuccessfully
+        /// </summary>
+        private void onSaveGameComplete()
+        {
+            LoadScene(m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
         }
 
         /// <summary>

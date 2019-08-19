@@ -227,7 +227,7 @@ namespace ns_Mashmo
         protected override void onKilled()
         {
             base.onKilled();
-            m_NavState = NON_STATIC_ENEMY_STATE.DEAD;
+            NavState = NON_STATIC_ENEMY_STATE.DEAD;
         }
 
         /// <summary>
@@ -305,8 +305,10 @@ namespace ns_Mashmo
                     }
                 case NON_STATIC_ENEMY_STATE.DEAD:
                     {
-                        m_actNavStateUpdate = null;
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
+                        m_actNavStateUpdate = null;
                         break;
                     }
                 case NON_STATIC_ENEMY_STATE.NONE:

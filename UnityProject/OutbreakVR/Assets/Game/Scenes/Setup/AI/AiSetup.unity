@@ -481,6 +481,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyBase: {fileID: 2120235098}
+--- !u!1 &322439327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: fe2eb0b4e90413643a3ddc78c368140f,
+    type: 3}
+  m_PrefabInstance: {fileID: 322439322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &322439328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322439327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7e2237c0ca50245b4bc44f21c20377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemyBase: {fileID: 2120235098}
+  m_fDamageOnHit: 2
+--- !u!1 &322439331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100054, guid: fe2eb0b4e90413643a3ddc78c368140f,
+    type: 3}
+  m_PrefabInstance: {fileID: 322439322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &322439332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322439331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97, y: 0.22, z: 0.43}
+  m_Center: {x: 0.22, y: 0.08, z: 0}
+--- !u!114 &322439333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322439331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7e2237c0ca50245b4bc44f21c20377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemyBase: {fileID: 2120235098}
+  m_fDamageOnHit: 1
+--- !u!65 &322439334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322439327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17536752, y: 0.30772582, z: 0.35392445}
+  m_Center: {x: -0.0000010482082, y: -0.015506007, z: 1.6402469}
 --- !u!1 &715769190
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +739,6 @@ GameObject:
   - component: {fileID: 2120235098}
   - component: {fileID: 2120235100}
   - component: {fileID: 2120235101}
-  - component: {fileID: 2120235102}
   - component: {fileID: 2120235103}
   - component: {fileID: 2120235104}
   m_Layer: 11
@@ -769,20 +834,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &2120235102
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120235097}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.22
-  m_Height: 1.72
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0.16}
 --- !u!114 &2120235103
 MonoBehaviour:
   m_ObjectHideFlags: 0
