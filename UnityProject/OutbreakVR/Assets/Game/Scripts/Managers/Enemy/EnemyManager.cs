@@ -6,7 +6,8 @@ namespace ns_Mashmo
 {
     public enum ENEMY_TYPE
     {
-        SECURITY_OFFICER
+        SECURITY_OFFICER = 0,
+        AUTOMATED_TURRET = 1,
     }
 
     public enum ENEMY_ATTACK_TYPE
@@ -34,7 +35,13 @@ namespace ns_Mashmo
         /// List of all enemies that are alerted at the moment
         /// </summary>
         [SerializeField]
-        private List<NonStaticEnemy> m_lstAlertedEnemies = null;
+        private List<EnemyBase> m_lstAlertedEnemies = null;
+
+        /// <summary>
+        /// The list of all enemy dependants in the scene
+        /// </summary>
+        [SerializeField]
+        private List<EnemyDependantBase> m_lstEnemyDependantBase = null;
 
         /// <summary>
         /// Dictionary of enemy type to Pool
@@ -51,14 +58,6 @@ namespace ns_Mashmo
         /// The objective id sent on enemy killed
         /// </summary>
         public const string ENEMY_OBJECTIVE_ID = "ENEMY_OBJECTIVE_ID";
-
-        ///// <summary>
-        ///// The list of all enemy patrol points in current scene
-        ///// </summary>
-        //#if UNITY_EDITOR
-        //[SerializeField]
-        //#endif
-        //private List<EnemyPatrolPoint> m_lstPatrolPoints = null;
 
         [SerializeField]
         private PatrolManager m_PatrolManager = null;
@@ -77,7 +76,9 @@ namespace ns_Mashmo
             m_PatrolManager = new PatrolManager();
             m_PatrolManager.initialize();
 
-            m_lstAlertedEnemies = new List<NonStaticEnemy>(10);
+            m_lstEnemyDependantBase = new List<EnemyDependantBase>(10);
+
+            m_lstAlertedEnemies = new List<EnemyBase>(10);
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
@@ -152,6 +153,8 @@ namespace ns_Mashmo
                 {
                     l_Enemy.unpauseEnemy();
                 }
+
+                ToggleAcitvateEnemyDependant(true, a_strID);
             }
             return l_Enemy;
         }
@@ -275,7 +278,7 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onEnemyAlertStarted(EventHash a_EventHash)
         {
-            NonStaticEnemy l_AlertedEnemy = (NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
             if (l_AlertedEnemy != null)
             {
                 m_lstAlertedEnemies.Add(l_AlertedEnemy);
@@ -289,7 +292,7 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onEnemyAlertEnded(EventHash a_EventHash)
         {
-            NonStaticEnemy l_AlertedEnemy = (NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
             if (l_AlertedEnemy != null)
             {
                 m_lstAlertedEnemies.Remove(l_AlertedEnemy);
@@ -310,6 +313,67 @@ namespace ns_Mashmo
             {
                 SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, GameConsts.AUD_CLIP_AMBIENT, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
             }
+        }
+
+        /// <summary>
+        /// Registers/ Unregisters the enemy dependant base from the list
+        /// </summary>
+        /// <param name="a_bIsRegister"></param>
+        /// <param name="a_EnemyDependantBase"></param>
+        public static void RegisterUnregisterEnemyDependant(bool a_bIsRegister, EnemyDependantBase a_EnemyDependantBase)
+        {
+            if(s_Instance == null) { return; }
+
+            if (a_bIsRegister)
+            {
+                s_Instance.m_lstEnemyDependantBase.Add(a_EnemyDependantBase);
+            }
+            else
+            {
+                s_Instance.m_lstEnemyDependantBase.Remove(a_EnemyDependantBase);
+            }
+        }
+
+        /// <summary>
+        /// Activates/ Deactivates the enemy dependant with Enemy ID if exist
+        /// </summary>
+        /// <param name="a_bIsActivated"></param>
+        /// <param name="a_strEnemyID"></param>
+        public static void ToggleAcitvateEnemyDependant(bool a_bIsActivated, string a_strEnemyID)
+        {
+            int l_iEnemyDependantCount = s_Instance.m_lstEnemyDependantBase.Count;
+            for (int l_iEnemyDependantIndex = 0; l_iEnemyDependantIndex < l_iEnemyDependantCount; l_iEnemyDependantIndex++)
+            {
+                if (s_Instance.m_lstEnemyDependantBase[l_iEnemyDependantIndex].EnemyID.Equals(a_strEnemyID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    s_Instance.m_lstEnemyDependantBase[l_iEnemyDependantIndex].onActivate();
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets active enemy base with ID from the pool of a_EnemyType
+        /// </summary>
+        /// <param name="a_EnemyType"></param>
+        /// <param name="a_strEnemyID"></param>
+        /// <returns></returns>
+        public static EnemyBase GetActiveEnemyWithID(ENEMY_TYPE a_EnemyType, string a_strEnemyID)
+        {
+            EnemyPool l_EnemyPool = null;
+            if (s_Instance.m_dictEnemyPools.TryGetValue(a_EnemyType, out l_EnemyPool))
+            {
+                List<EnemyBase> l_lstActiveEnemyBase = l_EnemyPool.getActiveList();
+                int l_iActiveEnemyCount = l_lstActiveEnemyBase.Count;
+                for (int l_iEnemyIndex = l_iActiveEnemyCount - 1; l_iEnemyIndex >= 0; l_iEnemyIndex--)
+                {
+                    if (l_lstActiveEnemyBase[l_iEnemyIndex].getID().Equals(a_strEnemyID, System.StringComparison.OrdinalIgnoreCase))
+                    {
+                        return l_lstActiveEnemyBase[l_iEnemyIndex];
+                    }
+                }
+            }
+            return null;
         }
     }
 }

@@ -58,6 +58,21 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Gets float from string
+        /// </summary>
+        /// <param name="a_strAttributeKey"></param>
+        /// <returns></returns>
+        public static float GetFloat(string a_strAttributeKey)
+        {
+            float l_fReturn = 0.0f;
+            if (!string.IsNullOrEmpty(a_strAttributeKey))
+            {
+                float.TryParse(a_strAttributeKey, out l_fReturn);
+            }
+            return l_fReturn;
+        }
+
+        /// <summary>
         /// Returns string from hashtable object
         /// Return false if key is null or empty
         /// </summary>
@@ -87,10 +102,21 @@ namespace ns_Mashmo
             System.Object l_Obj = a_Hashtable[a_strAttributeKey];
             string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
 
+            return GetVec3(l_strAtrributeValue, a_v3Default);
+        }
+
+        /// <summary>
+        /// Gets vec3 from string in format (0.0, 0.0, 0.0)
+        /// </summary>
+        /// <param name="a_strAtrributeValue"></param>
+        /// <param name="a_v3Default"></param>
+        /// <returns></returns>
+        public static Vector3 GetVec3(string a_strAtrributeValue, Vector3 a_v3Default = default(Vector3))
+        {
             Vector3 l_v3Return = a_v3Default;
-            if (!string.IsNullOrEmpty(l_strAtrributeValue))
+            if (!string.IsNullOrEmpty(a_strAtrributeValue))
             {
-                string[] l_strVec3 = l_strAtrributeValue.Split(',');
+                string[] l_strVec3 = a_strAtrributeValue.Split(',');
                 if (l_strVec3.Length == 3)
                 {
                     l_v3Return = new Vector3();

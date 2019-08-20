@@ -4,15 +4,6 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public enum NON_STATIC_ENEMY_STATE
-    {
-        NONE,
-        IDLE,
-        PATROL,
-        ALERT,
-        DEAD
-    }
-
     public abstract class NonStaticEnemy : EnemyBase
     {
 
@@ -90,19 +81,9 @@ namespace ns_Mashmo
         private float m_fAlertStoppingDistance = 1.0f;
 
         /// <summary>
-        /// The state of the enemy
-        /// </summary>
-        private NON_STATIC_ENEMY_STATE m_NavState = NON_STATIC_ENEMY_STATE.NONE;
-
-        /// <summary>
         /// The next patrol point the enemy is traversing to
         /// </summary>
         private EnemyPatrolPoint m_NextPatrolDestination = null;
-
-        /// <summary>
-        /// Action called on update, will update the current state the enemy is in
-        /// </summary>
-        private System.Action m_actNavStateUpdate = null;
 
         /// <summary>
         /// Radius under which will go into alert mode attempting to reach the player to attack.
@@ -116,32 +97,6 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private float m_fExtendedAlertRadius = 23.0f;
-
-        /// <summary>
-        /// The ray that detects from the transform to the player to check if the player is in the line of sight
-        /// </summary>
-        private Ray m_RayDetector = new Ray();
-
-        /// <summary>
-        /// The layer mask that a ray from the enemy pointed to the player will be detected
-        /// </summary>
-        [SerializeField]
-        private LayerMask m_AttackLayerMask;
-
-        protected NON_STATIC_ENEMY_STATE NavState
-        {
-            get { return m_NavState; }
-            set
-            {
-                if (m_NavState == value)
-                {
-                    return;
-                }
-                NON_STATIC_ENEMY_STATE l_OldNavState = m_NavState;
-                m_NavState = value;
-                onStateChanged(l_OldNavState, m_NavState);
-            }
-        }
 
         public override void activateEnemy()
         {
@@ -160,31 +115,19 @@ namespace ns_Mashmo
         private IEnumerator coOnActivated()
         {
             yield return new WaitForSeconds(0.1f);
-            NavState = NON_STATIC_ENEMY_STATE.IDLE;
+            NavState = ENEMY_STATE.IDLE;
         }
 
         public override void deactivateEnemy()
         {
             base.deactivateEnemy();
+
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
 
             m_RangeDetector.onDeactivated();
 
-            NavState = NON_STATIC_ENEMY_STATE.NONE;
-        }
-
-        /// <summary>
-        /// Updates movements
-        /// </summary>
-        public override void Update()
-        {
-            base.Update();
-
-            if (m_actNavStateUpdate != null)
-            {
-                m_actNavStateUpdate();
-            }
+            NavState = ENEMY_STATE.NONE;
         }
 
         /// <summary>
@@ -227,7 +170,7 @@ namespace ns_Mashmo
         protected override void onKilled()
         {
             base.onKilled();
-            NavState = NON_STATIC_ENEMY_STATE.DEAD;
+            NavState = ENEMY_STATE.DEAD;
         }
 
         /// <summary>
@@ -266,11 +209,13 @@ namespace ns_Mashmo
         /// <summary>
         /// On enemy state changed
         /// </summary>
-        protected virtual void onStateChanged(NON_STATIC_ENEMY_STATE l_OldNavState, NON_STATIC_ENEMY_STATE a_NavState)
+        protected override void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
         {
+            base.onStateChanged(l_OldNavState, a_NavState);
+
             switch (a_NavState)
             {
-                case NON_STATIC_ENEMY_STATE.IDLE:
+                case ENEMY_STATE.IDLE:
                     {
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
@@ -280,7 +225,7 @@ namespace ns_Mashmo
                         m_actNavStateUpdate = onIdleStateUpdate;
                         break;
                     }
-                case NON_STATIC_ENEMY_STATE.PATROL:
+                case ENEMY_STATE.PATROL:
                     {
                         m_NavMeshAgent.stoppingDistance = m_fPatrolStoppingDistance;
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
@@ -289,21 +234,16 @@ namespace ns_Mashmo
                         m_actNavStateUpdate = onPatrolStateUpdate;
                         break;
                     }
-                case NON_STATIC_ENEMY_STATE.ALERT:
+                case ENEMY_STATE.ALERT:
                     {
                         m_NavMeshAgent.ResetPath();
                         m_NavMeshAgent.stoppingDistance = m_fAlertStoppingDistance;
                         m_fCurrAlertTimeCounter = m_fMaxAlertTime;
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = onAlertStateUpdate;
-
-                        EventHash l_EventHash = EventManager.GetEventHashtable();
-                        l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
-                        EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, l_EventHash);
-
                         break;
                     }
-                case NON_STATIC_ENEMY_STATE.DEAD:
+                case ENEMY_STATE.DEAD:
                     {
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
@@ -311,20 +251,12 @@ namespace ns_Mashmo
                         m_actNavStateUpdate = null;
                         break;
                     }
-                case NON_STATIC_ENEMY_STATE.NONE:
+                case ENEMY_STATE.NONE:
                     {
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
                         break;
                     }
-            }
-
-            /// Specific OLD to NEW state
-            if (l_OldNavState == NON_STATIC_ENEMY_STATE.ALERT)
-            {
-                EventHash l_EventHash = EventManager.GetEventHashtable();
-                l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, l_EventHash);
             }
         }
 
@@ -337,11 +269,11 @@ namespace ns_Mashmo
 
             if (isPlayerDetected())
             {
-                NavState = NON_STATIC_ENEMY_STATE.ALERT;
+                NavState = ENEMY_STATE.ALERT;
             }
             else if (m_fCurrIdleTimeCounter > m_fMaxIdleTime)
             {
-                NavState = NON_STATIC_ENEMY_STATE.PATROL;
+                NavState = ENEMY_STATE.PATROL;
             }
         }
 
@@ -354,7 +286,7 @@ namespace ns_Mashmo
             
             if (m_fCurrAlertTimeCounter <= 0.0f)
             {
-                NavState = NON_STATIC_ENEMY_STATE.IDLE;
+                NavState = ENEMY_STATE.IDLE;
             }
             else
             {
@@ -381,7 +313,7 @@ namespace ns_Mashmo
         {
             if (isPlayerDetected())
             {
-                NavState = NON_STATIC_ENEMY_STATE.ALERT;
+                NavState = ENEMY_STATE.ALERT;
             }
         }
 
@@ -390,9 +322,9 @@ namespace ns_Mashmo
             EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
             if (l_EnemyPatrolPoint != null 
                 && l_EnemyPatrolPoint == m_NextPatrolDestination 
-                && NavState == NON_STATIC_ENEMY_STATE.PATROL)
+                && NavState == ENEMY_STATE.PATROL)
             {
-                NavState = NON_STATIC_ENEMY_STATE.IDLE;
+                NavState = ENEMY_STATE.IDLE;
             }
         }
 
@@ -444,8 +376,8 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onEnemyAlertStarted(EventHash a_EventHash)
         {
-            NonStaticEnemy l_NonStaticEnemy =(NonStaticEnemy)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
-            if (l_NonStaticEnemy == this)
+            EnemyBase l_EnemyBase = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+            if (l_EnemyBase == this)
             {
                 return;
             }
@@ -467,7 +399,7 @@ namespace ns_Mashmo
                 float l_fDistanceToPlayer = PatrolManager.GetNavDistanceToTarget(m_NavMeshPath);
                 if (l_fDistanceToPlayer < m_fExtendedAlertRadius)
                 {
-                    NavState = NON_STATIC_ENEMY_STATE.ALERT;
+                    NavState = ENEMY_STATE.ALERT;
                 }
             }
         }

@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
+    public enum ENEMY_STATE
+    {
+        NONE,
+        IDLE,
+        PATROL,
+        ALERT,
+        DEAD
+    }
+
     public abstract class EnemyBase : MonoBehaviour, IEnemy
     {
         /// <summary>
@@ -40,6 +49,22 @@ namespace ns_Mashmo
         private Coroutine m_coDeactiveOnKilled = null;
 
         /// <summary>
+        /// The state of the enemy
+        /// </summary>
+        private ENEMY_STATE m_NavState = ENEMY_STATE.NONE;
+
+        /// <summary>
+        /// The ray that detects from the transform to the player to check if the player is in the line of sight
+        /// </summary>
+        protected Ray m_RayDetector = new Ray();
+
+        /// <summary>
+        /// The layer mask that a ray from the enemy pointed to the player will be detected
+        /// </summary>
+        [SerializeField]
+        protected LayerMask m_AttackLayerMask;
+
+        /// <summary>
         /// Returns the tyoe of the enemy
         /// </summary>
         /// <returns></returns>
@@ -53,6 +78,11 @@ namespace ns_Mashmo
         /// </summary>
         /// <returns></returns>
         public abstract ENEMY_ATTACK_TYPE getEnemyAttackType();
+
+        /// <summary>
+        /// Action called on update, will update the current state the enemy is in
+        /// </summary>
+        protected System.Action m_actNavStateUpdate = null;
 
         /// <summary>
         /// Activates use of enemy
@@ -76,7 +106,10 @@ namespace ns_Mashmo
 
         public virtual void Update()
         {
-
+            if (m_actNavStateUpdate != null)
+            {
+                m_actNavStateUpdate();
+            }
         }
 
         public virtual void onReturnedToPool()
@@ -163,6 +196,41 @@ namespace ns_Mashmo
         public virtual void onStrikeAttack() { }
 
         #endregion ATTACK CALLBACK
+
+        protected virtual void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
+        {
+            /// Specific OLD to NEW state
+            if (l_OldNavState == ENEMY_STATE.ALERT)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, l_EventHash);
+            }
+            else if(a_NavState == ENEMY_STATE.ALERT)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, l_EventHash);
+            }
+        }
+
+        /// <summary>
+        /// Setting the nav state should be only done via this setter
+        /// </summary>
+        protected ENEMY_STATE NavState
+        {
+            get { return m_NavState; }
+            set
+            {
+                if (m_NavState == value)
+                {
+                    return;
+                }
+                ENEMY_STATE l_OldNavState = m_NavState;
+                m_NavState = value;
+                onStateChanged(l_OldNavState, m_NavState);
+            }
+        }
     }
 
 }

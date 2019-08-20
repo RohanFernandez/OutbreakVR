@@ -11,6 +11,7 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_POSITION = "Position";
         private const string ATTRIBUTE_ROTATION = "Rotation";
         private const string ATTRIBUTE_ENEMY_ID = "Enemy_ID";
+        private const string ATTRIBUTE_PARAMS = "Params";
         private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
@@ -42,6 +43,11 @@ namespace ns_Mashmo
         /// </summary>
         private string m_strEnemyID = string.Empty;
 
+        /// <summary>
+        /// Params if any
+        /// </summary>
+        private string m_strParams = string.Empty;
+
         public override void onInitialize()
         {
             base.onInitialize();
@@ -51,6 +57,7 @@ namespace ns_Mashmo
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
             m_v3Rotation = getVec3(ATTRIBUTE_ROTATION);
             m_strEnemyID = getString(ATTRIBUTE_ENEMY_ID);
+            m_strParams = getString(ATTRIBUTE_PARAMS);
 
             if (!string.IsNullOrEmpty(l_strEnemyType))
             {
@@ -77,6 +84,18 @@ namespace ns_Mashmo
                 case ATTRIBUTE_VALUE_CODE_ACTIVATE:
                     {
                         EnemyBase l_Enemy = EnemyManager.GetEnemyFromPool(m_EnemyType, m_strEnemyID, m_v3Position, Quaternion.Euler(m_v3Rotation));
+
+                        switch (m_EnemyType)
+                        {
+                            case ENEMY_TYPE.AUTOMATED_TURRET:
+                                {
+                                    AutomatedTurret l_Turret = (AutomatedTurret)l_Enemy;
+                                    string[] l_strArrParams = m_strParams.Split(';');
+                                    l_Turret.setLeftRightMaxYAngle(GeneralUtils.GetFloat(l_strArrParams[0]), GeneralUtils.GetFloat(l_strArrParams[1]));
+                                    break;
+                                }
+                        }
+
                         break;
                     }
                 default:

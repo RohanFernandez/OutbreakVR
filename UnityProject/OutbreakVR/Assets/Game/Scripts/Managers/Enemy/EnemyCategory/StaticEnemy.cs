@@ -10,5 +10,19 @@ namespace ns_Mashmo
         {
             return ENEMY_ATTACK_TYPE.STATIC;
         }
+
+        /// <summary>
+        /// Updates movements
+        /// </summary>
+        public override void Update()
+        {
+            base.Update();
+        }
+
+        public override void activateEnemy()
+        {
+            base.activateEnemy();
+            NavState = ENEMY_STATE.IDLE;
+        }
     }
 }
