@@ -68,6 +68,10 @@ namespace ns_Mashmo
                 case ENEMY_STATE.NONE:
                     m_actNavStateUpdate = null;
                     break;
+
+                case ENEMY_STATE.DEAD:
+                    m_actNavStateUpdate = null;
+                    break;
             }
         }
 

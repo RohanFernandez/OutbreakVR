@@ -170,7 +170,6 @@ namespace ns_Mashmo
         protected override void onKilled()
         {
             base.onKilled();
-            NavState = ENEMY_STATE.DEAD;
         }
 
         /// <summary>

@@ -173,6 +173,7 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onKilled()
         {
+            NavState = ENEMY_STATE.DEAD;
             EnemyManager.OnEnemyKilled(this);
             m_coDeactiveOnKilled = StartCoroutine(startEnemyDeactivateAfterTimer());
         }

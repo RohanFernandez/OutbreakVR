@@ -8,6 +8,7 @@ namespace ns_Mashmo
     {
         SECURITY_OFFICER = 0,
         AUTOMATED_TURRET = 1,
+        PROXIMITY_BOMB = 2,
     }
 
     public enum ENEMY_ATTACK_TYPE
