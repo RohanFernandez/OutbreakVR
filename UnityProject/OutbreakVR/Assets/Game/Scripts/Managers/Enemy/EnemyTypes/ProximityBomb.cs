@@ -62,14 +62,19 @@ namespace ns_Mashmo
 
                     //TODO:: Add blast anim
 
-                    if (m_bIsPlayerWithingProximityBlast)
+                    Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
+                    m_RayDetector.origin = transform.position;
+                    m_RayDetector.direction = (l_v3PlayerPos - transform.position).normalized;
+                    RaycastHit l_RaycastHit;
+                    if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_AttackLayerMask) &&
+                        l_RaycastHit.collider != null &&
+                        l_RaycastHit.collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase) &&
+                        m_bIsPlayerWithingProximityBlast)
                     {
-                        float l_fDistanceFromPlayer = Vector3.Distance(transform.position, PlayerManager.GetPosition());
-                        float l_fDamageMult = Mathf.Lerp(0.0f, m_fAttackRadius, l_fDistanceFromPlayer) / m_fAttackRadius;
-
+                        float l_fDistanceFromPlayer = Vector3.Distance(transform.position, l_v3PlayerPos);
+                        float l_fDamageMult = Mathf.Lerp(0.0f, m_fAttackRadius, l_fDistanceFromPlayer / m_fAttackRadius);
                         PlayerManager.InflictDamage((int)(m_iBlastDamageMax * l_fDamageMult));
                     }
-
                     break;
             }
         }
