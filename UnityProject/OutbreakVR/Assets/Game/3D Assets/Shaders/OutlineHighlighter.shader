@@ -1,89 +1,83 @@
-﻿// Custom shader to draw our toy cubes and balls with an outline around them.
-Shader "Custom/OutlineHighlighter"
-{
-	Properties
-	{
-		//_Color("Color", Color) = (1,1,1,0)
-		//_MainTex("Albedo", 2D) = "white" {}
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/OutlineHighlighter" {
+	Properties{
 		_OutlineColor("Outline Color", Color) = (0,0,0,1)
-		_OutlineWidth("Outline width", Range(.002, 0.03)) = .005
-
-		[HideInInspector] _Mode("__mode", Float) = 0.0
-		[HideInInspector] _SrcBlend("__src", Float) = 1.0
-		[HideInInspector] _DstBlend("__dst", Float) = 0.0
-		[HideInInspector] _ZWrite("__zw", Float) = 1.0
+		_Outline("Outline width", Range(0.0, 0.1)) = .005
 	}
-
 
 		CGINCLUDE
 #include "UnityCG.cginc"
 
-			struct appdata
-		{
-			float4 vertex : POSITION;
-			float3 normal : NORMAL;
-		};
+		struct appdata {
+		float4 vertex : POSITION;
+		float3 normal : NORMAL;
+	};
 
-		struct v2f
-		{
-			float4 pos : SV_POSITION;
-			fixed4 color : COLOR;
-		};
+	struct v2f {
+		float4 pos : POSITION;
+		float4 color : COLOR;
+	};
 
-		uniform float _OutlineWidth;
-		uniform float4 _OutlineColor;
-		uniform float4x4 _ObjectToWorldFixed;
+	uniform float _Outline;
+	uniform float4 _OutlineColor;
 
-		// Pushes the verts out a little from the object center.
-		// Lets us give an outline to objects that all have normals facing away from the center.
-		// If we can't assume that, we need to tweak the math of this shader.
-		v2f vert(appdata v)
-		{
-			v2f o;
+	v2f vert(appdata v) {
+		// just make a copy of incoming vertex data but scaled according to normal direction
+		v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
 
-			// MTF TODO 
-			// 1. Fix batching so that it actually occurs.
-			// 2. See if batching causes problems,
-			// if it does fix this line by adding that component that sets it.
-			//float4 objectCenterWorld = mul(_ObjectToWorldFixed, float4(0.0, 0.0, 0.0, 1.0));
-			float4 objectCenterWorld = mul(unity_ObjectToWorld, float4(0.0, 0.0, 0.0, 1.0));
-			float4 vertWorld = mul(unity_ObjectToWorld, v.vertex);
+		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+		float2 offset = TransformViewToProjection(norm.xy);
 
-			float3 offsetDir = vertWorld.xyz - objectCenterWorld.xyz;
-			offsetDir = normalize(offsetDir) * _OutlineWidth;
-
-			o.pos = UnityWorldToClipPos(vertWorld + offsetDir);
-
-			o.color = _OutlineColor;
-			o.color.w = 0;
-			return o;
-		}
-		ENDCG
-
-			SubShader
-		{
-			Tags { "Queue" = "Transparent" }
-			Pass
-			{
-				Name "OUTLINE"
-				// To allow the cube to render entirely on top of the outline.
-				ZWrite Off
-				Blend SrcAlpha OneMinusSrcAlpha
-
-				CGPROGRAM
-				#pragma vertex vert
-				#pragma fragment frag
-				fixed4 frag(v2f i) : SV_Target
-				{
-			// Just draw the _OutlineColor from the vert pass above.
-			i.color.w = 1;
-			return i.color;
-		}
-		ENDCG
+		o.pos.xy += offset * o.pos.z * _Outline;
+		o.color = _OutlineColor;
+		return o;
 	}
-			// Standard forward render.
-			UsePass "Standard/FORWARD"
+	ENDCG
+
+		SubShader{
+			Tags { "Queue" = "Transparent" }
+
+			Pass {
+				Name "BASE"
+				Cull Back
+				Blend Zero One
+
+		// uncomment this to hide inner details:
+		//Offset -8, -8
+
+		SetTexture[_OutlineColor] {
+			ConstantColor(0,0,0,0)
+			Combine constant
+		}
+	}
+
+		// note that a vertex shader is specified here but it's using the one above
+		Pass {
+			Name "OUTLINE"
+			Tags { "LightMode" = "Always" }
+			Cull Front
+
+		// you can choose what kind of blending mode you want for the outline
+		//Blend SrcAlpha OneMinusSrcAlpha // Normal
+		//Blend One One // Additive
+		Blend One OneMinusDstColor // Soft Additive
+		//Blend DstColor Zero // Multiplicative
+		//Blend DstColor SrcColor // 2x Multiplicative
+
+CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+half4 frag(v2f i) :COLOR {
+	return i.color;
+}
+ENDCG
 		}
 
-			Fallback Off
+
+	}
+
+		Fallback "Diffuse"
 }
