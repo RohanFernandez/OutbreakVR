@@ -135,7 +135,6 @@ namespace ns_Mashmo
             s_Instance = this;
             m_RegisteredGameObj.registerGameObject();
             
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
         }
@@ -147,21 +146,9 @@ namespace ns_Mashmo
                 return;
             }
             m_RegisteredGameObj.unregisterGameObject();
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             s_Instance = null;
-        }
-
-        /// <summary>
-        /// Event callback on controller changed
-        /// </summary>
-        /// <param name="a_ControllerType"></param>
-        /// <param name="a_NewControllerAnchor"></param>
-        void onControllerChanged(EventHash a_Hashtable)
-        {
-            //CONTROLLER_TYPE l_NewControllerType = (CONTROLLER_TYPE)a_Hashtable[GameEventTypeConst.ID_NEW_CONTROLLER_TYPE];
-            //GameObject l_goControllerAnchor = (GameObject)a_Hashtable[GameEventTypeConst.ID_NEW_CONTROLLER_ANCHOR];
         }
 
         void Update()
@@ -330,7 +317,7 @@ namespace ns_Mashmo
             ///Fire weapon
             if (ControllerManager.IsPrimaryTriggerBtnDown()
 #if UNITY_EDITOR
-                || Input.GetKeyDown(KeyCode.Mouse0)
+                || Input.GetKey(KeyCode.Mouse0)
 #endif
                 )
             {

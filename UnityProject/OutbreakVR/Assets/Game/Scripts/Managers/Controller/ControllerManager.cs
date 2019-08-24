@@ -439,6 +439,11 @@ namespace ns_Mashmo
         public const float MAX_CURSOR_DISTANCE = 10.0f;
 
         /// <summary>
+        /// Max laser ray hit distance which the object will be interactable.
+        /// </summary>
+        public const float MAX_CURSOR_INTERACTABLE_DISTANCE = 1.5f;
+
+        /// <summary>
         /// Is the controller laser pointer active.
         /// </summary>
         [SerializeField]
@@ -539,7 +544,7 @@ namespace ns_Mashmo
             RaycastHit l_RaycastHit;
             Ray l_ray = new Ray(a_goController.transform.position, a_goController.transform.forward);
         
-            Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_DISTANCE, m_InteractionLayer);
+            Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_INTERACTABLE_DISTANCE, m_InteractionLayer);
             //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
 
             return l_RaycastHit;

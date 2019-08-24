@@ -156,6 +156,7 @@ namespace ns_Mashmo
 
             if (m_animRecoil != null)
             {
+                m_animRecoil.Stop();
                 m_animRecoil.Play();
             }
 
