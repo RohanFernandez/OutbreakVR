@@ -25,18 +25,16 @@
 	<Sequence ID = "LEVEL1_100_OnBegin" >
 		<Task ID="1" TaskType="TaskAudio" AudSrc="AUD_SRC_AmbientSrc1" AudClip="AmbientAudio1" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_MUSIC"/>
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="-2.854,33.5,-4.412" Rotation="0.0,0.0,0.0" />
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="23" Position="-1.74,31.165,5.426" Rotation="0.0,0.0,0.0"/>
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Test_Item" ItemType="ITEM_AK47" BulletCount="23" Position="-5.03,31.165,3.715" Rotation="0.0,0.0,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="33" Position="0.84,31.165,1.27" Rotation="0.0,0.0,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="33" Position="2.92,31.165,3.43" Rotation="0.0,0.0,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Shotgun_Test_Item" ItemType="ITEM_PRIMARY_SHOTGUN_BULLETS" BulletCount="33" Position="0.195,30.88,3.43" Rotation="0.0,0.0,0.0"/>
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-0.314,31.509,-5.392" Rotation="0.0,-34.939,0.0"/>
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Test_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.935,31.109,2.38" Rotation="0.0,74.39201,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="3.552,31.58,-3.813" Rotation="0.0,219.126,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-3.876868,31.4127,5.817092" Rotation="0.0,-184.007,0.0"/>
+                <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-4.19,31.4127,5.817092" Rotation="0.0,-164.065,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Shotgun_Test_Item" ItemType="ITEM_PRIMARY_SHOTGUN_BULLETS" BulletCount="12" Position="2.068,31.192,0.888" Rotation="0.0,233.552,0.0"/>
 		<Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
 		<Task ID="3_1" TaskType="TaskPlayer" Code="SetPlayerHealth" PlayerHealth="100" />
 		<Task ID="4" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="MELEE" WeaponType="UNARMED"/>
-		<Task ID="5" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="PRIMARY" WeaponType="AK47"/>
-		<Task ID="5_1" TaskType="TaskWeapon" Code="SetBulletCount" TotalBullets="28" WeaponType="AK47"/>
-		<Task ID="5_2" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="SECONDARY" WeaponType="FN57"/>
-		<Task ID="5_3" TaskType="TaskWeapon" Code="SetBulletCount" TotalBullets="28" WeaponType="FN57"/>
+		
 		
 		<Task ID="7" TaskType="TaskWeapon" Code="SetCurrentCategory" CategoryType="MELEE"/>
 		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="9.24,31.165,4.03" Rotation="0.0,0.0,0.0"/>
