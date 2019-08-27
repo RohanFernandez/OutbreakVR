@@ -652,7 +652,7 @@ namespace ns_Mashmo
                 EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
                 if (l_EnemyHitCollider != null)
                 {
-                    l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet);
+                    l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
                 }
             }
         }

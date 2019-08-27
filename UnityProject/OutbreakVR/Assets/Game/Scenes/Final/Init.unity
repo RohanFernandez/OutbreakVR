@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
       propertyPath: LightsModule.enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
@@ -519,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &161971807
 Transform:
   m_ObjectHideFlags: 0
@@ -771,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
       propertyPath: LightsModule.enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
@@ -1100,19 +1100,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e31ec13bc4d81df42be2eca19450aad8, type: 3}
       propertyPath: m_ReceiveShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e31ec13bc4d81df42be2eca19450aad8, type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e31ec13bc4d81df42be2eca19450aad8, type: 3}
       propertyPath: m_ReflectionProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: e31ec13bc4d81df42be2eca19450aad8, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e31ec13bc4d81df42be2eca19450aad8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1539,19 +1539,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_ReceiveShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_ReflectionProbeUsage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
@@ -3675,7 +3675,7 @@ Transform:
   - {fileID: 487720578}
   m_Father: {fileID: 1160426708}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.05233201, y: 0, z: 0}
 --- !u!1 &1387512912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a,
@@ -3836,6 +3836,52 @@ Transform:
   m_Father: {fileID: 727711703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1479358781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479358782}
+  - component: {fileID: 1479358783}
+  m_Layer: 0
+  m_Name: EnemyDamageUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479358782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479358781}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2114696092}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1479358783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479358781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99becc759ed3a77489074b2b507bca17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIEnemyDamageIndicator: {fileID: 2183908728469275082, guid: cd347f348c38bbc4e950278f8dbbc491,
+    type: 3}
+  m_ScreenSpaceCanvasRectTransform: {fileID: 1506808788}
 --- !u!1 &1494877534
 GameObject:
   m_ObjectHideFlags: 0
@@ -4050,7 +4096,7 @@ Canvas:
   m_GameObject: {fileID: 1506808787}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 210666753}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -5456,7 +5502,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1479358782}
   m_Father: {fileID: 1857882333}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5481,3 +5528,4 @@ MonoBehaviour:
   m_bIsEnemiesPaused: 0
   m_PatrolManager:
     m_lstEnemyPatrolPoints: []
+  m_EnemyDamageIndicatorManager: {fileID: 1479358783}

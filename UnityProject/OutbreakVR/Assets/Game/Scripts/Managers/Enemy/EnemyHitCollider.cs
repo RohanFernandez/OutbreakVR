@@ -18,9 +18,9 @@ namespace ns_Mashmo
         [SerializeField]
         private float m_fDamageMultiplier = 1.0f;
 
-        public void inflictDamage(int a_iWeaponDamage)
+        public void inflictDamage(int a_iWeaponDamage, Vector3 a_v3HitPoint)
         {
-            m_EnemyBase.inflictDamage((int)(a_iWeaponDamage * m_fDamageMultiplier));
+            m_EnemyBase.inflictDamage((int)(a_iWeaponDamage * m_fDamageMultiplier), a_v3HitPoint);
         }
     }
 }
