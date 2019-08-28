@@ -248,6 +248,7 @@ namespace ns_Mashmo
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
+                        m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
                         break;
                     }
