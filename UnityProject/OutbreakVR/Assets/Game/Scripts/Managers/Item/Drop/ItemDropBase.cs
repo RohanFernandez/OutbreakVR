@@ -16,6 +16,12 @@ namespace ns_Mashmo
         private GameObject m_goItemTitle = null;
 
         /// <summary>
+        /// The gameobject that holds the model
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goItemModel = null;
+
+        /// <summary>
         /// the unique type of item
         /// </summary>
         [SerializeField]
@@ -52,7 +58,7 @@ namespace ns_Mashmo
 
         public virtual void Update()
         {
-            transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
+            m_goItemModel.transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
             m_goItemTitle.transform.LookAt(ControllerManager.GetHeadsetAnchor().transform);
         }
 

@@ -244,7 +244,7 @@ namespace ns_Mashmo
                     }
                 case ENEMY_STATE.DEAD:
                     {
-                        m_NavMeshAgent.isStopped = true;
+                        m_NavMeshAgent.ResetPath();
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
