@@ -287,7 +287,10 @@ namespace ns_Mashmo
                 l_hash.Add(GameEventTypeConst.ID_OLD_WEAPON_BASE, l_goOldWeapon);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, l_hash);
 
-                setRayTransformParent();
+                if (m_CurrentWeaponType != WEAPON_TYPE.NONE)
+                {
+                    setRayTransformParent();
+                }
             }
         }
 
