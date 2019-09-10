@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587272, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -224,18 +224,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2120235099}
     m_Modifications:
-    - target: {fileID: 9500000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e10558744504b244599302a4ca2e3be3, type: 2}
-    - target: {fileID: 9500000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 100080, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -244,7 +232,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100054, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
+    - target: {fileID: 100000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -316,6 +304,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e10558744504b244599302a4ca2e3be3, type: 2}
+    - target: {fileID: 9500000, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400080, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -373,6 +369,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: fe2eb0b4e90413643a3ddc78c368140f, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -481,26 +481,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyBase: {fileID: 2120235098}
---- !u!1 &322439327 stripped
+--- !u!1 &322439329 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: fe2eb0b4e90413643a3ddc78c368140f,
+  m_CorrespondingSourceObject: {fileID: 100014, guid: fe2eb0b4e90413643a3ddc78c368140f,
     type: 3}
   m_PrefabInstance: {fileID: 322439322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &322439328
-MonoBehaviour:
+--- !u!65 &322439330
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322439327}
+  m_GameObject: {fileID: 322439329}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7e2237c0ca50245b4bc44f21c20377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EnemyBase: {fileID: 2120235098}
-  m_fDamageMultiplier: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.24, z: 0.28}
+  m_Center: {x: -0.08, y: 0, z: 0}
 --- !u!1 &322439331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100054, guid: fe2eb0b4e90413643a3ddc78c368140f,
@@ -515,7 +514,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322439331}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.97, y: 0.22, z: 0.43}
@@ -534,19 +533,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyBase: {fileID: 2120235098}
   m_fDamageMultiplier: 1
---- !u!65 &322439334
-BoxCollider:
+--- !u!114 &322439334
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322439327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 322439329}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.17536752, y: 0.30772582, z: 0.35392445}
-  m_Center: {x: -0.0000010482082, y: -0.015506007, z: 1.6402469}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc7e2237c0ca50245b4bc44f21c20377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemyBase: {fileID: 2120235098}
+  m_fDamageMultiplier: 1
 --- !u!1 &561574769
 GameObject:
   m_ObjectHideFlags: 0

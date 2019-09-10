@@ -11,6 +11,7 @@ namespace ns_Mashmo
         protected const string ANIM_TRIGGER_ATTACK    = "Attack";
         protected const string ANIM_TRIGGER_DIE       = "Die";
         protected const string ANIM_TRIGGER_IDLE      = "Idle";
+        protected const string ANIM_TRIGGER_SUFFER    = "Suffer";
 
         /// <summary>
         /// The nav mesh agent of this body to manage movement
@@ -97,6 +98,22 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private float m_fExtendedAlertRadius = 23.0f;
+
+        //TODO:: Remove later on Suffer animation added
+        #region TEMP_ADDED
+        private float TEMP_SUFFER_STATE_TIME = 2.0f;
+        private float m_fTimePassedInSufferState = 0.0f;
+        #endregion TEMP_ADDED
+
+        /// <summary>
+        /// called on damage inflicted on the enemy but still alive
+        /// </summary>
+        /// <param name="a_iDamage"></param>
+        protected override void onDamageInflictedNotKilled(int a_iDamage)
+        {
+            base.onDamageInflictedNotKilled(a_iDamage);
+            NavState = ENEMY_STATE.DAMAGE_INFLICTED;
+        }
 
         public override void activateEnemy()
         {
@@ -216,9 +233,9 @@ namespace ns_Mashmo
             {
                 case ENEMY_STATE.IDLE:
                     {
+                        startNavigation();
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
-                        m_NavMeshAgent.ResetPath();
                         m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                         m_actNavStateUpdate = onIdleStateUpdate;
@@ -226,6 +243,7 @@ namespace ns_Mashmo
                     }
                 case ENEMY_STATE.PATROL:
                     {
+                        startNavigation();
                         m_NavMeshAgent.stoppingDistance = m_fPatrolStoppingDistance;
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
@@ -235,7 +253,7 @@ namespace ns_Mashmo
                     }
                 case ENEMY_STATE.ALERT:
                     {
-                        m_NavMeshAgent.ResetPath();
+                        startNavigation();
                         m_NavMeshAgent.stoppingDistance = m_fAlertStoppingDistance;
                         m_fCurrAlertTimeCounter = m_fMaxAlertTime;
                         m_NextPatrolDestination = null;
@@ -244,12 +262,41 @@ namespace ns_Mashmo
                     }
                 case ENEMY_STATE.DEAD:
                     {
-                        m_NavMeshAgent.ResetPath();
+                        stopNavigation();
+                        setDestination(transform.position);
+
                         m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
                         m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
+                        break;
+                    }
+                case ENEMY_STATE.DAMAGE_INFLICTED:
+                    {
+                        stopNavigation();
+                        setDestination(transform.position);
+
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
+
+                        m_actNavStateUpdate = null;
+                        NavState = ENEMY_STATE.SUFFER;
+                        break;
+                    }
+                case ENEMY_STATE.SUFFER:
+                    {
+                        stopNavigation();
+                        setDestination(transform.position);
+
+                        m_fTimePassedInSufferState = 0.0f;
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
+                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
+
+                        m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                        m_actNavStateUpdate = onSuffferStateUpdate;
                         break;
                     }
                 case ENEMY_STATE.NONE:
@@ -305,6 +352,21 @@ namespace ns_Mashmo
                     m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
                 }
             }
+        }
+
+        /// <summary>
+        /// update action called when the enemy is in the suffer state 
+        /// </summary>
+        protected virtual void onSuffferStateUpdate()
+        {
+            //TODO:: Remove later on Suffer animation added
+            #region TEMP_ADDED
+            m_fTimePassedInSufferState += Time.deltaTime;
+            if (m_fTimePassedInSufferState > TEMP_SUFFER_STATE_TIME)
+            {
+                NavState = ENEMY_STATE.ALERT;
+            }
+            #endregion TEMP_ADDED
         }
 
         /// <summary>
@@ -395,7 +457,10 @@ namespace ns_Mashmo
             Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
 
             m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
-            if (m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+            if (NavState != ENEMY_STATE.ALERT &&
+                NavState != ENEMY_STATE.SUFFER &&
+                NavState != ENEMY_STATE.DAMAGE_INFLICTED &&
+                m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
             {
                 float l_fDistanceToPlayer = PatrolManager.GetNavDistanceToTarget(m_NavMeshPath);
                 if (l_fDistanceToPlayer < m_fExtendedAlertRadius)

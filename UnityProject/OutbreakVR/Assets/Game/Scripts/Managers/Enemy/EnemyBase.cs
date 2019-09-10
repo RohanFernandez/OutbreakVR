@@ -10,7 +10,9 @@ namespace ns_Mashmo
         IDLE,
         PATROL,
         ALERT,
-        DEAD
+        DEAD,
+        SUFFER,
+        DAMAGE_INFLICTED
     }
 
     public abstract class EnemyBase : MonoBehaviour, IEnemy
@@ -186,6 +188,19 @@ namespace ns_Mashmo
             {
                 onKilled();
             }
+            else
+            {
+                onDamageInflictedNotKilled(a_iDamage);
+            }
+        }
+
+        /// <summary>
+        /// Called on damage is inflicted on the enemy but the enemy is still alive
+        /// </summary>
+        /// <param name="a_iDamage"></param>
+        protected virtual void onDamageInflictedNotKilled(int a_iDamage)
+        {
+
         }
 
         /// <summary>
