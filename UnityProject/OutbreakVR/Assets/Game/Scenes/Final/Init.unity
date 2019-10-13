@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
       propertyPath: LightsModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 73063694}
   - component: {fileID: 73063696}
   - component: {fileID: 73063697}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: UI_PlayerHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 3383
       objectReference: {fileID: 0}
+    - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 20000012175207052, guid: 126d619cf4daa52469682f85c1378b4a,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -425,6 +429,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 83354449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &83354454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 83354449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &83354455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83354454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 007aa78b8ec0541439190f3fe91cd492, type: 2}
 --- !u!198 &115101344 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
@@ -590,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 204324865}
   - component: {fileID: 204324867}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Parent_BulletCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +793,7 @@ PrefabInstance:
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
       propertyPath: LightsModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
@@ -905,25 +928,6 @@ MonoBehaviour:
   - {fileID: 2328362764480854416, guid: 4d995d8eb2ff13e48bb914e06a0b8b9f, type: 3}
   - {fileID: 1130146026741954715, guid: 2eea0d961beca8c439c71ae51f34bbff, type: 3}
   - {fileID: 8014390329271176049, guid: 0bd9b7e63ef5ec8438fbfafdd3722317, type: 3}
---- !u!1 &351967043 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 83354449}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &351967044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351967043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 007aa78b8ec0541439190f3fe91cd492, type: 2}
 --- !u!1 &358488378
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +939,7 @@ GameObject:
   - component: {fileID: 358488379}
   - component: {fileID: 358488381}
   - component: {fileID: 358488380}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Panel_PlayerHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1159,7 +1163,7 @@ GameObject:
   - component: {fileID: 615232365}
   - component: {fileID: 615232367}
   - component: {fileID: 615232366}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_CurrentWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1245,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1268,6 +1271,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1282,12 +1286,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1349,7 +1350,7 @@ GameObject:
   - component: {fileID: 637534170}
   - component: {fileID: 637534172}
   - component: {fileID: 637534171}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_CurrentWeaponCategory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1432,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1458,6 +1458,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -1472,12 +1473,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -1976,7 +1974,7 @@ GameObject:
   - component: {fileID: 702524442}
   - component: {fileID: 702524441}
   - component: {fileID: 702524443}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: UI_LoadingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,7 +2060,7 @@ GameObject:
   - component: {fileID: 711260844}
   - component: {fileID: 711260846}
   - component: {fileID: 711260845}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_BulletCapacityDivider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2144,7 +2142,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2171,6 +2168,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2185,12 +2183,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2357,7 +2352,7 @@ GameObject:
   - component: {fileID: 785779035}
   - component: {fileID: 785779037}
   - component: {fileID: 785779036}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_CurrentMag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2439,7 +2434,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2466,6 +2460,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2480,12 +2475,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2517,7 +2509,7 @@ GameObject:
   - component: {fileID: 850945808}
   - component: {fileID: 850945810}
   - component: {fileID: 850945809}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Panel_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2595,7 +2587,7 @@ GameObject:
   - component: {fileID: 984756996}
   - component: {fileID: 984756998}
   - component: {fileID: 984756997}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_TotalBulletCapacity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2677,7 +2669,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2704,6 +2695,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -2718,12 +2710,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -2805,7 +2794,7 @@ GameObject:
   - component: {fileID: 1007562419}
   - component: {fileID: 1007562421}
   - component: {fileID: 1007562420}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3155,7 +3144,7 @@ GameObject:
   - component: {fileID: 1112598865}
   - component: {fileID: 1112598867}
   - component: {fileID: 1112598866}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Panel_ReloadProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4050,7 +4039,7 @@ GameObject:
   - component: {fileID: 1506808791}
   - component: {fileID: 1506808790}
   - component: {fileID: 1506808789}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: ScreenSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4389,7 +4378,7 @@ GameObject:
   - component: {fileID: 1717796083}
   - component: {fileID: 1717796085}
   - component: {fileID: 1717796084}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Label_PlayerHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4471,7 +4460,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4498,6 +4486,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4512,12 +4501,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -4631,7 +4617,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4658,6 +4643,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -4672,12 +4658,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -5218,7 +5201,7 @@ GameObject:
   - component: {fileID: 1924514598}
   - component: {fileID: 1924514597}
   - component: {fileID: 1924514599}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: UI_ScreenFader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5338,7 +5321,7 @@ GameObject:
   - component: {fileID: 2055131958}
   - component: {fileID: 2055131960}
   - component: {fileID: 2055131959}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: TextMeshPro Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5420,7 +5403,6 @@ MonoBehaviour:
   m_fontSizeMax: 0
   m_fontStyle: 0
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 0
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -5447,6 +5429,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -5461,12 +5444,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
