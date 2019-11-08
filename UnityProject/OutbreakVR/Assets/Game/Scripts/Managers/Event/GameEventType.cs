@@ -130,7 +130,6 @@ namespace ns_Mashmo
 
         #region ON_OBJECTIVE_GROUP_COMPLETED
         //public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
-        //public const string ID_NEW_GAME_STATE = "ID_NEW_GAME_STATE";     /* STRING */
         #endregion ON_OBJECTIVE_GROUP_COMPLETED
     }
 }

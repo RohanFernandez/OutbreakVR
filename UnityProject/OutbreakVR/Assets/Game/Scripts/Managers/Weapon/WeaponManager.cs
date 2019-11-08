@@ -472,7 +472,7 @@ namespace ns_Mashmo
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
                 if (l_GunWeaponBase != null)
                 {
-                    l_GunWeaponBase.initBulletCount(l_iBulletsInPickup);
+                    l_GunWeaponBase.initBulletCount(l_iBulletsInPickup, l_iBulletsInPickup);
                 }
 
                 SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
@@ -535,13 +535,13 @@ namespace ns_Mashmo
         /// Sets the bullet count into the weapon if the possessed by the player
         /// </summary>
         /// <param name="a_WeaponType"></param>
-        public static void SetBulletCountInWeapon(WEAPON_TYPE a_WeaponType, int a_iTotalBullets)
+        public static void SetBulletCountInWeapon(WEAPON_TYPE a_WeaponType, int a_iTotalBullets, int a_iBulletsInFirstMag)
         {
             WeaponBase l_WeaponBase = s_Instance.getWeaponBaseByWeaponType(a_WeaponType);
             GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
             if (l_GunWeaponBase != null)
             {
-                l_GunWeaponBase.initBulletCount(a_iTotalBullets);
+                l_GunWeaponBase.initBulletCount(a_iTotalBullets, a_iBulletsInFirstMag);
             }
         }
 
@@ -683,13 +683,13 @@ namespace ns_Mashmo
         public static void SetCurrentWeaponInventory(WeaponInventoryStructure a_WeaponInventoryStructure)
         {
             SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_WeaponType);
-            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_iTotalBulletsCount);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_iTotalBulletsCount, a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_iBulletInFirstMag);
 
             SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_WeaponType);
-            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_iTotalBulletsCount);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_iTotalBulletsCount, a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_iBulletInFirstMag);
 
             SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType);
-            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iTotalBulletsCount);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iTotalBulletsCount, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iBulletInFirstMag);
 
             SetCategoryAsCurrent(a_WeaponInventoryStructure.m_WeaponCateogoryType);
         }

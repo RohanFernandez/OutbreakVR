@@ -62,7 +62,7 @@ namespace ns_Mashmo
                 case ATTRIBUTE_VALUE_CODE_WEAPON_SET_BULLETS:
                     {
                         int l_iTotalBullets = getInt(ATTRIBUTE_TOTAL_BULLETS);
-                        WeaponManager.SetBulletCountInWeapon(l_WeaponType, l_iTotalBullets);
+                        WeaponManager.SetBulletCountInWeapon(l_WeaponType, l_iTotalBullets, l_iTotalBullets);
                         break;
                     }
                 default:

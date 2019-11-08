@@ -40,10 +40,12 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, onLevelObjectiveGroupCompleted);
+
             int l_iLevelDataCount = m_lstLevelData.Capacity;
             for (int l_iLevelDataIndex = 0; l_iLevelDataIndex < l_iLevelDataCount; l_iLevelDataIndex++)
             {
-                m_lstLevelData[l_iLevelDataIndex].initialize();
+                m_lstLevelData[l_iLevelDataIndex].initialize(l_iLevelDataIndex);
             }
         }
 
@@ -56,6 +58,9 @@ namespace ns_Mashmo
             {
                 return;
             }
+
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, onLevelObjectiveGroupCompleted);
+
             s_Instance = null;
         }
 
@@ -85,11 +90,129 @@ namespace ns_Mashmo
         /// <param name="a_strLevelName"></param>
         public static void GoToLevel(string a_strLevelName)
         {
+            string l_strSceneToLoad = string.Empty;
+
+            if (a_strLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
+            {
+                l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
+            }
+            else
+            {
+                LevelData l_CurrentLevelData = null;
+                SubLevelData l_CurrentSubLevelData = null;
+
+                ///Check if the a_strLevelName is in correct format and can be found in the list of level data and sub level data
+                if (!s_Instance.getLevelAndSubLevelDataFromName(a_strLevelName, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+                {
+                    return;
+                }
+                l_strSceneToLoad = l_CurrentLevelData.LevelName;
+
+                ///Loads the assets (Tasklist, ObjectiveList) corresponding to the level name ex. 'TaskListLevel1'
+                #region LOAD_ASSETS
+                if (!s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    EventHash l_Hashtable = EventManager.GetEventHashtable();
+                    l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, l_CurrentLevelData.LevelName);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
+                }
+
+                #endregion LOAD_ASSETS
+
+                ///Loads the current level data to the player
+                #region LOAD_LEVEL_DATA
+
+                SubLevelData l_SubLevelDataToLoadToPlayer = null;
+                switch (l_CurrentSubLevelData.LoadDataType)
+                {
+                    case SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL:
+                        {
+                            l_SubLevelDataToLoadToPlayer = (l_CurrentSubLevelData.SubLevelDataIndex != 0) ? l_CurrentLevelData.lstSubLevels[--l_CurrentSubLevelData.SubLevelDataIndex] : l_CurrentSubLevelData;
+                            break;
+                        }
+                    case SUB_LEVEL_SAVE_LOAD_DATA_TYPE.SAVED_LEVEL_DATA:
+                        {
+                            l_SubLevelDataToLoadToPlayer = l_CurrentSubLevelData;
+                            break;
+                        }
+                }
+
+                PlayerManager.HealthMeter = l_SubLevelDataToLoadToPlayer.m_iPlayerHealth;
+                WeaponManager.SetCurrentWeaponInventory(l_SubLevelDataToLoadToPlayer.m_WeaponInventory);
+
+                #endregion LOAD_LEVEL_DATA
+            }
+
+            ///Load scene will call the callback directly if already loaded
+            GameManager.LoadScene(l_strSceneToLoad, s_Instance.onLevelSceneLoadComplete);
+        }
+
+        /// <summary>
+        /// On scene load completed transition to the in game state
+        /// </summary>
+        private void onLevelSceneLoadComplete()
+        {
+            string l_strGameLevel = m_strCurrLevelName + "_" + m_strCurrSubLevelName;
+            GameStateMachine.Transition(l_strGameLevel);
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strGameLevel);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
+        }
+
+        /// <summary>
+        /// Callback called to event ON_OBJECTIVE_GROUP_COMPLETED
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onLevelObjectiveGroupCompleted(EventHash a_EventHash)
+        {
+            string l_strLevelNameOfObjectiveCompleted = a_EventHash[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+
             LevelData l_CurrentLevelData = null;
             SubLevelData l_CurrentSubLevelData = null;
+            if (s_Instance.getLevelAndSubLevelDataFromName(l_strLevelNameOfObjectiveCompleted, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+            {
+                return;
+            }
 
-            ///Check if the a_strLevelName is in correct format and can be found in the list of level data and sub level data
-            #region LevelNameValidityCheck
+            string l_strNextLevelToLoad = string.Empty;
+
+            int l_iSubLevelDataCount = l_CurrentLevelData.lstSubLevels.Count;
+
+            ///if the sublevel completed is not the last sublevel in the level data, go to the next sub level
+            ///else go to the 1st sublevel data in the next level
+            if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataCount)
+            {
+                l_strNextLevelToLoad = l_CurrentLevelData + "_" + l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1];
+            }
+            else
+            {
+                if ((l_CurrentLevelData.LevelDataIndex + 1) == m_lstLevelData.Count ||
+                    (l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+                {
+                    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
+                }
+                else
+                {
+                    LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
+                    l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.lstSubLevels[0].SubLevelName;
+                }
+            }
+
+            ///TODO:: Save current level progress
+
+            GoToLevel(l_strNextLevelToLoad);
+        }
+
+        /// <summary>
+        /// Gets the level data and sub level data from the level name ex "Level1_100"
+        /// </summary>
+        /// <param name="a_strLevelName"></param>
+        /// <param name="a_refLevelData"></param>
+        /// <param name="a_refSubLevelData"></param>
+        /// <returns></returns>
+        private bool getLevelAndSubLevelDataFromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
+        {
             string[] l_strarr = a_strLevelName.Split('_');
 
             bool l_bIsLevelNameFormatCorrect = (l_strarr.Length > 1);
@@ -99,28 +222,28 @@ namespace ns_Mashmo
                 string l_strCurrentLevelName = l_strarr[0];
                 string l_strCurrentSubLevelName = l_strarr[1];
 
-                l_CurrentLevelData = s_Instance.getLevelDataWithName(l_strCurrentLevelName);
-                if (l_CurrentLevelData == null)
+                a_refLevelData = s_Instance.getLevelDataWithName(l_strCurrentLevelName);
+                if (a_refLevelData == null)
                 {
                     Debug.LogError("LevelManager::GoToLevel:: The current level data with name '" + l_strCurrentLevelName + "' could not be found");
                     l_bIsLevelNameFormatCorrect = false;
                 }
                 else
                 {
-                    s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
+                    s_Instance.m_strCurrLevelName = a_refLevelData.LevelName;
                 }
 
                 if (l_bIsLevelNameFormatCorrect)
                 {
-                    l_CurrentSubLevelData = l_CurrentLevelData.getSubLevelData(l_strCurrentSubLevelName);
-                    if (l_CurrentSubLevelData == null)
+                    a_refSubLevelData = a_refLevelData.getSubLevelData(l_strCurrentSubLevelName);
+                    if (a_refSubLevelData == null)
                     {
                         Debug.LogError("LevelManager::GoToLevel:: The current sub level data with name '" + l_strCurrentSubLevelName + "' could not be found");
                         l_bIsLevelNameFormatCorrect = false;
                     }
                     else
                     {
-                        s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
+                        s_Instance.m_strCurrSubLevelName = a_refSubLevelData.SubLevelName;
                     }
                 }
             }
@@ -129,49 +252,7 @@ namespace ns_Mashmo
                 Debug.LogError("LevelManager::GoToLevel:: The level name of load is not in correct format, Level Name '" + a_strLevelName + "'");
             }
 
-            if (!l_bIsLevelNameFormatCorrect)
-            {
-                return;
-            }
-            #endregion LevelNameValidityCheck
-
-
-
-
-            ///Loads the current level data to the player
-            #region LOAD_LEVEL_DATA
-
-            SubLevelData l_SubLevelDataToLoadToPlayer = null;
-            switch (l_CurrentSubLevelData.LoadDataType)
-            {
-                case SUB_LEVEL_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL:
-                    {
-                        l_SubLevelDataToLoadToPlayer = (l_CurrentSubLevelData.SubLevelDataIndex != 0) ? l_CurrentLevelData.lstSubLevels[--l_CurrentSubLevelData.SubLevelDataIndex] :  l_CurrentSubLevelData;
-                        break;
-                    }
-                case SUB_LEVEL_LOAD_DATA_TYPE.SAVED_LEVEL_DATA:
-                    {
-                        l_SubLevelDataToLoadToPlayer = l_CurrentSubLevelData;
-                        break;
-                    }
-            }
-
-            PlayerManager.HealthMeter = l_SubLevelDataToLoadToPlayer.m_iPlayerHealth;
-            WeaponManager.SetCurrentWeaponInventory(l_SubLevelDataToLoadToPlayer.m_WeaponInventory);
-
-            #endregion LOAD_LEVEL_DATA
-
-
-
-            ///Load scene will call the callback directly if already loaded
-            GameManager.LoadScene(l_CurrentLevelData.LevelName, s_Instance.onLevelSceneLoadComplete);
-        }
-
-        
-
-        private void onLevelSceneLoadComplete()
-        {
-
+            return l_bIsLevelNameFormatCorrect;
         }
     }
 }

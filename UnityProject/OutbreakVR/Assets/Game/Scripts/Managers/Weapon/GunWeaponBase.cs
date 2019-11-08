@@ -265,7 +265,7 @@ namespace ns_Mashmo
         /// Init bullet count, should be called on weapon is acquired for the first time
         /// </summary>
         /// <param name="a_iTotalBulletCount"></param>
-        public void initBulletCount(int a_iTotalBulletCount)
+        public void initBulletCount(int a_iTotalBulletCount, int a_iBulletsInFirstMag)
         {
             TotalBullets = a_iTotalBulletCount;
             BulletCountInFirstMag = a_iTotalBulletCount;

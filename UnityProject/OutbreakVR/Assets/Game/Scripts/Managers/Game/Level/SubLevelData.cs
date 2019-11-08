@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public enum SUB_LEVEL_LOAD_DATA_TYPE
+    public enum SUB_LEVEL_SAVE_LOAD_DATA_TYPE
     {
-        SAVED_LEVEL_DATA,
-        LOAD_FROM_PREVIOUS_LEVEL
+        SAVED_LEVEL_DATA            = 0,
+        LOAD_FROM_PREVIOUS_LEVEL    = 1,
+        LAST_LEVEL_EXIT             = 2 
     }
 
 
@@ -28,8 +29,8 @@ namespace ns_Mashmo
         /// The data to be loaded should be taken from the previous sublevel or should use the stored data
         /// </summary>
         [SerializeField]
-        private SUB_LEVEL_LOAD_DATA_TYPE m_LoadDataType;
-        public SUB_LEVEL_LOAD_DATA_TYPE LoadDataType
+        private SUB_LEVEL_SAVE_LOAD_DATA_TYPE m_LoadDataType;
+        public SUB_LEVEL_SAVE_LOAD_DATA_TYPE LoadDataType
         {
             get { return m_LoadDataType; }
         }
@@ -42,16 +43,6 @@ namespace ns_Mashmo
         public string SubLevelName
         {
             get { return m_strSubLevelName; }
-        }
-
-        /// <summary>
-        /// Is the level progress to be saved on completion
-        /// </summary>
-        [SerializeField]
-        private bool m_bIsSaveLevelOnEnd = false;
-        public bool IsSaveLevelOnEnd
-        {
-            get { return m_bIsSaveLevelOnEnd; }
         }
 
         /// <summary>

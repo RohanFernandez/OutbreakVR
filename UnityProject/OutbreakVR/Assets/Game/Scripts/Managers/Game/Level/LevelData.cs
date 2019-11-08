@@ -18,6 +18,16 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The level data index in the list of all level data
+        /// </summary>
+        [SerializeField]
+        private int m_iLevelDataIndex = 0;
+        public int LevelDataIndex
+        {
+            get { return m_iLevelDataIndex; }
+        }
+
+        /// <summary>
         /// The scene associated with this level
         /// </summary>
         [SerializeField]
@@ -30,8 +40,9 @@ namespace ns_Mashmo
         /// <summary>
         /// Sets the sub level data index
         /// </summary>
-        public void initialize()
+        public void initialize(int a_iLevelDataIndex)
         {
+            m_iLevelDataIndex = a_iLevelDataIndex;
             int l_iSubLevelDataCount = m_lstSubLevels.Count;
             for (int l_iSubLevelDataIndex = 0; l_iSubLevelDataIndex < l_iSubLevelDataCount; l_iSubLevelDataIndex++)
             {
