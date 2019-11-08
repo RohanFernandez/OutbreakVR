@@ -676,5 +676,22 @@ namespace ns_Mashmo
             l_transRayPointer.localPosition = Vector3.zero;
             l_transRayPointer.localRotation = Quaternion.identity;
         }
+
+        /// <summary>
+        /// Sets the current weapons in the category loaded
+        /// </summary>
+        public static void SetCurrentWeaponInventory(WeaponInventoryStructure a_WeaponInventoryStructure)
+        {
+            SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_WeaponType);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_MeleeWeaponInfo.m_iTotalBulletsCount);
+
+            SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_WeaponType);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_PrimaryWeaponInfo.m_iTotalBulletsCount);
+
+            SetCurrentWeaponInCategory(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType);
+            SetBulletCountInWeapon(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iTotalBulletsCount);
+
+            SetCategoryAsCurrent(a_WeaponInventoryStructure.m_WeaponCateogoryType);
+        }
     }
 }

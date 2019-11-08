@@ -64,6 +64,7 @@ namespace ns_Mashmo
 
         /// <summary>
         /// Sets game state to play
+        /// a_strGameState = "", "Level name" + _ + "ID", ex: "Level1_100"
         /// </summary>
         public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
         {
