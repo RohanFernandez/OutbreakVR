@@ -157,14 +157,13 @@ namespace ns_Mashmo
             }
 
             m_CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
-            if (m_CurrentObjectiveGroup.IsComplete() &&
-                !string.IsNullOrEmpty(m_CurrentObjectiveGroup.m_strChangeStateOnComplete))
+            if (m_CurrentObjectiveGroup.IsComplete())
             {
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_CurrentObjectiveGroup.getObjGroupID());
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, l_EventHash);
 
-                GameManager.SetGamePlayState(m_CurrentObjectiveGroup.m_strChangeStateOnComplete, true);
+                //GameManager.SetGamePlayState(m_CurrentObjectiveGroup.m_strChangeStateOnComplete, true);
             }
         }
 

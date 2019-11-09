@@ -41,71 +41,71 @@ namespace ns_Mashmo
             get { return s_Instance.m_bIsGamePaused; }
         }
 
-        /// <summary>
-        /// Sets the current level as arguement as fires an event if the old event is not the new
-        /// </summary>
-        /// <param name="a_LevelType"></param>
-        private void setGameLevel(string a_strLevelType)
-        {
-            Debug.Log("<color=BLUE>GameManager::setGameLevel::</color> Setting level type '" + a_strLevelType + "'");
+        ///// <summary>
+        ///// Sets the current level as arguement as fires an event if the old event is not the new
+        ///// </summary>
+        ///// <param name="a_LevelType"></param>
+        //private void setGameLevel(string a_strLevelType)
+        //{
+        //    Debug.Log("<color=BLUE>GameManager::setGameLevel::</color> Setting level type '" + a_strLevelType + "'");
 
-            if (s_Instance.m_strCurrentLevel.Equals(a_strLevelType)) { return; }
+        //    if (s_Instance.m_strCurrentLevel.Equals(a_strLevelType)) { return; }
 
-            s_Instance.m_strCurrentLevel = a_strLevelType;
-            EventHash l_Hashtable = EventManager.GetEventHashtable();
-            l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
-        }
+        //    s_Instance.m_strCurrentLevel = a_strLevelType;
+        //    EventHash l_Hashtable = EventManager.GetEventHashtable();
+        //    l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
+        //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
+        //}
 
-        /// <summary>
-        /// Sets game state to play
-        /// a_strGameState = "", "Level name" + _ + "ID", ex: "Level1_100"
-        /// </summary>
-        public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
-        {
-            s_Instance.m_strInGameState = a_strGameState;
-            string[] l_strarr = a_strGameState.Split('_');
+        ///// <summary>
+        ///// Sets game state to play
+        ///// a_strGameState = "", "Level name" + _ + "ID", ex: "Level1_100"
+        ///// </summary>
+        //public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
+        //{
+        //    s_Instance.m_strInGameState = a_strGameState;
+        //    string[] l_strarr = a_strGameState.Split('_');
 
-            string l_strLevelName = l_strarr[0];
-            s_Instance.setGameLevel(l_strLevelName);
+        //    string l_strLevelName = l_strarr[0];
+        //    s_Instance.setGameLevel(l_strLevelName);
 
-            if (a_bIsSaveGameProgress)
-            {
-                //onSaveGameComplete
-            }
-            else
-            {
-                LoadScene(s_Instance.m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
-            }
-        }
+        //    if (a_bIsSaveGameProgress)
+        //    {
+        //        //onSaveGameComplete
+        //    }
+        //    else
+        //    {
+        //        LoadScene(s_Instance.m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
+        //    }
+        //}
 
-        /// <summary>
-        /// Callback called on game save completed successfully or unsuccessfully
-        /// </summary>
-        private void onSaveGameComplete()
-        {
-            LoadScene(m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
-        }
+        ///// <summary>
+        ///// Callback called on game save completed successfully or unsuccessfully
+        ///// </summary>
+        //private void onSaveGameComplete()
+        //{
+        //    LoadScene(m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
+        //}
 
-        /// <summary>
-        /// On the scene of the level is complete
-        /// </summary>
-        private void onLevelSceneLoadComplete()
-        {
-            GameStateMachine.Transition(m_strInGameState);
+        ///// <summary>
+        ///// On the scene of the level is complete
+        ///// </summary>
+        //private void onLevelSceneLoadComplete()
+        //{
+        //    GameStateMachine.Transition(m_strInGameState);
 
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, m_strInGameState);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
-        }
+        //    EventHash l_EventHash = EventManager.GetEventHashtable();
+        //    l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, m_strInGameState);
+        //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
+        //}
 
-        /// <summary>
-        /// Starts the level that was last saved
-        /// </summary>
-        public static void ContinueFromLastSavedState()
-        {
+        ///// <summary>
+        ///// Starts the level that was last saved
+        ///// </summary>
+        //public static void ContinueFromLastSavedState()
+        //{
             
-        }
+        //}
 
         /// <summary>
         /// Sets singleton instance
@@ -197,7 +197,7 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
-            GameStateMachine.Transition(GameStateMachine.GetCurrentState());
+            LevelManager.GoToLevel(GameStateMachine.GetCurrentState());
         }
 
         /// <summary>
@@ -220,6 +220,16 @@ namespace ns_Mashmo
         {
             PauseGame(false);
             PlayerManager.SetPlayerState(PLAYER_STATE.NO_INTERACTION);
+        }
+
+        public static void OnNewGameSelected()
+        {
+            LevelManager.GoToLevel("Level0_100");
+        }
+
+        public static void OnContinueFromLastSavedSelected()
+        {
+            //LevelManager.GoToLevel("Level0_100");
         }
 
         private void Update()

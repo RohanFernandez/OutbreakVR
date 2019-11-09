@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4595f7ab941f18d4e8222cedf8cc9054, type: 3}
+  m_Name: TaskListLevel0
+  m_EditorClassIdentifier: 
+  m_strName: Level0
+  m_iSequenceCount: 1
+  m_lstSequences:
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level0_100_OnBegin
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 10.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskTriggerObjective
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskTriggerObjective
+      - m_strKey: TriggerID
+        m_strValue: TriggerEndCinematic

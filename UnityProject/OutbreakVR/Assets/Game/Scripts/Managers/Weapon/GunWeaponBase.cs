@@ -268,7 +268,7 @@ namespace ns_Mashmo
         public void initBulletCount(int a_iTotalBulletCount, int a_iBulletsInFirstMag)
         {
             TotalBullets = a_iTotalBulletCount;
-            BulletCountInFirstMag = a_iTotalBulletCount;
+            BulletCountInFirstMag = a_iBulletsInFirstMag;
             updateBulletData();
         }
 

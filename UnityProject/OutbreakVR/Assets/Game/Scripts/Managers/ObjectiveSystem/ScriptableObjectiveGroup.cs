@@ -26,12 +26,6 @@ namespace ns_Mashmo
         public int m_iObjectiveCount = 0;
 
         /// <summary>
-        /// Change state on complete
-        /// </summary>
-        [SerializeField]
-        public string m_strChangeStateOnComplete = string.Empty;
-
-        /// <summary>
         /// List of all objectives
         /// </summary>
         [SerializeField]
@@ -98,7 +92,6 @@ namespace ns_Mashmo
             l_ScriptableObjectiveGroup.m_iObjectiveCount            = l_iObjectiveCount;
             l_ScriptableObjectiveGroup.m_strType                    = l_strObjectiveGroupType;
             l_ScriptableObjectiveGroup.m_lstScriptibeObjective      = l_lstScriptableObjective;
-            l_ScriptableObjectiveGroup.m_strChangeStateOnComplete   = l_strChangeStateOnComplete;
 
             return l_ScriptableObjectiveGroup;
         }

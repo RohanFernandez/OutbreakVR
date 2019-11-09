@@ -94,7 +94,7 @@ namespace ns_Mashmo
 
             if (a_strLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
             {
-                l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
+                GameManager.GoToHome();
             }
             else
             {
@@ -106,7 +106,7 @@ namespace ns_Mashmo
                 {
                     return;
                 }
-                l_strSceneToLoad = l_CurrentLevelData.LevelName;
+                l_strSceneToLoad = l_CurrentLevelData.SceneName;
 
                 ///Loads the assets (Tasklist, ObjectiveList) corresponding to the level name ex. 'TaskListLevel1'
                 #region LOAD_ASSETS
@@ -116,6 +116,9 @@ namespace ns_Mashmo
                     l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, l_CurrentLevelData.LevelName);
                     EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
                 }
+
+                s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
+                s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
 
                 #endregion LOAD_ASSETS
 
@@ -141,10 +144,11 @@ namespace ns_Mashmo
                 WeaponManager.SetCurrentWeaponInventory(l_SubLevelDataToLoadToPlayer.m_WeaponInventory);
 
                 #endregion LOAD_LEVEL_DATA
+
+                ///Load scene will call the callback directly if already loaded
+                GameManager.LoadScene(l_strSceneToLoad, s_Instance.onLevelSceneLoadComplete);
             }
 
-            ///Load scene will call the callback directly if already loaded
-            GameManager.LoadScene(l_strSceneToLoad, s_Instance.onLevelSceneLoadComplete);
         }
 
         /// <summary>
@@ -170,33 +174,50 @@ namespace ns_Mashmo
 
             LevelData l_CurrentLevelData = null;
             SubLevelData l_CurrentSubLevelData = null;
-            if (s_Instance.getLevelAndSubLevelDataFromName(l_strLevelNameOfObjectiveCompleted, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+            if (!s_Instance.getLevelAndSubLevelDataFromName(l_strLevelNameOfObjectiveCompleted, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
             {
+                Debug.LogError("LevelManager::getLevelAndSubLevelDataFromName:: Error retrieving level name :: '" + l_strLevelNameOfObjectiveCompleted + "'");
                 return;
             }
 
             string l_strNextLevelToLoad = string.Empty;
 
-            int l_iSubLevelDataCount = l_CurrentLevelData.lstSubLevels.Count;
+            int l_iSubLevelDataMaxIndex = l_CurrentLevelData.lstSubLevels.Count - 1 ;
+            int l_iLevelDataMaxIndex = m_lstLevelData.Count - 1;
 
             ///if the sublevel completed is not the last sublevel in the level data, go to the next sub level
             ///else go to the 1st sublevel data in the next level
-            if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataCount)
+            if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataMaxIndex)
             {
-                l_strNextLevelToLoad = l_CurrentLevelData + "_" + l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1];
+                l_strNextLevelToLoad = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
             }
             else
             {
-                if ((l_CurrentLevelData.LevelDataIndex + 1) == m_lstLevelData.Count ||
-                    (l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+                if (((l_CurrentSubLevelData.SubLevelDataIndex + 1) == l_iSubLevelDataMaxIndex) &&
+                        (l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
                 {
                     l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
                 }
-                else
+                else if((l_CurrentSubLevelData.SubLevelDataIndex == l_iSubLevelDataMaxIndex) &&
+                        ((l_CurrentLevelData.LevelDataIndex + 1) <= (l_iLevelDataMaxIndex)))
                 {
                     LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
                     l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.lstSubLevels[0].SubLevelName;
                 }
+
+
+                //if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) == l_iSubLevelDataCount &&
+                //    m_lstLevelData.Count <= l_CurrentLevelData.LevelDataIndex + 1)
+                //{
+                //    LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
+                //    l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.lstSubLevels[0].SubLevelName;
+                //}
+                /////If the last sub level data is a LAST_LEVEL_EXIT then go to HOME
+                //else if (((l_CurrentSubLevelData.SubLevelDataIndex + 1) < (l_iSubLevelDataCount - 1)) &&
+                //    (l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+                //{
+                //    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
+                //}
             }
 
             ///TODO:: Save current level progress
@@ -228,10 +249,6 @@ namespace ns_Mashmo
                     Debug.LogError("LevelManager::GoToLevel:: The current level data with name '" + l_strCurrentLevelName + "' could not be found");
                     l_bIsLevelNameFormatCorrect = false;
                 }
-                else
-                {
-                    s_Instance.m_strCurrLevelName = a_refLevelData.LevelName;
-                }
 
                 if (l_bIsLevelNameFormatCorrect)
                 {
@@ -240,10 +257,6 @@ namespace ns_Mashmo
                     {
                         Debug.LogError("LevelManager::GoToLevel:: The current sub level data with name '" + l_strCurrentSubLevelName + "' could not be found");
                         l_bIsLevelNameFormatCorrect = false;
-                    }
-                    else
-                    {
-                        s_Instance.m_strCurrSubLevelName = a_refSubLevelData.SubLevelName;
                     }
                 }
             }

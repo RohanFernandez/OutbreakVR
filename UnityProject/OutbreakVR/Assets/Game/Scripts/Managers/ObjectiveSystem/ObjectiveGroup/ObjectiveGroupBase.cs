@@ -26,12 +26,6 @@ namespace ns_Mashmo
         protected bool m_bIsComplete = false;
 
         /// <summary>
-        /// Change state to on all objectives are complete
-        /// </summary>
-        [SerializeField]
-        public string m_strChangeStateOnComplete = string.Empty;
-
-        /// <summary>
         /// List of all objectives in this group
         /// </summary>
         [SerializeField]
@@ -42,12 +36,11 @@ namespace ns_Mashmo
         /// </summary>
         protected int m_iTotalObjectiveCount = 0;
 
-        public virtual void onInitialize(string a_strID, string a_strType, string a_strStateChangeOnComplete)
+        public virtual void onInitialize(string a_strID, string a_strType)
         {
             m_bIsComplete = false;
             m_strID = a_strID;
             m_strObjGroupType = a_strType;
-            m_strChangeStateOnComplete = a_strStateChangeOnComplete;
             m_iTotalObjectiveCount = m_lstObjectives.Count;
         }
 

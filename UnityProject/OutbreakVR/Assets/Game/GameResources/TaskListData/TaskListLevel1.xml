@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TaskList Name = "LEVEL1" >
+<TaskList Name = "Level1" >
 	<Sequence ID = "StartGame" >
 		<Task ID="1" TaskType="TaskAudio" AudSrc="Ambient" AudClip="AudClip_Ambient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
 		<Task ID="2" TaskType="TaskWait" WaitTime="10.0"/>
@@ -22,7 +22,7 @@
 		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" />
 	</Sequence>
 	
-	<Sequence ID = "LEVEL1_100_OnBegin" >
+	<Sequence ID = "Level1_100_OnBegin" >
 		<Task ID="1" TaskType="TaskAudio" AudSrc="AUD_SRC_AmbientSrc1" AudClip="AmbientAudio1" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_MUSIC"/>
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="-2.854,33.5,-4.412" Rotation="0.0,0.0,0.0" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-0.314,31.509,-5.392" Rotation="0.0,-34.939,0.0"/>
@@ -52,10 +52,7 @@
 		<Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
 		<Task ID="3_1" TaskType="TaskPlayer" Code="SetPlayerHealth" PlayerHealth="100" />
 		
-		<Task ID="4" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="MELEE" WeaponType="UNARMED"/>
-		<Task ID="4_1" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="PRIMARY" WeaponType="NONE"/>
-		<Task ID="4_2" TaskType="TaskWeapon" Code="SetCategoryWeapon" CategoryType="SECONDARY" WeaponType="NONE"/>
-		<Task ID="7" TaskType="TaskWeapon" Code="SetCurrentCategory" CategoryType="MELEE"/>
+		
 		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.75,30.37038,12.794" Rotation="0.0,207.616,0.0"/>
 		<Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-4.791,30.37038,16.144" Rotation="0.0,160.805,0.0"/>
                 <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie3" EnemyType="SECURITY_OFFICER" Position="-0.07,30.67038,-3.07" Rotation="0.0,106.58,0.0"/>
@@ -84,7 +81,7 @@
                 <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie26" EnemyType="SECURITY_OFFICER" Position="-2.411,25.566,36.808" Rotation="0.0,-179.075,0.0"/>
 	</Sequence>
 	
-	<Sequence ID = "LEVEL1_101_OnBegin" >
+	<Sequence ID = "Level1_101_OnBegin" >
 		<Task ID="2" TaskType="TaskEnemy" Code="ReturnAll"/>
 	</Sequence>
 	

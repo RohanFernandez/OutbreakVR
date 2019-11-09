@@ -16,6 +16,16 @@ namespace ns_Mashmo
     public class SubLevelData
     {
         /// <summary>
+        /// The name of the sub level
+        /// </summary>
+        [SerializeField]
+        private string m_strSubLevelName = string.Empty;
+        public string SubLevelName
+        {
+            get { return m_strSubLevelName; }
+        }
+
+        /// <summary>
         /// The sub level index
         /// </summary>
         private int m_iSubLevelDataIndex = 0;
@@ -26,6 +36,12 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The player entry corresponding to the sublevel data to be saved
+        /// </summary>
+        [SerializeField]
+        private PLAYER_KEYS m_SubLevelSaveEntryType = PLAYER_KEYS._OUTBREAK_NONE;
+
+        /// <summary>
         /// The data to be loaded should be taken from the previous sublevel or should use the stored data
         /// </summary>
         [SerializeField]
@@ -33,16 +49,6 @@ namespace ns_Mashmo
         public SUB_LEVEL_SAVE_LOAD_DATA_TYPE LoadDataType
         {
             get { return m_LoadDataType; }
-        }
-
-        /// <summary>
-        /// The name of the sub level
-        /// </summary>
-        [SerializeField]
-        private string m_strSubLevelName = string.Empty;
-        public string SubLevelName
-        {
-            get { return m_strSubLevelName; }
         }
 
         /// <summary>
