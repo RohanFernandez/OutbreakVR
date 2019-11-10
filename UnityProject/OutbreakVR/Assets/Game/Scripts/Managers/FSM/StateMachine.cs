@@ -13,6 +13,9 @@ namespace ns_Mashmo
         private string m_strStartState = string.Empty;
 
         [SerializeField]
+        protected string m_strLastState = string.Empty;
+
+        [SerializeField]
         protected string m_strCurrentState = string.Empty;
 
         [SerializeField]
@@ -20,7 +23,7 @@ namespace ns_Mashmo
 
         public override void initialize()
         {
-            transition(m_strStartState);
+            transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, string.Empty);
         }
 
         public override void destroy()
@@ -33,42 +36,58 @@ namespace ns_Mashmo
         /// Fires an event on state changed
         /// </summary>
         /// <param name="a_strNewState"></param>
-        public bool transition(string a_strNewState, bool a_bIsStateLoad = false)
+        public void transition(string a_strNewState, string a_strSceneName, string a_strLevelName)
         {
             string l_strOldStateId = m_strCurrentState;
             string l_strNewStateId = a_strNewState;
 
             ManagedState l_OldManagedState = getRegisteredManagedState(l_strOldStateId);
-            ManagedState l_NewManagedState = getRegisteredManagedState(l_strNewStateId);
-
+            
             if (!m_bAllowTransitionToSelf && l_strOldStateId.Equals(l_strNewStateId, System.StringComparison.OrdinalIgnoreCase))
             {
-                return false;
+                return;
             }
+
+            m_strCurrentState = l_strNewStateId;
+            m_strLastState = l_strOldStateId;
 
             if (l_OldManagedState != null)
             {
                 l_OldManagedState.onStateExit(l_strNewStateId);
             }
-            m_strCurrentState = l_strNewStateId;
 
-            if (l_NewManagedState != null)
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_strLastState);
+            l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_strCurrentState);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, l_EventHash);
+
+            ///Changes the level being used by assets, i.e. task and objective
+            if (!string.IsNullOrEmpty(a_strLevelName))
             {
-                l_NewManagedState.onStateEnter(l_strOldStateId);
+                EventHash l_Hashtable = EventManager.GetEventHashtable();
+                l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelName);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
             }
 
-            onStateChanged(l_strOldStateId, l_strNewStateId, a_bIsStateLoad);
-            return true;
+            ///Load scene will call the callback directly if already loaded
+            GameManager.LoadScene(a_strSceneName, onLevelSceneLoadComplete);
         }
 
         /// <summary>
-        /// Called on state change event is called
+        /// Callback on the level load scene complete
         /// </summary>
-        /// <param name="a_strOldStateID"></param>
-        /// <param name="a_strNewStateID"></param>
-        protected virtual void onStateChanged(string a_strOldStateID, string a_strNewStateID, bool a_bIsStateLoad)
+        private void onLevelSceneLoadComplete()
         {
+            ManagedState l_NewManagedState = getRegisteredManagedState(m_strCurrentState);
+            if (l_NewManagedState != null)
+            {
+                l_NewManagedState.onStateEnter(m_strLastState);
+            }
 
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_strCurrentState);
+            l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_strLastState);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, l_EventHash);
         }
 
         /// <summary>

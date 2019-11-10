@@ -88,13 +88,16 @@ namespace ns_Mashmo
         /// a_strLevelName is in the format "Levelname"+"_"+"LevelID" ex "Level1_100"
         /// </summary>
         /// <param name="a_strLevelName"></param>
-        public static void GoToLevel(string a_strLevelName)
+        public static void GoToLevel(string a_strGameLevelName)
         {
             string l_strSceneToLoad = string.Empty;
-
-            if (a_strLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
+            bool l_bIsNewLevelToBeLoaded = false;
+            
+            if (a_strGameLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
             {
-                GameManager.GoToHome();
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
+                l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
             }
             else
             {
@@ -102,7 +105,7 @@ namespace ns_Mashmo
                 SubLevelData l_CurrentSubLevelData = null;
 
                 ///Check if the a_strLevelName is in correct format and can be found in the list of level data and sub level data
-                if (!s_Instance.getLevelAndSubLevelDataFromName(a_strLevelName, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+                if (!s_Instance.getLevelAndSubLevelDataFromName(a_strGameLevelName, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
                 {
                     return;
                 }
@@ -110,12 +113,7 @@ namespace ns_Mashmo
 
                 ///Loads the assets (Tasklist, ObjectiveList) corresponding to the level name ex. 'TaskListLevel1'
                 #region LOAD_ASSETS
-                if (!s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    EventHash l_Hashtable = EventManager.GetEventHashtable();
-                    l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, l_CurrentLevelData.LevelName);
-                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
-                }
+                l_bIsNewLevelToBeLoaded = !s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase);
 
                 s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
                 s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
@@ -144,25 +142,22 @@ namespace ns_Mashmo
                 WeaponManager.SetCurrentWeaponInventory(l_SubLevelDataToLoadToPlayer.m_WeaponInventory);
 
                 #endregion LOAD_LEVEL_DATA
-
-                ///Load scene will call the callback directly if already loaded
-                GameManager.LoadScene(l_strSceneToLoad, s_Instance.onLevelSceneLoadComplete);
             }
 
+            GameStateMachine.Transition(a_strGameLevelName, l_strSceneToLoad, l_bIsNewLevelToBeLoaded ? s_Instance.m_strCurrLevelName : string.Empty);
         }
 
-        /// <summary>
-        /// On scene load completed transition to the in game state
-        /// </summary>
-        private void onLevelSceneLoadComplete()
-        {
-            string l_strGameLevel = m_strCurrLevelName + "_" + m_strCurrSubLevelName;
-            GameStateMachine.Transition(l_strGameLevel);
+        ///// <summary>
+        ///// On scene load completed transition to the in game state
+        ///// </summary>
+        //private void onLevelSceneLoadComplete()
+        //{
+        //    string l_strGameLevel = m_strCurrLevelName + "_" + m_strCurrSubLevelName;
 
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strGameLevel);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
-        }
+        //    EventHash l_EventHash = EventManager.GetEventHashtable();
+        //    l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strGameLevel);
+        //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
+        //}
 
         /// <summary>
         /// Callback called to event ON_OBJECTIVE_GROUP_COMPLETED
@@ -204,20 +199,6 @@ namespace ns_Mashmo
                     LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
                     l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.lstSubLevels[0].SubLevelName;
                 }
-
-
-                //if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) == l_iSubLevelDataCount &&
-                //    m_lstLevelData.Count <= l_CurrentLevelData.LevelDataIndex + 1)
-                //{
-                //    LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
-                //    l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.lstSubLevels[0].SubLevelName;
-                //}
-                /////If the last sub level data is a LAST_LEVEL_EXIT then go to HOME
-                //else if (((l_CurrentSubLevelData.SubLevelDataIndex + 1) < (l_iSubLevelDataCount - 1)) &&
-                //    (l_CurrentLevelData.lstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
-                //{
-                //    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
-                //}
             }
 
             ///TODO:: Save current level progress

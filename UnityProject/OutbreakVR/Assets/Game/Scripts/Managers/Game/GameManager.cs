@@ -201,14 +201,12 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Goes to the home scene
+        /// Goes to the home scene and home state
+        /// a_bIsGamePlayEnded specifies if the gameplay was ongoing and the player decided to quit and go to the home scene
         /// </summary>
         public static void GoToHome()
         {
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
-
-            GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
+            LevelManager.GoToLevel(GameConsts.STATE_NAME_HOME);
         }
 
         /// <summary>
@@ -224,7 +222,7 @@ namespace ns_Mashmo
 
         public static void OnNewGameSelected()
         {
-            LevelManager.GoToLevel("Level0_100");
+            LevelManager.GoToLevel(GameConsts.STATE_NAME_NEW_GAME);
         }
 
         public static void OnContinueFromLastSavedSelected()

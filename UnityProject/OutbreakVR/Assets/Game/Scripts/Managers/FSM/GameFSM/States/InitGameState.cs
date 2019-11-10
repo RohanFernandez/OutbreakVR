@@ -48,7 +48,7 @@ namespace ns_Mashmo
         /// </summary>
         private void onInitializationSuccessful()
         {
-            GameStateMachine.Transition(GameConsts.STATE_NAME_HOME);
+            GameManager.GoToHome();
         }
     }
 }

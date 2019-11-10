@@ -7,7 +7,6 @@ namespace ns_Mashmo
     public enum GAME_EVENT_TYPE
     {
         ON_CONTROLLER_CHANGED,                      /* <ID_NEW_CONTROLLER_TYPE, ID_OLD_CONTROLLER_TYPE, ID_OLD_CONTROLLER_ANCHOR, ID_NEW_CONTROLLER_ANCHOR > */
-        ON_GAME_STATE_CHANGED,                      /* <ID_OLD_GAME_STATE, ID_OLD_GAME_STATE> */
         ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED,      /* <ID_NEW_WEAPON_CATEGORY_TYPE, ID_NEW_WEAPON_TYPE, ID_NEW_WEAPON_BASE, ID_OLD_WEAPON_CATEGORY_TYPE, ID_OLD_WEAPON_TYPE, ID_OLD_WEAPON_BASE> */
         ON_SCENE_CHANGED,                           /* <NAME_OLD_SCENE, NAME_NEW_SCENE> */
         ON_SEQUENCE_COMPLETE,                       /* <ISEQUENCE> */
@@ -27,6 +26,8 @@ namespace ns_Mashmo
         ON_ENEMY_ALERT_STARTED,                     /* <ENEMY_BASE>*/
         ON_ENEMY_ALERT_ENDED,                       /* <ENEMY_BASE>*/
         ON_OBJECTIVE_GROUP_COMPLETED,               /* <OLD LEVEL STRING,NEW LEVEL STRING>*/
+        ON_GAME_STATE_ENDED,                        /* <OLD LEVEL STRING>*/
+        ON_GAME_STATE_STARTED,                      /* <NEW LEVEL STRING>*/
     }
 
     public static class GameEventTypeConst
@@ -39,9 +40,7 @@ namespace ns_Mashmo
         #endregion ON_CONTROLLER_CHANGED
 
         #region ON_GAME_STATE_CHANGED
-        public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
-        public const string ID_NEW_GAME_STATE = "ID_NEW_GAME_STATE";     /* STRING */
-        public const string ID_IS_STATE_LOAD = "ID_IS_STATE_LOAD";     /* BOOL */
+        
         #endregion ON_GAME_STATE_CHANGED
 
         #region ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED
@@ -131,5 +130,14 @@ namespace ns_Mashmo
         #region ON_OBJECTIVE_GROUP_COMPLETED
         //public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
         #endregion ON_OBJECTIVE_GROUP_COMPLETED
+
+        #region ON_GAME_STATE_ENDED
+        public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */
+        public const string ID_NEW_GAME_STATE = "ID_NEW_GAME_STATE";     /* STRING */
+        #endregion ON_GAME_STATE_ENDED
+
+        #region ON_GAME_STATE_STARTED
+        //public const string ID_NEW_GAME_STATE = "ID_OLD_NEW_STATE";     /* STRING */
+        #endregion ON_GAME_STATE_STARTED
     }
 }

@@ -12,11 +12,6 @@ namespace ns_Mashmo
             PlayerManager.SetPlayerState(PLAYER_STATE.MENU_SELECTION);
         }
 
-        public override string getSceneName
-        {
-            get { return GameConsts.STATE_NAME_HOME; }
-        }
-
         public override void onStateExit(string a_strOldState)
         {
             base.onStateExit(a_strOldState);

@@ -35,6 +35,12 @@ namespace ns_Mashmo
         private System.Action m_actPlayerStateControl = null;
 
         /// <summary>
+        /// Component of player parent to manage registration to GameObjectManager
+        /// </summary>
+        [SerializeField]
+        private RegisteredGameObject m_RegisteredParentGameObj = null;
+
+        /// <summary>
         /// Component to manage registration to GameObjectManager
         /// </summary>
         [SerializeField]
@@ -133,6 +139,8 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+
+            m_RegisteredParentGameObj.registerGameObject();
             m_RegisteredGameObj.registerGameObject();
             
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);

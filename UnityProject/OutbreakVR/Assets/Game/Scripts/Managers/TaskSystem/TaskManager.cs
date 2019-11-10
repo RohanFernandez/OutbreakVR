@@ -86,7 +86,8 @@ namespace ns_Mashmo
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
 
             m_TaskPoolManager = new TaskPoolManager();
@@ -121,7 +122,8 @@ namespace ns_Mashmo
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             s_Instance = null;
         }
@@ -252,7 +254,7 @@ namespace ns_Mashmo
         {
             if (s_Instance == null) { return; }
 
-            if (m_stackEndedLastFrame.Count != 0)
+            while (m_stackEndedLastFrame.Count != 0)
             {
                 ISequence l_Sequence = m_stackEndedLastFrame.Pop();
                 m_TaskPoolManager.returnSequenceToPool(l_Sequence);
@@ -277,23 +279,32 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Event called on state changed
+        /// Event called on state entered
         /// Executes NewGameStateID + "_OnBegin"
         /// Executes OldGameStateID + "_OnEnd"
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public void onStateChanged(EventHash a_Hashtable)
+        public void onStateExited(EventHash a_Hashtable)
         {
             string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
             string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
-            bool l_bIsStateLoad = (bool)a_Hashtable[GameEventTypeConst.ID_IS_STATE_LOAD];
+
+            StopAll();
 
             ExecuteSequence(l_strOldStateId + TASK_POSTFIX_ON_END);
-            if(l_bIsStateLoad)
-            {
-                /// Loads state specific task. To be called if loading a state directly
-                ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_STATE_LOAD);
-            }
+        }
+
+        /// <summary>
+        /// Event called on state entered
+        /// Executes NewGameStateID + "_OnBegin"
+        /// Executes OldGameStateID + "_OnEnd"
+        /// </summary>
+        /// <param name="a_Hashtable"></param>
+        public void onStateEntered(EventHash a_Hashtable)
+        {
+            string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+            string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+
             ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_BEGIN);
         }
 

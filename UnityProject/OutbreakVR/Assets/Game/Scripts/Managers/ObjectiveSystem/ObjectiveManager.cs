@@ -55,8 +55,9 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
 
             m_ObjectivePoolManager = new ObjectivePoolManager();
@@ -83,9 +84,10 @@ namespace ns_Mashmo
                 return;
             }
 
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_CHANGED, onStateChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             s_Instance = null;
         }
 
@@ -188,12 +190,30 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Event callback on game state exited
+        /// </summary>
+        /// <param name="a_hashtable"></param>
+        public void onStateExited(EventHash a_hashtable)
+        {
+
+        }
+
+        /// <summary>
+        /// Event callback on game state entered
+        /// </summary>
+        /// <param name="a_hashtable"></param>
+        public void onStateEntered(EventHash a_hashtable)
+        {
+            string l_strNewState = a_hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+            setCurrentObjectiveGroup(l_strNewState);
+        }
+
+        /// <summary>
         /// On state changed manage the checklist
         /// </summary>
         public void onStateChanged(EventHash a_hashtable)
         {
-            string l_strNewState = a_hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
-            setCurrentObjectiveGroup(l_strNewState);
+            
         }
     }
 }

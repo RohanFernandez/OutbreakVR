@@ -104,7 +104,7 @@ namespace ns_Mashmo
             m_strLevelToTransition = EditorGUILayout.TextField("Level Name:", m_strLevelToTransition);
             if (GUILayout.Button("Transition", GUILayout.Width(120)))
             {
-                GameStateMachine.Transition(m_strLevelToTransition);
+                LevelManager.GoToLevel(m_strLevelToTransition);
             }
 
             GUILayout.Space(10.0f);
