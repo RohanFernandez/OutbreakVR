@@ -197,7 +197,7 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
-            LevelManager.GoToLevel(GameStateMachine.GetCurrentState());
+            LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
         }
 
         /// <summary>
@@ -222,12 +222,16 @@ namespace ns_Mashmo
 
         public static void OnNewGameSelected()
         {
-            LevelManager.GoToLevel(GameConsts.STATE_NAME_NEW_GAME);
+            LevelManager.LastCheckpointLevel = string.Empty;
+            LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
         }
 
+        /// <summary>
+        /// Continues game from the last checkpoint saved
+        /// </summary>
         public static void OnContinueFromLastSavedSelected()
         {
-            //LevelManager.GoToLevel("Level0_100");
+            LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
         }
 
         private void Update()

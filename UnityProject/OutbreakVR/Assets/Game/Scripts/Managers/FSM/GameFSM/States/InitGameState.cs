@@ -30,6 +30,7 @@ namespace ns_Mashmo
 
             //Set player data with username
             PlayerDataManager.InitDataWithUsername("FretBuzz");
+            LevelManager.LoadLevelDataFromPlayerPrefs();
 
             //Check internet connection
 

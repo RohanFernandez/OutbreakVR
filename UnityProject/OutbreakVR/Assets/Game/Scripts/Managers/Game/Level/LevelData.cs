@@ -55,7 +55,8 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private List<SubLevelData> m_lstSubLevels = null;
-        public List<SubLevelData> lstSubLevels
+        public List<SubLevelData> LstSubLevels
+
         {
             get { return m_lstSubLevels; }
         }

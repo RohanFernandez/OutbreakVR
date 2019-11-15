@@ -16,6 +16,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private CharacterController m_CharacterController = null;
+        public CharacterController CharacterController
+        {
+            get{ return m_CharacterController;}
+        }
 
         /// <summary>
         /// The pointer to controll the crosshair/ UI pointer

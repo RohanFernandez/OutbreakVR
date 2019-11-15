@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TaskList Name = "COMMON_LIST" >
+
 	<Sequence ID = "HOME_OnBegin" >
+		<Task ID="4" TaskType="TaskAudio" AudSrc="Ambient" IsStart="false"/>
 		<Task ID="1" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="MENU_SELECTION" />
 		<Task ID="2" TaskType="TaskSetTransform" GameObject_ID="Player" Position="0.0,-12.97,-0.34" Rotation="0.0,0.0,0.0" />
                 <Task ID="1" TaskType="TaskAudio" AudSrc="HomeAmbient" AudClip="HomeAmbient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
 	</Sequence>
         <Sequence ID = "HOME_OnEnd" >
-                <Task ID="1" TaskType="TaskAudio" AudSrc="HomeAmbient" AudClip="HomeAmbient" IsStart="false" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
+				<Task ID="4" TaskType="TaskAudio" AudSrc="HomeAmbient" IsStart="false"/>
 	</Sequence>
 </TaskList>

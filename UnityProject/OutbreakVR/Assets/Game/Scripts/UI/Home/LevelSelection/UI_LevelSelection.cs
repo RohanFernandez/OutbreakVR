@@ -19,7 +19,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onContinueLevelOptionSelected()
         {
-            //GameManager.ContinueFromLastSavedState();
+            GameManager.OnContinueFromLastSavedSelected();
         }
     }
 }

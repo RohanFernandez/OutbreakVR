@@ -45,6 +45,6 @@ namespace ns_Mashmo
         public WeaponInfo m_SecondaryWeaponInfo = null;
 
         [SerializeField]
-        public WEAPON_CATEGORY_TYPE m_WeaponCateogoryType; 
+        public WEAPON_CATEGORY_TYPE m_CurrentWeaponCateogoryType; 
     }
 }

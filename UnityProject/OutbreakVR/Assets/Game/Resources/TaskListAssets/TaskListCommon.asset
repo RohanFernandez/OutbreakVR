@@ -17,8 +17,20 @@ MonoBehaviour:
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: HOME_OnBegin
-    m_iTaskCount: 3
+    m_iTaskCount: 4
     m_lstTasks:
+    - m_strTaskID: 4
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudSrc
+        m_strValue: Ambient
+      - m_strKey: IsStart
+        m_strValue: false
     - m_strTaskID: 1
       m_strTaskType: TaskPlayer
       m_iAttributeCount: 4
@@ -69,23 +81,15 @@ MonoBehaviour:
     m_strSequenceID: HOME_OnEnd
     m_iTaskCount: 1
     m_lstTasks:
-    - m_strTaskID: 1
+    - m_strTaskID: 4
       m_strTaskType: TaskAudio
-      m_iAttributeCount: 8
+      m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 1
+        m_strValue: 4
       - m_strKey: TaskType
         m_strValue: TaskAudio
       - m_strKey: AudSrc
         m_strValue: HomeAmbient
-      - m_strKey: AudClip
-        m_strValue: HomeAmbient
       - m_strKey: IsStart
         m_strValue: false
-      - m_strKey: IsLoop
-        m_strValue: true
-      - m_strKey: Volume
-        m_strValue: 1.0
-      - m_strKey: SrcType
-        m_strValue: AUD_SRC_SFX

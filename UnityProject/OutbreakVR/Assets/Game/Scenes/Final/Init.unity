@@ -1755,13 +1755,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f2ee345e43f004986367be8bc79d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_strCurrLevelName: 
+  m_strCurrSubLevelName: 
+  m_strLastCheckpointLevel: 
   m_lstLevelData:
   - m_strLevelName: Level0
     m_iLevelDataIndex: 0
     m_strSceneName: Cinematic test
     m_lstSubLevels:
-    - m_strSubLevelName: 100
-      m_SubLevelSaveEntryType: 0
+    - m_strSubLevelName: 000
+      m_bIsCheckpointLevel: 1
+      m_SubLevelSaveEntryType: 666
       m_LoadDataType: 0
       m_WeaponInventory:
         m_MeleeWeaponInfo:
@@ -1779,21 +1783,25 @@ MonoBehaviour:
           m_WeaponType: 0
           m_iTotalBulletsCount: 0
           m_iBulletInFirstMag: 0
-        m_WeaponCateogoryType: 0
-      m_iPlayerHealth: 0
+        m_CurrentWeaponCateogoryType: 0
+      m_iPlayerHealth: 100
+      m_bUsePlayerPosition: 0
+      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_PlayerStateOnStart: 0
   - m_strLevelName: Level1
     m_iLevelDataIndex: 0
     m_strSceneName: Level1
     m_lstSubLevels:
     - m_strSubLevelName: 100
-      m_SubLevelSaveEntryType: 0
+      m_bIsCheckpointLevel: 1
+      m_SubLevelSaveEntryType: 666
       m_LoadDataType: 0
       m_WeaponInventory:
         m_MeleeWeaponInfo:
           m_CategoryType: 0
           m_WeaponType: 1
-          m_iTotalBulletsCount: 0
-          m_iBulletInFirstMag: 0
+          m_iTotalBulletsCount: 10
+          m_iBulletInFirstMag: 5
         m_PrimaryWeaponInfo:
           m_CategoryType: 2
           m_WeaponType: 0
@@ -1801,14 +1809,18 @@ MonoBehaviour:
           m_iBulletInFirstMag: 0
         m_SecondaryWeaponInfo:
           m_CategoryType: 1
-          m_WeaponType: 0
-          m_iTotalBulletsCount: 0
-          m_iBulletInFirstMag: 0
-        m_WeaponCateogoryType: 0
-      m_iPlayerHealth: 100
+          m_WeaponType: 3
+          m_iTotalBulletsCount: 10
+          m_iBulletInFirstMag: 5
+        m_CurrentWeaponCateogoryType: 0
+      m_iPlayerHealth: 69
+      m_bUsePlayerPosition: 0
+      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_PlayerStateOnStart: 2
     - m_strSubLevelName: 101
-      m_SubLevelSaveEntryType: 0
-      m_LoadDataType: 0
+      m_bIsCheckpointLevel: 0
+      m_SubLevelSaveEntryType: 666
+      m_LoadDataType: 1
       m_WeaponInventory:
         m_MeleeWeaponInfo:
           m_CategoryType: 0
@@ -1825,10 +1837,61 @@ MonoBehaviour:
           m_WeaponType: 0
           m_iTotalBulletsCount: 0
           m_iBulletInFirstMag: 0
-        m_WeaponCateogoryType: 2
+        m_CurrentWeaponCateogoryType: 0
       m_iPlayerHealth: 30
-  m_strCurrLevelName: 
-  m_strCurrSubLevelName: 
+      m_bUsePlayerPosition: 0
+      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_PlayerStateOnStart: 2
+    - m_strSubLevelName: 102
+      m_bIsCheckpointLevel: 1
+      m_SubLevelSaveEntryType: 102
+      m_LoadDataType: 1
+      m_WeaponInventory:
+        m_MeleeWeaponInfo:
+          m_CategoryType: 0
+          m_WeaponType: 1
+          m_iTotalBulletsCount: 0
+          m_iBulletInFirstMag: 0
+        m_PrimaryWeaponInfo:
+          m_CategoryType: 2
+          m_WeaponType: 4
+          m_iTotalBulletsCount: 40
+          m_iBulletInFirstMag: 5
+        m_SecondaryWeaponInfo:
+          m_CategoryType: 1
+          m_WeaponType: 0
+          m_iTotalBulletsCount: 0
+          m_iBulletInFirstMag: 0
+        m_CurrentWeaponCateogoryType: 0
+      m_iPlayerHealth: 30
+      m_bUsePlayerPosition: 1
+      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_PlayerStateOnStart: 2
+    - m_strSubLevelName: 103
+      m_bIsCheckpointLevel: 0
+      m_SubLevelSaveEntryType: 666
+      m_LoadDataType: 2
+      m_WeaponInventory:
+        m_MeleeWeaponInfo:
+          m_CategoryType: 0
+          m_WeaponType: 1
+          m_iTotalBulletsCount: 0
+          m_iBulletInFirstMag: 0
+        m_PrimaryWeaponInfo:
+          m_CategoryType: 2
+          m_WeaponType: 4
+          m_iTotalBulletsCount: 40
+          m_iBulletInFirstMag: 5
+        m_SecondaryWeaponInfo:
+          m_CategoryType: 1
+          m_WeaponType: 0
+          m_iTotalBulletsCount: 0
+          m_iBulletInFirstMag: 0
+        m_CurrentWeaponCateogoryType: 0
+      m_iPlayerHealth: 30
+      m_bUsePlayerPosition: 0
+      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_PlayerStateOnStart: 2
 --- !u!1 &649478895
 GameObject:
   m_ObjectHideFlags: 0
@@ -4882,8 +4945,8 @@ MonoBehaviour:
   - {fileID: 1667637791}
   - {fileID: 1857882336}
   - {fileID: 1857882343}
-  - {fileID: 642286414}
   - {fileID: 1857882340}
+  - {fileID: 642286414}
   - {fileID: 1857882339}
   - {fileID: 1857882337}
 --- !u!114 &1857882335
@@ -4953,7 +5016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strStateID: INIT
-  m_bIsSceneState: 0
 --- !u!114 &1857882339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5011,98 +5073,18 @@ MonoBehaviour:
     m_intEntry: 0
     m_boolEntry: 0
     m_floatEntry: 0
-  - m_PlayerKeyType: 4
+  - m_PlayerKeyType: 667
     m_strEntryID: 
     m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
+    m_bIsSavedIntoDeviceData: 1
     m_stringEntry: 
     m_intEntry: 0
     m_boolEntry: 0
     m_floatEntry: 0
-  - m_PlayerKeyType: 5
+  - m_PlayerKeyType: 102
     m_strEntryID: 
     m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 6
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 7
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 8
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 9
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 10
-    m_strEntryID: 
-    m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 11
-    m_strEntryID: 
-    m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 12
-    m_strEntryID: 
-    m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 13
-    m_strEntryID: 
-    m_EntryType: 0
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 14
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
-    m_stringEntry: 
-    m_intEntry: 0
-    m_boolEntry: 0
-    m_floatEntry: 0
-  - m_PlayerKeyType: 15
-    m_strEntryID: 
-    m_EntryType: 1
-    m_bIsSavedIntoDeviceData: 0
+    m_bIsSavedIntoDeviceData: 1
     m_stringEntry: 
     m_intEntry: 0
     m_boolEntry: 0
@@ -5120,7 +5102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_strStateID: HOME
-  m_bIsSceneState: 1
 --- !u!114 &1857882343
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -682,7 +682,27 @@ namespace ns_Mashmo
             SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.SECONDARY, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType);
             SetBulletCountInWeapon(a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_WeaponType, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iTotalBulletsCount, a_WeaponInventoryStructure.m_SecondaryWeaponInfo.m_iBulletInFirstMag);
 
-            SetCategoryAsCurrent(a_WeaponInventoryStructure.m_WeaponCateogoryType);
+            SetCategoryAsCurrent(a_WeaponInventoryStructure.m_CurrentWeaponCateogoryType);
+        }
+
+        /// <summary>
+        /// Retrieves the current weapon info
+        /// </summary>
+        /// <param name="a_WeaponInfo"></param>
+        public static void RetrieveWeaponInfo(ref WeaponInfo a_WeaponInfo)
+        {
+            WEAPON_TYPE l_WeaponType = GetWeaponInCategory(a_WeaponInfo.m_CategoryType);
+            WeaponBase l_WeaponBase = s_Instance.getWeaponBaseByWeaponType(l_WeaponType);
+
+            a_WeaponInfo.m_WeaponType = l_WeaponType;
+
+            if (l_WeaponBase != null && 
+                a_WeaponInfo.m_CategoryType != WEAPON_CATEGORY_TYPE.MELEE)
+            {
+                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
+                a_WeaponInfo.m_iBulletInFirstMag = l_GunWeaponBase.BulletCountInFirstMag;
+                a_WeaponInfo.m_iTotalBulletsCount = l_GunWeaponBase.TotalBullets;
+            }
         }
     }
 }

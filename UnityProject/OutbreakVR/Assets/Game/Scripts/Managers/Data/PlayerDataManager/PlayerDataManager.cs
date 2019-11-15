@@ -7,29 +7,17 @@ namespace ns_Mashmo
     public enum PLAYER_KEYS
     {
         _OUTBREAK_NONE                                  = 666,
+        _OUTBREAK_CHECKPOINT_LEVEL                      = 667,
+
         _OUTBREAK_USERNAME                              = 0, // Oculus user name
         _OUTBREAK_USER_ID                               = 1, // Unique ID set by Mashmo server for all games
         _OUTBREAK_SYNCD_COINS                           = 2,
         _OUTBREAK_UNSYNCD_COINS                         = 3,
-        _OUTBREAK_SYNCD_LEVELS                          = 4,
-        _OUTBREAK_UNSYNCD_LEVELS                        = 5,
-        _OUTBREAK_SYNCD_PRIMARY_BULLETS                 = 6,
-        _OUTBREAK_UNSYNCD_PRIMARY_BULLETS               = 7,
-        _OUTBREAK_SYNCD_SECONDARY_BULLETS               = 8,
-        _OUTBREAK_UNSYNCD_SECONDARY_BULLETS             = 9,
-        _OUTBREAK_SYNCD_CURRENT_PRIMARY_WEAPON          = 10,
-        _OUTBREAK_UNSYNCD_CURRENT_PRIMARY_WEAPON        = 11,
-        _OUTBREAK_SYNCD_CURRENT_MELEE_WEAPON            = 12,
-        _OUTBREAK_UNSYNCD_CURRENT_MELEE_WEAPON          = 13,
-        _OUTBREAK_SYNCD_CURRENT_LIFEMETER               = 14,
-        _OUTBREAK_UNSYNCD_CURRENT_LIFEMETER             = 15,
+        
 
 
 
-        _OUTBREAK_LEVEL_100 = 100,
-        _OUTBREAK_LEVEL_101 = 101,
-        _OUTBREAK_LEVEL_102 = 102,
-        _OUTBREAK_LEVEL_103 = 103
+        _OUTBREAK_LEVEL1_102 = 102
     }
 
     public class PlayerDataManager : AbsComponentHandler

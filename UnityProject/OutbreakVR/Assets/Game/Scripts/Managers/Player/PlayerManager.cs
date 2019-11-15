@@ -114,7 +114,10 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static void SetPosition(Vector3 a_v3Position)
         {
+            CharacterController l_CharController = s_Instance.m_PlayerController.CharacterController;
+            l_CharController.enabled = false;
             s_Instance.m_PlayerController.transform.position = a_v3Position;
+            l_CharController.enabled = true;
         }
 
         /// <summary>
