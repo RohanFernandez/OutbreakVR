@@ -194,6 +194,8 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         public static void RestartLevel()
         {
+            PauseGame(false);
+
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
@@ -206,6 +208,7 @@ namespace ns_Mashmo
         /// </summary>
         public static void GoToHome()
         {
+            PauseGame(false);
             LevelManager.GoToLevel(GameConsts.STATE_NAME_HOME);
         }
 

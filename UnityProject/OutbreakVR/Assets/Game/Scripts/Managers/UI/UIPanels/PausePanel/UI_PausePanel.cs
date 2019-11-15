@@ -57,7 +57,7 @@ namespace ns_Mashmo
             Transform m_transHeadsetAnchor = ControllerManager.GetHeadsetAnchor().transform;
             Vector3 l_v3Forward = m_transHeadsetAnchor.forward;
 
-            if (Vector3.Dot(l_v3Forward, Vector3.down) > 0.75f)
+            if (Vector3.Dot(l_v3Forward, Vector3.down) > 0.5f)
             {
                 return;
             }
@@ -75,6 +75,22 @@ namespace ns_Mashmo
         public void onBtnClicked_ReturnToGame()
         {
             GameManager.PauseGame(false);
+        }
+
+        /// <summary>
+        /// On button clicked go to home
+        /// </summary>
+        public void onBtnClicked_GoToHome()
+        {
+            GameManager.GoToHome();
+        }
+
+        /// <summary>
+        /// On button clicked go to home
+        /// </summary>
+        public void onBtnClicked_GoToLastCheckpoint()
+        {
+            GameManager.RestartLevel();
         }
     }
 }
