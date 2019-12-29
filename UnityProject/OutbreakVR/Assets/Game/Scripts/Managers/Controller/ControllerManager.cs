@@ -23,6 +23,9 @@ namespace ns_Mashmo
         /// </summary>
         private static ControllerManager s_Instance = null;
 
+        [SerializeField]
+        private CustomPointer m_CustomPointer = null;
+
 #if _MASHMO_OVR_
         [SerializeField]
         private UnityEngine.EventSystems.OVRInputModule m_OVRInputModule = null;
@@ -86,9 +89,9 @@ namespace ns_Mashmo
             m_CurrentControllerType = a_NewControllerType;
             m_CurrentControllerAnchor = a_NewControllerAnchor;
 
-            m_Pointer.transform.SetParent(m_CurrentControllerAnchor.transform);
-            m_Pointer.transform.localPosition = Vector3.zero;
-            m_Pointer.transform.localRotation = Quaternion.identity;
+            m_CustomPointer.transform.SetParent(m_CurrentControllerAnchor.transform);
+            m_CustomPointer.transform.localPosition = Vector3.zero;
+            m_CustomPointer.transform.localRotation = Quaternion.identity;
             m_bIsRemoteAttached = m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_RIGHT_REMOTE;
 
             EventHash l_hash = EventManager.GetEventHashtable();
@@ -423,11 +426,6 @@ namespace ns_Mashmo
         [SerializeField]
         private LayerMask m_InteractionLayer;
 
-        /// <summary>
-        /// The Gameobject that acts as the cursor.
-        /// </summary>
-        [SerializeField]
-        private GameObject m_Pointer = null;
         public static Transform RayTransform
         {
             get { return s_Instance.m_OVRInputModule.rayTransform; }
@@ -541,11 +539,17 @@ namespace ns_Mashmo
         /// <returns></returns>
         private RaycastHit createRaycast(GameObject a_goController)
         {
+            //RaycastHit l_RaycastHit;
+            //Ray l_ray = new Ray(a_goController.transform.position, a_goController.transform.forward);
+
+            //Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_INTERACTABLE_DISTANCE, m_InteractionLayer);
+            //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
+
             RaycastHit l_RaycastHit;
-            Ray l_ray = new Ray(a_goController.transform.position, a_goController.transform.forward);
-        
+            Ray l_ray = new Ray(m_CustomPointer.v3LaserStartPosition, (m_CustomPointer.v3LaserEndPosition - m_CustomPointer.v3LaserStartPosition).normalized);
+
             Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_INTERACTABLE_DISTANCE, m_InteractionLayer);
-            Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
+            //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
 
             return l_RaycastHit;
         }

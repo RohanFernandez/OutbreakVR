@@ -23,7 +23,9 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_100_OnBegin" >
-		<Task ID="1" TaskType="TaskAudio" AudSrc="AUD_SRC_AmbientSrc1" AudClip="AmbientAudio1" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_MUSIC"/>
+    <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="-0.276,30.85,4.756" Rotation="0.0,0.0,0.0" Params="90.0;-90.0"/>
+
+    <Task ID="1" TaskType="TaskAudio" AudSrc="AUD_SRC_AmbientSrc1" AudClip="AmbientAudio1" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_MUSIC"/>
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="-2.854,33.5,-4.412" Rotation="0.0,0.0,0.0" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-0.314,31.509,-5.392" Rotation="0.0,-34.939,0.0"/>
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Test_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.935,31.109,2.38" Rotation="0.0,74.39201,0.0"/>

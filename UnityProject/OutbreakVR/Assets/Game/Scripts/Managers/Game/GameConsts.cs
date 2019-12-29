@@ -42,6 +42,11 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_SRC_ITEM_PICKUP = "AudSrc_ItemPickedUp";
 
+        /// <summary>
+        /// Audio source to be played on turret gunfire
+        /// </summary>
+        public const string AUD_SRC_TURRET_FIRE = "AudSrc_TurretFire";
+
         #endregion AUDIO SOURCE
 
         #region AUDIO CLIP
@@ -59,6 +64,11 @@ namespace ns_Mashmo
         /// Audio clip ambient music
         /// </summary>
         public const string AUD_CLIP_AMBIENT = "AmbientAudio1";
+
+        /// <summary>
+        /// Audio clip to be played on turret gunfire
+        /// </summary>
+        public const string AUD_CLIP_TURRET_FIRE = "AudClip_TurretFire";
 
         #endregion AUDIO CLIP
 

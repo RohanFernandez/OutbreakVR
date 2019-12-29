@@ -41,6 +41,36 @@ namespace ns_Mashmo
             get { return s_Instance.m_bIsGamePaused; }
         }
 
+        /// <summary>
+        /// Color of highlighted item
+        /// </summary>
+        [SerializeField]
+        private Color m_colOutlineHighlighterNormal;
+        public static Color ColOutlineHighlighterNormal
+        {
+            get { return s_Instance.m_colOutlineHighlighterNormal; }
+        }
+
+        /// <summary>
+        /// Color of selected item
+        /// </summary>
+        [SerializeField]
+        private Color m_colOutlineHighlighterSelected;
+        public static Color ColOutlineHighlighterSelected
+        {
+            get { return s_Instance.m_colOutlineHighlighterSelected; }
+        }
+
+        /// <summary>
+        /// Color of deactivated item
+        /// </summary>
+        [SerializeField]
+        private Color m_colOutlineHighlighterDeactivated;
+        public static Color ColOutlineHighlighterDeactivated
+        {
+            get { return s_Instance.m_colOutlineHighlighterDeactivated; }
+        }
+
         ///// <summary>
         ///// Sets the current level as arguement as fires an event if the old event is not the new
         ///// </summary>
@@ -104,7 +134,7 @@ namespace ns_Mashmo
         ///// </summary>
         //public static void ContinueFromLastSavedState()
         //{
-            
+
         //}
 
         /// <summary>
@@ -182,7 +212,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Returns all reusable
         /// </summary>
-        private static void ReturnAllReusables()
+        public static void ReturnAllReusables()
         {
             EnemyManager.ReturnAllToPool();
             ItemDropManager.ReturnAllToPool();
@@ -195,6 +225,7 @@ namespace ns_Mashmo
         public static void RestartLevel()
         {
             PauseGame(false);
+
 
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);

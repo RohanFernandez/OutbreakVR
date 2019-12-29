@@ -7,7 +7,10 @@ namespace ns_Mashmo
     public class AutomatedTurret : StaticEnemy
     {
         [SerializeField]
-        private Transform m_transGunBarrel = null;
+        private Transform m_transGunMiddle = null;
+
+        [SerializeField]
+        private Transform m_transGunTop = null;
 
         private float l_fRotationTime = 0.0f;
         private float l_fRotationTimeMultiplier = 1.0f;
@@ -32,19 +35,31 @@ namespace ns_Mashmo
         /// The left max the turret will rotate in Y axis
         /// </summary>
         [SerializeField]
-        private float m_fLeftMaxY = 0.0f;
+        private float m_fLeftMaxZ = 0.0f;
 
         /// <summary>
         /// The right max the turret will rotate in Y axis
         /// </summary>
         [SerializeField]
-        private float m_fRightMaxY = 0.0f;
+        private float m_fRightMaxZ = 0.0f;
 
         /// <summary>
         /// The damage inflicted on the player on shoot
         /// </summary>
         [SerializeField]
         private int m_iDamageOnHit = 10;
+
+        /// <summary>
+        /// The muzzle flash 1 of the turret
+        /// </summary>
+        [SerializeField]
+        private ParticleSystem m_particleMuzzleFlash1 = null;
+
+        /// <summary>
+        /// The muzzle flash 2 of the turret
+        /// </summary>
+        [SerializeField]
+        private ParticleSystem m_particleMuzzleFlash2 = null;
 
         /// <summary>
         /// callback called on state changed
@@ -82,7 +97,8 @@ namespace ns_Mashmo
         {
             RaycastHit l_RaycastHit;
             m_RayDetector.origin = transform.position;
-            Vector3 l_v3TurretToPlayerDir = (PlayerManager.GetPosition() - transform.position).normalized;
+            Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
+            Vector3 l_v3TurretToPlayerDir = (l_v3PlayerPos - transform.position).normalized;
             m_RayDetector.direction = l_v3TurretToPlayerDir;
             if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAttackRadius, m_AttackLayerMask) &&
                 l_RaycastHit.collider != null &&
@@ -90,17 +106,51 @@ namespace ns_Mashmo
             {
                 PlayerController l_PlayerController = l_RaycastHit.collider.GetComponent<PlayerController>();
 
-                m_transGunBarrel.forward = l_v3TurretToPlayerDir;
+                Quaternion l_quatTurretRot = Quaternion.Slerp(m_transGunMiddle.rotation, Quaternion.LookRotation(l_v3TurretToPlayerDir), 1.0f);
+                Quaternion l_quatMidRot = Quaternion.Euler(0.0f, l_quatTurretRot.eulerAngles.y, 0.0f);
+                m_transGunMiddle.rotation = l_quatMidRot;
+
+                Quaternion l_quatTopRot = Quaternion.Euler(l_quatTurretRot.eulerAngles.x, l_quatTurretRot.eulerAngles.y, 0.0f);
+                m_transGunTop.rotation = l_quatTopRot;
+
                 m_fTimeSinceLastShot += Time.deltaTime;
                 if (m_fTimeSinceLastShot > m_fTimeBetweenShots)
                 {
                     m_fTimeSinceLastShot = 0.0f;
                     fireAtPlayer();
+
+                    SoundManager.PlayAudio(GameConsts.AUD_SRC_TURRET_FIRE, GameConsts.AUD_CLIP_TURRET_FIRE, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                }
+
+                if (m_particleMuzzleFlash1 != null)
+                {
+                    if (!m_particleMuzzleFlash1.isPlaying)
+                    {
+                        m_particleMuzzleFlash1.Play();
+                    }
+                }
+
+                if (m_particleMuzzleFlash2 != null)
+                {
+                    if (!m_particleMuzzleFlash2.isPlaying)
+                    {
+                        m_particleMuzzleFlash2.Play();
+                    }
                 }
             }
             else
             {
                 NavState = ENEMY_STATE.IDLE;
+
+                if (m_particleMuzzleFlash1 != null)
+                {
+                    m_particleMuzzleFlash1.Stop();
+                }
+
+                if (m_particleMuzzleFlash2 != null)
+                {
+                    m_particleMuzzleFlash2.Stop();
+                }
             }
         }
 
@@ -119,7 +169,7 @@ namespace ns_Mashmo
             }
 
             l_fRotationTime += l_fRotationTimeMultiplier * Time.deltaTime * ROTATION_SPEED;
-            m_transGunBarrel.localRotation = Quaternion.Euler(m_transGunBarrel.rotation.x, Mathf.LerpAngle(m_fLeftMaxY, m_fRightMaxY, l_fRotationTime), m_transGunBarrel.rotation.z);
+            m_transGunMiddle.rotation = Quaternion.Euler(m_transGunMiddle.rotation.y, Mathf.LerpAngle(m_fLeftMaxZ, m_fRightMaxZ, l_fRotationTime), m_transGunMiddle.rotation.z);
 
             RaycastHit l_RaycastHit;
             m_RayDetector.origin = transform.position;
@@ -140,8 +190,8 @@ namespace ns_Mashmo
         /// <param name="a_fRightMax"></param>
         public void setLeftRightMaxYAngle(float a_fLeftMax, float a_fRightMax)
         {
-            m_fLeftMaxY = a_fLeftMax;
-            m_fRightMaxY = a_fRightMax;
+            m_fLeftMaxZ = a_fLeftMax;
+            m_fRightMaxZ = a_fRightMax;
         }
 
         /// <summary>
@@ -157,7 +207,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onSwitchedOff()
         {
-            NavState = ENEMY_STATE.NONE;
+            NavState = ENEMY_STATE.DEAD;
         }
     }
 }

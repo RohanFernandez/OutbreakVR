@@ -55,7 +55,8 @@ namespace ns_Mashmo
             s_Instance = this;
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, onLevelObjectiveGroupCompleted);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onGameStateStarted); 
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onGameStateStarted);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
 
             int l_iLevelDataCount = m_lstLevelData.Capacity;
             for (int l_iLevelDataIndex = 0; l_iLevelDataIndex < l_iLevelDataCount; l_iLevelDataIndex++)
@@ -76,6 +77,7 @@ namespace ns_Mashmo
 
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onGameStateStarted);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, onLevelObjectiveGroupCompleted);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
 
             s_Instance = null;
         }
@@ -178,7 +180,6 @@ namespace ns_Mashmo
 
             ///if the sublevel completed is not the last sublevel in the level data, go to the next sub level
             ///else go to the 1st sublevel data in the next level
-            Debug.LogError(l_strLevelNameOfObjectiveCompleted + "... "+l_CurrentSubLevelData.SubLevelDataIndex + 1 + ".." + l_iSubLevelDataMaxIndex);
             if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataMaxIndex)
             {
                 l_bIsNextLevelToLoadInGameplay = true;
@@ -357,6 +358,28 @@ namespace ns_Mashmo
                 EventHash l_EventGameplayBegin = EventManager.GetEventHashtable();
                 l_EventGameplayBegin.Add(GameEventTypeConst.ID_NEW_GAME_STATE, l_strCurrenstState);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventGameplayBegin);
+            }
+        }
+
+        /// <summary>
+        /// On game state exited
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onStateExited(EventHash a_EventHash)
+        {
+            LevelData l_CurrentLevelData = null;
+            SubLevelData l_CurrentSubLevelData = null;
+
+            string l_strGameState = (string)a_EventHash[GameEventTypeConst.ID_NEW_GAME_STATE];
+
+            Debug.LogError(l_strGameState);
+
+            if (s_Instance.getLevelAndSubLevelDataFromName(l_strGameState, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+            {
+                if (l_CurrentSubLevelData.IsCheckpoint)
+                {
+                    GameManager.ReturnAllReusables();
+                }
             }
         }
     }

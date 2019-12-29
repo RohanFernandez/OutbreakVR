@@ -36,7 +36,17 @@ namespace ns_Mashmo
         private LineRenderer m_LineRenderer = null;
 
         private Vector3 m_v3LaserStartPosition = Vector3.zero;
+        public Vector3 v3LaserStartPosition
+        {
+            get { return m_v3LaserStartPosition; }
+        }
+
         private Vector3 m_v3LaserEndPosition = Vector3.zero;
+        public Vector3 v3LaserEndPosition
+        {
+            get { return m_v3LaserEndPosition; }
+        }
+
         private Vector3 m_v3PointerForward = Vector3.zero;
 
         public override void SetCursorRay(Transform a_Ray)
