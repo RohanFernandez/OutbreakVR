@@ -372,8 +372,6 @@ namespace ns_Mashmo
 
             string l_strGameState = (string)a_EventHash[GameEventTypeConst.ID_NEW_GAME_STATE];
 
-            Debug.LogError(l_strGameState);
-
             if (s_Instance.getLevelAndSubLevelDataFromName(l_strGameState, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
             {
                 if (l_CurrentSubLevelData.IsCheckpoint)

@@ -51,17 +51,22 @@ namespace ns_Mashmo
     #region IPointerOver
         public void onPointerEnter()
         {
-            m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+            if (m_colTurretSwitch.enabled && m_AutomatedTurret != null)
+            {
+                m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+            }
         }
 
         public void onPointerExit()
         {
-            m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+            if (m_colTurretSwitch.enabled && m_AutomatedTurret != null)
+            {
+                m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+            }
         }
 
         public void onPointerInteract()
         {
-            Debug.LogError("INTERACTION");
             onInteract();
             onDeactivate();
         }

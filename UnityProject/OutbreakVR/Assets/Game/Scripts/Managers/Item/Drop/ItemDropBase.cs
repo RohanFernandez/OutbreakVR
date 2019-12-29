@@ -116,8 +116,6 @@ namespace ns_Mashmo
 
         public virtual void onPointerInteract()
         {
-            Debug.LogError("onPointerInteract");
-
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_ITEM_DROP_TYPE, m_ItemType);
             l_EventHash.Add(GameEventTypeConst.ID_ITEM_BASE, this);
