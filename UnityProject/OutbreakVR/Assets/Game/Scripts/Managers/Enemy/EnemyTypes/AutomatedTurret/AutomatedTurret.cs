@@ -68,6 +68,24 @@ namespace ns_Mashmo
         private UnpooledAudioSource m_AudioSoure = null;
 
         /// <summary>
+        /// The material on the turret when deactivated
+        /// </summary>
+        [SerializeField]
+        private Material m_matTurretDeactivated = null;
+
+        /// <summary>
+        /// The material on the turret when activated
+        /// </summary>
+        [SerializeField]
+        private Material m_matTurretActivated = null;
+
+        /// <summary>
+        /// List of mesh renderers to set the mats to activate/deactivates
+        /// </summary>
+        [SerializeField]
+        private List<MeshRenderer> m_lstMeshRenderers = null;
+
+        /// <summary>
         /// The rotation time of the turret top on getting disabled
         /// </summary>
         private float m_fRotTime = 0.0f;
@@ -79,6 +97,7 @@ namespace ns_Mashmo
         {
             base.activateEnemy();
             NavState = ENEMY_STATE.NONE;
+            toggleTurretActivate(false);
         }
 
         /// <summary>
@@ -87,6 +106,7 @@ namespace ns_Mashmo
         public void onTurretTriggeredToActivate()
         {
             NavState = ENEMY_STATE.PATROL;
+            toggleTurretActivate(true);
         }
 
         /// <summary>
@@ -267,6 +287,23 @@ namespace ns_Mashmo
         public void onSwitchedOff()
         {
             NavState = ENEMY_STATE.IDLE;
+            toggleTurretActivate(false);
+        }
+
+        /// <summary>
+        /// Toggle turret materials to activate/deactivate
+        /// </summary>
+        /// <param name="a_bIsTurretActivate"></param>
+        private void toggleTurretActivate(bool a_bIsTurretActivate)
+        {
+            Material l_matToSet = a_bIsTurretActivate ? m_matTurretActivated : m_matTurretDeactivated;
+
+            Material[] l_arrMaterials = new Material[] { l_matToSet };
+            int l_iMeshRendererCount = m_lstMeshRenderers.Count;
+            for (int l_iMeshRendererIndex = 0; l_iMeshRendererIndex < l_iMeshRendererCount; l_iMeshRendererIndex++)
+            {
+                m_lstMeshRenderers[l_iMeshRendererIndex].materials = l_arrMaterials;
+            }
         }
     }
 }
