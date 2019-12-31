@@ -23,6 +23,7 @@ namespace ns_Mashmo
         /// </summary>
         private const string XML_PATH_TASK_LIST        = "Assets\\Game\\GameResources\\TaskListData\\";
         private const string XML_TASK_LIST_COMMON_NAME = "TaskListCommon";
+        private const string XML_TASK_LIST_LEVEL00_NAME = "TaskListLevel00";
         private const string XML_TASK_LIST_LEVEL0_NAME = "TaskListLevel0";
         private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
         private const string XML_TASK_LIST_LEVEL2_NAME = "TaskListLevel2";
@@ -32,6 +33,7 @@ namespace ns_Mashmo
         /// Objective List
         /// </summary>
         private const string XML_PATH_OBJECTIVE_LIST    = "Assets\\Game\\GameResources\\ObjectiveListData\\";
+        private const string XML_OBJECTIVE_LIST_LEVEL00_NAME = "ObjectiveListLevel00";
         private const string XML_OBJECTIVE_LIST_LEVEL0_NAME = "ObjectiveListLevel0";
         private const string XML_OBJECTIVE_LIST_LEVEL1_NAME = "ObjectiveListLevel1";
         private const string XML_OBJECTIVE_LIST_LEVEL2_NAME = "ObjectiveListLevel2";
@@ -42,12 +44,14 @@ namespace ns_Mashmo
         static void CreateAllScriptableObject()
         {
             ///Task list creation
+            CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL00_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL0_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL1_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL2_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_COMMON_NAME);
 
             ///Objective list creation
+            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL00_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL0_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL2_NAME);
