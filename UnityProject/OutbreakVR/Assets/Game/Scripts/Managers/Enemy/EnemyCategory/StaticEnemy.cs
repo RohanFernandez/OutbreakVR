@@ -22,7 +22,6 @@ namespace ns_Mashmo
         public override void activateEnemy()
         {
             base.activateEnemy();
-            NavState = ENEMY_STATE.IDLE;
         }
     }
 }

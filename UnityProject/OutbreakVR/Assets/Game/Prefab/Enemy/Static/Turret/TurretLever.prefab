@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7930704751726243511}
   - component: {fileID: 2126324469203597965}
   - component: {fileID: 7535740130867709346}
+  - component: {fileID: 5354281222775152541}
   m_Layer: 8
   m_Name: TurretLever
   m_TagString: Untagged
@@ -50,6 +51,8 @@ MonoBehaviour:
   m_AutomatedTurret: {fileID: 0}
   m_colTurretSwitch: {fileID: 2126324469203597965}
   m_OutlineHighlighterGrp: {fileID: 7535740130867709346}
+  m_AutomatedTurretTrigger: {fileID: 0}
+  m_TurretLeverAnimator: {fileID: 5354281222775152541}
 --- !u!65 &2126324469203597965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78,6 +81,25 @@ MonoBehaviour:
   m_lstOutlineHighlighter:
   - {fileID: 4984107235649439964}
   - {fileID: 9013193881744764289}
+--- !u!95 &5354281222775152541
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009603656689253134}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9af6c072cc50f848b56d55464bd7a58, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &9013193881744764289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +201,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 52b4269f8d2e96d49ad0eb8e1857e05d, type: 2}
+    - target: {fileID: 400000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31dcb6b58e0dfb242959def80514b556, type: 3}
 --- !u!1 &9088275445442595434 stripped

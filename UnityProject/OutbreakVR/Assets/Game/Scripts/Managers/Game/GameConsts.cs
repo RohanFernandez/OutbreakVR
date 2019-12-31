@@ -43,9 +43,15 @@ namespace ns_Mashmo
         public const string AUD_SRC_ITEM_PICKUP = "AudSrc_ItemPickedUp";
 
         /// <summary>
-        /// Audio source to be played on turret gunfire
+        /// Audio source to be played on turret lever
         /// </summary>
-        public const string AUD_SRC_TURRET_FIRE = "AudSrc_TurretFire";
+        public const string AUD_SRC_TURRET_LEVER = "AudSrc_TurretLever";
+
+        /// <summary>
+        /// Audio source to be played on turret trigger collided with player to activate the turret
+        /// </summary>
+        public const string AUD_SRC_TURRET_TRIG_ACTIVATE = "AudSrc_TurretTriggerActivate";
+        
 
         #endregion AUDIO SOURCE
 
@@ -69,6 +75,16 @@ namespace ns_Mashmo
         /// Audio clip to be played on turret gunfire
         /// </summary>
         public const string AUD_CLIP_TURRET_FIRE = "AudClip_TurretFire";
+
+        /// <summary>
+        /// Audio clip to be played on turret lever off
+        /// </summary>
+        public const string AUD_CLIP_TURRET_LEVER = "AudClip_TurretLever"; 
+
+        /// <summary>
+        /// Audio clip to be played on turret trigger on activated when collided with the player
+        /// </summary>
+        public const string AUD_CLIP_TURRET_TRIG_ACTIVATE = "AudClip_TurretTriggerActivate";
 
         #endregion AUDIO CLIP
 

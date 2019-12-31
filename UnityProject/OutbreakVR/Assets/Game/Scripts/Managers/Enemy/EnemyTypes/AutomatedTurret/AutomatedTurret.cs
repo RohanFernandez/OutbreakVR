@@ -62,6 +62,34 @@ namespace ns_Mashmo
         private ParticleSystem m_particleMuzzleFlash2 = null;
 
         /// <summary>
+        /// The unpooled audio source of the turret
+        /// </summary>
+        [SerializeField]
+        private UnpooledAudioSource m_AudioSoure = null;
+
+        /// <summary>
+        /// The rotation time of the turret top on getting disabled
+        /// </summary>
+        private float m_fRotTime = 0.0f;
+
+        /// <summary>
+        /// Activates the enemy on start
+        /// </summary>
+        public override void activateEnemy()
+        {
+            base.activateEnemy();
+            NavState = ENEMY_STATE.NONE;
+        }
+
+        /// <summary>
+        /// On turret trigger activated 
+        /// </summary>
+        public void onTurretTriggeredToActivate()
+        {
+            NavState = ENEMY_STATE.PATROL;
+        }
+
+        /// <summary>
         /// callback called on state changed
         /// </summary>
         /// <param name="l_OldNavState"></param>
@@ -72,12 +100,17 @@ namespace ns_Mashmo
 
             switch (a_NavState)
             {
-                case ENEMY_STATE.IDLE:
-                    m_actNavStateUpdate = onIdleStateUpdate;
+                case ENEMY_STATE.PATROL:
+                    m_actNavStateUpdate = onPatrolStateUpdate;
                     break;
 
                 case ENEMY_STATE.ALERT:
                     m_actNavStateUpdate = onAlertStateUpdate;
+                    break;
+
+                case ENEMY_STATE.IDLE:
+                    m_fRotTime = 0.0f;
+                    m_actNavStateUpdate = onIdleStateUpdate;
                     break;
 
                 case ENEMY_STATE.NONE:
@@ -106,7 +139,11 @@ namespace ns_Mashmo
             {
                 PlayerController l_PlayerController = l_RaycastHit.collider.GetComponent<PlayerController>();
 
-                Quaternion l_quatTurretRot = Quaternion.Slerp(m_transGunMiddle.rotation, Quaternion.LookRotation(l_v3TurretToPlayerDir), 1.0f);
+                Quaternion l_quatCurrentLook = m_transGunMiddle.rotation;
+                Quaternion l_quatEndLook = Quaternion.LookRotation(l_v3TurretToPlayerDir); 
+
+                Quaternion l_quatTurretRot = Quaternion.Slerp(l_quatCurrentLook, l_quatEndLook, 1.0f/*((360.0f - Quaternion.Angle(l_quatCurrentLook, l_quatEndLook)) / 360.0f) + Time.deltaTime*/);
+
                 Quaternion l_quatMidRot = Quaternion.Euler(0.0f, l_quatTurretRot.eulerAngles.y, 0.0f);
                 m_transGunMiddle.rotation = l_quatMidRot;
 
@@ -119,28 +156,28 @@ namespace ns_Mashmo
                     m_fTimeSinceLastShot = 0.0f;
                     fireAtPlayer();
 
-                    SoundManager.PlayAudio(GameConsts.AUD_SRC_TURRET_FIRE, GameConsts.AUD_CLIP_TURRET_FIRE, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
-                }
+                    m_AudioSoure.play(GameConsts.AUD_CLIP_TURRET_FIRE, false, 1.0f);
 
-                if (m_particleMuzzleFlash1 != null)
-                {
-                    if (!m_particleMuzzleFlash1.isPlaying)
+                    if (m_particleMuzzleFlash1 != null)
                     {
-                        m_particleMuzzleFlash1.Play();
+                        if (!m_particleMuzzleFlash1.isPlaying)
+                        {
+                            m_particleMuzzleFlash1.Play();
+                        }
                     }
-                }
 
-                if (m_particleMuzzleFlash2 != null)
-                {
-                    if (!m_particleMuzzleFlash2.isPlaying)
+                    if (m_particleMuzzleFlash2 != null)
                     {
-                        m_particleMuzzleFlash2.Play();
+                        if (!m_particleMuzzleFlash2.isPlaying)
+                        {
+                            m_particleMuzzleFlash2.Play();
+                        }
                     }
                 }
             }
             else
             {
-                NavState = ENEMY_STATE.IDLE;
+                NavState = ENEMY_STATE.PATROL;
 
                 if (m_particleMuzzleFlash1 != null)
                 {
@@ -155,9 +192,9 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Update function on idle update
+        /// Update function on patrol update
         /// </summary>
-        protected virtual void onIdleStateUpdate()
+        protected virtual void onPatrolStateUpdate()
         {
             if (l_fRotationTime > 1.0f)
             {
@@ -180,6 +217,28 @@ namespace ns_Mashmo
                 l_RaycastHit.collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase))
             {
                 NavState = ENEMY_STATE.ALERT;
+            }
+        }
+
+        /// <summary>
+        /// Update function on idle update
+        /// </summary>
+        protected virtual void onIdleStateUpdate()
+        {
+            if (Vector3.Dot(m_transGunTop.forward, Vector3.down) < 0.7f)
+            {
+                Quaternion l_quatCurrentLook = m_transGunTop.rotation;
+                Quaternion l_quatEndLook = Quaternion.LookRotation(Vector3.down);
+
+                m_fRotTime += Time.deltaTime * 0.1f;
+                Quaternion l_quatCurrentTopRot = Quaternion.Slerp(l_quatCurrentLook, l_quatEndLook, m_fRotTime);
+
+                m_transGunTop.rotation = Quaternion.Euler(l_quatCurrentTopRot.eulerAngles.x, m_transGunTop.eulerAngles.y, m_transGunTop.eulerAngles.z);
+            }
+            else
+            {
+                m_fRotTime = 0.0f;
+                NavState = ENEMY_STATE.DEAD;
             }
         }
 
@@ -207,7 +266,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onSwitchedOff()
         {
-            NavState = ENEMY_STATE.DEAD;
+            NavState = ENEMY_STATE.IDLE;
         }
     }
 }
