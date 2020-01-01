@@ -169,28 +169,8 @@ MonoBehaviour:
         m_strValue: SECURITY_OFFICER
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnBegin
-    m_iTaskCount: 56
+    m_iTaskCount: 32
     m_lstTasks:
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Turret1
-      - m_strKey: EnemyType
-        m_strValue: AUTOMATED_TURRET
-      - m_strKey: Position
-        m_strValue: -0.276,30.85,4.756
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-      - m_strKey: Params
-        m_strValue: 90.0;-90.0
     - m_strTaskID: 1
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 8
@@ -202,7 +182,7 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Enemy_ID
-        m_strValue: Turret2
+        m_strValue: Turret1
       - m_strKey: EnemyType
         m_strValue: AUTOMATED_TURRET
       - m_strKey: Position
@@ -222,13 +202,73 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Enemy_ID
-        m_strValue: Turret3
+        m_strValue: Turret2
       - m_strKey: EnemyType
         m_strValue: AUTOMATED_TURRET
       - m_strKey: Position
         m_strValue: 24.346,15.80362,7.987
       - m_strKey: Rotation
         m_strValue: 0.0,90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Turret3
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 29.592,12.60362,5.844
+      - m_strKey: Rotation
+        m_strValue: 0.0,-90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Turret4
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.093,12.60362,12.657
+      - m_strKey: Rotation
+        m_strValue: 0.0,-270,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Turret5
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.093,12.60362,22.614
+      - m_strKey: Rotation
+        m_strValue: 0.0,-270,0.0
       - m_strKey: Params
         m_strValue: 90.0;-90.0
     - m_strTaskID: 1
@@ -757,12 +797,16 @@ MonoBehaviour:
         m_strValue: SetPlayerState
       - m_strKey: PlayerState
         m_strValue: IN_GAME_MOVEMENT
-    - m_strTaskID: 8
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_101_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 2
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 8
+        m_strValue: 2
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -775,12 +819,12 @@ MonoBehaviour:
         m_strValue: -5.75,30.37038,12.794
       - m_strKey: Rotation
         m_strValue: 0.0,207.616,0.0
-    - m_strTaskID: 9
+    - m_strTaskID: 3
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 9
+        m_strValue: 3
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -793,12 +837,12 @@ MonoBehaviour:
         m_strValue: -4.791,30.37038,16.144
       - m_strKey: Rotation
         m_strValue: 0.0,160.805,0.0
-    - m_strTaskID: 9
+    - m_strTaskID: 4
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 9
+        m_strValue: 4
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -811,424 +855,6 @@ MonoBehaviour:
         m_strValue: -0.07,30.67038,-3.07
       - m_strKey: Rotation
         m_strValue: 0.0,106.58,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie4
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -4.396,30.37038,14.565
-      - m_strKey: Rotation
-        m_strValue: 0.0,-11.814,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie5
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -2.61,30.37038,12.712
-      - m_strKey: Rotation
-        m_strValue: 0.0,172.325,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie6
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 3.341929,235.78534,10.31031
-      - m_strKey: Rotation
-        m_strValue: 0.0,-101.511,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie7
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 2.412,35.78534,8.082
-      - m_strKey: Rotation
-        m_strValue: 0.0,-201.76,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie8
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -5.846971,322.99795,7.871342
-      - m_strKey: Rotation
-        m_strValue: 0.0,50.164,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie9
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 5.913,25.55543,12.016
-      - m_strKey: Rotation
-        m_strValue: 0.0,-2.276,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie10
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 3.916,25.55542,10.747
-      - m_strKey: Rotation
-        m_strValue: 0.0,-84.10101,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie11
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 10.039,30.67038,18.278
-      - m_strKey: Rotation
-        m_strValue: 0.0,64.54401,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie12
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 9.446,25.55543,23.794
-      - m_strKey: Rotation
-        m_strValue: 0.0,-129.216,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie13
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 9.572,25.55543,21.108
-      - m_strKey: Rotation
-        m_strValue: 0.0,-79.82301,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie14
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 4.918,25.55543,20.37
-      - m_strKey: Rotation
-        m_strValue: 0.0,91.811,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie15
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -5.886271,25.25543,13.22789
-      - m_strKey: Rotation
-        m_strValue: 0.0,63.289,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie16
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -5.283198,25.25543,15.60071
-      - m_strKey: Rotation
-        m_strValue: 0.0,117.115,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie17
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -2.406152,25.55543,19.66813
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie18
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -6.306,25.55543,23.009
-      - m_strKey: Rotation
-        m_strValue: 0.0,142.044,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie19
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -4.841,25.55543,23.541
-      - m_strKey: Rotation
-        m_strValue: 0.0,122.569,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie20
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -2.004,25.25543,12.755
-      - m_strKey: Rotation
-        m_strValue: 0.0,-176.864,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie21
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -0.4753393,25.25543,16.70688
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie22
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -4.39,25.25543,14.807
-      - m_strKey: Rotation
-        m_strValue: 0.0,-56,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie23
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 3.687172,25.55543,21.697
-      - m_strKey: Rotation
-        m_strValue: 0.0,-51.209,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie24
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 9.250922,25.55543,14.97565
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie25
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: 2.175,25.55543,19.931
-      - m_strKey: Rotation
-        m_strValue: 0.0,13.418,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie26
-      - m_strKey: EnemyType
-        m_strValue: SECURITY_OFFICER
-      - m_strKey: Position
-        m_strValue: -2.411,25.566,36.808
-      - m_strKey: Rotation
-        m_strValue: 0.0,-179.075,0.0
-  - m_strSequenceType: SimpleSequence
-    m_strSequenceID: Level1_101_OnBegin
-    m_iTaskCount: 0
-    m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: DestroyItem
     m_iTaskCount: 1

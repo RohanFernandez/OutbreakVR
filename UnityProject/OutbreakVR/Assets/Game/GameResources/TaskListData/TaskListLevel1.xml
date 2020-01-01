@@ -23,9 +23,12 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_100_OnBegin" >
-    <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="-0.276,30.85,4.756" Rotation="0.0,0.0,0.0" Params="90.0;-90.0"/>
-    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret2" EnemyType="AUTOMATED_TURRET" Position="16.117,15.80362,8.238" Rotation="0.0,180.0,0.0" Params="90.0;-90.0"/>
-    <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret3" EnemyType="AUTOMATED_TURRET" Position="24.346,15.80362,7.987" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/> 
+    
+    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="16.117,15.80362,8.238" Rotation="0.0,180.0,0.0" Params="90.0;-90.0"/>
+    <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret2" EnemyType="AUTOMATED_TURRET" Position="24.346,15.80362,7.987" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/> 
+    <Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret3" EnemyType="AUTOMATED_TURRET" Position="29.592,12.60362,5.844" Rotation="0.0,-90.0,0.0" Params="90.0;-90.0"/>
+    <Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret4" EnemyType="AUTOMATED_TURRET" Position="22.093,12.60362,12.657" Rotation="0.0,-270,0.0" Params="90.0;-90.0"/>
+    <Task ID="5" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret5" EnemyType="AUTOMATED_TURRET" Position="22.093,12.60362,22.614" Rotation="0.0,-270,0.0" Params="90.0;-90.0"/>
 
     <Task ID="1" TaskType="TaskAudio" AudSrc="AUD_SRC_AmbientSrc1" AudClip="AmbientAudio1" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_MUSIC"/>
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="-2.854,33.5,-4.412" Rotation="0.0,0.0,0.0" />
@@ -56,35 +59,14 @@
 		<Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
 		
 		
-		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.75,30.37038,12.794" Rotation="0.0,207.616,0.0"/>
-		<Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-4.791,30.37038,16.144" Rotation="0.0,160.805,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie3" EnemyType="SECURITY_OFFICER" Position="-0.07,30.67038,-3.07" Rotation="0.0,106.58,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie4" EnemyType="SECURITY_OFFICER" Position="-4.396,30.37038,14.565" Rotation="0.0,-11.814,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie5" EnemyType="SECURITY_OFFICER" Position="-2.61,30.37038,12.712" Rotation="0.0,172.325,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie6" EnemyType="SECURITY_OFFICER" Position="3.341929,235.78534,10.31031" Rotation="0.0,-101.511,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie7" EnemyType="SECURITY_OFFICER" Position="2.412,35.78534,8.082" Rotation="0.0,-201.76,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie8" EnemyType="SECURITY_OFFICER" Position="-5.846971,322.99795,7.871342" Rotation="0.0,50.164,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie9" EnemyType="SECURITY_OFFICER" Position="5.913,25.55543,12.016" Rotation="0.0,-2.276,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie10" EnemyType="SECURITY_OFFICER" Position="3.916,25.55542,10.747" Rotation="0.0,-84.10101,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie11" EnemyType="SECURITY_OFFICER" Position="10.039,30.67038,18.278" Rotation="0.0,64.54401,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie12" EnemyType="SECURITY_OFFICER" Position="9.446,25.55543,23.794" Rotation="0.0,-129.216,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie13" EnemyType="SECURITY_OFFICER" Position="9.572,25.55543,21.108" Rotation="0.0,-79.82301,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie14" EnemyType="SECURITY_OFFICER" Position="4.918,25.55543,20.37" Rotation="0.0,91.811,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie15" EnemyType="SECURITY_OFFICER" Position="-5.886271,25.25543,13.22789" Rotation="0.0,63.289,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie16" EnemyType="SECURITY_OFFICER" Position="-5.283198,25.25543,15.60071" Rotation="0.0,117.115,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie17" EnemyType="SECURITY_OFFICER" Position="-2.406152,25.55543,19.66813" Rotation="0.0,0.0,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie18" EnemyType="SECURITY_OFFICER" Position="-6.306,25.55543,23.009" Rotation="0.0,142.044,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie19" EnemyType="SECURITY_OFFICER" Position="-4.841,25.55543,23.541" Rotation="0.0,122.569,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie20" EnemyType="SECURITY_OFFICER" Position="-2.004,25.25543,12.755" Rotation="0.0,-176.864,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie21" EnemyType="SECURITY_OFFICER" Position="-0.4753393,25.25543,16.70688" Rotation="0.0,0.0,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie22" EnemyType="SECURITY_OFFICER" Position="-4.39,25.25543,14.807" Rotation="0.0,-56,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie23" EnemyType="SECURITY_OFFICER" Position="3.687172,25.55543,21.697" Rotation="0.0,-51.209,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie24" EnemyType="SECURITY_OFFICER" Position="9.250922,25.55543,14.97565" Rotation="0.0,0.0,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie25" EnemyType="SECURITY_OFFICER" Position="2.175,25.55543,19.931" Rotation="0.0,13.418,0.0"/>
-                <Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie26" EnemyType="SECURITY_OFFICER" Position="-2.411,25.566,36.808" Rotation="0.0,-179.075,0.0"/>
+		
+         
 	</Sequence>
 	
 	<Sequence ID = "Level1_101_OnBegin" >
+                <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.75,30.37038,12.794" Rotation="0.0,207.616,0.0"/>
+		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-4.791,30.37038,16.144" Rotation="0.0,160.805,0.0"/>
+                <Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie3" EnemyType="SECURITY_OFFICER" Position="-0.07,30.67038,-3.07" Rotation="0.0,106.58,0.0"/>
 		
 	</Sequence>
 	
