@@ -86,6 +86,16 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_CLIP_TURRET_TRIG_ACTIVATE = "AudClip_TurretTriggerActivate";
 
+        /// <summary>
+        /// Audio clip to be played on door open
+        /// </summary>
+        public const string AUD_CLIP_DOOR_OPEN = "AudClip_DoorOpen";
+
+        /// <summary>
+        /// Audio clip to be played on door close
+        /// </summary>
+        public const string AUD_CLIP_DOOR_CLOSE = "AudClip_DoorClose";
+
         #endregion AUDIO CLIP
 
         #region TAG
