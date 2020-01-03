@@ -44,6 +44,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private ObjectiveGroupBase m_CurrentObjectiveGroup = null;
+        public static ObjectiveGroupBase CurrentObjectiveGroup
+        {
+            get { return s_Instance.m_CurrentObjectiveGroup; }
+        }
 
         /// <summary>
         /// Set singleton instance
@@ -164,8 +168,6 @@ namespace ns_Mashmo
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_CurrentObjectiveGroup.getObjGroupID());
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, l_EventHash);
-
-                //GameManager.SetGamePlayState(m_CurrentObjectiveGroup.m_strChangeStateOnComplete, true);
             }
         }
 

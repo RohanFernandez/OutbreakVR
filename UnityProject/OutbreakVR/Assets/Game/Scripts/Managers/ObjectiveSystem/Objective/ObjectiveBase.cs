@@ -23,6 +23,16 @@ namespace ns_Mashmo
         private string m_strSequenceOnComplete = string.Empty;
 
         /// <summary>
+        /// Description of the objective
+        /// </summary>
+        [SerializeField]
+        private string m_strObjDescription = string.Empty;
+        public string ObjDescription
+        {
+            get { return m_strObjDescription; }
+        }
+
+        /// <summary>
         /// Is objective complete
         /// </summary>
         [SerializeField]
@@ -45,6 +55,7 @@ namespace ns_Mashmo
             m_strType = getString(ScriptableObjective.KEY_TASK_TYPE);
             m_strID = getString(ScriptableObjective.KEY_TASK_ID);
             m_strSequenceOnComplete = getString(ScriptableObjective.KEY_SEQUENCE_ON_COMPLETE_ID);
+            m_strObjDescription = getString(ScriptableObjective.KEY_OBJECTIVE_DESCRIPTION_ID);
         }
 
         /// <summary>

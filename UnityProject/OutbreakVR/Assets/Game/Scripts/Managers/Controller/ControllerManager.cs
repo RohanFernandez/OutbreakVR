@@ -439,7 +439,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Max laser ray hit distance which the object will be interactable.
         /// </summary>
-        public const float MAX_CURSOR_INTERACTABLE_DISTANCE = 3.0f;
+        public const float MAX_CURSOR_INTERACTABLE_DISTANCE = 0.8f;
 
         /// <summary>
         /// Is the controller laser pointer active.
@@ -549,7 +549,6 @@ namespace ns_Mashmo
             Ray l_ray = new Ray(m_CustomPointer.v3LaserStartPosition, (m_CustomPointer.v3LaserEndPosition - m_CustomPointer.v3LaserStartPosition).normalized);
 
             Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_INTERACTABLE_DISTANCE, m_InteractionLayer);
-            //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MAX_CURSOR_DISTANCE, Color.white, Time.deltaTime);
 
             return l_RaycastHit;
         }
