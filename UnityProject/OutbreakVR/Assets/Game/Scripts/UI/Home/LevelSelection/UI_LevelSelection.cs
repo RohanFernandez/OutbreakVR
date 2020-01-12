@@ -11,6 +11,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onLevelOptionSelected(string a_strGameStateName)
         {
+            UI_LoadingPanel.Show();
             GameManager.OnNewGameSelected();
         }
 
@@ -19,6 +20,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onContinueLevelOptionSelected()
         {
+            UI_LoadingPanel.Show();
             GameManager.OnContinueFromLastSavedSelected();
         }
     }
