@@ -439,7 +439,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Max laser ray hit distance which the object will be interactable.
         /// </summary>
-        public const float MAX_CURSOR_INTERACTABLE_DISTANCE = 0.8f;
+        public const float MAX_CURSOR_INTERACTABLE_DISTANCE = 1.2f;
 
         /// <summary>
         /// Is the controller laser pointer active.

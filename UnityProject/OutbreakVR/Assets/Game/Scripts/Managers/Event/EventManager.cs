@@ -86,6 +86,11 @@ namespace ns_Mashmo
         /// </summary>
         public static void UnsubscribeFrom(GAME_EVENT_TYPE a_GameEventType, System.Action<EventHash> a_EventCallback)
         {
+            if (s_Instance == null)
+            { 
+                return;
+            }
+
             GameEventContainer l_EventContainer = null;
             if (s_Instance.m_dictGameEvents.TryGetValue(a_GameEventType, out l_EventContainer))
             {

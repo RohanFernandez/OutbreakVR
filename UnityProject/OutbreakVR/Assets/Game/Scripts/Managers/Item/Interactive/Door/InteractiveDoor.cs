@@ -86,6 +86,14 @@ namespace ns_Mashmo
         [SerializeField]
         private Color m_colorOutlineHighlighted;
 
+        void Awake()
+        {
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+            }
+        }
+
         /// <summary>
         /// On interactive pointer entering the door handle
         /// </summary>
