@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class InteractiveDoor : MonoBehaviour
+    public class InteractiveDoor : AbsEnvironmentInteractableObject
     {
         /// <summary>
         /// Anim trigger to open the door on side 1
@@ -58,6 +58,12 @@ namespace ns_Mashmo
         private UnpooledAudioSource m_UnpooledAudSrc = null;
 
         /// <summary>
+        /// The object that holds all the collider triggers
+        /// </summary>
+        [SerializeField]
+        private InteractiveDoorProximityDetector m_DoorProximityDetector = null;
+
+        /// <summary>
         /// Is the door currently open
         /// </summary>
         [SerializeField]
@@ -65,7 +71,15 @@ namespace ns_Mashmo
         public bool IsDoorOpen
         {
             get { return m_bIsDoorOpen; }
-            set { m_bIsDoorOpen = value; }
+            set {
+                m_bIsDoorOpen = value;
+
+                m_InteractiveDoorHandle.toggleDoorHandleInteraction(!m_bIsDoorOpen);
+                if (m_OutlineGroupHighlighterBase != null)
+                {
+                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorOpen ? GameManager.ColOutlineHighlighterDeactivated : GameManager.ColOutlineHighlighterNormal);
+                }
+            }
         }
 
         /// <summary>
@@ -74,23 +88,11 @@ namespace ns_Mashmo
         [SerializeField]
         private OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
 
-        /// <summary>
-        /// The normal outline color
-        /// </summary>
-        [SerializeField]
-        private Color m_colorOutlineNormal;
-
-        /// <summary>
-        /// The highlighted outline color
-        /// </summary>
-        [SerializeField]
-        private Color m_colorOutlineHighlighted;
-
         void Awake()
         {
             if (m_OutlineGroupHighlighterBase != null)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -99,9 +101,9 @@ namespace ns_Mashmo
         /// </summary>
         public void onDoorHandlePointerOver()
         {
-            if (m_OutlineGroupHighlighterBase != null)
+            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineHighlighted);
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
             }
         }
 
@@ -110,9 +112,9 @@ namespace ns_Mashmo
         /// </summary>
         public void onDoorHandlePointerExit()
         {
-            if (m_OutlineGroupHighlighterBase != null)
+            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -155,14 +157,28 @@ namespace ns_Mashmo
         /// <summary>
         /// Closes door, calls anim trigger
         /// </summary>
-        public void closeDoor()
+        public void closeDoor(bool a_bIsReset = false)
         {
             if (IsDoorOpen)
             {
                 IsDoorOpen = false;
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_CLOSE);
-                m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_CLOSE, false, 1.0f);
+
+                if (!a_bIsReset)
+                {
+                    m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_CLOSE, false, 1.0f);
+                }
             }
+        }
+
+        /// <summary>
+        /// Resets door to closed
+        /// </summary>
+        public override void resetValues()
+        {
+            base.resetValues();
+            closeDoor(true);
+            m_DoorProximityDetector.resetValues();
         }
     }
 }

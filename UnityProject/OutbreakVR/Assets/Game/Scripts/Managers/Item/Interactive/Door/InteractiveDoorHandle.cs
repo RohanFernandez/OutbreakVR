@@ -13,6 +13,21 @@ namespace ns_Mashmo
         private InteractiveDoor m_InteractiveDoor = null;
 
         /// <summary>
+        /// The collider of the door handle
+        /// </summary>
+        [SerializeField]
+        private Collider m_colInteractive = null;
+
+        /// <summary>
+        /// Activates/ Deactivates the door handle for interaction
+        /// </summary>
+        /// <param name="a_bIsActivated"></param>
+        public void toggleDoorHandleInteraction(bool a_bIsActivated)
+        {
+            m_colInteractive.enabled = a_bIsActivated;
+        }
+
+        /// <summary>
         /// On pointer enter over the door handle
         /// </summary>
         public void onPointerEnter()
