@@ -12,6 +12,7 @@ namespace ns_Mashmo
         public const string STATE_NAME_NEW_GAME = "Level0_000";
         #endregion STATE NAMES
 
+
         #region GAME LAYERS
         /// <summary>
         /// Interactive item in the environment, to interactive with the controller on pointing at it.

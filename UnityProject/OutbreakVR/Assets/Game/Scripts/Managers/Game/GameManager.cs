@@ -71,72 +71,6 @@ namespace ns_Mashmo
             get { return s_Instance.m_colOutlineHighlighterDeactivated; }
         }
 
-        ///// <summary>
-        ///// Sets the current level as arguement as fires an event if the old event is not the new
-        ///// </summary>
-        ///// <param name="a_LevelType"></param>
-        //private void setGameLevel(string a_strLevelType)
-        //{
-        //    Debug.Log("<color=BLUE>GameManager::setGameLevel::</color> Setting level type '" + a_strLevelType + "'");
-
-        //    if (s_Instance.m_strCurrentLevel.Equals(a_strLevelType)) { return; }
-
-        //    s_Instance.m_strCurrentLevel = a_strLevelType;
-        //    EventHash l_Hashtable = EventManager.GetEventHashtable();
-        //    l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelType);
-        //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
-        //}
-
-        ///// <summary>
-        ///// Sets game state to play
-        ///// a_strGameState = "", "Level name" + _ + "ID", ex: "Level1_100"
-        ///// </summary>
-        //public static void SetGamePlayState(string a_strGameState, bool a_bIsSaveGameProgress = false)
-        //{
-        //    s_Instance.m_strInGameState = a_strGameState;
-        //    string[] l_strarr = a_strGameState.Split('_');
-
-        //    string l_strLevelName = l_strarr[0];
-        //    s_Instance.setGameLevel(l_strLevelName);
-
-        //    if (a_bIsSaveGameProgress)
-        //    {
-        //        //onSaveGameComplete
-        //    }
-        //    else
-        //    {
-        //        LoadScene(s_Instance.m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Callback called on game save completed successfully or unsuccessfully
-        ///// </summary>
-        //private void onSaveGameComplete()
-        //{
-        //    LoadScene(m_strCurrentLevel, s_Instance.onLevelSceneLoadComplete);
-        //}
-
-        ///// <summary>
-        ///// On the scene of the level is complete
-        ///// </summary>
-        //private void onLevelSceneLoadComplete()
-        //{
-        //    GameStateMachine.Transition(m_strInGameState);
-
-        //    EventHash l_EventHash = EventManager.GetEventHashtable();
-        //    l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, m_strInGameState);
-        //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventHash);
-        //}
-
-        ///// <summary>
-        ///// Starts the level that was last saved
-        ///// </summary>
-        //public static void ContinueFromLastSavedState()
-        //{
-
-        //}
-
         /// <summary>
         /// Sets singleton instance
         /// </summary>
@@ -281,6 +215,33 @@ namespace ns_Mashmo
                 RestartLevel();
             }
             #endif
+        }
+
+        /// <summary>
+        /// Displays a notification panel for a certain amount of time
+        /// On time complete, exits the application
+        /// </summary>
+        /// <param name="a_strTitle"></param>
+        /// <param name="a_strMsg"></param>
+        public static void ExitGameOnDisplayNotification(string a_strTitle, string a_strMsg)
+        {
+            s_Instance.StartCoroutine(s_Instance.displayNotificationForGivenTime(SystemConsts.DEFAULT_NOTIFICATION_TIME, a_strTitle, a_strMsg, SystemManager.ExitApplication));
+        }
+
+        /// <summary>
+        /// Displays notification for given amount of time
+        /// </summary>
+        private IEnumerator displayNotificationForGivenTime(float a_fTime, string a_strTitle, string a_strMsg, System.Action a_ActionOnComplete)
+        {
+            UI_NotificationPanel.Show(a_strTitle, a_strMsg);
+            yield return new WaitForSeconds(a_fTime);
+
+            if (a_ActionOnComplete != null)
+            {
+                a_ActionOnComplete();
+            }
+
+            UI_NotificationPanel.Hide();
         }
     }
 }

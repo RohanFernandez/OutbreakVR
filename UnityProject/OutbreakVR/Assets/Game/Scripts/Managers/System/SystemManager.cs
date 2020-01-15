@@ -88,5 +88,13 @@ namespace ns_Mashmo
                 actionOnSceneLoaded();
             }
         }
+
+        /// <summary>
+        /// Exits the application
+        /// </summary>
+        public static void ExitApplication()
+        {
+            UnityEngine.Application.Quit();
+        }
     }
 }
