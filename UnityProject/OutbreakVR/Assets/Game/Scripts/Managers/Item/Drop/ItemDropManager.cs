@@ -15,6 +15,7 @@ namespace ns_Mashmo
         ITEM_PRIMARY_SHOTGUN_BULLETS,
         ITEM_CHAINSAW,
         ITEM_REVOLVER,
+        ITEM_HELMET
     }
 
     /// <summary>
@@ -24,7 +25,8 @@ namespace ns_Mashmo
     {
         GUN,
         MELEE,
-        BULLET
+        BULLET,
+        INVENTORY
     }
 
     public class ItemDropManager : AbsComponentHandler, IReuseManager
@@ -229,6 +231,12 @@ namespace ns_Mashmo
                         l_bIsItemConsumed = WeaponManager.PickupWeapon(l_MeleeDrop);
                         break;
                     }
+                case ITEM_CATEGORY.INVENTORY:
+                    {
+                        InventoryDrop l_InventoryDrop = (InventoryDrop)l_ItemDropBase;
+                        l_bIsItemConsumed = InventoryManager.PickupItem(l_InventoryDrop);
+                        break;
+                    }
                 default:
                     {
                         break;
@@ -240,23 +248,6 @@ namespace ns_Mashmo
                 ReturnItemToPool(l_ItemDropBase);
                 SoundManager.PlayAudio(GameConsts.AUD_SRC_ITEM_PICKUP, GameConsts.AUD_CLIP_ITEM_PICKUP, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
-
-            //WeaponDropBase l_WeaponBase = (WeaponDropBase)l_ItemDropBase;
-            //if (l_WeaponBase != null)
-            //{
-            //    WEAPON_CATEGORY_TYPE l_WeaponCategory = WeaponManager.GetCategory(l_WeaponBase.WeaponType);
-            //    WEAPON_TYPE l_WeaponAlreadyInCategory = WeaponManager.GetWeaponInCategory(l_WeaponCategory);
-
-            //    WeaponManager.SetCurrentWeaponInCategory(l_WeaponBase.WeaponType);
-            //    if (l_WeaponAlreadyInCategory != WEAPON_TYPE.NONE && l_WeaponAlreadyInCategory != WEAPON_TYPE.UNARMED)
-            //    {
-            //        if (m_dictWeaponItemType.ContainsKey(l_WeaponAlreadyInCategory))
-            //        {
-            //            ItemDropBase l_ReplacementItemDropBase = GetItemDrop(m_dictWeaponItemType[l_WeaponAlreadyInCategory], PRE_ITEM_ID + m_iItemUniqueID);
-            //            l_ReplacementItemDropBase.transform.SetPositionAndRotation(l_ItemDropBase.transform.position, l_ItemDropBase.transform.rotation);
-            //        }
-            //    }
-            //}
         }
     }
 }

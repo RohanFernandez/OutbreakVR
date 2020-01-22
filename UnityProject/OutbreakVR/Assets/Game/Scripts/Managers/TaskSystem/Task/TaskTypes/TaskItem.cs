@@ -11,7 +11,12 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_POSITION = "Position";
         private const string ATTRIBUTE_ROTATION = "Rotation";
         private const string ATTRIBUTE_ITEM_ID = "Item_ID";
+
+        #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
+        private const string ATTRIBUTE_IS_HELMET_CRACKED = "IsHelmetCracked";
+        #endregion ITEM SPECIFIC
+
         private const string ATTRIBUTE_CODE = "Code";
 
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
@@ -92,6 +97,28 @@ namespace ns_Mashmo
                             }
                             case ITEM_CATEGORY.MELEE:
                             {
+                                break;
+                            }
+                            case ITEM_CATEGORY.INVENTORY:
+                            {
+                                InventoryDrop l_InventoryDrop = (InventoryDrop)l_Item;
+                                ITEM_TYPE l_ItemType = l_InventoryDrop.getItemType();
+
+                                switch (l_ItemType)
+                                {
+                                        case ITEM_TYPE.ITEM_HELMET:
+                                            {
+                                                HelmetDrop l_HelmetDrop = (HelmetDrop)l_InventoryDrop;
+                                                l_HelmetDrop.IsHelmetCracked = getBool(ATTRIBUTE_IS_HELMET_CRACKED);
+                                                break;
+                                            }
+
+                                        default:
+                                            {
+                                                break;
+                                            }
+                                }
+
                                 break;
                             }
                             default:

@@ -73,6 +73,12 @@ namespace ns_Mashmo
         public WeaponInventoryStructure m_WeaponInventory = null;
 
         /// <summary>
+        /// The inventory items the player holds at the moment
+        /// </summary>
+        [SerializeField]
+        public ItemInventoryStructure m_ItemInventory = null;
+
+        /// <summary>
         /// The health meter of the play at the moment
         /// </summary>
         [SerializeField]

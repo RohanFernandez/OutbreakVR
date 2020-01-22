@@ -149,6 +149,7 @@ namespace ns_Mashmo
                 
                 PlayerManager.HealthMeter = l_CurrentSubLevelData.m_iPlayerHealth;
                 WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.m_WeaponInventory);
+                InventoryManager.SetCurrentItemInventory(l_CurrentSubLevelData.m_ItemInventory);
 
                 #endregion LOAD_LEVEL_DATA
             }
@@ -217,14 +218,19 @@ namespace ns_Mashmo
                     if (l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL ||
                         l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT)
                     {
+                        //Save Weapon Data
                         WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_MeleeWeaponInfo);
                         WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_PrimaryWeaponInfo);
                         WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_SecondaryWeaponInfo);
 
                         l_SubLevelDataToSave.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
 
+                        //Save Player Data
                         l_SubLevelDataToSave.m_iPlayerHealth = PlayerManager.HealthMeter;
                         l_SubLevelDataToSave.m_v3PlayerPosition = PlayerManager.GetPosition();
+
+                        //Save Inventory Data
+                        InventoryManager.RetrieveInventoryInfo(ref l_SubLevelDataToSave.m_ItemInventory);
                     }
 
                     if (l_SubLevelDataToSave.IsCheckpoint)
@@ -317,6 +323,7 @@ namespace ns_Mashmo
                                 l_RegSubLevelData.m_iPlayerHealth = l_SubLevelData.m_iPlayerHealth;
                                 l_RegSubLevelData.m_v3PlayerPosition = l_SubLevelData.m_v3PlayerPosition;
                                 l_RegSubLevelData.m_WeaponInventory = l_SubLevelData.m_WeaponInventory;
+                                l_RegSubLevelData.m_ItemInventory = l_SubLevelData.m_ItemInventory;
                                 l_CurrentLevelData.LstSubLevels[l_iSubLevelIndex] = l_RegSubLevelData;
                             }
                         }
