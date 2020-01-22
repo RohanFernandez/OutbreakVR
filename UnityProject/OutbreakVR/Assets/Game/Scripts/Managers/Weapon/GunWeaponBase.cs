@@ -44,6 +44,11 @@ namespace ns_Mashmo
         /// </summary>
         private float m_fTimeSinceLastShot = 0.0f;
 
+        /// <summary>
+        /// The audio src index of the gun fire sound
+        /// </summary>
+        private bool m_bGunFireAudSrcIndex1 = true;
+
         [SerializeField]
         private int m_iBulletCountInFirstMag = 10; 
         public int BulletCountInFirstMag
@@ -152,8 +157,11 @@ namespace ns_Mashmo
             if (m_ChamberBulletRelease != null) { m_ChamberBulletRelease.Play(); }
             if (m_MuzzleFlash != null)          { m_MuzzleFlash.Play(); }
 
-            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDOnShoot ,false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
-
+            //The audio src index that moves between 0 - 1
+            // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
+            m_bGunFireAudSrcIndex1 = !m_bGunFireAudSrcIndex1;
+            SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? GameConsts.AUD_SRC_GUN_FIRE : GameConsts.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            
             if (m_animRecoil != null)
             {
                 m_animRecoil.Stop();
