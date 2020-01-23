@@ -102,6 +102,21 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_CLIP_DOOR_CLOSE = "AudClip_DoorClose";
 
+        /// <summary>
+        /// Audio clip to be played on door keypad click
+        /// </summary>
+        public const string AUD_CLIP_KEYPAD_CLICK = "AudClip_KeypadClick";
+
+        /// <summary>
+        /// Audio clip to be played on door keypad entered is wrong
+        /// </summary>
+        public const string AUD_CLIP_KEYPAD_WRONG_CODE = "AudClip_KeypadWrongCode";
+
+        /// <summary>
+        /// Audio clip to be played on door keypad entered is correct
+        /// </summary>
+        public const string AUD_CLIP_KEYPAD_CORRECT_CODE = "AudClip_KeypadCorrectCode";
+
         #endregion AUDIO CLIP
 
         #region TAG

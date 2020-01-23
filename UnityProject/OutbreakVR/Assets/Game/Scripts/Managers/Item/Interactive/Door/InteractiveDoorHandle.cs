@@ -10,7 +10,7 @@ namespace ns_Mashmo
         /// The door that controls the handle
         /// </summary>
         [SerializeField]
-        private InteractiveDoor m_InteractiveDoor = null;
+        private AbsInteractiveDoorBase m_InteractiveDoor = null;
 
         /// <summary>
         /// The collider of the door handle

@@ -4,34 +4,13 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class InteractiveDoor : AbsEnvironmentInteractableObject
+    public class InteractiveDoor : AbsInteractiveDoorBase
     {
-        /// <summary>
-        /// Anim trigger to open the door on side 1
-        /// </summary>
-        private const string ANIM_TRIGGER_DOOR_OPEN_SIDE_1 = "DoorOpeningSide1";
-
-        /// <summary>
-        /// Anim trigger to open the door on side 2
-        /// </summary>
-        private const string ANIM_TRIGGER_DOOR_OPEN_SIDE_2 = "DoorOpeningSide2";
-
-        /// <summary>
-        /// Anim trigger to close the door on any side
-        /// </summary>
-        private const string ANIM_TRIGGER_DOOR_OPEN_CLOSE = "DoorClose";
-
         /// <summary>
         /// The handle of the door
         /// </summary>
         [SerializeField]
         private InteractiveDoorHandle m_InteractiveDoorHandle = null;
-
-        /// <summary>
-        /// The animator controller to open, close the door side
-        /// </summary>
-        [SerializeField]
-        private Animator m_animatorDoorControl = null;
 
         /// <summary>
         /// The go on Side 1 of the door
@@ -52,22 +31,11 @@ namespace ns_Mashmo
         private Collider m_colDoorProximity = null;
 
         /// <summary>
-        /// The audio src that plays the door open and close
-        /// </summary>
-        [SerializeField]
-        private UnpooledAudioSource m_UnpooledAudSrc = null;
-
-        /// <summary>
         /// The object that holds all the collider triggers
         /// </summary>
         [SerializeField]
         private InteractiveDoorProximityDetector m_DoorProximityDetector = null;
 
-        /// <summary>
-        /// Is the door currently open
-        /// </summary>
-        [SerializeField]
-        private bool m_bIsDoorOpen = false;
         public bool IsDoorOpen
         {
             get { return m_bIsDoorOpen; }
@@ -82,25 +50,18 @@ namespace ns_Mashmo
             }
         }
 
-        /// <summary>
-        /// The outline hightlighter
-        /// </summary>
-        [SerializeField]
-        private OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
-
-        void Awake()
+        public override void Awake()
         {
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-            }
+            base.Awake();
         }
 
         /// <summary>
         /// On interactive pointer entering the door handle
         /// </summary>
-        public void onDoorHandlePointerOver()
+        public override void onDoorHandlePointerOver()
         {
+            base.onDoorHandlePointerOver();
+
             if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
             {
                 m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
@@ -110,8 +71,10 @@ namespace ns_Mashmo
         /// <summary>
         /// On interactive pointer exiting the door handle
         /// </summary>
-        public void onDoorHandlePointerExit()
+        public override void onDoorHandlePointerExit()
         {
+            base.onDoorHandlePointerExit();
+
             if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
             {
                 m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
@@ -121,8 +84,10 @@ namespace ns_Mashmo
         /// <summary>
         /// On interactive with the door handle of this door
         /// </summary>
-        public void onDoorHandlePointerInteract()
+        public override void onDoorHandlePointerInteract()
         {
+            base.onDoorHandlePointerInteract();
+
             if (IsDoorOpen)
             {
                 return;
@@ -134,8 +99,10 @@ namespace ns_Mashmo
         /// <summary>
         /// Opens the door depending upon which side of the door the player is at
         /// </summary>
-        private void openDoor()
+        public override void openDoor()
         {
+            base.openDoor();
+
             Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
             Vector3 l_v3PlayerToDoorDirection = (m_InteractiveDoorHandle.transform.position - l_v3PlayerPos).normalized;
 
@@ -157,8 +124,10 @@ namespace ns_Mashmo
         /// <summary>
         /// Closes door, calls anim trigger
         /// </summary>
-        public void closeDoor(bool a_bIsReset = false)
+        public override void closeDoor(bool a_bIsReset = false)
         {
+            base.closeDoor(a_bIsReset);
+
             if (IsDoorOpen)
             {
                 IsDoorOpen = false;
