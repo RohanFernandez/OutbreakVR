@@ -61,7 +61,10 @@ namespace ns_Mashmo
         private bool IsDoorLocked
         {
             get { return m_bIsDoorLocked; }
-            set { m_bIsDoorLocked = value; }
+            set {
+                m_bIsDoorLocked = value;
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
+            }
         }
 
         /// <summary>
@@ -73,6 +76,28 @@ namespace ns_Mashmo
             if (!IsDoorLocked)
             {
                 base.onDoorHandlePointerInteract();
+            }
+        }
+
+        /// <summary>
+        /// On interactive pointer entering the door handle
+        /// </summary>
+        public override void onDoorHandlePointerOver()
+        {
+            if (!IsDoorLocked)
+            {
+                base.onDoorHandlePointerOver();
+            }
+        }
+
+        /// <summary>
+        /// On interactive pointer exiting the door handle
+        /// </summary>
+        public override void onDoorHandlePointerExit()
+        {
+            if (!IsDoorLocked)
+            {
+                base.onDoorHandlePointerExit();
             }
         }
 

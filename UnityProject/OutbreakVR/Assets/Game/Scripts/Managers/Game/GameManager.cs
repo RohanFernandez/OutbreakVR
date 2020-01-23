@@ -72,6 +72,16 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Color of restricted item
+        /// </summary>
+        [SerializeField]
+        private Color m_colOutlineHighlighterRestricted;
+        public static Color ColOutlineHighlighterRestricted
+        {
+            get { return s_Instance.m_colOutlineHighlighterRestricted; }
+        }
+
+        /// <summary>
         /// Sets singleton instance
         /// </summary>
         public override void initialize()

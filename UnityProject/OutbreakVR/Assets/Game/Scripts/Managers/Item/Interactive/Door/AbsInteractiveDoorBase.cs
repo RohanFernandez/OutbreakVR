@@ -43,7 +43,7 @@ namespace ns_Mashmo
         /// The outline hightlighter
         /// </summary>
         [SerializeField]
-        public OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
+        protected OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
 
         public virtual void Awake()
         {
