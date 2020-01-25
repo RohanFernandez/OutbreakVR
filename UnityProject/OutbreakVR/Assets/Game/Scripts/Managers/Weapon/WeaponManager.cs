@@ -123,6 +123,8 @@ namespace ns_Mashmo
             s_Instance = this;
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+
             m_dictWeaponCategories = new Dictionary<WEAPON_CATEGORY_TYPE, WeaponCategory>(3);
 
             m_dictWeaponCategories.Add(WEAPON_CATEGORY_TYPE.MELEE,      new WeaponCategory(WEAPON_CATEGORY_TYPE.MELEE));
@@ -159,6 +161,7 @@ namespace ns_Mashmo
                 return;
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
 
             s_Instance = null;
         }
@@ -703,6 +706,16 @@ namespace ns_Mashmo
                 a_WeaponInfo.m_iBulletInFirstMag = l_GunWeaponBase.BulletCountInFirstMag;
                 a_WeaponInfo.m_iTotalBulletsCount = l_GunWeaponBase.TotalBullets;
             }
+        }
+
+        /// <summary>
+        /// Event callback on player state changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onPlayerStateChanged(EventHash a_EventHash)
+        {
+            PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
+            IsWeaponActive = l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED;
         }
     }
 }

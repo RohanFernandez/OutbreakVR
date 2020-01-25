@@ -404,7 +404,6 @@ namespace ns_Mashmo
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
-                        WeaponManager.IsWeaponActive = true;
                         m_CustomPointer.setPointerAsCrosshair(true);
                         break;
                     }
@@ -412,7 +411,6 @@ namespace ns_Mashmo
                     {
                         m_actPlayerStateControl = managePlayerState_InGameMovement;
                         ControllerManager.ToggleLaser(true);
-                        WeaponManager.IsWeaponActive = true;
                         m_CustomPointer.setPointerAsCrosshair(true);
                         break;
                     }
@@ -420,8 +418,6 @@ namespace ns_Mashmo
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
-                        WeaponManager.IsWeaponActive = false;
-                        UI_PlayerHelmet.Hide();
                         m_CustomPointer.setPointerAsCrosshair(false);
                         break;
                     }
@@ -429,8 +425,6 @@ namespace ns_Mashmo
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
-                        WeaponManager.IsWeaponActive = false;
-                        UI_PlayerHelmet.Hide();
                         break;
                     }
                 default:
