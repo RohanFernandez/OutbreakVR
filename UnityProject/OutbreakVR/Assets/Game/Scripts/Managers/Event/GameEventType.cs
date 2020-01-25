@@ -28,6 +28,7 @@ namespace ns_Mashmo
         ON_OBJECTIVE_GROUP_COMPLETED,               /* <OLD LEVEL STRING,NEW LEVEL STRING>*/
         ON_GAME_STATE_ENDED,                        /* <OLD LEVEL STRING>*/
         ON_GAME_STATE_STARTED,                      /* <NEW LEVEL STRING>*/
+        ON_RELOAD_TOGGLED,                          /* <BOOL>*/
     }
 
     public static class GameEventTypeConst
@@ -139,5 +140,9 @@ namespace ns_Mashmo
         #region ON_GAME_STATE_STARTED
         //public const string ID_NEW_GAME_STATE = "ID_OLD_NEW_STATE";     /* STRING */
         #endregion ON_GAME_STATE_STARTED
+
+        #region ON_RELOAD_TOGGLED
+        public const string ID_RELOAD_TOGGLED_ON = "ID_RELOAD_TOGGLED_ON";     /* BOOL */
+        #endregion ON_RELOAD_TOGGLED
     }
 }

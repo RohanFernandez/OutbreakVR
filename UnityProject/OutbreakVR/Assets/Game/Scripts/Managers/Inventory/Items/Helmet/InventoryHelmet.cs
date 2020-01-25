@@ -41,12 +41,24 @@ namespace ns_Mashmo
             base.initialize();
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onCurrentWeaponChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_RELOAD_TOGGLED, onReloadToggled);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
         }
 
         public override void destroy()
         {
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onCurrentWeaponChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_RELOAD_TOGGLED, onReloadToggled);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             base.destroy();
         }
 
@@ -96,6 +108,59 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Callback called when the reload is started/stopped
+        /// </summary>
+        private void onReloadToggled(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback called on player health is updated
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onPlayerHealthUpdated(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback called on weapon reloaded
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onWeaponReloaded(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback called on weapon fired
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onWeaponFired(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback called on bullets added
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onBulletsAdded(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback called on current weapon changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onWeaponChanged(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+        
+        /// <summary>
         /// Sets if the helmet should be enabled/ disabled
         /// Sets the current weapons bullet count, weapon type
         /// Displays reloading if helmet not cracked
@@ -104,6 +169,7 @@ namespace ns_Mashmo
         {
             PLAYER_STATE l_CurrentPlayerState = PlayerManager.PlayerState;
 
+            // check if the player is in the game and the player is wearing a helmet
             if (l_CurrentPlayerState == PLAYER_STATE.MENU_SELECTION ||
                 l_CurrentPlayerState == PLAYER_STATE.NO_INTERACTION ||
                 !IsItemInInventory)
@@ -114,14 +180,18 @@ namespace ns_Mashmo
             else
             {
                 m_UIPlayerHelmet.show();
+
+                //is the helmet cracked
                 if (IsHelmetCracked)
                 {
-                    //display cracked
                     m_UIArmMonitor.hide();
+                    m_UIPlayerHelmet.toggleReloadProgressBar(false);
                 }
                 else
                 {
                     m_UIArmMonitor.show();
+                    m_UIPlayerHelmet.toggleReloadProgressBar(WeaponManager.IsReloadInProgress);
+                    m_UIArmMonitor.updateInterface(PlayerManager.HealthMeter);
                 }
             }
         }

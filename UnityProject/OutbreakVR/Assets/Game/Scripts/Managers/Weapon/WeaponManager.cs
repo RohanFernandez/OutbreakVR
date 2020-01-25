@@ -122,13 +122,19 @@ namespace ns_Mashmo
                     value > 0.0f)
                 {
                     m_bIsReloadInProgress = true;
-                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
+
+                    EventHash l_EventHash = EventManager.GetEventHashtable();
+                    l_EventHash.Add(GameEventTypeConst.ID_RELOAD_TOGGLED_ON, m_bIsReloadInProgress);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_RELOAD_TOGGLED, l_EventHash);
                 }
                 else if (m_fCurrentReloadWaitTime > 0.0f &&
                     value == 0.0f)
                 {
                     m_bIsReloadInProgress = false;
-                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
+
+                    EventHash l_EventHash = EventManager.GetEventHashtable();
+                    l_EventHash.Add(GameEventTypeConst.ID_RELOAD_TOGGLED_ON, m_bIsReloadInProgress);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_RELOAD_TOGGLED, l_EventHash);
                 }
                 m_fCurrentReloadWaitTime = value;
             }
@@ -138,6 +144,10 @@ namespace ns_Mashmo
         /// Is the reload of the current weapon in progress
         /// </summary>
         private bool m_bIsReloadInProgress = false;
+        public static bool IsReloadInProgress
+        {
+            get { return s_Instance.m_bIsReloadInProgress; }
+        }
 
         /// <summary>
         /// Interaction layer mask on raycast a gun weapon is fired.
@@ -796,7 +806,7 @@ namespace ns_Mashmo
                 {
                     CurrentReloadWaitTime += Time.deltaTime;
                     float l_fCurrentWeaponReloadTime = getCurrentWeaponReloadTime();
-                    UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
+                    //UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
 
                     if (CurrentReloadWaitTime > l_fCurrentWeaponReloadTime)
                     {
