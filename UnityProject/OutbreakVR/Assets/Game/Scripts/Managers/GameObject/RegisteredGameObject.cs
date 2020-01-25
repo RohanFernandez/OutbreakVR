@@ -17,6 +17,7 @@ namespace ns_Mashmo
 
         /// <summary>
         /// Is not registered on Awake or OnDestroy functions
+        /// If it is registered on awake, the registerGameObject() could be called before the GameObjectManager is initialized
         /// </summary>
         [SerializeField]
         private bool m_bIsManagedExternally = false;

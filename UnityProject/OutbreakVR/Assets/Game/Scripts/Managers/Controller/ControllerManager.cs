@@ -434,7 +434,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Max laser ray hit distance.
         /// </summary>
-        public const float MAX_CURSOR_DISTANCE = 10.0f;
+        public const float MAX_CURSOR_DISTANCE = 30.0f;
 
         /// <summary>
         /// Max laser ray hit distance which the object will be interactable.
