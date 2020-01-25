@@ -20,9 +20,7 @@ namespace ns_Mashmo
         {
             if (a_Collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase))
             {
-                EventHash l_hash = EventManager.GetEventHashtable();
-                l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, m_strObjectiveTriggerID);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
+                ObjectiveManager.TriggerObjective(m_strObjectiveTriggerID);
             }
         }
     }

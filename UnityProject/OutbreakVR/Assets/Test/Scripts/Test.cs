@@ -21,9 +21,7 @@ namespace ns_Mashmo
 
         void triggerObjective(string a_strObjectiveId)
         {
-            EventHash l_hash = EventManager.GetEventHashtable();
-            l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, a_strObjectiveId);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
+            ObjectiveManager.TriggerObjective(a_strObjectiveId);
         }
 
         void Update()

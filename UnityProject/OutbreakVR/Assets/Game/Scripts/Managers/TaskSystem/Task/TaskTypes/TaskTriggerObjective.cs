@@ -24,11 +24,7 @@ namespace ns_Mashmo
         public override void onExecute()
         {
             base.onExecute();
-
-            EventHash l_hash = EventManager.GetEventHashtable();
-            l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, m_strObjectiveTriggerID);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
-
+            ObjectiveManager.TriggerObjective(m_strObjectiveTriggerID);
             onComplete();
         }
     }

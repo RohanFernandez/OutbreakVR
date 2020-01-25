@@ -49,6 +49,17 @@ namespace ns_Mashmo
         [SerializeField]
         private Color m_colorOutlineHighlighted;
 
+        /// <summary>
+        /// Objective id to be triggered on item pickup
+        /// </summary>
+        [SerializeField]
+        private string m_strObjectiveTriggerOnPickup = string.Empty;
+        public string ObjectiveTriggerOnPickup
+        {
+            get { return m_strObjectiveTriggerOnPickup; }
+            set { m_strObjectiveTriggerOnPickup = value; }
+        }
+
         public abstract ITEM_CATEGORY getItemCategoryType();
 
         /// <summary>

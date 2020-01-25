@@ -11,6 +11,7 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_POSITION = "Position";
         private const string ATTRIBUTE_ROTATION = "Rotation";
         private const string ATTRIBUTE_ITEM_ID = "Item_ID";
+        private const string ATTRIBUTE_TRIGGER_ID = "ObjectiveTrigger";
 
         #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
@@ -40,6 +41,7 @@ namespace ns_Mashmo
         private Vector3 m_v3Position = Vector3.zero;
         private Vector3 m_v3Rotation = Vector3.zero;
         private string m_strItemID = string.Empty;
+        private string m_strObjectiveTriggerOnPickup = string.Empty;
 
         public override void onInitialize()
         {
@@ -51,6 +53,7 @@ namespace ns_Mashmo
             m_v3Position = getVec3(ATTRIBUTE_POSITION);
             m_v3Rotation = getVec3(ATTRIBUTE_ROTATION);
             m_strItemID = getString(ATTRIBUTE_ITEM_ID);
+            m_strObjectiveTriggerOnPickup = getString(ATTRIBUTE_TRIGGER_ID);
 
             if (!string.IsNullOrEmpty(l_strItemType))
             {
@@ -78,6 +81,8 @@ namespace ns_Mashmo
                     {
                         ItemDropBase l_Item = ItemDropManager.GetItemDrop(m_ItemType, m_strItemID);
                         l_Item.transform.SetPositionAndRotation(m_v3Position, Quaternion.Euler(m_v3Rotation));
+
+                        l_Item.ObjectiveTriggerOnPickup = m_strObjectiveTriggerOnPickup;
 
                         ITEM_CATEGORY l_ItemCategory = l_Item.getItemCategoryType();
                         int l_iBullets = getInt(ATTRIBUTE_BULLET_COUNT);

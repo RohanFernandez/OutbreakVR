@@ -217,5 +217,16 @@ namespace ns_Mashmo
         {
             
         }
+
+        /// <summary>
+        /// Objective ID to trigger, dispatches event
+        /// </summary>
+        /// <param name="a_strObjectiveTriggerID"></param>
+        public static void TriggerObjective(string a_strObjectiveTriggerID)
+        {
+            EventHash l_hash = EventManager.GetEventHashtable();
+            l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, a_strObjectiveTriggerID);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
+        }
     }
 }
