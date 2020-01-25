@@ -18,6 +18,11 @@ namespace ns_Mashmo
         private UnityEngine.UI.Image m_imgFader = null;
 
         /// <summary>
+        /// Action to execute on fade complete
+        /// </summary>
+        private System.Action m_actOnFadeComplete = null;
+
+        /// <summary>
         /// The time the fader takes to complete
         /// </summary>
         [SerializeField]
@@ -56,8 +61,9 @@ namespace ns_Mashmo
         /// <summary>
         /// Displays the Fader and starts the fader
         /// </summary>
-        public static void Show()
+        public static void Show(System.Action a_actOnFaderComplete = null)
         {
+            s_Instance.m_actOnFadeComplete = a_actOnFaderComplete;
             s_Instance.m_fTimeTakenInFade = 0.0f;
             s_Instance.show();
         }
@@ -81,7 +87,10 @@ namespace ns_Mashmo
             if (m_fTimeTakenInFade >= m_fTotalFadeTime)
             {
                 Hide();
-                GameManager.RestartLevel();
+                if (m_actOnFadeComplete != null)
+                {
+                    m_actOnFadeComplete();
+                }
             }
         }
     }

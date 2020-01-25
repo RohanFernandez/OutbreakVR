@@ -174,8 +174,6 @@ namespace ns_Mashmo
             SetPlayerState(PLAYER_STATE.NO_INTERACTION);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
-
-            UI_ScreenFader.Show();
         }
 
         /// <summary>

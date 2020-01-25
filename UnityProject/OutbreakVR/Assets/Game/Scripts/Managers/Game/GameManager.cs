@@ -92,6 +92,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_KILLED, onPlayerKilled);
 
             base.initialize();
         }
@@ -106,6 +107,7 @@ namespace ns_Mashmo
                 return;
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_KILLED, onPlayerKilled);
 
             base.destroy();
             s_Instance = null;
@@ -154,6 +156,15 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Event callback on player killed to restart the level
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onPlayerKilled(EventHash a_EventHash)
+        {
+            UI_ScreenFader.Show(RestartLevel);
+        }
+
+        /// <summary>
         /// Returns all reusable
         /// </summary>
         public static void ReturnAllReusables()
@@ -169,8 +180,6 @@ namespace ns_Mashmo
         public static void RestartLevel()
         {
             PauseGame(false);
-
-
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
 
