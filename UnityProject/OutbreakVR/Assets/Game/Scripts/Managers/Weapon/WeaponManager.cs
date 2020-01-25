@@ -109,6 +109,37 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The current time taken to reload the weapon
+        /// </summary>
+        [SerializeField]
+        private float m_fCurrentReloadWaitTime = 0.0f;
+        private float CurrentReloadWaitTime
+        {
+            get { return m_fCurrentReloadWaitTime; }
+            set
+            {
+                if (m_fCurrentReloadWaitTime == 0.0f &&
+                    value > 0.0f)
+                {
+                    m_bIsReloadInProgress = true;
+                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
+                }
+                else if (m_fCurrentReloadWaitTime > 0.0f &&
+                    value == 0.0f)
+                {
+                    m_bIsReloadInProgress = false;
+                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
+                }
+                m_fCurrentReloadWaitTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Is the reload of the current weapon in progress
+        /// </summary>
+        private bool m_bIsReloadInProgress = false;
+
+        /// <summary>
         /// Interaction layer mask on raycast a gun weapon is fired.
         /// </summary>
         [SerializeField]
@@ -270,6 +301,8 @@ namespace ns_Mashmo
                         l_goNewWeapon.onWeaponSelected();
                     }
                 }
+                /// on weapon changed set the reload time to 0
+                CurrentReloadWaitTime = 0.0f;
 
                 EventHash l_hash = EventManager.GetEventHashtable();
                 l_hash.Add(GameEventTypeConst.ID_NEW_WEAPON_CATEGORY_TYPE, a_newWeaponCategoryType);
@@ -543,9 +576,9 @@ namespace ns_Mashmo
         /// <summary>
         /// Fires the current weapon
         /// </summary>
-        public static void FireWeapon()
+        private void fireWeapon()
         {
-            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.fire();
 
             bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
@@ -553,7 +586,7 @@ namespace ns_Mashmo
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
 
-                s_Instance.manageRaycastHitOnGunFire(l_GunWeaponBase);
+                manageRaycastHitOnGunFire(l_GunWeaponBase);
 
                 //Dispatch weapon fire evetn
                 EventHash l_EventHash = EventManager.GetEventHashtable();
@@ -567,9 +600,9 @@ namespace ns_Mashmo
         /// <summary>
         /// reloads the current weapon
         /// </summary>
-        public static void ReloadWeapon()
+        private void reloadWeapon()
         {
-            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.reload();
 
             bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
@@ -588,9 +621,9 @@ namespace ns_Mashmo
         /// Can the current weapon be reloaded, is there more bullets that can be put in the first mag
         /// </summary>
         /// <returns></returns>
-        public static bool CanCurrentWeaponBeReloaded()
+        private bool canCurrentWeaponBeReloaded()
         {
-            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             return l_WeaponBase.isReloadPossible();
         }
 
@@ -598,18 +631,18 @@ namespace ns_Mashmo
         /// Returns the current weapon reload time
         /// </summary>
         /// <returns></returns>
-        public static float getCurrentWeaponReloadTime()
+        public float getCurrentWeaponReloadTime()
         {
-            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             return l_WeaponBase.getReloadWaitTime();
         }
         /// <summary>
         /// Can the current weapon be fired on click, melee weapon can be fired always
         /// </summary>
         /// <returns></returns>
-        public static bool CanCurrentWeaponBeFired()
+        private bool canCurrentWeaponBeFired()
         {
-            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             return l_WeaponBase.canCurrentWeaponBeFired();
         }
 
@@ -714,8 +747,72 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onPlayerStateChanged(EventHash a_EventHash)
         {
+            CurrentReloadWaitTime = 0.0f;
             PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
             IsWeaponActive = l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED;
+        }
+
+        /// <summary>
+        /// Updates weapon management with reload
+        /// </summary>
+        private void Update()
+        {
+            if (IsWeaponActive)
+            {
+                manageWeaponAttack();
+            }
+        }
+
+        /// <summary>
+        /// Fires/Reloads the weapon
+        /// </summary>
+        public void manageWeaponAttack()
+        {
+            ///Fire weapon
+            if (ControllerManager.IsPrimaryTriggerBtnDown()
+#if UNITY_EDITOR
+                || Input.GetKey(KeyCode.Mouse0)
+#endif
+                )
+            {
+                if (canCurrentWeaponBeFired() &&
+                    !m_bIsReloadInProgress)
+                {
+                    fireWeapon();
+                }
+                else
+                {
+                    /// Indicate weapon cannot be fired
+                }
+            }
+
+            ///Reload weapon
+            float l_fDotFacingDown = Vector3.Dot(ControllerManager.GetPrimaryControllerDirection(), Vector3.down);
+            if (canCurrentWeaponBeReloaded())
+            {
+                if (
+                    (l_fDotFacingDown > 0.85f)
+                )
+                {
+                    CurrentReloadWaitTime += Time.deltaTime;
+                    float l_fCurrentWeaponReloadTime = getCurrentWeaponReloadTime();
+                    UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
+
+                    if (CurrentReloadWaitTime > l_fCurrentWeaponReloadTime)
+                    {
+                        CurrentReloadWaitTime = 0.0f;
+                        reloadWeapon();
+                    }
+                }
+                else
+                {
+                    CurrentReloadWaitTime = 0.0f;
+                }
+            }
+            else
+            {
+                CurrentReloadWaitTime = 0.0f;
+            }
         }
     }
 }

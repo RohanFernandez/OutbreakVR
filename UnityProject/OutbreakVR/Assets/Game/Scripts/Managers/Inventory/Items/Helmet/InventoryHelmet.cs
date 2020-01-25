@@ -105,7 +105,8 @@ namespace ns_Mashmo
             PLAYER_STATE l_CurrentPlayerState = PlayerManager.PlayerState;
 
             if (l_CurrentPlayerState == PLAYER_STATE.MENU_SELECTION ||
-                l_CurrentPlayerState == PLAYER_STATE.NO_INTERACTION)
+                l_CurrentPlayerState == PLAYER_STATE.NO_INTERACTION ||
+                !IsItemInInventory)
             {
                 m_UIPlayerHelmet.hide();
                 m_UIArmMonitor.hide();

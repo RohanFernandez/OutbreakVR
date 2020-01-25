@@ -50,36 +50,6 @@ namespace ns_Mashmo
         [SerializeField]
         private RegisteredGameObject m_RegisteredGameObj = null;
 
-        /// <summary>
-        /// The current time taken to reload the weapon
-        /// </summary>
-        [SerializeField]
-        private float m_fCurrentReloadWaitTime = 0.0f;
-        private float CurrentReloadWaitTime
-        {
-            get { return m_fCurrentReloadWaitTime; }
-            set {
-                if (m_fCurrentReloadWaitTime == 0.0f &&
-                    value > 0.0f)
-                {
-                    m_bIsReloadInProgress = true;
-                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
-                }
-                else if (m_fCurrentReloadWaitTime > 0.0f &&
-                    value == 0.0f)
-                {
-                    m_bIsReloadInProgress = false;
-                    UI_PlayerHelmet.ToggleReloadProgressBar(m_bIsReloadInProgress);
-                }
-                m_fCurrentReloadWaitTime = value;
-            }
-        }
-
-        /// <summary>
-        /// Is the reload of the current weapon in progress
-        /// </summary>
-        private bool m_bIsReloadInProgress = false;
-
         #region SWIPE
 
         /// <summary>
@@ -178,7 +148,6 @@ namespace ns_Mashmo
         {
             manageMovement();
             managerSwipeInteraction();
-            manageWeaponAttack();
             manageInGamePause();
         }
 
@@ -322,58 +291,6 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Fires/Reloads the weapon
-        /// </summary>
-        public void manageWeaponAttack()
-        {
-            ///Fire weapon
-            if (ControllerManager.IsPrimaryTriggerBtnDown()
-#if UNITY_EDITOR
-                || Input.GetKey(KeyCode.Mouse0)
-#endif
-                )
-            {
-                if (WeaponManager.CanCurrentWeaponBeFired() &&
-                    !m_bIsReloadInProgress)
-                {
-                    WeaponManager.FireWeapon();
-                }
-                else
-                {
-                    /// Indicate weapon cannot be fired
-                }
-            }
-
-            ///Reload weapon
-            float l_fDotFacingDown = Vector3.Dot(ControllerManager.GetPrimaryControllerDirection(), Vector3.down);
-            if (WeaponManager.CanCurrentWeaponBeReloaded())
-            {
-                if (
-                    (l_fDotFacingDown > 0.85f)
-                )
-                {
-                    CurrentReloadWaitTime += Time.deltaTime;
-                    float l_fCurrentWeaponReloadTime = WeaponManager.getCurrentWeaponReloadTime();
-                    UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
-
-                    if (CurrentReloadWaitTime > l_fCurrentWeaponReloadTime)
-                    {
-                        CurrentReloadWaitTime = 0.0f;
-                        WeaponManager.ReloadWeapon();
-                    }
-                }
-                else
-                {
-                    CurrentReloadWaitTime = 0.0f;
-                }
-            }
-            else
-            {
-                CurrentReloadWaitTime = 0.0f;
-            }
-        }
-
-        /// <summary>
         /// Manages back button pressed while in game
         /// </summary>
         private void manageInGamePause()
@@ -394,8 +311,6 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         public void onPlayerStateChanged(EventHash a_EventHash)
         {
-            CurrentReloadWaitTime = 0.0f;
-
             PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
 
             switch (l_NewPlayerState)
@@ -441,7 +356,7 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         public void onWeaponChanged(EventHash a_EventHash)
         {
-            CurrentReloadWaitTime = 0.0f;
+            
         }
     }
 }
