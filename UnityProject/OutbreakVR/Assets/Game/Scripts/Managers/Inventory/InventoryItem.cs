@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class InventoryItem : MonoBehaviour
+    public class InventoryItem : AbsComponentHandler
     {
         public enum ITEM_CARRY_TYPE
-        { 
-            CAN_CARRY_ONE       =   0,
-            CAN_CARRY_MULTIPLE  =   1,
+        {
+            CAN_CARRY_ONE = 0,
+            CAN_CARRY_MULTIPLE = 1,
         }
 
         /// <summary>
@@ -39,12 +39,17 @@ namespace ns_Mashmo
         {
             get { return m_iItemsInInventory; }
             set {
-                    if ((ItemCarryType == ITEM_CARRY_TYPE.CAN_CARRY_ONE && value <= 1) ||
-                        ItemCarryType == ITEM_CARRY_TYPE.CAN_CARRY_MULTIPLE)
+                if ((ItemCarryType == ITEM_CARRY_TYPE.CAN_CARRY_ONE && value <= 1) ||
+                    ItemCarryType == ITEM_CARRY_TYPE.CAN_CARRY_MULTIPLE)
+                {
+                    int l_iItemsInInventoryBeforeChange = m_iItemsInInventory;
+                    m_iItemsInInventory = value;
+                    if (m_iItemsInInventory != l_iItemsInInventoryBeforeChange)
                     {
-                        m_iItemsInInventory = value;
+                        onItemAmountInInventoryChanged();
                     }
                 }
+            }
         }
 
         /// <summary>
@@ -57,20 +62,22 @@ namespace ns_Mashmo
             get { return m_InventoryID; }
         }
 
-        /// <summary>
-        /// Disables inventory item on player
-        /// </summary>
-        public virtual void enableItem()
-        { 
-        
+        public override void initialize()
+        {
+
+        }
+
+        public override void destroy()
+        {
+
         }
 
         /// <summary>
-        /// Disables inventory item on player
+        /// Called when the count of this item has changed
         /// </summary>
-        public virtual void disableItem()
-        {
-
+        protected virtual void onItemAmountInInventoryChanged()
+        { 
+        
         }
     }
 }

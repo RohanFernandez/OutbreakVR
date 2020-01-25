@@ -47,11 +47,8 @@ namespace ns_Mashmo
             {
                 InventoryItem l_CurrentInventoryItem = m_lstPreDefinedInventoryItems[l_iInventoryIndex];
                 m_dictInventory.Add(l_CurrentInventoryItem.InventoryID, l_CurrentInventoryItem);
+                l_CurrentInventoryItem.initialize();
             }
-
-            disableAllItems();
-
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
         }
 
         /// <summary>
@@ -64,49 +61,15 @@ namespace ns_Mashmo
                 return;
             }
 
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            ///destroy inventory items in the list
+            int l_iPredefinedInventoryItemCount = m_lstPreDefinedInventoryItems.Count;
+            
+            for (int l_iInventoryIndex = 0; l_iInventoryIndex < l_iPredefinedInventoryItemCount; l_iInventoryIndex++)
+            {
+                m_lstPreDefinedInventoryItems[l_iInventoryIndex].destroy();
+            }
 
             s_Instance = null;
-        }
-
-        /// <summary>
-        /// Event callback called on on Player State Changed
-        /// </summary>
-        /// <param name="a_EventHash"></param>
-        private void onPlayerStateChanged(EventHash a_EventHash)
-        {
-            PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
-
-            if (l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED)
-            {
-                enableAllItems();
-            }
-            else if (l_NewPlayerState == PLAYER_STATE.NO_INTERACTION || l_NewPlayerState == PLAYER_STATE.MENU_SELECTION)
-            {
-                disableAllItems();
-            }
-        }
-
-        /// <summary>
-        /// Disables all items on the player
-        /// </summary>
-        public void disableAllItems()
-        {
-            foreach (KeyValuePair<INVENTORY_ITEM_ID, InventoryItem> l_CurrentInventoryItem in m_dictInventory)
-            {
-                l_CurrentInventoryItem.Value.disableItem();
-            }
-        }
-
-        /// <summary>
-        /// Enables/Disables all items on the player
-        /// </summary>
-        public void enableAllItems()
-        {
-            foreach (KeyValuePair<INVENTORY_ITEM_ID, InventoryItem> l_CurrentInventoryItem in m_dictInventory)
-            {
-                l_CurrentInventoryItem.Value.enableItem();
-            }
         }
 
         /// <summary>
@@ -168,11 +131,11 @@ namespace ns_Mashmo
         public static void RetrieveInventoryInfo(ref ItemInventoryStructure a_ItemInventoryStructure)
         {
             /// Set helmet data
-            InventoryHelmet l_HelmetInventoryItem = null;
+            
             InventoryItem l_InventoryItem = null;
             if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
             {
-                l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
+                InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
                 a_ItemInventoryStructure.m_HelmetStructure.m_bIsHelmetCarried = l_HelmetInventoryItem.ItemsInInventory > 0;
                 a_ItemInventoryStructure.m_HelmetStructure.m_bIsHelmetCracked = l_HelmetInventoryItem.IsHelmetCracked;
             }

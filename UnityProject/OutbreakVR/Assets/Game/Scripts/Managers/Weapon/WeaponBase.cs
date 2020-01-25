@@ -44,6 +44,16 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The parent holds the monitor on the arm
+        /// </summary>
+        [SerializeField]
+        protected Transform m_ArmMonitorParent = null;
+        public Transform ArmMonitorParent
+        {
+            get { return m_ArmMonitorParent; }
+        }
+
+        /// <summary>
         /// Reloads weapon if it has a capability
         /// </summary>
         public virtual void reload() { }
