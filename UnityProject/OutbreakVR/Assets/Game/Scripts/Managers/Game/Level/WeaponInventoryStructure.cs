@@ -7,11 +7,7 @@ namespace ns_Mashmo
     [System.Serializable]
     public class WeaponInfo
     {
-        /// <summary>
-        /// The category the weapon is in
-        /// </summary>
-        [SerializeField]
-        public WEAPON_CATEGORY_TYPE m_CategoryType;
+        public virtual WEAPON_CATEGORY_TYPE getCategoryType() { return WEAPON_CATEGORY_TYPE.MAX_WEAPON_CATEGORIES;}
 
         /// <summary>
         /// The type of the weapon
@@ -33,16 +29,52 @@ namespace ns_Mashmo
     }
 
     [System.Serializable]
+    public class MeleeWeaponInfo : WeaponInfo
+    {
+        /// <summary>
+        /// The category the weapon is in
+        /// </summary>
+        public override WEAPON_CATEGORY_TYPE getCategoryType()
+        {
+            return WEAPON_CATEGORY_TYPE.MELEE;
+        }
+    }
+
+    [System.Serializable]
+    public class PrimaryWeaponInfo : WeaponInfo
+    {
+        /// <summary>
+        /// The category the weapon is in
+        /// </summary>
+        public override WEAPON_CATEGORY_TYPE getCategoryType()
+        {
+            return WEAPON_CATEGORY_TYPE.PRIMARY;
+        }
+    }
+
+    [System.Serializable]
+    public class SecondaryWeaponInfo : WeaponInfo
+    {
+        /// <summary>
+        /// The category the weapon is in
+        /// </summary>
+        public override WEAPON_CATEGORY_TYPE getCategoryType()
+        {
+            return WEAPON_CATEGORY_TYPE.SECONDARY;
+        }
+    }
+
+    [System.Serializable]
     public class WeaponInventoryStructure
     {
         [SerializeField]
-        public WeaponInfo m_MeleeWeaponInfo = null;
+        public MeleeWeaponInfo m_MeleeWeaponInfo = null;
 
         [SerializeField]
-        public WeaponInfo m_PrimaryWeaponInfo = null;
+        public PrimaryWeaponInfo m_PrimaryWeaponInfo = null;
 
         [SerializeField]
-        public WeaponInfo m_SecondaryWeaponInfo = null;
+        public SecondaryWeaponInfo m_SecondaryWeaponInfo = null;
 
         [SerializeField]
         public WEAPON_CATEGORY_TYPE m_CurrentWeaponCateogoryType; 

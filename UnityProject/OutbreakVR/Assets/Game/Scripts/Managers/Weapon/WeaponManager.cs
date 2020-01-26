@@ -735,15 +735,15 @@ namespace ns_Mashmo
         /// Retrieves the current weapon info
         /// </summary>
         /// <param name="a_WeaponInfo"></param>
-        public static void RetrieveWeaponInfo(ref WeaponInfo a_WeaponInfo)
+        public static void RetrieveWeaponInfo(WeaponInfo a_WeaponInfo)
         {
-            WEAPON_TYPE l_WeaponType = GetWeaponInCategory(a_WeaponInfo.m_CategoryType);
+            WEAPON_TYPE l_WeaponType = GetWeaponInCategory(a_WeaponInfo.getCategoryType());
             WeaponBase l_WeaponBase = s_Instance.getWeaponBaseByWeaponType(l_WeaponType);
 
             a_WeaponInfo.m_WeaponType = l_WeaponType;
 
             if (l_WeaponBase != null && 
-                a_WeaponInfo.m_CategoryType != WEAPON_CATEGORY_TYPE.MELEE)
+                a_WeaponInfo.getCategoryType() != WEAPON_CATEGORY_TYPE.MELEE)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
                 a_WeaponInfo.m_iBulletInFirstMag = l_GunWeaponBase.BulletCountInFirstMag;

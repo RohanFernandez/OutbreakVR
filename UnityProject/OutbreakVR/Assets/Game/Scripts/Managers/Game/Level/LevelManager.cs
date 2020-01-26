@@ -147,9 +147,9 @@ namespace ns_Mashmo
                 ///Loads the current level data to the player
                 #region LOAD_LEVEL_DATA
                 
-                PlayerManager.HealthMeter = l_CurrentSubLevelData.m_iPlayerHealth;
-                WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.m_WeaponInventory);
-                InventoryManager.SetCurrentItemInventory(l_CurrentSubLevelData.m_ItemInventory);
+                PlayerManager.HealthMeter = l_CurrentSubLevelData.SavedData.m_iPlayerHealth;
+                WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.SavedData.m_WeaponInventory);
+                InventoryManager.SetCurrentItemInventory(l_CurrentSubLevelData.SavedData.m_ItemInventory);
 
                 #endregion LOAD_LEVEL_DATA
             }
@@ -219,18 +219,18 @@ namespace ns_Mashmo
                         l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT)
                     {
                         //Save Weapon Data
-                        WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_MeleeWeaponInfo);
-                        WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_PrimaryWeaponInfo);
-                        WeaponManager.RetrieveWeaponInfo(ref l_SubLevelDataToSave.m_WeaponInventory.m_SecondaryWeaponInfo);
+                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_MeleeWeaponInfo);
+                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_PrimaryWeaponInfo);
+                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_SecondaryWeaponInfo);
 
-                        l_SubLevelDataToSave.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
+                        l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
 
                         //Save Player Data
-                        l_SubLevelDataToSave.m_iPlayerHealth = PlayerManager.HealthMeter;
-                        l_SubLevelDataToSave.m_v3PlayerPosition = PlayerManager.GetPosition();
+                        l_SubLevelDataToSave.SavedData.m_iPlayerHealth = PlayerManager.HealthMeter;
+                        l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
 
                         //Save Inventory Data
-                        InventoryManager.RetrieveInventoryInfo(ref l_SubLevelDataToSave.m_ItemInventory);
+                        InventoryManager.RetrieveInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
                     }
 
                     if (l_SubLevelDataToSave.IsCheckpoint)
@@ -315,16 +315,11 @@ namespace ns_Mashmo
                         string l_strSavedData = PlayerDataManager.GetString(l_SubLevelData.SubLevelSaveEntryKeyType);
                         if (!string.IsNullOrEmpty(l_strSavedData))
                         {
-                            l_SubLevelData = JsonUtility.FromJson<SubLevelData>(l_strSavedData);
+                            SubLevelSavedData l_SubLevelSavedData = JsonUtility.FromJson<SubLevelSavedData>(l_strSavedData);
 
-                            if (l_SubLevelData != null)
+                            if (l_SubLevelSavedData != null)
                             {
-                                SubLevelData l_RegSubLevelData = l_CurrentLevelData.LstSubLevels[l_iSubLevelIndex];
-                                l_RegSubLevelData.m_iPlayerHealth = l_SubLevelData.m_iPlayerHealth;
-                                l_RegSubLevelData.m_v3PlayerPosition = l_SubLevelData.m_v3PlayerPosition;
-                                l_RegSubLevelData.m_WeaponInventory = l_SubLevelData.m_WeaponInventory;
-                                l_RegSubLevelData.m_ItemInventory = l_SubLevelData.m_ItemInventory;
-                                l_CurrentLevelData.LstSubLevels[l_iSubLevelIndex] = l_RegSubLevelData;
+                                l_CurrentLevelData.LstSubLevels[l_iSubLevelIndex].SavedData = l_SubLevelSavedData;
                             }
                         }
                     }
@@ -333,12 +328,12 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Saves sub level data to player prefs
+        /// Saves sub level saved data to player prefs
         /// </summary>
         /// <param name="a_SubLevelData"></param>
         private void saveToPlayerPrefs(SubLevelData a_SubLevelData)
         {
-            string l_strSubLevelJson = JsonUtility.ToJson(a_SubLevelData);
+            string l_strSubLevelJson = JsonUtility.ToJson(a_SubLevelData.SavedData);
             PlayerDataManager.SetString(a_SubLevelData.SubLevelSaveEntryKeyType, l_strSubLevelJson);
         }
 
@@ -356,7 +351,7 @@ namespace ns_Mashmo
             {
                 if (l_CurrentSubLevelData.UsePlayerPosition)
                 {
-                    PlayerManager.SetPosition(l_CurrentSubLevelData.m_v3PlayerPosition);
+                    PlayerManager.SetPosition(l_CurrentSubLevelData.SavedData.m_v3PlayerPosition);
                 }
                 PlayerManager.SetPlayerState(l_CurrentSubLevelData.PlayerStateOnStart);
 

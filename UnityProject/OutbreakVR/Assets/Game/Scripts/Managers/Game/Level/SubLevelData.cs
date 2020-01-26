@@ -67,24 +67,6 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// The weapons the player holds at the moment
-        /// </summary>
-        [SerializeField]
-        public WeaponInventoryStructure m_WeaponInventory = null;
-
-        /// <summary>
-        /// The inventory items the player holds at the moment
-        /// </summary>
-        [SerializeField]
-        public ItemInventoryStructure m_ItemInventory = null;
-
-        /// <summary>
-        /// The health meter of the play at the moment
-        /// </summary>
-        [SerializeField]
-        public int m_iPlayerHealth = 0;
-
-        /// <summary>
         /// Should the m_v3PlayerPosition be set on sub level enter
         /// For ex theis position can be set from other places as well like the task list.
         /// </summary>
@@ -92,13 +74,8 @@ namespace ns_Mashmo
         private bool m_bUsePlayerPosition = false;
         public bool UsePlayerPosition
         {
-            get{ return m_bUsePlayerPosition;}
+            get { return m_bUsePlayerPosition; }
         }
-        /// <summary>
-        /// The position of the player at the start of the level
-        /// </summary>
-        [SerializeField]
-        public Vector3 m_v3PlayerPosition = Vector3.zero;
 
         /// <summary>
         /// The state o the player on start of this sub level
@@ -108,6 +85,27 @@ namespace ns_Mashmo
         public PLAYER_STATE PlayerStateOnStart
         {
             get { return m_PlayerStateOnStart; }
+        }
+
+        /// <summary>
+        /// The data that is saved in player prefs for this sub level
+        /// </summary>
+        [SerializeField]
+        private SubLevelSavedData m_SavedData = null;
+        public SubLevelSavedData SavedData
+        {
+            get { return m_SavedData; }
+            set { m_SavedData = value; }
+        }
+
+        /// <summary>
+        /// List of all ambient audio clips to be played in this level
+        /// </summary>
+        [SerializeField]
+        private List<string> m_lstAmbientAudioClipID = null;
+        public List<string> LstAmbientAudioClipID
+        {
+            get { return m_lstAmbientAudioClipID; }
         }
     }
 }
