@@ -26,7 +26,7 @@ namespace ns_Mashmo
         /// <summary>
         /// The major ambient audio source
         /// </summary>
-        public const string AUD_SRC_AMBIENT = "AUD_SRC_AmbientSrc1"; 
+        public const string AUD_SRC_AMBIENT = "AudSrc_AmbientDefault"; 
 
         /// <summary>
         /// Audio source of the gun fire
