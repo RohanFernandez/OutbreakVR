@@ -103,6 +103,11 @@ namespace ns_Mashmo
         public const string AUD_CLIP_DOOR_CLOSE = "AudClip_DoorClose";
 
         /// <summary>
+        /// Audio clip to be played on drawer open
+        /// </summary>
+        public const string AUD_CLIP_DRAWER_OPEN = "AudClip_DrawerOpen";
+
+        /// <summary>
         /// Audio clip to be played on door keypad click
         /// </summary>
         public const string AUD_CLIP_KEYPAD_CLICK = "AudClip_KeypadClick";

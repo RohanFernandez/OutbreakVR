@@ -91,6 +91,11 @@ namespace ns_Mashmo
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_SIDE_2);
             }
 
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated) ;
+            }
+
             m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_OPEN, false, 1.0f);
         }
 
@@ -105,6 +110,11 @@ namespace ns_Mashmo
             {
                 IsDoorOpen = false;
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_CLOSE);
+
+                if (m_OutlineGroupHighlighterBase != null)
+                {
+                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+                }
 
                 if (!a_bIsReset)
                 {

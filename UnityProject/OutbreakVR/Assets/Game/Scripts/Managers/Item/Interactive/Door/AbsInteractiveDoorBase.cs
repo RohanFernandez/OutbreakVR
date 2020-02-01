@@ -17,6 +17,11 @@ namespace ns_Mashmo
         public const string ANIM_TRIGGER_DOOR_OPEN_SIDE_2 = "DoorOpeningSide2";
 
         /// <summary>
+        /// Anim trigger to open the drawer
+        /// </summary>
+        public const string ANIM_TRIGGER_DRAWER_OPEN = "DrawerOpening";
+
+        /// <summary>
         /// Anim trigger to close the door on any side
         /// </summary>
         public const string ANIM_TRIGGER_DOOR_OPEN_CLOSE = "DoorClose";

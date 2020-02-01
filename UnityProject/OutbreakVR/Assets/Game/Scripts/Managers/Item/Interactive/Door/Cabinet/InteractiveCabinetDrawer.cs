@@ -12,6 +12,7 @@ namespace ns_Mashmo
         public override void resetValues()
         {
             base.resetValues();
+            closeDoor(true);
         }
 
         public override void Awake()
@@ -28,6 +29,10 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerOver()
         {
             base.onDoorHandlePointerOver();
+            if (m_OutlineGroupHighlighterBase != null && !m_bIsDoorOpen)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+            }
         }
 
         /// <summary>
@@ -36,6 +41,10 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerExit()
         {
             base.onDoorHandlePointerExit();
+            if (m_OutlineGroupHighlighterBase != null && !m_bIsDoorOpen)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+            }
         }
 
         /// <summary>
@@ -44,6 +53,14 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerInteract()
         {
             base.onDoorHandlePointerInteract();
+            if (!m_bIsDoorOpen)
+            {
+                openDoor();
+                if (m_OutlineGroupHighlighterBase != null)
+                {
+                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated);
+                }
+            }
         }
 
         /// <summary>
@@ -52,6 +69,10 @@ namespace ns_Mashmo
         public override void openDoor()
         {
             base.openDoor();
+            m_bIsDoorOpen = true;
+
+            m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DRAWER_OPEN);
+            m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DRAWER_OPEN, false, 1.0f);
         }
 
         /// <summary>
@@ -60,6 +81,14 @@ namespace ns_Mashmo
         public override void closeDoor(bool a_bIsReset = false)
         {
             base.closeDoor(a_bIsReset);
+            m_bIsDoorOpen = false;
+
+            m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_CLOSE);
+
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+            }
         }
     }
 }
