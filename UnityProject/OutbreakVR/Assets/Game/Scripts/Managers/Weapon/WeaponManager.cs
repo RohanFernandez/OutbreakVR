@@ -519,6 +519,7 @@ namespace ns_Mashmo
                 {
 
                     ItemDropBase l_ItemDropBase = ItemDropManager.GetItemDrop(l_CurrentWeaponBase.WeaponItemType);
+                    l_ItemDropBase.transform.SetParent(a_WeaponDrop.transform.parent);
                     l_ItemDropBase.transform.SetPositionAndRotation(a_WeaponDrop.transform.position, a_WeaponDrop.transform.rotation);
 
                     ///set the bullet count of the previously acquired gun to the item drop if its a gun

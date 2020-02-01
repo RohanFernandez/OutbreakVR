@@ -54,6 +54,7 @@ namespace ns_Mashmo
         public override void returnToPool(T a_Obj)
         {
             a_Obj.gameObject.SetActive(false);
+            a_Obj.transform.SetParent(m_goParent.transform);
             base.returnToPool(a_Obj);
         }
     }

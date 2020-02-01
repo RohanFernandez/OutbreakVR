@@ -91,6 +91,21 @@ namespace ns_Mashmo
                         if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
                         {
                             l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
+
+                            //If the player already is wearing a helmet,
+                            //then set a helmet item with those helmet properties at the same position of the picked up item
+                            if (l_HelmetInventoryItem.IsItemInInventory)
+                            {
+                                ItemDropBase l_ItemDropBase = ItemDropManager.GetItemDrop(ITEM_TYPE.ITEM_HELMET);
+                                HelmetDrop l_NewHelmetDrop = (HelmetDrop)l_ItemDropBase;
+                                l_NewHelmetDrop.IsHelmetCracked = l_HelmetInventoryItem.IsHelmetCracked;
+
+                                l_NewHelmetDrop.transform.SetParent(a_InventoryDropItem.transform.parent);
+                                l_NewHelmetDrop.transform.SetPositionAndRotation(a_InventoryDropItem.transform.position, a_InventoryDropItem.transform.rotation);
+                                l_NewHelmetDrop.transform.localPosition = a_InventoryDropItem.transform.localPosition;
+                            }
+
+                            //Set the picked up helmet attributes to the inventory
                             HelmetDrop l_HelmetDrop = (HelmetDrop)a_InventoryDropItem;
                             l_HelmetInventoryItem.IsHelmetCracked = l_HelmetDrop.IsHelmetCracked;
                             l_HelmetInventoryItem.ItemsInInventory = 1;
