@@ -12,6 +12,12 @@ namespace ns_Mashmo
         private static UI_PausePanel s_Instance = null;
 
         /// <summary>
+        /// Objective panel that holds the level objectives
+        /// </summary>
+        [SerializeField]
+        private UI_LevelObjectivePanel m_ObjectivePanel = null;
+
+        /// <summary>
         /// initializes, sets singleton to this
         /// </summary>
         public override void initialize()
@@ -39,8 +45,18 @@ namespace ns_Mashmo
         /// <summary>
         /// Displays panel
         /// </summary>
-        public static void Show()
+        public static void Show(ObjectiveGroupBase a_CurrentLevelObjectiveGroup)
         {
+            if (a_CurrentLevelObjectiveGroup != null)
+            {
+                s_Instance.m_ObjectivePanel.gameObject.SetActive(true);
+                s_Instance.m_ObjectivePanel.refreshObjectives(a_CurrentLevelObjectiveGroup);
+            }
+            else 
+            {
+                s_Instance.m_ObjectivePanel.gameObject.SetActive(false);
+            }
+            
             s_Instance.show();
         }
 
@@ -65,7 +81,7 @@ namespace ns_Mashmo
             l_v3Forward.y = 0.0f;
             l_v3Forward.Normalize();
 
-            transform.position = PlayerManager.GetPosition() + (l_v3Forward * 0.5f); ;
+            transform.position = PlayerManager.GetPosition() + (l_v3Forward * 0.5f);
             transform.LookAt(m_transHeadsetAnchor);
         }
 

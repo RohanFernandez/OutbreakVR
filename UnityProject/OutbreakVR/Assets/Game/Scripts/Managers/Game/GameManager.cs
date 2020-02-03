@@ -147,7 +147,7 @@ namespace ns_Mashmo
 
             if (s_Instance.m_bIsGamePaused)
             {
-                UI_PausePanel.Show();
+                UI_PausePanel.Show(ObjectiveManager.CurrentObjectiveGroup);
             }
             else
             {
