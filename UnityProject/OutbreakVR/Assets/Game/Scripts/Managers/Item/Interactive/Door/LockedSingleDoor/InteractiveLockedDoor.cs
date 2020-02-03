@@ -133,12 +133,6 @@ namespace ns_Mashmo
         /// <param name="a_KeypadEntity"></param>
         public void onKeypadEntityClicked(KeypadEntity a_KeypadEntity)
         {
-            ///if the key entity is not pressed i.e. keypad is enabled, dont do anything
-            if (!a_KeypadEntity.IsKeyEntityPressed())
-            {
-                return;
-            }
-
             m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_KEYPAD_CLICK, false, 1.0f);
 
             m_lstKeypadEntries[m_iEnteredEntryCount].EnteredCode = a_KeypadEntity.KeyPadIndex;
@@ -163,6 +157,7 @@ namespace ns_Mashmo
                 }
                 else
                 {
+                    //Wrong code entered, reset keypad
                     m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_KEYPAD_WRONG_CODE, false, 1.0f);
                     resetKeypad();
                 }
