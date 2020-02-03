@@ -94,6 +94,9 @@ namespace ns_Mashmo
             m_CustomPointer.transform.localRotation = Quaternion.identity;
             m_bIsRemoteAttached = m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE || m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_RIGHT_REMOTE;
 
+            //Inverts the X value of the Scale of the Pointer if the user is left handed
+            m_CustomPointer.transform.localScale = (m_CurrentControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE) ? new Vector3(-1.0f, 1.0f, 1.0f) : Vector3.one;
+
             EventHash l_hash = EventManager.GetEventHashtable();
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_TYPE, a_OldControllerType);
             l_hash.Add(GameEventTypeConst.ID_OLD_CONTROLLER_ANCHOR, a_OldControllerAnchor);
