@@ -11,6 +11,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private EnemyBase m_EnemyBase = null;
+        public EnemyBase EnemyBase
+        {
+            get { return m_EnemyBase; }
+        }
 
         /// <summary>
         /// Damage to inflict on the enemy

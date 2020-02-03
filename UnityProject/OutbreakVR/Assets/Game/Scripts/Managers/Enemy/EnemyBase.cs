@@ -88,6 +88,15 @@ namespace ns_Mashmo
 
         [SerializeField]
         private List<Transform> m_lstHitTransformPoint = null;
+        public Transform getRandomHitTransformPoint()
+        {
+            int l_iHitTransformCount = m_lstHitTransformPoint.Count;
+            if (l_iHitTransformCount > 0)
+            {
+                return m_lstHitTransformPoint [Random.Range(0, l_iHitTransformCount)];
+            }
+            return transform;
+        }
 
         /// <summary>
         /// Activates use of enemy

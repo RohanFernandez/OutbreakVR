@@ -69,7 +69,7 @@ namespace ns_Mashmo
 
         public virtual void Update()
         {
-            m_goItemModel.transform.Rotate(Vector3.up, ROTATION_SPEED * Time.deltaTime);
+            m_goItemModel.transform.Rotate(m_goItemModel.transform.up, ROTATION_SPEED * Time.deltaTime);
             m_goItemTitle.transform.LookAt(ControllerManager.GetHeadsetAnchor().transform);
         }
 

@@ -154,6 +154,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private LayerMask m_GunHitInteractionLayer;
+        public static LayerMask GunHitInteractionLayer
+        {
+            get { return s_Instance.m_GunHitInteractionLayer; }
+        }
 
         public override void initialize()
         {
@@ -491,24 +495,34 @@ namespace ns_Mashmo
             ///else dont pick up at all
             if (l_CurrentWeaponType == l_PickedUpWeaponType)
             {
-                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
-                if (l_iBulletsInPickup > 0 &&
-                    l_GunWeaponBase != null &&
-                    l_GunWeaponBase.canAddBullets()
-                    )
+                //weapon should be gun to add bullets
+                if (l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.PRIMARY ||
+                    l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.SECONDARY)
                 {
-                    l_GunWeaponBase.addBullets(l_iBulletsInPickup);
-                    l_bIsWeaponPickedUp = true;
-                    SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
+                    GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
+                    if (l_iBulletsInPickup > 0 &&
+                        l_GunWeaponBase != null &&
+                        l_GunWeaponBase.canAddBullets()
+                        )
+                    {
+                        l_GunWeaponBase.addBullets(l_iBulletsInPickup);
+                        l_bIsWeaponPickedUp = true;
+                        SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
+                    }
                 }
             }
             else
             {
                 SetCurrentWeaponInCategory(l_PickedUpWeaponCategoryType, l_PickedUpWeaponType);
-                GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
-                if (l_GunWeaponBase != null)
+
+                if (l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.PRIMARY ||
+                    l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.SECONDARY)
                 {
-                    l_GunWeaponBase.initBulletCount(l_iBulletsInPickup, l_iBulletsInPickup);
+                    GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
+                    if (l_GunWeaponBase != null)
+                    {
+                        l_GunWeaponBase.initBulletCount(l_iBulletsInPickup, l_iBulletsInPickup);
+                    }
                 }
 
                 SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
@@ -522,13 +536,17 @@ namespace ns_Mashmo
                     l_ItemDropBase.transform.SetParent(a_WeaponDrop.transform.parent);
                     l_ItemDropBase.transform.SetPositionAndRotation(a_WeaponDrop.transform.position, a_WeaponDrop.transform.rotation);
 
-                    ///set the bullet count of the previously acquired gun to the item drop if its a gun
-                    GunWeaponBase l_CurrentGunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
-                    GunWeaponDrop l_GunWeaponDrop = (GunWeaponDrop)l_ItemDropBase;
-                    if(l_GunWeaponDrop != null &&
-                        l_CurrentGunWeaponBase != null)
+                    if (l_PickedUpWeaponCategoryType != WEAPON_CATEGORY_TYPE.PRIMARY ||
+                        l_PickedUpWeaponCategoryType != WEAPON_CATEGORY_TYPE.SECONDARY)
                     {
-                        l_GunWeaponDrop.BulletCount = l_CurrentGunWeaponBase.TotalBullets;
+                        ///set the bullet count of the previously acquired gun to the item drop if its a gun
+                        GunWeaponBase l_CurrentGunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
+                        GunWeaponDrop l_GunWeaponDrop = (GunWeaponDrop)l_ItemDropBase;
+                        if (l_GunWeaponDrop != null &&
+                            l_CurrentGunWeaponBase != null)
+                        {
+                            l_GunWeaponDrop.BulletCount = l_CurrentGunWeaponBase.TotalBullets;
+                        }
                     }
                 }
 
