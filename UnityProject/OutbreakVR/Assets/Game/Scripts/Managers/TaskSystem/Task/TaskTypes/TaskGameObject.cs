@@ -7,7 +7,7 @@ namespace ns_Mashmo
     public class TaskGameObject : TaskBase
     {
         #region ATTRIBUTE_KEY
-        private const string ATTRIBUTE_GAMEOBJECT_ID  = "GameObject_ID";
+        private const string ATTRIBUTE_GAMEOBJECT_ID    = "GameObject_ID";
         private const string ATTRIBUTE_SET_ACTIVE       = "IsActive";
         #endregion ATTRIBUTE_KEY
 

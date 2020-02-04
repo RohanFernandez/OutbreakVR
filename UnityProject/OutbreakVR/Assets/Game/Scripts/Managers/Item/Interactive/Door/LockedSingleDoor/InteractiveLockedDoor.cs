@@ -54,20 +54,6 @@ namespace ns_Mashmo
         private int m_iEnteredEntryCount = 0;
 
         /// <summary>
-        /// Is the door locked, if true the door cannot be opened
-        /// </summary>
-        [SerializeField]
-        private bool m_bIsDoorLocked = false;
-        private bool IsDoorLocked
-        {
-            get { return m_bIsDoorLocked; }
-            set {
-                m_bIsDoorLocked = value;
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
-            }
-        }
-
-        /// <summary>
         /// On interactive with the door handle of this door
         /// </summary>
         public override void onDoorHandlePointerInteract()
@@ -178,6 +164,21 @@ namespace ns_Mashmo
                 }
             }
             return true;
+        }
+
+
+        /// <summary>
+        /// Locks / Unlocks door
+        /// </summary>
+        /// <param name="a_bIsDoorLocked"></param>
+        public override void lockDoor(bool a_bIsDoorLocked)
+        {
+            base.lockDoor(a_bIsDoorLocked);
+
+            if (a_bIsDoorLocked)
+            {
+                resetValues();
+            }
         }
     }
 }

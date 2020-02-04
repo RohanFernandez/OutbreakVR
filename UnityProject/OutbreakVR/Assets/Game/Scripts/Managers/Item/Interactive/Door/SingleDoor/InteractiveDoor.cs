@@ -36,6 +36,21 @@ namespace ns_Mashmo
         [SerializeField]
         private InteractiveDoorProximityDetector m_DoorProximityDetector = null;
 
+        /// <summary>
+        /// Is the door locked, if true the door cannot be opened
+        /// </summary>
+        [SerializeField]
+        protected bool m_bIsDoorLocked = false;
+        protected bool IsDoorLocked
+        {
+            get { return m_bIsDoorLocked; }
+            set
+            {
+                m_bIsDoorLocked = value;
+                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
+            }
+        }
+
         public bool IsDoorOpen
         {
             get { return m_bIsDoorOpen; }
@@ -62,7 +77,7 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerOver();
 
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
+            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen && !IsDoorLocked)
             {
                 m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
             }
@@ -75,7 +90,7 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerExit();
 
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
+            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen && !IsDoorLocked)
             {
                 m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
             }
@@ -88,7 +103,7 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerInteract();
 
-            if (IsDoorOpen)
+            if (IsDoorOpen || IsDoorLocked)
             {
                 return;
             }
@@ -146,8 +161,18 @@ namespace ns_Mashmo
         public override void resetValues()
         {
             base.resetValues();
+            IsDoorLocked = false;
             closeDoor(true);
             m_DoorProximityDetector.resetValues();
+        }
+
+        /// <summary>
+        /// Locks / Unlocks door
+        /// </summary>
+        /// <param name="a_bIsDoorLocked"></param>
+        public virtual void lockDoor(bool a_bIsDoorLocked)
+        {
+            IsDoorLocked = a_bIsDoorLocked;
         }
     }
 }
