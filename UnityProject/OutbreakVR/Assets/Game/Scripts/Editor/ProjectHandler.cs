@@ -26,7 +26,7 @@ namespace ns_Mashmo
         private const string XML_TASK_LIST_LEVEL00_NAME = "TaskListLevel00";
         private const string XML_TASK_LIST_LEVEL0_NAME = "TaskListLevel0";
         private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
-        private const string XML_TASK_LIST_LEVEL2_NAME = "TaskListLevel2";
+        private const string XML_TASK_LIST_TRAINING_NAME = "TaskListTraining";
         private const string XML_TASK_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\TaskListAssets\\";
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace ns_Mashmo
         private const string XML_OBJECTIVE_LIST_LEVEL00_NAME = "ObjectiveListLevel00";
         private const string XML_OBJECTIVE_LIST_LEVEL0_NAME = "ObjectiveListLevel0";
         private const string XML_OBJECTIVE_LIST_LEVEL1_NAME = "ObjectiveListLevel1";
-        private const string XML_OBJECTIVE_LIST_LEVEL2_NAME = "ObjectiveListLevel2";
+        private const string XML_OBJECTIVE_LIST_TRAINING_NAME = "ObjectiveListTraining";
         private const string XML_OBJECTIVE_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\ObjectiveListAssets\\";
 
         private const string XML_EXTENSION = ".xml";
@@ -47,14 +47,14 @@ namespace ns_Mashmo
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL00_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL0_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL1_NAME);
-            CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL2_NAME);
+            CreateTaskListScriptableObject(XML_TASK_LIST_TRAINING_NAME);
             CreateTaskListScriptableObject(XML_TASK_LIST_COMMON_NAME);
 
             ///Objective list creation
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL00_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL0_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL2_NAME);
+            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_TRAINING_NAME);
         }
 
         /// <summary>

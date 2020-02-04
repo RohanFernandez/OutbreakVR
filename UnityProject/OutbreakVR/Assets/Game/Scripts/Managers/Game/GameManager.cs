@@ -207,10 +207,21 @@ namespace ns_Mashmo
             PlayerManager.SetPlayerState(PLAYER_STATE.NO_INTERACTION);
         }
 
+        /// <summary>
+        /// Start a new game
+        /// </summary>
         public static void OnNewGameSelected()
         {
             LevelManager.LastCheckpointLevel = string.Empty;
             LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
+        }
+
+        /// <summary>
+        /// Start a training level
+        /// </summary>
+        public static void OnTrainingLevelSelected()
+        {
+            LevelManager.GoToLevel(GameConsts.STATE_NAME_TRAINING);
         }
 
         /// <summary>

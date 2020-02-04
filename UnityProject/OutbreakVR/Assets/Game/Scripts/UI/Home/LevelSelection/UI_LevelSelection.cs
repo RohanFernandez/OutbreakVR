@@ -9,10 +9,19 @@ namespace ns_Mashmo
         /// <summary>
         /// On level option selected set go to state
         /// </summary>
-        public void onLevelOptionSelected(string a_strGameStateName)
+        public void onNewLevelOptionSelected()
         {
             UI_LoadingPanel.Show();
             GameManager.OnNewGameSelected();
+        }
+
+        /// <summary>
+        /// On training option selected set go to state
+        /// </summary>
+        public void onTrainingOptionSelected()
+        {
+            UI_LoadingPanel.Show();
+            GameManager.OnTrainingLevelSelected();
         }
 
         /// <summary>
