@@ -804,7 +804,6 @@ GameObject:
   m_Component:
   - component: {fileID: 161971807}
   - component: {fileID: 161971808}
-  - component: {fileID: 161971809}
   m_Layer: 2
   m_Name: WeaponAK47
   m_TagString: Untagged
@@ -854,25 +853,16 @@ MonoBehaviour:
   m_fTimeBetweenEachShoot: 0.15
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 25
-  m_animRecoil: {fileID: 161971809}
+  m_fRecoilAnimSpeed: 0
+  m_animatorHands: {fileID: 0}
   m_fWeaponReloadTime: 2
   m_iTotalBullets: 25
---- !u!111 &161971809
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!95 &198207416 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: e645bf6b2ba8fba47bde6099211f3ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 140256434}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161971806}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4625801e38ed32e4183a0657adde3160, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 4625801e38ed32e4183a0657adde3160, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &210666750
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,19 +949,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0015
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14599997
+      value: 0.06836
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5369999
+      value: 0.136
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -991,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1318,6 +1308,12 @@ MonoBehaviour:
   - {fileID: 1130146026741954715, guid: 2eea0d961beca8c439c71ae51f34bbff, type: 3}
   - {fileID: 8014390329271176049, guid: 0bd9b7e63ef5ec8438fbfafdd3722317, type: 3}
   - {fileID: 1793559304087461781, guid: c73608bc0645d9d43a5569abe16497de, type: 3}
+--- !u!4 &331615787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: e645bf6b2ba8fba47bde6099211f3ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 140256434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &357482246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1449,8 @@ MonoBehaviour:
   m_fTimeBetweenEachShoot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_animRecoil: {fileID: 0}
+  m_fRecoilAnimSpeed: 0
+  m_animatorHands: {fileID: 0}
   m_fWeaponReloadTime: 5
   m_iTotalBullets: 25
 --- !u!1 &420131774
@@ -2614,7 +2611,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1434946004}
   - {fileID: 1624717142}
   m_Father: {fileID: 1072108159}
   m_RootOrder: 0
@@ -3906,7 +3902,8 @@ MonoBehaviour:
   m_fTimeBetweenEachShoot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_animRecoil: {fileID: 0}
+  m_fRecoilAnimSpeed: 0
+  m_animatorHands: {fileID: 0}
   m_fWeaponReloadTime: 5
   m_iTotalBullets: 25
 --- !u!1 &1057485814
@@ -3949,7 +3946,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1072108159}
   - component: {fileID: 1072108160}
-  - component: {fileID: 1072108161}
   m_Layer: 2
   m_Name: WeaponFN57
   m_TagString: Untagged
@@ -3996,28 +3992,13 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 17
   m_strAudClipIDOnShoot: AudClip_WeaponFireDefault
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0.3
+  m_fTimeBetweenEachShoot: 1
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_animRecoil: {fileID: 1072108161}
+  m_fRecoilAnimSpeed: 0
+  m_animatorHands: {fileID: 198207416}
   m_fWeaponReloadTime: 1
   m_iTotalBullets: 25
---- !u!111 &1072108161
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072108158}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 226bc9e395eb595468b0f852dea45511, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 226bc9e395eb595468b0f852dea45511, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1082644313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,19 +5645,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013947318026, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.079
+      value: 0.0221
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18699998
+      value: 0.0714
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.15699999
+      value: -0.0013
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5696,7 +5677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5877,11 +5858,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434946003}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.14599998, z: -0.003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0.0005579999, z: 0.00061399996}
+  m_LocalScale: {x: 0.009999999, y: 0.009999998, z: 0.009999998}
   m_Children: []
-  m_Father: {fileID: 727711703}
+  m_Father: {fileID: 331615787}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1443087098
@@ -6751,13 +6732,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 137422258}
+  - {fileID: 1684875817}
   - {fileID: 1396117574}
   - {fileID: 218116387}
-  - {fileID: 1684875817}
   - {fileID: 1114393729}
   - {fileID: 140256435}
   m_Father: {fileID: 727711703}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.07848297, y: 0, z: 0}
 --- !u!1 &1628749655
 GameObject:
@@ -7108,7 +7089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 332b5e748fa746b46bd95d43fecb704f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

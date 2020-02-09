@@ -70,15 +70,36 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// animation recoil
+        /// The speed of the recoil between 0.0 - 1.0
+        /// depending upon the number of bullets the gun can fire in a second
+        /// </summary>
+        public float m_fRecoilAnimSpeed = 0.0f;
+
+        /// <summary>
+        /// The animator that handles the hands of this gun
         /// </summary>
         [SerializeField]
-        protected Animation m_animRecoil = null;
+        protected Animator m_animatorHands = null;
 
         /// <summary>
         /// The name of the recoil anim state name
         /// </summary>
         private const string RECOIL_ANIM_STATE_NAME = "Recoil";
+
+        /// <summary>
+        /// The name of the shoot anim state name
+        /// </summary>
+        private const string ANIM_STATE_SHOOT = "shoot";
+
+        /// <summary>
+        /// The name of the anim state that opens the menu
+        /// </summary>
+        private const string ANIM_STATE_OPEN_MENU = "Menu_1";
+
+        /// <summary>
+        /// The name of the anim state that closes the menu
+        /// </summary>
+        private const string ANIM_STATE_CLOSE_MENU = "Menu_1";
 
         public int CurrentMagCount
         {
@@ -161,11 +182,11 @@ namespace ns_Mashmo
             // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
             m_bGunFireAudSrcIndex1 = !m_bGunFireAudSrcIndex1;
             SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? GameConsts.AUD_SRC_GUN_FIRE : GameConsts.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
-            
-            if (m_animRecoil != null)
+
+            if (m_animatorHands != null)
             {
-                m_animRecoil.Stop();
-                m_animRecoil.Play();
+                m_animatorHands.speed = m_fRecoilAnimSpeed;
+                m_animatorHands.Play(ANIM_STATE_SHOOT);
             }
 
             m_fTimeSinceLastShot = 0.0f;
@@ -193,15 +214,8 @@ namespace ns_Mashmo
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
-
-            if (m_animRecoil != null)
-            {
-                AnimationState l_AnimState = m_animRecoil[RECOIL_ANIM_STATE_NAME];
-                if (l_AnimState != null)
-                {
-                    l_AnimState.speed = 1.0f / m_fTimeBetweenEachShoot;
-                }
-            }
+;
+            m_fRecoilAnimSpeed = 1.0f / m_fTimeBetweenEachShoot;
 
             updateBulletData();
         }
