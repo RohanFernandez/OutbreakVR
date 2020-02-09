@@ -24,8 +24,18 @@ namespace ns_Mashmo
         /// </summary>
         private void initializeGame()
         {
-            //Entitlement check
-            initEntitlementCheck();
+            if(SystemManager.IsUseEntitlementCheck)
+            {
+                //Entitlement check
+                initEntitlementCheck();
+            }
+            else
+            {
+                PlayerDataManager.InitDataWithUsername("TEST_USER");
+                LevelManager.LoadLevelDataFromPlayerPrefs();
+                onInitializationSuccessful();
+            }
+            
 
 
             //Get username and userid

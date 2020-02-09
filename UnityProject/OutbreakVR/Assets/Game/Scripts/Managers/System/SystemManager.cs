@@ -11,6 +11,13 @@ namespace ns_Mashmo
         /// </summary>
         private static SystemManager s_Instance = null;
 
+        [SerializeField]
+        private bool m_bIsUseEntitlementCheck = false;
+        public static bool IsUseEntitlementCheck
+        {
+            get { return s_Instance.m_bIsUseEntitlementCheck; }
+        }
+
         /// <summary>
         /// This object is the initial manager hence initialize is called by awake
         /// </summary>
