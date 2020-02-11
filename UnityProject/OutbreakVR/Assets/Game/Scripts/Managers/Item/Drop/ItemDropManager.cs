@@ -15,7 +15,9 @@ namespace ns_Mashmo
         ITEM_PRIMARY_SHOTGUN_BULLETS,
         ITEM_CHAINSAW,
         ITEM_REVOLVER,
-        ITEM_HELMET
+        ITEM_HELMET,
+        ITEM_STINGRAY,
+        ITEM_THOMPSON
     }
 
     /// <summary>

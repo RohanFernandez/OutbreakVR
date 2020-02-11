@@ -21,6 +21,8 @@ namespace ns_Mashmo
         AK47               = 4, //PRIMARY
         SHOTGUN1           = 5, //PRIMARY
         REVOLVER           = 6, //SECONDARY
+        STINGRAY           = 7, //PRIMARY
+        THOMPSON           = 8, //PRIMARY
     }
 
     public enum BULLETS_TYPE

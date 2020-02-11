@@ -17,6 +17,9 @@ namespace ns_Mashmo
         [SerializeField]
         private UI_LevelObjectivePanel m_ObjectivePanel = null;
 
+        //[SerializeField]
+        //private List<UnityEngine.UI.Button> m_lstBtn
+
         /// <summary>
         /// initializes, sets singleton to this
         /// </summary>
@@ -28,6 +31,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_TOUCHPAD_BTN_CHANGED, onTouchpadBtnChanged);
         }
 
         /// <summary>
@@ -39,6 +43,8 @@ namespace ns_Mashmo
             {
                 return;
             }
+
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_TOUCHPAD_BTN_CHANGED, onTouchpadBtnChanged);
             s_Instance = null;
         }
 
@@ -70,19 +76,11 @@ namespace ns_Mashmo
 
         private void Update()
         {
-            Transform m_transHeadsetAnchor = ControllerManager.GetHeadsetAnchor().transform;
-            Vector3 l_v3Forward = m_transHeadsetAnchor.forward;
+            Transform l_HeadsetTransform = ControllerManager.GetHeadsetAnchor().transform;
+            Vector3 l_v3HeadsetForward = new Vector3(l_HeadsetTransform.forward.x, 0.0f, l_HeadsetTransform.forward.z).normalized;
 
-            if (Vector3.Dot(l_v3Forward, Vector3.down) > 0.5f)
-            {
-                return;
-            }
-
-            l_v3Forward.y = 0.0f;
-            l_v3Forward.Normalize();
-
-            transform.position = PlayerManager.GetPosition() + (l_v3Forward * 0.5f);
-            transform.LookAt(m_transHeadsetAnchor);
+            transform.position = l_HeadsetTransform.position + (l_v3HeadsetForward * 0.75f);
+            transform.LookAt(l_HeadsetTransform);
         }
 
         /// <summary>
@@ -107,6 +105,35 @@ namespace ns_Mashmo
         public void onBtnClicked_GoToLastCheckpoint()
         {
             GameManager.RestartLevel();
+        }
+
+        /// <summary>
+        /// Callback called on event on touchpad changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onTouchpadBtnChanged(EventHash a_EventHash)
+        {
+            if (!gameObject.activeSelf) { return; }
+
+            CONTROLLER_TOUCHPAD_BUTTON l_NewTouchPadBtnPressed = (CONTROLLER_TOUCHPAD_BUTTON)a_EventHash[GameEventTypeConst.ID_NEW_TOUCHPAD_BTN_PRESSED];
+            CONTROLLER_TOUCHPAD_BUTTON l_OldTouchPadBtnPressed = (CONTROLLER_TOUCHPAD_BUTTON)a_EventHash[GameEventTypeConst.ID_OLD_TOUCHPAD_BTN_PRESSED];
+
+            //BOTTOM OPTION
+            if ((l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_BOTTOM_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_BOTTOM_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED) &&
+                l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
+            {
+
+            }
+            //TOP OPTION
+            else if ((l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_TOP_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED) &&
+                l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
+            { 
+                
+            }
         }
     }
 }
