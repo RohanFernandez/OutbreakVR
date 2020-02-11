@@ -82,11 +82,6 @@ namespace ns_Mashmo
         protected Animator m_animatorHands = null;
 
         /// <summary>
-        /// The name of the recoil anim state name
-        /// </summary>
-        private const string RECOIL_ANIM_STATE_NAME = "Recoil";
-
-        /// <summary>
         /// The name of the shoot anim state name
         /// </summary>
         private const string ANIM_STATE_SHOOT = "shoot";
@@ -99,7 +94,12 @@ namespace ns_Mashmo
         /// <summary>
         /// The name of the anim state that closes the menu
         /// </summary>
-        private const string ANIM_STATE_CLOSE_MENU = "Menu_1";
+        private const string ANIM_STATE_CLOSE_MENU = "Menu_2";
+
+        /// <summary>
+        /// The name of the anim state that closes the menu
+        /// </summary>
+        private const string ANIM_STATE_IDLE_HANDS = "idle";
 
         public int CurrentMagCount
         {
@@ -217,6 +217,12 @@ namespace ns_Mashmo
 ;
             m_fRecoilAnimSpeed = 1.0f / m_fTimeBetweenEachShoot;
 
+            if (m_animatorHands != null)
+            {
+                m_animatorHands.speed = 1.0f;
+                m_animatorHands.Play(ANIM_STATE_IDLE_HANDS);
+            }
+
             updateBulletData();
         }
 
@@ -309,6 +315,22 @@ namespace ns_Mashmo
         public override float getReloadWaitTime()
         {
             return m_fWeaponReloadTime;
+        }
+
+        /// <summary>
+        /// The game is paused/unpaused
+        /// play animation of the arm monitor
+        /// </summary>
+        /// <param name="a_IsPaused"></param>
+        public override void onGamePauseToggled(bool a_IsPaused) 
+        {
+            base.onGamePauseToggled(a_IsPaused);
+
+            if (m_animatorHands != null)
+            {
+                m_animatorHands.speed = 1.0f;
+                m_animatorHands.Play(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
+            }
         }
 
         void Update()

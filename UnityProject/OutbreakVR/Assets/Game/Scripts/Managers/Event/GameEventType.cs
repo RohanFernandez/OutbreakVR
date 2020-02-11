@@ -29,6 +29,8 @@ namespace ns_Mashmo
         ON_GAME_STATE_ENDED,                        /* <OLD LEVEL STRING>*/
         ON_GAME_STATE_STARTED,                      /* <NEW LEVEL STRING>*/
         ON_RELOAD_TOGGLED,                          /* <BOOL>*/
+        ON_TOUCHPAD_BTN_CHANGED,                    /* <CONTROLLER_TOUCHPAD_BUTTON, CONTROLLER_TOUCHPAD_BUTTON> */
+        ON_TOUCHPAD_SWIPE,                         /* <CONTROLLER_TOUCHPAD_SWIPE > */
     }
 
     public static class GameEventTypeConst
@@ -73,6 +75,7 @@ namespace ns_Mashmo
 
         #region ON_GAME_PAUSED_TOGGLED
         public const string ID_GAME_PAUSED = "ID_GAME_PAUSED";                    /* BOOL */
+        public const string ID_PAUSE_FORCED = "ID_PAUSE_FORCED";                    /* BOOL */
         #endregion ON_GAME_PAUSED_TOGGLED
 
         #region ON_GAMEPLAY_ENDED
@@ -144,5 +147,14 @@ namespace ns_Mashmo
         #region ON_RELOAD_TOGGLED
         public const string ID_RELOAD_TOGGLED_ON = "ID_RELOAD_TOGGLED_ON";     /* BOOL */
         #endregion ON_RELOAD_TOGGLED
+
+        #region ON_TOUCHPAD_BTN_CHANGED
+        public const string ID_NEW_TOUCHPAD_BTN_PRESSED = "ID_NEW_TOUCHPAD_BTN_PRESSED";     /* CONTROLLER_TOUCHPAD_BUTTON */
+        public const string ID_OLD_TOUCHPAD_BTN_PRESSED = "ID_OLD_TOUCHPAD_BTN_PRESSED";     /* CONTROLLER_TOUCHPAD_BUTTON */
+        #endregion ON_TOUCHPAD_BTN_CHANGED
+
+        #region ON_TOUCHPAD_SWIPE
+        public const string ID_TOUCHPAD_SWIPE = "ID_TOUCHPAD_SWIPE";     /* CONTROLLER_TOUCHPAD_SWIPE */
+        #endregion ON_TOUCHPAD_SWIPE
     }
 }

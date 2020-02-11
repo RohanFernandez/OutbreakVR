@@ -75,6 +75,13 @@ namespace ns_Mashmo
         public virtual bool isReloadRequired() { return false; }
 
         /// <summary>
+        /// The game is paused/unpaused
+        /// play animation of the arm monitor
+        /// </summary>
+        /// <param name="a_IsPaused"></param>
+        public virtual void onGamePauseToggled(bool a_IsPaused) {  }
+
+        /// <summary>
         /// Can the current weapon be reloaded
         /// </summary>
         /// <returns></returns>

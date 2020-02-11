@@ -109,6 +109,16 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The weapon can cause damage
+        /// </summary>
+        private bool m_bIsWeaponArmed = false;
+        public static bool IsWeaponArmed
+        {
+            get { return s_Instance.m_bIsWeaponArmed; }
+            private set { s_Instance.m_bIsWeaponArmed = value; }
+        }
+
+        /// <summary>
         /// The current time taken to reload the weapon
         /// </summary>
         [SerializeField]
@@ -169,6 +179,7 @@ namespace ns_Mashmo
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
 
             m_dictWeaponCategories = new Dictionary<WEAPON_CATEGORY_TYPE, WeaponCategory>(3);
 
@@ -205,6 +216,7 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
 
@@ -697,6 +709,21 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// On game is paused/ unpaused
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onGamePauseToggled(EventHash a_EventHash)
+        {
+            bool l_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
+            bool l_bIsPauseForced = (bool)a_EventHash[GameEventTypeConst.ID_PAUSE_FORCED];
+            WeaponBase l_CurrentWeaponBase = GetCurrentWeaponBase();
+            if (l_CurrentWeaponBase != null && !l_bIsPauseForced)
+            {
+                l_CurrentWeaponBase.onGamePauseToggled(l_bIsGamePaused);
+            }
+        }
+
+        /// <summary>
         /// Returns a raycast hit on weapon fire
         /// </summary>
         private void manageRaycastHitOnGunFire(GunWeaponBase a_GunWeaponBase)
@@ -778,7 +805,8 @@ namespace ns_Mashmo
         {
             CurrentReloadWaitTime = 0.0f;
             PLAYER_STATE l_NewPlayerState = (PLAYER_STATE)a_EventHash[GameEventTypeConst.ID_NEW_PLAYER_STATE];
-            IsWeaponActive = l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED;
+            IsWeaponActive = l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED || l_NewPlayerState == PLAYER_STATE.IN_GAME_PAUSED;
+            IsWeaponArmed = l_NewPlayerState == PLAYER_STATE.IN_GAME_MOVEMENT || l_NewPlayerState == PLAYER_STATE.IN_GAME_HALTED;
         }
 
         /// <summary>
@@ -786,7 +814,7 @@ namespace ns_Mashmo
         /// </summary>
         private void Update()
         {
-            if (IsWeaponActive)
+            if (IsWeaponActive && IsWeaponArmed)
             {
                 manageWeaponAttack();
             }

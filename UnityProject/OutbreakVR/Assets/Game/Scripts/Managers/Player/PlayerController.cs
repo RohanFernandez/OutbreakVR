@@ -4,6 +4,28 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
+    public enum CONTROLLER_TOUCHPAD_SWIPE
+    { 
+        LEFT_TO_RIGHT   =   0,
+        RIGHT_TO_LEFT   =   1,
+        BOTTOM_TO_TOP   =   2,
+        TOP_TO_BOTTOM   =   3,
+        NO_SWIPE        =   4,
+    }
+
+    public enum CONTROLLER_TOUCHPAD_BUTTON
+    {
+        BTN_RIGHT_PRESSED           =   0,
+        BTN_LEFT_PRESSED            =   1,
+        BTN_TOP_PRESSED             =   2,
+        BTN_BOTTOM_PRESSED          =   3,
+        BTN_RIGHT_TOP_PRESSED       =   5,
+        BTN_LEFT_TOP_PRESSED        =   6,
+        BTN_RIGHT_BOTTOM_PRESSED    =   7,
+        BTN_LEFT_BOTTOM_PRESSED     =   8,
+        BTN_NOT_PRESSED             =   9,
+    }
+
     public class PlayerController : AbsComponentHandler
     {
         /// <summary>
@@ -36,7 +58,7 @@ namespace ns_Mashmo
         /// <summary>
         /// The controls to manage the player depending on PLAYER STATE
         /// </summary>
-        private System.Action m_actPlayerStateControl = null;
+        private System.Action<CONTROLLER_TOUCHPAD_SWIPE, CONTROLLER_TOUCHPAD_BUTTON> m_actPlayerStateControl = null;
 
         /// <summary>
         /// Component of player parent to manage registration to GameObjectManager
@@ -49,6 +71,16 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private RegisteredGameObject m_RegisteredGameObj = null;
+
+        /// <summary>
+        /// The last updated pressed value
+        /// </summary>
+        private CONTROLLER_TOUCHPAD_BUTTON m_TrackpadPadButton = CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED;
+
+        /// <summary>
+        /// The last updated swiped value
+        /// </summary>
+        private CONTROLLER_TOUCHPAD_SWIPE m_TrackpadPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.NO_SWIPE;
 
         #region SWIPE
 
@@ -118,7 +150,6 @@ namespace ns_Mashmo
             m_RegisteredGameObj.registerGameObject();
             
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
         }
 
         public override void destroy()
@@ -129,79 +160,87 @@ namespace ns_Mashmo
             }
             m_RegisteredGameObj.unregisterGameObject();
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             s_Instance = null;
         }
 
         void Update()
         {
+            CONTROLLER_TOUCHPAD_BUTTON l_LastTrackpadPadButton = m_TrackpadPadButton;
+            CONTROLLER_TOUCHPAD_SWIPE l_LastTrackpadPadSwipe = m_TrackpadPadSwipe;
+            m_TrackpadPadButton = getTrackPadPress();
+            m_TrackpadPadSwipe = getTrackPadSwipe();
+
+            if (m_TrackpadPadButton != CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED &&
+                l_LastTrackpadPadButton != CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_NEW_TOUCHPAD_BTN_PRESSED, m_TrackpadPadButton);
+                l_EventHash.Add(GameEventTypeConst.ID_OLD_TOUCHPAD_BTN_PRESSED, l_LastTrackpadPadButton);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_TOUCHPAD_BTN_CHANGED, l_EventHash);
+            }
+
+            if (m_TrackpadPadSwipe != CONTROLLER_TOUCHPAD_SWIPE.NO_SWIPE)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_TOUCHPAD_SWIPE, m_TrackpadPadSwipe);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_TOUCHPAD_SWIPE, l_EventHash);
+            }
+
             if (m_actPlayerStateControl != null)
             {
-                m_actPlayerStateControl();
+                m_actPlayerStateControl(m_TrackpadPadSwipe, m_TrackpadPadButton);
             }
         }
 
         /// <summary>
         /// Manage input with the movement.
         /// </summary>
-        private void managePlayerState_InGameMovement()
+        private void managePlayerState_InGameMovement(CONTROLLER_TOUCHPAD_SWIPE a_TouchPadSwipe, CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
         {
-            manageMovement();
-            managerSwipeInteraction();
+            manageMovement(a_TouchPadButton);
+            managerSwipeInteraction(a_TouchPadSwipe);
             manageInGamePause();
         }
 
         /// <summary>
         /// Manages movement of the player
         /// </summary>
-        private void manageMovement()
+        private void manageMovement(CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
         {
-            Vector2 l_v2RemoteTouchPadPosition = ControllerManager.GetPrimaryTouchpadPosition();
             bool l_bIsMovingLastFrame = m_bIsMoving;
             m_bIsMoving = false;
             Vector3 l_v3MovementDirection = Vector3.zero;
 
-#if !UNITY_EDITOR
-        if (ControllerManager.IsPrimaryTouchpadBtnDown())
-        {
-#endif
+
             //forward Pressed, move player forward
-            if (
-#if UNITY_EDITOR
-                    Input.GetKey(KeyCode.W) ||
-#endif
-                    l_v2RemoteTouchPadPosition.y > 0.5f)
+            if (a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_TOP_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED)
             {
                 l_v3MovementDirection += (m_HeadsetPlayerCamera.forward);
                 m_bIsMoving = true;
             }
             //back Pressed, move player backwards
-            else if (
-#if UNITY_EDITOR
-                    Input.GetKey(KeyCode.S) ||
-#endif
-                    l_v2RemoteTouchPadPosition.y < -0.5f)
+            else if (a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_BOTTOM_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_BOTTOM_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED)
             {
                 l_v3MovementDirection += (-m_HeadsetPlayerCamera.forward);
                 m_bIsMoving = true;
             }
 
             //Right Pressed, move player left
-            if (
-#if UNITY_EDITOR
-                    Input.GetKey(KeyCode.D) ||
-#endif
-                    l_v2RemoteTouchPadPosition.x > 0.5f)
+            if (a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED)
             {
                 l_v3MovementDirection += (m_HeadsetPlayerCamera.right);
                 m_bIsMoving = true;
             }
             //Left Pressed, move player left
-            else if (
-#if UNITY_EDITOR
-                    Input.GetKey(KeyCode.A) ||
-#endif
-                    l_v2RemoteTouchPadPosition.x < -0.5f)
+            else if (a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_BOTTOM_PRESSED ||
+                a_TouchPadButton == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_TOP_PRESSED)
             {
                 l_v3MovementDirection += (-m_HeadsetPlayerCamera.right);
                 m_bIsMoving = true;
@@ -241,11 +280,89 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Manages the swipe interactions
+        /// Manages trackpad press
         /// </summary>
-        private void managerSwipeInteraction()
+        private CONTROLLER_TOUCHPAD_BUTTON getTrackPadPress()
+        {
+            Vector2 l_v2RemoteTouchPadPosition = ControllerManager.GetPrimaryTouchpadPosition();
+            CONTROLLER_TOUCHPAD_BUTTON l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED;
+
+#if !UNITY_EDITOR
+        if (ControllerManager.IsPrimaryTouchpadBtnDown())
+        {
+#endif
+            //forward Pressed
+            if (
+#if UNITY_EDITOR
+                    Input.GetKey(KeyCode.W) ||
+#endif
+                    l_v2RemoteTouchPadPosition.y > 0.5f)
+            {
+                l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED;
+            }
+            //back Pressed
+            else if (
+#if UNITY_EDITOR
+                    Input.GetKey(KeyCode.S) ||
+#endif
+                    l_v2RemoteTouchPadPosition.y < -0.5f)
+            {
+                l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_BOTTOM_PRESSED;
+            }
+
+            //Right Pressed
+            if (
+#if UNITY_EDITOR
+                    Input.GetKey(KeyCode.D) ||
+#endif
+                    l_v2RemoteTouchPadPosition.x > 0.5f)
+            {
+                if (l_TouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED)
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED;
+                }
+                else if (l_TouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED)
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED;
+                }
+                else
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_PRESSED;
+                }
+            }
+            //Left Pressed
+            else if (
+#if UNITY_EDITOR
+                    Input.GetKey(KeyCode.A) ||
+#endif
+                    l_v2RemoteTouchPadPosition.x < -0.5f)
+            {
+                if (l_TouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED)
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_TOP_PRESSED;
+                }
+                else if (l_TouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED)
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_BOTTOM_PRESSED;
+                }
+                else
+                {
+                    l_TouchPadBtnPressed = CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_PRESSED;
+                }
+            }
+#if !UNITY_EDITOR
+        }
+#endif
+            return l_TouchPadBtnPressed;
+        }
+
+        /// <summary>
+        /// returns the swipe interactions
+        /// </summary>
+        private CONTROLLER_TOUCHPAD_SWIPE getTrackPadSwipe()
         {
             Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
+            CONTROLLER_TOUCHPAD_SWIPE l_TouchPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.NO_SWIPE;
 
             // Swipe from left to right
             if (l_v2CurrentSwipe.x > MIN_SWIPE_VALUE
@@ -254,7 +371,7 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                WeaponManager.SetNextCategory();
+                l_TouchPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.LEFT_TO_RIGHT;
             }
             // Swipe from right to left
             else if (l_v2CurrentSwipe.x < -MIN_SWIPE_VALUE
@@ -263,7 +380,7 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                WeaponManager.SetPreviousCategory();
+                l_TouchPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.RIGHT_TO_LEFT;
             }
             // Swipe from top to bottom
             else if (l_v2CurrentSwipe.y < -MIN_SWIPE_VALUE
@@ -271,6 +388,41 @@ namespace ns_Mashmo
                 || Input.GetKeyUp(KeyCode.DownArrow)
 #endif
                 )
+            {
+                l_TouchPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.TOP_TO_BOTTOM;
+            }
+            // Swipe from bottom to top
+            else if (l_v2CurrentSwipe.y > MIN_SWIPE_VALUE
+#if UNITY_EDITOR
+                || Input.GetKeyUp(KeyCode.UpArrow)
+#endif
+                )
+            {
+                l_TouchPadSwipe = CONTROLLER_TOUCHPAD_SWIPE.BOTTOM_TO_TOP;
+            }
+
+            return l_TouchPadSwipe;
+        }
+
+        /// <summary>
+        /// Manages the swipe interactions
+        /// </summary>
+        private void managerSwipeInteraction(CONTROLLER_TOUCHPAD_SWIPE a_TouchpadSwipe)
+        {
+            Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
+
+            // Swipe from left to right
+            if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.LEFT_TO_RIGHT)
+            {
+                WeaponManager.SetNextCategory();
+            }
+            // Swipe from right to left
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.RIGHT_TO_LEFT)
+            {
+                WeaponManager.SetPreviousCategory();
+            }
+            // Swipe from top to bottom
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.TOP_TO_BOTTOM)
             {
                 IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
                 if (l_IPointerOver != null)
@@ -280,11 +432,7 @@ namespace ns_Mashmo
                 
             }
             // Swipe from bottom to top
-            else if (l_v2CurrentSwipe.y > MIN_SWIPE_VALUE
-#if UNITY_EDITOR
-                || Input.GetKeyUp(KeyCode.UpArrow)
-#endif
-                )
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.BOTTOM_TO_TOP)
             {
                 
             }
@@ -301,7 +449,7 @@ namespace ns_Mashmo
 #endif
                 ControllerManager.IsBackBtnUp())
             {
-                GameManager.PauseGame(true);
+                GameManager.PauseGame(true, false);
             }
         }
 
@@ -342,21 +490,18 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(false);
                         break;
                     }
+                case PLAYER_STATE.IN_GAME_PAUSED:
+                    {
+                        m_actPlayerStateControl = null;
+                        ControllerManager.ToggleLaser(false);
+                        break;
+                    }
                 default:
                     {
                         m_actPlayerStateControl = null;
                         break;
                     }
             }
-        }
-
-        /// <summary>
-        /// Event called on weapon changed
-        /// </summary>
-        /// <param name="a_EventHash"></param>
-        public void onWeaponChanged(EventHash a_EventHash)
-        {
-            
         }
     }
 }

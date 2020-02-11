@@ -90,7 +90,7 @@ namespace ns_Mashmo
         /// </summary>
         public void onBtnClicked_ReturnToGame()
         {
-            GameManager.PauseGame(false);
+            GameManager.PauseGame(false, false);
         }
 
         /// <summary>

@@ -9,7 +9,8 @@ namespace ns_Mashmo
         NO_INTERACTION,     //No movement, no pointer
         MENU_SELECTION,     //No movement, menu pointer available
         IN_GAME_MOVEMENT,   //Movement available, in game pointer available
-        IN_GAME_HALTED      //No movement, in game pointer available
+        IN_GAME_HALTED,      //No movement, in game pointer available
+        IN_GAME_PAUSED,      //No movement, in game pointer unavailable
     }
 
     public class PlayerManager : AbsComponentHandler
@@ -185,7 +186,7 @@ namespace ns_Mashmo
             bool a_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
             if (a_bIsGamePaused)
             {
-                SetPlayerState(PLAYER_STATE.MENU_SELECTION);
+                SetPlayerState(PLAYER_STATE.IN_GAME_PAUSED);
             }
             else
             {

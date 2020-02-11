@@ -130,9 +130,10 @@ namespace ns_Mashmo
 
         /// <summary>
         /// Pause /unpause game game
+        /// Is it forced to pause/unpause and its not in the gameplay
         /// </summary>
         /// <param name="a_bIsPaused"></param>
-        public static void PauseGame(bool a_bIsPaused)
+        public static void PauseGame(bool a_bIsPaused, bool a_bIsForce = true)
         {
             if (s_Instance.m_bIsGamePaused == a_bIsPaused)
             {
@@ -140,19 +141,32 @@ namespace ns_Mashmo
             }
             s_Instance.m_bIsGamePaused = a_bIsPaused;
 
-            Time.timeScale = a_bIsPaused ? 0.0f : 1.0f;
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
-
             if (s_Instance.m_bIsGamePaused)
             {
-                UI_PausePanel.Show(ObjectiveManager.CurrentObjectiveGroup);
+                s_Instance.StartCoroutine(s_Instance.pauseAfterTime());
             }
             else
             {
+                Time.timeScale = 1.0f;
                 UI_PausePanel.Hide();
             }
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_GAME_PAUSED, a_bIsPaused);
+            l_EventHash.Add(GameEventTypeConst.ID_PAUSE_FORCED, a_bIsForce);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, l_EventHash);
+        }
+
+        /// <summary>
+        /// Pauses after the given time
+        /// Created to give enough time to play the arm animation
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator pauseAfterTime()
+        {
+            yield return new WaitForSeconds(0.5f);
+            UI_PausePanel.Show(ObjectiveManager.CurrentObjectiveGroup);
+            Time.timeScale = 0.0f;
         }
 
         /// <summary>
