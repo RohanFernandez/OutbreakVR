@@ -170,8 +170,7 @@ namespace ns_Mashmo
             m_TrackpadPadButton = getTrackPadPress();
             m_TrackpadPadSwipe = getTrackPadSwipe();
 
-            if (m_TrackpadPadButton != CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED &&
-                l_LastTrackpadPadButton != CONTROLLER_TOUCHPAD_BUTTON.BTN_NOT_PRESSED)
+            if (m_TrackpadPadButton != l_LastTrackpadPadButton)
             {
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_NEW_TOUCHPAD_BTN_PRESSED, m_TrackpadPadButton);
