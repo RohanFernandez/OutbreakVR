@@ -186,7 +186,8 @@ namespace ns_Mashmo
             if (m_animatorHands != null)
             {
                 m_animatorHands.speed = m_fRecoilAnimSpeed;
-                m_animatorHands.Play(ANIM_STATE_SHOOT);
+                resetAllAnimTriggers();
+                m_animatorHands.SetTrigger(ANIM_STATE_SHOOT);
             }
 
             m_fTimeSinceLastShot = 0.0f;
@@ -220,7 +221,8 @@ namespace ns_Mashmo
             if (m_animatorHands != null)
             {
                 m_animatorHands.speed = 1.0f;
-                m_animatorHands.Play(ANIM_STATE_IDLE_HANDS);
+                resetAllAnimTriggers();
+                m_animatorHands.SetTrigger(ANIM_STATE_IDLE_HANDS);
             }
 
             updateBulletData();
@@ -329,7 +331,8 @@ namespace ns_Mashmo
             if (m_animatorHands != null)
             {
                 m_animatorHands.speed = 1.0f;
-                m_animatorHands.Play(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
+                resetAllAnimTriggers();
+                m_animatorHands.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
             }
         }
 
@@ -339,6 +342,17 @@ namespace ns_Mashmo
             {
                 m_fTimeSinceLastShot += Time.deltaTime;
             }
+        }
+
+        /// <summary>
+        /// resets all animation triggers
+        /// </summary>
+        private void resetAllAnimTriggers()
+        {
+            m_animatorHands.ResetTrigger(ANIM_STATE_CLOSE_MENU);
+            m_animatorHands.ResetTrigger(ANIM_STATE_OPEN_MENU);
+            m_animatorHands.ResetTrigger(ANIM_STATE_IDLE_HANDS);
+            m_animatorHands.ResetTrigger(ANIM_STATE_SHOOT);
         }
     }
 }
