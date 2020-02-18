@@ -12,21 +12,23 @@ namespace ns_Mashmo
         private static UI_PausePanel s_Instance = null;
 
         /// <summary>
-        /// Objective panel that holds the level objectives
+        /// The state machine that manages the pause panel
         /// </summary>
         [SerializeField]
-        private UI_LevelObjectivePanel m_ObjectivePanel = null;
+        private PauseStateMachine m_PauseStateMachine = null;
 
-        /// <summary>
-        /// The list of options in the pause panel
-        /// </summary>
         [SerializeField]
-        private List<UnityEngine.UI.Button> m_lstBtnOptions = null;
+        private MainPauseControlPanel m_MainPauseControlPanel = null;
 
-        /// <summary>
-        /// The current selected option in the button option panel
-        /// </summary>
-        private int m_iCurrentSelectedBtnOption = 0;
+        #region PAUSE STATE
+
+        public const string PAUSE_STATE_OBJECTIVE       = "OBJECTIVES";
+        public const string PAUSE_STATE_INSTRUCTIONS    = "INSTRUCTIONS";
+        public const string PAUSE_STATE_CONTINUE        = "CONTINUE";
+        public const string PAUSE_STATE_LAST_CHECKPOINT = "LAST_CHECKPOINT";
+        public const string PAUSE_STATE_GO_HOME         = "GO_HOME";
+
+        #endregion PAUSE STATE
 
         /// <summary>
         /// initializes, sets singleton to this
@@ -38,6 +40,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            m_PauseStateMachine.initialize();
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_TOUCHPAD_BTN_CHANGED, onTouchpadBtnChanged);
         }
@@ -51,26 +54,17 @@ namespace ns_Mashmo
             {
                 return;
             }
-
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_TOUCHPAD_BTN_CHANGED, onTouchpadBtnChanged);
+            m_PauseStateMachine.destroy();
             s_Instance = null;
         }
 
         /// <summary>
         /// Displays panel
         /// </summary>
-        public static void Show(ObjectiveGroupBase a_CurrentLevelObjectiveGroup)
+        public static void Show()
         {
-            if (a_CurrentLevelObjectiveGroup != null)
-            {
-                s_Instance.m_ObjectivePanel.gameObject.SetActive(true);
-                s_Instance.m_ObjectivePanel.refreshObjectives(a_CurrentLevelObjectiveGroup);
-            }
-            else 
-            {
-                s_Instance.m_ObjectivePanel.gameObject.SetActive(false);
-            }
-            s_Instance.showButtonOptionAsHovered(0);
+            s_Instance.m_MainPauseControlPanel.resetPanel();
             s_Instance.show();
         }
 
@@ -96,32 +90,8 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                selectBtnWithCurrentIndex();
+                m_MainPauseControlPanel.onSelectPressed();
             }
-        }
-
-        /// <summary>
-        /// On button clicked return to game
-        /// </summary>
-        public void onBtnClicked_ReturnToGame()
-        {
-            GameManager.PauseGame(false, false);
-        }
-
-        /// <summary>
-        /// On button clicked go to home
-        /// </summary>
-        public void onBtnClicked_GoToHome()
-        {
-            GameManager.GoToHome();
-        }
-
-        /// <summary>
-        /// On button clicked go to home
-        /// </summary>
-        public void onBtnClicked_GoToLastCheckpoint()
-        {
-            GameManager.RestartLevel();
         }
 
         /// <summary>
@@ -131,6 +101,7 @@ namespace ns_Mashmo
         private void onTouchpadBtnChanged(EventHash a_EventHash)
         {
             if (!gameObject.activeSelf) { return; }
+
             CONTROLLER_TOUCHPAD_BUTTON l_NewTouchPadBtnPressed = (CONTROLLER_TOUCHPAD_BUTTON)a_EventHash[GameEventTypeConst.ID_NEW_TOUCHPAD_BTN_PRESSED];
             CONTROLLER_TOUCHPAD_BUTTON l_OldTouchPadBtnPressed = (CONTROLLER_TOUCHPAD_BUTTON)a_EventHash[GameEventTypeConst.ID_OLD_TOUCHPAD_BTN_PRESSED];
 
@@ -140,7 +111,7 @@ namespace ns_Mashmo
                 l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED) &&
                 l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
             {
-                showButtonOptionAsHovered((m_iCurrentSelectedBtnOption + 1) % m_lstBtnOptions.Count);
+                m_MainPauseControlPanel.onBottomPressed();
             }
             //TOP OPTION
             else if ((l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_TOP_PRESSED ||
@@ -148,35 +119,28 @@ namespace ns_Mashmo
                 l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED) &&
                 l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
             {
-                int l_iNewIndex = m_iCurrentSelectedBtnOption - 1;
-                if (l_iNewIndex == -1) { l_iNewIndex = m_lstBtnOptions.Count - 1; }
-
-                showButtonOptionAsHovered(l_iNewIndex);
+                
+                m_MainPauseControlPanel.onTopPressed();
             }
-        }
 
-        /// <summary>
-        /// Sets the option as hovered
-        /// </summary>
-        /// <param name="a_iOptionIndex"></param>
-        private void showButtonOptionAsHovered(int a_iOptionIndex)
-        {
-            m_iCurrentSelectedBtnOption = a_iOptionIndex;
-
-            ///Set all buttons as idle
-            int l_iBtnCount = m_lstBtnOptions.Count;
-            for (int l_iBtnIndex = 0; l_iBtnIndex < l_iBtnCount; l_iBtnIndex++)
+            //LEFT OPTION
+            if ((l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_BOTTOM_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_LEFT_TOP_PRESSED) &&
+                l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
             {
-                UnityEngine.UI.Button l_btnCurrentBtn = m_lstBtnOptions[l_iBtnIndex];
-                l_btnCurrentBtn.image.sprite = null;
+                m_MainPauseControlPanel.onLeftPressed();
             }
-
-            m_lstBtnOptions[a_iOptionIndex].image.sprite = m_lstBtnOptions[a_iOptionIndex].spriteState.highlightedSprite;
+            //RIGHT OPTION
+            else if ((l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_BOTTOM_PRESSED ||
+                l_NewTouchPadBtnPressed == CONTROLLER_TOUCHPAD_BUTTON.BTN_RIGHT_TOP_PRESSED) &&
+                l_OldTouchPadBtnPressed != l_NewTouchPadBtnPressed)
+            {
+                m_MainPauseControlPanel.onRightPressed();
+            }
         }
 
-        private void selectBtnWithCurrentIndex()
-        {
-            m_lstBtnOptions[m_iCurrentSelectedBtnOption].onClick.Invoke(); ;
-        }
+       
     }
 }

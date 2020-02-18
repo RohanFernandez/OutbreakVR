@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class UI_LevelObjectivePanel : MonoBehaviour
+    public class LevelObjectivePauseState : PauseManagedStateBase
     {
         /// <summary>
         /// List of all objective panels
@@ -12,13 +12,26 @@ namespace ns_Mashmo
         [SerializeField]
         private List<PanelObjective> m_lstPanelObjectives = null;
 
+        public override void onStateEnter(string a_strState)
+        {
+            base.onStateEnter(a_strState);
+            refreshObjectives();
+        }
+
+        public override void onStateExit(string a_strState)
+        {
+            base.onStateExit(a_strState);
+        }
+
         /// <summary>
         /// Resets the objectives in the panel as per the current level
         /// </summary>
-        public void refreshObjectives(ObjectiveGroupBase a_CurrentLevelObjectiveGroup)
+        public void refreshObjectives()
         {
+            ObjectiveGroupBase l_CurrentLevelObjectiveGroup = ObjectiveManager.CurrentObjectiveGroup;
+
             int l_iPanelObjectiveCount = m_lstPanelObjectives.Count;
-            int l_ObjectiveGroupCount = a_CurrentLevelObjectiveGroup.m_lstObjectives.Count;
+            int l_ObjectiveGroupCount = l_CurrentLevelObjectiveGroup.m_lstObjectives.Count;
             for (int l_iObjectiveIndex = 0; l_iObjectiveIndex < l_iPanelObjectiveCount; l_iObjectiveIndex++)
             {
                 PanelObjective l_PanelObjective = m_lstPanelObjectives[l_iObjectiveIndex];
@@ -30,7 +43,7 @@ namespace ns_Mashmo
                 }
                 else
                 {
-                    ObjectiveBase l_ObjectiveBase = a_CurrentLevelObjectiveGroup.m_lstObjectives[l_iObjectiveIndex];
+                    ObjectiveBase l_ObjectiveBase = l_CurrentLevelObjectiveGroup.m_lstObjectives[l_iObjectiveIndex];
                     l_PanelObjective.gameObject.SetActive(true);
                     l_PanelObjective.updateText(l_ObjectiveBase.ObjDescription, l_ObjectiveBase.isComplete());
                 }

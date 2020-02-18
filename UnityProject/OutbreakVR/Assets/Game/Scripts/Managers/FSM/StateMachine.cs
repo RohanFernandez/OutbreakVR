@@ -37,7 +37,7 @@ namespace ns_Mashmo
         /// returns true if transition is allowed, else false
         /// </summary>
         /// <param name="a_strNewState"></param>
-        protected virtual bool transition(string a_strNewState, string a_strSceneName, string a_strLevelName, bool a_bIsTransitionToNewState = true)
+        protected virtual bool transition(string a_strNewState, bool a_bIsTransitionToNewState = true)
         {
             string l_strOldStateId = m_strCurrentState;
             string l_strNewStateId = a_strNewState;
@@ -74,7 +74,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strStateName"></param>
         /// <returns></returns>
-        protected ManagedState getRegisteredManagedState(string a_strStateName)
+        public ManagedState getRegisteredManagedState(string a_strStateName)
         {
             int l_iStateCount = m_lstRegisteredManagedStates.Count;
             for (int l_iStateIndex = 0; l_iStateIndex < l_iStateCount; l_iStateIndex++)

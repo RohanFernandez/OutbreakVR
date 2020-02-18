@@ -165,7 +165,7 @@ namespace ns_Mashmo
         private IEnumerator pauseAfterTime()
         {
             yield return new WaitForSeconds(0.5f);
-            UI_PausePanel.Show(ObjectiveManager.CurrentObjectiveGroup);
+            UI_PausePanel.Show();
             Time.timeScale = 0.0f;
         }
 

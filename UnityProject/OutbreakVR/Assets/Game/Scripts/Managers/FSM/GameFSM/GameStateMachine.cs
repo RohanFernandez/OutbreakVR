@@ -52,7 +52,7 @@ namespace ns_Mashmo
                 Debug.LogError("GameStateMachine::Transition:: ID of game state to transition to is empty.");
                 return;
             }
-            s_Instance.transition(a_strNewState, a_strSceneName, a_strLevelName, false);
+            s_Instance.transitionToGameState(a_strNewState, a_strSceneName, a_strLevelName);
         }
 
         /// <summary>
@@ -62,10 +62,9 @@ namespace ns_Mashmo
         /// <param name="a_strNewState"></param>
         /// <param name="a_strSceneName"></param>
         /// <param name="a_strLevelName"></param>
-        /// <param name="a_bIsTransitionToNewState"></param>
-        protected override bool transition(string a_strNewState, string a_strSceneName, string a_strLevelName, bool a_bIsTransitionToNewState = true)
+        protected bool transitionToGameState(string a_strNewState, string a_strSceneName, string a_strLevelName)
         {
-            if (!base.transition(a_strNewState, a_strSceneName, a_strLevelName, /*a_bIsTransitionToNewState is always false for this func*/ false))
+            if (!transition(a_strNewState, /*a_bIsTransitionToNewState is always false for this func*/ false))
             {
                 return false;
             }
