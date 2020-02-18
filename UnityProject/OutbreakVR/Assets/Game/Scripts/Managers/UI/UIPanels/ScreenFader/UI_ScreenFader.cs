@@ -58,10 +58,15 @@ namespace ns_Mashmo
             s_Instance = null;
         }
 
+        public static void Show()
+        {
+            ShowWithActionOnComplete(null);
+        }
+
         /// <summary>
         /// Displays the Fader and starts the fader
         /// </summary>
-        public static void Show(System.Action a_actOnFaderComplete = null)
+        public static void ShowWithActionOnComplete(System.Action a_actOnFaderComplete)
         {
             s_Instance.m_actOnFadeComplete = a_actOnFaderComplete;
             s_Instance.m_fTimeTakenInFade = 0.0f;

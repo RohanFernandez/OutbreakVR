@@ -175,7 +175,7 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onPlayerKilled(EventHash a_EventHash)
         {
-            UI_ScreenFader.Show(RestartLevel);
+            UI_ScreenFader.ShowWithActionOnComplete(RestartLevel);
         }
 
         /// <summary>
