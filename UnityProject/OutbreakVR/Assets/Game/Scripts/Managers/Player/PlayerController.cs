@@ -244,9 +244,7 @@ namespace ns_Mashmo
                 l_v3MovementDirection += (-m_HeadsetPlayerCamera.right);
                 m_bIsMoving = true;
             }
-#if !UNITY_EDITOR
-        }
-#endif
+
             if (m_bIsMoving)
             {
                 if (m_bIsMoving != l_bIsMovingLastFrame)
