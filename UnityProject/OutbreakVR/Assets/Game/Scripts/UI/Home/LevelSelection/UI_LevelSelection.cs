@@ -32,5 +32,14 @@ namespace ns_Mashmo
             UI_LoadingPanel.Show();
             GameManager.OnContinueFromLastSavedSelected();
         }
+
+        /// <summary>
+        /// On btn selected to play the first level
+        /// </summary>
+        public void onFirstLevelOptionSelected()
+        {
+            UI_LoadingPanel.Show();
+            LevelManager.GoToLevel(GameConsts.STATE_NAME_FIRST_LEVEL);
+        }
     }
 }
