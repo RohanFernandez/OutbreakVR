@@ -380,19 +380,20 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static bool IsBackBtnUp()
         {
-#if _MASHMO_OVR_
-            return OVRInput.GetUp(OVRInput.Button.Back);
-#endif
-
-            return false;
+            #if _MASHMO_OVR_
+                return OVRInput.GetUp(OVRInput.Button.Back);
+            #else
+                return false;
+            #endif
         }
 
         public static bool IsPrimaryTouchpadBtnDown()
         {
-#if _MASHMO_OVR_
-            return OVRInput.Get(OVRInput.Button.PrimaryTouchpad, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
-#endif
-            return false;
+            #if _MASHMO_OVR_
+                return OVRInput.Get(OVRInput.Button.PrimaryTouchpad, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
+            #else
+                return false;
+            #endif
         }
 
         /// <summary>
@@ -401,10 +402,24 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static bool IsPrimaryTriggerBtnDown()
         {
-#if _MASHMO_OVR_
-            return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
-#endif
-            return false;
+            #if _MASHMO_OVR_
+                return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
+            #else
+                return false;
+            #endif
+        }
+
+        /// <summary>
+        /// Is the primary trigger button up
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsPrimaryTriggerBtnUp()
+        {
+            #if _MASHMO_OVR_
+                return OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, GetPlatformControllerType(s_Instance.m_CurrentControllerType));
+            #else
+                return false;
+            #endif
         }
 
         /// <summary>
@@ -413,10 +428,11 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static Vector3 GetPrimaryControllerDirection()
         {
-#if _MASHMO_OVR_
-            return s_Instance.m_CurrentControllerAnchor.transform.forward;
-#endif
-            return Vector3.forward;
+            #if _MASHMO_OVR_
+                return s_Instance.m_CurrentControllerAnchor.transform.forward;
+            #else
+                return Vector3.forward;
+            #endif
         }
 
         #endregion Controller Components
@@ -431,7 +447,14 @@ namespace ns_Mashmo
 
         public static Transform RayTransform
         {
-            get { return s_Instance.m_OVRInputModule.rayTransform; }
+            get
+            {
+#if _MASHMO_OVR_
+                    return s_Instance.m_OVRInputModule.rayTransform;
+#else
+                    return null;
+#endif
+            }
         }
 
         /// <summary>
@@ -595,7 +618,7 @@ namespace ns_Mashmo
             }
         }
 
-        #endregion Controller laser pointer
+#endregion Controller laser pointer
 
         private void Update()
         {

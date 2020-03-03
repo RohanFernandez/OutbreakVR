@@ -41,5 +41,14 @@ namespace ns_Mashmo
             UI_LoadingPanel.Show();
             LevelManager.GoToLevel(GameConsts.STATE_NAME_FIRST_LEVEL);
         }
+
+        /// <summary>
+        /// On btn selected to play the first level
+        /// </summary>
+        public void onTesting1LevelOptionSelected()
+        {
+            UI_LoadingPanel.Show();
+            LevelManager.GoToLevel(GameConsts.STATE_NAME_TESTING1_LEVEL);
+        }
     }
 }

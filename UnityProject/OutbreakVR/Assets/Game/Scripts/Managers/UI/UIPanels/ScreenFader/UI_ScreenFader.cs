@@ -70,6 +70,9 @@ namespace ns_Mashmo
         {
             s_Instance.m_actOnFadeComplete = a_actOnFaderComplete;
             s_Instance.m_fTimeTakenInFade = 0.0f;
+
+            Color l_FadeColor = s_Instance.m_imgFader.color;
+            s_Instance.m_imgFader.color = new Color(l_FadeColor.r, l_FadeColor.g, l_FadeColor.b, 0.0f);
             s_Instance.show();
         }
 

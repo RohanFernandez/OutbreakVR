@@ -41,7 +41,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
             base.initialize();
         }
 
@@ -53,6 +53,30 @@ namespace ns_Mashmo
             }
             base.destroy();
             s_Instance = null;
+        }
+
+        /// <summary>
+        /// Unloads the scene and carries the action forward
+        /// </summary>
+        /// <param name="a_strSceneName"></param>
+        /// <param name="a_actionOnSceneUnloaded"></param>
+        public static void UnloadScene(string a_strSceneName, System.Action a_actionOnSceneUnloaded)
+        {
+            s_Instance.StartCoroutine(s_Instance.unloadSceneAsync(a_strSceneName, a_actionOnSceneUnloaded));
+        }
+
+        private IEnumerator unloadSceneAsync(string a_strSceneName, System.Action a_actionOnSceneUnloaded)
+        {
+            AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(a_strSceneName);
+            while (!l_AsyncOperation.isDone)
+            {
+                yield return null;
+            }
+
+            if (a_actionOnSceneUnloaded != null)
+            {
+                a_actionOnSceneUnloaded();
+            }
         }
 
         /// <summary>
@@ -79,7 +103,7 @@ namespace ns_Mashmo
             if (!l_OldScene.name.Equals(a_strSceneName, System.StringComparison.OrdinalIgnoreCase))
             {
                 Debug.Log("<color=BLUE>SystemManager::loadSceneAsync::</color> Loading scene with name : '"+ a_strSceneName + "'");
-                AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+                AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
                 while (!l_AsyncOperation.isDone)
                 {
                     yield return null;

@@ -255,6 +255,11 @@ namespace ns_Mashmo
             GoToLevel(l_strNextLevelToLoad);
         }
 
+        public static bool GetLevelAndSubLevelDataDromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
+        {
+            return s_Instance.getLevelAndSubLevelDataFromName(a_strLevelName, ref a_refLevelData, ref a_refSubLevelData);
+        }
+
         /// <summary>
         /// Gets the level data and sub level data from the level name ex "Level1_100"
         /// </summary>

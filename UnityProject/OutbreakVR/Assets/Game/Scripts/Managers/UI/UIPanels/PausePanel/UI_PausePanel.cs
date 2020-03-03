@@ -84,7 +84,7 @@ namespace ns_Mashmo
             transform.position = l_HeadsetTransform.position + (l_v3HeadsetForward * 0.75f);
             transform.LookAt(l_HeadsetTransform);
 
-            if (ControllerManager.IsPrimaryTriggerBtnDown()
+            if (ControllerManager.IsPrimaryTriggerBtnUp()
 #if UNITY_EDITOR
                 || Input.GetKeyUp(KeyCode.Space)
 #endif

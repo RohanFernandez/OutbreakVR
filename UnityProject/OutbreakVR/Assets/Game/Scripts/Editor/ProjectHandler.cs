@@ -27,6 +27,8 @@ namespace ns_Mashmo
         private const string XML_TASK_LIST_LEVEL0_NAME = "TaskListLevel0";
         private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
         private const string XML_TASK_LIST_TRAINING_NAME = "TaskListTraining";
+        private const string XML_TASK_LIST_TESTING1_NAME = "TaskListTesting1";
+        
         private const string XML_TASK_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\TaskListAssets\\";
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace ns_Mashmo
         private const string XML_OBJECTIVE_LIST_LEVEL0_NAME = "ObjectiveListLevel0";
         private const string XML_OBJECTIVE_LIST_LEVEL1_NAME = "ObjectiveListLevel1";
         private const string XML_OBJECTIVE_LIST_TRAINING_NAME = "ObjectiveListTraining";
+        private const string XML_OBJECTIVE_LIST_TESTING1_NAME = "ObjectiveListTesting1";
         private const string XML_OBJECTIVE_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\ObjectiveListAssets\\";
 
         private const string XML_EXTENSION = ".xml";
@@ -55,6 +58,10 @@ namespace ns_Mashmo
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL0_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
             CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_TRAINING_NAME);
+
+            //DEBUG
+            CreateTaskListScriptableObject(XML_TASK_LIST_TESTING1_NAME);
+            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_TESTING1_NAME);
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace ns_Mashmo
             s_Instance = this;
             base.initialize();
 
-            Transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, string.Empty);
+            Transition(m_strStartState, string.Empty/*SystemConsts.SCENE_NAME_INIT_SCENE*/, string.Empty);
         }
 
         public override void destroy()
@@ -82,8 +82,14 @@ namespace ns_Mashmo
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
             }
 
+            LevelData l_OldLevelData = null;
+            SubLevelData l_OldSubLevelData = null;
+
+            string l_strOldLevelSceneName = LevelManager.GetLevelAndSubLevelDataDromName(s_Instance.m_strLastState, ref l_OldLevelData, ref l_OldSubLevelData) ? 
+                l_OldLevelData.SceneName : string.Empty;
+
             ///Load scene will call the callback directly if already loaded
-            GameManager.LoadScene(a_strSceneName, s_Instance.onLevelSceneLoadComplete);
+            GameManager.LoadScene(a_strSceneName, l_strOldLevelSceneName, s_Instance.onLevelSceneLoadComplete);
 
             return true;
         }
