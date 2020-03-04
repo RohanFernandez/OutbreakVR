@@ -41,7 +41,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            //DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this);
             base.initialize();
         }
 
@@ -103,7 +103,7 @@ namespace ns_Mashmo
             if (!l_OldScene.name.Equals(a_strSceneName, System.StringComparison.OrdinalIgnoreCase))
             {
                 Debug.Log("<color=BLUE>SystemManager::loadSceneAsync::</color> Loading scene with name : '"+ a_strSceneName + "'");
-                AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+                AsyncOperation l_AsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(a_strSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
                 while (!l_AsyncOperation.isDone)
                 {
                     yield return null;

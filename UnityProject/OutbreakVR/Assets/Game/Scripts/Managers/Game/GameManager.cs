@@ -147,50 +147,60 @@ namespace ns_Mashmo
             s_Instance = null;
         }
 
-        /// <summary>
-        /// Displays the load panel
-        /// Loads scene name
-        /// Hides the load panel
-        /// Calls action sent on complete
-        /// </summary>
-        public static void LoadScene(string a_strNewSceneName, string a_strOldSceneName, System.Action a_actionOnLoadComplete = null)
+
+        public static void LoadScene(string a_strSceneName, System.Action a_actionOnLoadComplete = null)
         {
-            if (string.IsNullOrEmpty(a_strNewSceneName) ||
-                string.IsNullOrEmpty(s_Instance.m_strCurrentSceneName) ||
-                a_strNewSceneName.Equals(a_strOldSceneName, System.StringComparison.OrdinalIgnoreCase))
-            {
-                if (a_actionOnLoadComplete != null) { a_actionOnLoadComplete(); }
-            }
-            else
-            {
-                UI_LoadingPanel.Show();
-
-                if (s_Instance.m_strCurrentSceneName.Equals(SystemConsts.SCENE_NAME_INIT_SCENE, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    SystemManager.LoadScene(a_strNewSceneName,
-                                a_actionOnLoadComplete += () =>
-                                {
-                                    UI_LoadingPanel.Hide();
-                                });
-                }
-                else
-                {
-                    SystemManager.UnloadScene(s_Instance.m_strCurrentSceneName,
-
-                        () =>
-                        {
-                            SystemManager.LoadScene(a_strNewSceneName,
-                                a_actionOnLoadComplete += () =>
-                                {
-                                    UI_LoadingPanel.Hide();
-                                });
-                        });
-                }
-                s_Instance.m_strCurrentSceneName = a_strNewSceneName;
-            }
-
-            RenderSettings.skybox = s_Instance.getSkyboxWithSceneName(s_Instance.m_strCurrentSceneName);
+            UI_LoadingPanel.Show();
+            SystemManager.LoadScene(a_strSceneName,
+                a_actionOnLoadComplete += () => {
+                    UI_LoadingPanel.Hide();
+                });
         }
+
+        ///// <summary>
+        ///// Displays the load panel
+        ///// Loads scene name
+        ///// Hides the load panel
+        ///// Calls action sent on complete
+        ///// </summary>
+        //public static void LoadScene(string a_strNewSceneName, string a_strOldSceneName, System.Action a_actionOnLoadComplete = null)
+        //{
+        //    if (string.IsNullOrEmpty(a_strNewSceneName) ||
+        //        string.IsNullOrEmpty(s_Instance.m_strCurrentSceneName) ||
+        //        a_strNewSceneName.Equals(a_strOldSceneName, System.StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        if (a_actionOnLoadComplete != null) { a_actionOnLoadComplete(); }
+        //    }
+        //    else
+        //    {
+        //        UI_LoadingPanel.Show();
+
+        //        if (s_Instance.m_strCurrentSceneName.Equals(SystemConsts.SCENE_NAME_INIT_SCENE, System.StringComparison.OrdinalIgnoreCase))
+        //        {
+        //            SystemManager.LoadScene(a_strNewSceneName,
+        //                        a_actionOnLoadComplete += () =>
+        //                        {
+        //                            UI_LoadingPanel.Hide();
+        //                        });
+        //        }
+        //        else
+        //        {
+        //            SystemManager.UnloadScene(s_Instance.m_strCurrentSceneName,
+
+        //                () =>
+        //                {
+        //                    SystemManager.LoadScene(a_strNewSceneName,
+        //                        a_actionOnLoadComplete += () =>
+        //                        {
+        //                            UI_LoadingPanel.Hide();
+        //                        });
+        //                });
+        //        }
+        //        s_Instance.m_strCurrentSceneName = a_strNewSceneName;
+        //    }
+
+        //    RenderSettings.skybox = s_Instance.getSkyboxWithSceneName(s_Instance.m_strCurrentSceneName);
+        //}
 
         /// <summary>
         /// Pause /unpause game game
