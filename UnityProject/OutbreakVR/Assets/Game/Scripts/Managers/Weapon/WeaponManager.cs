@@ -506,7 +506,6 @@ namespace ns_Mashmo
 
             ///Picks up weapon of the same type
             ///if is gun type weapon, then check if you can add the bullets from the pickup else dont pickup
-            ///else dont pick up at all
             if (l_CurrentWeaponType == l_PickedUpWeaponType)
             {
                 //weapon should be gun to add bullets
@@ -525,6 +524,7 @@ namespace ns_Mashmo
                     }
                 }
             }
+            ///else set picked up weapon as weapon in category and its category as current
             else
             {
                 SetCurrentWeaponInCategory(l_PickedUpWeaponCategoryType, l_PickedUpWeaponType);
@@ -532,16 +532,24 @@ namespace ns_Mashmo
                 if (l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.PRIMARY ||
                     l_PickedUpWeaponCategoryType == WEAPON_CATEGORY_TYPE.SECONDARY)
                 {
-                    GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
-                    if (l_GunWeaponBase != null)
+                    GunWeaponBase l_PickedGunWeaponBase = (GunWeaponBase)l_PickedUpWeaponBase;
+                    if (l_PickedGunWeaponBase != null)
                     {
-                        l_GunWeaponBase.initBulletCount(l_iBulletsInPickup, l_iBulletsInPickup);
+                        int l_iBulletsToAddFromPrevGun = 0;
+                        if (l_CurrentWeaponType != WEAPON_TYPE.NONE &&
+                            l_CurrentWeaponType != WEAPON_TYPE.UNARMED)
+                        {
+                            GunWeaponBase l_CarryingGunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
+                            l_iBulletsToAddFromPrevGun = l_CarryingGunWeaponBase != null ? (l_CarryingGunWeaponBase.TotalBullets - l_CarryingGunWeaponBase.BulletCountInFirstMag) : 0;
+                        }
+
+                        l_PickedGunWeaponBase.initBulletCount(l_iBulletsToAddFromPrevGun + l_iBulletsInPickup, l_iBulletsInPickup);
                     }
                 }
 
                 SetCategoryAsCurrent(l_PickedUpWeaponCategoryType);
 
-                // Replace item with the weapon that the player had
+                // Replace item drop with the weapon that the player had
                 if (l_CurrentWeaponType != WEAPON_TYPE.NONE &&
                     l_CurrentWeaponType != WEAPON_TYPE.UNARMED)
                 {
@@ -559,7 +567,7 @@ namespace ns_Mashmo
                         if (l_GunWeaponDrop != null &&
                             l_CurrentGunWeaponBase != null)
                         {
-                            l_GunWeaponDrop.BulletCount = l_CurrentGunWeaponBase.TotalBullets;
+                            l_GunWeaponDrop.BulletCount = l_CurrentGunWeaponBase.BulletCountInFirstMag;
                         }
                     }
                 }
