@@ -18,32 +18,32 @@ namespace ns_Mashmo
         /// </summary>
         private static GameManager s_Instance = null;
 
-        /// <summary>
-        /// The name of the current scene
-        /// </summary>
-        private string m_strCurrentSceneName = SystemConsts.SCENE_NAME_INIT_SCENE;
+        ///// <summary>
+        ///// The name of the current scene
+        ///// </summary>
+        //private string m_strCurrentSceneName = SystemConsts.SCENE_NAME_INIT_SCENE;
 
-        [SerializeField]
-        private List<SceneCubemap> m_lstSceneCubemaps = null;
+        //[SerializeField]
+        //private List<SceneCubemap> m_lstSceneCubemaps = null;
 
 
-        /// <summary>
-        /// Returns cubemap material with the scene name associated with that material
-        /// </summary>
-        /// <param name="a_strSceneName"></param>
-        /// <returns></returns>
-        private Material getSkyboxWithSceneName(string a_strSceneName)
-        {
-            int l_iSceneCount = m_lstSceneCubemaps.Count;
-            for (int l_iSceneIndex = 0; l_iSceneIndex < l_iSceneCount; l_iSceneIndex++)
-            {
-                if (m_lstSceneCubemaps[l_iSceneIndex].m_strSceneName.Equals(a_strSceneName,System.StringComparison.OrdinalIgnoreCase))
-                {
-                    return m_lstSceneCubemaps[l_iSceneIndex].m_matSkybox;
-                }
-            }
-            return null;
-        }
+        ///// <summary>
+        ///// Returns cubemap material with the scene name associated with that material
+        ///// </summary>
+        ///// <param name="a_strSceneName"></param>
+        ///// <returns></returns>
+        //private Material getSkyboxWithSceneName(string a_strSceneName)
+        //{
+        //    int l_iSceneCount = m_lstSceneCubemaps.Count;
+        //    for (int l_iSceneIndex = 0; l_iSceneIndex < l_iSceneCount; l_iSceneIndex++)
+        //    {
+        //        if (m_lstSceneCubemaps[l_iSceneIndex].m_strSceneName.Equals(a_strSceneName,System.StringComparison.OrdinalIgnoreCase))
+        //        {
+        //            return m_lstSceneCubemaps[l_iSceneIndex].m_matSkybox;
+        //        }
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// The current Game level

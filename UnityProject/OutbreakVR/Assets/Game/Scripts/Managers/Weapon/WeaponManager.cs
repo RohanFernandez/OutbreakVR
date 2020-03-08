@@ -751,6 +751,11 @@ namespace ns_Mashmo
                 {
                     l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
                 }
+                else
+                {
+                    EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
+                    l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));
+                }
             }
         }
 

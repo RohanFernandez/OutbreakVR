@@ -22,6 +22,12 @@ namespace ns_Mashmo
         private int m_iMaxSingleMagazineBulletCapacity = 10;
 
         /// <summary>
+        /// The particle system that displays the tracer on shoot
+        /// </summary>
+        [SerializeField]
+        private ParticleSystem m_TracerParticleSystem = null;
+
+        /// <summary>
         /// Audio clip id to play on fire
         /// </summary>
         [SerializeField]
@@ -191,6 +197,12 @@ namespace ns_Mashmo
             }
 
             m_fTimeSinceLastShot = 0.0f;
+
+            if (m_TracerParticleSystem != null)
+            {
+                m_TracerParticleSystem.Play();
+            }
+
             updateBulletData();
         }
 

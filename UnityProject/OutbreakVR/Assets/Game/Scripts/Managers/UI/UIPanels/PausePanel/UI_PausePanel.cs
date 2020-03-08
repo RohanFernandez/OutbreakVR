@@ -12,6 +12,12 @@ namespace ns_Mashmo
         private static UI_PausePanel s_Instance = null;
 
         /// <summary>
+        /// THe center camera as the main camera
+        /// </summary>
+        [SerializeField]
+        private Transform m_transformCenterCamera = null;
+
+        /// <summary>
         /// The state machine that manages the pause panel
         /// </summary>
         [SerializeField]
@@ -78,11 +84,11 @@ namespace ns_Mashmo
 
         private void Update()
         {
-            Transform l_HeadsetTransform = ControllerManager.GetHeadsetAnchor().transform;
-            Vector3 l_v3HeadsetForward = new Vector3(l_HeadsetTransform.forward.x, 0.0f, l_HeadsetTransform.forward.z).normalized;
-
-            transform.position = l_HeadsetTransform.position + (l_v3HeadsetForward * 0.75f);
-            transform.LookAt(l_HeadsetTransform);
+            Vector3 l_v3HeadsetForward = new Vector3(m_transformCenterCamera.forward.x, 0.0f, m_transformCenterCamera.forward.z).normalized;
+            transform.position = m_transformCenterCamera.position + (l_v3HeadsetForward * 0.65f);
+            Vector3 l_v3CamPos = (m_transformCenterCamera.position - transform.position);
+            l_v3CamPos.y = 0.0f;
+            transform.localRotation = Quaternion.LookRotation(l_v3CamPos.normalized, Vector3.up);
 
             if (ControllerManager.IsPrimaryTriggerBtnUp()
 #if UNITY_EDITOR
