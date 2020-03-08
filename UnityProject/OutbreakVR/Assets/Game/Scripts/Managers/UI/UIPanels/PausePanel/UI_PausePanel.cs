@@ -84,11 +84,8 @@ namespace ns_Mashmo
 
         private void Update()
         {
-            Vector3 l_v3HeadsetForward = new Vector3(m_transformCenterCamera.forward.x, 0.0f, m_transformCenterCamera.forward.z).normalized;
-            transform.position = m_transformCenterCamera.position + (l_v3HeadsetForward * 0.65f);
-            Vector3 l_v3CamPos = (m_transformCenterCamera.position - transform.position);
-            l_v3CamPos.y = 0.0f;
-            transform.localRotation = Quaternion.LookRotation(l_v3CamPos.normalized, Vector3.up);
+            transform.position = m_transformCenterCamera.position + (new Vector3(m_transformCenterCamera.forward.x, 0.0f, m_transformCenterCamera.forward.z).normalized * 0.7f);
+            transform.rotation = Quaternion.LookRotation(-m_transformCenterCamera.forward);
 
             if (ControllerManager.IsPrimaryTriggerBtnUp()
 #if UNITY_EDITOR

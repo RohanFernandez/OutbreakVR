@@ -13,10 +13,16 @@ namespace ns_Mashmo
         private UI_PlayerHelmet m_UIPlayerHelmet = null;
 
         /// <summary>
-        /// UI player helmet that displays the reloading sign and various screen effects
+        /// UI that displays the health on the arm watch
         /// </summary>
         [SerializeField]
-        private UI_ArmMonitor m_UIArmMonitor = null;
+        private UI_HealthArmMonitor m_UIHealthArmMonitor = null;
+
+        /// <summary>
+        /// UI that displays the bullet count on the arm watch
+        /// </summary>
+        [SerializeField]
+        private UI_BulletsArmMonitor m_UIBulletsArmMonitor = null;
 
         /// <summary>
         /// sets if the helmet is cracked
@@ -72,11 +78,17 @@ namespace ns_Mashmo
 
             if (l_WeaponType != WEAPON_TYPE.NONE && l_WeaponBase != null)
             {
-                Transform l_ArmMonitorParent = l_WeaponBase.ArmMonitorParent;
-                m_UIArmMonitor.transform.SetParent(l_ArmMonitorParent.transform);
-                m_UIArmMonitor.transform.localPosition = Vector3.zero;
-                m_UIArmMonitor.transform.localRotation = Quaternion.identity;
-                m_UIArmMonitor.transform.localScale = Vector3.one;
+                Transform l_HealthArmMonitorParent = l_WeaponBase.ArmMonitorParent_Health;
+                m_UIHealthArmMonitor.transform.SetParent(l_HealthArmMonitorParent.transform);
+                m_UIHealthArmMonitor.transform.localPosition = Vector3.zero;
+                m_UIHealthArmMonitor.transform.localRotation = Quaternion.identity;
+                m_UIHealthArmMonitor.transform.localScale = Vector3.one;
+
+                Transform l_BulletsArmMonitorParent = l_WeaponBase.ArmMonitorParent_BulletCount;
+                m_UIBulletsArmMonitor.transform.SetParent(l_BulletsArmMonitorParent.transform);
+                m_UIBulletsArmMonitor.transform.localPosition = Vector3.zero;
+                m_UIBulletsArmMonitor.transform.localRotation = Quaternion.identity;
+                m_UIBulletsArmMonitor.transform.localScale = Vector3.one;
             }
         }
 
@@ -175,7 +187,8 @@ namespace ns_Mashmo
                 !IsItemInInventory)
             {
                 m_UIPlayerHelmet.hide();
-                m_UIArmMonitor.hide();
+                m_UIHealthArmMonitor.hide();
+                m_UIBulletsArmMonitor.hide();
             }
             else
             {
@@ -184,14 +197,17 @@ namespace ns_Mashmo
                 //is the helmet cracked
                 if (IsHelmetCracked)
                 {
-                    m_UIArmMonitor.hide();
+                    m_UIBulletsArmMonitor.hide();
+                    m_UIHealthArmMonitor.hide();
                     m_UIPlayerHelmet.toggleReloadProgressBar(false);
                 }
                 else
                 {
-                    m_UIArmMonitor.show();
+                    m_UIBulletsArmMonitor.show();
+                    m_UIHealthArmMonitor.show();
                     m_UIPlayerHelmet.toggleReloadProgressBar(WeaponManager.IsReloadInProgress);
-                    m_UIArmMonitor.updateInterface(PlayerManager.HealthMeter);
+                    m_UIHealthArmMonitor.updateInterface(PlayerManager.HealthMeter);
+                    m_UIBulletsArmMonitor.updateInterface(PlayerManager.HealthMeter);
                 }
             }
         }

@@ -44,13 +44,23 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// The parent holds the monitor on the arm
+        /// The parent holds the monitor on the arm that indicates the bullet count
         /// </summary>
         [SerializeField]
-        protected Transform m_ArmMonitorParent = null;
-        public Transform ArmMonitorParent
+        protected Transform m_ArmMonitorParent_BulletCount = null;
+        public Transform ArmMonitorParent_BulletCount
         {
-            get { return m_ArmMonitorParent; }
+            get { return m_ArmMonitorParent_BulletCount; }
+        }
+
+        /// <summary>
+        /// The parent holds the monitor on the arm that indicates the health
+        /// </summary>
+        [SerializeField]
+        protected Transform m_ArmMonitorParent_Health = null;
+        public Transform ArmMonitorParent_Health
+        {
+            get { return m_ArmMonitorParent_Health; }
         }
 
         /// <summary>

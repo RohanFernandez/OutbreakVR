@@ -20,14 +20,12 @@ namespace ns_Mashmo
         public void onReturnedToPool()
         {
             gameObject.SetActive(false);
-            Debug.LogError("onReturnedToPool");
         }
 
         public void onRetrievedFromPool()
         {
             m_fCurrentReturnTimer = 0.0f;
             gameObject.SetActive(true);
-            Debug.LogError("onRetrievedFromPool");
         }
 
         public void Update()
