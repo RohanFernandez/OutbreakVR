@@ -192,6 +192,18 @@ namespace ns_Mashmo
                         (l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
                 {
                     l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
+
+                    string l_strSubLevelInLevelName = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
+
+                    ///Checks if it is the last level in the game, if true, the dispatch ON_GAME_COMPLETED_EVENT
+                    if (l_strSubLevelInLevelName.Equals(GameConsts.STATE_NAME_LAST_LEVEL, System.StringComparison.OrdinalIgnoreCase))
+                    {
+                        LastCheckpointLevel = string.Empty;
+
+                        EventHash l_EventHash = EventManager.GetEventHashtable();
+                        l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strSubLevelInLevelName);
+                        EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_COMPLETED, l_EventHash);
+                    }
                 }
                 else if ((l_CurrentSubLevelData.SubLevelDataIndex == l_iSubLevelDataMaxIndex) &&
                         ((l_CurrentLevelData.LevelDataIndex + 1) <= (l_iLevelDataMaxIndex)))
@@ -255,7 +267,7 @@ namespace ns_Mashmo
             GoToLevel(l_strNextLevelToLoad);
         }
 
-        public static bool GetLevelAndSubLevelDataDromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
+        public static bool GetLevelAndSubLevelFataDromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
         {
             return s_Instance.getLevelAndSubLevelDataFromName(a_strLevelName, ref a_refLevelData, ref a_refSubLevelData);
         }

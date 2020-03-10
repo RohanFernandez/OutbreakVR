@@ -854,7 +854,7 @@ namespace ns_Mashmo
                 }
                 else
                 {
-                    /// Indicate weapon cannot be fired
+                    /// TODO:: Indicate weapon cannot be fired
                 }
             }
 
@@ -868,7 +868,7 @@ namespace ns_Mashmo
                 {
                     CurrentReloadWaitTime += Time.deltaTime;
                     float l_fCurrentWeaponReloadTime = getCurrentWeaponReloadTime();
-                    //UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
+                    UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
 
                     if (CurrentReloadWaitTime > l_fCurrentWeaponReloadTime)
                     {

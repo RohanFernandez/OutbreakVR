@@ -31,6 +31,7 @@ namespace ns_Mashmo
         ON_RELOAD_TOGGLED,                          /* <BOOL>*/
         ON_TOUCHPAD_BTN_CHANGED,                    /* <CONTROLLER_TOUCHPAD_BUTTON, CONTROLLER_TOUCHPAD_BUTTON> */
         ON_TOUCHPAD_SWIPE,                         /* <CONTROLLER_TOUCHPAD_SWIPE > */
+        ON_GAME_COMPLETED,                         /* <LEVEL_NAME> */
     }
 
     public static class GameEventTypeConst

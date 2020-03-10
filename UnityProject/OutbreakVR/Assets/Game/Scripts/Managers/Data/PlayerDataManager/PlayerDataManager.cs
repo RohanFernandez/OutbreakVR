@@ -14,8 +14,7 @@ namespace ns_Mashmo
         _OUTBREAK_SYNCD_COINS                           = 2,
         _OUTBREAK_UNSYNCD_COINS                         = 3,
         
-
-
+        _OUTBREAK_GAMES_COMPLETED                       = 4,
 
         _OUTBREAK_LEVEL1_102 = 102
     }

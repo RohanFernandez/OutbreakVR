@@ -12,7 +12,7 @@ namespace ns_Mashmo
         public const string STATE_NAME_NEW_GAME = "Level0_000";
         public const string STATE_NAME_TRAINING = "TRAINING_100";
         public const string STATE_NAME_FIRST_LEVEL = "Level1_100";
-        public const string STATE_NAME_LAST_LEVEL = "Level1_999";
+        public const string STATE_NAME_LAST_LEVEL = "Level1_101";
 
         public const string STATE_NAME_TESTING1_LEVEL = "TESTING1_000";
         #endregion STATE NAMES

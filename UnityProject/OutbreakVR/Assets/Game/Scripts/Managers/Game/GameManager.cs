@@ -127,6 +127,7 @@ namespace ns_Mashmo
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_KILLED, onPlayerKilled);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_COMPLETED, onGameCompleted);
 
             base.initialize();
         }
@@ -140,6 +141,7 @@ namespace ns_Mashmo
             {
                 return;
             }
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_COMPLETED, onGameCompleted);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_KILLED, onPlayerKilled);
 
@@ -360,6 +362,20 @@ namespace ns_Mashmo
             }
 
             UI_NotificationPanel.Hide();
+        }
+
+        /// <summary>
+        /// On the final level of the game is completed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onGameCompleted(EventHash a_EventHash)
+        {
+            // a_EventHash[GameEventTypeConst.ID_GAME_STATE_ID];
+
+            int l_iOldGamesCompleted = PlayerDataManager.GetInt(PLAYER_KEYS._OUTBREAK_GAMES_COMPLETED);
+
+            //Increments the number of times the player has completed the game
+            PlayerDataManager.SetInt(PLAYER_KEYS._OUTBREAK_GAMES_COMPLETED, ++l_iOldGamesCompleted);
         }
     }
 }

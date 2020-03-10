@@ -85,7 +85,7 @@ namespace ns_Mashmo
             //LevelData l_OldLevelData = null;
             //SubLevelData l_OldSubLevelData = null;
 
-            //string l_strOldLevelSceneName = LevelManager.GetLevelAndSubLevelDataDromName(s_Instance.m_strLastState, ref l_OldLevelData, ref l_OldSubLevelData) ? 
+            //string l_strOldLevelSceneName = LevelManager.GetLevelAndSubLevelFataDromName(s_Instance.m_strLastState, ref l_OldLevelData, ref l_OldSubLevelData) ? 
             //    l_OldLevelData.SceneName : string.Empty;
 
             /////Load scene will call the callback directly if already loaded

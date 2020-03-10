@@ -19,6 +19,12 @@ namespace ns_Mashmo
         [SerializeField]
         private GameObject m_goReloadProgressPanel = null;
 
+        /// <summary>
+        /// The UI slider of the reload progress bar
+        /// </summary>
+        [SerializeField]
+        private UnityEngine.UI.Slider m_UIReloadSlider = null;
+
         #endregion RELOAD
 
         /// <summary>
@@ -121,9 +127,7 @@ namespace ns_Mashmo
         /// <param name="a_fCurrentWeaponReloadTime"></param>
         public static void UpdateReloadProgressBar(float a_fReloadTimeElapsed, float a_fCurrentWeaponReloadTime)
         {
-            
+            s_Instance.m_UIReloadSlider.value = a_fReloadTimeElapsed / a_fCurrentWeaponReloadTime;
         }
-
-        
     }
 }
