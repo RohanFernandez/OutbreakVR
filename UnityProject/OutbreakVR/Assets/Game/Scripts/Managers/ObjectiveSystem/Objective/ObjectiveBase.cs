@@ -9,6 +9,10 @@ namespace ns_Mashmo
     {
         [SerializeField]
         private string m_strID = string.Empty;
+        public string ID
+        {
+            get { return m_strID; }
+        }
 
         /// <summary>
         /// The type of the objective
@@ -64,7 +68,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public string getObjectiveType()
         {
-            return null;
+            return m_strType;
         }
 
         public virtual void onComplete()

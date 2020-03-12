@@ -99,5 +99,26 @@ namespace ns_Mashmo
                 l_SequencePool.returnToPool(a_Sequence);
             }
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// logs all alive/dead objective group pools and objectives
+        /// </summary>
+        /// <returns></returns>
+        public static void LogPools(System.Text.StringBuilder a_StrBuilder, TaskPoolManager a_TaskPoolManager)
+        {
+            a_StrBuilder.AppendLine("<color=BLUE>Sequence Pools:</color> \n");
+            foreach (KeyValuePair<string, ISequencePool> l_SequencePool in a_TaskPoolManager.m_dictSequencePools)
+            {
+                a_StrBuilder.AppendLine(l_SequencePool.Key.ToString() + "\t Pooled : " + l_SequencePool.Value.getPooledObjectCount() + "\t Unpooled : " + l_SequencePool.Value.getActiveObjectCount());
+            }
+
+            a_StrBuilder.AppendLine("<color=BLUE>Tasks: \n</color>");
+            foreach (KeyValuePair<string, ITaskPool> l_TasksPool in a_TaskPoolManager.m_dictTasksPools)
+            {
+                a_StrBuilder.AppendLine(l_TasksPool.Key.ToString() + "\t Pooled : " + l_TasksPool.Value.getPooledObjectCount() + "\t Unpooled : " + l_TasksPool.Value.getActiveObjectCount());
+            }
+        }
+#endif
     }
 }

@@ -8,6 +8,9 @@ namespace ns_Mashmo
     {
         void returnToPool(IObjectiveGroup a_ObjectiveGroup);
         IObjectiveGroup getObjectiveGroup();
+
+        int getActiveObjectCount();
+        int getPooledObjectCount();
     }
 
     public class ObjectiveGroupPool : ObjectPool<IObjectiveGroup>, IObjectiveGroupPool
@@ -20,6 +23,16 @@ namespace ns_Mashmo
         public IObjectiveGroup getObjectiveGroup()
         {
             return getObject();
+        }
+
+        public int getActiveObjectCount()
+        {
+            return getActiveList().Count;
+        }
+
+        public int getPooledObjectCount()
+        {
+            return getPooledList().Count;
         }
     }
 }

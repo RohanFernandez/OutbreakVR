@@ -8,6 +8,9 @@ namespace ns_Mashmo
     {
         void returnToPool(IObjective a_Objective);
         IObjective getObjective();
+
+        int getActiveObjectCount();
+        int getPooledObjectCount();
     }
 
     public class ObjectivePool : ObjectPool<IObjective>, IObjectivePool
@@ -20,6 +23,16 @@ namespace ns_Mashmo
         public IObjective getObjective()
         {
             return getObject();
+        }
+
+        public int getActiveObjectCount()
+        {
+            return getActiveList().Count;
+        }
+
+        public int getPooledObjectCount()
+        {
+            return getPooledList().Count;
         }
     }
 }

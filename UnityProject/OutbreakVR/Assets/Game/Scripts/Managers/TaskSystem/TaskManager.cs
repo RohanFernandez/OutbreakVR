@@ -332,6 +332,9 @@ namespace ns_Mashmo
             {
                 l_StringBuilder.AppendLine(l_iSequenceIndex+": \t"+s_Instance.m_lstRunningSequneces[l_iSequenceIndex].getSequenceID()+ "\n");
             }
+
+            TaskPoolManager.LogPools(l_StringBuilder, s_Instance.m_TaskPoolManager);
+
             Debug.Log(l_StringBuilder);
         }
 

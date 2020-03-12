@@ -7,7 +7,7 @@ namespace ns_Mashmo
     public interface IObjectiveGroup: IReusable
     {
         /// <summary>
-        /// Sets the initial data
+        /// Sets the initial data when creating the group
         /// </summary>
         /// <param name="a_strID"></param>
         /// <param name="a_strType"></param>

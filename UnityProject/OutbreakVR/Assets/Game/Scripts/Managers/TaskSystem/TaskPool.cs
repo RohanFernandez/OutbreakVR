@@ -8,6 +8,9 @@ namespace ns_Mashmo
     {
         void returnToPool(ITask a_TaskBase);
         ITask getTask();
+
+        int getActiveObjectCount();
+        int getPooledObjectCount();
     }
 
     public class TaskPool: ObjectPool<ITask>, ITaskPool
@@ -20,6 +23,16 @@ namespace ns_Mashmo
         public ITask getTask()
         {
             return getObject();
+        }
+
+        public int getActiveObjectCount()
+        {
+            return getActiveList().Count;
+        }
+
+        public int getPooledObjectCount()
+        {
+            return getPooledList().Count;
         }
     }
 }

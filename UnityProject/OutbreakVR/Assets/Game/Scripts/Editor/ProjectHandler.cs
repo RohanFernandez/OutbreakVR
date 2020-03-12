@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -22,55 +23,75 @@ namespace ns_Mashmo
         /// Task List
         /// </summary>
         private const string XML_PATH_TASK_LIST        = "Assets\\Game\\GameResources\\TaskListData\\";
-        private const string XML_TASK_LIST_COMMON_NAME = "TaskListCommon";
-        private const string XML_TASK_LIST_LEVEL00_NAME = "TaskListLevel00";
-        private const string XML_TASK_LIST_LEVEL0_NAME = "TaskListLevel0";
-        private const string XML_TASK_LIST_LEVEL1_NAME = "TaskListLevel1";
-        private const string XML_TASK_LIST_TRAINING_NAME = "TaskListTraining";
-        private const string XML_TASK_LIST_TESTING1_NAME = "TaskListTesting1";
-        
         private const string XML_TASK_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\TaskListAssets\\";
 
         /// <summary>
         /// Objective List
         /// </summary>
         private const string XML_PATH_OBJECTIVE_LIST    = "Assets\\Game\\GameResources\\ObjectiveListData\\";
-        private const string XML_OBJECTIVE_LIST_LEVEL00_NAME = "ObjectiveListLevel00";
-        private const string XML_OBJECTIVE_LIST_LEVEL0_NAME = "ObjectiveListLevel0";
-        private const string XML_OBJECTIVE_LIST_LEVEL1_NAME = "ObjectiveListLevel1";
-        private const string XML_OBJECTIVE_LIST_TRAINING_NAME = "ObjectiveListTraining";
-        private const string XML_OBJECTIVE_LIST_TESTING1_NAME = "ObjectiveListTesting1";
         private const string XML_OBJECTIVE_LIST_STORE_LOCATION = "Assets\\Game\\Resources\\ObjectiveListAssets\\";
 
         private const string XML_EXTENSION = ".xml";
 
+        public enum ASSET_TYPE
+        { 
+            OBJECTIVE_LIST  = 0,
+            TASK_LIST       = 1
+        }
+
         static void CreateAllScriptableObject()
         {
-            ///Task list creation
-            CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL00_NAME);
-            CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL0_NAME);
-            CreateTaskListScriptableObject(XML_TASK_LIST_LEVEL1_NAME);
-            CreateTaskListScriptableObject(XML_TASK_LIST_TRAINING_NAME);
-            CreateTaskListScriptableObject(XML_TASK_LIST_COMMON_NAME);
+            CreateAssetsOfType(XML_PATH_TASK_LIST, ASSET_TYPE.TASK_LIST);
+            CreateAssetsOfType(XML_PATH_OBJECTIVE_LIST, ASSET_TYPE.OBJECTIVE_LIST);
+        }
 
-            ///Objective list creation
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL00_NAME);
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL0_NAME);
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_LEVEL1_NAME);
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_TRAINING_NAME);
+        /// <summary>
+        /// Creates assets from the given XML folder
+        /// </summary>
+        /// <param name="a_strXMLPath"></param>
+        /// <param name="a_AssetType"></param>
+        private static void CreateAssetsOfType(string a_strXMLPath, ASSET_TYPE a_AssetType)
+        {
+            DirectoryInfo l_info = new DirectoryInfo(a_strXMLPath);
+            FileInfo[] l_fileInfo = l_info.GetFiles();
+            foreach (FileInfo l_file in l_fileInfo)
+            {
+                if (l_file.FullName.Contains(".xml.meta"))
+                {
+                    continue;
+                }
+                else if (l_file.FullName.Contains(".xml"))
+                {
+                    string l_strFileName = l_file.Name.Remove(l_file.Name.Length - XML_EXTENSION.Length, XML_EXTENSION.Length);
 
-            //DEBUG
-            CreateTaskListScriptableObject(XML_TASK_LIST_TESTING1_NAME);
-            CreateObjectiveListScriptableObject(XML_OBJECTIVE_LIST_TESTING1_NAME);
+                    switch (a_AssetType)
+                    {
+                        case ASSET_TYPE.OBJECTIVE_LIST:
+                            {
+                                CreateObjectiveListScriptableObject(l_file.FullName, l_strFileName);
+                                break;
+                            }
+                        case ASSET_TYPE.TASK_LIST:
+                            {
+                                CreateTaskListScriptableObject(l_file.FullName, l_strFileName);
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    Debug.LogError("ProjectHandler::CreateAllScriptableObject:: Cannot create scriptable object with file with name at location '" + l_file.FullName + "'");
+                }
+            }
         }
 
         /// <summary>
         /// Creates task list asset with given name and stores it into the location
         /// </summary>
         /// <param name="a_strAssetNameToSave"></param>
-        static void CreateTaskListScriptableObject(string a_strAssetNameToSave)
+        static void CreateTaskListScriptableObject(string a_strDataPathName, string a_strAssetName)
         {
-            UnityEditor.AssetDatabase.CreateAsset(TaskList.GetTaskListFromXML(XML_PATH_TASK_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_TASK_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
+            UnityEditor.AssetDatabase.CreateAsset(TaskList.GetTaskListFromXML(a_strDataPathName), XML_TASK_LIST_STORE_LOCATION + a_strAssetName + ".asset");
             UnityEditor.AssetDatabase.SaveAssets();
         }
 
@@ -78,9 +99,9 @@ namespace ns_Mashmo
         /// Creates objective list asset with given name and stores it into the location
         /// </summary>
         /// <param name="a_strAssetNameToSave"></param>
-        static void CreateObjectiveListScriptableObject(string a_strAssetNameToSave)
+        static void CreateObjectiveListScriptableObject(string a_strDataPathName, string a_strAssetName)
         {
-            UnityEditor.AssetDatabase.CreateAsset(ObjectiveList.GetObjectiveList(XML_PATH_OBJECTIVE_LIST + a_strAssetNameToSave + XML_EXTENSION), XML_OBJECTIVE_LIST_STORE_LOCATION + a_strAssetNameToSave + ".asset");
+            UnityEditor.AssetDatabase.CreateAsset(ObjectiveList.GetObjectiveList(a_strDataPathName), XML_OBJECTIVE_LIST_STORE_LOCATION + a_strAssetName + ".asset");
             UnityEditor.AssetDatabase.SaveAssets();
         }
 
@@ -108,6 +129,7 @@ namespace ns_Mashmo
         Rect m_RectSequenceExecute;
         string m_strSequenceToExecute = string.Empty;
         string m_strLevelToTransition = string.Empty;
+        string m_strTriggerObjective = string.Empty;
 
         void OnGUI()
         {
@@ -142,14 +164,25 @@ namespace ns_Mashmo
             {
                 TaskManager.StopAll();
             }
-
-            GUILayout.Space(10.0f);
-
-            GUILayout.Label("LOGGER", EditorStyles.boldLabel);
-            if (GUILayout.Button("Log Running Tasks", GUILayout.Width(120)))
+            if (GUILayout.Button("Log Tasks", GUILayout.Width(120)))
             {
                 TaskManager.LogRunningSequences();
             }
+
+            GUILayout.Space(10.0f);
+
+            GUILayout.Label("ObjectiveList", EditorStyles.boldLabel);
+            m_strTriggerObjective = EditorGUILayout.TextField("Objective ID:", m_strTriggerObjective);
+            if (GUILayout.Button("Trigger Objective", GUILayout.Width(120)))
+            {
+                ObjectiveManager.TriggerObjective(m_strTriggerObjective);
+            }
+            if (GUILayout.Button("Log Objectives", GUILayout.Width(120)))
+            {
+                ObjectiveManager.LogRunningObjectives();
+            }
+
+            GUILayout.Space(10.0f);
         }
 
         #endregion EDITOR POP UP WINDOW

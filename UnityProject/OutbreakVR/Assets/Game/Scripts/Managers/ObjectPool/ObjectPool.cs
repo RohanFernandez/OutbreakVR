@@ -95,5 +95,14 @@ namespace ns_Mashmo
         {
             return m_lstActivePooledObjects;
         }
+
+        /// <summary>
+        /// Returns list of all active game objects
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<T> getPooledList()
+        {
+            return new List<T>( m_Pool.ToArray());
+        }
     }
 }

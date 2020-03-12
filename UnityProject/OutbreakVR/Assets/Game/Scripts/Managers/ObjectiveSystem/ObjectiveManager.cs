@@ -47,6 +47,13 @@ namespace ns_Mashmo
         public static ObjectiveGroupBase CurrentObjectiveGroup
         {
             get { return s_Instance.m_CurrentObjectiveGroup; }
+            private set {
+                if (s_Instance.m_CurrentObjectiveGroup != null)
+                {
+                    s_Instance.m_ObjectivePoolManager.returnObjectiveGroupToPool(s_Instance.m_CurrentObjectiveGroup);
+                }
+                s_Instance.m_CurrentObjectiveGroup = value;
+            }
         }
 
         /// <summary>
@@ -102,19 +109,19 @@ namespace ns_Mashmo
         {
             if (string.IsNullOrEmpty(a_strObjectiveGroupID) || m_CurrentObjectiveList == null)
             {
-                m_CurrentObjectiveGroup = null;
+                CurrentObjectiveGroup = null;
                 return;
             }
 
             ScriptableObjectiveGroup l_ObjectiveGroup = m_CurrentObjectiveList.getScriptableObjectiveGroup(a_strObjectiveGroupID);
             if (l_ObjectiveGroup == null)
             {
-                m_CurrentObjectiveGroup = null;
+                CurrentObjectiveGroup = null;
             }
             else
             {
                 Debug.Log("<color=BLUE>ObjectiveManager::setCurrentObjectiveGroup::</color> Setting objective group with ID '" + a_strObjectiveGroupID + "'");
-                m_CurrentObjectiveGroup = (ObjectiveGroupBase)m_ObjectivePoolManager.getObjectiveGroupFromPool(l_ObjectiveGroup);
+                CurrentObjectiveGroup = (ObjectiveGroupBase)m_ObjectivePoolManager.getObjectiveGroupFromPool(l_ObjectiveGroup);
             }
         }
 
@@ -157,16 +164,20 @@ namespace ns_Mashmo
         /// </summary>
         private void manageObjectiveCompletion(Hashtable a_Hashtable)
         {
-            if (m_CurrentObjectiveGroup == null || (m_CurrentObjectiveGroup.m_lstObjectives.Count == 0))
+            if (CurrentObjectiveGroup == null || (CurrentObjectiveGroup.m_lstObjectives.Count == 0))
             {
                 return;
             }
 
-            m_CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
-            if (m_CurrentObjectiveGroup.IsComplete())
+            CurrentObjectiveGroup.checkForObjectiveCompletion(a_Hashtable);
+            if (CurrentObjectiveGroup.IsComplete())
             {
+                string l_strCurrentObjGroupID = CurrentObjectiveGroup.getObjGroupID();
+
+                setCurrentObjectiveGroup(null);
+
                 EventHash l_EventHash = EventManager.GetEventHashtable();
-                l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_CurrentObjectiveGroup.getObjGroupID());
+                l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, l_strCurrentObjGroupID);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_OBJECTIVE_GROUP_COMPLETED, l_EventHash);
             }
         }
@@ -228,5 +239,33 @@ namespace ns_Mashmo
             l_hash.Add(GameEventTypeConst.ID_OBJECTIVE_TRIGGER_ID, a_strObjectiveTriggerID);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, l_hash);
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// Debug logs all objectives
+        /// </summary>
+        public static void LogRunningObjectives()
+        {
+            ObjectiveGroupBase l_ObjectiveGroupBase = ObjectiveManager.CurrentObjectiveGroup;
+
+            List<ObjectiveBase> l_lstObjectives = l_ObjectiveGroupBase.m_lstObjectives;
+
+            System.Text.StringBuilder l_StringBuilder = new System.Text.StringBuilder(200);
+            l_StringBuilder.AppendLine("<color=BLUE> CURRENT OBJECTIVES</color>\n");
+            l_StringBuilder.AppendLine("Objective Group ID : " + l_ObjectiveGroupBase.getObjGroupID() + "\n");
+            l_StringBuilder.AppendLine("Objective Group Type : "+ l_ObjectiveGroupBase.getObjGroupType() + "\n");
+            int l_iObjectiveCount = l_lstObjectives.Count;
+            for (int l_iObjectiveIndex = 0; l_iObjectiveIndex < l_iObjectiveCount; l_iObjectiveIndex++)
+            {
+                ObjectiveBase l_CurrentObjectiveBase = l_lstObjectives[l_iObjectiveIndex];
+                l_StringBuilder.AppendLine(l_iObjectiveIndex + ": \t" + l_CurrentObjectiveBase.ID + " \t" + l_CurrentObjectiveBase.getObjectiveType() + " \t"+ l_CurrentObjectiveBase.isComplete().ToString() + " \t" + l_CurrentObjectiveBase.ObjDescription + "\n");
+            }
+
+            ObjectivePoolManager.LogGroupPools(l_StringBuilder, s_Instance.m_ObjectivePoolManager);
+
+            Debug.Log(l_StringBuilder.ToString());
+        }
+
+#endif 
     }
 }

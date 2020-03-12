@@ -31,7 +31,7 @@ namespace ns_Mashmo
             IObjectivePool l_ObjectivePool = null;
             if (!m_dictObjectivePool.TryGetValue(a_ScriptableObjective.m_strType, out l_ObjectivePool))
             {
-                l_ObjectivePool = new ObjectivePool(a_ScriptableObjective.m_strType, 5);
+                l_ObjectivePool = new ObjectivePool(a_ScriptableObjective.m_strType, 3);
                 m_dictObjectivePool.Add(a_ScriptableObjective.m_strType, l_ObjectivePool);
             }
             IObjective l_Objective = l_ObjectivePool.getObjective();
@@ -62,7 +62,7 @@ namespace ns_Mashmo
             IObjectiveGroupPool l_ObjGroupPool = null;
             if (!m_dictObjectivePoolGroup.TryGetValue(a_ScriptableObjectiveGroup.m_strType, out l_ObjGroupPool))
             {
-                l_ObjGroupPool = new ObjectiveGroupPool(a_ScriptableObjectiveGroup.m_strType, 10);
+                l_ObjGroupPool = new ObjectiveGroupPool(a_ScriptableObjectiveGroup.m_strType, 1);
                 m_dictObjectivePoolGroup.Add(a_ScriptableObjectiveGroup.m_strType, l_ObjGroupPool);
             }
 
@@ -96,5 +96,26 @@ namespace ns_Mashmo
                 l_ObjGroupPool.returnToPool(a_ObjectiveGroup);
             }
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// logs all alive/dead objective group pools and objectives
+        /// </summary>
+        /// <returns></returns>
+        public static void LogGroupPools(System.Text.StringBuilder a_StrBuilder, ObjectivePoolManager a_ObjectivePoolManager)
+        {
+            a_StrBuilder.AppendLine("<color=BLUE>ObjectiveGroupPools:</color> \n");
+            foreach (KeyValuePair<string, IObjectiveGroupPool> l_ObjectiveGroup in a_ObjectivePoolManager.m_dictObjectivePoolGroup)
+            {
+                a_StrBuilder.AppendLine(l_ObjectiveGroup.Key.ToString() + "\t Pooled : "+ l_ObjectiveGroup.Value.getPooledObjectCount() + "\t Unpooled : "+ l_ObjectiveGroup.Value.getActiveObjectCount());   
+            }
+
+            a_StrBuilder.AppendLine("<color=BLUE>\nObjectives: \n</color>");
+            foreach (KeyValuePair<string, IObjectivePool> l_ObjectivePool in a_ObjectivePoolManager.m_dictObjectivePool)
+            {
+                a_StrBuilder.AppendLine(l_ObjectivePool.Key.ToString() + "\t Pooled : " + l_ObjectivePool.Value.getPooledObjectCount() + "\t Unpooled : " + l_ObjectivePool.Value.getActiveObjectCount());
+            }
+        }
+#endif
     }
 }
