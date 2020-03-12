@@ -26,6 +26,12 @@ namespace ns_Mashmo
         [SerializeField]
         private MainPauseControlPanel m_MainPauseControlPanel = null;
 
+        /// <summary>
+        /// The distance from the camera this UI should be rendered
+        /// </summary>
+        [SerializeField]
+        private float m_fDistanceFromCam = 0.7f;
+
         #region PAUSE STATE
 
         public const string PAUSE_STATE_OBJECTIVE       = "OBJECTIVES";
@@ -84,8 +90,7 @@ namespace ns_Mashmo
 
         private void Update()
         {
-            transform.position = m_transformCenterCamera.position + (new Vector3(m_transformCenterCamera.forward.x, 0.0f, m_transformCenterCamera.forward.z).normalized * 0.7f);
-            transform.rotation = Quaternion.LookRotation(-m_transformCenterCamera.forward);
+            transform.SetPositionAndRotation(m_transformCenterCamera.position + m_transformCenterCamera.forward * m_fDistanceFromCam, m_transformCenterCamera.rotation);
 
             if (ControllerManager.IsPrimaryTriggerBtnUp()
 #if UNITY_EDITOR
