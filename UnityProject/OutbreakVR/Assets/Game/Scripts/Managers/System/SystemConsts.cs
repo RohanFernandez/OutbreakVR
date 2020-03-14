@@ -11,7 +11,8 @@ namespace ns_Mashmo
         #region SCENE NAMES
         public const string SCENE_NAME_INIT_SCENE = "Init";
         public const string SCENE_NAME_HOME_SCENE = "Home";
-        public const string SCENE_NAME_CINEMATIC0 = "Cinematic test";
+        public const string SCENE_NAME_CINEMATIC1 = "Cinematic1";
+        public const string SCENE_NAME_CINEMATIC2 = "Cinematic2";
         #endregion SCENE NAMES
 
         #region OCULUS

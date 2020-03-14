@@ -160,6 +160,10 @@ namespace ns_Mashmo
             int l_iDamageBefore = HealthMeter;
             HealthMeter -= a_iDamage;
 
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_DAMAGE_INFLICTED, a_iDamage);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, l_EventHash);
+
             if (l_iDamageBefore > 0 &&
                 HealthMeter <= 0)
             {

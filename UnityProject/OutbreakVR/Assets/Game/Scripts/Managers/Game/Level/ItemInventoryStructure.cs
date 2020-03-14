@@ -8,7 +8,7 @@ namespace ns_Mashmo
     public class HelmetStructure
     {
         [SerializeField]
-        public bool m_bIsHelmetCracked = false;
+        public int m_iHelmetStrength = 0;
 
         [SerializeField]
         public bool m_bIsHelmetCarried = false;

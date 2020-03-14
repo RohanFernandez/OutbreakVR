@@ -32,6 +32,7 @@ namespace ns_Mashmo
         ON_TOUCHPAD_BTN_CHANGED,                    /* <CONTROLLER_TOUCHPAD_BUTTON, CONTROLLER_TOUCHPAD_BUTTON> */
         ON_TOUCHPAD_SWIPE,                         /* <CONTROLLER_TOUCHPAD_SWIPE > */
         ON_GAME_COMPLETED,                         /* <LEVEL_NAME> */
+        ON_DAMAGE_INFLICTED_ON_PLAYER,             /* <INT> */
     }
 
     public static class GameEventTypeConst
@@ -157,5 +158,9 @@ namespace ns_Mashmo
         #region ON_TOUCHPAD_SWIPE
         public const string ID_TOUCHPAD_SWIPE = "ID_TOUCHPAD_SWIPE";     /* CONTROLLER_TOUCHPAD_SWIPE */
         #endregion ON_TOUCHPAD_SWIPE
+
+        #region ON_DAMAGE_INFLICTED_ON_PLAYER
+        public const string ID_DAMAGE_INFLICTED = "ID_DAMAGE_INFLICTED";     /* INT */
+        #endregion ON_DAMAGE_INFLICTED_ON_PLAYER
     }
 }

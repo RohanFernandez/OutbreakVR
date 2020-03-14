@@ -2969,6 +2969,7 @@ MonoBehaviour:
   - {fileID: 1793559304087461781, guid: c73608bc0645d9d43a5569abe16497de, type: 3}
   - {fileID: 4704550514064512414, guid: 2df9736e019f98840b55a40be4b4843c, type: 3}
   - {fileID: 4455262092159557427, guid: 9ee6a6344ab04d7449df1aed19ba811d, type: 3}
+  - {fileID: 4785268976753754890, guid: ae3eb01c7cc3f444e9cb43edc83c0105, type: 3}
 --- !u!1001 &269070899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9377,6 +9378,7 @@ MonoBehaviour:
   m_v3HeadsetWeaponHolderOffset: {x: 0.4, y: -0.17, z: 0.17}
   m_CurrentWeaponCategoryType: 0
   m_CurrentWeaponType: 0
+  m_fWeaponRaycastFireMaxDistance: 15
   m_bIsWeaponActive: 0
   m_fCurrentReloadWaitTime: 0
   m_GunHitInteractionLayer:
@@ -9479,7 +9481,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 100
             m_bIsHelmetCarried: 1
         m_iPlayerHealth: 100
         m_v3PlayerPosition: {x: 0, y: 10, z: 0}
@@ -9512,7 +9514,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
@@ -9545,7 +9547,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
@@ -9578,7 +9580,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 69
         m_v3PlayerPosition: {x: -2.854, y: 31.55038, z: -4.412}
@@ -9607,7 +9609,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
@@ -9636,7 +9638,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
@@ -9665,7 +9667,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
@@ -9698,7 +9700,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 69
         m_v3PlayerPosition: {x: -2.854, y: 31.55038, z: -4.412}
@@ -9727,7 +9729,7 @@ MonoBehaviour:
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_bIsHelmetCracked: 0
+            m_iHelmetStrength: 0
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 69
         m_v3PlayerPosition: {x: -2.854, y: 31.55038, z: -4.412}
@@ -22665,7 +22667,7 @@ Transform:
   m_GameObject: {fileID: 1175813830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1089914894}
   m_RootOrder: 0
@@ -29957,7 +29959,7 @@ MonoBehaviour:
   m_UIPlayerHelmet: {fileID: 73063697}
   m_UIHealthArmMonitor: {fileID: 1834509228}
   m_UIBulletsArmMonitor: {fileID: 129521385}
-  m_bIsHelmetCracked: 0
+  m_iCurrentStrength: 40
 --- !u!95 &1591926142 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 7965571dca3857e42a834dd6dc1fbaf5,
@@ -30726,6 +30728,8 @@ MonoBehaviour:
   m_InteractionLayer:
     serializedVersion: 2
     m_Bits: 256
+  m_fMaxCursorDistance: 9
+  m_fMaxCursorInteractableDistance: 1.2
   m_bIsLaserActive: 1
   m_bIsLineRendererOn: 0
 --- !u!114 &1857882337

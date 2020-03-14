@@ -7,14 +7,14 @@ namespace ns_Mashmo
     public class HelmetDrop : InventoryDrop
     {
         /// <summary>
-        /// Is the helmet cracked or not
+        /// The condition/strength of the helmet in percentage between 0 - 100
         /// </summary>
         [SerializeField]
-        private bool m_bIsHelmetCracked = false;
-        public bool IsHelmetCracked
+        private int m_iStrengthPercentage = 100;
+        public int StrengthPercentage
         {
-            get { return m_bIsHelmetCracked; }
-            set { m_bIsHelmetCracked = value ; }
+            get { return m_iStrengthPercentage; }
+            set { m_iStrengthPercentage = Mathf.Clamp(value, 0, 100); }
         }
     }
 }

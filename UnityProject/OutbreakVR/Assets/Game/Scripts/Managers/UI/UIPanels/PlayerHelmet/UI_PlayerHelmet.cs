@@ -37,14 +37,6 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-
-            //EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
-            //EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
-            //EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
-            //EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
-            //EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
-
-            //updateWeaponInterface();
         }
 
         /// <summary>
@@ -56,11 +48,6 @@ namespace ns_Mashmo
             {
                 return;
             }
-            //EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
-            //EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_RELOADED, onWeaponReloaded);
-            //EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
-            //EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
-            //EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, onPlayerHealthUpdated);
             
             s_Instance = null;
         }
@@ -74,42 +61,6 @@ namespace ns_Mashmo
         {
             s_Instance.hide();
         }
-
-        ///// <summary>
-        ///// Event called on weapon changed
-        ///// </summary>
-        ///// <param name="a_EventHash"></param>
-        //public void onWeaponChanged(EventHash a_EventHash)
-        //{
-        //    updateWeaponInterface();
-        //}
-
-        ///// <summary>
-        ///// Event callback on weapon reloaded
-        ///// </summary>
-        ///// <param name="a_EventHash"></param>
-        //private void onWeaponReloaded(EventHash a_EventHash)
-        //{
-        //    updateWeaponInterface();
-        //}
-
-        ///// <summary>
-        ///// Event callback on weapon fired
-        ///// </summary>
-        ///// <param name="a_EventHash"></param>
-        //private void onWeaponFired(EventHash a_EventHash)
-        //{
-        //    updateWeaponInterface();
-        //}
-
-        ///// <summary>
-        ///// Event callback on bullets added
-        ///// </summary>
-        ///// <param name="a_EventHash"></param>
-        //private void onBulletsAdded(EventHash a_EventHash)
-        //{
-        //    updateWeaponInterface();
-        //}
 
         /// <summary>
         /// Shows Hide the reload progress bar

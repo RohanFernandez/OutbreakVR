@@ -149,7 +149,7 @@ namespace ns_Mashmo
                 
                 PlayerManager.HealthMeter = l_CurrentSubLevelData.SavedData.m_iPlayerHealth;
                 WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.SavedData.m_WeaponInventory);
-                InventoryManager.SetCurrentItemInventory(l_CurrentSubLevelData.SavedData.m_ItemInventory);
+                InventoryManager.SetInventoryDataAsCurrent(l_CurrentSubLevelData.SavedData.m_ItemInventory);
 
                 #endregion LOAD_LEVEL_DATA
             }
@@ -242,7 +242,7 @@ namespace ns_Mashmo
                         l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
 
                         //Save Inventory Data
-                        InventoryManager.RetrieveInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
+                        InventoryManager.SetInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
                     }
 
                     if (l_SubLevelDataToSave.IsCheckpoint)

@@ -29,7 +29,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Updates the weapon related information
         /// </summary>
-        public void updateInterface(int a_iPlayerHealth)
+        public void updateInterface()
         {
             WeaponBase l_CurrentWeaponBase = WeaponManager.GetCurrentWeaponBase();
 

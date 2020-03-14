@@ -91,23 +91,33 @@ namespace ns_Mashmo
                         if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
                         {
                             l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
-
-                            //If the player already is wearing a helmet,
-                            //then set a helmet item with those helmet properties at the same position of the picked up item
                             if (l_HelmetInventoryItem.IsItemInInventory)
                             {
-                                ItemDropBase l_ItemDropBase = ItemDropManager.GetItemDrop(ITEM_TYPE.ITEM_HELMET);
-                                HelmetDrop l_NewHelmetDrop = (HelmetDrop)l_ItemDropBase;
-                                l_NewHelmetDrop.IsHelmetCracked = l_HelmetInventoryItem.IsHelmetCracked;
+                                ///the new item that will be set as a dropped cracked/uncracked helmet
+                                ItemDropBase l_ItemDropBase = null;
 
-                                l_NewHelmetDrop.transform.SetParent(a_InventoryDropItem.transform.parent);
-                                l_NewHelmetDrop.transform.SetPositionAndRotation(a_InventoryDropItem.transform.position, a_InventoryDropItem.transform.rotation);
-                                l_NewHelmetDrop.transform.localPosition = a_InventoryDropItem.transform.localPosition;
+                                ///If the player is wearing a helmet that is cracked, then replace the cracked helmet in the inventory with the uncracked pickedup helmet
+                                ///and the picked up uncracked helmet with the cracked helmet as an cracked helmet item drop
+                                if (l_HelmetInventoryItem.IsHelmetCracked)
+                                {
+                                    l_ItemDropBase = ItemDropManager.GetItemDrop(ITEM_TYPE.ITEM_CRACKED_HELMET);
+                                }
+                                /// If the player is wearing a helmet that is not cracked, then replace the helmet with the drop
+                                else
+                                {
+                                    l_ItemDropBase = ItemDropManager.GetItemDrop(ITEM_TYPE.ITEM_HELMET);
+                                    HelmetDrop l_HelmetDrop = (HelmetDrop)l_ItemDropBase;
+                                    l_HelmetDrop.StrengthPercentage = InventoryHelmet.GetPercentageFromHelmetCondition(l_HelmetInventoryItem.CurrentStrength);
+                                }
+
+                                ///Set transform of dropped item as the previous picked up item
+                                l_ItemDropBase.transform.SetParent(a_InventoryDropItem.transform.parent);
+                                l_ItemDropBase.transform.SetPositionAndRotation(a_InventoryDropItem.transform.position, a_InventoryDropItem.transform.rotation);
+                                l_ItemDropBase.transform.localPosition = a_InventoryDropItem.transform.localPosition;
                             }
-
-                            //Set the picked up helmet attributes to the inventory
-                            HelmetDrop l_HelmetDrop = (HelmetDrop)a_InventoryDropItem;
-                            l_HelmetInventoryItem.IsHelmetCracked = l_HelmetDrop.IsHelmetCracked;
+                            ///Set the picked up helmet as current
+                            HelmetDrop l_PickedHelmet = (HelmetDrop)a_InventoryDropItem;
+                            l_HelmetInventoryItem.CurrentStrength = InventoryHelmet.GetHelmetStrengthFromPercentage(l_PickedHelmet.StrengthPercentage);
                             l_HelmetInventoryItem.ItemsInInventory = 1;
                             l_bIsItemPickedUp = true;
                         }
@@ -126,7 +136,7 @@ namespace ns_Mashmo
         /// Sets the item inventory to current
         /// </summary>
         /// <param name="a_SavedItemInventory"></param>
-        public static void SetCurrentItemInventory(ItemInventoryStructure a_SavedItemInventory)
+        public static void SetInventoryDataAsCurrent(ItemInventoryStructure a_SavedItemInventory)
         {
             /// Set helmet data
             InventoryHelmet l_HelmetInventoryItem = null;
@@ -134,7 +144,7 @@ namespace ns_Mashmo
             if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
             {
                 l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
-                l_HelmetInventoryItem.IsHelmetCracked = a_SavedItemInventory.m_HelmetStructure.m_bIsHelmetCracked;
+                l_HelmetInventoryItem.CurrentStrength = a_SavedItemInventory.m_HelmetStructure.m_iHelmetStrength;
                 l_HelmetInventoryItem.ItemsInInventory = a_SavedItemInventory.m_HelmetStructure.m_bIsHelmetCarried ? 1 : 0;
             }
         }
@@ -143,7 +153,7 @@ namespace ns_Mashmo
         /// Sets the current inventory info to the reference arguement
         /// </summary>
         /// <param name="a_IteminventoryStructure"></param>
-        public static void RetrieveInventoryInfo(ref ItemInventoryStructure a_ItemInventoryStructure)
+        public static void SetInventoryInfo(ref ItemInventoryStructure a_ItemInventoryStructure)
         {
             /// Set helmet data
             
@@ -152,7 +162,7 @@ namespace ns_Mashmo
             {
                 InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
                 a_ItemInventoryStructure.m_HelmetStructure.m_bIsHelmetCarried = l_HelmetInventoryItem.ItemsInInventory > 0;
-                a_ItemInventoryStructure.m_HelmetStructure.m_bIsHelmetCracked = l_HelmetInventoryItem.IsHelmetCracked;
+                a_ItemInventoryStructure.m_HelmetStructure.m_iHelmetStrength = l_HelmetInventoryItem.CurrentStrength;
             }
         }
     }

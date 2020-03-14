@@ -16,7 +16,7 @@ namespace ns_Mashmo
 
         #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
-        private const string ATTRIBUTE_IS_HELMET_CRACKED = "IsHelmetCracked";
+        private const string ATTRIBUTE_HELMET_STRENGTH_PERCENTAGE = "StrengthPercentage";
         #endregion ITEM SPECIFIC
 
         private const string ATTRIBUTE_CODE = "Code";
@@ -134,7 +134,7 @@ namespace ns_Mashmo
                                         case ITEM_TYPE.ITEM_HELMET:
                                             {
                                                 HelmetDrop l_HelmetDrop = (HelmetDrop)l_InventoryDrop;
-                                                l_HelmetDrop.IsHelmetCracked = getBool(ATTRIBUTE_IS_HELMET_CRACKED);
+                                                l_HelmetDrop.StrengthPercentage = getInt(ATTRIBUTE_HELMET_STRENGTH_PERCENTAGE);
                                                 break;
                                             }
 

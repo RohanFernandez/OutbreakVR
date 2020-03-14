@@ -17,7 +17,8 @@ namespace ns_Mashmo
         ITEM_REVOLVER,
         ITEM_HELMET,
         ITEM_STINGRAY,
-        ITEM_THOMPSON
+        ITEM_THOMPSON,
+        ITEM_CRACKED_HELMET,
     }
 
     /// <summary>

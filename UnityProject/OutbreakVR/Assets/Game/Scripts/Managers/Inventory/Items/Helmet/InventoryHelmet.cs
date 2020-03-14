@@ -25,21 +25,37 @@ namespace ns_Mashmo
         private UI_BulletsArmMonitor m_UIBulletsArmMonitor = null;
 
         /// <summary>
-        /// sets if the helmet is cracked
+        /// The current strength of the helmet
         /// </summary>
         [SerializeField]
-        private bool m_bIsHelmetCracked = false;
-        public bool IsHelmetCracked
+        private int m_iCurrentStrength = 40;
+        public int CurrentStrength
         {
-            get { return m_bIsHelmetCracked; }
-            set {
-                bool l_bIsHelmetCrackedBeforeChange = m_bIsHelmetCracked;
-                m_bIsHelmetCracked = value;
-                if (l_bIsHelmetCrackedBeforeChange != m_bIsHelmetCracked)
+            get { return m_iCurrentStrength; }
+            set
+            {
+                int l_iStrengthBeforeUpdate = m_iCurrentStrength;
+                m_iCurrentStrength = Mathf.Clamp(value, 0, MAX_HELMET_STRENGTH);
+                if (l_iStrengthBeforeUpdate != m_iCurrentStrength &&
+                m_iCurrentStrength == 0 &&
+                IsItemInInventory)
                 {
                     onPlayerHelmetCracked();
                 }
             }
+    }
+
+        /// <summary>
+        /// THe max strength any helmet can have
+        /// </summary>
+        public const int MAX_HELMET_STRENGTH = 40;
+
+        /// <summary>
+        /// gets if the helmet is cracked
+        /// </summary>
+        public bool IsHelmetCracked
+        {
+            get { return CurrentStrength == 0; }
         }
 
         public override void initialize()
@@ -53,6 +69,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
         }
 
         public override void destroy()
@@ -65,6 +82,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onWeaponFired);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
             base.destroy();
         }
 
@@ -171,7 +189,18 @@ namespace ns_Mashmo
         {
             updateHelmet();
         }
-        
+
+        /// <summary>
+        /// Callback on damage inflicted on the player by an enemy
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onDamageInflictedToPlayer(EventHash a_EventHash)
+        {
+            int l_iDamageInflicted = (int)a_EventHash[GameEventTypeConst.ID_DAMAGE_INFLICTED];
+            CurrentStrength -= l_iDamageInflicted;
+            updateHelmet();
+        }
+
         /// <summary>
         /// Sets if the helmet should be enabled/ disabled
         /// Sets the current weapons bullet count, weapon type
@@ -207,9 +236,29 @@ namespace ns_Mashmo
                     m_UIHealthArmMonitor.show();
                     m_UIPlayerHelmet.toggleReloadProgressBar(WeaponManager.IsReloadInProgress);
                     m_UIHealthArmMonitor.updateInterface(PlayerManager.HealthMeter);
-                    m_UIBulletsArmMonitor.updateInterface(PlayerManager.HealthMeter);
+                    m_UIBulletsArmMonitor.updateInterface();
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the condition of the helmet between 0 - MAX_HELMET_STRENGTH from a percentage between 0 - 100 
+        /// </summary>
+        /// <param name="a_iHelmetConditionPercentage"></param>
+        /// <returns></returns>
+        public static int GetHelmetStrengthFromPercentage(int a_iHelmetConditionPercentage)
+        {
+            return (int)(Mathf.Clamp(a_iHelmetConditionPercentage, 0, 100) * 0.01 * MAX_HELMET_STRENGTH);
+        }
+
+        /// <summary>
+        /// Gets the percentage of the helmet between 0 - 100 from a percentage between 0 - MAX_HELMET_STRENGTH 
+        /// </summary>
+        /// <param name="a_iHelmetCondition"></param>
+        /// <returns></returns>
+        public static int GetPercentageFromHelmetCondition(int a_iHelmetCondition)
+        {
+            return (int)((Mathf.Clamp(a_iHelmetCondition, 0, MAX_HELMET_STRENGTH) / a_iHelmetCondition) * 100.0f);
         }
     }
 }

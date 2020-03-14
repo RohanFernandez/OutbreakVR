@@ -81,6 +81,12 @@ namespace ns_Mashmo
             get {return s_Instance.m_CurrentWeaponType;}
         }
 
+        /// <summary>
+        /// The max distance the raycast should travel on weapon is fired
+        /// </summary>
+        [SerializeField]
+        private float m_fWeaponRaycastFireMaxDistance = 15.0f;
+
         [SerializeField]
         private bool m_bIsWeaponActive = false;
         public static bool IsWeaponActive
@@ -742,7 +748,7 @@ namespace ns_Mashmo
 
             Transform l_transCurrentControllerAnchor = ControllerManager.RayTransform;
             Ray l_ray = new Ray(l_transCurrentControllerAnchor.position, l_transCurrentControllerAnchor.forward);
-            Physics.Raycast(l_ray, out l_RaycastHit, ControllerManager.MAX_CURSOR_DISTANCE, m_GunHitInteractionLayer);
+            Physics.Raycast(l_ray, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, m_GunHitInteractionLayer);
 
             if (l_RaycastHit.collider != null)
             {
