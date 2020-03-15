@@ -4,6 +4,16 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
+    /// <summary>
+    /// The enum that indicates the strength of the helmet, its based on the percentage of the strength
+    /// </summary>
+    public enum HelmetStrengthIndicator
+    { 
+        HELMET_STRENGTH_WEAK        = 0,
+        HELMET_STRENGTH_MODERATE    = 1,
+        HELMET_STRENGTH_STRONG      = 2,
+    }
+
     public class InventoryHelmet : InventoryItem
     {
         /// <summary>
@@ -35,7 +45,7 @@ namespace ns_Mashmo
             set
             {
                 int l_iStrengthBeforeUpdate = m_iCurrentStrength;
-                m_iCurrentStrength = Mathf.Clamp(value, 0, MAX_HELMET_STRENGTH);
+                m_iCurrentStrength = (int)Mathf.Clamp(value, 0.0f, MAX_HELMET_STRENGTH);
                 if (l_iStrengthBeforeUpdate != m_iCurrentStrength &&
                 m_iCurrentStrength == 0 &&
                 IsItemInInventory)
@@ -48,7 +58,7 @@ namespace ns_Mashmo
         /// <summary>
         /// THe max strength any helmet can have
         /// </summary>
-        public const int MAX_HELMET_STRENGTH = 40;
+        public const float MAX_HELMET_STRENGTH = 40;
 
         /// <summary>
         /// gets if the helmet is cracked
@@ -229,6 +239,7 @@ namespace ns_Mashmo
                     m_UIBulletsArmMonitor.hide();
                     m_UIHealthArmMonitor.hide();
                     m_UIPlayerHelmet.toggleReloadProgressBar(false);
+                    m_UIPlayerHelmet.toggleHelmetScreen(IsHelmetCracked, HelmetStrengthIndicator.HELMET_STRENGTH_WEAK);
                 }
                 else
                 {
@@ -237,6 +248,8 @@ namespace ns_Mashmo
                     m_UIPlayerHelmet.toggleReloadProgressBar(WeaponManager.IsReloadInProgress);
                     m_UIHealthArmMonitor.updateInterface(PlayerManager.HealthMeter);
                     m_UIBulletsArmMonitor.updateInterface();
+
+                    m_UIPlayerHelmet.toggleHelmetScreen(IsHelmetCracked, GetHelmetStrengthIndicatorFromPercentage(GetPercentageFromHelmetCondition(CurrentStrength)));
                 }
             }
         }
@@ -258,7 +271,27 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static int GetPercentageFromHelmetCondition(int a_iHelmetCondition)
         {
-            return (int)((Mathf.Clamp(a_iHelmetCondition, 0, MAX_HELMET_STRENGTH) / a_iHelmetCondition) * 100.0f);
+            return (int)((Mathf.Clamp(a_iHelmetCondition, 0.0f, MAX_HELMET_STRENGTH) / MAX_HELMET_STRENGTH) * 100.0f);
+        }
+
+        /// <summary>
+        /// Returns the Helmet strength indicator based on percentage min/max values
+        /// </summary>
+        /// <param name="a_iPercentage"></param>
+        /// <returns></returns>
+        public static HelmetStrengthIndicator GetHelmetStrengthIndicatorFromPercentage(int a_iPercentage)
+        {
+            if (a_iPercentage < 33) 
+            { 
+                return HelmetStrengthIndicator.HELMET_STRENGTH_WEAK; 
+            }
+            else if (a_iPercentage > 66) 
+            {
+                return HelmetStrengthIndicator.HELMET_STRENGTH_STRONG; 
+            }
+            else {
+                return HelmetStrengthIndicator.HELMET_STRENGTH_MODERATE; 
+            }
         }
     }
 }
