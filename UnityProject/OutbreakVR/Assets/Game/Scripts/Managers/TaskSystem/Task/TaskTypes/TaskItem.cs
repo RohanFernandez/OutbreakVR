@@ -7,12 +7,12 @@ namespace ns_Mashmo
     public class TaskItem : TaskBase
     {
         #region ATTRIBUTE_KEY
-        private const string ATTRIBUTE_ITEM_TYPE = "ItemType";
-        private const string ATTRIBUTE_POSITION = "Position";
-        private const string ATTRIBUTE_ROTATION = "Rotation";
-        private const string ATTRIBUTE_ITEM_ID = "Item_ID";
-        private const string ATTRIBUTE_TRIGGER_ID = "ObjectiveTrigger";
-        private const string ATTRIBUTE_PARENT_ID = "ParentID";
+        private const string ATTRIBUTE_ITEM_TYPE    = "ItemType";
+        private const string ATTRIBUTE_POSITION     = "Position";
+        private const string ATTRIBUTE_ROTATION     = "Rotation";
+        private const string ATTRIBUTE_ITEM_ID      = "Item_ID";
+        private const string ATTRIBUTE_TRIGGER_ID   = "ObjectiveTrigger";
+        private const string ATTRIBUTE_PARENT_ID    = "ParentID";
 
         #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
@@ -128,13 +128,22 @@ namespace ns_Mashmo
                             {
                                 InventoryDrop l_InventoryDrop = (InventoryDrop)l_Item;
                                 ITEM_TYPE l_ItemType = l_InventoryDrop.getItemType();
+                                INVENTORY_ITEM_ID l_InventoryID = l_InventoryDrop.InventoryID;
 
-                                switch (l_ItemType)
+                                switch (l_InventoryID)
                                 {
-                                        case ITEM_TYPE.ITEM_HELMET:
+                                        case INVENTORY_ITEM_ID.INVENTORY_HELMET:
                                             {
-                                                HelmetDrop l_HelmetDrop = (HelmetDrop)l_InventoryDrop;
-                                                l_HelmetDrop.StrengthPercentage = getInt(ATTRIBUTE_HELMET_STRENGTH_PERCENTAGE);
+                                                if (l_ItemType == ITEM_TYPE.ITEM_HELMET)
+                                                {
+                                                    HelmetDrop l_HelmetDrop = (HelmetDrop)l_InventoryDrop;
+                                                    l_HelmetDrop.StrengthPercentage = getInt(ATTRIBUTE_HELMET_STRENGTH_PERCENTAGE);
+                                                }
+                                                break;
+                                            }
+                                        case INVENTORY_ITEM_ID.INVENTORY_HEALTH:
+                                            {
+                                                HealthDrop l_HealthDrop = (HealthDrop)l_InventoryDrop;
                                                 break;
                                             }
 

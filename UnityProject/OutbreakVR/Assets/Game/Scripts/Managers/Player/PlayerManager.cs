@@ -50,18 +50,7 @@ namespace ns_Mashmo
         {
             get { return s_Instance.m_iHealthMeter; }
             set {
-                if(value <= 0)
-                {
-                    s_Instance.m_iHealthMeter = 0;
-                }
-                else if (value >= MAX_PLAYER_HEALTH)
-                {
-                    s_Instance.m_iHealthMeter = MAX_PLAYER_HEALTH;
-                }
-                else
-                {
-                    s_Instance.m_iHealthMeter = value;
-                }
+                s_Instance.m_iHealthMeter = Mathf.Clamp(value, 0, MAX_PLAYER_HEALTH);
 
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_PLAYER_HEALTH, s_Instance.m_iHealthMeter);

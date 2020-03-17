@@ -80,6 +80,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
         }
 
         public override void destroy()
@@ -93,6 +94,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_BULLETS_ADDED, onBulletsAdded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             base.destroy();
         }
 
@@ -110,13 +112,13 @@ namespace ns_Mashmo
                 m_UIHealthArmMonitor.transform.SetParent(l_HealthArmMonitorParent.transform);
                 m_UIHealthArmMonitor.transform.localPosition = Vector3.zero;
                 m_UIHealthArmMonitor.transform.localRotation = Quaternion.identity;
-                m_UIHealthArmMonitor.transform.localScale = Vector3.one;
 
                 Transform l_BulletsArmMonitorParent = l_WeaponBase.ArmMonitorParent_BulletCount;
                 m_UIBulletsArmMonitor.transform.SetParent(l_BulletsArmMonitorParent.transform);
                 m_UIBulletsArmMonitor.transform.localPosition = Vector3.zero;
                 m_UIBulletsArmMonitor.transform.localRotation = Quaternion.identity;
-                m_UIBulletsArmMonitor.transform.localScale = Vector3.one;
+
+                setArmUIScaleOnControllerType();
             }
         }
 
@@ -209,6 +211,28 @@ namespace ns_Mashmo
             int l_iDamageInflicted = (int)a_EventHash[GameEventTypeConst.ID_DAMAGE_INFLICTED];
             CurrentStrength -= l_iDamageInflicted;
             updateHelmet();
+        }
+
+        /// <summary>
+        /// Callback on controller hand changed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onControllerChanged(EventHash a_EventHash)
+        {
+            setArmUIScaleOnControllerType();
+        }
+
+        /// <summary>
+        /// Sets the arm monitor UI's scale 
+        /// If left hand then scale the x of the UI's on the arm to -1, else keep it as 1
+        /// This is because on the arm is scaled.x to -1 to imitate the gun on the left hand, but this inverts the UI's on the arm as well, to prevent that we do this
+        /// </summary>
+        private void setArmUIScaleOnControllerType()
+        {
+            CONTROLLER_TYPE l_ControllerType = ControllerManager.GetActiveControllerType();
+            Vector3 l_v3NewUIScale = l_ControllerType == CONTROLLER_TYPE.CONTROLLER_LEFT_REMOTE ? new Vector3(-1.0f, 1.0f, 1.0f) : Vector3.one;
+            m_UIHealthArmMonitor.transform.localScale = l_v3NewUIScale;
+            m_UIBulletsArmMonitor.transform.localScale = l_v3NewUIScale;
         }
 
         /// <summary>

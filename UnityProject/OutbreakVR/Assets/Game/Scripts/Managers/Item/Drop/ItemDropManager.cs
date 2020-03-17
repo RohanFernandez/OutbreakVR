@@ -19,6 +19,9 @@ namespace ns_Mashmo
         ITEM_STINGRAY,
         ITEM_THOMPSON,
         ITEM_CRACKED_HELMET,
+        ITEM_HEALTH_SMALL,
+        ITEM_HEALTH_MEDIUM,
+        ITEM_HEALTH_LARGE,
     }
 
     /// <summary>

@@ -7,7 +7,7 @@ namespace ns_Mashmo
     public enum INVENTORY_ITEM_ID
     {
         INVENTORY_HELMET = 0,
-
+        INVENTORY_HEALTH = 1
     }
 
     public class InventoryManager : AbsComponentHandler
@@ -80,17 +80,18 @@ namespace ns_Mashmo
             bool l_bIsItemPickedUp = false;
 
             ITEM_TYPE l_ItemType = a_InventoryDropItem.getItemType();
+            INVENTORY_ITEM_ID l_InventoryItemID = a_InventoryDropItem.InventoryID;
+            InventoryItem l_InventoryItem = null;
 
-            switch (l_ItemType)
+            if (s_Instance.m_dictInventory.TryGetValue(l_InventoryItemID, out l_InventoryItem))
             {
-                case ITEM_TYPE.ITEM_HELMET:
-                    {
-                        /// Set helmet data
-                        InventoryHelmet l_HelmetInventoryItem = null;
-                        InventoryItem l_InventoryItem = null;
-                        if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
+                switch (l_InventoryItemID)
+                {
+                    case INVENTORY_ITEM_ID.INVENTORY_HELMET:
                         {
-                            l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
+                            /// Set helmet data
+                            InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
+
                             if (l_HelmetInventoryItem.IsItemInInventory)
                             {
                                 ///the new item that will be set as a dropped cracked/uncracked helmet
@@ -120,13 +121,26 @@ namespace ns_Mashmo
                             l_HelmetInventoryItem.CurrentStrength = InventoryHelmet.GetHelmetStrengthFromPercentage(l_PickedHelmet.StrengthPercentage);
                             l_HelmetInventoryItem.ItemsInInventory = 1;
                             l_bIsItemPickedUp = true;
+                            break;
                         }
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                    case INVENTORY_ITEM_ID.INVENTORY_HEALTH:
+                        {
+                            /// Set health data
+                            InventoryHealth l_HelmetInventoryItem = (InventoryHealth)l_InventoryItem;
+                            PlayerManager.HealthMeter = (PlayerManager.HealthMeter + l_HelmetInventoryItem.getHealthValueWithPickupType(l_ItemType));
+
+                            l_bIsItemPickedUp = true;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                Debug.LogError("InventoryManager::PickupItem:: Failed to find item in inventory dict with ID '" + l_InventoryItemID.ToString() + "'");
             }
 
             return l_bIsItemPickedUp;

@@ -8,8 +8,9 @@ namespace ns_Mashmo
     {
         public enum ITEM_CARRY_TYPE
         {
-            CAN_CARRY_ONE = 0,
-            CAN_CARRY_MULTIPLE = 1,
+            CAN_CARRY_ONE       = 0,
+            CAN_CARRY_MULTIPLE  = 1,
+            CONSUME_ON_PICKUP   = 2,
         }
 
         /// <summary>
