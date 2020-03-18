@@ -30,6 +30,10 @@ namespace ns_Mashmo
         [SerializeField]
         private UnityEngine.EventSystems.OVRInputModule m_OVRInputModule = null;
 #endif
+        /// <summary>
+        /// The ray that interacts with objects from the controller
+        /// </summary>
+        private Ray m_InteractRay = new Ray();
 
         /// <summary>
         /// Initialize singleton from Player
@@ -575,16 +579,11 @@ namespace ns_Mashmo
         /// <returns></returns>
         private RaycastHit createRaycast(GameObject a_goController)
         {
-            //RaycastHit l_RaycastHit;
-            //Ray l_ray = new Ray(a_goController.transform.position, a_goController.transform.forward);
-
-            //Physics.Raycast(l_ray, out l_RaycastHit, MAX_CURSOR_INTERACTABLE_DISTANCE, m_InteractionLayer);
-            //Debug.DrawLine(a_goController.transform.position, a_goController.transform.position + a_goController.transform.forward * MaxCursorDistance, Color.white, Time.deltaTime);
-
             RaycastHit l_RaycastHit;
-            Ray l_ray = new Ray(m_CustomPointer.v3LaserStartPosition, (m_CustomPointer.v3LaserEndPosition - m_CustomPointer.v3LaserStartPosition).normalized);
+            m_InteractRay.origin = m_CustomPointer.v3LaserStartPosition;
+            m_InteractRay.direction = (m_CustomPointer.v3LaserEndPosition - m_CustomPointer.v3LaserStartPosition).normalized;
 
-            Physics.Raycast(l_ray, out l_RaycastHit, MaxCursorInteractableDistance, m_InteractionLayer);
+            Physics.Raycast(m_InteractRay, out l_RaycastHit, MaxCursorInteractableDistance, m_InteractionLayer);
 
             return l_RaycastHit;
         }

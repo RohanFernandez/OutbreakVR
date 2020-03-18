@@ -177,6 +177,11 @@ namespace ns_Mashmo
             get { return s_Instance.m_GunHitInteractionLayer; }
         }
 
+        /// <summary>
+        /// The ray used to fire bullets
+        /// </summary>
+        private Ray m_WeaponFireRay = new Ray();
+
         public override void initialize()
         {
             if (s_Instance != null)
@@ -747,8 +752,9 @@ namespace ns_Mashmo
             RaycastHit l_RaycastHit;
 
             Transform l_transCurrentControllerAnchor = ControllerManager.RayTransform;
-            Ray l_ray = new Ray(l_transCurrentControllerAnchor.position, l_transCurrentControllerAnchor.forward);
-            Physics.Raycast(l_ray, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, m_GunHitInteractionLayer);
+            m_WeaponFireRay.origin = l_transCurrentControllerAnchor.position;
+            m_WeaponFireRay.direction = l_transCurrentControllerAnchor.forward;
+            Physics.Raycast(m_WeaponFireRay, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, m_GunHitInteractionLayer);
 
             if (l_RaycastHit.collider != null)
             {

@@ -31,8 +31,8 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            m_HashPool = new EventHashPool(10);
-            m_dictGameEvents = new Dictionary<GAME_EVENT_TYPE, GameEventContainer>(10);
+            m_HashPool = new EventHashPool(2);
+            m_dictGameEvents = new Dictionary<GAME_EVENT_TYPE, GameEventContainer>(30);
         }
 
         /// <summary>
