@@ -4,46 +4,12 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    [System.Serializable]
-    public class SceneCubemap
-    {
-        public string m_strSceneName = string.Empty;
-        public Material m_matSkybox = null;
-    }
-
     public class GameManager : AbsGroupComponentHandler
     {
         /// <summary>
         /// Singleton instance
         /// </summary>
         private static GameManager s_Instance = null;
-
-        ///// <summary>
-        ///// The name of the current scene
-        ///// </summary>
-        //private string m_strCurrentSceneName = SystemConsts.SCENE_NAME_INIT_SCENE;
-
-        //[SerializeField]
-        //private List<SceneCubemap> m_lstSceneCubemaps = null;
-
-
-        ///// <summary>
-        ///// Returns cubemap material with the scene name associated with that material
-        ///// </summary>
-        ///// <param name="a_strSceneName"></param>
-        ///// <returns></returns>
-        //private Material getSkyboxWithSceneName(string a_strSceneName)
-        //{
-        //    int l_iSceneCount = m_lstSceneCubemaps.Count;
-        //    for (int l_iSceneIndex = 0; l_iSceneIndex < l_iSceneCount; l_iSceneIndex++)
-        //    {
-        //        if (m_lstSceneCubemaps[l_iSceneIndex].m_strSceneName.Equals(a_strSceneName,System.StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            return m_lstSceneCubemaps[l_iSceneIndex].m_matSkybox;
-        //        }
-        //    }
-        //    return null;
-        //}
 
         /// <summary>
         /// The current Game level
@@ -158,51 +124,6 @@ namespace ns_Mashmo
                     UI_LoadingPanel.Hide();
                 });
         }
-
-        ///// <summary>
-        ///// Displays the load panel
-        ///// Loads scene name
-        ///// Hides the load panel
-        ///// Calls action sent on complete
-        ///// </summary>
-        //public static void LoadScene(string a_strNewSceneName, string a_strOldSceneName, System.Action a_actionOnLoadComplete = null)
-        //{
-        //    if (string.IsNullOrEmpty(a_strNewSceneName) ||
-        //        string.IsNullOrEmpty(s_Instance.m_strCurrentSceneName) ||
-        //        a_strNewSceneName.Equals(a_strOldSceneName, System.StringComparison.OrdinalIgnoreCase))
-        //    {
-        //        if (a_actionOnLoadComplete != null) { a_actionOnLoadComplete(); }
-        //    }
-        //    else
-        //    {
-        //        UI_LoadingPanel.Show();
-
-        //        if (s_Instance.m_strCurrentSceneName.Equals(SystemConsts.SCENE_NAME_INIT_SCENE, System.StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            SystemManager.LoadScene(a_strNewSceneName,
-        //                        a_actionOnLoadComplete += () =>
-        //                        {
-        //                            UI_LoadingPanel.Hide();
-        //                        });
-        //        }
-        //        else
-        //        {
-        //            SystemManager.UnloadScene(s_Instance.m_strCurrentSceneName,
-
-        //                () =>
-        //                {
-        //                    SystemManager.LoadScene(a_strNewSceneName,
-        //                        a_actionOnLoadComplete += () =>
-        //                        {
-        //                            UI_LoadingPanel.Hide();
-        //                        });
-        //                });
-        //        }
-        //        s_Instance.m_strCurrentSceneName = a_strNewSceneName;
-        //    }
-
-        //    RenderSettings.skybox = s_Instance.getSkyboxWithSceneName(s_Instance.m_strCurrentSceneName);
-        //}
 
         /// <summary>
         /// Pause /unpause game game
@@ -320,21 +241,6 @@ namespace ns_Mashmo
         public static void OnContinueFromLastSavedSelected()
         {
             LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
-        }
-
-        private void Update()
-        {
-            /// TODO:: Testing INput
-            #if UNITY_EDITOR
-            if (Input.GetKeyUp(KeyCode.H))
-            {
-                GoToHome();
-            }
-            else if (Input.GetKeyUp(KeyCode.J))
-            {
-                RestartLevel();
-            }
-            #endif
         }
 
         /// <summary>

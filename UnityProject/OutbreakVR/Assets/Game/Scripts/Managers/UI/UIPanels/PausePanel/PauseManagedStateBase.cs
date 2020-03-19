@@ -29,11 +29,33 @@ namespace ns_Mashmo
         /// <summary>
         /// On trigger/ select button pressed
         /// </summary>
-        void onSelectPressed();
+        void onSelectPressed(System.Action a_onReturnControlToMainPanel);
+
+        /// <summary>
+        /// On state selected
+        /// </summary>
+        void onStateSelected();
     }
 
     public class PauseManagedStateBase : ManagedState, IPauseState
     {
+        public enum PANEL_CONTROL_TYPE
+        {
+            NONE = 0,
+            CONFIRMATION = 1,
+            NO_CONFIRMATION = 2,
+        }
+
+        /// <summary>
+        /// The control panel type
+        /// </summary>
+        [SerializeField]
+        private PANEL_CONTROL_TYPE m_PanelType;
+        public PANEL_CONTROL_TYPE PanelType
+        {
+            get { return m_PanelType; }
+        }
+
         /// <summary>
         /// The main pause control panel
         /// </summary>
@@ -45,8 +67,8 @@ namespace ns_Mashmo
         /// On right button pressed
         /// </summary>
         public virtual void onRightPressed()
-        { 
-        
+        {
+
         }
 
         /// <summary>
@@ -76,10 +98,19 @@ namespace ns_Mashmo
         /// <summary>
         /// On trigger/ select button pressed
         /// </summary>
-        public virtual void onSelectPressed()
+        public virtual void onSelectPressed(System.Action a_onReturnControlToMainPanel)
+        {
+            
+        }
+
+        /// <summary>
+        /// On the state is selected
+        /// </summary>
+        public virtual void onStateSelected()
         {
 
         }
+
         #endregion IPauseState
 
         public override void onStateEnter(string a_strOldState)

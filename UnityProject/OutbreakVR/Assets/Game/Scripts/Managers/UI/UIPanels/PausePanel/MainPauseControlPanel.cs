@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class MainPauseControlPanel : MonoBehaviour, IPauseState
+    public class MainPauseControlPanel : MonoBehaviour
     {
         /// <summary>
         /// The list of options in the pause panel
@@ -30,10 +30,33 @@ namespace ns_Mashmo
         private int m_iCurrentSelectedBtnOption = 0;
 
         /// <summary>
+        /// Can move up/down in the main panel options
+        /// </summary>
+        private bool m_bIsControlInMainPanel = true;
+        private bool IsControlInMainPanel
+        {
+            get { return m_bIsControlInMainPanel; }
+            set {
+                if (m_bIsControlInMainPanel != value)
+                {
+                    if (value)
+                    {
+                        showButtonOptionAsHovered(m_iCurrentSelectedBtnOption);
+                    }
+                    else
+                    {
+                        showButtonOptionAsSelected(m_iCurrentSelectedBtnOption);
+                    }
+                }
+                m_bIsControlInMainPanel = value;}
+        }
+
+        /// <summary>
         /// Resets the panel with the first button selection
         /// </summary>
         public void resetPanel()
         {
+            IsControlInMainPanel = true;
             showButtonOptionAsHovered(0);
         }
 
@@ -41,37 +64,69 @@ namespace ns_Mashmo
 
         public void onBottomPressed()
         {
-            showButtonOptionAsHovered((m_iCurrentSelectedBtnOption + 1) % m_lstBtnOptions.Count);
+            if (IsControlInMainPanel)
+            {
+                showButtonOptionAsHovered((m_iCurrentSelectedBtnOption + 1) % m_lstBtnOptions.Count);
+            }
         }
 
         public void onLeftPressed()
         {
-            
+            if (!IsControlInMainPanel)
+            {
+                m_CurrentPauseState.onLeftPressed();
+            }
         }
 
         public void onRightPressed()
         {
-            
+            if (!IsControlInMainPanel)
+            {
+                m_CurrentPauseState.onRightPressed();
+            }
         }
 
         public void onSelectPressed()
         {
             if (m_CurrentPauseState != null)
             {
-                m_CurrentPauseState.onSelectPressed();
+                bool l_bControlBeforeSelection = IsControlInMainPanel;
+                IsControlInMainPanel = m_CurrentPauseState.PanelType != PauseManagedStateBase.PANEL_CONTROL_TYPE.CONFIRMATION;
+
+                ///The first time the state is selected
+                if ((l_bControlBeforeSelection != IsControlInMainPanel) && !IsControlInMainPanel)
+                {
+                    m_CurrentPauseState.onStateSelected();
+                }
+                //the second time the control is in the state panel
+                else
+                { 
+                    m_CurrentPauseState.onSelectPressed(onReturnControlToMainPanel);
+                }
+
             }
         }
 
         public void onTopPressed()
         {
-            int l_iNewIndex = m_iCurrentSelectedBtnOption - 1;
-            if (l_iNewIndex == -1) { l_iNewIndex = m_lstBtnOptions.Count - 1; }
+            if (IsControlInMainPanel)
+            {
+                int l_iNewIndex = m_iCurrentSelectedBtnOption - 1;
+                if (l_iNewIndex == -1) { l_iNewIndex = m_lstBtnOptions.Count - 1; }
 
-            showButtonOptionAsHovered(l_iNewIndex);
+                showButtonOptionAsHovered(l_iNewIndex);
+            }
         }
 
         #endregion IPauseState
 
+        /// <summary>
+        /// Returns the control from the paused state to the main panel
+        /// </summary>
+        private void onReturnControlToMainPanel()
+        {
+            IsControlInMainPanel = true;
+        }
 
         /// <summary>
         /// Sets the option as hovered
@@ -90,6 +145,21 @@ namespace ns_Mashmo
             }
 
             selectBtnWithCurrentIndex();
+        }
+
+        /// <summary>
+        /// Sets the option as hovered
+        /// </summary>
+        /// <param name="a_iOptionIndex"></param>
+        private void showButtonOptionAsSelected(int a_iOptionIndex)
+        {
+            ///Set all buttons as idle
+            int l_iBtnCount = m_lstBtnOptions.Count;
+            for (int l_iBtnIndex = 0; l_iBtnIndex < l_iBtnCount; l_iBtnIndex++)
+            {
+                UnityEngine.UI.Button l_btnCurrentOption = m_lstBtnOptions[l_iBtnIndex];
+                l_btnCurrentOption.image.sprite = l_iBtnIndex == a_iOptionIndex ? l_btnCurrentOption.spriteState.selectedSprite : null;
+            }
         }
 
         private void selectBtnWithCurrentIndex()

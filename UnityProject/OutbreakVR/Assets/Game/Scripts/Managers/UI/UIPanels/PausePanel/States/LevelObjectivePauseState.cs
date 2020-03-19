@@ -31,7 +31,8 @@ namespace ns_Mashmo
             ObjectiveGroupBase l_CurrentLevelObjectiveGroup = ObjectiveManager.CurrentObjectiveGroup;
 
             int l_iPanelObjectiveCount = m_lstPanelObjectives.Count;
-            int l_ObjectiveGroupCount = l_CurrentLevelObjectiveGroup == null ? 0 : l_CurrentLevelObjectiveGroup.m_lstObjectives.Count;
+            int l_ObjectiveGroupCount = l_CurrentLevelObjectiveGroup
+                == null ? 0 : l_CurrentLevelObjectiveGroup.m_lstObjectives.Count;
             for (int l_iObjectiveIndex = 0; l_iObjectiveIndex < l_iPanelObjectiveCount; l_iObjectiveIndex++)
             {
                 PanelObjective l_PanelObjective = m_lstPanelObjectives[l_iObjectiveIndex];

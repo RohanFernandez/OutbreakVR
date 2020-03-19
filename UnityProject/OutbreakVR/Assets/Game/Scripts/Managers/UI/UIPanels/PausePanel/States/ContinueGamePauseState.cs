@@ -19,9 +19,9 @@ namespace ns_Mashmo
         /// <summary>
         /// On trigger/ select button pressed
         /// </summary>
-        public override void onSelectPressed()
+        public override void onSelectPressed(System.Action a_onReturnControlToMainPanel)
         {
-            base.onSelectPressed();
+            base.onSelectPressed(a_onReturnControlToMainPanel);
             GameManager.PauseGame(false,false);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class HomePauseState : PauseManagedStateBase
+    public class HomePauseState : PauseConfirmationState
     {
         public override void onStateEnter(string a_strState)
         {
@@ -19,9 +19,16 @@ namespace ns_Mashmo
         /// <summary>
         /// On trigger/ select button pressed
         /// </summary>
-        public override void onSelectPressed()
+        public override void onSelectPressed(System.Action a_onReturnControlToMainPanel)
         {
-            base.onSelectPressed();
+            base.onSelectPressed(a_onReturnControlToMainPanel);
+        }
+
+        /// <summary>
+        /// event on yess button is selected
+        /// </summary>
+        public override void OnButtonSelected_onYesPressed()
+        {
             GameManager.GoToHome();
         }
     }
