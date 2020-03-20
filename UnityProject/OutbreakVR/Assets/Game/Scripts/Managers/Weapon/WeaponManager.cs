@@ -636,19 +636,26 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Fires the current weapon
+        /// Starts the animation with the current gun
         /// </summary>
-        private void fireWeapon()
+        private void startFireWeapon()
         {
             WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
-            l_WeaponBase.fire();
+            l_WeaponBase.startShootingAnim();
+        }
 
-            bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
-            if (l_bIsWeaponAGun)
+        /// <summary>
+        /// Fires a projectile, manages raycast and gun shoot features
+        /// Called by an animation event on the gun shootanim
+        /// </summary>
+        public static void FireProjectileWithCurrentGun()
+        {
+            WeaponBase l_WeaponBase = s_Instance.m_dictWeapons[s_Instance.m_CurrentWeaponType];
+            if (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
-
-                manageRaycastHitOnGunFire(l_GunWeaponBase);
+                l_GunWeaponBase.shootBullet();
+                s_Instance.manageRaycastHitOnGunFire(l_GunWeaponBase);
 
                 //Dispatch weapon fire evetn
                 EventHash l_EventHash = EventManager.GetEventHashtable();
@@ -667,8 +674,7 @@ namespace ns_Mashmo
             WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
             l_WeaponBase.reload();
 
-            bool l_bIsWeaponAGun = (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE);
-            if (l_bIsWeaponAGun)
+            if (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
                 EventHash l_EventHash = EventManager.GetEventHashtable();
@@ -881,7 +887,7 @@ namespace ns_Mashmo
                 if (canCurrentWeaponBeFired() &&
                     !m_bIsReloadInProgress)
                 {
-                    fireWeapon();
+                    startFireWeapon();
                 }
                 else
                 {

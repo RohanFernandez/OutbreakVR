@@ -15,13 +15,13 @@ namespace ns_Mashmo
         [SerializeField]
         private Rigidbody m_rigidBody = null;
 
-        ///// <summary>
-        ///// Unity reset, sets the local position to be used in game
-        ///// </summary>
-        //void Reset()
-        //{
-        //    m_v3StartPos = transform.localPosition;
-        //}
+        /// <summary>
+        /// Unity reset, sets the local position to be used in game
+        /// </summary>
+        void Reset()
+        {
+            m_v3StartPos = transform.localPosition;
+        }
 
         /// <summary>
         /// Resets the smashed game object

@@ -43,12 +43,24 @@ namespace ns_Mashmo
         /// The time after which the next shot can be fired.
         /// </summary>
         [SerializeField]
-        private float m_fTimeBetweenEachShoot = 0.0f;
+        private float m_fDefaultTimePerShotAnim = 0.0f;
+
+        /// <summary>
+        /// The time after which the next shot can be fired.
+        /// </summary>
+        [SerializeField]
+        private float m_fCustomTimePerShotAnim = 0.0f;
 
         /// <summary>
         /// The time calculated since the last shot
         /// </summary>
+        [SerializeField]
         private float m_fTimeSinceLastShot = 0.0f;
+
+        /// <summary>
+        /// The speed of the shot anim
+        /// </summary>
+        private float m_fShotAnimSpeed = 1.0f;
 
         /// <summary>
         /// The audio src index of the gun fire sound
@@ -74,12 +86,6 @@ namespace ns_Mashmo
         {
             get { return m_iDamagePerBullet; }
         }
-
-        /// <summary>
-        /// The speed of the recoil between 0.0 - 1.0
-        /// depending upon the number of bullets the gun can fire in a second
-        /// </summary>
-        public float m_fRecoilAnimSpeed = 0.0f;
 
         /// <summary>
         /// The animator that handles the hands of this gun
@@ -161,7 +167,7 @@ namespace ns_Mashmo
         public override bool canCurrentWeaponBeFired()
         {
             return (BulletCountInFirstMag != 0) &&
-                (m_fTimeSinceLastShot > m_fTimeBetweenEachShoot);
+                (m_fTimeSinceLastShot > m_fCustomTimePerShotAnim);
         }
 
         /// <summary>
@@ -174,36 +180,37 @@ namespace ns_Mashmo
                 (getBulletsNotInFirstMag() > 0);
         }
 
-        public override void fire()
+        public override void startShootingAnim()
         {
             ///Reload required
             if (isReloadRequired()) { return; }
 
+            if (m_animatorHands != null)
+            {
+                m_animatorHands.speed = m_fShotAnimSpeed;
+                resetAllAnimTriggers();
+                m_animatorHands.SetTrigger(ANIM_STATE_SHOOT);
+            }
+
+            m_fTimeSinceLastShot = 0.0f;
+        }
+
+        public override void shootBullet()
+        {
             --TotalBullets;
             --BulletCountInFirstMag;
             if (m_ChamberBulletRelease != null) { m_ChamberBulletRelease.Play(); }
-            if (m_MuzzleFlash != null)          { m_MuzzleFlash.Play(); }
+            if (m_MuzzleFlash != null) { m_MuzzleFlash.Play(); }
 
             //The audio src index that moves between 0 - 1
             // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
             m_bGunFireAudSrcIndex1 = !m_bGunFireAudSrcIndex1;
             SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? GameConsts.AUD_SRC_GUN_FIRE : GameConsts.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
 
-            if (m_animatorHands != null)
-            {
-                m_animatorHands.speed = m_fRecoilAnimSpeed;
-                resetAllAnimTriggers();
-                m_animatorHands.SetTrigger(ANIM_STATE_SHOOT);
-            }
-
-            m_fTimeSinceLastShot = 0.0f;
-
             if (m_TracerParticleSystem != null)
             {
                 m_TracerParticleSystem.Play();
             }
-
-            updateBulletData();
         }
 
         public override void reload()
@@ -217,8 +224,6 @@ namespace ns_Mashmo
             BulletCountInFirstMag += l_iBulletsNotInFirstMag;
 
             SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_RELOAD, m_strAudClipIDOnReload, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
-
-            updateBulletData();
         }
 
         /// <summary>
@@ -227,8 +232,18 @@ namespace ns_Mashmo
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
-;
-            m_fRecoilAnimSpeed = 1.0f / m_fTimeBetweenEachShoot;
+
+            RuntimeAnimatorController l_runtimeAnimController = m_animatorHands.runtimeAnimatorController;
+            for (int l_iAnimIndex = 0; l_iAnimIndex < l_runtimeAnimController.animationClips.Length; l_iAnimIndex++)
+            {
+                if (l_runtimeAnimController.animationClips[l_iAnimIndex].name.Equals(ANIM_STATE_SHOOT, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    m_fDefaultTimePerShotAnim = l_runtimeAnimController.animationClips[l_iAnimIndex].length;
+                    break;
+                }
+            }
+
+            m_fShotAnimSpeed = m_fDefaultTimePerShotAnim / m_fCustomTimePerShotAnim;
 
             if (m_animatorHands != null)
             {
@@ -236,8 +251,6 @@ namespace ns_Mashmo
                 resetAllAnimTriggers();
                 m_animatorHands.SetTrigger(ANIM_STATE_IDLE_HANDS);
             }
-
-            updateBulletData();
         }
 
         /// <summary>
@@ -299,8 +312,6 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_GUN_WEAPON, this);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_BULLETS_ADDED, l_EventHash);
-
-            updateBulletData();
         }
 
         /// <summary>
@@ -311,15 +322,6 @@ namespace ns_Mashmo
         {
             TotalBullets = a_iTotalBulletCount;
             BulletCountInFirstMag = a_iBulletsInFirstMag;
-            updateBulletData();
-        }
-
-        /// <summary>
-        /// updates the bullet data
-        /// </summary>
-        public void updateBulletData()
-        {
-
         }
 
         /// <summary>
@@ -350,7 +352,7 @@ namespace ns_Mashmo
 
         void Update()
         {
-            if (m_fTimeSinceLastShot < m_fTimeBetweenEachShoot)
+            if (m_fTimeSinceLastShot < m_fCustomTimePerShotAnim)
             {
                 m_fTimeSinceLastShot += Time.deltaTime;
             }

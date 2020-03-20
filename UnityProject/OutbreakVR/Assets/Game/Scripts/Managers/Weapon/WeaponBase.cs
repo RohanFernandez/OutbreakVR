@@ -71,7 +71,9 @@ namespace ns_Mashmo
         /// <summary>
         /// Fires weapon if it has the feature
         /// </summary>
-        public virtual void fire() { }
+        public virtual void startShootingAnim() { }
+
+        public virtual void shootBullet() { }
 
         /// <summary>
         /// Called on weapon selected to use

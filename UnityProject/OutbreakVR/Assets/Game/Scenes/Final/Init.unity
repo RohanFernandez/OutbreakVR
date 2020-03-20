@@ -2159,10 +2159,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 954994690}
   m_strAudClipIDOnShoot: Ak47-Fire
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0.15
+  m_fDefaultTimePerShotAnim: 1
+  m_fCustomTimePerShotAnim: 0.07
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 20
-  m_fRecoilAnimSpeed: 1
   m_animatorHands: {fileID: 281394969}
   m_fWeaponReloadTime: 2.5
   m_iTotalBullets: 25
@@ -3630,10 +3631,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 944316892}
   m_strAudClipIDOnShoot: Tommy-Fire
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0.17
+  m_fDefaultTimePerShotAnim: 1
+  m_fCustomTimePerShotAnim: 0.1
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_fRecoilAnimSpeed: 0
   m_animatorHands: {fileID: 1591926142}
   m_fWeaponReloadTime: 2
   m_iTotalBullets: 25
@@ -3891,10 +3893,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 0}
   m_strAudClipIDOnShoot: 
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0
+  m_fDefaultTimePerShotAnim: 1
+  m_fCustomTimePerShotAnim: 1
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_fRecoilAnimSpeed: 0
   m_animatorHands: {fileID: 0}
   m_fWeaponReloadTime: 5
   m_iTotalBullets: 25
@@ -16701,6 +16704,24 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &954419902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100010, guid: 7965571dca3857e42a834dd6dc1fbaf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1164264134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &954419903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954419902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b771f87838d7f49852fd9cd4b90a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &954994687
 GameObject:
   m_ObjectHideFlags: 0
@@ -22047,10 +22068,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 0}
   m_strAudClipIDOnShoot: 
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0
+  m_fDefaultTimePerShotAnim: 0
+  m_fCustomTimePerShotAnim: 0
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
-  m_fRecoilAnimSpeed: 0
   m_animatorHands: {fileID: 0}
   m_fWeaponReloadTime: 5
   m_iTotalBullets: 25
@@ -22148,10 +22170,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 638119839}
   m_strAudClipIDOnShoot: AudClip_WeaponFireDefault
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0.3
+  m_fDefaultTimePerShotAnim: 0
+  m_fCustomTimePerShotAnim: 0.2
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 10
-  m_fRecoilAnimSpeed: 0
   m_animatorHands: {fileID: 198207416}
   m_fWeaponReloadTime: 1
   m_iTotalBullets: 25
@@ -22465,6 +22488,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084446447}
   m_CullTransparentMesh: 0
+--- !u!1 &1088808342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100010, guid: 316b185a08943f9439d51aaedd1327f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1189598645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1088808343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088808342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b771f87838d7f49852fd9cd4b90a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089914893
 GameObject:
   m_ObjectHideFlags: 0
@@ -31485,6 +31526,24 @@ MonoBehaviour:
     m_AudClip: {fileID: 8300000, guid: f8c581ff25f643145a4fcdf06b05269f, type: 3}
   m_ManagedAudioSrcPrefab: {fileID: 9180928869446884030, guid: 0274dfe80706aaa46acc5f28abbcbcdd,
     type: 3}
+--- !u!1 &1673241151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: e645bf6b2ba8fba47bde6099211f3ec4,
+    type: 3}
+  m_PrefabInstance: {fileID: 140256434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1673241152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673241151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b771f87838d7f49852fd9cd4b90a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1698592227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 459718, guid: 126d619cf4daa52469682f85c1378b4a,
@@ -32974,6 +33033,24 @@ Transform:
   m_Father: {fileID: 1568664496}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 190.511, y: -49.026, z: -90.475006}
+--- !u!1 &1905161812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: af8c1b91a029d64469b6cba2f6ca370d,
+    type: 3}
+  m_PrefabInstance: {fileID: 123254194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1905161813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905161812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b771f87838d7f49852fd9cd4b90a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914135138
 GameObject:
   m_ObjectHideFlags: 0
@@ -33442,10 +33519,11 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 1519032802}
   m_strAudClipIDOnShoot: Stingray-Fire
   m_strAudClipIDOnReload: 
-  m_fTimeBetweenEachShoot: 0.23
+  m_fDefaultTimePerShotAnim: 1
+  m_fCustomTimePerShotAnim: 1
+  m_fTimeSinceLastShot: 0
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 27
-  m_fRecoilAnimSpeed: 0
   m_animatorHands: {fileID: 134450387}
   m_fWeaponReloadTime: 3
   m_iTotalBullets: 25
