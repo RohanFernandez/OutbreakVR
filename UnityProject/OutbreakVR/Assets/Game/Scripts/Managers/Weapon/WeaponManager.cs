@@ -758,12 +758,31 @@ namespace ns_Mashmo
 
             if (l_RaycastHit.collider != null)
             {
-                EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
-                if (l_EnemyHitCollider != null)
+                bool l_bIsShowEffect = false;
+
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == (l_RaycastHit.collider.gameObject.layer))
                 {
-                    l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
+                    EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
+                    if (l_EnemyHitCollider != null)
+                    {
+                        l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
+                    }
+                }
+                else if(LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == (l_RaycastHit.collider.gameObject.layer))
+                {
+                    SmashableHitCollider l_SmashableHitCollider = l_RaycastHit.collider.GetComponent<SmashableHitCollider>();
+                    if (l_SmashableHitCollider != null)
+                    {
+                        l_SmashableHitCollider.startSmashOnHit();
+                    }
+                    l_bIsShowEffect = true;
                 }
                 else
+                {
+                    l_bIsShowEffect = true;
+                }
+
+                if (l_bIsShowEffect)
                 {
                     EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
                     l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));

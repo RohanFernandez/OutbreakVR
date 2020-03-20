@@ -24,6 +24,17 @@ namespace ns_Mashmo
         /// Interactive item should have IPointerOver attached to it.
         /// </summary>
         public const string LAYER_NAME_INTERACTIVE = "INTERACTIVE";
+
+
+        /// <summary>
+        /// The layer on the enemy
+        /// </summary>
+        public const string LAYER_NAME_ENEMY = "ENEMY";
+
+        /// <summary>
+        /// The layer on smashable objects
+        /// </summary>
+        public const string LAYER_NAME_SMASHABLE = "SMASHABLE";
         #endregion GAME LAYERS
 
         #region AUDIO SOURCE

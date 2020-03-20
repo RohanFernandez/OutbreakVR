@@ -17,6 +17,7 @@ namespace ns_Mashmo
         /// </summary>
         public override void resetValues()
         {
+            base.resetValues();
             int l_iInteractableCount = m_lstInteractableObjects.Count;
             for (int l_iInteractableIndex = 0; l_iInteractableIndex < l_iInteractableCount; l_iInteractableIndex++)
             {
