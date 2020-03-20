@@ -146,5 +146,20 @@ namespace ns_Mashmo
         }
 
         #endregion Hashtable Utils
+
+        #region Interaction
+
+        /// <summary>
+        /// Is the a_iLayer in the layer mask a_LayerMask
+        /// </summary>
+        /// <param name="a_LayerMask"></param>
+        /// <param name="a_iLayer"></param>
+        /// <returns></returns>
+        public static bool IsLayerInLayerMask(LayerMask a_LayerMask, int a_iLayer)
+        {
+            return a_LayerMask == (a_LayerMask | (1 << a_iLayer));
+        }
+
+        #endregion Interaction
     }
 }

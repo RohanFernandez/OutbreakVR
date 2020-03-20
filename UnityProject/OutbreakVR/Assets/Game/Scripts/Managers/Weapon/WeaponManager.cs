@@ -754,7 +754,7 @@ namespace ns_Mashmo
             Transform l_transCurrentControllerAnchor = ControllerManager.RayTransform;
             m_WeaponFireRay.origin = l_transCurrentControllerAnchor.position;
             m_WeaponFireRay.direction = l_transCurrentControllerAnchor.forward;
-            Physics.Raycast(m_WeaponFireRay, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, m_GunHitInteractionLayer);
+            Physics.Raycast(m_WeaponFireRay, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, GunHitInteractionLayer);
 
             if (l_RaycastHit.collider != null)
             {

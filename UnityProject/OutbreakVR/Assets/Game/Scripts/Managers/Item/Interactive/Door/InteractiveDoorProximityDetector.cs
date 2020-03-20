@@ -30,7 +30,7 @@ namespace ns_Mashmo
         /// <param name="other"></param>
         void OnTriggerEnter(Collider a_Other)
         {
-            if (m_LayerMaskCollision == (m_LayerMaskCollision | (1 << a_Other.gameObject.layer)))
+            if (GeneralUtils.IsLayerInLayerMask(m_LayerMaskCollision, a_Other.gameObject.layer))
             {
                 m_lstDoorTriggers.Add(a_Other.transform);
             }
@@ -42,7 +42,7 @@ namespace ns_Mashmo
         /// <param name="other"></param>
         void OnTriggerExit(Collider a_Other)
         {
-            if (m_LayerMaskCollision == (m_LayerMaskCollision | (1 << a_Other.gameObject.layer)))
+            if (GeneralUtils.IsLayerInLayerMask(m_LayerMaskCollision, a_Other.gameObject.layer))
             {
                 m_lstDoorTriggers.Remove(a_Other.transform);
                 if (m_lstDoorTriggers.Count == 0) { m_InteractiveDoor.closeDoor(); }

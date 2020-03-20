@@ -32,7 +32,7 @@ namespace ns_Mashmo
         protected override void OnTriggerEnter(Collider a_Collider)
         {
             base.OnTriggerEnter(a_Collider);
-            if (WeaponManager.GunHitInteractionLayer == (WeaponManager.GunHitInteractionLayer | (1 << a_Collider.gameObject.layer)))
+            if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
                 EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
                 if (l_EnemyHitCollider != null)
@@ -53,7 +53,7 @@ namespace ns_Mashmo
         protected override void OnTriggerExit(Collider a_Collider)
         {
             base.OnTriggerExit(a_Collider);
-            if (WeaponManager.GunHitInteractionLayer == (WeaponManager.GunHitInteractionLayer | (1 << a_Collider.gameObject.layer)))
+            if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
                 EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
                 if (l_EnemyHitCollider != null)
