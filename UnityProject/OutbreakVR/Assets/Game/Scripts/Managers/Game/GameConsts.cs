@@ -35,6 +35,11 @@ namespace ns_Mashmo
         /// The layer on smashable objects
         /// </summary>
         public const string LAYER_NAME_SMASHABLE = "SMASHABLE";
+
+        /// <summary>
+        /// Player hit
+        /// </summary>
+        public const string LAYER_NAME_PLAYER = "PLAYER";
         #endregion GAME LAYERS
 
         #region AUDIO SOURCE
@@ -141,10 +146,6 @@ namespace ns_Mashmo
         #endregion AUDIO CLIP
 
         #region TAG
-        /// <summary>
-        /// Tag on the Player
-        /// </summary>
-        public const string TAG_PLAYER = "Player";
         #endregion TAG
     }
 }

@@ -68,7 +68,7 @@ namespace ns_Mashmo
                     RaycastHit l_RaycastHit;
                     if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_AttackLayerMask) &&
                         l_RaycastHit.collider != null &&
-                        l_RaycastHit.collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase) &&
+                        l_RaycastHit.collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER) &&
                         m_bIsPlayerWithingProximityBlast)
                     {
                         float l_fDistanceFromPlayer = Vector3.Distance(transform.position, l_v3PlayerPos);

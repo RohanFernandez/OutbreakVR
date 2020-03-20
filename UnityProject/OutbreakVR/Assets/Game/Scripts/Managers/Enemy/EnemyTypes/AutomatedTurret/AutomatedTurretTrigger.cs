@@ -43,7 +43,7 @@ namespace ns_Mashmo
         /// <param name="other"></param>
         private void OnTriggerEnter(Collider a_Other)
         {
-            if (a_Other.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase))
+            if (a_Other.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
             {
                 if (m_TurretDeactivator != null)
                 {

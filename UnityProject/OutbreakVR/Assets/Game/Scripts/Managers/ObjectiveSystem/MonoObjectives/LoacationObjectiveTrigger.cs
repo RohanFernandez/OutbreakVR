@@ -18,7 +18,7 @@ namespace ns_Mashmo
         /// <param name="a_Collider"></param>
         void OnTriggerEnter(Collider a_Collider)
         {
-            if (a_Collider.tag.Equals(GameConsts.TAG_PLAYER, System.StringComparison.OrdinalIgnoreCase))
+            if (a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
             {
                 ObjectiveManager.TriggerObjective(m_strObjectiveTriggerID);
             }
