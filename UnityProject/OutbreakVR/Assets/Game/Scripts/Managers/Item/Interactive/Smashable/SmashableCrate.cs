@@ -78,22 +78,25 @@ namespace ns_Mashmo
         }
 
         //Uncomment if you require the physics to exist only for certain amount of time after a hit
-        //private void Update()
-        //{
-        //    if (m_bIsSmashed && 
-        //        m_fCurrentPhysicsTimePassed < m_fAllowedPhysicsTime)
-        //    {
-        //        m_fCurrentPhysicsTimePassed += Time.deltaTime;
-        //        if (m_fCurrentPhysicsTimePassed > m_fAllowedPhysicsTime)
-        //        {
-        //            //disable physics in broken pieces
-        //            int l_iPiecesCount = m_lstSmashedPieces.Count;
-        //            for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
-        //            {
-        //                m_lstSmashedPieces[l_iPieceIndex].onSmashPhysicsComplete();
-        //            }
-        //        }
-        //    }
-        //}
+        private void Update()
+        {
+            if (m_bIsSmashed &&
+                m_fCurrentPhysicsTimePassed < m_fAllowedPhysicsTime)
+            {
+                m_fCurrentPhysicsTimePassed += Time.deltaTime;
+                if (m_fCurrentPhysicsTimePassed > m_fAllowedPhysicsTime)
+                {
+                    //disable physics in broken pieces
+                    int l_iPiecesCount = m_lstSmashedPieces.Count;
+                    for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
+                    {
+                        m_lstSmashedPieces[l_iPieceIndex].onSmashPhysicsComplete();
+                    }
+
+                    //deactivate the parent of the pieces
+                    m_ParentBrokenObject.gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }
