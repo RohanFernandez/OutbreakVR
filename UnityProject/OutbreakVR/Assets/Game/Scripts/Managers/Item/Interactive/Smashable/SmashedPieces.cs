@@ -28,10 +28,11 @@ namespace ns_Mashmo
         /// </summary>
         public void resetValues()
         {
-            m_rigidBody.isKinematic = false;
+            m_rigidBody.isKinematic = true;
             transform.localPosition =  m_v3StartPos;
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;
+            m_rigidBody.isKinematic = false;
         }
 
         public void onSmashPhysicsComplete()
