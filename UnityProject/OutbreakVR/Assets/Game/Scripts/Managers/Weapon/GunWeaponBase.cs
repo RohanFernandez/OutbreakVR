@@ -40,29 +40,6 @@ namespace ns_Mashmo
         private string m_strAudClipIDOnReload = string.Empty;
 
         /// <summary>
-        /// The time after which the next shot can be fired.
-        /// </summary>
-        [SerializeField]
-        private float m_fDefaultTimePerShotAnim = 0.0f;
-
-        /// <summary>
-        /// The time after which the next shot can be fired.
-        /// </summary>
-        [SerializeField]
-        private float m_fCustomTimePerShotAnim = 0.0f;
-
-        /// <summary>
-        /// The time calculated since the last shot
-        /// </summary>
-        [SerializeField]
-        private float m_fTimeSinceLastShot = 0.0f;
-
-        /// <summary>
-        /// The speed of the shot anim
-        /// </summary>
-        private float m_fShotAnimSpeed = 1.0f;
-
-        /// <summary>
         /// The audio src index of the gun fire sound
         /// </summary>
         private bool m_bGunFireAudSrcIndex1 = true;
@@ -166,8 +143,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public override bool canCurrentWeaponBeFired()
         {
-            return (BulletCountInFirstMag != 0) &&
-                (m_fTimeSinceLastShot > m_fCustomTimePerShotAnim);
+            return (BulletCountInFirstMag != 0);
         }
 
         /// <summary>
@@ -187,12 +163,8 @@ namespace ns_Mashmo
 
             if (m_animatorHands != null)
             {
-                m_animatorHands.speed = m_fShotAnimSpeed;
-                resetAllAnimTriggers();
-                m_animatorHands.SetTrigger(ANIM_STATE_SHOOT);
+                m_animatorHands.SetBool(ANIM_STATE_SHOOT, true);
             }
-
-            m_fTimeSinceLastShot = 0.0f;
         }
 
         public override void shootBullet()
@@ -213,6 +185,17 @@ namespace ns_Mashmo
             }
         }
 
+        /// <summary>
+        /// stops the shooting animation manually
+        /// </summary>
+        public override void stopShootingAnim()
+        {
+            if (m_animatorHands != null)
+            {
+                m_animatorHands.SetBool(ANIM_STATE_SHOOT, false);
+            }
+        }
+
         public override void reload()
         {
             if (!isReloadPossible()) { return; }
@@ -227,28 +210,23 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Sets the custom animation speed of the gun shoot animation
+        /// </summary>
+        public override void initialize()
+        {
+            base.initialize();
+        }
+
+        /// <summary>
         /// On new weapon is selected
         /// </summary>
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
 
-            RuntimeAnimatorController l_runtimeAnimController = m_animatorHands.runtimeAnimatorController;
-            for (int l_iAnimIndex = 0; l_iAnimIndex < l_runtimeAnimController.animationClips.Length; l_iAnimIndex++)
-            {
-                if (l_runtimeAnimController.animationClips[l_iAnimIndex].name.Equals(ANIM_STATE_SHOOT, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    m_fDefaultTimePerShotAnim = l_runtimeAnimController.animationClips[l_iAnimIndex].length;
-                    break;
-                }
-            }
-
-            m_fShotAnimSpeed = m_fDefaultTimePerShotAnim / m_fCustomTimePerShotAnim;
-
             if (m_animatorHands != null)
             {
-                m_animatorHands.speed = 1.0f;
-                resetAllAnimTriggers();
+                m_animatorHands.SetBool(ANIM_STATE_SHOOT, false);
                 m_animatorHands.SetTrigger(ANIM_STATE_IDLE_HANDS);
             }
         }
@@ -344,29 +322,8 @@ namespace ns_Mashmo
 
             if (m_animatorHands != null)
             {
-                m_animatorHands.speed = 1.0f;
-                resetAllAnimTriggers();
                 m_animatorHands.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
             }
-        }
-
-        void Update()
-        {
-            if (m_fTimeSinceLastShot < m_fCustomTimePerShotAnim)
-            {
-                m_fTimeSinceLastShot += Time.deltaTime;
-            }
-        }
-
-        /// <summary>
-        /// resets all animation triggers
-        /// </summary>
-        private void resetAllAnimTriggers()
-        {
-            m_animatorHands.ResetTrigger(ANIM_STATE_CLOSE_MENU);
-            m_animatorHands.ResetTrigger(ANIM_STATE_OPEN_MENU);
-            m_animatorHands.ResetTrigger(ANIM_STATE_IDLE_HANDS);
-            m_animatorHands.ResetTrigger(ANIM_STATE_SHOOT);
         }
     }
 }

@@ -212,6 +212,8 @@ namespace ns_Mashmo
                 {
                     l_FoundWeaponCategory.addWeaponTypeToCategory(l_CurrentWeaponBase.m_WeaponType);
                 }
+
+                l_CurrentWeaponBase.initialize();
             }
 
             SetCurrentWeaponInCategory(WEAPON_CATEGORY_TYPE.MELEE, WEAPON_TYPE.UNARMED);
@@ -232,6 +234,12 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_PLAYER_STATE_CHANGED, onPlayerStateChanged);
+
+            int l_iWeaponCount = m_lstWeapons.Count;
+            for (int l_iWeaponIndex = 0; l_iWeaponIndex < l_iWeaponCount; l_iWeaponIndex++)
+            {
+                m_lstWeapons[l_iWeaponIndex].destroy();
+            }
 
             s_Instance = null;
         }
@@ -638,10 +646,17 @@ namespace ns_Mashmo
         /// <summary>
         /// Starts the animation with the current gun
         /// </summary>
-        private void startFireWeapon()
+        private void startFireWeapon(WeaponBase a_WeaponBase)
         {
-            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
-            l_WeaponBase.startShootingAnim();
+            a_WeaponBase.startShootingAnim();
+        }
+
+        /// <summary>
+        /// stops the animation with the current gun
+        /// </summary>
+        private void stopFiringWeapon(WeaponBase a_WeaponBase)
+        {
+            a_WeaponBase.stopShootingAnim();
         }
 
         /// <summary>
@@ -708,10 +723,9 @@ namespace ns_Mashmo
         /// Can the current weapon be fired on click, melee weapon can be fired always
         /// </summary>
         /// <returns></returns>
-        private bool canCurrentWeaponBeFired()
+        private bool canCurrentWeaponBeFired(WeaponBase a_WeaponBase)
         {
-            WeaponBase l_WeaponBase = m_dictWeapons[s_Instance.m_CurrentWeaponType];
-            return l_WeaponBase.canCurrentWeaponBeFired();
+            return a_WeaponBase.canCurrentWeaponBeFired();
         }
 
         /// <summary>
@@ -877,6 +891,8 @@ namespace ns_Mashmo
         /// </summary>
         public void manageWeaponAttack()
         {
+            WeaponBase l_WeaponBase = GetCurrentWeaponBase();
+
             ///Fire weapon
             if (ControllerManager.IsPrimaryTriggerBtnDown()
 #if UNITY_EDITOR
@@ -884,15 +900,21 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                if (canCurrentWeaponBeFired() &&
+                if (canCurrentWeaponBeFired(l_WeaponBase) &&
                     !m_bIsReloadInProgress)
                 {
-                    startFireWeapon();
+                    startFireWeapon(l_WeaponBase);
                 }
                 else
                 {
                     /// TODO:: Indicate weapon cannot be fired
+                    ///stop firing gun
+                    stopFiringWeapon(l_WeaponBase);
                 }
+            }
+            else
+            {
+                stopFiringWeapon(l_WeaponBase);
             }
 
             ///Reload weapon

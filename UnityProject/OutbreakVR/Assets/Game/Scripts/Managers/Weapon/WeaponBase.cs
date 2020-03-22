@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public abstract class WeaponBase : MonoBehaviour
+    public abstract class WeaponBase : AbsComponentHandler
     {
         [SerializeField]
         public WEAPON_CATEGORY_TYPE m_WeaponCategoryType;
@@ -76,6 +76,11 @@ namespace ns_Mashmo
         public virtual void shootBullet() { }
 
         /// <summary>
+        /// stops the shooting animation manually
+        /// </summary>
+        public virtual void stopShootingAnim() { }
+
+        /// <summary>
         /// Called on weapon selected to use
         /// </summary>
         public virtual void onWeaponSelected() { }
@@ -120,5 +125,11 @@ namespace ns_Mashmo
         {
             return true;
         }
+
+        #region AbsComponentHandler
+        public override void initialize() { }
+        public override void destroy() { }
+
+        #endregion AbsComponentHandler
     }
 }

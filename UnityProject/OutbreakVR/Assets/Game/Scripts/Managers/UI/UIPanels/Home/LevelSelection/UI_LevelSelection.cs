@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class UI_LevelSelection : AbsUIComponent
+    public class UI_LevelSelection : MonoBehaviour
     {
         /// <summary>
         /// On level option selected set go to state

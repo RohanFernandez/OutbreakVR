@@ -26,11 +26,13 @@ namespace ns_Mashmo
         {
             if(SystemManager.IsUseEntitlementCheck)
             {
+                Debug.Log("<color=green> GameState_Init::initializeGame:: Running entitlement check.</color>");
                 //Entitlement check
                 initEntitlementCheck();
             }
             else
             {
+                Debug.Log("<color=green> GameState_Init::initializeGame:: Skipping entitlement check.</color>");
                 PlayerDataManager.InitDataWithUsername("TEST_USER");
                 LevelManager.LoadLevelDataFromPlayerPrefs();
                 onInitializationSuccessful();
