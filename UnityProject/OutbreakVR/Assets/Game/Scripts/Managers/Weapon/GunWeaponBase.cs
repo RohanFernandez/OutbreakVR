@@ -49,7 +49,7 @@ namespace ns_Mashmo
         public int BulletCountInFirstMag
         {
             get { return m_iBulletCountInFirstMag; }
-            set {
+            private set {
                 m_iBulletCountInFirstMag = Mathf.Clamp(value, 0, m_iMaxSingleMagazineBulletCapacity);
             }
         }
@@ -127,6 +127,28 @@ namespace ns_Mashmo
             }
         }
 
+        #region RECOIL GUN MOVEMENT
+
+        /// <summary>
+        /// The maximum the gun is allowed to rotate in the X axis on shoot
+        /// </summary>
+        [SerializeField]
+        private float m_fMaxAngleGunRecoilRotX = 13.0f;
+
+        /// <summary>
+        /// The gun should rotate in the X axis per shot
+        /// </summary>
+        [SerializeField]
+        private float m_fPerShotGunRecoilRotXAngle = 4.0f;
+
+        /// <summary>
+        /// The gun should reset its X rot angle at this angle/sec
+        /// </summary>
+        [SerializeField]
+        private float m_fRotResetVelocityAnglePerSec = 13.0f;
+
+        #endregion RECOIL GUN MOVEMENT
+
         /// <summary>
         /// Is the first mag empty
         /// </summary>
@@ -174,15 +196,19 @@ namespace ns_Mashmo
             if (m_ChamberBulletRelease != null) { m_ChamberBulletRelease.Play(); }
             if (m_MuzzleFlash != null) { m_MuzzleFlash.Play(); }
 
+            if (m_TracerParticleSystem != null)
+            {
+                m_TracerParticleSystem.Play();
+            }
+
+            //rotate gun upwards on show to imitate recoil
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(m_fMaxAngleGunRecoilRotX, 0.0f, 0.0f), m_fPerShotGunRecoilRotXAngle);
+
             //The audio src index that moves between 0 - 1
             // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
             m_bGunFireAudSrcIndex1 = !m_bGunFireAudSrcIndex1;
             SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? GameConsts.AUD_SRC_GUN_FIRE : GameConsts.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
 
-            if (m_TracerParticleSystem != null)
-            {
-                m_TracerParticleSystem.Play();
-            }
         }
 
         /// <summary>
@@ -200,11 +226,7 @@ namespace ns_Mashmo
         {
             if (!isReloadPossible()) { return; }
 
-            int l_iBulletsEmptyInFirstMag = (m_iMaxSingleMagazineBulletCapacity - BulletCountInFirstMag);
-
-            int l_iBulletsNotInFirstMag = getBulletsNotInFirstMag();
-
-            BulletCountInFirstMag += l_iBulletsNotInFirstMag;
+            BulletCountInFirstMag += getBulletsNotInFirstMag();
 
             SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_RELOAD, m_strAudClipIDOnReload, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
@@ -223,6 +245,8 @@ namespace ns_Mashmo
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
+
+            transform.localRotation = Quaternion.identity;
 
             if (m_animatorHands != null)
             {
@@ -324,6 +348,12 @@ namespace ns_Mashmo
             {
                 m_animatorHands.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
             }
+        }
+
+        private void Update()
+        {
+            //reset crosshair from the recoil movement to point forward
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.parent.localRotation, m_fRotResetVelocityAnglePerSec * Time.deltaTime);
         }
     }
 }

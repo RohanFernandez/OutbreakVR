@@ -82,7 +82,7 @@ namespace ns_Mashmo
         /// </summary>
         private void updateCursorPosition()
         {
-            m_v3LaserEndPosition = Vector3.Distance(m_v3LaserStartPosition, m_v3LaserEndPosition) > ControllerManager.MaxCursorDistance ? m_v3LaserStartPosition + m_v3PointerForward * ControllerManager.MaxCursorDistance : m_v3LaserEndPosition;
+            m_v3LaserEndPosition = Vector3.Distance(m_v3LaserStartPosition, m_v3LaserEndPosition) > ControllerManager.MaxCursorDistance || !m_bIsTargetHit ? m_v3LaserStartPosition + m_v3PointerForward * ControllerManager.MaxCursorDistance : m_v3LaserEndPosition;
 
             //if (!m_bIsTargetHit)
             //{

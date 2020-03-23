@@ -669,8 +669,8 @@ namespace ns_Mashmo
             if (l_WeaponBase.m_WeaponCategoryType != WEAPON_CATEGORY_TYPE.MELEE)
             {
                 GunWeaponBase l_GunWeaponBase = (GunWeaponBase)l_WeaponBase;
-                l_GunWeaponBase.shootBullet();
                 s_Instance.manageRaycastHitOnGunFire(l_GunWeaponBase);
+                l_GunWeaponBase.shootBullet();
 
                 //Dispatch weapon fire evetn
                 EventHash l_EventHash = EventManager.GetEventHashtable();
