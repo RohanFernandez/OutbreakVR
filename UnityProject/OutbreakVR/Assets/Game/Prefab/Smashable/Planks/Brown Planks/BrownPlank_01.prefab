@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!54 &7656913181091361137
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348955506421461990}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2193328027000454673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6c1787aa6f723409b7ad6affaa99e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Smashable: {fileID: 6733785696069326832}
+  m_Smashable: {fileID: 5929547524073624551}
 --- !u!54 &16044335564398264
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -95,8 +79,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7978815587669113706}
-  - component: {fileID: 6733785696069326832}
-  m_Layer: 0
+  - component: {fileID: 5929547524073624551}
+  m_Layer: 13
   m_Name: BrownPlank_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +102,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6733785696069326832
+--- !u!114 &5929547524073624551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,17 +111,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7024606147612588581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 6344467237247386557}
-  - {fileID: 1448810321319228842}
   m_UnbrokenObject: {fileID: 3826146005013973577}
   m_ParentBrokenObject: {fileID: 5545750922673243413}
   m_ObjectCommonParent: {fileID: 1348955506421461990}
-  m_UnbrokenRigidBody: {fileID: 7656913181091361137}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 2193328027000454673}
+  m_lstSmashedPieces:
+  - {fileID: 6344467237247386557}
+  - {fileID: 1448810321319228842}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!54 &6393746239080509156
 Rigidbody:
   m_ObjectHideFlags: 0

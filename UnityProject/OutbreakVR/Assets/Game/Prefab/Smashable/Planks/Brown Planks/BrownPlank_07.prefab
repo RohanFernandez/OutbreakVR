@@ -53,8 +53,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2741884405074529683}
-  - component: {fileID: 3709761597750130767}
-  m_Layer: 0
+  - component: {fileID: 1576970623718910901}
+  m_Layer: 13
   m_Name: BrownPlank_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3709761597750130767
+--- !u!114 &1576970623718910901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,17 +85,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2228960174544442809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 6136398892240686904}
-  - {fileID: 8847885226169461402}
   m_UnbrokenObject: {fileID: 8904541332884101626}
   m_ParentBrokenObject: {fileID: 8252494581190830178}
   m_ObjectCommonParent: {fileID: 5134228143114708835}
-  m_UnbrokenRigidBody: {fileID: 6089075473418381559}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 6193672829874247726}
+  m_lstSmashedPieces:
+  - {fileID: 6136398892240686904}
+  - {fileID: 8847885226169461402}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!54 &4120762426358593915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,22 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_v3StartPos: {x: 0.45501783, y: -0.004245039, z: 0}
   m_rigidBody: {fileID: 4120762426358593915}
---- !u!54 &6089075473418381559
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5134228143114708835}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6193672829874247726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -181,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6c1787aa6f723409b7ad6affaa99e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Smashable: {fileID: 3709761597750130767}
+  m_Smashable: {fileID: 1576970623718910901}
 --- !u!1001 &3774469887370804842
 PrefabInstance:
   m_ObjectHideFlags: 0

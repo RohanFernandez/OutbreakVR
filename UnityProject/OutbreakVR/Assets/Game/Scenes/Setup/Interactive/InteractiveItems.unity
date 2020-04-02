@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,22 +497,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8422838, y: 0.22421229, z: 0.054277927}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &27804513
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27804504}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &35788433
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51961955}
   - component: {fileID: 51961956}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,17 +674,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 51961954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1526217360}
+  m_ParentBrokenObject: {fileID: 1526217359}
+  m_ObjectCommonParent: {fileID: 1526217349}
+  m_UnbrokenRigidBody: {fileID: 0}
+  m_UnbrokenCollider: {fileID: 1526217357}
   m_lstSmashedPieces:
   - {fileID: 1526217353}
   - {fileID: 1526217350}
-  m_UnbrokenObject: {fileID: 1526217359}
-  m_ParentBrokenObject: {fileID: 1526217360}
-  m_ObjectCommonParent: {fileID: 1526217349}
-  m_UnbrokenRigidBody: {fileID: 1526217358}
-  m_UnbrokenCollider: {fileID: 1526217357}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &70053357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1094595805}
+  m_ParentBrokenObject: {fileID: 1094595804}
+  m_ObjectCommonParent: {fileID: 1094595801}
+  m_UnbrokenRigidBody: {fileID: 1094595803}
+  m_UnbrokenCollider: {fileID: 1094595802}
   m_lstSmashedPieces:
   - {fileID: 1094595844}
   - {fileID: 1094595841}
@@ -1358,11 +1348,7 @@ MonoBehaviour:
   - {fileID: 1094595823}
   - {fileID: 1094595820}
   - {fileID: 1094595817}
-  m_UnbrokenObject: {fileID: 1094595805}
-  m_ParentBrokenObject: {fileID: 1094595804}
-  m_ObjectCommonParent: {fileID: 1094595801}
-  m_UnbrokenRigidBody: {fileID: 1094595803}
-  m_UnbrokenCollider: {fileID: 1094595802}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!1001 &179186932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1605,22 +1591,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6943333, y: 0.22508878, z: 0.084016725}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &179186945
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179186936}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &179186946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7802338844631876717, guid: b9113e1b33c332444af90ade7c6fdae7,
@@ -1767,7 +1737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 209655094}
   - component: {fileID: 209655095}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1798,17 +1768,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 209655093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1236369900}
-  - {fileID: 1236369897}
   m_UnbrokenObject: {fileID: 1236369906}
   m_ParentBrokenObject: {fileID: 1236369907}
   m_ObjectCommonParent: {fileID: 1236369903}
-  m_UnbrokenRigidBody: {fileID: 1236369905}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1236369904}
+  m_lstSmashedPieces:
+  - {fileID: 1236369900}
+  - {fileID: 1236369897}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &230912129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380154195}
   - component: {fileID: 380154196}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2970,17 +2941,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 380154194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1477777119}
-  - {fileID: 1477777116}
   m_UnbrokenObject: {fileID: 1477777111}
   m_ParentBrokenObject: {fileID: 1477777114}
   m_ObjectCommonParent: {fileID: 1477777115}
-  m_UnbrokenRigidBody: {fileID: 1477777124}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1477777123}
+  m_lstSmashedPieces:
+  - {fileID: 1477777119}
+  - {fileID: 1477777116}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &402932830
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,22 +3842,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.779467, y: 0.15275347, z: 0.05571404}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &486679306
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486679297}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &492014081
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,22 +4119,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9144214, y: 0.24155629, z: 0.06438199}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &498328420
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498328411}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &498328421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -9115893274158003401, guid: 358b4adc24c3875499faa08b585c9c69,
@@ -4201,7 +4141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504163646}
   - component: {fileID: 504163647}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4232,17 +4172,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 504163645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 507649745}
-  - {fileID: 507649742}
   m_UnbrokenObject: {fileID: 507649750}
   m_ParentBrokenObject: {fileID: 507649751}
   m_ObjectCommonParent: {fileID: 507649741}
-  m_UnbrokenRigidBody: {fileID: 507649749}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 507649748}
+  m_lstSmashedPieces:
+  - {fileID: 507649745}
+  - {fileID: 507649742}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &504838562
 GameObject:
   m_ObjectHideFlags: 0
@@ -4716,22 +4657,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.708308, y: 0.27015543, z: 0.061970204}
   m_Center: {x: 0.0023927689, y: 0, z: 0}
---- !u!54 &507649749
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507649741}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &507649750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6089057400061616294, guid: 5d26bb51f160e6946990ec71f5bb118d,
@@ -5385,7 +5310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660113368}
   - component: {fileID: 660113369}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5416,17 +5341,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 660113367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1102779376}
-  - {fileID: 1102779373}
   m_UnbrokenObject: {fileID: 1102779368}
   m_ParentBrokenObject: {fileID: 1102779371}
   m_ObjectCommonParent: {fileID: 1102779372}
-  m_UnbrokenRigidBody: {fileID: 1102779381}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1102779380}
+  m_lstSmashedPieces:
+  - {fileID: 1102779376}
+  - {fileID: 1102779373}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &677859723
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,22 +6403,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7204385, y: 0.22961086, z: 0.047100008}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &849953135
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849953126}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &849953136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -9030562148443305114, guid: be98974f5b9d8684583c9601098873a0,
@@ -6754,22 +6664,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5380921, y: 0.20175552, z: 0.14839134}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &867628212
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867628203}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &875163186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9235,7 +9129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015981245}
   - component: {fileID: 1015981246}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9266,17 +9160,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015981244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1117386934}
-  - {fileID: 1117386931}
   m_UnbrokenObject: {fileID: 1117386926}
   m_ParentBrokenObject: {fileID: 1117386929}
   m_ObjectCommonParent: {fileID: 1117386930}
-  m_UnbrokenRigidBody: {fileID: 1117386939}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1117386938}
+  m_lstSmashedPieces:
+  - {fileID: 1117386934}
+  - {fileID: 1117386931}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1020711761
 GameObject:
   m_ObjectHideFlags: 0
@@ -9287,7 +9182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020711762}
   - component: {fileID: 1020711763}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9318,17 +9213,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1020711761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1915289056}
-  - {fileID: 1915289053}
   m_UnbrokenObject: {fileID: 1915289062}
   m_ParentBrokenObject: {fileID: 1915289063}
   m_ObjectCommonParent: {fileID: 1915289052}
-  m_UnbrokenRigidBody: {fileID: 1915289061}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1915289060}
+  m_lstSmashedPieces:
+  - {fileID: 1915289056}
+  - {fileID: 1915289053}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1088733264
 GameObject:
   m_ObjectHideFlags: 0
@@ -9339,7 +9235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088733265}
   - component: {fileID: 1088733266}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9370,17 +9266,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1088733264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 27804508}
-  - {fileID: 27804505}
   m_UnbrokenObject: {fileID: 27804500}
   m_ParentBrokenObject: {fileID: 27804503}
   m_ObjectCommonParent: {fileID: 27804504}
-  m_UnbrokenRigidBody: {fileID: 27804513}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 27804512}
+  m_lstSmashedPieces:
+  - {fileID: 27804508}
+  - {fileID: 27804505}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1089806367
 GameObject:
   m_ObjectHideFlags: 0
@@ -9391,7 +9288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089806368}
   - component: {fileID: 1089806369}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9422,17 +9319,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1089806367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1545806409}
-  - {fileID: 1545806406}
   m_UnbrokenObject: {fileID: 1545806412}
   m_ParentBrokenObject: {fileID: 1545806413}
   m_ObjectCommonParent: {fileID: 1545806414}
-  m_UnbrokenRigidBody: {fileID: 1545806417}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1545806416}
+  m_lstSmashedPieces:
+  - {fileID: 1545806409}
+  - {fileID: 1545806406}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1001 &1094595799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10392,22 +10290,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9119471, y: 0.23554194, z: 0.060391694}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1102779381
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102779372}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1111628234
 GameObject:
   m_ObjectHideFlags: 0
@@ -11490,22 +11372,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7413836, y: 0.2605769, z: 0.08114785}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1117386939
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117386930}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1126350397
 GameObject:
   m_ObjectHideFlags: 0
@@ -12544,22 +12410,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6498697, y: 0.1781435, z: 0.057754457}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1236369905
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236369903}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1236369906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5350220936608044148, guid: 9a828600d4ac19945a21cd212ee28c3a,
@@ -12945,22 +12795,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7924559, y: 0.114173174, z: 0.06868482}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1271296645
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271296636}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1271296646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8501031423365232693, guid: 78103884cda6c2846a1966d203329fa2,
@@ -13333,22 +13167,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6894494, y: 0.20782435, z: 0.07546607}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1303793764
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303793755}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1303793765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -765456342771824598, guid: 3f6f5678edde1204a96c21fca9c95eb6,
@@ -13992,6 +13810,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1011881870}
+  m_ParentBrokenObject: {fileID: 1011881871}
+  m_ObjectCommonParent: {fileID: 1011881836}
+  m_UnbrokenRigidBody: {fileID: 1011881869}
+  m_UnbrokenCollider: {fileID: 1011881868}
   m_lstSmashedPieces:
   - {fileID: 1011881864}
   - {fileID: 1011881861}
@@ -14003,11 +13826,7 @@ MonoBehaviour:
   - {fileID: 1011881843}
   - {fileID: 1011881840}
   - {fileID: 1011881837}
-  m_UnbrokenObject: {fileID: 1011881870}
-  m_ParentBrokenObject: {fileID: 1011881871}
-  m_ObjectCommonParent: {fileID: 1011881836}
-  m_UnbrokenRigidBody: {fileID: 1011881869}
-  m_UnbrokenCollider: {fileID: 1011881868}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!1 &1441939386
 GameObject:
   m_ObjectHideFlags: 0
@@ -14018,7 +13837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441939387}
   - component: {fileID: 1441939388}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14049,17 +13868,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441939386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1871594510}
-  - {fileID: 1871594507}
   m_UnbrokenObject: {fileID: 1871594502}
   m_ParentBrokenObject: {fileID: 1871594505}
   m_ObjectCommonParent: {fileID: 1871594506}
-  m_UnbrokenRigidBody: {fileID: 1871594515}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1871594514}
+  m_lstSmashedPieces:
+  - {fileID: 1871594510}
+  - {fileID: 1871594507}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1443345519
 GameObject:
   m_ObjectHideFlags: 0
@@ -14791,7 +14611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471382433}
   - component: {fileID: 1471382434}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14822,17 +14642,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471382432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1864573603}
-  - {fileID: 1864573600}
   m_UnbrokenObject: {fileID: 1864573595}
   m_ParentBrokenObject: {fileID: 1864573598}
   m_ObjectCommonParent: {fileID: 1864573599}
-  m_UnbrokenRigidBody: {fileID: 1864573608}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1864573607}
+  m_lstSmashedPieces:
+  - {fileID: 1864573603}
+  - {fileID: 1864573600}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1001 &1477777109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15082,22 +14903,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8138564, y: 0.2537638, z: 0.038828492}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1477777124
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477777115}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1478189810
 GameObject:
   m_ObjectHideFlags: 0
@@ -15108,7 +14913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478189811}
   - component: {fileID: 1478189812}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15139,17 +14944,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1478189810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 849953130}
-  - {fileID: 849953127}
   m_UnbrokenObject: {fileID: 849953136}
   m_ParentBrokenObject: {fileID: 849953137}
   m_ObjectCommonParent: {fileID: 849953126}
-  m_UnbrokenRigidBody: {fileID: 849953135}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 849953134}
+  m_lstSmashedPieces:
+  - {fileID: 849953130}
+  - {fileID: 849953127}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1490746651
 GameObject:
   m_ObjectHideFlags: 0
@@ -15194,6 +15000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1597264997}
+  m_ParentBrokenObject: {fileID: 1597264996}
+  m_ObjectCommonParent: {fileID: 1597264998}
+  m_UnbrokenRigidBody: {fileID: 1597265000}
+  m_UnbrokenCollider: {fileID: 1597264999}
   m_lstSmashedPieces:
   - {fileID: 1597265034}
   - {fileID: 1597265031}
@@ -15204,11 +15015,7 @@ MonoBehaviour:
   - {fileID: 1597265016}
   - {fileID: 1597265013}
   - {fileID: 1597265010}
-  m_UnbrokenObject: {fileID: 1597264997}
-  m_ParentBrokenObject: {fileID: 1597264996}
-  m_ObjectCommonParent: {fileID: 1597264998}
-  m_UnbrokenRigidBody: {fileID: 1597265000}
-  m_UnbrokenCollider: {fileID: 1597264999}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!1 &1518962310
 GameObject:
   m_ObjectHideFlags: 0
@@ -15739,22 +15546,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7997212, y: 0.16169375, z: 0.041164845}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1526217358
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526217349}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1526217359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -384101949606827206, guid: 3816d495d4efb22478bfe5c25287b0fc,
@@ -16368,22 +16159,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3760302, y: 0.26570523, z: 0.08509225}
   m_Center: {x: 0.0014804602, y: 0.0029608607, z: -0.0014804006}
---- !u!54 &1545806417
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545806414}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1551366796
 GameObject:
   m_ObjectHideFlags: 0
@@ -16394,7 +16169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551366797}
   - component: {fileID: 1551366798}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16425,17 +16200,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1551366796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1303793759}
-  - {fileID: 1303793756}
   m_UnbrokenObject: {fileID: 1303793765}
   m_ParentBrokenObject: {fileID: 1303793766}
   m_ObjectCommonParent: {fileID: 1303793755}
-  m_UnbrokenRigidBody: {fileID: 1303793764}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1303793763}
+  m_lstSmashedPieces:
+  - {fileID: 1303793759}
+  - {fileID: 1303793756}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1570441754
 GameObject:
   m_ObjectHideFlags: 0
@@ -16851,22 +16627,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7704123, y: 0.13846362, z: 0.30414364}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1576465535
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576465526}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1583014851
 GameObject:
   m_ObjectHideFlags: 0
@@ -17946,7 +17706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604072436}
   - component: {fileID: 1604072437}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17977,17 +17737,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1604072435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 179186940}
-  - {fileID: 179186937}
   m_UnbrokenObject: {fileID: 179186946}
   m_ParentBrokenObject: {fileID: 179186947}
   m_ObjectCommonParent: {fileID: 179186936}
-  m_UnbrokenRigidBody: {fileID: 179186945}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 179186944}
+  m_lstSmashedPieces:
+  - {fileID: 179186940}
+  - {fileID: 179186937}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1607738600
 GameObject:
   m_ObjectHideFlags: 0
@@ -17998,7 +17759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1607738601}
   - component: {fileID: 1607738602}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18029,17 +17790,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607738600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 867628207}
-  - {fileID: 867628204}
   m_UnbrokenObject: {fileID: 867628199}
   m_ParentBrokenObject: {fileID: 867628202}
   m_ObjectCommonParent: {fileID: 867628203}
-  m_UnbrokenRigidBody: {fileID: 867628212}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 867628211}
+  m_lstSmashedPieces:
+  - {fileID: 867628207}
+  - {fileID: 867628204}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1637847902
 GameObject:
   m_ObjectHideFlags: 0
@@ -18296,7 +18058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637919902}
   - component: {fileID: 1637919903}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18327,17 +18089,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637919901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1900824414}
-  - {fileID: 1900824411}
   m_UnbrokenObject: {fileID: 1900824420}
   m_ParentBrokenObject: {fileID: 1900824421}
   m_ObjectCommonParent: {fileID: 1900824410}
-  m_UnbrokenRigidBody: {fileID: 1900824419}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1900824418}
+  m_lstSmashedPieces:
+  - {fileID: 1900824414}
+  - {fileID: 1900824411}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1680494916
 GameObject:
   m_ObjectHideFlags: 0
@@ -19790,22 +19553,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.706374, y: 0.29419512, z: 0.04995191}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1864573608
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864573599}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1871042617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20401,22 +20148,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.85748, y: 0.28960562, z: 0.055041373}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1871594515
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871594506}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1887625191
 GameObject:
   m_ObjectHideFlags: 0
@@ -20903,22 +20634,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7862303, y: 0.18158174, z: 0.05862701}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1900824419
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900824410}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1900824420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6690137940742316302, guid: 6275cd959f02b1246ad83c656671380f,
@@ -21168,22 +20883,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8347884, y: 0.18503487, z: 0.039662898}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1915289061
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915289052}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1915289062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3263282706006992628, guid: b621dbd1bd1f2e949a31dfa954ca4695,
@@ -21329,7 +21028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936435065}
   - component: {fileID: 1936435066}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21360,17 +21059,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1936435064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1271296640}
-  - {fileID: 1271296637}
   m_UnbrokenObject: {fileID: 1271296646}
   m_ParentBrokenObject: {fileID: 1271296647}
   m_ObjectCommonParent: {fileID: 1271296636}
-  m_UnbrokenRigidBody: {fileID: 1271296645}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1271296644}
+  m_lstSmashedPieces:
+  - {fileID: 1271296640}
+  - {fileID: 1271296637}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1943690238
 GameObject:
   m_ObjectHideFlags: 0
@@ -21627,7 +21327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1959171036}
   - component: {fileID: 1959171037}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BrownPlank_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21658,17 +21358,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959171035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 498328415}
-  - {fileID: 498328412}
   m_UnbrokenObject: {fileID: 498328421}
   m_ParentBrokenObject: {fileID: 498328422}
   m_ObjectCommonParent: {fileID: 498328411}
-  m_UnbrokenRigidBody: {fileID: 498328420}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 498328419}
+  m_lstSmashedPieces:
+  - {fileID: 498328415}
+  - {fileID: 498328412}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1964577408
 GameObject:
   m_ObjectHideFlags: 0
@@ -21679,7 +21380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1964577409}
   - component: {fileID: 1964577410}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21710,17 +21411,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1964577408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 486679301}
-  - {fileID: 486679298}
   m_UnbrokenObject: {fileID: 486679293}
   m_ParentBrokenObject: {fileID: 486679296}
   m_ObjectCommonParent: {fileID: 486679297}
-  m_UnbrokenRigidBody: {fileID: 486679306}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 486679305}
+  m_lstSmashedPieces:
+  - {fileID: 486679301}
+  - {fileID: 486679298}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &1968617753
 GameObject:
   m_ObjectHideFlags: 0
@@ -21765,6 +21467,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1114260702}
+  m_ParentBrokenObject: {fileID: 1114260701}
+  m_ObjectCommonParent: {fileID: 1114260703}
+  m_UnbrokenRigidBody: {fileID: 1114260706}
+  m_UnbrokenCollider: {fileID: 1114260705}
   m_lstSmashedPieces:
   - {fileID: 1114260698}
   - {fileID: 1114260695}
@@ -21776,11 +21483,7 @@ MonoBehaviour:
   - {fileID: 1114260677}
   - {fileID: 1114260674}
   - {fileID: 1114260671}
-  m_UnbrokenObject: {fileID: 1114260702}
-  m_ParentBrokenObject: {fileID: 1114260701}
-  m_ObjectCommonParent: {fileID: 1114260703}
-  m_UnbrokenRigidBody: {fileID: 1114260706}
-  m_UnbrokenCollider: {fileID: 1114260705}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!1 &2018347338
 GameObject:
   m_ObjectHideFlags: 0
@@ -22508,17 +22211,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1453078511}
+  m_ParentBrokenObject: {fileID: 1453078517}
+  m_ObjectCommonParent: {fileID: 1453078518}
+  m_UnbrokenRigidBody: {fileID: 1453078535}
+  m_UnbrokenCollider: {fileID: 1453078536}
   m_lstSmashedPieces:
   - {fileID: 1453078531}
   - {fileID: 1453078528}
   - {fileID: 1453078525}
   - {fileID: 1453078522}
   - {fileID: 1453078519}
-  m_UnbrokenObject: {fileID: 1453078511}
-  m_ParentBrokenObject: {fileID: 1453078517}
-  m_ObjectCommonParent: {fileID: 1453078518}
-  m_UnbrokenRigidBody: {fileID: 1453078535}
-  m_UnbrokenCollider: {fileID: 1453078536}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!1 &2121870989
 GameObject:
   m_ObjectHideFlags: 0
@@ -22529,7 +22233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121870990}
   - component: {fileID: 2121870991}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WhitePlank_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22560,17 +22264,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2121870989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
+  m_Script: {fileID: 11500000, guid: 05654f2fd1c8e0341936e0407f2d2983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lstSmashedPieces:
-  - {fileID: 1576465530}
-  - {fileID: 1576465527}
   m_UnbrokenObject: {fileID: 1576465522}
   m_ParentBrokenObject: {fileID: 1576465525}
   m_ObjectCommonParent: {fileID: 1576465526}
-  m_UnbrokenRigidBody: {fileID: 1576465535}
+  m_UnbrokenRigidBody: {fileID: 0}
   m_UnbrokenCollider: {fileID: 1576465534}
+  m_lstSmashedPieces:
+  - {fileID: 1576465530}
+  - {fileID: 1576465527}
+  m_bIsPhysicsInUnbrokenObj: 0
 --- !u!1 &2122566819
 GameObject:
   m_ObjectHideFlags: 0
@@ -24027,6 +23732,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e6fd54f9bbaab4d8783e4e96260165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UnbrokenObject: {fileID: 1346569279089736057}
+  m_ParentBrokenObject: {fileID: 1346569279089736056}
+  m_ObjectCommonParent: {fileID: 1346569279089736058}
+  m_UnbrokenRigidBody: {fileID: 6061584296181914208}
+  m_UnbrokenCollider: {fileID: 3234530224191898596}
   m_lstSmashedPieces:
   - {fileID: 6365500454915221967}
   - {fileID: 919366118323306174}
@@ -24038,11 +23748,7 @@ MonoBehaviour:
   - {fileID: 1391247662762981817}
   - {fileID: 181744634204990887}
   - {fileID: 86932320793513492}
-  m_UnbrokenObject: {fileID: 1346569279089736057}
-  m_ParentBrokenObject: {fileID: 1346569279089736056}
-  m_ObjectCommonParent: {fileID: 1346569279089736058}
-  m_UnbrokenRigidBody: {fileID: 6061584296181914208}
-  m_UnbrokenCollider: {fileID: 3234530224191898596}
+  m_bIsPhysicsInUnbrokenObj: 1
 --- !u!23 &7411374970167325537
 MeshRenderer:
   m_ObjectHideFlags: 0

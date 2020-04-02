@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class SmashableCrate : SmashableBase
+    public class SmashablePlank : SmashableBase
     {
         /// <summary>
         /// Sets the unbroken object as active and the broken as deactivated
@@ -20,7 +20,6 @@ namespace ns_Mashmo
         public override void smash()
         {
             base.smash();
-            m_UnbrokenRigidBody.isKinematic = true;
             m_UnbrokenCollider.enabled = false;
 
             m_UnbrokenObject.SetActive(false);
