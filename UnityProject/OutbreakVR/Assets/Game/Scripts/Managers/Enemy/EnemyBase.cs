@@ -34,7 +34,7 @@ namespace ns_Mashmo
         /// The radius inside, if the player comes within this radius the enemy will start attacking
         /// </summary>
         [SerializeField]
-        protected float m_fAttackRadius = 15.0f;
+        protected float m_fMaxDamagePlayerDamageRadius = 15.0f;
 
         [SerializeField]
         protected int m_iMaxLifeCapacityCounter = 100;
@@ -255,6 +255,7 @@ namespace ns_Mashmo
             {
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
+                l_EventHash.Add(GameEventTypeConst.ID_FORCED_ENEMY_ALERT, false);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, l_EventHash);
             }
         }

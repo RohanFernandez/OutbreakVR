@@ -143,6 +143,16 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_CLIP_KEYPAD_CORRECT_CODE = "AudClip_KeypadCorrectCode";
 
+        /// <summary>
+        /// Audio clip to be played when the proximity bomb is armed and the countdown has begin
+        /// </summary>
+        public const string AUD_CLIP_PROXIMITY_BOMB_ARMED = "ProximityBombArmed";
+
+        /// <summary>
+        /// Audio clip to be played when the proximity bomb blasts
+        /// </summary>
+        public const string AUD_CLIP_PROXIMITY_BOMB_BLAST = "ProximityBombBlast";
+
         #endregion AUDIO CLIP
 
         #region TAG

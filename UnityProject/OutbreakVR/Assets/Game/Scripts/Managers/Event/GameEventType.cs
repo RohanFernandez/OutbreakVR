@@ -127,6 +127,7 @@ namespace ns_Mashmo
 
         #region ON_ENEMY_ALERT_STARTED
         public const string ID_ENEMY_BASE = "ID_ENEMY_BASE";                            /* INT */
+        public const string ID_FORCED_ENEMY_ALERT = "ID_FORCED_ENEMY_ALERT";            /* BOOL */
         #endregion ON_ENEMY_ALERT_STARTED
 
         #region ON_ENEMY_ALERT_ENDED

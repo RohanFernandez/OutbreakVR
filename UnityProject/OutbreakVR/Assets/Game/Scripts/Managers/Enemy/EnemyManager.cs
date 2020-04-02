@@ -283,12 +283,18 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onEnemyAlertStarted(EventHash a_EventHash)
         {
-            EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
-            if (l_AlertedEnemy != null)
+            bool l_bIsForcedEnemyAlert =  (bool)a_EventHash[GameEventTypeConst.ID_FORCED_ENEMY_ALERT];
+
+            ///if an enemy has actually been alerted by finding the player then alert, else if it is only forced then enemy will be null
+            if (!l_bIsForcedEnemyAlert)
             {
-                m_lstAlertedEnemies.Add(l_AlertedEnemy);
+                EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+                if (l_AlertedEnemy != null)
+                {
+                    m_lstAlertedEnemies.Add(l_AlertedEnemy);
+                }
+                onEnemyAlertListChanged();
             }
-            onEnemyAlertListChanged();
         }
 
         /// <summary>
@@ -372,6 +378,17 @@ namespace ns_Mashmo
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Forces all enemy to be alerted if their conditions marching proximity to the player are true
+        /// </summary>
+        public static void ForceAllEnemyAlertOnProximity()
+        {
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, null);
+            l_EventHash.Add(GameEventTypeConst.ID_FORCED_ENEMY_ALERT, true);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, l_EventHash);
         }
     }
 }

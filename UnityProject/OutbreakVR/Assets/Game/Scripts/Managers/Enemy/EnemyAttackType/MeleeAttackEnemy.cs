@@ -63,7 +63,7 @@ namespace ns_Mashmo
         void OnDrawGizmoSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position,m_fAttackRadius) ;
+            Gizmos.DrawWireSphere(transform.position,m_fMaxDamagePlayerDamageRadius) ;
         }
 
         /// <summary>

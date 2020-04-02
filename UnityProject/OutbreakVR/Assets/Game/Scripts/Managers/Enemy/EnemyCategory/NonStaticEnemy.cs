@@ -341,7 +341,7 @@ namespace ns_Mashmo
                 setDestination(PlayerManager.GetPosition());
                 m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
 
-                if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) <= m_fAttackRadius)
+                if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) <= m_fMaxDamagePlayerDamageRadius)
                 {    
                     m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                     m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
@@ -406,13 +406,10 @@ namespace ns_Mashmo
             Vector3 l_v3EnemyToPlayerDir = (l_v3PlayerPos - transform.position).normalized;
             m_RayDetector.direction = l_v3EnemyToPlayerDir;
 
-            if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius, m_AttackLayerMask))
+            if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius, m_AttackLayerMask) &&
+                Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.1f)
             {
-                if ((LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER) == l_RaycastHit.collider.gameObject.layer) &&
-                    Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.1f)
-                {
-                    l_bIsDetected = true;
-                }
+                l_bIsDetected = true;
             }
 
             return l_bIsDetected;
@@ -439,10 +436,15 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onEnemyAlertStarted(EventHash a_EventHash)
         {
-            EnemyBase l_EnemyBase = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
-            if (l_EnemyBase == this)
+            bool l_bIsEnemyAlertForced = (bool)a_EventHash[GameEventTypeConst.ID_FORCED_ENEMY_ALERT];
+
+            if (!l_bIsEnemyAlertForced)
             {
-                return;
+                EnemyBase l_EnemyBase = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
+                if (l_EnemyBase == this)
+                {
+                    return;
+                }
             }
 
             alertEnemyOnPlayerProximity();
