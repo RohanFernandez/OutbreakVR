@@ -72,6 +72,7 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, s_Instance.m_strLastState);
             l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, s_Instance.m_strCurrentState);
+            Debug.Log("<color=BLUE> ManagedState::onStateExit :: </color> Next State: " + s_Instance.m_strCurrentState + "   , Ending State : " + s_Instance.m_strLastState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, l_EventHash);
 
             ///Changes the level being used by assets, i.e. task and objective
@@ -101,6 +102,7 @@ namespace ns_Mashmo
             EventHash l_EventHash = EventManager.GetEventHashtable();
             l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_strCurrentState);
             l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_strLastState);
+            Debug.Log("<color=BLUE> ManagedState::onStateEnter :: </color> Entering State: " + s_Instance.m_strCurrentState + "   , Old State : " + s_Instance.m_strLastState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, l_EventHash);
         }
     }

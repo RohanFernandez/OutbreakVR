@@ -26,7 +26,7 @@ namespace ns_Mashmo
 
         public virtual void onStateExit(string a_strNewState)
         {
-            Debug.Log("<color=BLUE> ManagedState::onStateExit :: </color> Entered: " + a_strNewState + "   , Old State : " + m_strStateID );
+            
         }
     }
 }

@@ -66,8 +66,13 @@ namespace ns_Mashmo
         protected float m_fCurrentPhysicsTimePassed = 0.0f;
 
         public virtual void smash()
-        { 
-        
+        {
+            m_UnbrokenRigidBody.isKinematic = true;
+            m_UnbrokenCollider.enabled = false;
+
+            m_UnbrokenObject.SetActive(false);
+            m_ParentBrokenObject.SetActive(true);
+            m_bIsSmashed = true;
         }
 
         public override void resetValues()
@@ -77,26 +82,38 @@ namespace ns_Mashmo
             m_fCurrentPhysicsTimePassed = 0.0f;
             m_bIsSmashed = false;
 
-            if (m_bIsPhysicsInUnbrokenObj)
-            {
-                m_UnbrokenRigidBody.isKinematic = true;
-            }
-            m_UnbrokenCollider.enabled = false;
+            m_UnbrokenRigidBody.isKinematic = true;
 
             //Set the position to zero because its parent is world set position to reset to
             m_ObjectCommonParent.transform.localPosition = Vector3.zero;
 
-            m_UnbrokenCollider.enabled = true;
-
-            if (m_bIsPhysicsInUnbrokenObj)
-            {
-                m_UnbrokenRigidBody.isKinematic = false;
-            }
-
+            m_UnbrokenRigidBody.isKinematic = !m_bIsPhysicsInUnbrokenObj;
             int l_iPiecesCount = m_lstSmashedPieces.Count;
             for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
             {
                 m_lstSmashedPieces[l_iPieceIndex].resetValues();
+            }
+        }
+
+        //the physics to exist only for certain amount of time after a hit
+        private void Update()
+        {
+            if (m_bIsSmashed &&
+                m_fCurrentPhysicsTimePassed < m_fAllowedPhysicsTime)
+            {
+                m_fCurrentPhysicsTimePassed += Time.deltaTime;
+                if (m_fCurrentPhysicsTimePassed > m_fAllowedPhysicsTime)
+                {
+                    //disable physics in broken pieces
+                    int l_iPiecesCount = m_lstSmashedPieces.Count;
+                    for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
+                    {
+                        m_lstSmashedPieces[l_iPieceIndex].onSmashPhysicsComplete();
+                    }
+
+                    //deactivate the parent of the pieces
+                    m_ParentBrokenObject.gameObject.SetActive(false);
+                }
             }
         }
     }

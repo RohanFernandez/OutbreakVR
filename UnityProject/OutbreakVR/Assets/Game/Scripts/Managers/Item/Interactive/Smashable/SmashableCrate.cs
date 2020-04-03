@@ -20,12 +20,6 @@ namespace ns_Mashmo
         public override void smash()
         {
             base.smash();
-            m_UnbrokenRigidBody.isKinematic = true;
-            m_UnbrokenCollider.enabled = false;
-
-            m_UnbrokenObject.SetActive(false);
-            m_ParentBrokenObject.SetActive(true);
-            m_bIsSmashed = true;
         }
 
         //Uncomment if you require the physics to exist only for certain amount of time after a hit

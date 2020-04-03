@@ -38,7 +38,7 @@ namespace ns_Mashmo
             int l_iLevelListCount = m_lstLevelInteractables.Count;
             for (int l_iLevelIndex = 0; l_iLevelIndex < l_iLevelListCount; l_iLevelIndex++)
             {
-                if (m_lstLevelInteractables[l_iLevelIndex].LevelName.Equals(a_strLevelName))
+                if (m_lstLevelInteractables[l_iLevelIndex].LevelName.Equals(a_strLevelName, System.StringComparison.OrdinalIgnoreCase))
                 {
                     m_lstLevelInteractables[l_iLevelIndex].resetValues();
                     break;
