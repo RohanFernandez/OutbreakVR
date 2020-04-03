@@ -99,13 +99,31 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// List of all ambient audio clips to be played in this level
+        /// Level specific ambient audio clip to be played in this level
         /// </summary>
         [SerializeField]
-        private List<string> m_lstAmbientAudioClipID = null;
-        public List<string> LstAmbientAudioClipID
+        private string m_strLvlSpecificAmbientAudioClipID = null;
+        public string LvlSpecificAmbientAudioClipID
         {
-            get { return m_lstAmbientAudioClipID; }
+            get { return m_strLvlSpecificAmbientAudioClipID; }
+        }
+
+        public enum AUDIO_PLAY_CRITERIA
+        {
+            CONTINUE_LAST_AUDIO = 0,
+            DONT_PLAY_AUDIO = 1,
+            PLAY_NEW_AUDIO = 2,
+            CONTINUE_LAST_AUDIO_IF_SAME = 4,
+        }
+
+        /// <summary>
+        /// The ambient audio to be played
+        /// </summary>
+        [SerializeField]
+        private AUDIO_PLAY_CRITERIA m_AmbientAudPlayCriteria = AUDIO_PLAY_CRITERIA.CONTINUE_LAST_AUDIO;
+        public AUDIO_PLAY_CRITERIA AmbientAudPlayCriteria
+        {
+            get { return m_AmbientAudPlayCriteria; }
         }
     }
 }

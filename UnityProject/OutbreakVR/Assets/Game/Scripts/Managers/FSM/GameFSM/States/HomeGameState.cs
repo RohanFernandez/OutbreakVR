@@ -6,15 +6,14 @@ namespace ns_Mashmo
 {
     public class HomeGameState : ManagedState
     {
-        public override void onStateEnter(string a_strNewState)
+        public override void onStateEnter(string a_strOldState)
         {
-            base.onStateEnter(a_strNewState);
-            PlayerManager.SetPlayerState(PLAYER_STATE.MENU_SELECTION);
+            base.onStateEnter(a_strOldState);
         }
 
-        public override void onStateExit(string a_strOldState)
+        public override void onStateExit(string a_strNextState)
         {
-            base.onStateExit(a_strOldState);
+            base.onStateExit(a_strNextState);
         }
 
         /// <summary>

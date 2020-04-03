@@ -407,7 +407,8 @@ namespace ns_Mashmo
             m_RayDetector.direction = l_v3EnemyToPlayerDir;
 
             if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fAlertRadius, m_AttackLayerMask) &&
-                Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.1f)
+                Vector3.Dot(transform.forward, m_RayDetector.direction) >= 0.1f &&
+                l_RaycastHit.collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
             {
                 l_bIsDetected = true;
             }

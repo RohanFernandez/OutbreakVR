@@ -8,7 +8,7 @@ namespace ns_Mashmo
     {
         #region STATE NAMES
         public const string STATE_NAME_INIT = "INIT";
-        public const string STATE_NAME_HOME = "HOME";
+        public const string STATE_NAME_HOME = "HOME_000";
         public const string STATE_NAME_NEW_GAME = "Level0_000";
         public const string STATE_NAME_TRAINING = "TRAINING_100";
         public const string STATE_NAME_FIRST_LEVEL = "Level1_100";
@@ -97,6 +97,11 @@ namespace ns_Mashmo
         /// Audio clip ambient music
         /// </summary>
         public const string AUD_CLIP_AMBIENT = "AmbientAudio1";
+
+        /// <summary>
+        /// The ambient audio that will be played if not set explicitly
+        /// </summary>
+        public const string AUD_CLIP_DEFAULT_AMBIENT_AUDIO = "DefaultAmbient";
 
         /// <summary>
         /// Audio clip to be played on turret gunfire

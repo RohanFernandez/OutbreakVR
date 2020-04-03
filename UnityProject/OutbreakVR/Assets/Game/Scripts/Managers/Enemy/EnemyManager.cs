@@ -285,6 +285,9 @@ namespace ns_Mashmo
         {
             bool l_bIsForcedEnemyAlert =  (bool)a_EventHash[GameEventTypeConst.ID_FORCED_ENEMY_ALERT];
 
+            int l_iOldAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            int l_iNewAlertedEnemyCount = l_iOldAlertedEnemyCount;
+
             ///if an enemy has actually been alerted by finding the player then alert, else if it is only forced then enemy will be null
             if (!l_bIsForcedEnemyAlert)
             {
@@ -293,8 +296,10 @@ namespace ns_Mashmo
                 {
                     m_lstAlertedEnemies.Add(l_AlertedEnemy);
                 }
-                onEnemyAlertListChanged();
+
+                l_iNewAlertedEnemyCount = m_lstAlertedEnemies.Count;
             }
+            onEnemyAlertListChanged(l_iOldAlertedEnemyCount, l_iNewAlertedEnemyCount);
         }
 
         /// <summary>
@@ -303,20 +308,31 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onEnemyAlertEnded(EventHash a_EventHash)
         {
+            int l_iOldAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            int l_iNewAlertedEnemyCount = l_iOldAlertedEnemyCount;
+
             EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
             if (l_AlertedEnemy != null)
             {
                 m_lstAlertedEnemies.Remove(l_AlertedEnemy);
             }
-            onEnemyAlertListChanged();
+
+            l_iNewAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            onEnemyAlertListChanged(l_iOldAlertedEnemyCount, l_iNewAlertedEnemyCount);
         }
 
         /// <summary>
-        /// Called on the list of enemy list changed
+        /// Called on the list of enemy list changed, fire event 
         /// </summary>
-        private void onEnemyAlertListChanged()
+        private void onEnemyAlertListChanged(int a_iOldEnemyAlertedCount, int a_iNewEnemyAlertedCount)
         {
-             SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, m_lstAlertedEnemies.Count > 0 ? GameConsts.AUD_CLIP_ALERT_AMBIENT : GameConsts.AUD_CLIP_AMBIENT, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+            if (a_iOldEnemyAlertedCount != a_iNewEnemyAlertedCount)
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_OLD_ENEMY_ALERT_COUNT, a_iOldEnemyAlertedCount);
+                l_EventHash.Add(GameEventTypeConst.ID_NEW_ENEMY_ALERT_COUNT, a_iNewEnemyAlertedCount);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_COUNT_CHANGED, l_EventHash);
+            }
         }
 
         /// <summary>

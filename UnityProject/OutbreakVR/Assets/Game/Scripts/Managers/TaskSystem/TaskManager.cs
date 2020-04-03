@@ -157,7 +157,7 @@ namespace ns_Mashmo
             }
             else
             {
-                Debug.LogError("TaskManager::SetTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist");
+                Debug.Log("<color=ORANGE>TaskManager::SetTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist</color>");
             }
         }
 

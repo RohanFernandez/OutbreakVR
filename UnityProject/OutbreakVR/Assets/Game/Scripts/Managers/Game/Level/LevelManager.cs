@@ -111,14 +111,14 @@ namespace ns_Mashmo
             string l_strSceneToLoad = string.Empty;
             bool l_bIsNewLevelToBeLoaded = false;
             
-            if (a_strGameLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
-            {
-                EventHash l_EventHash = EventManager.GetEventHashtable();
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
-                l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
-            }
-            else
-            {
+            //if (a_strGameLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
+            //{
+            //    EventHash l_EventHash = EventManager.GetEventHashtable();
+            //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
+            //    l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
+            //}
+            //else
+            //{
                 ///If an empty or null level is set to load then start new game
                 if (string.IsNullOrEmpty(a_strGameLevelName))
                 {
@@ -152,7 +152,7 @@ namespace ns_Mashmo
                 InventoryManager.SetInventoryDataAsCurrent(l_CurrentSubLevelData.SavedData.m_ItemInventory);
 
                 #endregion LOAD_LEVEL_DATA
-            }
+            //}
 
             GameStateMachine.Transition(a_strGameLevelName, l_strSceneToLoad, l_bIsNewLevelToBeLoaded ? s_Instance.m_strCurrLevelName : string.Empty);
         }
@@ -267,7 +267,7 @@ namespace ns_Mashmo
             GoToLevel(l_strNextLevelToLoad);
         }
 
-        public static bool GetLevelAndSubLevelFataDromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
+        public static bool GetLevelAndSubLevelDataFromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
         {
             return s_Instance.getLevelAndSubLevelDataFromName(a_strLevelName, ref a_refLevelData, ref a_refSubLevelData);
         }
@@ -372,11 +372,37 @@ namespace ns_Mashmo
                 }
                 PlayerManager.SetPlayerState(l_CurrentSubLevelData.PlayerStateOnStart);
 
-                ///TODO:: Play level specific ambient audio
+                #region MANAGING AMBIENT AUDIO
 
-                EventHash l_EventGameplayBegin = EventManager.GetEventHashtable();
-                l_EventGameplayBegin.Add(GameEventTypeConst.ID_NEW_GAME_STATE, l_strCurrenstState);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_BEGIN, l_EventGameplayBegin);
+                    ///Continue to play the last audio that was already set before, so dont do anything
+                    if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.CONTINUE_LAST_AUDIO)
+                    {
+                        //let the audio continue and dont change anything
+                    }
+                    ///if the next level audio id is the same as the current playing id, then dont do anything and let that audio continue to play
+                    ///else stop the audio source and play the next level audio id
+                    else if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.CONTINUE_LAST_AUDIO_IF_SAME)
+                    {
+                        if (!GameManager.CurrentLvlAmbientAudio.Equals(l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, System.StringComparison.OrdinalIgnoreCase))
+                        {
+                            GameManager.CurrentLvlAmbientAudio = l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID;
+                            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
+                            SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                        }
+                    }
+                    else if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.DONT_PLAY_AUDIO)
+                    {
+                        GameManager.CurrentLvlAmbientAudio = string.Empty;
+                        SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
+                    }
+                    else if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.PLAY_NEW_AUDIO)
+                    {
+                        GameManager.CurrentLvlAmbientAudio = l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID;
+                        SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
+                        SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                    }
+
+                #endregion MANAGING AMBIENT AUDIO
             }
         }
 

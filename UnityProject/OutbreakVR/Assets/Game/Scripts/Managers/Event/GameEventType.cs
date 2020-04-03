@@ -33,6 +33,7 @@ namespace ns_Mashmo
         ON_TOUCHPAD_SWIPE,                         /* <CONTROLLER_TOUCHPAD_SWIPE > */
         ON_GAME_COMPLETED,                         /* <LEVEL_NAME> */
         ON_DAMAGE_INFLICTED_ON_PLAYER,             /* <INT> */
+        ON_ENEMY_ALERT_COUNT_CHANGED                /* */
     }
 
     public static class GameEventTypeConst
@@ -133,6 +134,11 @@ namespace ns_Mashmo
         #region ON_ENEMY_ALERT_ENDED
         //public const string ID_ENEMY_BASE = "ID_ENEMY_BASE";                            /* INT */
         #endregion ON_ENEMY_ALERT_ENDED
+
+        #region ON_ENEMY_ALERT_COUNT_CHANGED
+        public const string ID_OLD_ENEMY_ALERT_COUNT = "ID_OLD_ENEMY_ALERT_COUNT";          /* INT */
+        public const string ID_NEW_ENEMY_ALERT_COUNT = "ID_NEW_ENEMY_ALERT_COUNT";          /* INT */
+        #endregion ON_ENEMY_ALERT_COUNT_CHANGED
 
         #region ON_OBJECTIVE_GROUP_COMPLETED
         //public const string ID_OLD_GAME_STATE = "ID_OLD_GAME_STATE";     /* STRING */

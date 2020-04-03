@@ -154,7 +154,8 @@ namespace ns_Mashmo
             Vector3 l_v3TurretToPlayerDir = (l_v3PlayerPos - transform.position).normalized;
             m_RayDetector.direction = l_v3TurretToPlayerDir;
             if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fMaxDamagePlayerDamageRadius, m_AttackLayerMask) &&
-                l_RaycastHit.collider != null )
+                l_RaycastHit.collider != null &&
+                l_RaycastHit.collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
             {
                 PlayerController l_PlayerController = l_RaycastHit.collider.GetComponent<PlayerController>();
 
@@ -232,7 +233,8 @@ namespace ns_Mashmo
             m_RayDetector.direction = (PlayerManager.GetPosition() - transform.position).normalized;
 
             if (Physics.Raycast(m_RayDetector, out l_RaycastHit, m_fMaxDamagePlayerDamageRadius, m_AttackLayerMask) &&
-                l_RaycastHit.collider != null)
+                l_RaycastHit.collider != null &&
+                l_RaycastHit.collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
             {
                 NavState = ENEMY_STATE.ALERT;
             }

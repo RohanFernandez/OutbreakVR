@@ -154,7 +154,7 @@ namespace ns_Mashmo
             else
             {
                 s_Instance.m_CurrentObjectiveList = null;
-                Debug.LogError("ObjectiveManager::SetObjectiveList:: Objective list for level type '" + a_strLevelName + "' does not exist");
+                Debug.Log("<color=ORANGE>ObjectiveManager::SetObjectiveList:: Objective list for level type '" + a_strLevelName + "' does not exist</color>");
             }
             s_Instance.setCurrentObjectiveGroup(null);
         }
