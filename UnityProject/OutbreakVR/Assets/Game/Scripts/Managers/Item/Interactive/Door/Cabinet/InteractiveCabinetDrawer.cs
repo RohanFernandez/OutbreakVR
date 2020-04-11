@@ -15,12 +15,9 @@ namespace ns_Mashmo
             closeDoor(true);
         }
 
-        public override void Awake()
+        protected override void Awake()
         {
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-            }
+            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
         }
 
         /// <summary>
@@ -29,9 +26,10 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerOver()
         {
             base.onDoorHandlePointerOver();
-            if (m_OutlineGroupHighlighterBase != null && !m_bIsDoorOpen)
+
+            if (!m_bIsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterSelected);
             }
         }
 
@@ -41,9 +39,9 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerExit()
         {
             base.onDoorHandlePointerExit();
-            if (m_OutlineGroupHighlighterBase != null && !m_bIsDoorOpen)
+            if (!m_bIsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -56,10 +54,8 @@ namespace ns_Mashmo
             if (!m_bIsDoorOpen)
             {
                 openDoor();
-                if (m_OutlineGroupHighlighterBase != null)
-                {
-                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated);
-                }
+
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterDeactivated);
             }
         }
 
@@ -85,10 +81,7 @@ namespace ns_Mashmo
 
             m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_CLOSE);
 
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-            }
+            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
         }
     }
 }

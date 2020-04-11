@@ -41,21 +41,17 @@ namespace ns_Mashmo
         /// <summary>
         /// Is the door currently open
         /// </summary>
-        [SerializeField]
         protected bool m_bIsDoorOpen = false;
 
         /// <summary>
-        /// The outline hightlighter
+        /// Sets the color of the door knob
         /// </summary>
         [SerializeField]
-        protected OutlineHighlighterBase m_OutlineGroupHighlighterBase = null;
+        protected DoorKnobColorController m_DoorKnobColorController = null;
 
-        public virtual void Awake()
+        protected virtual void Awake()
         {
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-            }
+            
         }
 
         /// <summary>
@@ -91,6 +87,11 @@ namespace ns_Mashmo
         /// </summary>
         public virtual void closeDoor(bool a_bIsReset = false)
         {
+        }
+
+        protected virtual void Update()
+        { 
+        
         }
     }
 }

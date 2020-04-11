@@ -15,7 +15,7 @@ namespace ns_Mashmo
 
         //Door
         private const string ATTRIBUTE_IS_DOOR_LOCKED = "IsLocked";
-        private const string ATTRIBUTE_VALUE_CODE_ITE_DOOR = "Door";
+        private const string ATTRIBUTE_VALUE_CODE_IS_DOOR = "Door";
 
         #endregion ITEM_SPECIFIC
 
@@ -38,7 +38,7 @@ namespace ns_Mashmo
 
             switch (m_strCode)
             {
-                case ATTRIBUTE_VALUE_CODE_ITE_DOOR:
+                case ATTRIBUTE_VALUE_CODE_IS_DOOR:
                     {
                         // Set door as locked/ unlocked
                         bool l_bIsDoorLocked = getBool(ATTRIBUTE_IS_DOOR_LOCKED);

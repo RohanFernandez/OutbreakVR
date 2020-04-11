@@ -34,6 +34,11 @@ namespace ns_Mashmo
             closeDoor(true);
         }
 
+        protected override void Awake()
+        {
+            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
+        }
+
         /// <summary>
         /// On interactive pointer entering the door handle
         /// </summary>
@@ -41,9 +46,9 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerOver();
 
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
+            if (!IsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterSelected);
             }
         }
 
@@ -54,9 +59,9 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerExit();
 
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen)
+            if (!IsDoorOpen)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -91,10 +96,8 @@ namespace ns_Mashmo
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_SIDE_2);
             }
 
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated) ;
-            }
+            
+            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterDeactivated);
 
             m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_OPEN, false, 1.0f);
         }
@@ -111,10 +114,7 @@ namespace ns_Mashmo
                 IsDoorOpen = false;
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_CLOSE);
 
-                if (m_OutlineGroupHighlighterBase != null)
-                {
-                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-                }
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
 
                 if (!a_bIsReset)
                 {

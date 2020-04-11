@@ -47,7 +47,7 @@ namespace ns_Mashmo
             set
             {
                 m_bIsDoorLocked = value;
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
+                m_DoorKnobColorController.setColor(m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -58,16 +58,14 @@ namespace ns_Mashmo
                 m_bIsDoorOpen = value;
 
                 m_InteractiveDoorHandle.toggleDoorHandleInteraction(!m_bIsDoorOpen);
-                if (m_OutlineGroupHighlighterBase != null)
-                {
-                    m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_bIsDoorOpen ? GameManager.ColOutlineHighlighterDeactivated : GameManager.ColOutlineHighlighterNormal);
-                }
+                m_DoorKnobColorController.setColor(m_bIsDoorOpen ? GameManager.ColOutlineHighlighterDeactivated : GameManager.ColOutlineHighlighterNormal);
             }
         }
 
-        public override void Awake()
+        protected override void Awake()
         {
             base.Awake();
+            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
         }
 
         /// <summary>
@@ -77,9 +75,9 @@ namespace ns_Mashmo
         {
             base.onDoorHandlePointerOver();
 
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen && !IsDoorLocked)
+            if (!IsDoorOpen && !IsDoorLocked)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterSelected);
             }
         }
 
@@ -89,10 +87,10 @@ namespace ns_Mashmo
         public override void onDoorHandlePointerExit()
         {
             base.onDoorHandlePointerExit();
-
-            if (m_OutlineGroupHighlighterBase != null && !IsDoorOpen && !IsDoorLocked)
+            
+            if (!IsDoorOpen && !IsDoorLocked)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+                m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
             }
         }
 
@@ -173,6 +171,11 @@ namespace ns_Mashmo
         public virtual void lockDoor(bool a_bIsDoorLocked)
         {
             IsDoorLocked = a_bIsDoorLocked;
+        }
+
+        protected override void Update()
+        {
+
         }
     }
 }
