@@ -34,13 +34,24 @@ namespace ns_Mashmo
             base.OnTriggerEnter(a_Collider);
             if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
-                EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
-                if (l_EnemyHitCollider != null)
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == a_Collider.gameObject.layer)
                 {
-                    EnemyBase l_EnemyBase = l_EnemyHitCollider.EnemyBase;
-                    if (!m_dictTriggeredEnemies.ContainsKey(l_EnemyBase.getID()))
+                    EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
+                    if (l_EnemyHitCollider != null)
                     {
-                        m_dictTriggeredEnemies.Add(l_EnemyBase.getID(), l_EnemyBase);
+                        EnemyBase l_EnemyBase = l_EnemyHitCollider.EnemyBase;
+                        if (!m_dictTriggeredEnemies.ContainsKey(l_EnemyBase.getID()))
+                        {
+                            m_dictTriggeredEnemies.Add(l_EnemyBase.getID(), l_EnemyBase);
+                        }
+                    }
+                }
+                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == a_Collider.gameObject.layer)
+                {
+                    SmashableHitCollider l_SmashableHitCollider = a_Collider.GetComponent<SmashableHitCollider>();
+                    if (l_SmashableHitCollider != null)
+                    {
+                        l_SmashableHitCollider.startSmashOnHit();
                     }
                 }
             }

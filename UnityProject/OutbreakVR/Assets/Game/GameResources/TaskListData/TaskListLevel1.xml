@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TaskList Name = "Level1" >
-	<Sequence ID = "StartGame" >
+
+	<!--Sequence ID = "StartGame" >
 		<Task ID="1" TaskType="TaskAudio" AudSrc="Ambient" AudClip="AudClip_Ambient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
 		<Task ID="2" TaskType="TaskWait" WaitTime="10.0"/>
 		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="TestGameObj" />
@@ -9,22 +10,30 @@
 		<Task ID="6" TaskType="TaskFunctionCall" ClassName="TestUserInput" Parameters="abc,def,ghi" FunctionName="PrintThis" GameObject_ID="TestGameObj"/>
 	</Sequence>
 	
-	<Sequence ID = "ReturnItems" >
-		<Task ID="1" TaskType="TaskItem" Code="ReturnAll"/>
-		<Task ID="2" TaskType="TaskEnemy" Code="ReturnAll"/>
-	</Sequence>
-	
 	<Sequence ID = "SpawnEnemy" >
 		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" Position="1.0,-13.5,1.0" Rotation="0.0,180.0,0.0"/>
 	</Sequence>
 	
 	<Sequence ID = "DestroyEnemy" >
 		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" />
+	</Sequence-->
+	
+	<Sequence ID = "ReturnItems" >
+		<Task ID="1" TaskType="TaskItem" Code="ReturnAll"/>
+		<Task ID="2" TaskType="TaskEnemy" Code="ReturnAll"/>
 	</Sequence>
 	
+	<!-- CHECKPOINT -->
 	<Sequence ID = "Level1_100_OnBegin" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="CrashedHelicopter" />
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Objective_ChainsawPickup" ItemType="ITEM_CHAINSAW" ObjectiveTrigger="ChainsawPickup" Position="0.939,31.211,-2.194" Rotation="0.0,0.0,0.0"/>
+
+    <!-- Activate the helicopter in this level, will be deactivate when you cant come back to this level. Added because the particles and mesh is very heavy to stay in the entire game-->
+    <Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
     
-    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="16.117,15.80362,8.238" Rotation="0.0,180.0,0.0" Params="90.0;-90.0"/>
+
+
+    <!--Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="16.117,15.80362,8.238" Rotation="0.0,180.0,0.0" Params="90.0;-90.0"/>
     <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret2" EnemyType="AUTOMATED_TURRET" Position="24.346,15.80362,7.987" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/> 
     <Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret3" EnemyType="AUTOMATED_TURRET" Position="29.592,12.60362,5.844" Rotation="0.0,-90.0,0.0" Params="90.0;-90.0"/>
     <Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret4" EnemyType="AUTOMATED_TURRET" Position="22.093,12.60362,12.657" Rotation="0.0,-270,0.0" Params="90.0;-90.0"/>
@@ -35,15 +44,15 @@
     <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HEALTH_03" ItemType="ITEM_HEALTH_LARGE" Position="3.851,30.99,3.309" Rotation="0.0,-34.939,0.0"/>
 
     <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_01" ItemType="ITEM_HELMET" ObjectiveTrigger="TestTriggerID1" StrengthPercentage="50" Position="5.04,30.99,4.14" Rotation="0.0,-34.939,0.0"/>
-	<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_02" ItemType="ITEM_HELMET" ObjectiveTrigger="TestTriggerID2" StrengthPercentage="19" Position="5.197,30.99,2.821" Rotation="0.0,-34.939,0.0"/>
-	<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="CRACKED_HELMET_01" ItemType="ITEM_CRACKED_HELMET" ObjectiveTrigger="TestTriggerID2" Position="3.645,30.99,1.736" Rotation="0.0,-34.939,0.0"/>
-	<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Assault1" ItemType="ITEM_STINGRAY" BulletCount="17" Position="-2.369,31.217,1.637" Rotation="0.0,0.0,0.0"/>
-	<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Assault2" ItemType="ITEM_THOMPSON" BulletCount="17" Position="-2.369,31.217,3.637" Rotation="0.0,0.0,0.0"/>
+    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_02" ItemType="ITEM_HELMET" ObjectiveTrigger="TestTriggerID2" StrengthPercentage="19" Position="5.197,30.99,2.821" Rotation="0.0,-34.939,0.0"/>
+    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="CRACKED_HELMET_01" ItemType="ITEM_CRACKED_HELMET" ObjectiveTrigger="TestTriggerID2" Position="3.645,30.99,1.736" Rotation="0.0,-34.939,0.0"/>
+    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Assault1" ItemType="ITEM_STINGRAY" BulletCount="17" Position="-2.369,31.217,1.637" Rotation="0.0,0.0,0.0"/>
+    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Assault2" ItemType="ITEM_THOMPSON" BulletCount="17" Position="-2.369,31.217,3.637" Rotation="0.0,0.0,0.0"/>
 
     
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-0.314,31.509,-5.392" Rotation="0.0,-34.939,0.0"/>
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Test_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.935,31.109,2.38" Rotation="0.0,74.39201,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="3.552,31.58,-3.813" Rotation="0.0,219.126,0.0"/>
+        <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Test_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-0.314,31.509,-5.392" Rotation="0.0,-34.939,0.0"/>
+        <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Test_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.935,31.109,2.38" Rotation="0.0,74.39201,0.0"/>
+        <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="3.552,31.58,-3.813" Rotation="0.0,219.126,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="6.96166,31.7484,13.66049" Rotation="0.0,-55.34,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item3" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="5.101559,31.561,15.463" Rotation="0.0,48.49,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item4" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-6.2917,26.28222,12.1453" Rotation="0.0,72.427,0.0"/>
@@ -51,7 +60,7 @@
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item6" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="6.639,25.59565,25.621" Rotation="0.0,15.686,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item7" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="6.464062,25.59565,25.81573" Rotation="0.0,-26.205,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item8" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="6.3814,25.59565,25.597" Rotation="0.0,26.484,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-3.876868,31.4127,5.817092" Rotation="0.0,-184.007,0.0"/>
+        <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-3.876868,31.4127,5.817092" Rotation="0.0,-184.007,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item10" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-4.19,31.4127,5.817092" Rotation="0.0,-164.065,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item11" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="3.732,35.8421,9.058" Rotation="0.0,37.35,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item12" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="3.771,35.8421,8.598" Rotation="0.0,-45.049,0.0"/>
@@ -64,26 +73,22 @@
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item19" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="6.6238,25.615,25.17283" Rotation="0.0,-47.187,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item20" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="6.927,25.615,25.098" Rotation="0.0,-114.17,0.0"/>
                 <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item21" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="6.752,25.615,25.37" Rotation="0.0,-193.461,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Shotgun_Test_Item" ItemType="ITEM_PRIMARY_SHOTGUN_BULLETS" BulletCount="12" Position="2.068,31.192,0.888" Rotation="0.0,233.552,0.0"/>
-		<Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" />
-		
-		
-		
-         
+        <Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Shotgun_Test_Item" ItemType="ITEM_PRIMARY_SHOTGUN_BULLETS" BulletCount="12" Position="2.068,31.192,0.888" Rotation="0.0,233.552,0.0"/>
+        <Task ID="3" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT" /-->
+        
+	</Sequence>
+
+  <Sequence ID = "Level1_100_OnEnd">
+  </Sequence>
+  
+	
+	<Sequence ID = "Obj100_OnWeaponPickup" >
+        <Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.531,30.859,3.903" Rotation="0.0,0.0,0.0"/>
+		    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
+        <Task ID="2" TaskType="TaskAudio" AudClip="BreakingIntrusion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level100_BreakIn"/>
 	</Sequence>
 	
-	<Sequence ID = "Level1_101_OnBegin" >
-                <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.75,30.37038,12.794" Rotation="0.0,207.616,0.0"/>
-		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-4.791,30.37038,16.144" Rotation="0.0,160.805,0.0"/>
-                <Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie3" EnemyType="SECURITY_OFFICER" Position="-0.07,30.67038,-3.07" Rotation="0.0,106.58,0.0"/>
-		
-	</Sequence>
-	
-	<Sequence ID = "DestroyItem" >
-		<Task ID="1" TaskType="TaskItem" Code="Deactivate" Item_ID="Officer1" ItemType="ITEM_FN57" />
-	</Sequence>
-	
-	<Sequence ID = "SetTransform" >
-		
+	<Sequence ID = "Level1_110_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" />
 	</Sequence>
 </TaskList>

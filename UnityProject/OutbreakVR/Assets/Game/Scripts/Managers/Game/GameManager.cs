@@ -11,25 +11,25 @@ namespace ns_Mashmo
         /// </summary>
         private static GameManager s_Instance = null;
 
-        /// <summary>
-        /// The current Game level
-        /// </summary>
-        [SerializeField]
-        private string m_strCurrentLevel = string.Empty;
-        public static string CurrentLevel
-        {
-            get { return s_Instance.m_strCurrentLevel; }
-        }
+        ///// <summary>
+        ///// The current Game level
+        ///// </summary>
+        //[SerializeField]
+        //private string m_strCurrentLevel = string.Empty;
+        //public static string CurrentLevel
+        //{
+        //    get { return s_Instance.m_strCurrentLevel; }
+        //}
 
-        /// <summary>
-        /// Current In game state
-        /// </summary>
-        [SerializeField]
-        private string m_strInGameState = string.Empty;
-        public static string InGameState
-        {
-            get { return s_Instance.m_strInGameState; }
-        }
+        ///// <summary>
+        ///// Current In game state
+        ///// </summary>
+        //[SerializeField]
+        //private string m_strInGameState = string.Empty;
+        //public static string InGameState
+        //{
+        //    get { return s_Instance.m_strInGameState; }
+        //}
 
         /// <summary>
         /// Is the game pause currently
@@ -207,7 +207,12 @@ namespace ns_Mashmo
         public static void RestartLevel()
         {
             PauseGame(false);
+
             LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
+
+            EventHash l_EventHash = EventManager.GetEventHashtable();
+            l_EventHash.Add(GameEventTypeConst.ID_LEVEL_TYPE, LevelManager.LastCheckpointLevel);
+            EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_RESTARTED, l_EventHash);
         }
 
         /// <summary>

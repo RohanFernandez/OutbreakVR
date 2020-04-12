@@ -86,7 +86,7 @@ namespace ns_Mashmo
         {
             if (GetGameObjectById(a_strID) == null)
             {
-                Debug.LogError("GameObjectManager::registerGameObj:: Cannot unregister because gameobject is not registered '"+ a_strID + "'");
+                Debug.Log("<color = ORANGE> GameObjectManager::registerGameObj:: </color> Cannot unregister because gameobject is not registered '" + a_strID + "'");
                 return;
             }
             s_Instace.m_dictGameObjectIDs.Remove(a_strID);

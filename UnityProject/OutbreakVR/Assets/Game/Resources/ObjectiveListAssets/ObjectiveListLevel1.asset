@@ -16,23 +16,39 @@ MonoBehaviour:
   m_iObjectiveGroupCount: 3
   m_lstObjectiveGroup:
   - m_strID: Level1_100
-    m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_strType: OrderedObjectiveGroup
+    m_iObjectiveCount: 2
     m_lstScriptibeObjective:
     - m_strID: 1
       m_strType: ObjectiveTrigger
-      m_strSeqOnComplete: 
-      m_strObjectiveDesc: Reached point 101
-      m_iAttributeCount: 4
+      m_strSeqOnComplete: Obj100_OnWeaponPickup
+      m_strObjectiveDesc: Find a weapon to defend yourself
+      m_iAttributeCount: 5
       m_lstAttributes:
       - m_strKey: ID
         m_strValue: 1
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
-        m_strValue: DoThis101
+        m_strValue: ChainsawPickup
       - m_strKey: ObjDesc
-        m_strValue: Reached point 101
+        m_strValue: Find a weapon to defend yourself
+      - m_strKey: SequenceOnComplete
+        m_strValue: Obj100_OnWeaponPickup
+    - m_strID: 2
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Find your way out of the apartment
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_101_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Find your way out of the apartment
   - m_strID: Level1_101
     m_strType: OrderedObjectiveGroup
     m_iObjectiveCount: 1

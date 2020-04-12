@@ -69,8 +69,13 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static ObjectiveList GetObjectiveList(string a_strURL)
         {
+            //ignore comments in xml
+            System.Xml.XmlReaderSettings l_readerSettings = new System.Xml.XmlReaderSettings();
+            l_readerSettings.IgnoreComments = true;
+            System.Xml.XmlReader l_ReadXML = System.Xml.XmlReader.Create(a_strURL, l_readerSettings);
+
             System.Xml.XmlDocument l_XMLDoc = new System.Xml.XmlDocument();
-            l_XMLDoc.Load(a_strURL);
+            l_XMLDoc.Load(l_ReadXML);
 
             System.Xml.XmlNodeList l_NodeList = l_XMLDoc.GetElementsByTagName(TAG_OBJECTIVE_LIST);
             if (l_NodeList == null || l_NodeList.Count == 0)

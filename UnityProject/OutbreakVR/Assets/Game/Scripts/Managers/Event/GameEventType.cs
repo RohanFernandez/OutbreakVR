@@ -33,7 +33,8 @@ namespace ns_Mashmo
         ON_TOUCHPAD_SWIPE,                         /* <CONTROLLER_TOUCHPAD_SWIPE > */
         ON_GAME_COMPLETED,                         /* <LEVEL_NAME> */
         ON_DAMAGE_INFLICTED_ON_PLAYER,             /* <INT> */
-        ON_ENEMY_ALERT_COUNT_CHANGED                /* */
+        ON_ENEMY_ALERT_COUNT_CHANGED,                /* */
+        ON_LEVEL_RESTARTED                          /* LEVEL_NAME*/
     }
 
     public static class GameEventTypeConst
@@ -169,5 +170,9 @@ namespace ns_Mashmo
         #region ON_DAMAGE_INFLICTED_ON_PLAYER
         public const string ID_DAMAGE_INFLICTED = "ID_DAMAGE_INFLICTED";     /* INT */
         #endregion ON_DAMAGE_INFLICTED_ON_PLAYER
+
+        #region ON_LEVEL_RESTARTED
+        //public const string ID_LEVEL_TYPE = "ID_LEVEL_TYPE";     /* STRING */
+        #endregion ON_LEVEL_RESTARTED
     }
 }
