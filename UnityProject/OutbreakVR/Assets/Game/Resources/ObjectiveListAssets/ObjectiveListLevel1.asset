@@ -16,9 +16,26 @@ MonoBehaviour:
   m_iObjectiveGroupCount: 3
   m_lstObjectiveGroup:
   - m_strID: Level1_100
-    m_strType: OrderedObjectiveGroup
-    m_iObjectiveCount: 2
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 3
     m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Find and pickup a Neurassist helmet
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: HelmetPickup
+      - m_strKey: ObjDesc
+        m_strValue: Find and pickup a Neurassist helmet
+      - m_strKey: IsCompulsory
+        m_strValue: false
+      m_strIsCompulsory: false
     - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: Obj100_OnWeaponPickup
@@ -35,6 +52,7 @@ MonoBehaviour:
         m_strValue: Find a weapon to defend yourself
       - m_strKey: SequenceOnComplete
         m_strValue: Obj100_OnWeaponPickup
+      m_strIsCompulsory: true
     - m_strID: 2
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
@@ -49,6 +67,7 @@ MonoBehaviour:
         m_strValue: Level_101_LocationTriggered
       - m_strKey: ObjDesc
         m_strValue: Find your way out of the apartment
+      m_strIsCompulsory: true
   - m_strID: Level1_101
     m_strType: OrderedObjectiveGroup
     m_iObjectiveCount: 1
@@ -67,6 +86,7 @@ MonoBehaviour:
         m_strValue: DoThis102
       - m_strKey: ObjDesc
         m_strValue: Reached checkpoint 102
+      m_strIsCompulsory: true
   - m_strID: Level1_102
     m_strType: UnorderedObjectiveGroup
     m_iObjectiveCount: 1
@@ -83,3 +103,4 @@ MonoBehaviour:
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
         m_strValue: DoThis103
+      m_strIsCompulsory: true

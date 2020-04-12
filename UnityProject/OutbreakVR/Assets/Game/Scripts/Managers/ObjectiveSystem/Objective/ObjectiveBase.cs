@@ -43,6 +43,12 @@ namespace ns_Mashmo
         protected bool m_bIsComplete = false;
 
         /// <summary>
+        /// Is objective compulsory
+        /// </summary>
+        [SerializeField]
+        protected bool m_bIsCompulsory = true;
+
+        /// <summary>
         /// Attributes in this objective
         /// </summary>
         protected Hashtable m_hashAttributes = null;
@@ -60,6 +66,7 @@ namespace ns_Mashmo
             m_strID = getString(ScriptableObjective.KEY_TASK_ID);
             m_strSequenceOnComplete = getString(ScriptableObjective.KEY_SEQUENCE_ON_COMPLETE_ID);
             m_strObjDescription = getString(ScriptableObjective.KEY_OBJECTIVE_DESCRIPTION_ID);
+            m_bIsCompulsory = getBool(ScriptableObjective.KEY_OBJECTIVE_IS_COMPULSORY_ID, true);
         }
 
         /// <summary>
@@ -83,6 +90,14 @@ namespace ns_Mashmo
         public bool isComplete()
         {
             return m_bIsComplete;
+        }
+
+        /// <summary>
+        /// Is the objective compulsory
+        /// </summary>
+        public bool isCompulsory()
+        {
+            return m_bIsCompulsory;
         }
 
         /// <summary>
@@ -145,9 +160,9 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAttributeKey"></param>
         /// <returns></returns>
-        public bool getBool(string a_strAttributeKey)
+        public bool getBool(string a_strAttributeKey, bool a_bDefaultValue = false)
         {
-            return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey);
+            return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey, a_bDefaultValue);
         }
         #endregion GET VARIABLE FROM OBJECT
     }

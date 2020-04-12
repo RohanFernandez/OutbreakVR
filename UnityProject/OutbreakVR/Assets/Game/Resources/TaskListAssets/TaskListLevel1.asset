@@ -41,7 +41,7 @@ MonoBehaviour:
         m_strValue: ReturnAll
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnBegin
-    m_iTaskCount: 2
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -73,6 +73,40 @@ MonoBehaviour:
         m_strValue: ChainsawPickup
       - m_strKey: Position
         m_strValue: 0.939,31.211,-2.194
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: CrashedHelicopter
+    - m_strTaskID: 3
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Objective_HelmetPickup
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: ObjectiveTrigger
+        m_strValue: HelmetPickup
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: -5.222,30.627,3.958206
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
   - m_strSequenceType: SimpleSequence

@@ -23,13 +23,16 @@
 		<Task ID="2" TaskType="TaskEnemy" Code="ReturnAll"/>
 	</Sequence>
 	
-	<!-- CHECKPOINT -->
+	<!-- LEVEL 100 [CHECKPOINT]  START-->
 	<Sequence ID = "Level1_100_OnBegin" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="CrashedHelicopter" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Objective_ChainsawPickup" ItemType="ITEM_CHAINSAW" ObjectiveTrigger="ChainsawPickup" Position="0.939,31.211,-2.194" Rotation="0.0,0.0,0.0"/>
 
-    <!-- Activate the helicopter in this level, will be deactivate when you cant come back to this level. Added because the particles and mesh is very heavy to stay in the entire game-->
-    <Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
+		<!-- Activate the helicopter in this level, will be deactivate when you cant come back to this level. Added because the particles and mesh is very heavy to stay in the entire game-->
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="CrashedHelicopter" /> 
+		
+		<!-- Pick up the helmet to go forward -->
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Objective_HelmetPickup" ItemType="ITEM_HELMET" ObjectiveTrigger="HelmetPickup" StrengthPercentage="100" Position="-5.222,30.627,3.958206" Rotation="0.0,0.0,0.0"/>
     
 
 
@@ -87,6 +90,8 @@
 		    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
         <Task ID="2" TaskType="TaskAudio" AudClip="BreakingIntrusion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level100_BreakIn"/>
 	</Sequence>
+
+  <!-- LEVEL 100 [CHECKPOINT]  END-->
 	
 	<Sequence ID = "Level1_110_OnEnd" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" />

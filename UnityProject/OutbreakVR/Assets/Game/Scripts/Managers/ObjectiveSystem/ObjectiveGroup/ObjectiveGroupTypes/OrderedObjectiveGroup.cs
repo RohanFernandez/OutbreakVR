@@ -39,7 +39,8 @@ namespace ns_Mashmo
             }
 
             m_lstObjectives[m_iCurrentObjectiveIndex].checkObjectiveCompletion(a_Hashtable);
-            if (m_lstObjectives[m_iCurrentObjectiveIndex].isComplete())
+            if (m_lstObjectives[m_iCurrentObjectiveIndex].isComplete() ||
+                !m_lstObjectives[m_iCurrentObjectiveIndex].isCompulsory())
             {
                 m_iCurrentObjectiveIndex++;
                 if (isObjectiveGroupComplete())

@@ -78,12 +78,12 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAttributeKey"></param>
         /// <returns></returns>
-        public static bool GetBool(Hashtable a_Hashtable,  string a_strAttributeKey)
+        public static bool GetBool(Hashtable a_Hashtable,  string a_strAttributeKey, bool a_bDefaultValue = false)
         {
             System.Object l_Obj = a_Hashtable[a_strAttributeKey];
             string l_strAtrributeValue = (l_Obj == null) ? null : l_Obj.ToString();
 
-            bool l_bReturn = false;
+            bool l_bReturn = a_bDefaultValue;
             if (!string.IsNullOrEmpty(l_strAtrributeValue))
             {
                 bool.TryParse(l_strAtrributeValue, out l_bReturn);

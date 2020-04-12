@@ -34,7 +34,8 @@ namespace ns_Mashmo
         ON_GAME_COMPLETED,                         /* <LEVEL_NAME> */
         ON_DAMAGE_INFLICTED_ON_PLAYER,             /* <INT> */
         ON_ENEMY_ALERT_COUNT_CHANGED,                /* */
-        ON_LEVEL_RESTARTED                          /* LEVEL_NAME*/
+        ON_LEVEL_RESTARTED,                          /* LEVEL_NAME*/
+        ON_ITEM_PICKED_UP_CONSUMED                      /* ITEM_TYPE , ITEM_DROP BASE */
     }
 
     public static class GameEventTypeConst

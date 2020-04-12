@@ -251,6 +251,11 @@ namespace ns_Mashmo
 
             if (l_bIsItemConsumed)
             {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_ITEM_DROP_TYPE, l_ItemDropBase.getItemType());
+                l_EventHash.Add(GameEventTypeConst.ID_ITEM_BASE, l_ItemDropBase);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, l_EventHash);
+
                 ReturnItemToPool(l_ItemDropBase);
                 SoundManager.PlayAudio(GameConsts.AUD_SRC_ITEM_PICKUP, GameConsts.AUD_CLIP_ITEM_PICKUP, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
                 ObjectiveManager.TriggerObjective(l_ItemDropBase.ObjectiveTriggerOnPickup);

@@ -46,7 +46,7 @@ namespace ns_Mashmo
                 {
                     ObjectiveBase l_ObjectiveBase = l_CurrentLevelObjectiveGroup.m_lstObjectives[l_iObjectiveIndex];
                     l_PanelObjective.gameObject.SetActive(true);
-                    l_PanelObjective.updateText(l_ObjectiveBase.ObjDescription, l_ObjectiveBase.isComplete());
+                    l_PanelObjective.updateText(l_ObjectiveBase.ObjDescription, l_ObjectiveBase.isComplete(), l_ObjectiveBase.isCompulsory());
                 }
             }
         }

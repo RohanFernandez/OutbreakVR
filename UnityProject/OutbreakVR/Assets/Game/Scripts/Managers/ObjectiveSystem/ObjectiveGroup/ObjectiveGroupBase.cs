@@ -93,7 +93,8 @@ namespace ns_Mashmo
             int l_iObjectiveCount = m_lstObjectives.Count;
             for (int l_iObjIndex = 0; l_iObjIndex < l_iObjectiveCount; l_iObjIndex++)
             {
-                if (!m_lstObjectives[l_iObjIndex].isComplete())
+                if (!m_lstObjectives[l_iObjIndex].isComplete() &&
+                    m_lstObjectives[l_iObjIndex].isCompulsory())
                 {
                     return false;
                 }

@@ -12,6 +12,7 @@ namespace ns_Mashmo
         public const string KEY_TASK_ID = "ID";
         public const string KEY_SEQUENCE_ON_COMPLETE_ID = "SequenceOnComplete";
         public const string KEY_OBJECTIVE_DESCRIPTION_ID = "ObjDesc";
+        public const string KEY_OBJECTIVE_IS_COMPULSORY_ID = "IsCompulsory";
         #endregion Attribute Keys
 
         /// <summary>
@@ -53,7 +54,12 @@ namespace ns_Mashmo
         /// <summary>
         /// Hashtable of attributes
         /// </summary>
-        public Hashtable m_hashAttributes = null; 
+        public Hashtable m_hashAttributes = null;
+
+        /// <summary>
+        /// is the objective compulsory to complete the objective group
+        /// </summary>
+        public string m_strIsCompulsory = string.Empty;
 
         public void initialize()
         {
@@ -75,6 +81,7 @@ namespace ns_Mashmo
             string l_strID = string.Empty;
             string l_strSeqOnComplete = string.Empty;
             string l_strObjectiveDesc = string.Empty;
+            string l_strObjectiveIsCompulsory = "true";
 
             List<KeyValueAttribute> l_lstAttributes = new List<KeyValueAttribute>(l_iAttributeCount);
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributeCount; l_iAttributeIndex++)
@@ -101,6 +108,10 @@ namespace ns_Mashmo
                 {
                     l_strObjectiveDesc = l_Attribute.m_strValue;
                 }
+                else if (l_Attribute.m_strKey.Equals(KEY_OBJECTIVE_IS_COMPULSORY_ID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_strObjectiveIsCompulsory = l_Attribute.m_strValue;
+                }
                 l_lstAttributes.Add(l_Attribute);
             }
 
@@ -111,6 +122,7 @@ namespace ns_Mashmo
             l_ScriptableObjective.m_strType = l_strType;
             l_ScriptableObjective.m_strID = l_strID;
             l_ScriptableObjective.m_strObjectiveDesc = l_strObjectiveDesc;
+            l_ScriptableObjective.m_strIsCompulsory = l_strObjectiveIsCompulsory;
 
             return l_ScriptableObjective;
         }

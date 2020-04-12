@@ -81,6 +81,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, onPickedUpItemConsumed);
         }
 
         public override void destroy()
@@ -95,6 +96,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED, onWeaponChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, onPickedUpItemConsumed);
             base.destroy();
         }
 
@@ -140,6 +142,19 @@ namespace ns_Mashmo
             updateHelmet();
         }
 
+        /// <summary>
+        /// on picked up drop item is consumed and the item is a helmet then update data
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onPickedUpItemConsumed(EventHash a_EventHash)
+        {
+            ITEM_TYPE l_ItemType = (ITEM_TYPE)a_EventHash[GameEventTypeConst.ID_ITEM_DROP_TYPE];
+            if (l_ItemType == ITEM_TYPE.ITEM_HELMET)
+            { 
+                updateHelmet();
+            }
+        }
+        
         /// <summary>
         /// Called when the count of this item has changed
         /// </summary>

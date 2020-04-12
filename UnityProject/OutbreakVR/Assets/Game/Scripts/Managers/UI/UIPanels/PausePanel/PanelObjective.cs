@@ -14,10 +14,10 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strObjectiveDesc"></param>
         /// <param name="a_bIsComplete"></param>
-        public void updateText(string a_strObjectiveDesc, bool a_bIsComplete)
+        public void updateText(string a_strObjectiveDesc, bool a_bIsComplete, bool a_bIsCompulsory)
         {
             m_txtobjectiveText.text = a_strObjectiveDesc;
-            m_txtobjectiveText.color = a_bIsComplete ? GameManager.ColOutlineHighlighterSelected : GameManager.ColOutlineHighlighterRestricted;
+            m_txtobjectiveText.color = a_bIsComplete ? GameManager.ColOutlineHighlighterSelected : a_bIsCompulsory ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal;
         }
     }
 }
