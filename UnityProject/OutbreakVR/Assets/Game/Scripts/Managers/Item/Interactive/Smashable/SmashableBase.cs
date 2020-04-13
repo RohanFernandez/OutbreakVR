@@ -69,7 +69,6 @@ namespace ns_Mashmo
         {
             m_UnbrokenRigidBody.isKinematic = true;
             m_UnbrokenCollider.enabled = false;
-
             m_UnbrokenObject.SetActive(false);
             m_ParentBrokenObject.SetActive(true);
             m_bIsSmashed = true;
@@ -77,8 +76,13 @@ namespace ns_Mashmo
 
         public override void resetValues()
         {
-            m_UnbrokenObject.SetActive(true);
+            int l_iPiecesCount = m_lstSmashedPieces.Count;
+            for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
+            {
+                m_lstSmashedPieces[l_iPieceIndex].resetValues();
+            }
             m_ParentBrokenObject.SetActive(false);
+
             m_fCurrentPhysicsTimePassed = 0.0f;
             m_bIsSmashed = false;
 
@@ -86,13 +90,12 @@ namespace ns_Mashmo
 
             //Set the position to zero because its parent is world set position to reset to
             m_ObjectCommonParent.transform.localPosition = Vector3.zero;
+            m_ObjectCommonParent.transform.localRotation = Quaternion.identity;
 
             m_UnbrokenRigidBody.isKinematic = !m_bIsPhysicsInUnbrokenObj;
-            int l_iPiecesCount = m_lstSmashedPieces.Count;
-            for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
-            {
-                m_lstSmashedPieces[l_iPieceIndex].resetValues();
-            }
+            
+            m_UnbrokenObject.SetActive(true);
+            m_UnbrokenCollider.enabled = true;
         }
 
         //the physics to exist only for certain amount of time after a hit

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 5
+  m_iSequenceCount: 6
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
@@ -41,7 +41,7 @@ MonoBehaviour:
         m_strValue: ReturnAll
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnBegin
-    m_iTaskCount: 4
+    m_iTaskCount: 7
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -109,13 +109,51 @@ MonoBehaviour:
         m_strValue: -5.222,30.627,3.958206
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: AfterBrokenBalcony
+    - m_strTaskID: 5
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: BeforeBrokenBalcony
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level101_LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnEnd
     m_iTaskCount: 0
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj100_OnWeaponPickup
-    m_iTaskCount: 3
+    m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnemy
@@ -175,6 +213,72 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObjID
         m_strValue: Level100_BreakIn
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: BeforeBrokenBalcony
+    - m_strTaskID: 4
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: AfterBrokenBalcony
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_102_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: CrashedHelicopter
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: CrashedHelicopter
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level101_LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_110_OnEnd
     m_iTaskCount: 1

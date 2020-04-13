@@ -33,8 +33,10 @@
 		
 		<!-- Pick up the helmet to go forward -->
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Objective_HelmetPickup" ItemType="ITEM_HELMET" ObjectiveTrigger="HelmetPickup" StrengthPercentage="100" Position="-5.222,30.627,3.958206" Rotation="0.0,0.0,0.0"/>
-    
-
+		
+		<Task ID="4" TaskType="TaskGameObject" IsActive="false" GameObject_ID="AfterBrokenBalcony" />
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="BeforeBrokenBalcony" />
+		<Task ID="6" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
 
     <!--Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret1" EnemyType="AUTOMATED_TURRET" Position="16.117,15.80362,8.238" Rotation="0.0,180.0,0.0" Params="90.0;-90.0"/>
     <Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Turret2" EnemyType="AUTOMATED_TURRET" Position="24.346,15.80362,7.987" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/> 
@@ -87,11 +89,27 @@
 	
 	<Sequence ID = "Obj100_OnWeaponPickup" >
         <Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.531,30.859,3.903" Rotation="0.0,0.0,0.0"/>
-		    <Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
+		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
         <Task ID="2" TaskType="TaskAudio" AudClip="BreakingIntrusion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level100_BreakIn"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="BeforeBrokenBalcony" />
+		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="AfterBrokenBalcony" />
 	</Sequence>
 
-  <!-- LEVEL 100 [CHECKPOINT]  END-->
+	<!-- LEVEL 100 [CHECKPOINT]  END-->
+  
+	<!-- LEVEL 101 [CHECKPOINT]  START-->
+  
+  
+	<!-- LEVEL 102 [CHECKPOINT]  END-->
+		
+	<Sequence ID = "Level1_102_OnBegin" >
+		<!-- Deactivate the helicopter as you cant go back-->
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
+		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
+	</Sequence>
+		
+	<!-- LEVEL 102 [CHECKPOINT]  END-->
 	
 	<Sequence ID = "Level1_110_OnEnd" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" />
