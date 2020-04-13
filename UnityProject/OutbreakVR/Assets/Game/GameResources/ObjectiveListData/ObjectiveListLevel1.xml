@@ -5,14 +5,15 @@
 	<Objective ID="0" Type="ObjectiveTrigger" TriggerID="HelmetPickup" ObjDesc="Find and pickup a Neurassist helmet" IsCompulsory="false"/>
 	<!-- Pickup weapon -->
 	<Objective ID="1" Type="ObjectiveTrigger" TriggerID="ChainsawPickup" ObjDesc="Find a weapon to defend yourself" SequenceOnComplete="Obj100_OnWeaponPickup"/>
-    <Objective ID="2" Type="ObjectiveTrigger" TriggerID="Level_101_LocationTriggered" ObjDesc="Find your way out of the apartment"/>
+    <Objective ID="2" Type="ObjectiveTrigger" TriggerID="Level_101_LocationTriggered" ObjDesc="Find a way out of the apartment"/>
 	</ObjectiveGroup>
 	
 	<ObjectiveGroup ID="Level1_101" Type="OrderedObjectiveGroup">
 		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_102_LocationTriggered" ObjDesc="Find the keycode and exit the apartment"/>
 	</ObjectiveGroup>
 	
+	<!-- Reach the balconey to exit the building -->
 	<ObjectiveGroup ID="Level1_102" Type="UnorderedObjectiveGroup">
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="DoThis103"/>
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggered" ObjDesc="Find a way out of the building"/>
 	</ObjectiveGroup>
 </ObjectiveList>

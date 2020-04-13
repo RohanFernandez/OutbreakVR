@@ -961,7 +961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 12087
+      value: 28471
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: near clip plane
@@ -10031,7 +10031,7 @@ MonoBehaviour:
   m_fCurrentReloadWaitTime: 0
   m_GunHitInteractionLayer:
     serializedVersion: 2
-    m_Bits: 10513
+    m_Bits: 26897
 --- !u!114 &642286416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10270,7 +10270,7 @@ MonoBehaviour:
             m_bIsHelmetCarried: 1
         m_iPlayerHealth: 69
         m_v3PlayerPosition: {x: -2.854, y: 31.55038, z: -4.412}
-      m_strLvlSpecificAmbientAudioClipID: AmbientAudio1
+      m_strLvlSpecificAmbientAudioClipID: AmbientAudio
       m_AmbientAudPlayCriteria: 2
     - m_strSubLevelName: 101
       m_iSubLevelDataIndex: 0
@@ -10330,9 +10330,39 @@ MonoBehaviour:
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
-      m_strLvlSpecificAmbientAudioClipID: 
+      m_strLvlSpecificAmbientAudioClipID: AmbientAudio
       m_AmbientAudPlayCriteria: 4
     - m_strSubLevelName: 103
+      m_iSubLevelDataIndex: 0
+      m_bIsCheckpointLevel: 1
+      m_SubLevelSaveEntryType: 103
+      m_LoadDataType: 1
+      m_bUsePlayerPosition: 1
+      m_PlayerStateOnStart: 2
+      m_SavedData:
+        m_WeaponInventory:
+          m_MeleeWeaponInfo:
+            m_WeaponType: 0
+            m_iTotalBulletsCount: 0
+            m_iBulletInFirstMag: 0
+          m_PrimaryWeaponInfo:
+            m_WeaponType: 0
+            m_iTotalBulletsCount: 0
+            m_iBulletInFirstMag: 0
+          m_SecondaryWeaponInfo:
+            m_WeaponType: 0
+            m_iTotalBulletsCount: 0
+            m_iBulletInFirstMag: 0
+          m_CurrentWeaponCateogoryType: 0
+        m_ItemInventory:
+          m_HelmetStructure:
+            m_iHelmetStrength: 0
+            m_bIsHelmetCarried: 0
+        m_iPlayerHealth: 0
+        m_v3PlayerPosition: {x: 0, y: 0, z: 0}
+      m_strLvlSpecificAmbientAudioClipID: AmbientAudio
+      m_AmbientAudPlayCriteria: 4
+    - m_strSubLevelName: 104
       m_iSubLevelDataIndex: 0
       m_bIsCheckpointLevel: 0
       m_SubLevelSaveEntryType: 666
@@ -10360,8 +10390,8 @@ MonoBehaviour:
             m_bIsHelmetCarried: 0
         m_iPlayerHealth: 0
         m_v3PlayerPosition: {x: 0, y: 0, z: 0}
-      m_strLvlSpecificAmbientAudioClipID: 
-      m_AmbientAudPlayCriteria: 0
+      m_strLvlSpecificAmbientAudioClipID: AmbientAudio
+      m_AmbientAudPlayCriteria: 4
   - m_strLevelName: Training
     m_iLevelDataIndex: 0
     m_strSceneName: Training
@@ -10426,7 +10456,6 @@ MonoBehaviour:
         m_v3PlayerPosition: {x: -2.854, y: 31.55038, z: -4.412}
       m_strLvlSpecificAmbientAudioClipID: 
       m_AmbientAudPlayCriteria: 0
-  m_strOverrideLoadLevel: Level1_100
 --- !u!1 &657268215
 GameObject:
   m_ObjectHideFlags: 0
@@ -31794,10 +31823,8 @@ MonoBehaviour:
   m_lstAudioData:
   - m_strAudioID: AudClip_PlayerFootsteps
     m_AudClip: {fileID: 8300000, guid: 74efdf7f5d50ae045ae836127efd1ceb, type: 3}
-  - m_strAudioID: AudClip_Ambient
-    m_AudClip: {fileID: 8300000, guid: 9c333ba230f056b4d9233123cf97c20b, type: 3}
-  - m_strAudioID: AmbientAudio1
-    m_AudClip: {fileID: 8300000, guid: e9c5817750c5cf24296c2a65b8ae4748, type: 3}
+  - m_strAudioID: AmbientAudio
+    m_AudClip: {fileID: 8300000, guid: 069a6a8d150b5d8498301603832ddac0, type: 3}
   - m_strAudioID: AudClip_WeaponFireDefault
     m_AudClip: {fileID: 8300000, guid: 68fddbf1df10ff64ea99ac62ec570efd, type: 3}
   - m_strAudioID: AudClip_RevolverFIre
@@ -33090,6 +33117,14 @@ MonoBehaviour:
     m_boolEntry: 0
     m_floatEntry: 0
   - m_PlayerKeyType: 102
+    m_strEntryID: 
+    m_EntryType: 0
+    m_bIsSavedIntoDeviceData: 1
+    m_stringEntry: 
+    m_intEntry: 0
+    m_boolEntry: 0
+    m_floatEntry: 0
+  - m_PlayerKeyType: 103
     m_strEntryID: 
     m_EntryType: 0
     m_bIsSavedIntoDeviceData: 1

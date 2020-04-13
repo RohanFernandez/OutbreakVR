@@ -37,6 +37,11 @@ namespace ns_Mashmo
         public const string LAYER_NAME_SMASHABLE = "SMASHABLE";
 
         /// <summary>
+        /// Environment task object layer
+        /// </summary>
+        public const string LAYER_NAME_ENVIRONMENT_TASK_OBJECT = "ENVIRONMENT_TASK_OBJECT";
+
+        /// <summary>
         /// Player hit
         /// </summary>
         public const string LAYER_NAME_PLAYER = "PLAYER";
@@ -96,7 +101,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Audio clip ambient music
         /// </summary>
-        public const string AUD_CLIP_AMBIENT = "AmbientAudio1";
+        public const string AUD_CLIP_AMBIENT = "AmbientAudio";
 
         /// <summary>
         /// The ambient audio that will be played if not set explicitly

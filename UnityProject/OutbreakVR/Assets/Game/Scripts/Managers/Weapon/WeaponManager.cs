@@ -758,7 +758,7 @@ namespace ns_Mashmo
             bool l_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
             bool l_bIsPauseForced = (bool)a_EventHash[GameEventTypeConst.ID_PAUSE_FORCED];
             WeaponBase l_CurrentWeaponBase = GetCurrentWeaponBase();
-            if (l_CurrentWeaponBase != null && !l_bIsPauseForced)
+            if (l_CurrentWeaponBase != null /*&& !l_bIsPauseForced*/)
             {
                 l_CurrentWeaponBase.onGamePauseToggled(l_bIsGamePaused);
             }
@@ -794,6 +794,15 @@ namespace ns_Mashmo
                     if (l_SmashableHitCollider != null)
                     {
                         l_SmashableHitCollider.startSmashOnHit();
+                    }
+                    l_bIsShowEffect = true;
+                }
+                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENVIRONMENT_TASK_OBJECT) == (l_RaycastHit.collider.gameObject.layer))
+                {
+                    IEnvironmentTrigger l_EnvTrigger = l_RaycastHit.collider.GetComponent<IEnvironmentTrigger>();
+                    if (l_EnvTrigger != null)
+                    {
+                        l_EnvTrigger.onObjectHit();
                     }
                     l_bIsShowEffect = true;
                 }

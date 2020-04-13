@@ -100,16 +100,35 @@
 	<!-- LEVEL 101 [CHECKPOINT]  START-->
   
   
-	<!-- LEVEL 102 [CHECKPOINT]  END-->
-		
+	<!-- LEVEL 102 [CHECKPOINT]  START :: Starts on exit apartment 2 locked door  -->
+	
 	<Sequence ID = "Level1_102_OnBegin" >
 		<!-- Deactivate the helicopter as you cant go back-->
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
 		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricDamageArea" />
+		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricBoxHitCollider" />
+		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="Level_102_FN57_1" ItemType="ITEM_FN57" BulletCount="17" Position="4.052,25.865,15.937" Rotation="0.0,0.0,0.0"/>
 	</Sequence>
+	
+	<!-- on shooting the electricity box-->
+	<Sequence ID = "OnElectricityBoxHit" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_ElectricDamageArea" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_ElectricBoxHitCollider" />
+	</Sequence>	
+	
+	<Sequence ID = "Level1_102_OnEnd" >
 		
+	</Sequence>
+	
 	<!-- LEVEL 102 [CHECKPOINT]  END-->
+	
+	<!-- LEVEL 103 [CHECKPOINT]  START :: Starts on reaching the second building and clearing the planks between the 2 buildings-->
+	<Sequence ID = "Level1_103_OnStart" >
+		
+	</Sequence>
+	<!-- LEVEL 103 [CHECKPOINT]  END-->
 	
 	<Sequence ID = "Level1_110_OnEnd" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" />
