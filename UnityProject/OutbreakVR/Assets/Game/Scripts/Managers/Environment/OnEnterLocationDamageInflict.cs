@@ -12,6 +12,9 @@ namespace ns_Mashmo
         [SerializeField]
         private bool m_bIsPlayerInside = false;
 
+        [SerializeField]
+        private bool m_bIsForceDamageOnEnter = false;
+
         /// <summary>
         /// The damage will be inflicted on the player after this amount of time when the player is inside the trigger area
         /// </summary>
@@ -29,6 +32,12 @@ namespace ns_Mashmo
         /// The time leading upto the damage to inflict
         /// </summary>
         private float m_fTimeCounterCompletedInTriggerArea = 0.0f;
+
+        /// <summary>
+        /// Trigger this sequence on trigger enter
+        /// </summary>
+        [SerializeField]
+        private string m_strTriggerSeqOnEnter = string.Empty;
 
         private void Awake()
         {
@@ -48,12 +57,14 @@ namespace ns_Mashmo
             { 
                 m_bIsPlayerInside = true;
                 m_fTimeCounterCompletedInTriggerArea = 0.0f;
+                TaskManager.ExecuteSequence(m_strTriggerSeqOnEnter);
             }
         }
 
         private void OnTriggerExit(Collider a_Collider)
         {
-            if (a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
+            if (a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER)
+                && !m_bIsForceDamageOnEnter)
             {
                 resetPlayerDetection(null);
             }
