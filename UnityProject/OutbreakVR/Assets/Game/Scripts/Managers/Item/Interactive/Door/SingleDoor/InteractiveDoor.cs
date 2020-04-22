@@ -65,7 +65,7 @@ namespace ns_Mashmo
         protected override void Awake()
         {
             base.Awake();
-            m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterNormal);
+            m_DoorKnobColorController.setColor(m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : m_bIsDoorOpen ? GameManager.ColOutlineHighlighterDeactivated : GameManager.ColOutlineHighlighterNormal);
         }
 
         /// <summary>

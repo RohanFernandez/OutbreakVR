@@ -51,6 +51,16 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, resetPlayerDetection);
         }
 
+        private void OnEnable()
+        {
+            resetPlayerDetection(null);
+        }
+
+        private void OnDisable()
+        {
+            resetPlayerDetection(null);
+        }
+
         private void OnTriggerEnter(Collider a_Collider)
         {
             if (a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
