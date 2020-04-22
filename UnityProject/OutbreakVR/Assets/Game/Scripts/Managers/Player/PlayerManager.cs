@@ -11,6 +11,7 @@ namespace ns_Mashmo
         IN_GAME_MOVEMENT,   //Movement available, in game pointer available
         IN_GAME_HALTED,      //No movement, in game pointer available
         IN_GAME_PAUSED,      //No movement, in game pointer unavailable
+        IN_GAME_PARALYSED,   // No movement, no pointer, gravity enabled
     }
 
     public class PlayerManager : AbsComponentHandler
@@ -165,7 +166,7 @@ namespace ns_Mashmo
         /// </summary>
         private void playerKilled()
         {
-            SetPlayerState(PLAYER_STATE.NO_INTERACTION);
+            SetPlayerState(PLAYER_STATE.IN_GAME_PARALYSED);
             EventHash l_EventHash = EventManager.GetEventHashtable();
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_KILLED, l_EventHash);
         }

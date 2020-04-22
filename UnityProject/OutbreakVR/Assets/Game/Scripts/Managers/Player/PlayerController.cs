@@ -192,6 +192,14 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Dont allow any interaction from the player but only allow the gravity to be implemented on the player
+        /// </summary>
+        private void managePlayerState_paralysed(CONTROLLER_TOUCHPAD_SWIPE a_TouchPadSwipe, CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
+        {
+            m_CharacterController.Move(m_v3GravityModifier);
+        }
+
+        /// <summary>
         /// Manage input with the movement.
         /// </summary>
         private void managePlayerState_InGameMovement(CONTROLLER_TOUCHPAD_SWIPE a_TouchPadSwipe, CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
@@ -472,6 +480,13 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = managePlayerState_InGameMovement;
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(true);
+                        break;
+                    }
+                case PLAYER_STATE.IN_GAME_PARALYSED:
+                    {
+                        m_actPlayerStateControl = managePlayerState_paralysed;
+                        ControllerManager.ToggleLaser(false);
+                        m_CustomPointer.setPointerAsCrosshair(false);
                         break;
                     }
                 case PLAYER_STATE.MENU_SELECTION:
