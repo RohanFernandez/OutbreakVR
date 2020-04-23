@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 { 
-    public interface IEnvironmentTrigger
+    public interface IEnvironmentTrigger : IPointerOver
     {
         void onObjectHit();
     }

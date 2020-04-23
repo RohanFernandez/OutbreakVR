@@ -143,6 +143,16 @@
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level103_LockedDoor" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_GasDamageInfliction_Room0" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_GasDamageInfliction_Room1" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_Trigger_Valve1" />
+		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_Trigger_Valve2" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_104_OnValveTurned1" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve1" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_104_OnValveTurned2" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve2" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
