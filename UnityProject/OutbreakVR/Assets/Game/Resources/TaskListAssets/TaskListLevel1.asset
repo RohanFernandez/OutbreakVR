@@ -433,7 +433,7 @@ MonoBehaviour:
         m_strValue: Level104_Trigger_Valve2
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnValveTurned1
-    m_iTaskCount: 1
+    m_iTaskCount: 2
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -447,9 +447,21 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level104_Trigger_Valve1
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnValveTurned2
-    m_iTaskCount: 1
+    m_iTaskCount: 2
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -463,6 +475,18 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level104_Trigger_Valve2
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room1
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnEnd
     m_iTaskCount: 0
