@@ -19,5 +19,11 @@ namespace ns_Mashmo
     {
         [SerializeField]
         public HelmetStructure m_HelmetStructure = null;
+
+        [SerializeField]
+        public int m_iPowerNodeCount = 0;
+
+        [SerializeField]
+        public int m_iC4Count = 0;
     }
 }

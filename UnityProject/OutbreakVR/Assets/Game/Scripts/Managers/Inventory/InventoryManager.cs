@@ -6,8 +6,10 @@ namespace ns_Mashmo
 {
     public enum INVENTORY_ITEM_ID
     {
-        INVENTORY_HELMET = 0,
-        INVENTORY_HEALTH = 1
+        INVENTORY_HELMET        = 0,
+        INVENTORY_HEALTH        = 1,
+        INVENTORY_POWER_NODE    = 2,
+        INVENTORY_C4            = 3,
     }
 
     public class InventoryManager : AbsComponentHandler
@@ -132,6 +134,18 @@ namespace ns_Mashmo
                             l_bIsItemPickedUp = true;
                             break;
                         }
+                    case INVENTORY_ITEM_ID.INVENTORY_POWER_NODE:
+                        {
+                            l_InventoryItem.ItemsInInventory++;
+                            l_bIsItemPickedUp = true;
+                            break;
+                        }
+                    case INVENTORY_ITEM_ID.INVENTORY_C4:
+                        {
+                            l_InventoryItem.ItemsInInventory++;
+                            l_bIsItemPickedUp = true;
+                            break;
+                        }
                     default:
                         {
                             break;
@@ -153,13 +167,26 @@ namespace ns_Mashmo
         public static void SetInventoryDataAsCurrent(ItemInventoryStructure a_SavedItemInventory)
         {
             /// Set helmet data
-            InventoryHelmet l_HelmetInventoryItem = null;
             InventoryItem l_InventoryItem = null;
             if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
-            {
-                l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
+            {;
+                InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
                 l_HelmetInventoryItem.CurrentStrength = a_SavedItemInventory.m_HelmetStructure.m_iHelmetStrength;
                 l_HelmetInventoryItem.ItemsInInventory = a_SavedItemInventory.m_HelmetStructure.m_bIsHelmetCarried ? 1 : 0;
+            }
+
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_C4, out l_InventoryItem))
+            {
+                InventoryC4 l_C4InventoryItem = (InventoryC4)l_InventoryItem;
+                l_C4InventoryItem.ItemsInInventory = a_SavedItemInventory.m_iC4Count;
+            }
+
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_POWER_NODE, out l_InventoryItem))
+            {
+                InventoryPowerNode l_PowerNodeInventoryItem = (InventoryPowerNode)l_InventoryItem;
+                l_PowerNodeInventoryItem.ItemsInInventory = a_SavedItemInventory.m_iPowerNodeCount;
             }
         }
 
@@ -170,13 +197,28 @@ namespace ns_Mashmo
         public static void SetInventoryInfo(ref ItemInventoryStructure a_ItemInventoryStructure)
         {
             /// Set helmet data
-            
             InventoryItem l_InventoryItem = null;
             if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
             {
                 InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
                 a_ItemInventoryStructure.m_HelmetStructure.m_bIsHelmetCarried = l_HelmetInventoryItem.ItemsInInventory > 0;
                 a_ItemInventoryStructure.m_HelmetStructure.m_iHelmetStrength = l_HelmetInventoryItem.CurrentStrength;
+            }
+
+            /// Set C4 data
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_C4, out l_InventoryItem))
+            {
+                InventoryC4 l_C4InventoryItem = (InventoryC4)l_InventoryItem;
+                a_ItemInventoryStructure.m_iC4Count = l_C4InventoryItem.ItemsInInventory;
+            }
+
+            /// Set power node data
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_POWER_NODE, out l_InventoryItem))
+            {
+                InventoryPowerNode l_PowerNodeInventoryItem = (InventoryPowerNode)l_InventoryItem;
+                a_ItemInventoryStructure.m_iPowerNodeCount = l_PowerNodeInventoryItem.ItemsInInventory;
             }
         }
     }

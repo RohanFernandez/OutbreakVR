@@ -3402,6 +3402,8 @@ MonoBehaviour:
   - {fileID: 4945751323777961404, guid: dd57b08acba93084491c1ae44117eb20, type: 3}
   - {fileID: 8086696880038314087, guid: 92c3a89840c379548aa4c94baca1edcf, type: 3}
   - {fileID: 1976710889426738467, guid: e7f195e5f3ad23143b67c6f5c48ca5f8, type: 3}
+  - {fileID: 2971473160045811580, guid: 3e916198dccbfdc42bacc79ee1a09f69, type: 3}
+  - {fileID: 4713857689060536735, guid: 8953d61eea0745144903fb70988f8db8, type: 3}
 --- !u!1001 &269070899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31591,6 +31593,8 @@ GameObject:
   - component: {fileID: 1582984661}
   - component: {fileID: 1582984662}
   - component: {fileID: 1582984663}
+  - component: {fileID: 1582984664}
+  - component: {fileID: 1582984665}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -31627,6 +31631,8 @@ MonoBehaviour:
   m_lstPreDefinedInventoryItems:
   - {fileID: 1582984662}
   - {fileID: 1582984663}
+  - {fileID: 1582984664}
+  - {fileID: 1582984665}
 --- !u!114 &1582984662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31664,6 +31670,36 @@ MonoBehaviour:
   m_iSmallHealthValue: 15
   m_iMediumHealthValue: 35
   m_iLargeHealthValue: 60
+--- !u!114 &1582984664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582984659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d7e5a9e8a0fe642be02a81a89b5956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemCarryType: 1
+  m_iItemsInInventory: 0
+  m_InventoryID: 2
+--- !u!114 &1582984665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582984659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a61e0236e9ac448a527a4a1d529271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemCarryType: 0
+  m_iItemsInInventory: 0
+  m_InventoryID: 3
 --- !u!95 &1591926142 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 7965571dca3857e42a834dd6dc1fbaf5,
