@@ -20,10 +20,10 @@ namespace ns_Mashmo
         /// </summary>
         private const float MIN_PATROL_POINT_DISTANCE = 50.0f;
 
-        /// <summary>
-        /// The patrol points currently valid which are withing distance
-        /// </summary>
-        private List<EnemyPatrolPoint> m_lstCurrentValidPatrolPoints = new List<EnemyPatrolPoint>(15);
+        ///// <summary>
+        ///// The patrol points currently valid which are withing distance
+        ///// </summary>
+        //private List<EnemyPatrolPoint> m_lstCurrentValidPatrolPoints = new List<EnemyPatrolPoint>(15);
 
         /// <summary>
         /// sets singleton to this
@@ -104,38 +104,23 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static EnemyPatrolPoint GetNextPatrolPoint(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_CurrentPatrolPoint)
         {
-            s_Instance.m_lstCurrentValidPatrolPoints.Clear();
             EnemyPatrolPoint l_NextPatrolPoint = null;
+            float l_fNearestDistance = 10000.0f;
 
-            List<EnemyPatrolPoint> l_lstPatrolPointsInRange = a_NonStaticEnemy.getPatrolPointsWithinRange();
-
-            UnityEngine.AI.NavMeshAgent l_NavMeshAgent = a_NonStaticEnemy.NavMeshAgent;
-
-            int l_iPatrolPointCount = l_lstPatrolPointsInRange.Count;
-            for (int l_iCurrentPatrolPoint = 0; l_iCurrentPatrolPoint < l_iPatrolPointCount; l_iCurrentPatrolPoint++)
+            int l_iPatrolPointsCount = s_Instance.m_lstEnemyPatrolPoints.Count;
+            for (int l_iPatrolPointIndex = 0; l_iPatrolPointIndex < l_iPatrolPointsCount; l_iPatrolPointIndex++)
             {
-                EnemyPatrolPoint l_CurrentEnemyPatrolPoint = l_lstPatrolPointsInRange[l_iCurrentPatrolPoint];
-                if (a_CurrentPatrolPoint != null && l_CurrentEnemyPatrolPoint == a_CurrentPatrolPoint)
-                {
-                    continue;
-                }
+                EnemyPatrolPoint l_PatrolPoint = s_Instance.m_lstEnemyPatrolPoints[l_iPatrolPointIndex];
+                float l_PatrolPointNearestDistance = Vector3.Distance(l_PatrolPoint.transform.position, a_NonStaticEnemy.transform.position);
 
-                l_NavMeshAgent.CalculatePath(l_CurrentEnemyPatrolPoint.transform.position, a_NonStaticEnemy.NavMeshPath);
-                
-                if (a_NonStaticEnemy.NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+                if ((a_CurrentPatrolPoint != l_PatrolPoint) &&
+                    (l_fNearestDistance > l_PatrolPointNearestDistance) )
                 {
-                    if (GetNavDistanceToTarget(a_NonStaticEnemy.NavMeshPath) < MIN_PATROL_POINT_DISTANCE)
-                    {
-                        s_Instance.m_lstCurrentValidPatrolPoints.Add(l_CurrentEnemyPatrolPoint);
-                    }
+                    l_NextPatrolPoint = l_PatrolPoint;
+                    l_fNearestDistance = l_PatrolPointNearestDistance;
                 }
             }
 
-            if (s_Instance.m_lstCurrentValidPatrolPoints.Count > 0)
-            {
-                l_NextPatrolPoint = s_Instance.m_lstCurrentValidPatrolPoints[Random.Range(0, s_Instance.m_lstCurrentValidPatrolPoints.Count)];
-            }
-            
             return l_NextPatrolPoint;
         }
     }

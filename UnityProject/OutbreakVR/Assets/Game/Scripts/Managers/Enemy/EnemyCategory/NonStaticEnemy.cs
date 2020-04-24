@@ -35,18 +35,6 @@ namespace ns_Mashmo
         [SerializeField]
         protected Animator m_Animator = null;
 
-        [SerializeField]
-        protected EnemyRangeDetector m_RangeDetector = null;
-
-        /// <summary>
-        /// Returns all patrol points of the enemy range detector which are within range
-        /// </summary>
-        /// <returns></returns>
-        public List<EnemyPatrolPoint> getPatrolPointsWithinRange()
-        {
-            return m_RangeDetector.m_lstPatrolPointsWithinRange;
-        }
-
         /// <summary>
         /// Time that will be spent in the idle state and then transitioning to patrol
         /// </summary>
@@ -112,7 +100,11 @@ namespace ns_Mashmo
         protected override void onDamageInflictedNotKilled(int a_iDamage)
         {
             base.onDamageInflictedNotKilled(a_iDamage);
-            NavState = ENEMY_STATE.DAMAGE_INFLICTED;
+
+            if (NavState != ENEMY_STATE.DEAD)
+            {
+                NavState = ENEMY_STATE.DAMAGE_INFLICTED;
+            }
         }
 
         public override void activateEnemy()
@@ -123,17 +115,10 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
 
             if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
-            m_RangeDetector.onActivated();
 
             m_NavMeshAgent.Warp(transform.position);
             NavState = ENEMY_STATE.IDLE;
         }
-
-        //private IEnumerator coOnActivated()
-        //{
-        //    yield return new WaitForSeconds(0.1f);
-        //    NavState = ENEMY_STATE.IDLE;
-        //}
 
         public override void deactivateEnemy()
         {
@@ -141,8 +126,6 @@ namespace ns_Mashmo
 
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
-
-            m_RangeDetector.onDeactivated();
 
             NavState = ENEMY_STATE.NONE;
         }
@@ -215,19 +198,17 @@ namespace ns_Mashmo
             {
                 case ENEMY_STATE.IDLE:
                     {
-                        startNavigation();
+                        stopNavigation();
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                         m_actNavStateUpdate = onIdleStateUpdate;
                         break;
                     }
                 case ENEMY_STATE.PATROL:
                     {
-                        startNavigation();
                         m_NavMeshAgent.stoppingDistance = m_fPatrolStoppingDistance;
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
+                        startNavigation();
                         m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
                         patrolToPoint(m_NextPatrolDestination != null);
                         m_actNavStateUpdate = onPatrolStateUpdate;
@@ -246,9 +227,6 @@ namespace ns_Mashmo
                     {
                         stopNavigation();
                         setDestination(transform.position);
-
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                         m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
@@ -258,11 +236,6 @@ namespace ns_Mashmo
                     {
                         stopNavigation();
                         setDestination(transform.position);
-
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
-
                         m_actNavStateUpdate = null;
                         NavState = ENEMY_STATE.SUFFER;
                         break;
@@ -271,12 +244,7 @@ namespace ns_Mashmo
                     {
                         stopNavigation();
                         setDestination(transform.position);
-
                         m_fTimePassedInSufferState = 0.0f;
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
-                        m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
-
                         m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
                         m_actNavStateUpdate = onSuffferStateUpdate;
                         break;
@@ -321,16 +289,13 @@ namespace ns_Mashmo
             else
             {
                 setDestination(PlayerManager.GetPosition());
-                m_Animator.ResetTrigger(ANIM_TRIGGER_IDLE);
 
                 if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) <= m_fMaxDamagePlayerDamageRadius)
                 {    
-                    m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                     m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
                 }
                 else
                 {
-                    m_Animator.ResetTrigger(ANIM_TRIGGER_ATTACK);
                     m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
                 }
             }
@@ -342,13 +307,11 @@ namespace ns_Mashmo
         protected virtual void onSuffferStateUpdate()
         {
             //TODO:: Remove later on Suffer animation added
-            #region TEMP_ADDED
             m_fTimePassedInSufferState += Time.deltaTime;
             if (m_fTimePassedInSufferState > TEMP_SUFFER_STATE_TIME)
             {
                 NavState = ENEMY_STATE.ALERT;
             }
-            #endregion TEMP_ADDED
         }
 
         /// <summary>
@@ -364,12 +327,14 @@ namespace ns_Mashmo
 
         private void OnTriggerEnter(Collider a_Collider)
         {
-            EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
-            if (l_EnemyPatrolPoint != null 
-                && l_EnemyPatrolPoint == m_NextPatrolDestination 
-                && NavState == ENEMY_STATE.PATROL)
+            if (NavState == ENEMY_STATE.PATROL)
             {
-                NavState = ENEMY_STATE.IDLE;
+                EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
+                if ((l_EnemyPatrolPoint != null) && 
+                    (l_EnemyPatrolPoint == m_NextPatrolDestination))
+                {
+                    NavState = ENEMY_STATE.IDLE;
+                }
             }
         }
 

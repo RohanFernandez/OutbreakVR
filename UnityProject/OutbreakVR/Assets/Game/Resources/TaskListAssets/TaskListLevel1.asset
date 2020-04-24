@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 17
+  m_iSequenceCount: 18
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
@@ -41,7 +41,7 @@ MonoBehaviour:
         m_strValue: ReturnAll
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnBegin
-    m_iTaskCount: 7
+    m_iTaskCount: 8
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -147,6 +147,18 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level101_LockedDoor
+    - m_strTaskID: 7
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Navigation_Level100_101
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnEnd
     m_iTaskCount: 0
@@ -237,6 +249,22 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: AfterBrokenBalcony
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_101_OnEnd
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Navigation_Level100_101
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
     m_iTaskCount: 5

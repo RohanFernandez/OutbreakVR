@@ -37,6 +37,8 @@
 		<Task ID="4" TaskType="TaskGameObject" IsActive="false" GameObject_ID="AfterBrokenBalcony" />
 		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="BeforeBrokenBalcony" />
 		<Task ID="6" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
+		
+		<Task ID="7" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Navigation_Level100_101" />
 
 
     
@@ -101,10 +103,19 @@
 	</Sequence>
 
 	<!-- LEVEL 100 [CHECKPOINT]  END-->
-  
+	
 	<!-- LEVEL 101  START-->
-  
-  
+	
+	<!-- LEVEL 101  START-->
+	
+	<!-- LEVEL 101  End-->
+	
+	<Sequence ID = "Level1_101_OnEnd">
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Navigation_Level100_101" />
+	</Sequence>
+	
+	<!-- LEVEL 101  End-->
+	
 	<!-- LEVEL 102 [CHECKPOINT]  START :: Starts on exit apartment 2 locked door  -->
 	
 	<Sequence ID = "Level1_102_OnBegin" >
