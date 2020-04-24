@@ -126,14 +126,14 @@ namespace ns_Mashmo
             m_RangeDetector.onActivated();
 
             m_NavMeshAgent.Warp(transform.position);
-            StartCoroutine(coOnActivated());
-        }
-
-        private IEnumerator coOnActivated()
-        {
-            yield return new WaitForSeconds(0.1f);
             NavState = ENEMY_STATE.IDLE;
         }
+
+        //private IEnumerator coOnActivated()
+        //{
+        //    yield return new WaitForSeconds(0.1f);
+        //    NavState = ENEMY_STATE.IDLE;
+        //}
 
         public override void deactivateEnemy()
         {
@@ -161,24 +161,6 @@ namespace ns_Mashmo
         public void stopNavigation()
         {
             m_NavMeshAgent.isStopped = true;
-        }
-
-        /// <summary>
-        /// Pauses enemy movement or action
-        /// </summary>
-        public override void pauseEnemy()
-        {
-            base.pauseEnemy();
-            stopNavigation();
-        }
-
-        /// <summary>
-        /// Unpauses enemy movement and action
-        /// </summary>
-        public override void unpauseEnemy()
-        {
-            base.unpauseEnemy();
-            startNavigation();
         }
 
         /// <summary>

@@ -136,22 +136,6 @@ namespace ns_Mashmo
             m_iCurrentLifeCounter = m_iMaxLifeCapacityCounter;
         }
 
-        /// <summary>
-        /// Pauses enemy movement or action
-        /// </summary>
-        public virtual void pauseEnemy()
-        {
-
-        }
-
-        /// <summary>
-        /// Unpauses enemy movement and action
-        /// </summary>
-        public virtual void unpauseEnemy()
-        {
-
-        }
-
         public string getID()
         {
             return m_strEnemyID;

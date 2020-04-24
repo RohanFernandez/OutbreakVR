@@ -86,7 +86,6 @@ namespace ns_Mashmo
 
             m_lstAlertedEnemies = new List<EnemyBase>(10);
 
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, onEnemyAlertEnded);
@@ -111,7 +110,6 @@ namespace ns_Mashmo
             {
                 return;
             }
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_PAUSED_TOGGLED, onGamePauseToggled);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, onEnemyAlertEnded);
@@ -151,15 +149,6 @@ namespace ns_Mashmo
                 l_Enemy.transform.position = a_v3Pos;
                 l_Enemy.transform.rotation = a_quatRot;
                 l_Enemy.activateEnemy();
-
-                if (s_Instance.m_bIsEnemiesPaused)
-                {
-                    l_Enemy.pauseEnemy();
-                }
-                else
-                {
-                    l_Enemy.unpauseEnemy();
-                }
 
                 ToggleAcitvateEnemyDependant(true, a_strID);
             }
@@ -216,47 +205,6 @@ namespace ns_Mashmo
         public static void ReturnAllToPool()
         {
             s_Instance.returnAllToPool();
-        }
-
-        /// <summary>
-        /// Pauses or Unpauses enemy movement/ action
-        /// </summary>
-        /// <param name="a_bIsPaused"></param>
-        private void pauseAllEnemies(bool a_bIsPaused)
-        {
-            if (a_bIsPaused == m_bIsEnemiesPaused)
-            {
-                return;
-            }
-            s_Instance.m_bIsEnemiesPaused = a_bIsPaused;
-            foreach (KeyValuePair<ENEMY_TYPE, EnemyPool> l_EnemyPool in m_dictEnemyPools)
-            {
-                List<EnemyBase> l_lstActiveEnemies = l_EnemyPool.Value.getActiveList();
-                int l_iActiveEnemyCount = l_lstActiveEnemies.Count;
-
-                for (int l_iEnemyIndex = 0; l_iEnemyIndex < l_iActiveEnemyCount; l_iEnemyIndex++)
-                {
-                    EnemyBase l_EnemyBase = l_lstActiveEnemies[l_iEnemyIndex];
-                    if (a_bIsPaused)
-                    {
-                        l_EnemyBase.pauseEnemy();
-                    }
-                    else
-                    {
-                        l_EnemyBase.unpauseEnemy();
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// event called on game is paused / unpaused
-        /// </summary>
-        /// <param name="a_EventHash"></param>
-        public void onGamePauseToggled(EventHash a_EventHash)
-        {
-            bool a_bIsGamePaused = (bool)a_EventHash[GameEventTypeConst.ID_GAME_PAUSED];
-            pauseAllEnemies(a_bIsGamePaused);
         }
 
         /// <summary>

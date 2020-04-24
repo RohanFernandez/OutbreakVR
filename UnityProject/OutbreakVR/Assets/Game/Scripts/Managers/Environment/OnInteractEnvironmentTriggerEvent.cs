@@ -19,6 +19,9 @@ namespace ns_Mashmo
         [SerializeField]
         private UnityEvent m_EventOnEnable = null;
 
+        [SerializeField]
+        private Animation m_AnimOnInteract = null;
+
         public void onObjectHit()
         {
         }
@@ -63,6 +66,11 @@ namespace ns_Mashmo
             if (m_EventOnInteract != null)
             {
                 m_EventOnInteract.Invoke();
+            }
+
+            if (m_AnimOnInteract != null)
+            {
+                m_AnimOnInteract.Play();
             }
         }
     }
