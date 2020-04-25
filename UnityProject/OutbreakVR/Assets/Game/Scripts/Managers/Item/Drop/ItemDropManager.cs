@@ -23,7 +23,8 @@ namespace ns_Mashmo
         ITEM_HEALTH_MEDIUM,
         ITEM_HEALTH_LARGE,
         ITEM_POWER_NODE,
-        ITEM_C4
+        ITEM_C4,
+        ITEM_BLOOD_BAGS,
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 18
+  m_iSequenceCount: 20
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
@@ -395,7 +395,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnBegin
-    m_iTaskCount: 5
+    m_iTaskCount: 11
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -459,9 +459,127 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level104_Trigger_Valve2
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture1LockedDoor
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture2LockedDoor
+    - m_strTaskID: 7
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture3LockedDoor
+    - m_strTaskID: 8
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture4LockedDoor
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Level_104_PowerNode
+      - m_strKey: ItemType
+        m_strValue: ITEM_POWER_NODE
+      - m_strKey: Position
+        m_strValue: 29.377,16.429,25.503
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 10
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 10
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_OnPowerNodeAttached
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnTortureRoomReached
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture1LockedDoor
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture2LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnValveTurned1
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -487,9 +605,23 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level104_GasDamageInfliction_Room0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture3LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnValveTurned2
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -515,13 +647,43 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level104_GasDamageInfliction_Room1
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture4LockedDoor
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnPowerNodeAttached
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_OnPowerNodeAttached
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnEnd
     m_iTaskCount: 0
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnBegin
-    m_iTaskCount: 3
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnemy
@@ -583,6 +745,20 @@ MonoBehaviour:
         m_strValue: 0.0,-90,0.0
       - m_strKey: Params
         m_strValue: 90.0;-90.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture4LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnEnd
     m_iTaskCount: 0

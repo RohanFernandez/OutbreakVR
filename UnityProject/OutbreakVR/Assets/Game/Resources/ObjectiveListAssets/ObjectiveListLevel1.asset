@@ -127,16 +127,33 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_104
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_iObjectiveCount: 2
     m_lstScriptibeObjective:
     - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_104_OnTortureRoomReached
+      m_strObjectiveDesc: Search for a way out.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_104_1_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Search for a way out.
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_104_OnTortureRoomReached
+      m_strIsCompulsory: true
+    - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
       m_strObjectiveDesc: Use a power node to find an exit
       m_iAttributeCount: 4
       m_lstAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID

@@ -156,16 +156,34 @@
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_GasDamageInfliction_Room1" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_Trigger_Valve1" />
 		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_Trigger_Valve2" />
+		<Task ID="5" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture1LockedDoor" />
+		<Task ID="6" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture2LockedDoor" />
+		<Task ID="7" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture3LockedDoor" />
+		<Task ID="8" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture4LockedDoor" />
+		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="Level_104_PowerNode" ItemType="ITEM_POWER_NODE" Position="29.377,16.429,25.503" Rotation="0.0,0.0,0.0"/>
+		<Task ID="10" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_OnPowerNodeAttached" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_104_OnTortureRoomReached" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture1LockedDoor" />
+		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture2LockedDoor" />
+		
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnValveTurned1" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve1" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_GasDamageInfliction_Room0" />
+		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture3LockedDoor" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnValveTurned2" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve2" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_GasDamageInfliction_Room1" />
+		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture4LockedDoor" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_104_OnPowerNodeAttached" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_OnPowerNodeAttached" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
@@ -178,6 +196,7 @@
 		<Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret1" EnemyType="AUTOMATED_TURRET" Position="16.455,15.838,7.668" Rotation="0.0,-169.16,0.0" Params="90.0;-90.0"/>
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret2" EnemyType="AUTOMATED_TURRET" Position="24.036,15.815,6.952" Rotation="0.0,-210,0.0" Params="90.0;-90.0"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret3" EnemyType="AUTOMATED_TURRET" Position="27.192,12.603,7.763" Rotation="0.0,-90,0.0" Params="90.0;-90.0"/>
+		<Task ID="3" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture4LockedDoor" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_105_OnEnd" >

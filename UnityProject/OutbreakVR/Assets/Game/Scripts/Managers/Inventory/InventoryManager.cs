@@ -10,6 +10,7 @@ namespace ns_Mashmo
         INVENTORY_HEALTH        = 1,
         INVENTORY_POWER_NODE    = 2,
         INVENTORY_C4            = 3,
+        INVENTORY_BLOOD_BAGS    = 4,
     }
 
     public class InventoryManager : AbsComponentHandler
@@ -146,6 +147,12 @@ namespace ns_Mashmo
                             l_bIsItemPickedUp = true;
                             break;
                         }
+                    case INVENTORY_ITEM_ID.INVENTORY_BLOOD_BAGS:
+                        {
+                            l_InventoryItem.ItemsInInventory++;
+                            l_bIsItemPickedUp = true;
+                            break;
+                        }
                     default:
                         {
                             break;
@@ -188,6 +195,13 @@ namespace ns_Mashmo
                 InventoryPowerNode l_PowerNodeInventoryItem = (InventoryPowerNode)l_InventoryItem;
                 l_PowerNodeInventoryItem.ItemsInInventory = a_SavedItemInventory.m_iPowerNodeCount;
             }
+
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_BLOOD_BAGS, out l_InventoryItem))
+            {
+                InventoryBloodBags l_BloodBagsInventoryItem = (InventoryBloodBags)l_InventoryItem;
+                l_BloodBagsInventoryItem.ItemsInInventory = a_SavedItemInventory.m_iBloodBagCount;
+            }
         }
 
         /// <summary>
@@ -220,6 +234,42 @@ namespace ns_Mashmo
                 InventoryPowerNode l_PowerNodeInventoryItem = (InventoryPowerNode)l_InventoryItem;
                 a_ItemInventoryStructure.m_iPowerNodeCount = l_PowerNodeInventoryItem.ItemsInInventory;
             }
+
+            /// Set blood bag data
+            l_InventoryItem = null;
+            if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_BLOOD_BAGS, out l_InventoryItem))
+            {
+                InventoryBloodBags l_BloodBagInventoryItem = (InventoryBloodBags)l_InventoryItem;
+                a_ItemInventoryStructure.m_iBloodBagCount = l_BloodBagInventoryItem.ItemsInInventory;
+            }
+        }
+
+        /// <summary>
+        /// Returns an inventory item with the given ID
+        /// </summary>
+        /// <param name="a_InventoryItemID"></param>
+        /// <returns></returns>
+        public static InventoryItem GetInventoryItem(INVENTORY_ITEM_ID a_InventoryItemID)
+        {
+            InventoryItem l_InventoryItem = null;
+            s_Instance.m_dictInventory.TryGetValue(a_InventoryItemID, out l_InventoryItem);
+            return l_InventoryItem;
+        }
+
+        /// <summary>
+        /// Uses the inventory item
+        /// </summary>
+        /// <param name="a_InventoryItemID"></param>
+        public static bool IsInventoryItemUsed(INVENTORY_ITEM_ID a_InventoryItemID)
+        {
+            InventoryItem l_InventoryItem = InventoryManager.GetInventoryItem(INVENTORY_ITEM_ID.INVENTORY_POWER_NODE);
+            if ((l_InventoryItem != null) &&
+                (l_InventoryItem.ItemsInInventory > 0))
+            {
+                l_InventoryItem.ItemsInInventory--;
+                return true;
+            }
+            return false;
         }
     }
 }

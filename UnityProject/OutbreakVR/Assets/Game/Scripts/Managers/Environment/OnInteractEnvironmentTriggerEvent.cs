@@ -55,7 +55,7 @@ namespace ns_Mashmo
             }
         }
 
-        public void onPointerInteract()
+        public virtual void onPointerInteract()
         {
             TaskManager.ExecuteSequence(m_strTriggerSequenceOnInteract);
             if (m_OutLineHighlighter != null)

@@ -159,7 +159,7 @@ namespace ns_Mashmo
         public override void resetValues()
         {
             base.resetValues();
-            IsDoorLocked = false;
+            //IsDoorLocked = false;
             closeDoor(true);
             m_DoorProximityDetector.resetValues();
         }

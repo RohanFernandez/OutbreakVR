@@ -25,5 +25,8 @@ namespace ns_Mashmo
 
         [SerializeField]
         public int m_iC4Count = 0;
+
+        [SerializeField]
+        public int m_iBloodBagCount = 0;
     }
 }
