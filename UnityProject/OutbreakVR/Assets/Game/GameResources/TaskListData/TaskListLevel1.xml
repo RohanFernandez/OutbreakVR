@@ -198,6 +198,14 @@
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret2" EnemyType="AUTOMATED_TURRET" Position="24.036,15.815,6.952" Rotation="0.0,-210,0.0" Params="90.0;-90.0"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret3" EnemyType="AUTOMATED_TURRET" Position="27.192,12.603,7.763" Rotation="0.0,-90,0.0" Params="90.0;-90.0"/>
 		<Task ID="3" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture5LockedDoor" />
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Level_105_PowerNode" ItemType="ITEM_POWER_NODE" Position="31.01244,16.06761,-2.05579" Rotation="0.0,0.0,0.0"/>
+		<Task ID="5" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level105_InteractiveDoor_1" />
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level105_InteractiveDoor_2" />
+	</Sequence>
+	
+	<!-- On power node is attached to the generator-->
+	<Sequence ID = "Level1_105_OnPowerNodeAttached" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level105_InteractiveDoor_1" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_105_OnEnd" >
@@ -207,7 +215,7 @@
 	
 	<!-- LEVEL 106 [CHECKPOINT]  START :: Find a way out of the gas chamber and kill the enemies-->
 	<Sequence ID = "Level1_106_OnBegin" >
-		
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level105_InteractiveDoor_2" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_106_OnEnd" >
