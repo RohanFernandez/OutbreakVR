@@ -63,7 +63,8 @@ namespace ns_Mashmo
 
         private void OnTriggerEnter(Collider a_Collider)
         {
-            if (a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER))
+            if ((a_Collider.gameObject.layer == LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER)) &&
+                (PlayerManager.HealthMeter > 0))
             { 
                 m_bIsPlayerInside = true;
                 m_fTimeCounterCompletedInTriggerArea = 0.0f;

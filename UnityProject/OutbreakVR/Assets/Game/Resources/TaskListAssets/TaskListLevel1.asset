@@ -859,7 +859,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnBegin
-    m_iTaskCount: 1
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -875,6 +875,64 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level105_InteractiveDoor_2
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Level_106_C4
+      - m_strKey: ItemType
+        m_strValue: ITEM_C4
+      - m_strKey: Position
+        m_strValue: 22.335,12.75183,10.0106
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Level106_Turret1
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.74,12.623,12.65
+      - m_strKey: Rotation
+        m_strValue: 0.0,90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Level106_Turret2
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.896,12.59,22.639
+      - m_strKey: Rotation
+        m_strValue: 0.0,90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnEnd
     m_iTaskCount: 0

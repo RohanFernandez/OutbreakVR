@@ -22,14 +22,19 @@
 		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_LocationTriggered" ObjDesc="Find the keycode to get in the building"/>
 	</ObjectiveGroup>
 	
-	<!-- -->
+	<!-- Pass the Gas chambers to get out of the room -->
 	<ObjectiveGroup ID="Level1_104" Type="UnorderedObjectiveGroup">
 		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_1_LocationTriggered" ObjDesc="Search for a way out." SequenceOnComplete="Level1_104_OnTortureRoomReached"/>
 		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_105_LocationTriggered" ObjDesc="Use a power node to find an exit"/>
 	</ObjectiveGroup>
 	
-	<!-- -->
+	<!-- Go through the hole in the ground, kill the enemies -->
 	<ObjectiveGroup ID="Level1_105" Type="UnorderedObjectiveGroup">
 		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_106_LocationTriggered" ObjDesc=""/>
+	</ObjectiveGroup>
+	
+	<!-- Pickup the C4 and plant the c4 at the C4 location -->
+	<ObjectiveGroup ID="Level1_106" Type="UnorderedObjectiveGroup">
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_107_LocationTriggered" ObjDesc=""/>
 	</ObjectiveGroup>
 </ObjectiveList>

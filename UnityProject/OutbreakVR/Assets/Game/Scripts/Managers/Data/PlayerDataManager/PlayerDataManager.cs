@@ -21,6 +21,9 @@ namespace ns_Mashmo
         _OUTBREAK_LEVEL1_104                            = 104,
         _OUTBREAK_LEVEL1_105                            = 105,
         _OUTBREAK_LEVEL1_106                            = 106,
+        _OUTBREAK_LEVEL1_107                            = 107,
+        _OUTBREAK_LEVEL1_108                            = 108,
+        _OUTBREAK_LEVEL1_109                            = 109,
     }
 
     public class PlayerDataManager : AbsComponentHandler

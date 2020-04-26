@@ -216,6 +216,9 @@
 	<!-- LEVEL 106 [CHECKPOINT]  START :: Find a way out of the gas chamber and kill the enemies-->
 	<Sequence ID = "Level1_106_OnBegin" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level105_InteractiveDoor_2" />
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_106_C4" ItemType="ITEM_C4" Position="22.335,12.75183,10.0106" Rotation="0.0,0.0,0.0"/>
+		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret1" EnemyType="AUTOMATED_TURRET" Position="22.74,12.623,12.65" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
+		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret2" EnemyType="AUTOMATED_TURRET" Position="22.896,12.59,22.639" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
 	</Sequence>
 	
 	<Sequence ID = "Level1_106_OnEnd" >
