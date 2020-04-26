@@ -267,7 +267,7 @@ MonoBehaviour:
         m_strValue: Navigation_Level100_101
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
-    m_iTaskCount: 5
+    m_iTaskCount: 6
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -339,6 +339,18 @@ MonoBehaviour:
         m_strValue: 4.052,25.865,15.937
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_PlankTask
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: OnElectricityBoxHit
     m_iTaskCount: 2
@@ -369,8 +381,22 @@ MonoBehaviour:
         m_strValue: Level102_ElectricBoxHitCollider
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnEnd
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Smashable
+      - m_strKey: IsSmashed
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_PlankTask
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnBegin
     m_iTaskCount: 1
@@ -534,17 +560,19 @@ MonoBehaviour:
       - m_strKey: Rotation
         m_strValue: 0.0,0.0,0.0
     - m_strTaskID: 10
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 10
       - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
         m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level104_OnPowerNodeAttached
+        m_strValue: Level104_Torture5LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnTortureRoomReached
     m_iTaskCount: 2
@@ -665,18 +693,20 @@ MonoBehaviour:
     m_strSequenceID: Level1_104_OnPowerNodeAttached
     m_iTaskCount: 1
     m_lstTasks:
-    - m_strTaskID: 0
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
         m_strValue: false
       - m_strKey: GameObject_ID
-        m_strValue: Level104_OnPowerNodeAttached
+        m_strValue: Level104_Torture5LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnEnd
     m_iTaskCount: 0
@@ -758,7 +788,7 @@ MonoBehaviour:
       - m_strKey: IsLocked
         m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level104_Torture4LockedDoor
+        m_strValue: Level104_Torture5LockedDoor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnEnd
     m_iTaskCount: 0

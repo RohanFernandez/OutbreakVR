@@ -17,6 +17,10 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_IS_DOOR_LOCKED = "IsLocked";
         private const string ATTRIBUTE_VALUE_CODE_IS_DOOR = "Door";
 
+        //Smashable
+        private const string ATTRIBUTE_IS_SMASHABLE_SMASHED = "IsSmashed";
+        private const string ATTRIBUTE_VALUE_CODE_IS_SMASHABLE = "Smashable";
+
         #endregion ITEM_SPECIFIC
 
         private string m_strGameObjectID = string.Empty;
@@ -49,6 +53,22 @@ namespace ns_Mashmo
                             if (l_InteractiveDoor != null)
                             {
                                 l_InteractiveDoor.lockDoor(l_bIsDoorLocked);
+                            }
+                        }
+
+                        break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_IS_SMASHABLE:
+                    {
+                        // Set smashable as smashed
+                        bool l_bIsSmashed = getBool(ATTRIBUTE_IS_SMASHABLE_SMASHED);
+                        GameObject l_GameObject = GameObjectManager.GetGameObjectById(m_strGameObjectID);
+                        if (l_GameObject != null && l_bIsSmashed)
+                        {
+                            SmashableBase l_InteractiveSmashable = l_GameObject.GetComponent<SmashableBase>();
+                            if (l_InteractiveSmashable != null)
+                            {
+                                l_InteractiveSmashable.smash();
                             }
                         }
 

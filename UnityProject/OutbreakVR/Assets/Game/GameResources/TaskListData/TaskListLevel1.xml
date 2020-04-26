@@ -125,6 +125,7 @@
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricDamageArea" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricBoxHitCollider" />
 		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Level_102_FN57_1" ItemType="ITEM_FN57" BulletCount="17" Position="4.052,25.865,15.937" Rotation="0.0,0.0,0.0"/>
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_PlankTask" />
 	</Sequence>
 	
 	<!-- on shooting the electricity box-->
@@ -134,7 +135,7 @@
 	</Sequence>	
 	
 	<Sequence ID = "Level1_102_OnEnd" >
-		
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Smashable" IsSmashed="true" GameObject_ID="Level102_PlankTask" />
 	</Sequence>
 	
 	<!-- LEVEL 102 [CHECKPOINT]  END-->
@@ -161,7 +162,7 @@
 		<Task ID="7" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture3LockedDoor" />
 		<Task ID="8" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture4LockedDoor" />
 		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="Level_104_PowerNode" ItemType="ITEM_POWER_NODE" Position="29.377,16.429,25.503" Rotation="0.0,0.0,0.0"/>
-		<Task ID="10" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_OnPowerNodeAttached" />
+		<Task ID="10" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture5LockedDoor" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnTortureRoomReached" >
@@ -183,7 +184,7 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnPowerNodeAttached" >
-		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_OnPowerNodeAttached" />
+		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture5LockedDoor" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
@@ -196,7 +197,7 @@
 		<Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret1" EnemyType="AUTOMATED_TURRET" Position="16.455,15.838,7.668" Rotation="0.0,-169.16,0.0" Params="90.0;-90.0"/>
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret2" EnemyType="AUTOMATED_TURRET" Position="24.036,15.815,6.952" Rotation="0.0,-210,0.0" Params="90.0;-90.0"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret3" EnemyType="AUTOMATED_TURRET" Position="27.192,12.603,7.763" Rotation="0.0,-90,0.0" Params="90.0;-90.0"/>
-		<Task ID="3" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture4LockedDoor" />
+		<Task ID="3" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture5LockedDoor" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_105_OnEnd" >

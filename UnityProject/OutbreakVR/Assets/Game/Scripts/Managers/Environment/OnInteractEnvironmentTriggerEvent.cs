@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace ns_Mashmo
 {
-    public class OnInteractEnvironmentTriggerEvent : MonoBehaviour, IEnvironmentTrigger
+    public class OnInteractEnvironmentTriggerEvent : AbsEnvironmentInteractableObject, IEnvironmentTrigger
     {
         [SerializeField]
         private OutlineHighlighter m_OutLineHighlighter = null;
