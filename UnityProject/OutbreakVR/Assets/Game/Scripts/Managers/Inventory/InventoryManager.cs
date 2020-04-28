@@ -262,7 +262,7 @@ namespace ns_Mashmo
         /// <param name="a_InventoryItemID"></param>
         public static bool IsInventoryItemUsed(INVENTORY_ITEM_ID a_InventoryItemID)
         {
-            InventoryItem l_InventoryItem = InventoryManager.GetInventoryItem(INVENTORY_ITEM_ID.INVENTORY_POWER_NODE);
+            InventoryItem l_InventoryItem = InventoryManager.GetInventoryItem(a_InventoryItemID);
             if ((l_InventoryItem != null) &&
                 (l_InventoryItem.ItemsInInventory > 0))
             {

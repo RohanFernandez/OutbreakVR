@@ -221,9 +221,35 @@
 		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret2" EnemyType="AUTOMATED_TURRET" Position="22.896,12.59,22.639" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
 	</Sequence>
 	
+	<Sequence ID = "Level106_OnC4Placed" >
+		
+	</Sequence>
+	
 	<Sequence ID = "Level1_106_OnEnd" >
 		
 	</Sequence>
 	<!-- LEVEL 106 [CHECKPOINT]  END-->
+	
+	
+	
+	<!-- LEVEL 108 [CHECKPOINT]  START :: Cross the pipe between Building 3 and 4-->
+	<Sequence ID = "Level1_108_OnBegin" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level108_InteractiveDoor_1" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_108_OnEnd" >
+		
+	</Sequence>
+	<!-- LEVEL 108 [CHECKPOINT]  END-->
+	
+	<!-- LEVEL 109 [CHECKPOINT]  START :: Enter the door of building 4-->
+	<Sequence ID = "Level1_109_OnBegin" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level108_InteractiveDoor_1" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_109_OnEnd" >
+		
+	</Sequence>
+	<!-- LEVEL 109 [CHECKPOINT]  END-->
 	
 </TaskList>

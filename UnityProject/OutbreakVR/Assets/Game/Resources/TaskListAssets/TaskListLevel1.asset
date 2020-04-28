@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 21
+  m_iSequenceCount: 26
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: ReturnItems
@@ -934,6 +934,54 @@ MonoBehaviour:
       - m_strKey: Params
         m_strValue: 90.0;-90.0
   - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level106_OnC4Placed
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnEnd
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_108_OnBegin
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level108_InteractiveDoor_1
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_108_OnEnd
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_109_OnBegin
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level108_InteractiveDoor_1
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_109_OnEnd
     m_iTaskCount: 0
     m_lstTasks: []
