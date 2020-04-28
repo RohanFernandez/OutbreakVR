@@ -82,6 +82,7 @@ namespace ns_Mashmo
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, onPickedUpItemConsumed);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, onInvntoryItemConsumed);
         }
 
         public override void destroy()
@@ -97,6 +98,7 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_DAMAGE_INFLICTED_ON_PLAYER, onDamageInflictedToPlayer);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_CONTROLLER_CHANGED, onControllerChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, onPickedUpItemConsumed);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, onInvntoryItemConsumed);
             base.destroy();
         }
 
@@ -149,7 +151,10 @@ namespace ns_Mashmo
         private void onPickedUpItemConsumed(EventHash a_EventHash)
         {
             ITEM_TYPE l_ItemType = (ITEM_TYPE)a_EventHash[GameEventTypeConst.ID_ITEM_DROP_TYPE];
-            if (l_ItemType == ITEM_TYPE.ITEM_HELMET)
+            if (l_ItemType == ITEM_TYPE.ITEM_HELMET ||
+                l_ItemType == ITEM_TYPE.ITEM_C4 ||
+                l_ItemType == ITEM_TYPE.ITEM_BLOOD_BAGS ||
+                l_ItemType == ITEM_TYPE.ITEM_POWER_NODE)
             { 
                 updateHelmet();
             }
@@ -218,6 +223,15 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// Callback called on inventory item consumed
+        /// </summary>
+        /// <param name="a_EventHash"></param>
+        private void onInvntoryItemConsumed(EventHash a_EventHash)
+        {
+            updateHelmet();
+        }
+
+        /// <summary>
         /// Callback on damage inflicted on the player by an enemy
         /// </summary>
         /// <param name="a_EventHash"></param>
@@ -236,6 +250,7 @@ namespace ns_Mashmo
         {
             setArmUIScaleOnControllerType();
         }
+
 
         /// <summary>
         /// Sets the arm monitor UI's scale 
@@ -288,7 +303,11 @@ namespace ns_Mashmo
                     m_UIHealthArmMonitor.updateInterface(PlayerManager.HealthMeter);
                     m_UIBulletsArmMonitor.updateInterface();
 
-                    m_UIPlayerHelmet.toggleHelmetScreen(IsHelmetCracked, GetHelmetStrengthIndicatorFromPercentage(GetPercentageFromHelmetCondition(CurrentStrength)));
+                    int l_iBloodBagCount = InventoryManager.GetInventoryItem(INVENTORY_ITEM_ID.INVENTORY_BLOOD_BAGS).ItemsInInventory;
+                    int l_iC4Count = InventoryManager.GetInventoryItem(INVENTORY_ITEM_ID.INVENTORY_C4).ItemsInInventory;
+                    int l_iPowerNodeCount = InventoryManager.GetInventoryItem(INVENTORY_ITEM_ID.INVENTORY_POWER_NODE).ItemsInInventory;
+
+                    m_UIPlayerHelmet.toggleHelmetScreen(IsHelmetCracked, GetHelmetStrengthIndicatorFromPercentage(GetPercentageFromHelmetCondition(CurrentStrength)), l_iPowerNodeCount, l_iBloodBagCount, l_iC4Count);
                 }
             }
         }

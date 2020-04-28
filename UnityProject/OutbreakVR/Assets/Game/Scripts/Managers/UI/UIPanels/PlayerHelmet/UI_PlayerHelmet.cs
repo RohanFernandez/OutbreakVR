@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ns_Mashmo
 {
@@ -70,6 +71,30 @@ namespace ns_Mashmo
         private Sprite m_sprStrongHelmetStrength = null;
 
         /// <summary>
+        /// The icon of power node
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goImgPowerNodeIcon = null;
+
+        /// <summary>
+        /// The icon of the blood bags
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goImgBloodBagsIcon = null;
+
+        /// <summary>
+        /// The icon of the C4
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goImgC4Icon = null;
+
+        /// <summary>
+        /// The parent of the icon indicator
+        /// </summary>
+        [SerializeField]
+        private GameObject m_goIconIndicatorParent = null;
+
+        /// <summary>
         /// initializes, sets singleton to this
         /// </summary>
         public override void initialize()
@@ -127,16 +152,16 @@ namespace ns_Mashmo
         /// Sets the cracked/uncracked sprite on the helmet screen image
         /// </summary>
         /// <param name="a_bIsCracked"></param>
-        public void toggleHelmetScreen(bool a_bIsCracked, HelmetStrengthIndicator a_HelmetStrength)
+        public void toggleHelmetScreen(bool a_bIsCracked, HelmetStrengthIndicator a_HelmetStrength, int a_iPowerNodeCount = 0, int a_iBloodBagCount = 0, int a_iC4Count = 0)
         {
             if (a_bIsCracked)
             {
-                m_imgHelmetStrength.gameObject.SetActive(false);
+                m_goIconIndicatorParent.SetActive(false);
                 m_imgHelmetScreen.sprite = m_sprHelmetScreenCracked;
             }
             else
             {
-                m_imgHelmetStrength.gameObject.SetActive(true);
+                m_goIconIndicatorParent.SetActive(true);
                 m_imgHelmetScreen.sprite = m_sprHelmetScreenUncracked;
 
                 if (a_HelmetStrength == HelmetStrengthIndicator.HELMET_STRENGTH_WEAK)
@@ -151,6 +176,10 @@ namespace ns_Mashmo
                 {
                     m_imgHelmetStrength.sprite = m_sprStrongHelmetStrength;
                 }
+
+                m_goImgPowerNodeIcon.SetActive(a_iPowerNodeCount > 0);
+                m_goImgC4Icon.SetActive(a_iC4Count > 0);
+                m_goImgBloodBagsIcon.SetActive(a_iBloodBagCount > 0);
             }
 
         }

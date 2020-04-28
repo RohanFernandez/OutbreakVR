@@ -132,6 +132,11 @@ namespace ns_Mashmo
                             InventoryHealth l_HelmetInventoryItem = (InventoryHealth)l_InventoryItem;
                             PlayerManager.HealthMeter = (PlayerManager.HealthMeter + l_HelmetInventoryItem.getHealthValueWithPickupType(l_ItemType));
 
+                            EventHash l_EventHash = EventManager.GetEventHashtable();
+                            l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_TYPE, INVENTORY_ITEM_ID.INVENTORY_HEALTH);
+                            l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_ITEM, l_HelmetInventoryItem);
+                            EventManager.Dispatch(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, l_EventHash);
+
                             l_bIsItemPickedUp = true;
                             break;
                         }
@@ -267,6 +272,12 @@ namespace ns_Mashmo
                 (l_InventoryItem.ItemsInInventory > 0))
             {
                 l_InventoryItem.ItemsInInventory--;
+
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_TYPE, a_InventoryItemID);
+                l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_ITEM, l_InventoryItem);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, l_EventHash);
+
                 return true;
             }
             return false;

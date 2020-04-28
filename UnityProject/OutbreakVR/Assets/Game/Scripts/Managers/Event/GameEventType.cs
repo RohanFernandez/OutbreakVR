@@ -35,7 +35,8 @@ namespace ns_Mashmo
         ON_DAMAGE_INFLICTED_ON_PLAYER,             /* <INT> */
         ON_ENEMY_ALERT_COUNT_CHANGED,                /* */
         ON_LEVEL_RESTARTED,                          /* LEVEL_NAME*/
-        ON_ITEM_PICKED_UP_CONSUMED                      /* ITEM_TYPE , ITEM_DROP BASE */
+        ON_ITEM_PICKED_UP_CONSUMED,                      /* ITEM_TYPE , ITEM_DROP BASE */
+        ON_INVENTORY_ITEM_CONSUMED                      /* INVENTORY_ITEM_TYPE , INVENTORY_ITEM*/
     }
 
     public static class GameEventTypeConst
@@ -175,5 +176,10 @@ namespace ns_Mashmo
         #region ON_LEVEL_RESTARTED
         //public const string ID_LEVEL_TYPE = "ID_LEVEL_TYPE";     /* STRING */
         #endregion ON_LEVEL_RESTARTED
+
+        #region ON_INVENTORY_ITEM_CONSUMED
+        public const string ID_INVENTORY_TYPE = "ID_INVENTORY_TYPE";     /* STRING */
+        public const string ID_INVENTORY_ITEM = "ID_INVENTORY_ITEM";     /* STRING */
+        #endregion ON_INVENTORY_ITEM_CONSUMED
     }
 }
