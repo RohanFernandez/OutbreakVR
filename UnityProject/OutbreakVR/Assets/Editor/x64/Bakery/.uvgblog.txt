@@ -1,0 +1,649 @@
+2020-5-1
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-2023211374_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-2023211374_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_0_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_0_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-619595607_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_177043521_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_305957512_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-619595607_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_177043521_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_305957512_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 4096 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_353019788_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1060535709_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1440311391_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1304378310_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 4096 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 1024x1024: 1
+Num alphas of 2048x64: 1
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA2.lz4" 2 0 2
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA3.lz4" 2 0 3
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_ao" 8 16 2
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_ao" 8 16 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-783368910_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-783368910_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-783368910_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_2" 4 0 2
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_3" 4 0 3
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3" 4 0 3
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_diffuse" 4 16 2 "Training_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_diffuse" 4 16 3 "Training_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_diffuse" 4 16 2 "Training_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_diffuse" 4 16 3 "Training_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final" 20 16 2 "Training_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final" 20 16 3 "Training_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final_HDR.lz4" 4 0 2
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final_HDR.lz4" 4 0 3
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final_HDR.lz4" 4 0 2
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "2" "Training_LMA2_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA2_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final_HDR.lz4" 4 0 3
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "3" "Training_LMA3_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA3_final.hdr"
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 1024x1024: 1
+Num alphas of 2048x64: 1
+Done
+Rendering UV GBuffer for Training_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Training_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA1.lz4" 2 0 1
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA2.lz4" 2 0 2
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LM0.lz4" 2 0 0
+Running ftrace fixpos12 "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "uvpos_Training_LMA3.lz4" 2 0 3
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_ao" 8 16 1
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_ao" 8 16 2
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_ao" 8 16 0
+Running ftrace ao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_ao" 8 16 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_75152046_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_1" 4 0 1
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1" 4 0 1
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_75152046_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_2" 4 0 2
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2" 4 0 2
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_75152046_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_712081669_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_0" 4 0 0
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0" 4 0 0
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_75152046_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1224417546_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_1769948495_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1034928938_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_943619795_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-1597889629_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-398137612_3" 4 0 3
+Running ftrace pointlight "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "light_-529197936_3" 4 0 3
+Running ftrace addmul "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3" 4 0 3
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_diffuse" 4 16 2 "Training_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_diffuse" 4 16 3 "Training_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_diffuse" 4 16 1 "Training_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_diffuse" 4 16 2 "Training_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_diffuse" 4 16 0 "Training_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_diffuse" 4 16 3 "Training_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final" 20 16 1 "Training_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final" 20 16 2 "Training_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final" 20 16 0 "Training_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace texgi "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final" 20 16 3 "Training_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final_HDR.lz4" 4 0 2
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running ftrace add "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final_HDR.lz4" 4 0 3
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA1_final_HDR.lz4" 4 0 1
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "1" "Training_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA1_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA1_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA2_final_HDR.lz4" 4 0 2
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "2" "Training_LMA2_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA2_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA2_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LM0_final_HDR.lz4" 4 0 0
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "0" "Training_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LM0_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LM0_final.hdr"
+Running ftrace addao "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "Training_LMA3_final_HDR.lz4" 4 0 3
+Running denoiser "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ANUJKA~1\AppData\Local\Temp\frender" "3" "Training_LMA3_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ANUJKA~1\AppData\Local\Temp\frender/Training_LMA3_final_HDR.lz4" "G:/3D TheOry(CD-5)/SCENES/Mashmo Games/Outbreak/Outbreak Unity Projects/Outbreak GH_Final/UnityProject/OutbreakVR/Assets/Game/Scenes/Final/Training/Training_LMA3_final.hdr"
+Symbol file LoadedFromMemory doesn't match image G:\3D TheOry(CD-5)\SCENES\Mashmo Games\Outbreak\Outbreak Unity Projects\Outbreak GH_Final\UnityProject\OutbreakVR\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image G:\3D TheOry(CD-5)\SCENES\Mashmo Games\Outbreak\Outbreak Unity Projects\Outbreak GH_Final\UnityProject\OutbreakVR\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
+Symbol file LoadedFromMemory doesn't match image G:\3D TheOry(CD-5)\SCENES\Mashmo Games\Outbreak\Outbreak Unity Projects\Outbreak GH_Final\UnityProject\OutbreakVR\Library\PackageCache\com.unity.ext.nunit@1.0.0\net35\unity-custom\nunit.framework.dll
