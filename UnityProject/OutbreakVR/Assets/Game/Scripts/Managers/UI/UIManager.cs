@@ -90,7 +90,7 @@ namespace ns_Mashmo
             int l_iSingletonUICount = s_Instance.m_lstUISingletonInstances.Count;
             for (int l_iUIIndex = 0; l_iUIIndex < l_iSingletonUICount; l_iUIIndex++)
             {
-                if (s_Instance.m_lstUISingletonInstances[l_iUIIndex])
+                if (s_Instance.m_lstUISingletonInstances[l_iUIIndex].UIType == a_UIType)
                 {
                     l_UIPanel = s_Instance.m_lstUISingletonInstances[l_iUIIndex];
                     break;
