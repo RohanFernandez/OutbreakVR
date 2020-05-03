@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,7 +107,10 @@ namespace ns_Mashmo
         /// <param name="a_fDeltaTime"></param>
         public virtual void onUpdate()
         {
-            m_lstTasks[m_iRunningTask].onUpdate();
+            if (m_iRunningTask < m_iTotalTasks)
+            {
+                m_lstTasks[m_iRunningTask].onUpdate();
+            }
         }
 
         /// <summary>

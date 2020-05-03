@@ -75,7 +75,6 @@ namespace ns_Mashmo
             Debug.Log("<color=BLUE> ManagedState::onStateExit :: </color> Next State: " + s_Instance.m_strCurrentState + "   , Ending State : " + s_Instance.m_strLastState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, l_EventHash);
 
-
             //Dispatch event on new level is loaded
             if (!string.IsNullOrEmpty(a_strLevelName))
             {

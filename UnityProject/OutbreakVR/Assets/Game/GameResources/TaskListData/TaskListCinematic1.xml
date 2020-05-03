@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TaskList Name = "Level0" >
-	<Sequence ID = "Level0_000_OnBegin" >
+<TaskList Name = "Cinematic1" >
+	<Sequence ID = "Cinematic1_000_OnBegin" >
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" ParentGameObject_ID="PlayerParent_Cinematic" Position="0.0,0.0,0.0" Rotation="0.0,0.0,0.0" IsLocal="true"/>
 		<Task ID="2" TaskType="TaskWait" WaitTime="103.5"/>
 		<Task ID="1" TaskType="TaskFunctionCall" ClassName="UI_ScreenFader" Parameters="" FunctionName="Show"/>
@@ -8,7 +8,7 @@
 		<Task ID="1" TaskType="TaskTriggerObjective" TriggerID="TriggerEndCinematic"/>
 	</Sequence>
 	
-	<Sequence ID = "Level0_000_OnEnd" >
+	<Sequence ID = "Cinematic1_000_OnEnd" >
 		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" ParentGameObject_ID="PlayerParent" Position="0.0,0.0,0.0" Rotation="0.0,0.0,0.0" />
 	</Sequence>
 	

@@ -9,7 +9,7 @@ namespace ns_Mashmo
         #region STATE NAMES
         public const string STATE_NAME_INIT = "INIT";
         public const string STATE_NAME_HOME = "HOME_000";
-        public const string STATE_NAME_NEW_GAME = "Level0_000";
+        public const string STATE_NAME_NEW_GAME = "Cinematic1_000";
         public const string STATE_NAME_TRAINING = "Training_100";
         public const string STATE_NAME_FIRST_LEVEL = "Level1_100";
         public const string STATE_NAME_LAST_LEVEL = "Level1_111";

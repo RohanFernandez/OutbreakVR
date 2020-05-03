@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4595f7ab941f18d4e8222cedf8cc9054, type: 3}
-  m_Name: TaskListLevel00
+  m_Name: TaskListCinematic1
   m_EditorClassIdentifier: 
-  m_strName: Level00
+  m_strName: Cinematic1
   m_iSequenceCount: 2
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
-    m_strSequenceID: Level00_000_OnBegin
+    m_strSequenceID: Cinematic1_000_OnBegin
     m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
       - m_strKey: GameObject_ID
         m_strValue: Player
       - m_strKey: ParentGameObject_ID
-        m_strValue: PlayerParent_Cinematic1
+        m_strValue: PlayerParent_Cinematic
       - m_strKey: Position
         m_strValue: 0.0,0.0,0.0
       - m_strKey: Rotation
@@ -46,7 +46,7 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskWait
       - m_strKey: WaitTime
-        m_strValue: 57.5
+        m_strValue: 103.5
     - m_strTaskID: 1
       m_strTaskType: TaskFunctionCall
       m_iAttributeCount: 5
@@ -82,7 +82,7 @@ MonoBehaviour:
       - m_strKey: TriggerID
         m_strValue: TriggerEndCinematic
   - m_strSequenceType: SimpleSequence
-    m_strSequenceID: Level00_000_OnEnd
+    m_strSequenceID: Cinematic1_000_OnEnd
     m_iTaskCount: 1
     m_lstTasks:
     - m_strTaskID: 0

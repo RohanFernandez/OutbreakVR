@@ -160,11 +160,22 @@ namespace ns_Mashmo
         /// </summary>
         private void setTaskList(string a_strLevelName)
         {
+            if ((m_CurrentTaskList != null) && m_CurrentTaskList.m_strName.Equals(a_strLevelName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
             TaskList l_TaskList = null;
             if (m_dictLevelTaskList.TryGetValue(a_strLevelName, out l_TaskList))
             {
+                if (m_CurrentTaskList != null)
+                {
+                    ExecuteSequence(m_CurrentTaskList.m_strName + TASK_POSTFIX_ON_LIST_END);
+                }
+
                 m_CurrentTaskList = l_TaskList;
                 Debug.Log("<color=BLUE>TaskManager::setTaskList:: Setting task list '" + a_strLevelName + "'</color>");
+                ExecuteSequence(a_strLevelName + TASK_POSTFIX_ON_LIST_START);
             }
             else
             {
@@ -177,6 +188,7 @@ namespace ns_Mashmo
         /// </summary>
         public static void ExecuteSequence(string a_strSequenceID)
         {
+            Debug.Log("<color=BLUE>TaskManager::ExecuteSequence:: Executing sequence with ID : '"+ a_strSequenceID+"'</color>");
             if (string.IsNullOrEmpty(a_strSequenceID))
             {
                 return;
@@ -185,7 +197,7 @@ namespace ns_Mashmo
             ScriptableSequence l_Sequence = null;
             l_Sequence = s_Instance.m_CommonTaskList.getSequenceWithID(a_strSequenceID);
 
-            if (l_Sequence == null && s_Instance.m_CurrentTaskList != null)
+            if ((l_Sequence == null) && (s_Instance.m_CurrentTaskList != null))
             {
                 l_Sequence = s_Instance.m_CurrentTaskList.getSequenceWithID(a_strSequenceID);
             }
@@ -268,12 +280,13 @@ namespace ns_Mashmo
             while (m_stackEndedLastFrame.Count != 0)
             {
                 ISequence l_Sequence = m_stackEndedLastFrame.Pop();
-                m_TaskPoolManager.returnSequenceToPool(l_Sequence);
-                m_lstRunningSequneces.Remove(l_Sequence);
+                if (m_lstRunningSequneces.Remove(l_Sequence))
+                {
+                    m_TaskPoolManager.returnSequenceToPool(l_Sequence);
+                }
             }
 
-            int l_iRunningSeqeuenceCount = m_lstRunningSequneces.Count;
-            for (int l_iSequenceIndex = 0; l_iSequenceIndex < l_iRunningSeqeuenceCount; l_iSequenceIndex++)
+            for (int l_iSequenceIndex = 0; l_iSequenceIndex < m_lstRunningSequneces.Count; l_iSequenceIndex++)
             {
                 m_lstRunningSequneces[l_iSequenceIndex].onUpdate();
             }
@@ -287,12 +300,6 @@ namespace ns_Mashmo
         {
             string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
             setTaskList(a_strLevelType);
-            //string l_strNewLevelName = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
-            //string l_strOldLevelName = a_Hashtable[GameEventTypeConst.ID_OLD_LEVEL].ToString();
-
-            //ExecuteSequence(l_strOldLevelName + TASK_POSTFIX_ON_LIST_END);
-            //setTaskList(l_strNewLevelName);
-            //ExecuteSequence(l_strNewLevelName + TASK_POSTFIX_ON_LIST_START);
         }
 
         /// <summary>

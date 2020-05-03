@@ -110,49 +110,39 @@ namespace ns_Mashmo
         {
             string l_strSceneToLoad = string.Empty;
             bool l_bIsNewLevelToBeLoaded = false;
-            
-            //if (a_strGameLevelName.Equals(GameConsts.STATE_NAME_HOME, System.StringComparison.OrdinalIgnoreCase))
-            //{
-            //    EventHash l_EventHash = EventManager.GetEventHashtable();
-            //    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
-            //    l_strSceneToLoad = SystemConsts.SCENE_NAME_HOME_SCENE;
-            //}
-            //else
-            //{
-                ///If an empty or null level is set to load then start new game
-                if (string.IsNullOrEmpty(a_strGameLevelName))
-                {
-                    a_strGameLevelName = GameConsts.STATE_NAME_NEW_GAME;
-                }
+            ///If an empty or null level is set to load then start new game
+            if (string.IsNullOrEmpty(a_strGameLevelName))
+            {
+                a_strGameLevelName = GameConsts.STATE_NAME_NEW_GAME;
+            }
 
-                LevelData l_CurrentLevelData = null;
-                SubLevelData l_CurrentSubLevelData = null;
+            LevelData l_CurrentLevelData = null;
+            SubLevelData l_CurrentSubLevelData = null;
 
-                ///Check if the a_strLevelName is in correct format and can be found in the list of level data and sub level data
-                if (!s_Instance.getLevelAndSubLevelDataFromName(a_strGameLevelName, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
-                {
-                    return;
-                }
-                l_strSceneToLoad = l_CurrentLevelData.SceneName;
+            ///Check if the a_strLevelName is in correct format and can be found in the list of level data and sub level data
+            if (!s_Instance.getLevelAndSubLevelDataFromName(a_strGameLevelName, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+            {
+                return;
+            }
+            l_strSceneToLoad = l_CurrentLevelData.SceneName;
 
-                ///Loads the assets (Tasklist, ObjectiveList) corresponding to the level name ex. 'TaskListLevel1'
-                #region LOAD_ASSETS
-                l_bIsNewLevelToBeLoaded = !s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase);
+            ///Loads the assets (Tasklist, ObjectiveList) corresponding to the level name ex. 'TaskListLevel1'
+            #region LOAD_ASSETS
+            l_bIsNewLevelToBeLoaded = !s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase);
 
-                s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
-                s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
+            s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
+            s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
 
-                #endregion LOAD_ASSETS
+            #endregion LOAD_ASSETS
 
-                ///Loads the current level data to the player
-                #region LOAD_LEVEL_DATA
+            ///Loads the current level data to the player
+            #region LOAD_LEVEL_DATA
                 
-                PlayerManager.HealthMeter = l_CurrentSubLevelData.SavedData.m_iPlayerHealth;
-                WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.SavedData.m_WeaponInventory);
-                InventoryManager.SetInventoryDataAsCurrent(l_CurrentSubLevelData.SavedData.m_ItemInventory);
+            PlayerManager.HealthMeter = l_CurrentSubLevelData.SavedData.m_iPlayerHealth;
+            WeaponManager.SetCurrentWeaponInventory(l_CurrentSubLevelData.SavedData.m_WeaponInventory);
+            InventoryManager.SetInventoryDataAsCurrent(l_CurrentSubLevelData.SavedData.m_ItemInventory);
 
-                #endregion LOAD_LEVEL_DATA
-            //}
+            #endregion LOAD_LEVEL_DATA
 
             GameStateMachine.Transition(a_strGameLevelName, l_strSceneToLoad, l_bIsNewLevelToBeLoaded ? s_Instance.m_strCurrLevelName : string.Empty);
         }
