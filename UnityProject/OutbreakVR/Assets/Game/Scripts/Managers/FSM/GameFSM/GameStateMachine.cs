@@ -20,7 +20,7 @@ namespace ns_Mashmo
             s_Instance = this;
             base.initialize();
 
-            Transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, string.Empty);
+            Transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, string.Empty, string.Empty);
         }
 
         public override void destroy()
@@ -45,14 +45,14 @@ namespace ns_Mashmo
         /// Static function to call from anywhere
         /// </summary>
         /// <param name="a_strNewState"></param>
-        public static void Transition(string a_strNewState, string a_strSceneName, string a_strLevelName)
+        public static void Transition(string a_strNewState, string a_strSceneName, string a_strLevelName, string a_strOldLevelName)
         {
             if (string.IsNullOrEmpty(a_strNewState))
             {
                 Debug.LogError("GameStateMachine::Transition:: ID of game state to transition to is empty.");
                 return;
             }
-            s_Instance.transitionToGameState(a_strNewState, a_strSceneName, a_strLevelName);
+            s_Instance.transitionToGameState(a_strNewState, a_strSceneName, a_strLevelName, a_strOldLevelName);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ns_Mashmo
         /// <param name="a_strNewState"></param>
         /// <param name="a_strSceneName"></param>
         /// <param name="a_strLevelName"></param>
-        protected bool transitionToGameState(string a_strNewState, string a_strSceneName, string a_strLevelName)
+        protected bool transitionToGameState(string a_strNewState, string a_strSceneName, string a_strLevelName, string a_strOldLevelName)
         {
             if (!transition(a_strNewState, /*a_bIsTransitionToNewState is always false for this func*/ false))
             {
@@ -75,12 +75,14 @@ namespace ns_Mashmo
             Debug.Log("<color=BLUE> ManagedState::onStateExit :: </color> Next State: " + s_Instance.m_strCurrentState + "   , Ending State : " + s_Instance.m_strLastState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, l_EventHash);
 
-            ///Changes the level being used by assets, i.e. task and objective
-            if (!string.IsNullOrEmpty(a_strLevelName))
+
+            //Dispatch event on new level is loaded
+            if (!string.IsNullOrEmpty(a_strLevelName) && !a_strLevelName.Equals(a_strOldLevelName, System.StringComparison.OrdinalIgnoreCase))
             {
                 EventHash l_Hashtable = EventManager.GetEventHashtable();
-                l_Hashtable.Add(GameEventTypeConst.ID_LEVEL_TYPE, a_strLevelName);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, l_Hashtable);
+                l_Hashtable.Add(GameEventTypeConst.ID_NEW_LEVEL, a_strLevelName);
+                l_Hashtable.Add(GameEventTypeConst.ID_OLD_LEVEL, a_strOldLevelName);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, l_Hashtable);
             }
 
             GameManager.LoadScene(a_strSceneName, s_Instance.onLevelSceneLoadComplete);

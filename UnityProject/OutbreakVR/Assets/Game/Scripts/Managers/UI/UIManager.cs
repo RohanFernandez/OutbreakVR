@@ -78,5 +78,52 @@ namespace ns_Mashmo
                 m_lstUISingletonInstances[l_iUIIndex].hide();
             }
         }
+
+        /// <summary>
+        /// toggles UI (shows/hides) with uitype
+        /// </summary>
+        /// <param name="a_UIType"></param>
+        /// <param name="a_bToggleValue"></param>
+        public static void ToggleUI(AbsUIPanel.UI_TYPE a_UIType, bool a_bToggleValue )
+        {
+            AbsUIPanel l_UIPanel = null;
+            int l_iSingletonUICount = s_Instance.m_lstUISingletonInstances.Count;
+            for (int l_iUIIndex = 0; l_iUIIndex < l_iSingletonUICount; l_iUIIndex++)
+            {
+                if (s_Instance.m_lstUISingletonInstances[l_iUIIndex])
+                {
+                    l_UIPanel = s_Instance.m_lstUISingletonInstances[l_iUIIndex];
+                    break;
+                }
+            }
+
+            if (l_UIPanel == null) { return; }
+
+            if (a_bToggleValue)
+            {
+                l_UIPanel.show();
+            }
+            else
+            {
+                l_UIPanel.hide();
+            }
+        }
+
+        /// <summary>
+        /// toggles UI (shows/hides) with ui category
+        /// </summary>
+        /// <param name="a_UIType"></param>
+        /// <param name="a_bToggleValue"></param>
+        public static void DisableUICategory(AbsUIPanel.UI_CATEGORY a_UICategoryType)
+        {
+            int l_iSingletonUICount = s_Instance.m_lstUISingletonInstances.Count;
+            for (int l_iUIIndex = 0; l_iUIIndex < l_iSingletonUICount; l_iUIIndex++)
+            {
+                if (s_Instance.m_lstUISingletonInstances[l_iUIIndex].UICategoryType == a_UICategoryType)
+                {
+                    s_Instance.m_lstUISingletonInstances[l_iUIIndex].hide();
+                }
+            }
+        }
     }
 }

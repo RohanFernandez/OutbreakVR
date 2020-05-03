@@ -108,9 +108,9 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_strAttributeKey"></param>
         /// <returns></returns>
-        public bool getBool(string a_strAttributeKey)
+        public bool getBool(string a_strAttributeKey, bool a_bDefaultValue = false)
         {
-            return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey);
+            return GeneralUtils.GetBool(m_hashAttributes, a_strAttributeKey, a_bDefaultValue);
         }
 
         /// <summary>

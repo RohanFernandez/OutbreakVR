@@ -66,7 +66,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, onLevelChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
@@ -95,7 +95,7 @@ namespace ns_Mashmo
                 return;
             }
 
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSet);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, onLevelChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_OBJECTIVE_TRIGGERED, onLevelObjectiveTriggered);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
@@ -196,9 +196,9 @@ namespace ns_Mashmo
         /// Sets the Objective list to the given level type
         /// </summary>
         /// <param name="a_hashtable"></param>
-        public void onLevelSet(EventHash a_hashtable)
+        public void onLevelChanged(EventHash a_hashtable)
         {
-            string l_strLevelType = a_hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
+            string l_strLevelType = a_hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
             SetObjectiveList(l_strLevelType);
         }
 

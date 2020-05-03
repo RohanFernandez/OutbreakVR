@@ -473,6 +473,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(true);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_MOVEMENT:
@@ -487,6 +488,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = managePlayerState_paralysed;
                         ControllerManager.ToggleLaser(false);
                         m_CustomPointer.setPointerAsCrosshair(false);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
                 case PLAYER_STATE.MENU_SELECTION:
@@ -494,18 +496,21 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(false);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
                 case PLAYER_STATE.NO_INTERACTION:
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_PAUSED:
                     {
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
                 default:

@@ -37,7 +37,7 @@ namespace ns_Mashmo
             m_bIsStart                  = getBool(ATTRIBUTE_IS_START);
             m_bIsLoop                   = getBool(ATTRIBUTE_IS_LOOP);
             m_fVolume                   = getFloat(ATTRIBUTE_VOLUME);
-            m_bIsPooled                 = getBool(ATTRIBUTE_IS_POOLED);
+            m_bIsPooled                 = getBool(ATTRIBUTE_IS_POOLED, true);
             GameObject l_FoundGameObj   = GameObjectManager.GetGameObjectById(getString(ATTRIBUTE_GAME_OBJ_ID));
             if (l_FoundGameObj != null)
             {

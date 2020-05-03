@@ -59,10 +59,20 @@ namespace ns_Mashmo
         /// </summary>
         private const string TASK_POSTFIX_ON_END = "_OnEnd";
 
+        ///// <summary>
+        ///// Postfix of task name "statename" + TASK_POSTFIX_ON_STATE_LOAD to execute on state begins to load.
+        ///// </summary>
+        //private const string TASK_POSTFIX_ON_STATE_LOAD = "_OnStateLoad";
+
         /// <summary>
-        /// Postfix of task name "statename" + TASK_POSTFIX_ON_STATE_LOAD to execute on state begins to load.
+        /// sequence called on a new level is entered/ task list is set
         /// </summary>
-        private const string TASK_POSTFIX_ON_STATE_LOAD = "_OnStateLoad";
+        private const string TASK_POSTFIX_ON_LIST_START = "_OnListStart";
+
+        /// <summary>
+        /// sequence called on a old level is entered/ task list is ended or not used anymore
+        /// </summary>
+        private const string TASK_POSTFIX_ON_LIST_END = "_OnListEnd";
 
         /// <summary>
         /// List of all currently running sequences
@@ -85,7 +95,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, onLevelChanged);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
@@ -121,7 +131,7 @@ namespace ns_Mashmo
                 return;
             }
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_SEQUENCE_COMPLETE, onSequenceComplete);
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_SELECTED, onLevelSelected);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, onLevelChanged);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, onStateExited);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, onStateEntered);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
@@ -148,16 +158,18 @@ namespace ns_Mashmo
         /// <summary>
         /// Sets the tasklist as the current
         /// </summary>
-        public static void SetTaskList(string a_strLevelName)
+        private void setTaskList(string a_strLevelName)
         {
             TaskList l_TaskList = null;
-            if (s_Instance.m_dictLevelTaskList.TryGetValue(a_strLevelName, out l_TaskList))
+            if (m_dictLevelTaskList.TryGetValue(a_strLevelName, out l_TaskList))
             {
-                s_Instance.m_CurrentTaskList = l_TaskList;
+                m_CurrentTaskList = l_TaskList;
+                Debug.Log("<color=BLUE>TaskManager::setTaskList:: Setting task list '" + a_strLevelName + "'</color>");
             }
             else
             {
-                Debug.Log("<color=ORANGE>TaskManager::SetTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist</color>");
+                m_CurrentTaskList = null;
+                Debug.Log("<color=ORANGE>TaskManager::setTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist, setting to NULL</color>");
             }
         }
 
@@ -272,10 +284,14 @@ namespace ns_Mashmo
         /// Event called on a level is selected
         /// </summary>
         /// <param name="a_Hashtable"></param>
-        public void onLevelSelected(EventHash a_Hashtable)
+        public void onLevelChanged(EventHash a_Hashtable)
         {
-            string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_LEVEL_TYPE].ToString();
-            SetTaskList(a_strLevelType);
+            string a_strNewLevelName = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
+            string a_strOldLevelName = a_Hashtable[GameEventTypeConst.ID_OLD_LEVEL].ToString();
+
+            ExecuteSequence(a_strOldLevelName + TASK_POSTFIX_ON_LIST_END);
+            setTaskList(a_strNewLevelName);
+            ExecuteSequence(a_strNewLevelName + TASK_POSTFIX_ON_LIST_START);
         }
 
         /// <summary>

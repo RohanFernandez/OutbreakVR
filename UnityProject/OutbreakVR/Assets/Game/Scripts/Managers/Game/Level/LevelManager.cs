@@ -139,6 +139,7 @@ namespace ns_Mashmo
                 #region LOAD_ASSETS
                 l_bIsNewLevelToBeLoaded = !s_Instance.m_strCurrLevelName.Equals(l_CurrentLevelData.LevelName, System.StringComparison.OrdinalIgnoreCase);
 
+                string l_strOldLavelName = s_Instance.m_strCurrLevelName;
                 s_Instance.m_strCurrLevelName = l_CurrentLevelData.LevelName;
                 s_Instance.m_strCurrSubLevelName = l_CurrentSubLevelData.SubLevelName;
 
@@ -154,7 +155,7 @@ namespace ns_Mashmo
                 #endregion LOAD_LEVEL_DATA
             //}
 
-            GameStateMachine.Transition(a_strGameLevelName, l_strSceneToLoad, l_bIsNewLevelToBeLoaded ? s_Instance.m_strCurrLevelName : string.Empty);
+            GameStateMachine.Transition(a_strGameLevelName, l_strSceneToLoad, l_bIsNewLevelToBeLoaded ? s_Instance.m_strCurrLevelName : string.Empty, l_strOldLavelName);
         }
 
         /// <summary>

@@ -10,7 +10,6 @@ namespace ns_Mashmo
         ON_CURRENT_WEAPON_OR_CATEGORY_CHANGED,      /* <ID_NEW_WEAPON_CATEGORY_TYPE, ID_NEW_WEAPON_TYPE, ID_NEW_WEAPON_BASE, ID_OLD_WEAPON_CATEGORY_TYPE, ID_OLD_WEAPON_TYPE, ID_OLD_WEAPON_BASE> */
         ON_SCENE_CHANGED,                           /* <NAME_OLD_SCENE, NAME_NEW_SCENE> */
         ON_SEQUENCE_COMPLETE,                       /* <ISEQUENCE> */
-        ON_LEVEL_SELECTED,                          /* <LEVEL_TYPE>*/
         ON_LEVEL_OBJECTIVE_TRIGGERED,               /* <OBJECTIVE_ID> */
         ON_GAME_PAUSED_TOGGLED,                     /* <BOOL>*/
         ON_GAMEPLAY_ENDED,                          /* <BOOL>*/
@@ -36,7 +35,8 @@ namespace ns_Mashmo
         ON_ENEMY_ALERT_COUNT_CHANGED,                /* */
         ON_LEVEL_RESTARTED,                          /* LEVEL_NAME*/
         ON_ITEM_PICKED_UP_CONSUMED,                      /* ITEM_TYPE , ITEM_DROP BASE */
-        ON_INVENTORY_ITEM_CONSUMED                      /* INVENTORY_ITEM_TYPE , INVENTORY_ITEM*/
+        ON_INVENTORY_ITEM_CONSUMED,                      /* INVENTORY_ITEM_TYPE , INVENTORY_ITEM*/
+        ON_LEVEL_CHANGED,                      /* OLD LEVEL TYPE, NEW LEVEL TYPE*/
     }
 
     public static class GameEventTypeConst
@@ -181,5 +181,11 @@ namespace ns_Mashmo
         public const string ID_INVENTORY_TYPE = "ID_INVENTORY_TYPE";     /* STRING */
         public const string ID_INVENTORY_ITEM = "ID_INVENTORY_ITEM";     /* STRING */
         #endregion ON_INVENTORY_ITEM_CONSUMED
+
+
+        #region ON_LEVEL_CHANGED
+        public const string ID_NEW_LEVEL = "ID_NEW_LEVEL";     /* STRING */
+        public const string ID_OLD_LEVEL = "ID_OLD_LEVEL";     /* STRING */
+        #endregion ON_LEVEL_CHANGED
     }
 }
