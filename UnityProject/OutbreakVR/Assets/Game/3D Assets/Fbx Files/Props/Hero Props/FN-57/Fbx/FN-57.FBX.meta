@@ -1,25 +1,62 @@
 fileFormatVersion: 2
 guid: 7bf2299c2fc7d2042a41dd79f8cc8c2e
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Slide
-    100004: Trigger
-    400000: //RootNode
-    400002: Slide
-    400004: Trigger
-    2100000: FN57_Black
-    2300000: //RootNode
-    2300002: Slide
-    2300004: Trigger
-    3300000: //RootNode
-    3300002: Slide
-    3300004: Trigger
-    4300000: FN57_Body
-    4300002: Trigger
-    4300004: Slide
-  externalObjects: {}
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Slide
+  - first:
+      1: 100004
+    second: Trigger
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Slide
+  - first:
+      4: 400004
+    second: Trigger
+  - first:
+      21: 2100000
+    second: FN57_Black
+  - first:
+      23: 2300000
+    second: //RootNode
+  - first:
+      23: 2300002
+    second: Slide
+  - first:
+      23: 2300004
+    second: Trigger
+  - first:
+      33: 3300000
+    second: //RootNode
+  - first:
+      33: 3300002
+    second: Slide
+  - first:
+      33: 3300004
+    second: Trigger
+  - first:
+      43: 4300000
+    second: FN57_Body
+  - first:
+      43: 4300002
+    second: Trigger
+  - first:
+      43: 4300004
+    second: Slide
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FN57_Black
+    second: {fileID: 2100000, guid: 70a87a914ce013644b592ab8ea4a2b0c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +82,8 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
+    extraUserProperties:
+    - '#BAKERY{"meshName":["FN57_Body","Slide","Trigger"],"padding":[210,256,256]}'
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -54,25 +92,27 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -81,10 +121,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -94,6 +135,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
