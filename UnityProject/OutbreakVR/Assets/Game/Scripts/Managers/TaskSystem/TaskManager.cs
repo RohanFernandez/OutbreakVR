@@ -168,8 +168,7 @@ namespace ns_Mashmo
             }
             else
             {
-                m_CurrentTaskList = null;
-                Debug.Log("<color=ORANGE>TaskManager::setTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist, setting to NULL</color>");
+                Debug.Log("<color=ORANGE>TaskManager::setTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist</color>");
             }
         }
 
@@ -286,12 +285,14 @@ namespace ns_Mashmo
         /// <param name="a_Hashtable"></param>
         public void onLevelChanged(EventHash a_Hashtable)
         {
-            string a_strNewLevelName = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
-            string a_strOldLevelName = a_Hashtable[GameEventTypeConst.ID_OLD_LEVEL].ToString();
+            string a_strLevelType = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
+            setTaskList(a_strLevelType);
+            //string l_strNewLevelName = a_Hashtable[GameEventTypeConst.ID_NEW_LEVEL].ToString();
+            //string l_strOldLevelName = a_Hashtable[GameEventTypeConst.ID_OLD_LEVEL].ToString();
 
-            ExecuteSequence(a_strOldLevelName + TASK_POSTFIX_ON_LIST_END);
-            setTaskList(a_strNewLevelName);
-            ExecuteSequence(a_strNewLevelName + TASK_POSTFIX_ON_LIST_START);
+            //ExecuteSequence(l_strOldLevelName + TASK_POSTFIX_ON_LIST_END);
+            //setTaskList(l_strNewLevelName);
+            //ExecuteSequence(l_strNewLevelName + TASK_POSTFIX_ON_LIST_START);
         }
 
         /// <summary>

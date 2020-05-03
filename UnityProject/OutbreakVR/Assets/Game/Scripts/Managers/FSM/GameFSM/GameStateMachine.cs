@@ -20,7 +20,7 @@ namespace ns_Mashmo
             s_Instance = this;
             base.initialize();
 
-            Transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, string.Empty, string.Empty);
+            Transition(m_strStartState, SystemConsts.SCENE_NAME_INIT_SCENE, m_strStartState);
         }
 
         public override void destroy()
@@ -45,14 +45,14 @@ namespace ns_Mashmo
         /// Static function to call from anywhere
         /// </summary>
         /// <param name="a_strNewState"></param>
-        public static void Transition(string a_strNewState, string a_strSceneName, string a_strLevelName, string a_strOldLevelName)
+        public static void Transition(string a_strNewState, string a_strSceneName, string a_strLevelName)
         {
             if (string.IsNullOrEmpty(a_strNewState))
             {
                 Debug.LogError("GameStateMachine::Transition:: ID of game state to transition to is empty.");
                 return;
             }
-            s_Instance.transitionToGameState(a_strNewState, a_strSceneName, a_strLevelName, a_strOldLevelName);
+            s_Instance.transitionToGameState(a_strNewState, a_strSceneName, a_strLevelName);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace ns_Mashmo
         /// <param name="a_strNewState"></param>
         /// <param name="a_strSceneName"></param>
         /// <param name="a_strLevelName"></param>
-        protected bool transitionToGameState(string a_strNewState, string a_strSceneName, string a_strLevelName, string a_strOldLevelName)
+        protected bool transitionToGameState(string a_strNewState, string a_strSceneName, string a_strLevelName)
         {
             if (!transition(a_strNewState, /*a_bIsTransitionToNewState is always false for this func*/ false))
             {
@@ -77,11 +77,10 @@ namespace ns_Mashmo
 
 
             //Dispatch event on new level is loaded
-            if (!string.IsNullOrEmpty(a_strLevelName) && !a_strLevelName.Equals(a_strOldLevelName, System.StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(a_strLevelName))
             {
                 EventHash l_Hashtable = EventManager.GetEventHashtable();
                 l_Hashtable.Add(GameEventTypeConst.ID_NEW_LEVEL, a_strLevelName);
-                l_Hashtable.Add(GameEventTypeConst.ID_OLD_LEVEL, a_strOldLevelName);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, l_Hashtable);
             }
 
