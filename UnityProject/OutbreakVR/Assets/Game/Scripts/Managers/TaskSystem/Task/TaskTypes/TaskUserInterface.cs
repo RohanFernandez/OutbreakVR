@@ -28,6 +28,7 @@ namespace ns_Mashmo
 
         public override void onExecute()
         {
+            base.onExecute();
             AbsUIPanel.UI_TYPE l_UIType;
             if (System.Enum.TryParse(m_strUIName, out l_UIType))
             {
@@ -49,8 +50,7 @@ namespace ns_Mashmo
                         }
                 }
             }
-
-            base.onExecute();
+            onComplete();
         }
     }
 }

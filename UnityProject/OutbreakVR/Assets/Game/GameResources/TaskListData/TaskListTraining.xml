@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TaskList Name = "Training" >
 	<Sequence ID = "Training_OnListStart" >
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS"/>
+		
 	</Sequence>
 	
 	<Sequence ID = "Training_OnListEnd" >
@@ -10,7 +10,9 @@
 
 
 	<Sequence ID = "Training_100_OnBegin" >
-		
+		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="5.0"/>
+		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_100_OnEnd" >
