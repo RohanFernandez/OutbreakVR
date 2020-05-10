@@ -40,6 +40,12 @@ namespace ns_Mashmo
         private string m_strAudClipIDOnReload = string.Empty;
 
         /// <summary>
+        /// The weapon holder
+        /// </summary>
+        [SerializeField]
+        private Transform m_WeaponHolder = null;
+
+        /// <summary>
         /// The audio src index of the gun fire sound
         /// </summary>
         private bool m_bGunFireAudSrcIndex1 = true;
@@ -198,11 +204,12 @@ namespace ns_Mashmo
 
             if (m_TracerParticleSystem != null)
             {
+                m_TracerParticleSystem.transform.SetPositionAndRotation(GunRayTransformParent.position, GunRayTransformParent.rotation);
                 m_TracerParticleSystem.Play();
             }
 
             //rotate gun upwards on show to imitate recoil
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(m_fMaxAngleGunRecoilRotX, 0.0f, 0.0f), m_fPerShotGunRecoilRotXAngle);
+            m_WeaponHolder.localRotation = Quaternion.RotateTowards(m_WeaponHolder.localRotation, Quaternion.Euler(m_fMaxAngleGunRecoilRotX, 0.0f, 0.0f), m_fPerShotGunRecoilRotXAngle);
 
             //The audio src index that moves between 0 - 1
             // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
@@ -246,7 +253,7 @@ namespace ns_Mashmo
         {
             base.onWeaponSelected();
 
-            transform.localRotation = Quaternion.identity;
+            m_WeaponHolder.localRotation = Quaternion.identity;
 
             if (m_animatorHands != null)
             {
@@ -353,7 +360,7 @@ namespace ns_Mashmo
         private void Update()
         {
             //reset crosshair from the recoil movement to point forward
-            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.parent.localRotation, m_fRotResetVelocityAnglePerSec * Time.deltaTime);
+            m_WeaponHolder.localRotation = Quaternion.RotateTowards(m_WeaponHolder.localRotation, m_WeaponHolder.parent.localRotation, m_fRotResetVelocityAnglePerSec * Time.deltaTime);
         }
     }
 }
