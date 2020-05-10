@@ -10,9 +10,41 @@
 
 
 	<Sequence ID = "Training_100_OnBegin" >
+	    <!-- Helmet -->
+	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="TestTriggerID1" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/>
+		
+		
+		<!-- Weapons -->
+	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Bunker_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-2.6265,-2.4402,22.9345" Rotation="-0.105,127.388,-90.926"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Bunker_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.4431,-2.119998,26.445" Rotation="-77.244,-82.80801,-12.326"/>
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Thompson_Bunker_Item" ItemType="ITEM_THOMPSON" BulletCount="30" Position="0.953,-3.16,26.335" Rotation="-4.25,27.066,-91.815"/>
+		
+		
+		<!-- Secondary Ammo -->
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="1.683,-2.811,23.544" Rotation="0.0,-155.433,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="1.4711,-2.811,23.2403" Rotation="0.0,-114.941,0.0"/>
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="1.522,-2.811,25.17" Rotation="0.0,-210.307,0.0"/>
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-2.4524,-2.4201,22.748" Rotation="0.0,-300.239,0.0"/>
+		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_FN57_Test_Item1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-2.3111,-2.4201,22.9015" Rotation="0.0,-251.31,0.0"/>
+		
+		
+		<!-- Primary Ammo -->
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="1.5571,-2.7911,26.5644" Rotation="0.0,19.124,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="1.623,-2.7911,28.1199" Rotation="0.0,-53.676,0.0"/>
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-3.873,-2.5681,29.037" Rotation="0.0,-191.218,0.0"/>
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-3.996,-2.5681,26.712" Rotation="0.0,-159.395,0.0"/>
+		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.605,-2.7524,23.008" Rotation="0.0,-288.307,0.0"/>
+		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.826,-2.7524,22.976" Rotation="0.0,-217.105,0.0"/>
+		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.288,-2.048,22.923" Rotation="0.0,-296.032,0.0"/>
+		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.54,-2.048,22.766" Rotation="0.0,-248.474,0.0"/>
+		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.79,-2.048,22.91" Rotation="0.0,-252.655,0.0"/>
+		
+		
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS"/>
 		<Task ID="1" TaskType="TaskWait" WaitTime="5.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+		
+		
 	</Sequence>
 	
 	<Sequence ID = "Training_100_OnEnd" >
