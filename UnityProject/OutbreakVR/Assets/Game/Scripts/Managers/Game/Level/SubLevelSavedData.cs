@@ -24,11 +24,5 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         public int m_iPlayerHealth = 0;
-
-        /// <summary>
-        /// The position of the player at the start of the level
-        /// </summary>
-        [SerializeField]
-        public Vector3 m_v3PlayerPosition = Vector3.zero;
     }
 }

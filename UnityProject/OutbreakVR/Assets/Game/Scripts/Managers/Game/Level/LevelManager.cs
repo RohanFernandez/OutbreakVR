@@ -229,7 +229,7 @@ namespace ns_Mashmo
 
                         //Save Player Data
                         l_SubLevelDataToSave.SavedData.m_iPlayerHealth = PlayerManager.HealthMeter;
-                        l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
+                        //l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
 
                         //Save Inventory Data
                         InventoryManager.SetInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
@@ -356,10 +356,18 @@ namespace ns_Mashmo
             string l_strCurrenstState = a_EventHash[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
             if (getLevelAndSubLevelDataFromName(l_strCurrenstState, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
             {
-                if (l_CurrentSubLevelData.UsePlayerPosition)
+                string l_strOldGameState = a_EventHash[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+                LevelData l_OldLevelData = null;
+                SubLevelData l_OldSubLevelData = null;
+                bool l_bIsLastLevelExist = getLevelAndSubLevelDataFromName(l_strOldGameState, ref l_OldLevelData, ref l_OldSubLevelData);
+
+                //set player position if the current level and prev level are not the same, and the current sub level index is not the old sub level index + 1
+                if (l_CurrentSubLevelData.UsePlayerPosition || 
+                    !(l_bIsLastLevelExist && (l_OldLevelData.LevelDataIndex == l_CurrentLevelData.LevelDataIndex) && l_OldSubLevelData.SubLevelDataIndex == (l_CurrentSubLevelData.SubLevelDataIndex - 1)))
                 {
-                    PlayerManager.SetPosition(l_CurrentSubLevelData.SavedData.m_v3PlayerPosition);
+                    PlayerManager.SetPosition(l_CurrentSubLevelData.m_v3PlayerPosition);
                 }
+
                 PlayerManager.SetPlayerState(l_CurrentSubLevelData.PlayerStateOnStart);
 
                 #region MANAGING AMBIENT AUDIO

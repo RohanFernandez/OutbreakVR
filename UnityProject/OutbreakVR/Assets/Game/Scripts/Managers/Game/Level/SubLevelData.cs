@@ -78,6 +78,12 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The position of the player at the start of the level
+        /// </summary>
+        [SerializeField]
+        public Vector3 m_v3PlayerPosition = Vector3.zero;
+
+        /// <summary>
         /// The state o the player on start of this sub level
         /// </summary>
         [SerializeField]
