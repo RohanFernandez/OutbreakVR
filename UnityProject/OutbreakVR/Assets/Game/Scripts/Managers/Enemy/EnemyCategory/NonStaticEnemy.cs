@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +8,11 @@ namespace ns_Mashmo
     public abstract class NonStaticEnemy : EnemyBase
     {
 
-        protected const string ANIM_TRIGGER_WALK    = "walk";       //"Walk";
-        protected const string ANIM_TRIGGER_ATTACK  = "Attack_1";   //"Attack";
-        protected const string ANIM_TRIGGER_DIE     = "Die";
-        protected const string ANIM_TRIGGER_IDLE    = "Idle";
-        protected const string ANIM_TRIGGER_SUFFER  = "idle_agony";//"Suffer";
+        protected const string ANIM_TRIGGER_WALK        = "walk";       //"Walk";
+        protected const string ANIM_TRIGGER_ATTACK      = "Attack_1";   //"Attack";
+        protected const string ANIM_TRIGGER_DIE         = "Die";
+        protected const string ANIM_TRIGGER_IDLE        = "Idle";
+        protected const string ANIM_TRIGGER_IDLE_AGONY  = "idle_agony";//"Suffer";
 
         /// <summary>
         /// The nav mesh agent of this body to manage movement
@@ -216,7 +217,8 @@ namespace ns_Mashmo
                         stopNavigation();
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
-                        m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                        // Randomly set the idle animation with the ration of 8 : 2, ANIM_TRIGGER_IDLE  : ANIM_TRIGGER_IDLE_AGONY
+                        m_Animator.SetTrigger((UnityEngine.Random.Range(1, 11) < 9) ? ANIM_TRIGGER_IDLE : ANIM_TRIGGER_IDLE_AGONY);
                         m_actNavStateUpdate = onIdleStateUpdate;
                         break;
                     }
