@@ -15,11 +15,5 @@ namespace ns_Mashmo
         {
             PatrolManager.UnregisterPatrolPoint(this);
         }
-
-        private void OnDrawGizmoSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, 5.0f);
-        }
     }
 }

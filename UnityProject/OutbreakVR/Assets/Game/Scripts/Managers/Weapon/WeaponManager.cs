@@ -787,6 +787,7 @@ namespace ns_Mashmo
                     {
                         l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
                     }
+                    l_bIsShowEffect = true;
                 }
                 else if(LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == (l_RaycastHit.collider.gameObject.layer))
                 {

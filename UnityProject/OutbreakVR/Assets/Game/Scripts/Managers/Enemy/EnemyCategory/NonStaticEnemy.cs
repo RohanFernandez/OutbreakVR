@@ -12,7 +12,13 @@ namespace ns_Mashmo
         protected const string ANIM_TRIGGER_ATTACK      = "Attack_1";   //"Attack";
         protected const string ANIM_TRIGGER_DIE         = "Die";
         protected const string ANIM_TRIGGER_IDLE        = "Idle";
-        protected const string ANIM_TRIGGER_IDLE_AGONY  = "idle_agony";//"Suffer";
+        protected const string ANIM_TRIGGER_IDLE_AGONY  = "idle_agony"; //"Suffer";
+
+        ///Hit animation
+        protected const string ANIM_TRIGGER_HIT_HEAD            = "Hit_head";
+        protected const string ANIM_TRIGGER_HIT_BODY            = "Hit_body";
+        protected const string ANIM_TRIGGER_HIT_RIGHT_SHOULDER  = "Hit_shoulder_R";
+        protected const string ANIM_TRIGGER_HIT_LEFT_SHOULDER   = "Hit_shoulder_L";
 
         /// <summary>
         /// The nav mesh agent of this body to manage movement
@@ -93,6 +99,41 @@ namespace ns_Mashmo
         [SerializeField]
         private float m_fExtendedAlertRadius = 23.0f;
 
+        /// <summary>
+        /// List of all the enemy hit colliders
+        /// </summary>
+        [SerializeField]
+        private List<EnemyHitCollider> m_lstEnemyHitColliders = null;
+
+        /// <summary>
+        /// List of all the enemy rigidbody colliders
+        /// </summary>
+        [SerializeField]
+        private List<Rigidbody> m_lstRagdollRigidbodies = null;
+
+        ///// <summary>
+        ///// List of all the enemy ragdoll collider components
+        ///// </summary>
+        //[SerializeField]
+        //private List<Collider> m_lstRagdollColliders = null;
+
+        /// <summary>
+        /// resets all values of the hit colliders
+        /// </summary>
+        private void resetHitColliders()
+        {
+            int l_iHitColliderCount = m_lstEnemyHitColliders.Count;
+            for (int l_iHitColliderIndex = 0; l_iHitColliderIndex < l_iHitColliderCount; l_iHitColliderIndex++)
+            {
+                m_lstEnemyHitColliders[l_iHitColliderIndex].reset();
+            }
+        }
+
+        /// <summary>
+        /// The enemy hit collision on damage inflicted
+        /// </summary>
+        private ENEMY_HIT_COLLISION m_EnemyHitCollision;
+
         //TODO:: Remove later on Suffer animation added
         #region TEMP_ADDED
         private float TEMP_SUFFER_STATE_TIME = 2.0f;
@@ -111,6 +152,8 @@ namespace ns_Mashmo
             {
                 NavState = ENEMY_STATE.DAMAGE_INFLICTED;
             }
+
+            m_EnemyHitCollision = a_EnemyHitCollision;
         }
 
         public override void activateEnemy()
@@ -123,6 +166,7 @@ namespace ns_Mashmo
             if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
 
             toggleRagdoll(false);
+            resetHitColliders();
 
             m_LastPatrolDestination = null;
             m_NavMeshAgent.Warp(transform.position);
@@ -262,7 +306,42 @@ namespace ns_Mashmo
                         stopNavigation();
                         setDestination(transform.position);
                         m_fTimePassedInSufferState = 0.0f;
-                        m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+
+                        string l_strAnimTrigger = ANIM_TRIGGER_HIT_BODY;
+                        switch (m_EnemyHitCollision)
+                        {
+                            case ENEMY_HIT_COLLISION.HIT_COLLISION_HEAD:
+                                {
+                                    l_strAnimTrigger = ANIM_TRIGGER_HIT_HEAD;
+                                    break;
+                                }
+                            case ENEMY_HIT_COLLISION.HIT_COLLISION_LEFT_SHOULDER:
+                                {
+                                    l_strAnimTrigger = ANIM_TRIGGER_HIT_LEFT_SHOULDER;
+                                    break;
+                                }
+                            case ENEMY_HIT_COLLISION.HIT_COLLISION_RIGHT_SHOULDER:
+                                {
+                                    l_strAnimTrigger = ANIM_TRIGGER_HIT_RIGHT_SHOULDER;
+                                    break;
+                                }
+                            case ENEMY_HIT_COLLISION.HIT_COLLISION_LEFT_ARM:
+                                {
+                                    l_strAnimTrigger = ANIM_TRIGGER_HIT_LEFT_SHOULDER;
+                                    break;
+                                }
+                            case ENEMY_HIT_COLLISION.HIT_COLLISION_RIGHT_ARM:
+                                {
+                                    l_strAnimTrigger = ANIM_TRIGGER_HIT_RIGHT_SHOULDER;
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+
+                        m_Animator.SetTrigger(l_strAnimTrigger);
                         m_actNavStateUpdate = onSuffferStateUpdate;
                         break;
                     }
@@ -423,16 +502,21 @@ namespace ns_Mashmo
         {
             Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
 
-            m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
-            if (NavState != ENEMY_STATE.ALERT &&
-                NavState != ENEMY_STATE.SUFFER &&
-                NavState != ENEMY_STATE.DAMAGE_INFLICTED &&
-                m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+            if ((NavState != ENEMY_STATE.ALERT) ||
+                (NavState != ENEMY_STATE.SUFFER) ||
+                (NavState != ENEMY_STATE.DAMAGE_INFLICTED))
             {
-                float l_fDistanceToPlayer = PatrolManager.GetNavDistanceToTarget(m_NavMeshPath);
-                if (l_fDistanceToPlayer < m_fExtendedAlertRadius)
+                if (m_NavMeshAgent.isActiveAndEnabled)
                 {
-                    NavState = ENEMY_STATE.ALERT;
+                    m_NavMeshAgent.CalculatePath(l_v3PlayerPos, m_NavMeshPath);
+                    if (m_NavMeshPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
+                    {
+                        float l_fDistanceToPlayer = PatrolManager.GetNavDistanceToTarget(m_NavMeshPath);
+                        if (l_fDistanceToPlayer < m_fExtendedAlertRadius)
+                        {
+                            NavState = ENEMY_STATE.ALERT;
+                        }
+                    }
                 }
             }
         }
@@ -452,6 +536,12 @@ namespace ns_Mashmo
             {
                 m_Animator.enabled = true;
                 m_NavMeshAgent.enabled = true;
+            }
+
+            int l_iRagdollRigidBodyCount = m_lstRagdollRigidbodies.Count;
+            for (int l_iRagdollRigidBodyIndex = 0; l_iRagdollRigidBodyIndex < l_iRagdollRigidBodyCount; l_iRagdollRigidBodyIndex++)
+            {
+                m_lstRagdollRigidbodies[l_iRagdollRigidBodyIndex].isKinematic = !a_bIsEnabled;
             }
         }
     }
