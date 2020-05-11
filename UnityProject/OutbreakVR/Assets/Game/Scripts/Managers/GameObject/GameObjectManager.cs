@@ -72,7 +72,7 @@ namespace ns_Mashmo
         {
             if (GetGameObjectById(a_strID) != null)
             {
-                Debug.Log("<color = ORANGE> GameObjectManager::registerGameObj:: </color> Cannot register because gameobject with ID '"+ a_strID + "' already exists.");
+                Debug.Log("<color=ORANGE> GameObjectManager::registerGameObj:: </color> Cannot register because gameobject with ID '"+ a_strID + "' already exists.");
                 return;
             }
             s_Instace.m_dictGameObjectIDs.Add(a_strID, a_GameObject);
@@ -86,7 +86,7 @@ namespace ns_Mashmo
         {
             if (GetGameObjectById(a_strID) == null)
             {
-                Debug.Log("<color = ORANGE> GameObjectManager::registerGameObj:: </color> Cannot unregister because gameobject is not registered '" + a_strID + "'");
+                Debug.Log("<color=ORANGE> GameObjectManager::registerGameObj:: </color> Cannot unregister because gameobject is not registered '" + a_strID + "'");
                 return;
             }
             s_Instace.m_dictGameObjectIDs.Remove(a_strID);

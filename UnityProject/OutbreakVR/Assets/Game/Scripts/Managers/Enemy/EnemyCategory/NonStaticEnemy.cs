@@ -7,11 +7,11 @@ namespace ns_Mashmo
     public abstract class NonStaticEnemy : EnemyBase
     {
 
-        protected const string ANIM_TRIGGER_WALK      = "Walk";
-        protected const string ANIM_TRIGGER_ATTACK    = "Attack";
-        protected const string ANIM_TRIGGER_DIE       = "Die";
-        protected const string ANIM_TRIGGER_IDLE      = "Idle";
-        protected const string ANIM_TRIGGER_SUFFER    = "Suffer";
+        protected const string ANIM_TRIGGER_WALK    = "walk";       //"Walk";
+        protected const string ANIM_TRIGGER_ATTACK  = "Attack_1";   //"Attack";
+        protected const string ANIM_TRIGGER_DIE     = "Die";
+        protected const string ANIM_TRIGGER_IDLE    = "Idle";
+        protected const string ANIM_TRIGGER_SUFFER  = "idle_agony";//"Suffer";
 
         /// <summary>
         /// The nav mesh agent of this body to manage movement
@@ -75,6 +75,11 @@ namespace ns_Mashmo
         private EnemyPatrolPoint m_NextPatrolDestination = null;
 
         /// <summary>
+        /// The last patrol point the enemy was at
+        /// </summary>
+        private EnemyPatrolPoint m_LastPatrolDestination = null;
+
+        /// <summary>
         /// Radius under which will go into alert mode attempting to reach the player to attack.
         /// </summary>
         [SerializeField]
@@ -97,7 +102,7 @@ namespace ns_Mashmo
         /// called on damage inflicted on the enemy but still alive
         /// </summary>
         /// <param name="a_iDamage"></param>
-        protected override void onDamageInflictedNotKilled(int a_iDamage)
+        protected override void onDamageInflictedNotKilled(int a_iDamage, ENEMY_HIT_COLLISION a_EnemyHitCollision = ENEMY_HIT_COLLISION.HIT_COLLISION_DEFAULT)
         {
             base.onDamageInflictedNotKilled(a_iDamage);
 
@@ -116,6 +121,9 @@ namespace ns_Mashmo
 
             if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
 
+            toggleRagdoll(false);
+
+            m_LastPatrolDestination = null;
             m_NavMeshAgent.Warp(transform.position);
             NavState = ENEMY_STATE.IDLE;
         }
@@ -123,6 +131,7 @@ namespace ns_Mashmo
         public override void deactivateEnemy()
         {
             base.deactivateEnemy();
+            toggleRagdoll(false);
 
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
@@ -163,9 +172,15 @@ namespace ns_Mashmo
             EnemyPatrolPoint l_CurrentPatrolPoint = null;
             if (a_bIsNextPatrolPointReached)
             {
-                l_CurrentPatrolPoint = m_NextPatrolDestination;    
+                l_CurrentPatrolPoint = m_NextPatrolDestination;
             }
-            m_NextPatrolDestination = PatrolManager.GetNextPatrolPoint(this, l_CurrentPatrolPoint);
+            else
+            {
+                m_LastPatrolDestination = null;
+            }
+
+            m_NextPatrolDestination = PatrolManager.GetNextPatrolPoint(this, l_CurrentPatrolPoint, m_LastPatrolDestination);
+            m_LastPatrolDestination = l_CurrentPatrolPoint;
 
             if (m_NextPatrolDestination == null)
             {
@@ -227,7 +242,7 @@ namespace ns_Mashmo
                     {
                         stopNavigation();
                         setDestination(transform.position);
-                        m_Animator.SetTrigger(ANIM_TRIGGER_DIE);
+                        toggleRagdoll(true);
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
                         break;
@@ -417,6 +432,24 @@ namespace ns_Mashmo
                 {
                     NavState = ENEMY_STATE.ALERT;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Toggles the ragdoll effect
+        /// </summary>
+        /// <param name="a_bIsEnabled"></param>
+        private void toggleRagdoll(bool a_bIsEnabled)
+        {
+            if (a_bIsEnabled)
+            {
+                m_NavMeshAgent.enabled = false;
+                m_Animator.enabled = false;
+            }
+            else
+            {
+                m_Animator.enabled = true;
+                m_NavMeshAgent.enabled = true;
             }
         }
     }

@@ -13,6 +13,6 @@ namespace ns_Mashmo
         void activateEnemy();
         void deactivateEnemy();
 
-        void inflictDamage(int a_iDamage, Vector3 a_v3HitPoint);
+        void inflictDamage(int a_iDamage, Vector3 a_v3HitPoint, ENEMY_HIT_COLLISION a_EnemyHitCollision);
     }
 }

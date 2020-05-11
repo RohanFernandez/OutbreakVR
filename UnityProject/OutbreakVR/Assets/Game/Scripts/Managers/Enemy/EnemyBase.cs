@@ -155,7 +155,7 @@ namespace ns_Mashmo
         /// reduces the life counter of the enemy
         /// </summary>
         /// <param name="a_iDamage"></param>
-        public void inflictDamage(int a_iDamage, Vector3 a_v3HitPoint)
+        public void inflictDamage(int a_iDamage, Vector3 a_v3HitPoint, ENEMY_HIT_COLLISION a_EnemyHitCollision = ENEMY_HIT_COLLISION.HIT_COLLISION_DEFAULT)
         {
             int l_iHitTransformPointCount = m_lstHitTransformPoint.Count;
             if (l_iHitTransformPointCount > 0)
@@ -181,17 +181,18 @@ namespace ns_Mashmo
             {
                 onKilled();
             }
-            else
+            else if(m_iCurrentLifeCounter > 0)
             {
-                onDamageInflictedNotKilled(a_iDamage);
+                onDamageInflictedNotKilled(a_iDamage, a_EnemyHitCollision);
             }
+            // else ALREADY DEAD
         }
 
         /// <summary>
         /// Called on damage is inflicted on the enemy but the enemy is still alive
         /// </summary>
         /// <param name="a_iDamage"></param>
-        protected virtual void onDamageInflictedNotKilled(int a_iDamage)
+        protected virtual void onDamageInflictedNotKilled(int a_iDamage, ENEMY_HIT_COLLISION a_EnemyHitCollision = ENEMY_HIT_COLLISION.HIT_COLLISION_DEFAULT)
         {
 
         }

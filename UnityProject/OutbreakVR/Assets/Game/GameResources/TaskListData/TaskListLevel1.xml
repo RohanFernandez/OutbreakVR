@@ -19,11 +19,11 @@
 	</Sequence>
 	
 	<Sequence ID = "SpawnEnemy" >
-		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" Position="1.0,-13.5,1.0" Rotation="0.0,180.0,0.0"/>
+		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Officer1" EnemyType="SENTINEL" Position="1.0,-13.5,1.0" Rotation="0.0,180.0,0.0"/>
 	</Sequence>
 	
 	<Sequence ID = "DestroyEnemy" >
-		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SECURITY_OFFICER" />
+		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SENTINEL" />
 	</Sequence-->
 	
 	<Sequence ID = "ReturnItems" >
@@ -103,8 +103,8 @@
   
 	
 	<Sequence ID = "Obj100_OnWeaponPickup" >
-        <Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SECURITY_OFFICER" Position="-5.531,30.859,3.903" Rotation="0.0,0.0,0.0"/>
-		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SECURITY_OFFICER" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
+        <Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie1" EnemyType="SENTINEL" Position="-5.531,30.859,3.903" Rotation="0.0,0.0,0.0"/>
+		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie2" EnemyType="SENTINEL" Position="-2.016,30.859,3.903" Rotation="0.0,0.0,0.0"/>
         <Task ID="2" TaskType="TaskAudio" AudClip="BreakingIntrusion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level100_BreakIn"/>
 		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="BeforeBrokenBalcony" />
 		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="AfterBrokenBalcony" />

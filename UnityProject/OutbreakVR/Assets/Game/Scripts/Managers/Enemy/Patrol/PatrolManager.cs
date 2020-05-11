@@ -102,7 +102,7 @@ namespace ns_Mashmo
         /// <param name="a_NonStaticEnemy"></param>
         /// <param name="a_CurrentPatrolPoint"></param>
         /// <returns></returns>
-        public static EnemyPatrolPoint GetNextPatrolPoint(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_CurrentPatrolPoint)
+        public static EnemyPatrolPoint GetNextPatrolPoint(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_CurrentPatrolPoint, EnemyPatrolPoint a_LastPatrolPoint)
         {
             EnemyPatrolPoint l_NextPatrolPoint = null;
             float l_fNearestDistance = 10000.0f;
@@ -114,7 +114,8 @@ namespace ns_Mashmo
                 float l_PatrolPointNearestDistance = Vector3.Distance(l_PatrolPoint.transform.position, a_NonStaticEnemy.transform.position);
 
                 if ((a_CurrentPatrolPoint != l_PatrolPoint) &&
-                    (l_fNearestDistance > l_PatrolPointNearestDistance) )
+                    (l_fNearestDistance > l_PatrolPointNearestDistance) &&
+                    (a_LastPatrolPoint != l_PatrolPoint))
                 {
                     l_NextPatrolPoint = l_PatrolPoint;
                     l_fNearestDistance = l_PatrolPointNearestDistance;
