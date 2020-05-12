@@ -152,13 +152,12 @@ namespace ns_Mashmo
         protected override void onDamageInflictedNotKilled(int a_iDamage, ENEMY_HIT_COLLISION a_EnemyHitCollision = ENEMY_HIT_COLLISION.HIT_COLLISION_DEFAULT)
         {
             base.onDamageInflictedNotKilled(a_iDamage);
+            m_EnemyHitCollision = a_EnemyHitCollision;
 
             if (NavState != ENEMY_STATE.DEAD)
             {
                 NavState = ENEMY_STATE.DAMAGE_INFLICTED;
             }
-
-            m_EnemyHitCollision = a_EnemyHitCollision;
         }
 
         public override void activateEnemy()
