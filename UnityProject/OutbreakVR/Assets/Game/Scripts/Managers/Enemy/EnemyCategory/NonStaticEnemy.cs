@@ -71,10 +71,22 @@ namespace ns_Mashmo
         private float m_fPatrolStoppingDistance = 2.0f;
 
         /// <summary>
+        /// The speed of the nav mesh agent while patrolling
+        /// </summary>
+        [SerializeField]
+        private float m_fPatrollingNavigationSpeed = 0.75f;
+
+        /// <summary>
         /// Stopping distance when attacking an enemy
         /// </summary>
         [SerializeField]
         private float m_fAlertStoppingDistance = 1.0f;
+
+        /// <summary>
+        /// The speed of the nav mesh agent while in alert
+        /// </summary>
+        [SerializeField]
+        private float m_fAlertNavigationSpeed = 1.0f;
 
         /// <summary>
         /// The next patrol point the enemy is traversing to
@@ -111,12 +123,6 @@ namespace ns_Mashmo
         [SerializeField]
         private List<Rigidbody> m_lstRagdollRigidbodies = null;
 
-        ///// <summary>
-        ///// List of all the enemy ragdoll collider components
-        ///// </summary>
-        //[SerializeField]
-        //private List<Collider> m_lstRagdollColliders = null;
-
         /// <summary>
         /// resets all values of the hit colliders
         /// </summary>
@@ -134,7 +140,6 @@ namespace ns_Mashmo
         /// </summary>
         private ENEMY_HIT_COLLISION m_EnemyHitCollision;
 
-        //TODO:: Remove later on Suffer animation added
         #region TEMP_ADDED
         private float TEMP_SUFFER_STATE_TIME = 2.0f;
         private float m_fTimePassedInSufferState = 0.0f;
@@ -267,6 +272,7 @@ namespace ns_Mashmo
                     }
                 case ENEMY_STATE.PATROL:
                     {
+                        m_NavMeshAgent.speed = m_fPatrollingNavigationSpeed;
                         m_NavMeshAgent.stoppingDistance = m_fPatrolStoppingDistance;
                         startNavigation();
                         m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
@@ -277,6 +283,7 @@ namespace ns_Mashmo
                 case ENEMY_STATE.ALERT:
                     {
                         startNavigation();
+                        m_NavMeshAgent.speed = m_fAlertNavigationSpeed;
                         m_NavMeshAgent.stoppingDistance = m_fAlertStoppingDistance;
                         m_fCurrAlertTimeCounter = m_fMaxAlertTime;
                         m_NextPatrolDestination = null;
@@ -400,7 +407,6 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onSuffferStateUpdate()
         {
-            //TODO:: Remove later on Suffer animation added
             m_fTimePassedInSufferState += Time.deltaTime;
             if (m_fTimePassedInSufferState > TEMP_SUFFER_STATE_TIME)
             {
@@ -424,28 +430,6 @@ namespace ns_Mashmo
                     NavState = ENEMY_STATE.IDLE;
                 }
             }
-        }
-
-        ///// <summary>
-        ///// the current patrol point the play is in
-        ///// </summary>
-        //private EnemyPatrolPoint m_CurrentTriggeredPatrolPoint = null;
-        //private void OnTriggerEnter(Collider a_Collider)
-        //{
-        //    if (NavState == ENEMY_STATE.PATROL)
-        //    {
-        //        EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
-        //        if ((l_EnemyPatrolPoint != null) && 
-        //            (l_EnemyPatrolPoint == m_NextPatrolDestination))
-        //        {
-        //            NavState = ENEMY_STATE.IDLE;
-        //        }
-        //    }
-        //}
-
-        private void OnTriggerExit(Collider a_Collider)
-        {
-
         }
 
         /// <summary>
