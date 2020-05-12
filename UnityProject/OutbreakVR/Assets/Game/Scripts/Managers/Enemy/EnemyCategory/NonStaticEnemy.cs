@@ -417,19 +417,35 @@ namespace ns_Mashmo
             {
                 NavState = ENEMY_STATE.ALERT;
             }
-        }
-
-        private void OnTriggerEnter(Collider a_Collider)
-        {
-            if (NavState == ENEMY_STATE.PATROL)
+            else
             {
-                EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
-                if ((l_EnemyPatrolPoint != null) && 
-                    (l_EnemyPatrolPoint == m_NextPatrolDestination))
+                if (m_NavMeshAgent.remainingDistance <= (m_NavMeshAgent.stoppingDistance + 0.5f))
                 {
                     NavState = ENEMY_STATE.IDLE;
                 }
             }
+        }
+
+        ///// <summary>
+        ///// the current patrol point the play is in
+        ///// </summary>
+        //private EnemyPatrolPoint m_CurrentTriggeredPatrolPoint = null;
+        //private void OnTriggerEnter(Collider a_Collider)
+        //{
+        //    if (NavState == ENEMY_STATE.PATROL)
+        //    {
+        //        EnemyPatrolPoint l_EnemyPatrolPoint = a_Collider.GetComponent<EnemyPatrolPoint>();
+        //        if ((l_EnemyPatrolPoint != null) && 
+        //            (l_EnemyPatrolPoint == m_NextPatrolDestination))
+        //        {
+        //            NavState = ENEMY_STATE.IDLE;
+        //        }
+        //    }
+        //}
+
+        private void OnTriggerExit(Collider a_Collider)
+        {
+
         }
 
         /// <summary>
