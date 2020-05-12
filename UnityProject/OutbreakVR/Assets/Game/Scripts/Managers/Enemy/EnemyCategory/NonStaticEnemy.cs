@@ -253,7 +253,6 @@ namespace ns_Mashmo
         protected override void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
         {
             base.onStateChanged(l_OldNavState, a_NavState);
-
             switch (a_NavState)
             {
                 case ENEMY_STATE.IDLE:
@@ -287,7 +286,6 @@ namespace ns_Mashmo
                 case ENEMY_STATE.DEAD:
                     {
                         stopNavigation();
-                        setDestination(transform.position);
                         toggleRagdoll(true);
                         m_NextPatrolDestination = null;
                         m_actNavStateUpdate = null;
@@ -502,9 +500,10 @@ namespace ns_Mashmo
         {
             Vector3 l_v3PlayerPos = PlayerManager.GetPosition();
 
-            if ((NavState != ENEMY_STATE.ALERT) ||
-                (NavState != ENEMY_STATE.SUFFER) ||
-                (NavState != ENEMY_STATE.DAMAGE_INFLICTED))
+            if ((NavState != ENEMY_STATE.ALERT) &&
+                (NavState != ENEMY_STATE.SUFFER) &&
+                (NavState != ENEMY_STATE.DAMAGE_INFLICTED) &&
+                (NavState != ENEMY_STATE.DEAD))
             {
                 if (m_NavMeshAgent.isActiveAndEnabled)
                 {
@@ -527,17 +526,18 @@ namespace ns_Mashmo
         /// <param name="a_bIsEnabled"></param>
         private void toggleRagdoll(bool a_bIsEnabled)
         {
-            if (a_bIsEnabled)
-            {
-                m_NavMeshAgent.enabled = false;
-                m_Animator.enabled = false;
-            }
-            else
-            {
-                m_Animator.enabled = true;
-                m_NavMeshAgent.enabled = true;
-            }
+            //if (a_bIsEnabled)
+            //{
+            //    m_NavMeshAgent.enabled = false;
+            //    m_Animator.enabled = false;
+            //}
+            //else
+            //{
+            //    m_Animator.enabled = true;
+            //    m_NavMeshAgent.enabled = true;
+            //}
 
+            m_Animator.enabled = !a_bIsEnabled;
             int l_iRagdollRigidBodyCount = m_lstRagdollRigidbodies.Count;
             for (int l_iRagdollRigidBodyIndex = 0; l_iRagdollRigidBodyIndex < l_iRagdollRigidBodyCount; l_iRagdollRigidBodyIndex++)
             {
