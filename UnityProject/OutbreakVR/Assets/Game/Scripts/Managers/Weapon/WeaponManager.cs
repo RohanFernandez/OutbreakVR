@@ -780,13 +780,17 @@ namespace ns_Mashmo
             {
                 bool l_bIsShowEffect = false;
 
-                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == (l_RaycastHit.collider.gameObject.layer))
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER) == (l_RaycastHit.collider.gameObject.layer))
                 {
                     EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
                     if (l_EnemyHitCollider != null)
                     {
                         l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
                     }
+                    l_bIsShowEffect = true;
+                }
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == (l_RaycastHit.collider.gameObject.layer))
+                {
                     l_bIsShowEffect = true;
                 }
                 else if(LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == (l_RaycastHit.collider.gameObject.layer))

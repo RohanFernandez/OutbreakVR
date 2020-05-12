@@ -45,6 +45,11 @@ namespace ns_Mashmo
         /// Player hit
         /// </summary>
         public const string LAYER_NAME_PLAYER = "PLAYER";
+
+        /// <summary>
+        /// The enemy colliders to hit
+        /// </summary>
+        public const string LAYER_NAME_ENEMY_HIT_COLLIDER = "ENEMY_HIT_COLLIDER";
         #endregion GAME LAYERS
 
         #region AUDIO SOURCE

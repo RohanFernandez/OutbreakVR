@@ -34,7 +34,7 @@ namespace ns_Mashmo
             base.OnTriggerEnter(a_Collider);
             if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
-                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == a_Collider.gameObject.layer)
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER) == a_Collider.gameObject.layer)
                 {
                     EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
                     if (l_EnemyHitCollider != null)
