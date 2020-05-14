@@ -424,7 +424,8 @@ namespace ns_Mashmo
             }
             else
             {
-                if (m_NavMeshAgent.remainingDistance <= (m_NavMeshAgent.stoppingDistance + 0.5f))
+                if ((m_NavMeshAgent.remainingDistance != Mathf.Infinity) &&
+                    (m_NavMeshAgent.remainingDistance <= (m_NavMeshAgent.stoppingDistance + 0.5f)))
                 {
                     NavState = ENEMY_STATE.IDLE;
                 }
@@ -525,22 +526,12 @@ namespace ns_Mashmo
         /// <param name="a_bIsEnabled"></param>
         private void toggleRagdoll(bool a_bIsEnabled)
         {
-            //if (a_bIsEnabled)
-            //{
-            //    m_NavMeshAgent.enabled = false;
-            //    m_Animator.enabled = false;
-            //}
-            //else
-            //{
-            //    m_Animator.enabled = true;
-            //    m_NavMeshAgent.enabled = true;
-            //}
-
-            m_Animator.enabled = !a_bIsEnabled;
+            bool l_bEnableComponents = !a_bIsEnabled;
+            m_Animator.enabled = l_bEnableComponents;
             int l_iRagdollRigidBodyCount = m_lstRagdollRigidbodies.Count;
             for (int l_iRagdollRigidBodyIndex = 0; l_iRagdollRigidBodyIndex < l_iRagdollRigidBodyCount; l_iRagdollRigidBodyIndex++)
             {
-                m_lstRagdollRigidbodies[l_iRagdollRigidBodyIndex].isKinematic = !a_bIsEnabled;
+                m_lstRagdollRigidbodies[l_iRagdollRigidBodyIndex].isKinematic = l_bEnableComponents;
             }
         }
     }

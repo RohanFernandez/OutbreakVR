@@ -104,6 +104,7 @@ namespace ns_Mashmo
         /// <returns></returns>
         public static EnemyPatrolPoint GetNextPatrolPoint(NonStaticEnemy a_NonStaticEnemy, EnemyPatrolPoint a_CurrentPatrolPoint, EnemyPatrolPoint a_LastPatrolPoint)
         {
+            EnemyPatrolPoint l_NearestPatrolPoint = null;
             EnemyPatrolPoint l_NextPatrolPoint = null;
             float l_fNearestDistance = 10000.0f;
 
@@ -114,12 +115,27 @@ namespace ns_Mashmo
                 float l_PatrolPointNearestDistance = Vector3.Distance(l_PatrolPoint.transform.position, a_NonStaticEnemy.transform.position);
 
                 if ((a_CurrentPatrolPoint != l_PatrolPoint) &&
-                    (l_fNearestDistance > l_PatrolPointNearestDistance) &&
-                    (a_LastPatrolPoint != l_PatrolPoint))
+                    (l_fNearestDistance > l_PatrolPointNearestDistance))
                 {
-                    l_NextPatrolPoint = l_PatrolPoint;
                     l_fNearestDistance = l_PatrolPointNearestDistance;
+                    if ((a_LastPatrolPoint != l_PatrolPoint))
+                    {
+                        l_NextPatrolPoint = l_PatrolPoint;
+                    }
+                    l_NearestPatrolPoint = l_PatrolPoint;
                 }
+            }
+
+            //Only 1 patrol point exist then choose that
+            if ((l_NextPatrolPoint == null) &&
+                (l_iPatrolPointsCount == 1))
+            {
+                l_NextPatrolPoint = a_CurrentPatrolPoint;
+            }
+            //Choose the nearest point, if 2 patrol points exists where a_LastPatrolPoint is 1 and a_CurrentPatrolPoint is the other
+            else if (l_NextPatrolPoint == null)
+            {
+                l_NextPatrolPoint = l_NearestPatrolPoint;
             }
 
             return l_NextPatrolPoint;
