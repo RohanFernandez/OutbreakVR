@@ -2421,12 +2421,14 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 30
   m_TracerParticleSystem: {fileID: 954994690}
   m_strAudClipIDOnShoot: Ak47-Fire
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDReloadStarted: Ak47-Reload
+  m_strAudClipIDOnGunCock: Ak47-Cock
+  m_strAudClipIDNoFire: Ak47-NoFire
   m_WeaponHolder: {fileID: 1160426708}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 20
   m_animatorHands: {fileID: 281394969}
-  m_fWeaponReloadTime: 2.5
+  m_fWeaponReloadTime: 4.2
   m_iTotalBullets: 25
   m_fMaxAngleGunRecoilRotX: -13
   m_fPerShotGunRecoilRotXAngle: 4
@@ -3926,12 +3928,14 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 30
   m_TracerParticleSystem: {fileID: 944316892}
   m_strAudClipIDOnShoot: Tommy-Fire
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDReloadStarted: Tommy-Reload
+  m_strAudClipIDOnGunCock: Tommy-Cock
+  m_strAudClipIDNoFire: Tommy-NoFire
   m_WeaponHolder: {fileID: 779488562}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
   m_animatorHands: {fileID: 1591926142}
-  m_fWeaponReloadTime: 2
+  m_fWeaponReloadTime: 3
   m_iTotalBullets: 25
   m_fMaxAngleGunRecoilRotX: -13
   m_fPerShotGunRecoilRotXAngle: 4
@@ -4235,7 +4239,9 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 10
   m_TracerParticleSystem: {fileID: 0}
   m_strAudClipIDOnShoot: 
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDReloadStarted: 
+  m_strAudClipIDOnGunCock: 
+  m_strAudClipIDNoFire: 
   m_WeaponHolder: {fileID: 0}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
@@ -23138,7 +23144,9 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 10
   m_TracerParticleSystem: {fileID: 0}
   m_strAudClipIDOnShoot: 
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDReloadStarted: 
+  m_strAudClipIDOnGunCock: 
+  m_strAudClipIDNoFire: 
   m_WeaponHolder: {fileID: 0}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 15
@@ -23241,13 +23249,15 @@ MonoBehaviour:
   m_iMaxMagazinesAllowed: 10
   m_iMaxSingleMagazineBulletCapacity: 17
   m_TracerParticleSystem: {fileID: 638119839}
-  m_strAudClipIDOnShoot: AudClip_WeaponFireDefault
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDOnShoot: FN57-Fire
+  m_strAudClipIDReloadStarted: FN57-Reload
+  m_strAudClipIDOnGunCock: FN57-Cock
+  m_strAudClipIDNoFire: FN57-NoFire
   m_WeaponHolder: {fileID: 727711703}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 10
   m_animatorHands: {fileID: 198207416}
-  m_fWeaponReloadTime: 1
+  m_fWeaponReloadTime: 4
   m_iTotalBullets: 25
   m_fMaxAngleGunRecoilRotX: -13
   m_fPerShotGunRecoilRotXAngle: 4
@@ -32692,8 +32702,14 @@ MonoBehaviour:
     m_AudClip: {fileID: 8300000, guid: 3e0722c5bbd7a7c4d8b95ae762bba8a8, type: 3}
   - m_strAudioID: AmbientAudio
     m_AudClip: {fileID: 8300000, guid: 069a6a8d150b5d8498301603832ddac0, type: 3}
-  - m_strAudioID: AudClip_WeaponFireDefault
-    m_AudClip: {fileID: 8300000, guid: 68fddbf1df10ff64ea99ac62ec570efd, type: 3}
+  - m_strAudioID: FN57-Fire
+    m_AudClip: {fileID: 8300000, guid: a9e1bc1bab566f34a92b29f1c6ee0f4d, type: 3}
+  - m_strAudioID: FN57-Reload
+    m_AudClip: {fileID: 8300000, guid: 18152fe00083e9d478c519556eaf4a0d, type: 3}
+  - m_strAudioID: FN57-NoFire
+    m_AudClip: {fileID: 8300000, guid: 4682296dbab4d854d92943022e5dbffa, type: 3}
+  - m_strAudioID: FN57-Cock
+    m_AudClip: {fileID: 8300000, guid: dc18cbe37873deb459bf5cf8cbf84510, type: 3}
   - m_strAudioID: AudClip_RevolverFIre
     m_AudClip: {fileID: 8300000, guid: 05c7e59e74a2d9e43a290a973d87d637, type: 3}
   - m_strAudioID: ZombieFX
@@ -32703,7 +32719,13 @@ MonoBehaviour:
   - m_strAudioID: AudClip_AlertAmbient
     m_AudClip: {fileID: 8300000, guid: ffab17ed7cb42b94e95c556648c3bc93, type: 3}
   - m_strAudioID: Ak47-Fire
-    m_AudClip: {fileID: 8300000, guid: df0b558674b536f4c890a4553a4e6946, type: 3}
+    m_AudClip: {fileID: 8300000, guid: c2b6ab878f8985e4298f60a5e5ae09a1, type: 3}
+  - m_strAudioID: Ak47-Cock
+    m_AudClip: {fileID: 8300000, guid: 533115f0a8829094ba7c6c4893a784e6, type: 3}
+  - m_strAudioID: Ak47-Reload
+    m_AudClip: {fileID: 8300000, guid: 0cfc1b7698555b745bc7e352db8d4fc7, type: 3}
+  - m_strAudioID: Ak47-NoFire
+    m_AudClip: {fileID: 8300000, guid: 65acf7561f9d7e146a30e71f2f52ef7b, type: 3}
   - m_strAudioID: HomeAmbient
     m_AudClip: {fileID: 8300000, guid: ecc03c2ab89b0c1409c3b6dea112a55d, type: 3}
   - m_strAudioID: AudClip_TurretFire
@@ -32725,9 +32747,21 @@ MonoBehaviour:
   - m_strAudioID: AudClip_DrawerOpen
     m_AudClip: {fileID: 8300000, guid: d7883fd947e0e454ea0f8b492f346eae, type: 3}
   - m_strAudioID: Stingray-Fire
-    m_AudClip: {fileID: 8300000, guid: 136bd8946672e384d891d79198461313, type: 3}
+    m_AudClip: {fileID: 8300000, guid: 74761925843649b4d9fd9f155b8bdb13, type: 3}
+  - m_strAudioID: Stingray-Cock
+    m_AudClip: {fileID: 8300000, guid: 50553662938ac8c4092bb3d224b85c60, type: 3}
+  - m_strAudioID: Stingray-NoFire
+    m_AudClip: {fileID: 8300000, guid: 159536d3efb7c0547bb2c7a22bf451a0, type: 3}
+  - m_strAudioID: Stingray-Reload
+    m_AudClip: {fileID: 8300000, guid: d87e016ee5f0afe43a024aed581068d9, type: 3}
   - m_strAudioID: Tommy-Fire
-    m_AudClip: {fileID: 8300000, guid: f8c581ff25f643145a4fcdf06b05269f, type: 3}
+    m_AudClip: {fileID: 8300000, guid: 16fbd32714c89184a92ff1abfa206aa7, type: 3}
+  - m_strAudioID: Tommy-Cock
+    m_AudClip: {fileID: 8300000, guid: 50553662938ac8c4092bb3d224b85c60, type: 3}
+  - m_strAudioID: Tommy-Reload
+    m_AudClip: {fileID: 8300000, guid: d87e016ee5f0afe43a024aed581068d9, type: 3}
+  - m_strAudioID: Tommy-NoFire
+    m_AudClip: {fileID: 8300000, guid: 159536d3efb7c0547bb2c7a22bf451a0, type: 3}
   - m_strAudioID: ProximityBombArmed
     m_AudClip: {fileID: 8300000, guid: a408885306364e947b6a2daeeecd75c3, type: 3}
   - m_strAudioID: ProximityBombBlast
@@ -33945,7 +33979,7 @@ MonoBehaviour:
   - {fileID: 642286414}
   - {fileID: 1857882339}
   - {fileID: 1857882337}
-  m_bIsUseEntitlementCheck: 1
+  m_bIsUseEntitlementCheck: 0
 --- !u!114 &1857882335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34900,7 +34934,9 @@ MonoBehaviour:
   m_iMaxSingleMagazineBulletCapacity: 15
   m_TracerParticleSystem: {fileID: 1519032802}
   m_strAudClipIDOnShoot: Stingray-Fire
-  m_strAudClipIDOnReload: 
+  m_strAudClipIDReloadStarted: Stingray-Reload
+  m_strAudClipIDOnGunCock: Stingray-Cock
+  m_strAudClipIDNoFire: Stingray-NoFire
   m_WeaponHolder: {fileID: 2027335400}
   m_iBulletCountInFirstMag: 10
   m_iDamagePerBullet: 27

@@ -907,6 +907,7 @@ namespace ns_Mashmo
         {
             WeaponBase l_WeaponBase = GetCurrentWeaponBase();
 
+            bool l_bCanWeaponBeFired = canCurrentWeaponBeFired(l_WeaponBase);
             ///Fire weapon
             if (ControllerManager.IsPrimaryTriggerBtnDown()
 #if UNITY_EDITOR
@@ -914,21 +915,32 @@ namespace ns_Mashmo
 #endif
                 )
             {
-                if (canCurrentWeaponBeFired(l_WeaponBase) &&
+                if (l_bCanWeaponBeFired &&
                     !m_bIsReloadInProgress)
                 {
                     startFireWeapon(l_WeaponBase);
                 }
                 else
                 {
-                    /// TODO:: Indicate weapon cannot be fired
-                    ///stop firing gun
                     stopFiringWeapon(l_WeaponBase);
                 }
             }
             else
             {
                 stopFiringWeapon(l_WeaponBase);
+            }
+
+            ///Unable to fire weapon on attempt
+            if (ControllerManager.IsPrimaryTriggerBtnDown()
+#if UNITY_EDITOR
+                || Input.GetKeyDown(KeyCode.Mouse0)
+#endif
+                )
+            {
+                if(!l_bCanWeaponBeFired)
+                {
+                    l_WeaponBase.onGunUnableToFire();
+                }
             }
 
             ///Reload weapon
@@ -939,6 +951,11 @@ namespace ns_Mashmo
                     (l_fDotFacingDown > 0.85f)
                 )
                 {
+                    if (!m_bIsReloadInProgress)
+                    {
+                        l_WeaponBase.onGunReloadBegin();
+                    }
+
                     CurrentReloadWaitTime += Time.deltaTime;
                     float l_fCurrentWeaponReloadTime = getCurrentWeaponReloadTime();
                     UI_PlayerHelmet.UpdateReloadProgressBar(CurrentReloadWaitTime, l_fCurrentWeaponReloadTime);
@@ -951,11 +968,19 @@ namespace ns_Mashmo
                 }
                 else
                 {
+                    if (CurrentReloadWaitTime != 0.0f)
+                    {
+                        l_WeaponBase.onGunReloadInterrupted();
+                    }
                     CurrentReloadWaitTime = 0.0f;
                 }
             }
             else
             {
+                if (CurrentReloadWaitTime != 0.0f)
+                {
+                    l_WeaponBase.onGunReloadInterrupted();
+                }
                 CurrentReloadWaitTime = 0.0f;
             }
         }

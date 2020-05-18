@@ -34,10 +34,22 @@ namespace ns_Mashmo
         private string m_strAudClipIDOnShoot = string.Empty;
 
         /// <summary>
-        /// Audio clip id to play on reload
+        /// Audio clip id to play on reload started
         /// </summary>
         [SerializeField]
-        private string m_strAudClipIDOnReload = string.Empty;
+        private string m_strAudClipIDReloadStarted = string.Empty;
+
+        /// <summary>
+        /// Audio clip id to play on gun selected, gun clock
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDOnGunCock = string.Empty;
+
+        /// <summary>
+        /// Audio clip id to play on gun empty fire
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDNoFire = string.Empty;
 
         /// <summary>
         /// The weapon holder
@@ -235,7 +247,7 @@ namespace ns_Mashmo
 
             BulletCountInFirstMag += getBulletsNotInFirstMag();
 
-            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_RELOAD, m_strAudClipIDOnReload, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
         }
 
         /// <summary>
@@ -255,11 +267,35 @@ namespace ns_Mashmo
 
             m_WeaponHolder.localRotation = Quaternion.identity;
 
+            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+            if (canCurrentWeaponBeFired())
+            {
+                SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDOnGunCock, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            }
+
             if (m_animatorHands != null)
             {
                 m_animatorHands.SetBool(ANIM_STATE_SHOOT, false);
                 m_animatorHands.SetTrigger(ANIM_STATE_IDLE_HANDS);
             }
+        }
+
+        public override void onGunReloadInterrupted()
+        {
+            base.onGunReloadInterrupted();
+            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+        }
+
+        public override void onGunReloadBegin()
+        {
+            base.onGunReloadBegin();
+            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDReloadStarted, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+        }
+
+        public override void onGunUnableToFire()
+        {
+            base.onGunUnableToFire();
+            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDNoFire, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
 
         /// <summary>
@@ -355,6 +391,8 @@ namespace ns_Mashmo
             {
                 m_animatorHands.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
             }
+
+            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
         }
 
         private void Update()

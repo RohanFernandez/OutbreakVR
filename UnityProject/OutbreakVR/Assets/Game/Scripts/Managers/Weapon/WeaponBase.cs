@@ -126,6 +126,30 @@ namespace ns_Mashmo
             return true;
         }
 
+        /// <summary>
+        /// Called on reload is interrupted before completion
+        /// </summary>
+        public virtual void onGunReloadInterrupted()
+        { 
+            
+        }
+
+        /// <summary>
+        /// Called on reload process has begun
+        /// </summary>
+        public virtual void onGunReloadBegin()
+        {
+
+        }
+
+        /// <summary>
+        /// Called on when the gun cannot 
+        /// </summary>
+        public virtual void onGunUnableToFire()
+        {
+
+        }
+
         #region AbsComponentHandler
         public override void initialize() { }
         public override void destroy() { }
