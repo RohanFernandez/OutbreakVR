@@ -171,6 +171,9 @@
 		<Task ID="8" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture4LockedDoor" />
 		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="Level_104_PowerNode" ItemType="ITEM_POWER_NODE" Position="29.377,16.429,25.503" Rotation="0.0,0.0,0.0"/>
 		<Task ID="10" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level104_Torture5LockedDoor" />
+		<Task ID="11" TaskType="TaskAudio" AudClip="GasLoop" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc1"/>
+		<Task ID="12" TaskType="TaskAudio" AudClip="GasLoop" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc2"/>
+		
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnTortureRoomReached" >
@@ -183,12 +186,16 @@
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve1" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_GasDamageInfliction_Room0" />
 		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture3LockedDoor" />
+		<Task ID="3" TaskType="TaskAudio" AudClip="GasTurnOff" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc1"/>
+		<Task ID="4" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasValveTurn"/>
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnValveTurned2" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_Trigger_Valve2" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level104_GasDamageInfliction_Room1" />
 		<Task ID="2" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture4LockedDoor" />
+		<Task ID="3" TaskType="TaskAudio" AudClip="GasTurnOff" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc2"/>
+		<Task ID="4" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasValveTurn"/>
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnPowerNodeAttached" >
@@ -196,7 +203,9 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
-		
+		<Task ID="0" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasValveTurn"/>
+		<Task ID="1" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc1"/>
+		<Task ID="2" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc2"/>
 	</Sequence>
 	<!-- LEVEL 104 [CHECKPOINT]  END-->
 	
