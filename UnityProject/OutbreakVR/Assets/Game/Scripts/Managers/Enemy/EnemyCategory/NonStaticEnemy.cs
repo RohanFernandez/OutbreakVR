@@ -141,7 +141,7 @@ namespace ns_Mashmo
         private ENEMY_HIT_COLLISION m_EnemyHitCollision;
 
         #region TEMP_ADDED
-        private float TEMP_SUFFER_STATE_TIME = 2.0f;
+        private float TEMP_SUFFER_STATE_TIME = 1.3f;
         private float m_fTimePassedInSufferState = 0.0f;
         #endregion TEMP_ADDED
 
@@ -380,6 +380,7 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onAlertStateUpdate()
         {
+            Vector3 l_v3PlayerPosition = PlayerManager.GetPosition();
             m_fCurrAlertTimeCounter = isPlayerDetected() ? m_fMaxAlertTime : (m_fCurrAlertTimeCounter - Time.deltaTime);
             
             if (m_fCurrAlertTimeCounter <= 0.0f)
@@ -388,14 +389,20 @@ namespace ns_Mashmo
             }
             else
             {
-                setDestination(PlayerManager.GetPosition());
-
-                if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) <= m_fMaxDamagePlayerDamageRadius)
-                {    
+                Vector3 l_v3DirectionToPlayer = (l_v3PlayerPosition - transform.position).normalized;
+                
+                if ((Vector3.Distance(l_v3PlayerPosition, transform.position) <= m_fMaxDamagePlayerDamageRadius) &&
+                    (Vector3.Dot(l_v3DirectionToPlayer, transform.forward) > 0.6f))
+                {
+                    m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
                     m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
                 }
                 else
                 {
+                    setDestination(l_v3PlayerPosition);
+                    m_NavMeshAgent.updateRotation = false;
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 180.0f * Time.deltaTime);
+                    m_NavMeshAgent.updateRotation = true;
                     m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
                 }
             }

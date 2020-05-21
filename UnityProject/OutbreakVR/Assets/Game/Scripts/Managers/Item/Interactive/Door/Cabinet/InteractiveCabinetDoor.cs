@@ -99,7 +99,7 @@ namespace ns_Mashmo
             
             m_DoorKnobColorController.setColor(GameManager.ColOutlineHighlighterDeactivated);
 
-            m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_OPEN, false, 1.0f);
+            m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_DOOR_OPEN, false, 1.0f);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace ns_Mashmo
 
                 if (!a_bIsReset)
                 {
-                    m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DOOR_CLOSE, false, 1.0f);
+                    m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_DOOR_CLOSE, false, 1.0f);
                 }
             }
         }

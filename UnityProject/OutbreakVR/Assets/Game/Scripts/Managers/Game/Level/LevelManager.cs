@@ -384,20 +384,20 @@ namespace ns_Mashmo
                         if (!GameManager.CurrentLvlAmbientAudio.Equals(l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, System.StringComparison.OrdinalIgnoreCase))
                         {
                             GameManager.CurrentLvlAmbientAudio = l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID;
-                            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
-                            SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                            SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_AMBIENT);
+                            SoundManager.PlayAudio(SoundConst.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
                         }
                     }
                     else if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.DONT_PLAY_AUDIO)
                     {
                         GameManager.CurrentLvlAmbientAudio = string.Empty;
-                        SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_AMBIENT);
                     }
                     else if (l_CurrentSubLevelData.AmbientAudPlayCriteria == SubLevelData.AUDIO_PLAY_CRITERIA.PLAY_NEW_AUDIO)
                     {
                         GameManager.CurrentLvlAmbientAudio = l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID;
-                        SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
-                        SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_AMBIENT);
+                        SoundManager.PlayAudio(SoundConst.AUD_SRC_AMBIENT, l_CurrentSubLevelData.LvlSpecificAmbientAudioClipID, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
                     }
 
                 #endregion MANAGING AMBIENT AUDIO

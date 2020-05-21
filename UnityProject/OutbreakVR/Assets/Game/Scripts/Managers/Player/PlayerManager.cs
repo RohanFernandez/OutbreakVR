@@ -14,6 +14,16 @@ namespace ns_Mashmo
         IN_GAME_PARALYSED,   // No movement, no pointer, gravity enabled
     }
 
+    public enum DAMAGE_INFLICTION_TYPE
+    { 
+        DEFAULT         =   0,
+        STRIKE          =   1,
+        GUNFIRE         =   2,
+        BLAST           =   3,
+        FALL_TO_DEATH   =   4,
+        AREA_DAMAGE     =   5
+    }
+
     public class PlayerManager : AbsComponentHandler
     {
         /// <summary>
@@ -58,6 +68,53 @@ namespace ns_Mashmo
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_PLAYER_HEALTH_UPDATED, l_EventHash);
             }
         }
+
+        /// <summary>
+        /// Aud clip on damage inclicted by default
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_DEFAULT = string.Empty;
+
+        /// <summary>
+        /// Aud clip on damage inclicted by strike damage
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_STRIKE_1 = string.Empty;
+
+        /// <summary>
+        /// Aud clip on damage inclicted by strike damage
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_STRIKE_2 = string.Empty;
+
+        /// <summary>
+        /// Aud clip on damage inclicted by gunfire damage
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_GUNFIRE = string.Empty;
+
+        /// <summary>
+        /// Aud clip on damage inclicted by blast damage
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_BLAST = string.Empty;
+
+        /// <summary>
+        /// Aud clip on falling to death
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_FALL_TO_DEATH = string.Empty;
+
+        /// <summary>
+        /// Aud clip on damage inclicted by environment area
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDAMAGE_AREA = string.Empty;
+
+        /// <summary>
+        /// The player audio src used
+        /// </summary>
+        private int m_iAudSrcIndex = 0;
 
         /// <summary>
         /// Sets singleton instance
@@ -145,7 +202,7 @@ namespace ns_Mashmo
         /// Enemy inflicting damage on the player
         /// </summary>
         /// <param name="a_iDamage"></param>
-        public static void InflictDamage(int a_iDamage)
+        public static void InflictDamage(int a_iDamage, DAMAGE_INFLICTION_TYPE a_DmgInflictionType = DAMAGE_INFLICTION_TYPE.DEFAULT)
         {
             int l_iDamageBefore = HealthMeter;
             HealthMeter -= a_iDamage;
@@ -158,6 +215,42 @@ namespace ns_Mashmo
                 HealthMeter <= 0)
             {
                 s_Instance.playerKilled();
+            }
+
+            if (HealthMeter > 0)
+            {
+                string l_strDamageAudClipID = string.Empty;
+
+                switch (a_DmgInflictionType)
+                {
+                    case DAMAGE_INFLICTION_TYPE.BLAST:
+                        {
+                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_BLAST;
+                            break;
+                        }
+                    case DAMAGE_INFLICTION_TYPE.GUNFIRE:
+                        {
+                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_GUNFIRE;
+                            break;
+                        }
+                    case DAMAGE_INFLICTION_TYPE.STRIKE:
+                        {
+                            l_strDamageAudClipID = (Random.Range(0, 2) < 1) ? s_Instance.m_strAudClipDAMAGE_STRIKE_1 : s_Instance.m_strAudClipDAMAGE_STRIKE_2;
+                            break;
+                        }
+                    case DAMAGE_INFLICTION_TYPE.FALL_TO_DEATH:
+                        {
+                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_FALL_TO_DEATH;
+                            break;
+                        }
+                    case DAMAGE_INFLICTION_TYPE.DEFAULT:
+                        {
+                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_DEFAULT;
+                            break;
+                        }
+                }
+                s_Instance.m_iAudSrcIndex = (s_Instance.m_iAudSrcIndex + 1) % 2;
+                SoundManager.PlayAudio((s_Instance.m_iAudSrcIndex == 0) ? SoundConst.AUD_SRC_PLAYER_1 : SoundConst.AUD_SRC_PLAYER_2, l_strDamageAudClipID, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
         }
 

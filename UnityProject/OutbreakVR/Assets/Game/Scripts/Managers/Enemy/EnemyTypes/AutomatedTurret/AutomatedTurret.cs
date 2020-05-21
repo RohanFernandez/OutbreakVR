@@ -176,7 +176,7 @@ namespace ns_Mashmo
                     m_fTimeSinceLastShot = 0.0f;
                     fireAtPlayer();
 
-                    m_AudioSoure.play(GameConsts.AUD_CLIP_TURRET_FIRE, false, 1.0f);
+                    m_AudioSoure.play(SoundConst.AUD_CLIP_TURRET_FIRE, false, 1.0f);
 
                     if (m_particleMuzzleFlash1 != null)
                     {
@@ -278,7 +278,7 @@ namespace ns_Mashmo
         /// </summary>
         private void fireAtPlayer()
         {
-            PlayerManager.InflictDamage(m_iDamageOnHit);
+            PlayerManager.InflictDamage(m_iDamageOnHit, DAMAGE_INFLICTION_TYPE.GUNFIRE);
         }
 
         /// <summary>

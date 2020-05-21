@@ -73,7 +73,7 @@ namespace ns_Mashmo
             {
                 m_AutomatedTurret.onSwitchedOff();
                 m_TurretLeverAnimator.SetTrigger(ANIM_TRIG_LEVER_ON_TO_OFF);
-                SoundManager.PlayAudio(GameConsts.AUD_SRC_TURRET_LEVER, GameConsts.AUD_CLIP_TURRET_LEVER, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                SoundManager.PlayAudio(SoundConst.AUD_SRC_TURRET_LEVER, SoundConst.AUD_CLIP_TURRET_LEVER, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
         }
 

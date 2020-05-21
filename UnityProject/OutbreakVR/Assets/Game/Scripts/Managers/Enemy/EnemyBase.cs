@@ -221,9 +221,14 @@ namespace ns_Mashmo
         #region ATTACK CALLBACK
 
         /// <summary>
-        /// 
+        /// the callback on starting to strike
         /// </summary>
-        public virtual void onStrikeAttack() { }
+        public virtual void onStrikeAttackStart(int a_iStrikeAttackIndex = 0) { }
+
+        /// <summary>
+        /// the callback on strikeing the player and detecting the point of hit, check if player is within range
+        /// </summary>
+        public virtual void onStrikeAttackHitDetection(int a_iStrikeAttackIndex = 0) { }
 
         #endregion ATTACK CALLBACK
 

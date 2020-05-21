@@ -87,7 +87,7 @@ namespace ns_Mashmo
 
                 case ENEMY_STATE.ALERT:
 
-                    m_AudioSrc.play(GameConsts.AUD_CLIP_PROXIMITY_BOMB_ARMED, false, 1.0f);
+                    m_AudioSrc.play(SoundConst.AUD_CLIP_PROXIMITY_BOMB_ARMED, false, 1.0f);
 
                     m_Animator.SetTrigger(ANIM_TRIGGER_START_DETONATE);
                     m_fCurrTimeInAlertMode = 0.0f;
@@ -109,7 +109,7 @@ namespace ns_Mashmo
                     // on blast the body object should disappear
                     m_ProximityBombBody.SetActive(false);
 
-                    m_AudioSrc.play(GameConsts.AUD_CLIP_PROXIMITY_BOMB_BLAST ,false, 1.0f);
+                    m_AudioSrc.play(SoundConst.AUD_CLIP_PROXIMITY_BOMB_BLAST ,false, 1.0f);
 
                     ///This manages if the bomb is shot it will blast, alerting all enemies without the bomb going into the alert state
                     EnemyManager.ForceAllEnemyAlertOnProximity();
@@ -123,7 +123,7 @@ namespace ns_Mashmo
                     {
                         float l_fDistanceFromPlayer = Vector3.Distance(transform.position, l_v3PlayerPos);
                         float l_fDamageMult = Mathf.Lerp(0.0f, m_fMaxDamagePlayerDamageRadius, l_fDistanceFromPlayer / m_fMaxDamagePlayerDamageRadius);
-                        PlayerManager.InflictDamage((int)(m_iBlastDamageMax * l_fDamageMult));
+                        PlayerManager.InflictDamage((int)(m_iBlastDamageMax * l_fDamageMult), DAMAGE_INFLICTION_TYPE.BLAST);
                     }
                     break;
             }

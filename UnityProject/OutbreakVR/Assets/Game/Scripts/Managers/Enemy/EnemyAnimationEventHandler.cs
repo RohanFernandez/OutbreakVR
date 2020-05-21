@@ -10,11 +10,19 @@ namespace ns_Mashmo
         private EnemyBase m_EnemyBase = null;
 
         /// <summary>
-        /// Anim event called when enemy strikes and should inflict famage on the player
+        /// Anim event called when enemy strikes animation starts
         /// </summary>
-        public void onStrikeAttack()
+        public void onStrikeAttackStart(int a_iAttackIndex = 0)
         {
-            m_EnemyBase.onStrikeAttack();
+            m_EnemyBase.onStrikeAttackStart(a_iAttackIndex);
+        }
+
+        /// <summary>
+        /// Anim event called when enemy strikes and should inflict damage on the player
+        /// </summary>
+        public void onStrikeAttack(int a_iAttackIndex = 0)
+        {
+            m_EnemyBase.onStrikeAttackHitDetection(a_iAttackIndex);
         }
     }
 }

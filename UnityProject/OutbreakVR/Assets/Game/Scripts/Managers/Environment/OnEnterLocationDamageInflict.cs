@@ -39,6 +39,12 @@ namespace ns_Mashmo
         [SerializeField]
         private string m_strTriggerSeqOnEnter = string.Empty;
 
+        /// <summary>
+        /// the damage type to inflict
+        /// </summary>
+        [SerializeField]
+        private DAMAGE_INFLICTION_TYPE m_DmgInflictionType = DAMAGE_INFLICTION_TYPE.FALL_TO_DEATH;
+
         private void Awake()
         {
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_LEVEL_RESTARTED, resetPlayerDetection);
@@ -99,7 +105,7 @@ namespace ns_Mashmo
                 if (m_fTimeCounterCompletedInTriggerArea >= m_fDamageAfterTime)
                 {
                     m_fTimeCounterCompletedInTriggerArea = 0.0f;
-                    PlayerManager.InflictDamage(m_iDamageToInflictAfterTime);
+                    PlayerManager.InflictDamage(m_iDamageToInflictAfterTime, m_DmgInflictionType);
                 }
             }
         }

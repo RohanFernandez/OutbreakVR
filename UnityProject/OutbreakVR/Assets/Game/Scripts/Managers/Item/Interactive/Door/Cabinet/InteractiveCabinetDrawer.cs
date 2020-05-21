@@ -68,7 +68,7 @@ namespace ns_Mashmo
             m_bIsDoorOpen = true;
 
             m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DRAWER_OPEN);
-            m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_DRAWER_OPEN, false, 1.0f);
+            m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_DRAWER_OPEN, false, 1.0f);
         }
 
         /// <summary>

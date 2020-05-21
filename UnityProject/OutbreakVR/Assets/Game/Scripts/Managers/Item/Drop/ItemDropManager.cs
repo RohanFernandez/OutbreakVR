@@ -260,7 +260,7 @@ namespace ns_Mashmo
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_ITEM_PICKED_UP_CONSUMED, l_EventHash);
 
                 ReturnItemToPool(l_ItemDropBase);
-                SoundManager.PlayAudio(GameConsts.AUD_SRC_ITEM_PICKUP, GameConsts.AUD_CLIP_ITEM_PICKUP, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                SoundManager.PlayAudio(SoundConst.AUD_SRC_ITEM_PICKUP, SoundConst.AUD_CLIP_ITEM_PICKUP, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
                 ObjectiveManager.TriggerObjective(l_ItemDropBase.ObjectiveTriggerOnPickup);
             }
         }

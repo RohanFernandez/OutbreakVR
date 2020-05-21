@@ -119,7 +119,7 @@ namespace ns_Mashmo
         /// <param name="a_KeypadEntity"></param>
         public void onKeypadEntityClicked(KeypadEntity a_KeypadEntity)
         {
-            m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_KEYPAD_CLICK, false, 1.0f);
+            m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_KEYPAD_CLICK, false, 1.0f);
 
             m_lstKeypadEntries[m_iEnteredEntryCount].EnteredCode = a_KeypadEntity.KeyPadIndex;
             a_KeypadEntity.disableKeyInteractability();
@@ -130,7 +130,7 @@ namespace ns_Mashmo
             {
                 if (IsKeycodeMatch())
                 {
-                    m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_KEYPAD_CORRECT_CODE, false, 1.0f);
+                    m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_KEYPAD_CORRECT_CODE, false, 1.0f);
 
                     //Unlock door
                     IsDoorLocked = false;
@@ -144,7 +144,7 @@ namespace ns_Mashmo
                 else
                 {
                     //Wrong code entered, reset keypad
-                    m_UnpooledAudSrc.play(GameConsts.AUD_CLIP_KEYPAD_WRONG_CODE, false, 1.0f);
+                    m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_KEYPAD_WRONG_CODE, false, 1.0f);
                     resetKeypad();
                 }
             }

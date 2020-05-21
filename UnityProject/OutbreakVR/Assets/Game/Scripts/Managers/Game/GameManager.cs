@@ -318,7 +318,7 @@ namespace ns_Mashmo
             if (l_iOldEnemyAlertCount == 0 && l_iNewEnemyAlertCount > 0)
             {
                 l_bIsAmbientAudioChanged = true;
-                l_strAmbientAudioToPlay = GameConsts.AUD_CLIP_ALERT_AMBIENT;
+                l_strAmbientAudioToPlay = SoundConst.AUD_CLIP_ALERT_AMBIENT;
             }
             ///Play the background ambient audio
             else if (l_iOldEnemyAlertCount > 0 && l_iNewEnemyAlertCount == 0)
@@ -329,8 +329,8 @@ namespace ns_Mashmo
 
             if (l_bIsAmbientAudioChanged)
             {
-                SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_AMBIENT);
-                SoundManager.PlayAudio(GameConsts.AUD_SRC_AMBIENT, l_strAmbientAudioToPlay, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
+                SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_AMBIENT);
+                SoundManager.PlayAudio(SoundConst.AUD_SRC_AMBIENT, l_strAmbientAudioToPlay, true, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_MUSIC);
             }
         }
 

@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyType: 0
   m_strEnemyID: 
-  m_fMaxDamagePlayerDamageRadius: 2
+  m_fMaxDamagePlayerDamageRadius: 1.7
   m_iMaxLifeCapacityCounter: 100
   m_iCurrentLifeCounter: 100
   m_fWaitTimeAfterKilled: 5
@@ -318,6 +318,9 @@ MonoBehaviour:
   - {fileID: 8543610350206872836}
   m_iStrikeDamage: 7
   m_ManagedAudioSource: {fileID: 8654999578704754798}
+  m_strAudClipIDPunch1: EnemyPunchStrike1
+  m_strAudClipIDPunch2: EnemyPunchStrike2
+  m_strAudClipIDPunch3: EnemyPunchStrike3
 --- !u!195 &5279650863327933769
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -331,7 +334,7 @@ NavMeshAgent:
   m_Speed: 0.75
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0

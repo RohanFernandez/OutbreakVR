@@ -19,9 +19,27 @@ namespace ns_Mashmo
         private UnpooledAudioSource m_ManagedAudioSource = null;
 
         /// <summary>
+        /// The audio clip id of punch 1
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDPunch1 = string.Empty;
+
+        /// <summary>
+        /// The audio clip id of punch 2
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDPunch2 = string.Empty;
+
+        /// <summary>
+        /// The audio clip id of punch 3
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipIDPunch3 = string.Empty;
+
+        /// <summary>
         /// Distance between the player and enemy below which the enemy will start striking
         /// </summary>
-        private float m_fStrikeDistance = 2.0f;
+        private float m_fStrikeDistance = 1.7f;
 
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
@@ -75,10 +93,28 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// the callback on starting to strike
+        /// </summary>
+        public override void onStrikeAttackStart(int a_iStrikeAttackIndex = 0)
+        {
+            base.onStrikeAttackStart();
+
+            //Decide which audio clip to play for punch
+            int l_iRandomIndex = Random.Range(1, 4);
+            string l_strAudCkipPunchId = string.Empty;
+            if (l_iRandomIndex == 1) { l_strAudCkipPunchId = m_strAudClipIDPunch1; }
+            else if (l_iRandomIndex == 2) { l_strAudCkipPunchId = m_strAudClipIDPunch2; }
+            else { l_strAudCkipPunchId = m_strAudClipIDPunch3; }
+
+            m_ManagedAudioSource.play(l_strAudCkipPunchId, false, 1.0f);
+        }
+
+        /// <summary>
         /// on enemy strike attack attempt to hit the player
         /// </summary>
-        public override void onStrikeAttack()
+        public override void onStrikeAttackHitDetection(int a_iStrikeIndex = 0)
         {
+            base.onStrikeAttackHitDetection(a_iStrikeIndex);
             Vector3 l_v3PlayerPosition = PlayerManager.GetPosition();
 
             float l_fDistance = Vector3.Distance(transform.position, l_v3PlayerPosition);
@@ -89,7 +125,7 @@ namespace ns_Mashmo
             if (l_fDistance <= m_fStrikeDistance &&
                 l_v3EnemyToPlayerDot > 0.6f)
             {
-                PlayerManager.InflictDamage(m_iStrikeDamage);
+                PlayerManager.InflictDamage(m_iStrikeDamage, DAMAGE_INFLICTION_TYPE.STRIKE);
             }
         }
     }

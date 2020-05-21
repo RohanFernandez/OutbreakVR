@@ -226,7 +226,7 @@ namespace ns_Mashmo
             //The audio src index that moves between 0 - 1
             // if 0 then play AUD_SRC_GUN_FIRE else 1 then play AUD_SRC_GUN_FIRE_1 else 
             m_bGunFireAudSrcIndex1 = !m_bGunFireAudSrcIndex1;
-            SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? GameConsts.AUD_SRC_GUN_FIRE : GameConsts.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            SoundManager.PlayAudio(m_bGunFireAudSrcIndex1 ? SoundConst.AUD_SRC_GUN_FIRE : SoundConst.AUD_SRC_GUN_FIRE_1, m_strAudClipIDOnShoot, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
 
         }
 
@@ -247,7 +247,7 @@ namespace ns_Mashmo
 
             BulletCountInFirstMag += getBulletsNotInFirstMag();
 
-            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+            SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_GUN_FIRE);
         }
 
         /// <summary>
@@ -267,10 +267,10 @@ namespace ns_Mashmo
 
             m_WeaponHolder.localRotation = Quaternion.identity;
 
-            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+            SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_GUN_FIRE);
             if (canCurrentWeaponBeFired())
             {
-                SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDOnGunCock, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                SoundManager.PlayAudio(SoundConst.AUD_SRC_GUN_FIRE, m_strAudClipIDOnGunCock, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             }
 
             if (m_animatorHands != null)
@@ -283,19 +283,19 @@ namespace ns_Mashmo
         public override void onGunReloadInterrupted()
         {
             base.onGunReloadInterrupted();
-            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+            SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_GUN_FIRE);
         }
 
         public override void onGunReloadBegin()
         {
             base.onGunReloadBegin();
-            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDReloadStarted, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            SoundManager.PlayAudio(SoundConst.AUD_SRC_GUN_FIRE, m_strAudClipIDReloadStarted, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
 
         public override void onGunUnableToFire()
         {
             base.onGunUnableToFire();
-            SoundManager.PlayAudio(GameConsts.AUD_SRC_GUN_FIRE, m_strAudClipIDNoFire, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            SoundManager.PlayAudio(SoundConst.AUD_SRC_GUN_FIRE, m_strAudClipIDNoFire, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
 
         /// <summary>
@@ -392,7 +392,7 @@ namespace ns_Mashmo
                 m_animatorHands.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
             }
 
-            SoundManager.StopAudioSrcWithID(GameConsts.AUD_SRC_GUN_FIRE);
+            SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_GUN_FIRE);
         }
 
         private void Update()

@@ -33,7 +33,7 @@ namespace ns_Mashmo
         {
             m_colTrigger.enabled = false;
             m_TurretDeactivator.onLeverActivate();
-            SoundManager.PlayAudio(GameConsts.AUD_SRC_TURRET_TRIG_ACTIVATE, GameConsts.AUD_CLIP_TURRET_TRIG_ACTIVATE, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+            SoundManager.PlayAudio(SoundConst.AUD_SRC_TURRET_TRIG_ACTIVATE, SoundConst.AUD_CLIP_TURRET_TRIG_ACTIVATE, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
 
         /// <summary>
