@@ -35,12 +35,7 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private string m_strAudClipIDPunch3 = string.Empty;
-
-        /// <summary>
-        /// Distance between the player and enemy below which the enemy will start striking
-        /// </summary>
-        private float m_fStrikeDistance = 1.7f;
-
+        
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
             return ENEMY_ATTACK_TYPE.MELEE;
@@ -76,12 +71,6 @@ namespace ns_Mashmo
         protected override void onAlertStateUpdate()
         {
             base.onAlertStateUpdate();
-        }
-
-        void OnDrawGizmoSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position,m_fMaxDamagePlayerDamageRadius) ;
         }
 
         /// <summary>
@@ -122,7 +111,7 @@ namespace ns_Mashmo
             Vector3 l_v3EnemyToPlayerDirection = Vector3.Normalize(l_v3PlayerPosition - transform.position);
             float l_v3EnemyToPlayerDot = Vector3.Dot(l_v3EnemyToPlayerDirection, transform.forward);
 
-            if (l_fDistance <= m_fStrikeDistance &&
+            if (l_fDistance <= m_fMaxDamagePlayerDamageRadius &&
                 l_v3EnemyToPlayerDot > 0.6f)
             {
                 PlayerManager.InflictDamage(m_iStrikeDamage, DAMAGE_INFLICTION_TYPE.STRIKE);
