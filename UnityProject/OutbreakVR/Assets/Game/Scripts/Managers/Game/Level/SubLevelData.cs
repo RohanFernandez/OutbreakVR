@@ -7,8 +7,7 @@ namespace ns_Mashmo
     public enum SUB_LEVEL_SAVE_LOAD_DATA_TYPE
     {
         PRE_REGISTERED_LEVEL_DATA   = 0,
-        LOAD_FROM_PREVIOUS_LEVEL    = 1,
-        LAST_LEVEL_EXIT             = 2
+        LOAD_FROM_PREVIOUS_LEVEL    = 1
     }
 
 

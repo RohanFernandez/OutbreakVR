@@ -46,7 +46,7 @@ namespace ns_Mashmo
             int l_iSubLevelDataCount = m_lstSubLevels.Count;
             for (int l_iSubLevelDataIndex = 0; l_iSubLevelDataIndex < l_iSubLevelDataCount; l_iSubLevelDataIndex++)
             {
-                m_lstSubLevels[l_iSubLevelDataIndex].SubLevelDataIndex = l_iSubLevelDataIndex;
+                m_lstSubLevels[l_iSubLevelDataIndex].SubLevelDataIndex = l_iSubLevelDataIndex + 1;
             }
         }
 
@@ -56,9 +56,18 @@ namespace ns_Mashmo
         [SerializeField]
         private List<SubLevelData> m_lstSubLevels = null;
         public List<SubLevelData> LstSubLevels
-
         {
             get { return m_lstSubLevels; }
+        }
+
+        /// <summary>
+        /// The level to load on the last sublevel is complete
+        /// </summary>
+        [SerializeField]
+        private string m_strLoadNextLevelOnComplete = string.Empty;
+        public string LoadNextLevelOnComplete
+        {
+            get { return m_strLoadNextLevelOnComplete; }
         }
 
         /// <summary>

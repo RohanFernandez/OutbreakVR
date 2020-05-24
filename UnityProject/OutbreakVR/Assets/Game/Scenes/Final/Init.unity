@@ -10266,6 +10266,7 @@ MonoBehaviour:
         m_iPlayerHealth: 100
       m_strLvlSpecificAmbientAudioClipID: HomeAmbient
       m_AmbientAudPlayCriteria: 2
+    m_strLoadNextLevelOnComplete: 
   - m_strLevelName: Testing1
     m_iLevelDataIndex: 0
     m_strSceneName: Testing1
@@ -10303,6 +10304,7 @@ MonoBehaviour:
         m_iPlayerHealth: 100
       m_strLvlSpecificAmbientAudioClipID: DefaultAmbient
       m_AmbientAudPlayCriteria: 2
+    m_strLoadNextLevelOnComplete: 
   - m_strLevelName: Cinematic1
     m_iLevelDataIndex: 0
     m_strSceneName: Cinematic1
@@ -10340,6 +10342,7 @@ MonoBehaviour:
         m_iPlayerHealth: 0
       m_strLvlSpecificAmbientAudioClipID: 
       m_AmbientAudPlayCriteria: 1
+    m_strLoadNextLevelOnComplete: Cinematic2_000
   - m_strLevelName: Cinematic2
     m_iLevelDataIndex: 0
     m_strSceneName: Cinematic2
@@ -10377,6 +10380,7 @@ MonoBehaviour:
         m_iPlayerHealth: 0
       m_strLvlSpecificAmbientAudioClipID: 
       m_AmbientAudPlayCriteria: 1
+    m_strLoadNextLevelOnComplete: Level1_100
   - m_strLevelName: Level1
     m_iLevelDataIndex: 0
     m_strSceneName: Level1
@@ -10744,39 +10748,7 @@ MonoBehaviour:
         m_iPlayerHealth: 0
       m_strLvlSpecificAmbientAudioClipID: AmbientAudio
       m_AmbientAudPlayCriteria: 4
-    - m_strSubLevelName: 111
-      m_iSubLevelDataIndex: 0
-      m_bIsCheckpointLevel: 0
-      m_SubLevelSaveEntryType: 666
-      m_LoadDataType: 2
-      m_bUsePlayerPosition: 0
-      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
-      m_PlayerStateOnStart: 2
-      m_SavedData:
-        m_WeaponInventory:
-          m_MeleeWeaponInfo:
-            m_WeaponType: 1
-            m_iTotalBulletsCount: 0
-            m_iBulletInFirstMag: 0
-          m_PrimaryWeaponInfo:
-            m_WeaponType: 0
-            m_iTotalBulletsCount: 0
-            m_iBulletInFirstMag: 0
-          m_SecondaryWeaponInfo:
-            m_WeaponType: 0
-            m_iTotalBulletsCount: 0
-            m_iBulletInFirstMag: 0
-          m_CurrentWeaponCateogoryType: 0
-        m_ItemInventory:
-          m_HelmetStructure:
-            m_iHelmetStrength: 0
-            m_bIsHelmetCarried: 0
-          m_iPowerNodeCount: 0
-          m_iC4Count: 0
-          m_iBloodBagCount: 0
-        m_iPlayerHealth: 0
-      m_strLvlSpecificAmbientAudioClipID: AmbientAudio
-      m_AmbientAudPlayCriteria: 4
+    m_strLoadNextLevelOnComplete: Credits_000
   - m_strLevelName: Training
     m_iLevelDataIndex: 0
     m_strSceneName: Training
@@ -10814,14 +10786,19 @@ MonoBehaviour:
         m_iPlayerHealth: 69
       m_strLvlSpecificAmbientAudioClipID: 
       m_AmbientAudPlayCriteria: 1
-    - m_strSubLevelName: 101
+    m_strLoadNextLevelOnComplete: 
+  - m_strLevelName: Credits
+    m_iLevelDataIndex: 0
+    m_strSceneName: Credits
+    m_lstSubLevels:
+    - m_strSubLevelName: 000
       m_iSubLevelDataIndex: 0
       m_bIsCheckpointLevel: 0
       m_SubLevelSaveEntryType: 666
-      m_LoadDataType: 2
-      m_bUsePlayerPosition: 0
-      m_v3PlayerPosition: {x: 0, y: 0, z: 0}
-      m_PlayerStateOnStart: 2
+      m_LoadDataType: 0
+      m_bUsePlayerPosition: 1
+      m_v3PlayerPosition: {x: 3.151314, y: 0.8799983, z: -8.196774}
+      m_PlayerStateOnStart: 1
       m_SavedData:
         m_WeaponInventory:
           m_MeleeWeaponInfo:
@@ -10830,23 +10807,24 @@ MonoBehaviour:
             m_iBulletInFirstMag: 0
           m_PrimaryWeaponInfo:
             m_WeaponType: 0
-            m_iTotalBulletsCount: 0
-            m_iBulletInFirstMag: 0
+            m_iTotalBulletsCount: 30
+            m_iBulletInFirstMag: 5
           m_SecondaryWeaponInfo:
-            m_WeaponType: 3
+            m_WeaponType: 0
             m_iTotalBulletsCount: 25
             m_iBulletInFirstMag: 4
           m_CurrentWeaponCateogoryType: 0
         m_ItemInventory:
           m_HelmetStructure:
-            m_iHelmetStrength: 0
+            m_iHelmetStrength: 1
             m_bIsHelmetCarried: 0
           m_iPowerNodeCount: 0
           m_iC4Count: 0
           m_iBloodBagCount: 0
         m_iPlayerHealth: 69
       m_strLvlSpecificAmbientAudioClipID: 
-      m_AmbientAudPlayCriteria: 0
+      m_AmbientAudPlayCriteria: 1
+    m_strLoadNextLevelOnComplete: 
 --- !u!1 &657268215
 GameObject:
   m_ObjectHideFlags: 0

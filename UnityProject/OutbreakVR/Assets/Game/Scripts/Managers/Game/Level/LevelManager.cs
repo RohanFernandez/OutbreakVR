@@ -61,7 +61,7 @@ namespace ns_Mashmo
             int l_iLevelDataCount = m_lstLevelData.Capacity;
             for (int l_iLevelDataIndex = 0; l_iLevelDataIndex < l_iLevelDataCount; l_iLevelDataIndex++)
             {
-                m_lstLevelData[l_iLevelDataIndex].initialize(l_iLevelDataIndex);
+                m_lstLevelData[l_iLevelDataIndex].initialize(l_iLevelDataIndex + 1);
             }
         }
 
@@ -154,108 +154,189 @@ namespace ns_Mashmo
         private void onLevelObjectiveGroupCompleted(EventHash a_EventHash)
         {
             string l_strLevelNameOfObjectiveCompleted = a_EventHash[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
-
             LevelData l_CurrentLevelData = null;
             SubLevelData l_CurrentSubLevelData = null;
+            string l_strNextLevelToLoad = string.Empty;
+
             if (!s_Instance.getLevelAndSubLevelDataFromName(l_strLevelNameOfObjectiveCompleted, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
             {
                 Debug.LogError("LevelManager::getLevelAndSubLevelDataFromName:: Error retrieving level name :: '" + l_strLevelNameOfObjectiveCompleted + "'");
                 return;
             }
-
-            string l_strNextLevelToLoad = string.Empty;
-
-            int l_iSubLevelDataMaxIndex = l_CurrentLevelData.LstSubLevels.Count - 1 ;
-            int l_iLevelDataMaxIndex = m_lstLevelData.Count - 1;
-            bool l_bIsNextLevelToLoadInGameplay = false;
-
-            ///if the sublevel completed is not the last sublevel in the level data, go to the next sub level
-            ///else go to the 1st sublevel data in the next level
-            if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataMaxIndex)
+            //if last sub level in level, check if the next level to load exists, else go to home
+            else if (l_CurrentLevelData.LstSubLevels.Count == l_CurrentSubLevelData.SubLevelDataIndex)
             {
-                l_bIsNextLevelToLoadInGameplay = true;
-                l_strNextLevelToLoad = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
-            }
-            else
-            {
-                if (((l_CurrentSubLevelData.SubLevelDataIndex + 1) == l_iSubLevelDataMaxIndex) &&
-                        (l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+                LevelData l_NextLevelData = null;
+                SubLevelData l_NextSubLevelData = null;
+                if (s_Instance.getLevelAndSubLevelDataFromName(l_CurrentLevelData.LoadNextLevelOnComplete, ref l_NextLevelData, ref l_NextSubLevelData))
                 {
-                    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
-
-                    string l_strSubLevelInLevelName = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
-
-                    ///Checks if it is the last level in the game, if true, the dispatch ON_GAME_COMPLETED_EVENT
-                    if (l_strSubLevelInLevelName.Equals(GameConsts.STATE_NAME_LAST_LEVEL, System.StringComparison.OrdinalIgnoreCase))
-                    {
-                        LastCheckpointLevel = string.Empty;
-
-                        EventHash l_EventHash = EventManager.GetEventHashtable();
-                        l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strSubLevelInLevelName);
-                        EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_COMPLETED, l_EventHash);
-                    }
-                }
-                else if ((l_CurrentSubLevelData.SubLevelDataIndex == l_iSubLevelDataMaxIndex) &&
-                        ((l_CurrentLevelData.LevelDataIndex + 1) <= (l_iLevelDataMaxIndex)))
-                {
-                    l_bIsNextLevelToLoadInGameplay = true;
-                    LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
-                    l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.LstSubLevels[0].SubLevelName;
+                    l_strNextLevelToLoad = l_CurrentLevelData.LoadNextLevelOnComplete;
                 }
                 else
                 {
-                    Debug.LogError("LevelManager::getLevelAndSubLevelDataFromName:: UNDEFINED ");
+                    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
                 }
-            }
 
-            ///Save current level progress
-            if (l_bIsNextLevelToLoadInGameplay)
-            {
-                LevelData l_LevelDataToSave = null;
-                SubLevelData l_SubLevelDataToSave = null;
-                if (getLevelAndSubLevelDataFromName(l_strNextLevelToLoad, ref l_LevelDataToSave, ref l_SubLevelDataToSave))
+                ///Checks if it is the last level in the game, if true, the dispatch ON_GAME_COMPLETED_EVENT
+                if (l_strLevelNameOfObjectiveCompleted.Equals(GameConsts.STATE_NAME_LAST_LEVEL, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    //Save current player data and weapon data to next level data, so that when next level starts it uses the previous level on end data
-                    //Only happens if the next level is not PRE_REGISTERED_LEVEL_DATA which means that the next level should start with set data
-                    if (l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL ||
-                        l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT)
-                    {
-                        //Save Weapon Data
-                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_MeleeWeaponInfo);
-                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_PrimaryWeaponInfo);
-                        WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_SecondaryWeaponInfo);
+                    LastCheckpointLevel = string.Empty;
 
-                        l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
-
-                        //Save Player Data
-                        l_SubLevelDataToSave.SavedData.m_iPlayerHealth = PlayerManager.HealthMeter;
-                        //l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
-
-                        //Save Inventory Data
-                        InventoryManager.SetInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
-                    }
-
-                    if (l_SubLevelDataToSave.IsCheckpoint)
-                    {
-                        if (l_SubLevelDataToSave.SubLevelSaveEntryKeyType == PLAYER_KEYS._OUTBREAK_NONE
-                            && l_SubLevelDataToSave.LoadDataType != SUB_LEVEL_SAVE_LOAD_DATA_TYPE.PRE_REGISTERED_LEVEL_DATA)
-                        {
-                            Debug.LogError("LevelManager::onLevelObjectiveGroupCompleted:: Checkpoint level '" + l_strNextLevelToLoad + "' does not have a valid Save Entry Key type.");
-                        }
-                        else
-                        {
-                            LastCheckpointLevel = l_strNextLevelToLoad;
-                            if (l_SubLevelDataToSave.SubLevelSaveEntryKeyType != PLAYER_KEYS._OUTBREAK_NONE)
-                            {
-                                saveToPlayerPrefs(l_SubLevelDataToSave);
-                            }
-                        }
-                    }
+                    EventHash l_EventHash = EventManager.GetEventHashtable();
+                    l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strLevelNameOfObjectiveCompleted);
+                    EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_COMPLETED, l_EventHash);
+                }
+            }
+            /// go to the next sublevel in the same level
+            else
+            {
+                LevelData l_NextLevelData = null;
+                SubLevelData l_NextSubLevelData = null;
+                l_strNextLevelToLoad = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex].SubLevelName;
+                if (!s_Instance.getLevelAndSubLevelDataFromName(l_strNextLevelToLoad, ref l_NextLevelData, ref l_NextSubLevelData))
+                {
+                    l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
                 }
             }
 
+
+            //Save start of next level if it is SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL
+            LevelData l_LevelDataToSave = null;
+            SubLevelData l_SubLevelDataToSave = null;
+            if (getLevelAndSubLevelDataFromName(l_strNextLevelToLoad, ref l_LevelDataToSave, ref l_SubLevelDataToSave))
+            {
+                //Save current player data and weapon data to next level data, so that when next level starts it uses the previous level on end data
+                //Only happens if the next level is not PRE_REGISTERED_LEVEL_DATA which means that the next level should start with set data
+                if (l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL)
+                {
+                    //Save Weapon Data
+                    WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_MeleeWeaponInfo);
+                    WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_PrimaryWeaponInfo);
+                    WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_SecondaryWeaponInfo);
+
+                    l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
+
+                    //Save Player Data
+                    l_SubLevelDataToSave.SavedData.m_iPlayerHealth = PlayerManager.HealthMeter;
+
+                    //Save Inventory Data
+                    InventoryManager.SetInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
+                }
+
+                if (l_SubLevelDataToSave.IsCheckpoint)
+                {
+                    LastCheckpointLevel = l_strNextLevelToLoad;
+                    if (l_SubLevelDataToSave.SubLevelSaveEntryKeyType != PLAYER_KEYS._OUTBREAK_NONE)
+                    {
+                        saveToPlayerPrefs(l_SubLevelDataToSave);
+                    }
+                }
+            }
             GoToLevel(l_strNextLevelToLoad);
         }
+
+
+            //string l_strLevelNameOfObjectiveCompleted = a_EventHash[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+            //LevelData l_CurrentLevelData = null;
+            //SubLevelData l_CurrentSubLevelData = null;
+            //if (!s_Instance.getLevelAndSubLevelDataFromName(l_strLevelNameOfObjectiveCompleted, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
+            //{
+            //    Debug.LogError("LevelManager::getLevelAndSubLevelDataFromName:: Error retrieving level name :: '" + l_strLevelNameOfObjectiveCompleted + "'");
+            //    return;
+            //}
+
+            //string l_strNextLevelToLoad = string.Empty;
+
+            //int l_iSubLevelDataMaxIndex = l_CurrentLevelData.LstSubLevels.Count - 1 ;
+            //int l_iLevelDataMaxIndex = m_lstLevelData.Count - 1;
+            //bool l_bIsNextLevelToLoadInGameplay = false;
+
+            /////if the sublevel completed is not the last sublevel in the level data, go to the next sub level
+            /////else go to the 1st sublevel data in the next level
+            //if ((l_CurrentSubLevelData.SubLevelDataIndex + 1) < l_iSubLevelDataMaxIndex)
+            //{
+            //    l_bIsNextLevelToLoadInGameplay = true;
+            //    l_strNextLevelToLoad = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
+            //}
+            //else
+            //{
+            //    if (((l_CurrentSubLevelData.SubLevelDataIndex + 1) == l_iSubLevelDataMaxIndex) &&
+            //            (l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+            //    {
+            //        l_strNextLevelToLoad = GameConsts.STATE_NAME_HOME;
+
+            //        string l_strSubLevelInLevelName = l_CurrentLevelData.LevelName + "_" + l_CurrentLevelData.LstSubLevels[l_CurrentSubLevelData.SubLevelDataIndex + 1].SubLevelName;
+
+            //        ///Checks if it is the last level in the game, if true, the dispatch ON_GAME_COMPLETED_EVENT
+            //        if (l_strSubLevelInLevelName.Equals(GameConsts.STATE_NAME_LAST_LEVEL, System.StringComparison.OrdinalIgnoreCase))
+            //        {
+            //            LastCheckpointLevel = string.Empty;
+
+            //            EventHash l_EventHash = EventManager.GetEventHashtable();
+            //            l_EventHash.Add(GameEventTypeConst.ID_GAME_STATE_ID, l_strSubLevelInLevelName);
+            //            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_COMPLETED, l_EventHash);
+            //        }
+            //    }
+            //    else if ((l_CurrentSubLevelData.SubLevelDataIndex == l_iSubLevelDataMaxIndex) &&
+            //            ((l_CurrentLevelData.LevelDataIndex + 1) <= (l_iLevelDataMaxIndex)))
+            //    {
+            //        l_bIsNextLevelToLoadInGameplay = true;
+            //        LevelData l_NextLevelData = m_lstLevelData[(l_CurrentLevelData.LevelDataIndex + 1)];
+            //        l_strNextLevelToLoad = l_NextLevelData.LevelName + "_" + l_NextLevelData.LstSubLevels[0].SubLevelName;
+            //    }
+            //    else
+            //    {
+            //        Debug.LogError("LevelManager::getLevelAndSubLevelDataFromName:: UNDEFINED ");
+            //    }
+            //}
+
+            /////Save current level progress
+            //if (l_bIsNextLevelToLoadInGameplay)
+            //{
+            //    LevelData l_LevelDataToSave = null;
+            //    SubLevelData l_SubLevelDataToSave = null;
+            //    if (getLevelAndSubLevelDataFromName(l_strNextLevelToLoad, ref l_LevelDataToSave, ref l_SubLevelDataToSave))
+            //    {
+            //        //Save current player data and weapon data to next level data, so that when next level starts it uses the previous level on end data
+            //        //Only happens if the next level is not PRE_REGISTERED_LEVEL_DATA which means that the next level should start with set data
+            //        if (l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL ||
+            //            l_SubLevelDataToSave.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT)
+            //        {
+            //            //Save Weapon Data
+            //            WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_MeleeWeaponInfo);
+            //            WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_PrimaryWeaponInfo);
+            //            WeaponManager.RetrieveWeaponInfo(l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_SecondaryWeaponInfo);
+
+            //            l_SubLevelDataToSave.SavedData.m_WeaponInventory.m_CurrentWeaponCateogoryType = WeaponManager.CurrentWeaponCategoryType;
+
+            //            //Save Player Data
+            //            l_SubLevelDataToSave.SavedData.m_iPlayerHealth = PlayerManager.HealthMeter;
+            //            //l_SubLevelDataToSave.SavedData.m_v3PlayerPosition = PlayerManager.GetPosition();
+
+            //            //Save Inventory Data
+            //            InventoryManager.SetInventoryInfo(ref l_SubLevelDataToSave.SavedData.m_ItemInventory);
+            //        }
+
+            //        if (l_SubLevelDataToSave.IsCheckpoint)
+            //        {
+            //            if (l_SubLevelDataToSave.SubLevelSaveEntryKeyType == PLAYER_KEYS._OUTBREAK_NONE
+            //                && l_SubLevelDataToSave.LoadDataType != SUB_LEVEL_SAVE_LOAD_DATA_TYPE.PRE_REGISTERED_LEVEL_DATA)
+            //            {
+            //                Debug.LogError("LevelManager::onLevelObjectiveGroupCompleted:: Checkpoint level '" + l_strNextLevelToLoad + "' does not have a valid Save Entry Key type.");
+            //            }
+            //            else
+            //            {
+            //                LastCheckpointLevel = l_strNextLevelToLoad;
+            //                if (l_SubLevelDataToSave.SubLevelSaveEntryKeyType != PLAYER_KEYS._OUTBREAK_NONE)
+            //                {
+            //                    saveToPlayerPrefs(l_SubLevelDataToSave);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //GoToLevel(l_strNextLevelToLoad);
+            //}
 
         public static bool GetLevelAndSubLevelDataFromName(string a_strLevelName, ref LevelData a_refLevelData, ref SubLevelData a_refSubLevelData)
         {
@@ -316,8 +397,7 @@ namespace ns_Mashmo
                 for (int l_iSubLevelIndex = 0; l_iSubLevelIndex < l_iSubLevelCount; l_iSubLevelIndex++)
                 {
                     SubLevelData l_SubLevelData = l_CurrentLevelData.LstSubLevels[l_iSubLevelIndex];
-                    if (l_SubLevelData.IsCheckpoint && (l_SubLevelData.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL ||
-                        l_SubLevelData.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LAST_LEVEL_EXIT))
+                    if (l_SubLevelData.IsCheckpoint && (l_SubLevelData.LoadDataType == SUB_LEVEL_SAVE_LOAD_DATA_TYPE.LOAD_FROM_PREVIOUS_LEVEL))
                     {
                         string l_strSavedData = PlayerDataManager.GetString(l_SubLevelData.SubLevelSaveEntryKeyType);
                         if (!string.IsNullOrEmpty(l_strSavedData))
