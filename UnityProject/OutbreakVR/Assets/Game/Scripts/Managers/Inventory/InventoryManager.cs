@@ -181,7 +181,7 @@ namespace ns_Mashmo
             /// Set helmet data
             InventoryItem l_InventoryItem = null;
             if (s_Instance.m_dictInventory.TryGetValue(INVENTORY_ITEM_ID.INVENTORY_HELMET, out l_InventoryItem))
-            {;
+            {
                 InventoryHelmet l_HelmetInventoryItem = (InventoryHelmet)l_InventoryItem;
                 l_HelmetInventoryItem.CurrentStrength = a_SavedItemInventory.m_HelmetStructure.m_iHelmetStrength;
                 l_HelmetInventoryItem.ItemsInInventory = a_SavedItemInventory.m_HelmetStructure.m_bIsHelmetCarried ? 1 : 0;

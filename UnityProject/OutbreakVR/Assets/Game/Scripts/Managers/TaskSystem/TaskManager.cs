@@ -165,21 +165,26 @@ namespace ns_Mashmo
                 return;
             }
 
+            if (m_CurrentTaskList != null)
+            {
+                ExecuteSequence(m_CurrentTaskList.m_strName + TASK_POSTFIX_ON_LIST_END);
+            }
+
             TaskList l_TaskList = null;
             if (m_dictLevelTaskList.TryGetValue(a_strLevelName, out l_TaskList))
             {
-                if (m_CurrentTaskList != null)
-                {
-                    ExecuteSequence(m_CurrentTaskList.m_strName + TASK_POSTFIX_ON_LIST_END);
-                }
-
                 m_CurrentTaskList = l_TaskList;
                 Debug.Log("<color=BLUE>TaskManager::setTaskList:: Setting task list '" + a_strLevelName + "'</color>");
-                ExecuteSequence(a_strLevelName + TASK_POSTFIX_ON_LIST_START);
             }
             else
             {
+                m_CurrentTaskList = null;
                 Debug.Log("<color=ORANGE>TaskManager::setTaskList:: Task list for level type '"+ a_strLevelName + "' does not exist</color>");
+            }
+
+            if (m_CurrentTaskList != null)
+            {
+                ExecuteSequence(m_CurrentTaskList.m_strName + TASK_POSTFIX_ON_LIST_START);
             }
         }
 

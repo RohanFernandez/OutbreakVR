@@ -75,35 +75,38 @@ namespace ns_Mashmo
             Debug.Log("<color=BLUE> ManagedState::onStateExit :: </color> Next State: " + s_Instance.m_strCurrentState + "   , Ending State : " + s_Instance.m_strLastState);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_ENDED, l_EventHash);
 
-            //Dispatch event on new level is loaded
-            if (!string.IsNullOrEmpty(a_strLevelName))
-            {
-                EventHash l_Hashtable = EventManager.GetEventHashtable();
-                l_Hashtable.Add(GameEventTypeConst.ID_NEW_LEVEL, a_strLevelName);
-                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, l_Hashtable);
-            }
-
-            GameManager.LoadScene(a_strSceneName, s_Instance.onLevelSceneLoadComplete);
+            GameManager.LoadScene(a_strSceneName, () => { s_Instance.onLevelSceneLoadComplete(a_strLevelName); });
 
             return true;
         }
 
+
         /// <summary>
         /// Callback on the level load scene complete
         /// </summary>
-        private void onLevelSceneLoadComplete()
+        private void onLevelSceneLoadComplete(string a_strCurrentLevelName)
         {
+            //Dispatch event on new level is loaded
+            if (!string.IsNullOrEmpty(a_strCurrentLevelName))
+            {
+                EventHash l_Hashtable = EventManager.GetEventHashtable();
+                l_Hashtable.Add(GameEventTypeConst.ID_NEW_LEVEL, a_strCurrentLevelName);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_CHANGED, l_Hashtable);
+            }
+
             ManagedState l_NewManagedState = getRegisteredManagedState(m_strCurrentState);
             if (l_NewManagedState != null)
             {
-                l_NewManagedState.onStateEnter(m_strLastState);
+                l_NewManagedState.onStateEnter(m_strCurrentState);
             }
-
-            EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_strCurrentState);
-            l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_strLastState);
-            Debug.Log("<color=BLUE> ManagedState::onStateEnter :: </color> Entering State: " + s_Instance.m_strCurrentState + "   , Old State : " + s_Instance.m_strLastState);
-            EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, l_EventHash);
+            else
+            {
+                EventHash l_EventHash = EventManager.GetEventHashtable();
+                l_EventHash.Add(GameEventTypeConst.ID_NEW_GAME_STATE, m_strCurrentState);
+                l_EventHash.Add(GameEventTypeConst.ID_OLD_GAME_STATE, m_strLastState);
+                Debug.Log("<color=BLUE> ManagedState::onStateEnter :: </color> Entering State: " + s_Instance.m_strCurrentState + "   , Old State : " + s_Instance.m_strLastState);
+                EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAME_STATE_STARTED, l_EventHash);
+            }
         }
     }
 }

@@ -38,11 +38,7 @@ namespace ns_Mashmo
                 onInitializationSuccessful();
             }
             
-
-
             //Get username and userid
-
-            
 
             //Check internet connection
 
@@ -53,7 +49,6 @@ namespace ns_Mashmo
             //Get player data
 
             // Add player initilization and platform initializations
-            
         }
 
         /// <summary>

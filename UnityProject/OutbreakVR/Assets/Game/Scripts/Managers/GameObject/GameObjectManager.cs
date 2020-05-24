@@ -55,13 +55,9 @@ namespace ns_Mashmo
                 return null;
             }
 
-            if (!s_Instace.m_dictGameObjectIDs.TryGetValue(a_strGameObjectID, out l_GameObj))
-            {
-                Debug.Log("<color=ORANGE>GameObjectManager::GetGameObjectById:: </color> Failed to find registered gameobject with ID: " + a_strGameObjectID);
-                return null;
-            }
+            s_Instace.m_dictGameObjectIDs.TryGetValue(a_strGameObjectID, out l_GameObj);
 
-            return l_GameObj.gameObject;
+            return l_GameObj == null ? null :l_GameObj.gameObject;
         }
 
         /// <summary>

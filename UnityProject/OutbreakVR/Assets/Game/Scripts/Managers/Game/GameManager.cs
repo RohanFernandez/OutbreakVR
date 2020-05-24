@@ -116,9 +116,7 @@ namespace ns_Mashmo
         {
             UI_LoadingPanel.Show();
             SystemManager.LoadScene(a_strSceneName,
-                a_actionOnLoadComplete += () => {
-                    UI_LoadingPanel.Hide();
-                });
+                a_actionOnLoadComplete += UI_LoadingPanel.Hide);
         }
 
         /// <summary>
