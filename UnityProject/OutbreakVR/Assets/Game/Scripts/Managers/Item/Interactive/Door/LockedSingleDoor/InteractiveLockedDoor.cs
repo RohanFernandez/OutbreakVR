@@ -94,7 +94,6 @@ namespace ns_Mashmo
         {
             base.resetValues();
             IsDoorLocked = true;
-
             resetKeypad();
         }
 
@@ -125,7 +124,6 @@ namespace ns_Mashmo
             a_KeypadEntity.disableKeyInteractability();
 
             m_iEnteredEntryCount++;
-
             if (m_iMaxEntries == m_iEnteredEntryCount)
             {
                 if (IsKeycodeMatch())
