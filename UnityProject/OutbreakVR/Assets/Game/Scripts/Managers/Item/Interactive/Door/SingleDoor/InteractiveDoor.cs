@@ -37,6 +37,18 @@ namespace ns_Mashmo
         private InteractiveDoorProximityDetector m_DoorProximityDetector = null;
 
         /// <summary>
+        /// The audio clip to play on door opening
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDoorOpening = "AudClip_DoorOpen";
+
+        /// <summary>
+        /// The audio clip to play on door closing
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipDoorClosing = "AudClip_DoorClose";
+
+        /// <summary>
         /// Is the door locked, if true the door cannot be opened
         /// </summary>
         [SerializeField]
@@ -121,7 +133,7 @@ namespace ns_Mashmo
 
             ///Is player facing the door so the door has to be opened in side 1, else its in side 2
             bool l_bIsPlayerInSide1 = Vector3.Dot(l_v3PlayerToDoorDirection, (m_InteractiveDoorHandle.transform.position - m_goDoorSide1.transform.position).normalized) > 0.3f;
-
+            
             if (l_bIsPlayerInSide1)
             {
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_SIDE_1);
@@ -131,7 +143,7 @@ namespace ns_Mashmo
                 m_animatorDoorControl.SetTrigger(ANIM_TRIGGER_DOOR_OPEN_SIDE_2);
             }
 
-            m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_DOOR_OPEN, false, 1.0f);
+            m_UnpooledAudSrc.play(m_strAudClipDoorOpening, false, 1.0f);
         }
 
         /// <summary>
@@ -148,7 +160,7 @@ namespace ns_Mashmo
 
                 if (!a_bIsReset)
                 {
-                    m_UnpooledAudSrc.play(SoundConst.AUD_CLIP_DOOR_CLOSE, false, 1.0f);
+                    m_UnpooledAudSrc.play(m_strAudClipDoorClosing, false, 1.0f);
                 }
             }
         }
