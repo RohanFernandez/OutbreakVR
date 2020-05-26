@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListTraining
   m_EditorClassIdentifier: 
   m_strName: Training
-  m_iSequenceCount: 4
+  m_iSequenceCount: 14
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_OnListStart
@@ -37,33 +37,11 @@ MonoBehaviour:
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_100_OnBegin
-    m_iTaskCount: 21
+    m_iTaskCount: 25
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskItem
       m_iAttributeCount: 9
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 1
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HELMET_Locker_Item
-      - m_strKey: ItemType
-        m_strValue: ITEM_HELMET
-      - m_strKey: ObjectiveTrigger
-        m_strValue: TestTriggerID1
-      - m_strKey: StrengthPercentage
-        m_strValue: 100
-      - m_strKey: Position
-        m_strValue: -5.824,0.779,-7.222
-      - m_strKey: Rotation
-        m_strValue: -9,90,0.0
-    - m_strTaskID: 1
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 1
@@ -77,6 +55,8 @@ MonoBehaviour:
         m_strValue: ITEM_FN57
       - m_strKey: BulletCount
         m_strValue: 17
+      - m_strKey: ObjectiveTrigger
+        m_strValue: ObjectivePickupHandgun_Level_105
       - m_strKey: Position
         m_strValue: -2.6265,-2.4402,22.9345
       - m_strKey: Rotation
@@ -403,7 +383,7 @@ MonoBehaviour:
         m_strValue: 0.0,-252.655,0.0
     - m_strTaskID: 0
       m_strTaskType: TaskUserInterface
-      m_iAttributeCount: 4
+      m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 0
@@ -413,6 +393,8 @@ MonoBehaviour:
         m_strValue: Show
       - m_strKey: UI
         m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: Welcome
     - m_strTaskID: 1
       m_strTaskType: TaskWait
       m_iAttributeCount: 3
@@ -422,7 +404,295 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskWait
       - m_strKey: WaitTime
-        m_strValue: 5.0
+        m_strValue: 8.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: ObjectiveTrigger_Level_101
+    - m_strTaskID: 1
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: Movement
+    - m_strTaskID: 2
+      m_strTaskType: TaskPlayer
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskPlayer
+      - m_strKey: Code
+        m_strValue: SetPlayerState
+      - m_strKey: PlayerState
+        m_strValue: IN_GAME_MOVEMENT
+    - m_strTaskID: 3
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 8.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_100_OnEnd
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: ObjectiveTrigger_Level_101
+    - m_strTaskID: 1
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_101_OnBegin
+    m_iTaskCount: 4
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HELMET_Locker_Item
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: ObjectiveTrigger
+        m_strValue: ObjectivePickupHelmet_Level_102
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: -5.824,0.779,-7.222
+      - m_strKey: Rotation
+        m_strValue: -9,90,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: Helmet
+    - m_strTaskID: 3
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 8.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_101_OnEnd
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_102_OnBegin
+    m_iTaskCount: 5
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_LockedDoorPart1
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_LockedDoorPart2
+    - m_strTaskID: 3
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: LockedDoor
+    - m_strTaskID: 4
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 8.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_102_OnEnd
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: ObjectiveTrigger_Level_103
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_LockedDoor
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_103_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: WalkToShootingRange
+    - m_strTaskID: 1
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 4.0
     - m_strTaskID: 2
       m_strTaskType: TaskUserInterface
       m_iAttributeCount: 4
@@ -436,6 +706,120 @@ MonoBehaviour:
       - m_strKey: UI
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
-    m_strSequenceID: Training_100_OnEnd
+    m_strSequenceID: Training_103_OnEnd
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_LockedDoor
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_104_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: PickupHandgun
+    - m_strTaskID: 1
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 4.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_104_OnEnd
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_105_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Show
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+      - m_strKey: Code
+        m_strValue: PickupHandgunBullets
+    - m_strTaskID: 1
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 4.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskUserInterface
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskUserInterface
+      - m_strKey: Command
+        m_strValue: Hide
+      - m_strKey: UI
+        m_strValue: TRAINING_TIPS
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Training_105_OnEnd
     m_iTaskCount: 0
     m_lstTasks: []

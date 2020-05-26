@@ -45,7 +45,7 @@ namespace ns_Mashmo
         /// <summary>
         /// displays the UI by activating the gameobject
         /// </summary>
-        public virtual void show()
+        public virtual void show(string a_strCode = "")
         {
             gameObject.SetActive(true);
         }

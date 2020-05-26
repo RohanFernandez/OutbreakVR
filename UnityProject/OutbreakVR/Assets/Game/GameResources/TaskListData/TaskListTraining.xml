@@ -8,14 +8,14 @@
 		<Task ID="0" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 
+<!-- Training_100 START-->
 
 	<Sequence ID = "Training_100_OnBegin" >
 	    <!-- Helmet -->
-	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="TestTriggerID1" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/>
-		
+	    <!--Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="ObjectivePickupHelmet_Level_102" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/-->
 		
 		<!-- Weapons -->
-	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Bunker_Item" ItemType="ITEM_FN57" BulletCount="17" Position="-2.6265,-2.4402,22.9345" Rotation="-0.105,127.388,-90.926"/>
+	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Bunker_Item" ItemType="ITEM_FN57" BulletCount="17" ObjectiveTrigger="ObjectivePickupHandgun_Level_105" Position="-2.6265,-2.4402,22.9345" Rotation="-0.105,127.388,-90.926"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Bunker_Item" ItemType="ITEM_AK47" BulletCount="30" Position="-4.4431,-2.119998,26.445" Rotation="-77.244,-82.80801,-12.326"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Thompson_Bunker_Item" ItemType="ITEM_THOMPSON" BulletCount="30" Position="0.953,-3.16,26.335" Rotation="-4.25,27.066,-91.815"/>
 		
@@ -40,14 +40,102 @@
 		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="Bullet_Assault_Test_Item9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="-2.79,-2.048,22.91" Rotation="0.0,-252.655,0.0"/>
 		
 		
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="5.0"/>
+		
+		<!-- Objective 1, welcome -->
+		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Welcome"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 		
-		
+		<!-- Objective 2, movement -->
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_101" />
+		<Task ID="1" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Movement"/>
+		<Task ID="2" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="8.0"/>
+		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_100_OnEnd" >
-		
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_101" />
+		<Task ID="1" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
+	
+<!-- Training_100 END-->
+
+<!-- Training_101 START-->
+
+	<Sequence ID = "Training_101_OnBegin" >
+		<!-- Pick up Helmet -->
+	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="ObjectivePickupHelmet_Level_102" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/>
+		<Task ID="2" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Helmet"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="8.0"/>
+		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_101_OnEnd" >
+	</Sequence>
+	
+<!-- Training_101 END-->
+
+<!-- Training_102 START - Find the keycode and unlock door-->
+
+	<Sequence ID = "Training_102_OnBegin" >
+		<!-- Activate the door knob and key code interactive items, should not be activated on start -->
+		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_LockedDoorPart1" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_LockedDoorPart2" />
+		
+		<Task ID="3" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="LockedDoor"/>
+		<Task ID="4" TaskType="TaskWait" WaitTime="8.0"/>
+		<Task ID="5" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_102_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_103" />
+		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level102_LockedDoor" />
+	</Sequence>
+	
+<!-- Training_102 END-->
+
+
+<!-- Training_103 START - Go to the shooting range-->
+
+	<Sequence ID = "Training_103_OnBegin" >
+		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="WalkToShootingRange"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_103_OnEnd" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level103_LockedDoor" />
+	</Sequence>
+	
+<!-- Training_103 END-->
+
+<!-- Training_104 START - Pick up a pistol-->
+
+	<Sequence ID = "Training_104_OnBegin" >
+		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupHandgun"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_104_OnEnd" >
+		<Task ID="0" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+<!-- Training_104 END-->
+
+<!-- Training_105 START - Pick up handgun bullets-->
+
+	<Sequence ID = "Training_105_OnBegin" >
+		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupHandgunBullets"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_105_OnEnd" >
+	</Sequence>
+	
+<!-- Training_105 END-->
+
+
 </TaskList>

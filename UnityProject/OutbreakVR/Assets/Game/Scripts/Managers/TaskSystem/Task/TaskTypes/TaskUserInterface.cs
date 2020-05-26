@@ -9,6 +9,7 @@ namespace ns_Mashmo
         #region ATTRIBUTE_KEY
         private const string ATTRIBUTE_COMMAND = "Command";
         private const string ATTRIBUTE_UI_ID = "UI";
+        private const string ATTRIBUTE_CODE = "Code";
         #endregion ATTRIBUTE_KEY
 
         #region ATTRIBUTE_VALUE
@@ -18,12 +19,14 @@ namespace ns_Mashmo
 
         private string m_strUIName = string.Empty;
         private string m_strCommand = string.Empty;
+        private string m_strCode = string.Empty;
 
         public override void onInitialize()
         {
             base.onInitialize();
             m_strUIName = getString(ATTRIBUTE_UI_ID);
             m_strCommand = getString(ATTRIBUTE_COMMAND);
+            m_strCode = getString(ATTRIBUTE_CODE);
         }
 
         public override void onExecute()
@@ -36,7 +39,7 @@ namespace ns_Mashmo
                 {
                     case ATTRIBUTE_VALUE_SHOW:
                         {
-                            UIManager.ToggleUI(l_UIType, true);
+                            UIManager.ToggleUI(l_UIType, true, m_strCode);
                             break;
                         }
                     case ATTRIBUTE_VALUE_HIDE:

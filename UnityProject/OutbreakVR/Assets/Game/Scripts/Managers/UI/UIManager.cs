@@ -84,7 +84,7 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_UIType"></param>
         /// <param name="a_bToggleValue"></param>
-        public static void ToggleUI(AbsUIPanel.UI_TYPE a_UIType, bool a_bToggleValue )
+        public static void ToggleUI(AbsUIPanel.UI_TYPE a_UIType, bool a_bToggleValue, string a_strCode = "" )
         {
             AbsUIPanel l_UIPanel = null;
             int l_iSingletonUICount = s_Instance.m_lstUISingletonInstances.Count;
@@ -101,7 +101,7 @@ namespace ns_Mashmo
 
             if (a_bToggleValue)
             {
-                l_UIPanel.show();
+                l_UIPanel.show(a_strCode);
             }
             else
             {
