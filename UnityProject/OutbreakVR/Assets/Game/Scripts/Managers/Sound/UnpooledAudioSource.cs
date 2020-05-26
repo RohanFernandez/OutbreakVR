@@ -86,5 +86,10 @@ namespace ns_Mashmo
                 m_AudSrc.Play();
             }
         }
+
+        public void play()
+        {
+            play(m_strAudClipID, m_AudSrc.loop, m_fVolume);
+        }
     }
 }

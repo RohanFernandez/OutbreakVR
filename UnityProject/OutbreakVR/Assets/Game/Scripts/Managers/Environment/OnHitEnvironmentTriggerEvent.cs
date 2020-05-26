@@ -12,9 +12,16 @@ namespace ns_Mashmo
         [SerializeField]
         private string m_strSequenceToTrigger = string.Empty;
 
+        [SerializeField]
+        private UnityEngine.Events.UnityEvent m_OnTrigger = null;
+
         public void onObjectHit()
         {
             TaskManager.ExecuteSequence(m_strSequenceToTrigger);
+            if (m_OnTrigger != null)
+            {
+                m_OnTrigger.Invoke();
+            }
         }
 
         public void onPointerEnter()

@@ -50,12 +50,12 @@
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_101" />
 		<Task ID="1" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Movement"/>
 		<Task ID="2" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT"/>
-		<Task ID="3" TaskType="TaskWait" WaitTime="8.0"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="5.0"/>
 		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_100_OnEnd" >
-		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_101" />
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="ObjectiveTrigger_Level_101" />
 		<Task ID="1" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
