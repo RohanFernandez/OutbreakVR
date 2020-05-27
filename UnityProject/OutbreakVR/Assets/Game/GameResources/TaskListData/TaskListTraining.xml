@@ -249,7 +249,7 @@
 <!-- Training_113 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_113_OnBegin" >
-		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget"/>
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget1"/>
 		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
@@ -259,10 +259,10 @@
 	
 <!-- Training_113 END-->
 
-<!-- Training_114 START - Switch weapon -->
+<!-- Training_114 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_114_OnBegin" >
-		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ExitTraining"/>
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget2"/>
 		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
@@ -271,4 +271,43 @@
 	</Sequence>
 	
 <!-- Training_114 END-->
+
+<!-- Training_115 START - Fire at all the targets -->
+
+	<Sequence ID = "Training_115_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget3"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_115_OnEnd" >
+	</Sequence>
+	
+<!-- Training_115 END-->
+
+<!-- Training_116 START - Fire at all the targets -->
+
+	<Sequence ID = "Training_116_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget4"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_116_OnEnd" >
+	</Sequence>
+	
+<!-- Training_116 END-->
+
+<!-- Training_117 START - exit the training session through the door -->
+
+	<Sequence ID = "Training_117_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ExitTraining"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_117_OnEnd" >
+	</Sequence>
+	
+<!-- Training_117 END-->
 </TaskList>

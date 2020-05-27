@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class SmashableCrate : SmashableBase
+    public class SmashableDummyTarget : SmashableBase
     {
+        /// <summary>
+        /// The objective trigger to fire on smashed
+        /// </summary>
+        [SerializeField]
+        private string m_strObjectiveTriggerOnSmash = string.Empty;
+
         /// <summary>
         /// Sets the unbroken object as active and the broken as deactivated
         /// </summary>
@@ -20,6 +26,7 @@ namespace ns_Mashmo
         public override void smash()
         {
             base.smash();
+            ObjectiveManager.TriggerObjective(m_strObjectiveTriggerOnSmash);
         }
     }
 }
