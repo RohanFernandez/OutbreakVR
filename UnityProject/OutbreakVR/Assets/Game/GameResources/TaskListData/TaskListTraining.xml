@@ -29,15 +29,15 @@
 		
 		
 		<!-- Primary Ammo -->
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_1" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="1.5571,-2.7911,26.5644" Rotation="0.0,19.124,0.0"/>
-		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="1.623,-2.7911,28.1199" Rotation="0.0,-53.676,0.0"/>
-		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_3" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-3.873,-2.5681,29.037" Rotation="0.0,-191.218,0.0"/>
-		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_4" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-3.996,-2.5681,26.712" Rotation="0.0,-159.395,0.0"/>
-		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_5" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-2.605,-2.7524,23.008" Rotation="0.0,-288.307,0.0"/>
-		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_6" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-2.826,-2.7524,22.976" Rotation="0.0,-217.105,0.0"/>
-		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_7" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-2.288,-2.048,22.923" Rotation="0.0,-296.032,0.0"/>
-		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_8" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-2.54,-2.048,22.766" Rotation="0.0,-248.474,0.0"/>
-		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="false" BulletCount="30" Position="-2.79,-2.048,22.91" Rotation="0.0,-252.655,0.0"/>
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_1" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="1.5571,-2.7911,26.5644" Rotation="0.0,19.124,0.0"/>
+		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="1.623,-2.7911,28.1199" Rotation="0.0,-53.676,0.0"/>
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_3" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-3.873,-2.5681,29.037" Rotation="0.0,-191.218,0.0"/>
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_4" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-3.996,-2.5681,26.712" Rotation="0.0,-159.395,0.0"/>
+		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_5" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-2.605,-2.7524,23.008" Rotation="0.0,-288.307,0.0"/>
+		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_6" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-2.826,-2.7524,22.976" Rotation="0.0,-217.105,0.0"/>
+		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_7" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-2.288,-2.048,22.923" Rotation="0.0,-296.032,0.0"/>
+		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_8" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-2.54,-2.048,22.766" Rotation="0.0,-248.474,0.0"/>
+		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" ObjectiveTrigger="ObjectivePickupAssaultBullets" IsInteractive ="false" BulletCount="30" Position="-2.79,-2.048,22.91" Rotation="0.0,-252.655,0.0"/>
 		
 		
 		<!-- Objective 1, welcome -->
@@ -182,7 +182,93 @@
 	<Sequence ID = "Training_108_OnEnd" >
 	</Sequence>
 	
-<!-- Training_107 END-->
+<!-- Training_108 END-->
+
+<!-- Training_109 START - Pickup assault bullets -->
+
+	<Sequence ID = "Training_109_OnBegin" >
+		<Task ID="0" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_1" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="1" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="2" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_3" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="3" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_4" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="4" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_5" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="5" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_6" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="6" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_7" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="7" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_8" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
+		<Task ID="8" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>	
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupAssaultBullets"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_109_OnEnd" >
+	</Sequence>
+	
+<!-- Training_109 END-->
+
+<!-- Training_110 START - Reload assault -->
+
+	<Sequence ID = "Training_110_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ReloadAssault"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_110_OnEnd" >
+	</Sequence>
+	
+<!-- Training_110 END-->
+
+<!-- Training_111 START - Switch weapon -->
+
+	<Sequence ID = "Training_111_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="SwitchWeapon"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_111_OnEnd" >
+	</Sequence>
+	
+<!-- Training_111 END-->
 
 
+<!-- Training_112 START - Go to the shooting range highlighted -->
+
+	<Sequence ID = "Training_112_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ShootingRangeHighlighted"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_112_OnEnd" >
+	</Sequence>
+	
+<!-- Training_112 END-->
+
+<!-- Training_113 START - Fire at all the targets -->
+
+	<Sequence ID = "Training_113_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_113_OnEnd" >
+	</Sequence>
+	
+<!-- Training_113 END-->
+
+<!-- Training_114 START - Switch weapon -->
+
+	<Sequence ID = "Training_114_OnBegin" >
+		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ExitTraining"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+	</Sequence>
+	
+	<Sequence ID = "Training_114_OnEnd" >
+	</Sequence>
+	
+<!-- Training_114 END-->
 </TaskList>

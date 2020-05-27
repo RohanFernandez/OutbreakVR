@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObjectiveListTraining
   m_EditorClassIdentifier: 
   m_strName: Training
-  m_iObjectiveGroupCount: 9
+  m_iObjectiveGroupCount: 15
   m_lstObjectiveGroup:
   - m_strID: Training_100
     m_strType: UnorderedObjectiveGroup
@@ -144,7 +144,7 @@ MonoBehaviour:
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
-        m_strValue: ObjWeaponReloaded
+        m_strValue: ObjWeaponReloaded_Secondary
       - m_strKey: ObjDesc
         m_strValue: Reload the handgun
       m_strIsCompulsory: true
@@ -185,4 +185,120 @@ MonoBehaviour:
         m_strValue: ObjectivePickupAssault
       - m_strKey: ObjDesc
         m_strValue: Pickup assault rifle 2
+      m_strIsCompulsory: true
+  - m_strID: Training_109
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Pickup assault bullets
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ObjectivePickupAssaultBullets
+      - m_strKey: ObjDesc
+        m_strValue: Pickup assault bullets
+      m_strIsCompulsory: true
+  - m_strID: Training_110
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Pickup assault bullets
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ObjWeaponReloaded_Primary
+      - m_strKey: ObjDesc
+        m_strValue: Pickup assault bullets
+      m_strIsCompulsory: true
+  - m_strID: Training_111
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Switch weapon category
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: SwitchWeaponCategory
+      - m_strKey: ObjDesc
+        m_strValue: Switch weapon category
+      m_strIsCompulsory: true
+  - m_strID: Training_112
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Go to the highlighted area
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ShootingRangeHighlighted
+      - m_strKey: ObjDesc
+        m_strValue: Go to the highlighted area
+      m_strIsCompulsory: true
+  - m_strID: Training_113
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Fire at the target
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: FireAtTarget
+      - m_strKey: ObjDesc
+        m_strValue: Fire at the target
+      m_strIsCompulsory: true
+  - m_strID: Training_114
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Exit the training session by esiting through the door or
+        through the pause panel
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ExitTraining
+      - m_strKey: ObjDesc
+        m_strValue: Exit the training session by esiting through the door or through
+          the pause panel
       m_strIsCompulsory: true
