@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObjectiveListTraining
   m_EditorClassIdentifier: 
   m_strName: Training
-  m_iObjectiveGroupCount: 6
+  m_iObjectiveGroupCount: 9
   m_lstObjectiveGroup:
   - m_strID: Training_100
     m_strType: UnorderedObjectiveGroup
@@ -117,7 +117,7 @@ MonoBehaviour:
     - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
-      m_strObjectiveDesc: Find and pickup i[ handgun bullets.
+      m_strObjectiveDesc: Find and pickup handgun bullets.
       m_iAttributeCount: 4
       m_lstAttributes:
       - m_strKey: ID
@@ -127,5 +127,62 @@ MonoBehaviour:
       - m_strKey: TriggerID
         m_strValue: ObjectivePickupHandgunBullets_Level_106
       - m_strKey: ObjDesc
-        m_strValue: Find and pickup i[ handgun bullets.
+        m_strValue: Find and pickup handgun bullets.
+      m_strIsCompulsory: true
+  - m_strID: Training_106
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Reload the handgun
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ObjWeaponReloaded
+      - m_strKey: ObjDesc
+        m_strValue: Reload the handgun
+      m_strIsCompulsory: true
+  - m_strID: Training_107
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Pickup assault rifle 1
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ObjectivePickupAssault
+      - m_strKey: ObjDesc
+        m_strValue: Pickup assault rifle 1
+      m_strIsCompulsory: true
+  - m_strID: Training_108
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Pickup assault rifle 2
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: ObjectivePickupAssault
+      - m_strKey: ObjDesc
+        m_strValue: Pickup assault rifle 2
       m_strIsCompulsory: true

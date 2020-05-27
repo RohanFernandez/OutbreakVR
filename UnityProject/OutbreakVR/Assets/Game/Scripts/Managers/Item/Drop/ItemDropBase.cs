@@ -67,6 +67,9 @@ namespace ns_Mashmo
         /// </summary>
         protected const float ROTATION_SPEED = 20.0f;
 
+        [SerializeField]
+        private Collider m_Collider = null;
+
         public virtual void Update()
         {
             //m_goItemModel.transform.Rotate(m_goItemModel.transform.up, ROTATION_SPEED * Time.deltaTime);
@@ -136,5 +139,30 @@ namespace ns_Mashmo
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_ITEM_PICK_UP_ATTEMPTED, l_EventHash);
         }
         #endregion IPointerOver Interface Implemetation
+
+        /// <summary>
+        /// Activates deactivates the collider
+        /// </summary>
+        /// <param name="a_bIsActive"></param>
+        public virtual void toggleInteractive(bool a_bIsActive)
+        {
+            if (a_bIsActive == IsColliderActive()){ return; }
+
+            m_Collider.enabled = a_bIsActive;
+            if (m_OutlineGroupHighlighterBase != null)
+            {
+                m_OutlineGroupHighlighterBase.toggleHighlighter(a_bIsActive, m_colorOutlineNormal);
+            }
+
+            if (m_goItemTitle != null)
+            {
+                m_goItemTitle.SetActive(a_bIsActive);
+            }
+        }
+
+        public bool IsColliderActive()
+        {
+            return (m_Collider != null) ? m_Collider.enabled : false;
+        }
     }
 }

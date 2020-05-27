@@ -7,12 +7,13 @@ namespace ns_Mashmo
     public class TaskItem : TaskBase
     {
         #region ATTRIBUTE_KEY
-        private const string ATTRIBUTE_ITEM_TYPE    = "ItemType";
-        private const string ATTRIBUTE_POSITION     = "Position";
-        private const string ATTRIBUTE_ROTATION     = "Rotation";
-        private const string ATTRIBUTE_ITEM_ID      = "Item_ID";
-        private const string ATTRIBUTE_TRIGGER_ID   = "ObjectiveTrigger";
-        private const string ATTRIBUTE_PARENT_ID    = "ParentID";
+        private const string ATTRIBUTE_ITEM_TYPE        = "ItemType";
+        private const string ATTRIBUTE_POSITION         = "Position";
+        private const string ATTRIBUTE_ROTATION         = "Rotation";
+        private const string ATTRIBUTE_ITEM_ID          = "Item_ID";
+        private const string ATTRIBUTE_TRIGGER_ID       = "ObjectiveTrigger";
+        private const string ATTRIBUTE_PARENT_ID        = "ParentID";
+        private const string ATTRIBUTE_IS_INTERACTIVE   = "IsInteractive";
 
         #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
@@ -24,6 +25,7 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_VALUE_CODE_RETURN_ALL = "ReturnAll";
         private const string ATTRIBUTE_VALUE_CODE_DEACTIVATE = "Deactivate";
         private const string ATTRIBUTE_VALUE_CODE_ACTIVATE = "Activate";
+        private const string ATTRIBUTE_VALUE_CODE_INTERACTION = "Interaction";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace ns_Mashmo
         private string m_strItemID = string.Empty;
         private string m_strParentID = string.Empty;
         private string m_strObjectiveTriggerOnPickup = string.Empty;
+        private bool m_bIsInteractive = true;
 
         public override void onInitialize()
         {
@@ -56,6 +59,7 @@ namespace ns_Mashmo
             m_v3Rotation = getVec3(ATTRIBUTE_ROTATION);
             m_strItemID = getString(ATTRIBUTE_ITEM_ID);
             m_strParentID = getString(ATTRIBUTE_PARENT_ID);
+            m_bIsInteractive = getBool(ATTRIBUTE_IS_INTERACTIVE, true);
 
             m_strObjectiveTriggerOnPickup = getString(ATTRIBUTE_TRIGGER_ID);
 
@@ -84,7 +88,6 @@ namespace ns_Mashmo
                 case ATTRIBUTE_VALUE_CODE_ACTIVATE:
                     {
                         ItemDropBase l_Item = ItemDropManager.GetItemDrop(m_ItemType, m_strItemID);
-
                         ///Sets parent if valid
                         if (!string.IsNullOrEmpty(m_strParentID))
                         {
@@ -105,6 +108,11 @@ namespace ns_Mashmo
 
                         ITEM_CATEGORY l_ItemCategory = l_Item.getItemCategoryType();
                         int l_iBullets = getInt(ATTRIBUTE_BULLET_COUNT);
+
+                        if (l_Item != null)
+                        {
+                            l_Item.toggleInteractive(m_bIsInteractive);
+                        }
 
                         switch (l_ItemCategory)
                         {
@@ -163,12 +171,30 @@ namespace ns_Mashmo
 
                         break;
                     }
+                case ATTRIBUTE_VALUE_CODE_INTERACTION:
+                {
+                        ItemDropBase l_ItemDropBase = ItemDropManager.GetActiveItem(m_ItemType, m_strItemID);
+                        if (l_ItemDropBase != null)
+                        {
+                            l_ItemDropBase.toggleInteractive(m_bIsInteractive);
+                        }
+                        break;
+                }
+
                 default:
                     {
                         break;
                     }
 
             }
+
+            ////toggle interactive
+            //if (l_Item != null)
+            //{
+            //    Debug.LogError("toggleInteractive:  ID : " +m_strItemID  +"     New Val : "   + m_bIsInteractive);
+            //    l_Item.toggleInteractive(m_bIsInteractive);
+            //}
+
             onComplete();
         }
     }

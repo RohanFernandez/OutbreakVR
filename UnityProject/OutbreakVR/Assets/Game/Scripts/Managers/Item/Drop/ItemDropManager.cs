@@ -208,6 +208,22 @@ namespace ns_Mashmo
             }
         }
 
+        public static ItemDropBase GetActiveItem(ITEM_TYPE a_ItemType, string a_strItemID)
+        {
+            ItemDropPool l_ItemDropPool = s_Instance.getPool(a_ItemType);
+            List<ItemDropBase> l_lstAcitveItems = l_ItemDropPool.getActiveList();
+            int l_iActiveItemCount = l_lstAcitveItems.Count;
+
+            for (int l_iActiveIndex = 0; l_iActiveIndex < l_iActiveItemCount; l_iActiveIndex++)
+            {
+                if (l_lstAcitveItems[l_iActiveIndex].getID().Equals(a_strItemID, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return l_lstAcitveItems[l_iActiveIndex];
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// Callback called on event picked up event dispatched
         /// </summary>
