@@ -200,11 +200,14 @@ namespace ns_Mashmo
             }
 
             ScriptableSequence l_Sequence = null;
-            l_Sequence = s_Instance.m_CommonTaskList.getSequenceWithID(a_strSequenceID);
-
-            if ((l_Sequence == null) && (s_Instance.m_CurrentTaskList != null))
+            if (s_Instance.m_CurrentTaskList != null)
             {
                 l_Sequence = s_Instance.m_CurrentTaskList.getSequenceWithID(a_strSequenceID);
+            }
+
+            if (l_Sequence == null)
+            {
+                l_Sequence = s_Instance.m_CommonTaskList.getSequenceWithID(a_strSequenceID);
             }
 
             if (l_Sequence == null)
@@ -316,7 +319,7 @@ namespace ns_Mashmo
         public void onStateExited(EventHash a_Hashtable)
         {
             string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
-            string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
+            //string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
 
             StopAll();
 
@@ -331,7 +334,7 @@ namespace ns_Mashmo
         /// <param name="a_Hashtable"></param>
         public void onStateEntered(EventHash a_Hashtable)
         {
-            string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
+            //string l_strOldStateId = a_Hashtable[GameEventTypeConst.ID_OLD_GAME_STATE].ToString();
             string l_strNewStateId = a_Hashtable[GameEventTypeConst.ID_NEW_GAME_STATE].ToString();
 
             ExecuteSequence(l_strNewStateId + TASK_POSTFIX_ON_BEGIN);

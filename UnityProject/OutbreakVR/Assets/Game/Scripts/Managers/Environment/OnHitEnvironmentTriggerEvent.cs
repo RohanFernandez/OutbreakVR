@@ -26,17 +26,14 @@ namespace ns_Mashmo
 
         public void onPointerEnter()
         {
-            
         }
 
         public void onPointerExit()
         {
-            
         }
 
         public void onPointerInteract()
         {
-            
         }
     }
 }

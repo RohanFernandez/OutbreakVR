@@ -205,8 +205,16 @@ namespace ns_Mashmo
         private void managePlayerState_InGameMovement(CONTROLLER_TOUCHPAD_SWIPE a_TouchPadSwipe, CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
         {
             manageMovement(a_TouchPadButton);
-            managerSwipeInteraction(a_TouchPadSwipe);
+            managerSwipeInteraction_InGameMovement(a_TouchPadSwipe);
             manageInGamePause();
+        }
+
+        /// <summary>
+        /// Manage input with the movement.
+        /// </summary>
+        private void managePlayerState_MenuSelection(CONTROLLER_TOUCHPAD_SWIPE a_TouchPadSwipe, CONTROLLER_TOUCHPAD_BUTTON a_TouchPadButton)
+        {
+            managerSwipeInteraction_MenuSelection(a_TouchPadSwipe);
         }
 
         /// <summary>
@@ -412,7 +420,7 @@ namespace ns_Mashmo
         /// <summary>
         /// Manages the swipe interactions
         /// </summary>
-        private void managerSwipeInteraction(CONTROLLER_TOUCHPAD_SWIPE a_TouchpadSwipe)
+        private void managerSwipeInteraction_InGameMovement(CONTROLLER_TOUCHPAD_SWIPE a_TouchpadSwipe)
         {
             Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
 
@@ -440,6 +448,39 @@ namespace ns_Mashmo
             else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.BOTTOM_TO_TOP)
             {
                 
+            }
+        }
+
+        /// <summary>
+        /// Manages the swipe interactions
+        /// </summary>
+        private void managerSwipeInteraction_MenuSelection(CONTROLLER_TOUCHPAD_SWIPE a_TouchpadSwipe)
+        {
+            Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
+
+            // Swipe from left to right
+            if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.LEFT_TO_RIGHT)
+            {
+                
+            }
+            // Swipe from right to left
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.RIGHT_TO_LEFT)
+            {
+                
+            }
+            // Swipe from top to bottom
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.TOP_TO_BOTTOM)
+            {
+                IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
+                if (l_IPointerOver != null)
+                {
+                    l_IPointerOver.onPointerInteract();
+                }
+            }
+            // Swipe from bottom to top
+            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.BOTTOM_TO_TOP)
+            {
+
             }
         }
 
@@ -493,7 +534,7 @@ namespace ns_Mashmo
                     }
                 case PLAYER_STATE.MENU_SELECTION:
                     {
-                        m_actPlayerStateControl = null;
+                        m_actPlayerStateControl = managePlayerState_MenuSelection;
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
