@@ -57,6 +57,11 @@ namespace ns_Mashmo
         private void Update()
         {
             transform.localRotation = Quaternion.Euler(0.0f, m_CamTransform.rotation.eulerAngles.y, 0.0f);
+            Vector3 l_v3Pos = (new Vector3(m_CamTransform.forward.x, 0.0f ,m_CamTransform.forward.z).normalized * 1.0f);
+            l_v3Pos.y = -1.7f;
+            transform.localPosition = l_v3Pos;
+
+            //transform.localRotation = Quaternion.Euler(0.0f, m_CamTransform.rotation.eulerAngles.y, 0.0f);
         }
 
         public static void Show(string a_strCode)
