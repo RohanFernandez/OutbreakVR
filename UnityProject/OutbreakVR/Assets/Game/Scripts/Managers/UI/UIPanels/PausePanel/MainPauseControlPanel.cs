@@ -141,7 +141,7 @@ namespace ns_Mashmo
             for (int l_iBtnIndex = 0; l_iBtnIndex < l_iBtnCount; l_iBtnIndex++)
             {
                 UnityEngine.UI.Button l_btnCurrentOption = m_lstBtnOptions[l_iBtnIndex];
-                l_btnCurrentOption.image.sprite = l_iBtnIndex == a_iOptionIndex ? l_btnCurrentOption.spriteState.highlightedSprite : null;
+                l_btnCurrentOption.image.sprite = l_iBtnIndex == a_iOptionIndex ? l_btnCurrentOption.spriteState.highlightedSprite : l_btnCurrentOption.spriteState.pressedSprite;
             }
 
             selectBtnWithCurrentIndex();
@@ -158,7 +158,7 @@ namespace ns_Mashmo
             for (int l_iBtnIndex = 0; l_iBtnIndex < l_iBtnCount; l_iBtnIndex++)
             {
                 UnityEngine.UI.Button l_btnCurrentOption = m_lstBtnOptions[l_iBtnIndex];
-                l_btnCurrentOption.image.sprite = l_iBtnIndex == a_iOptionIndex ? l_btnCurrentOption.spriteState.selectedSprite : null;
+                l_btnCurrentOption.image.sprite = l_iBtnIndex == a_iOptionIndex ? l_btnCurrentOption.spriteState.selectedSprite : l_btnCurrentOption.spriteState.pressedSprite;
             }
         }
 
