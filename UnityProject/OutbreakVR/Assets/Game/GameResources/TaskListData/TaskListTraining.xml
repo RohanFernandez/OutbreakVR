@@ -236,12 +236,14 @@
 <!-- Training_112 START - Go to the shooting range highlighted -->
 
 	<Sequence ID = "Training_112_OnBegin" >
-		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ShootingRangeHighlighted"/>
-		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
-		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_112" />
+		<Task ID="1" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ShootingRangeHighlighted"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="3" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_112_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="ObjectiveTrigger_Level_112" />
 	</Sequence>
 	
 <!-- Training_112 END-->
@@ -249,16 +251,16 @@
 <!-- Training_113 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_113_OnBegin" >
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget1"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
-		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
-		
 		<!-- Position Dummy targets for the 1st shooting level here -->
-		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="3.855,-2.9054,25.239" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="4.501,-2.9054,23.042" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="5" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="5.272,-2.9054,24.753" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="6" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="5.823,-2.9054,23.555" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="7" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="6.863,-2.9054,24.233" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="3.855,-2.9054,25.239" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="4.501,-2.9054,23.042" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="2" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="5.272,-2.9054,24.753" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="5.823,-2.9054,23.555" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="6.863,-2.9054,24.233" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+	              
+		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget1"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_113_OnEnd" >
@@ -269,16 +271,16 @@
 <!-- Training_114 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_114_OnBegin" >
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget2"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
-		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
-		
 		<!-- Position Dummy targets for the 2nd shooting level here -->
-		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="5.807,-2.9054,25.239" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="5.166,-2.9054,23.912" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="5" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.917,-2.9054,24.75" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="6" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="6.424,-2.9054,23.12" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="7" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="9.41,-2.9054,23.87" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="5.807,-2.9054,25.239" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="5.166,-2.9054,23.912" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="2" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.917,-2.9054,24.75" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="6.424,-2.9054,23.12" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="9.41,-2.9054,23.87" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+	              
+		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget2"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_114_OnEnd" >
@@ -289,16 +291,16 @@
 <!-- Training_115 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_115_OnBegin" >
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget3"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
-		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
-		
 		<!-- Position Dummy targets for the 3rd shooting level here -->
-		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="5.63,-2.9054,24.67" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="9.8,-2.9054,23.912" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="5" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.47,-2.9054,23.085" 		Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="6" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="11.73,-2.9054,25.335" 		Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="7" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="14.56,-2.9054,24.462" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="5.63,-2.9054,24.67" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="9.8,-2.9054,23.912" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="2" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.47,-2.9054,23.085" 		Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="11.73,-2.9054,25.335" 		Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="14.56,-2.9054,24.462" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+	              
+		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget3"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_115_OnEnd" >
@@ -309,16 +311,16 @@
 <!-- Training_116 START - Fire at all the targets -->
 
 	<Sequence ID = "Training_116_OnBegin" >
-		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget4"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
-		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
-		
 		<!-- Position Dummy targets for the 4th shooting level here -->
-		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="4.037,-2.9054,24.208" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="9.8,-2.9054,25.212" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="5" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.47,-2.9054,24.208" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="6" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="12.5,-2.9054,23.2" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="7" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="15.6,-2.9054,24.208" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="DummyTarget1" Position="4.037,-2.9054,24.208" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="DummyTarget2" Position="9.8,-2.9054,25.212" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="2" TaskType="TaskSetTransform" GameObject_ID="DummyTarget3" Position="7.47,-2.9054,24.208" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="3" TaskType="TaskSetTransform" GameObject_ID="DummyTarget4" Position="12.5,-2.9054,23.2" 		 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="15.6,-2.9054,24.208" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+	
+		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget4"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_116_OnEnd" >
