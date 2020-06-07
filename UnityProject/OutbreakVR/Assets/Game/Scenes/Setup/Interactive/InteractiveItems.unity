@@ -1246,6 +1246,8 @@ MonoBehaviour:
   - {fileID: 1526217353}
   - {fileID: 1526217350}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &51984202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +2970,8 @@ GameObject:
   m_Component:
   - component: {fileID: 109934215}
   - component: {fileID: 109934216}
+  - component: {fileID: 109934217}
+  - component: {fileID: 109934218}
   m_Layer: 0
   m_Name: SmashableCrate_02
   m_TagString: Untagged
@@ -3019,6 +3023,121 @@ MonoBehaviour:
   - {fileID: 1094595820}
   - {fileID: 1094595817}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 109934217}
+--- !u!114 &109934217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109934214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 109934218}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
+--- !u!82 &109934218
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109934214}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &122844786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,6 +3912,8 @@ MonoBehaviour:
   - {fileID: 1236369900}
   - {fileID: 1236369897}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &230912129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,6 +5575,8 @@ MonoBehaviour:
   - {fileID: 1477777119}
   - {fileID: 1477777116}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &384284625
 GameObject:
   m_ObjectHideFlags: 0
@@ -7672,6 +7795,8 @@ MonoBehaviour:
   - {fileID: 507649745}
   - {fileID: 507649742}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &504338940
 GameObject:
   m_ObjectHideFlags: 0
@@ -10395,6 +10520,8 @@ MonoBehaviour:
   - {fileID: 1102779376}
   - {fileID: 1102779373}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &661221574
 GameObject:
   m_ObjectHideFlags: 0
@@ -18057,6 +18184,8 @@ MonoBehaviour:
   - {fileID: 1117386934}
   - {fileID: 1117386931}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1020711761
 GameObject:
   m_ObjectHideFlags: 0
@@ -18110,6 +18239,8 @@ MonoBehaviour:
   - {fileID: 1915289056}
   - {fileID: 1915289053}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1023913814
 GameObject:
   m_ObjectHideFlags: 0
@@ -18758,6 +18889,8 @@ MonoBehaviour:
   - {fileID: 27804508}
   - {fileID: 27804505}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1089806367
 GameObject:
   m_ObjectHideFlags: 0
@@ -18811,6 +18944,8 @@ MonoBehaviour:
   - {fileID: 1545806409}
   - {fileID: 1545806406}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1090304634
 GameObject:
   m_ObjectHideFlags: 0
@@ -26311,6 +26446,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1437514314}
   - component: {fileID: 1437514315}
+  - component: {fileID: 1437514317}
+  - component: {fileID: 1437514316}
   m_Layer: 0
   m_Name: SmashableBarrel
   m_TagString: Untagged
@@ -26362,6 +26499,121 @@ MonoBehaviour:
   - {fileID: 1011881840}
   - {fileID: 1011881837}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: BarrelBreak
+  m_AudSrc: {fileID: 1437514317}
+--- !u!82 &1437514316
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437514313}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 1
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1437514317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437514313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 1437514316}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
 --- !u!1 &1438623053
 GameObject:
   m_ObjectHideFlags: 0
@@ -26445,6 +26697,8 @@ MonoBehaviour:
   - {fileID: 1871594510}
   - {fileID: 1871594507}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1443345519
 GameObject:
   m_ObjectHideFlags: 0
@@ -27471,6 +27725,8 @@ MonoBehaviour:
   - {fileID: 1864573603}
   - {fileID: 1864573600}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1001 &1471830019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27891,6 +28147,8 @@ MonoBehaviour:
   - {fileID: 849953130}
   - {fileID: 849953127}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1479202926
 GameObject:
   m_ObjectHideFlags: 0
@@ -28117,6 +28375,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1490746652}
   - component: {fileID: 1490746653}
+  - component: {fileID: 1490746655}
+  - component: {fileID: 1490746654}
   m_Layer: 0
   m_Name: SmashableCrate_04
   m_TagString: Untagged
@@ -28167,6 +28427,121 @@ MonoBehaviour:
   - {fileID: 1597265013}
   - {fileID: 1597265010}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 1490746655}
+--- !u!82 &1490746654
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490746651}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1490746655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490746651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 1490746654}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
 --- !u!1 &1518962310
 GameObject:
   m_ObjectHideFlags: 0
@@ -29823,6 +30198,8 @@ MonoBehaviour:
   - {fileID: 1303793759}
   - {fileID: 1303793756}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1562174930
 GameObject:
   m_ObjectHideFlags: 0
@@ -31896,6 +32273,8 @@ MonoBehaviour:
   - {fileID: 179186940}
   - {fileID: 179186937}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1607738600
 GameObject:
   m_ObjectHideFlags: 0
@@ -31949,6 +32328,8 @@ MonoBehaviour:
   - {fileID: 867628207}
   - {fileID: 867628204}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1608579153
 GameObject:
   m_ObjectHideFlags: 0
@@ -32640,6 +33021,8 @@ MonoBehaviour:
   - {fileID: 1900824414}
   - {fileID: 1900824411}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1646251591
 GameObject:
   m_ObjectHideFlags: 0
@@ -33820,6 +34203,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1791846269}
   - component: {fileID: 1791846270}
+  - component: {fileID: 1791846271}
+  - component: {fileID: 1791846272}
   m_Layer: 0
   m_Name: SmashableDummyTarget
   m_TagString: Untagged
@@ -33868,7 +34253,122 @@ MonoBehaviour:
   - {fileID: 1217985532}
   - {fileID: 1217985531}
   m_bIsPhysicsInUnbrokenObj: 0
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 1791846271}
   m_strObjectiveTriggerOnSmash: 
+--- !u!114 &1791846271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791846268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 1791846272}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
+--- !u!82 &1791846272
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791846268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1805167602
 GameObject:
   m_ObjectHideFlags: 0
@@ -37962,6 +38462,8 @@ MonoBehaviour:
   - {fileID: 1271296640}
   - {fileID: 1271296637}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1943690238
 GameObject:
   m_ObjectHideFlags: 0
@@ -38468,6 +38970,8 @@ MonoBehaviour:
   - {fileID: 498328415}
   - {fileID: 498328412}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1960436788
 GameObject:
   m_ObjectHideFlags: 0
@@ -38631,6 +39135,8 @@ MonoBehaviour:
   - {fileID: 486679301}
   - {fileID: 486679298}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &1968617753
 GameObject:
   m_ObjectHideFlags: 0
@@ -38641,6 +39147,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1968617754}
   - component: {fileID: 1968617755}
+  - component: {fileID: 1968617756}
+  - component: {fileID: 1968617757}
   m_Layer: 0
   m_Name: SmashableCrate_03
   m_TagString: Untagged
@@ -38692,6 +39200,121 @@ MonoBehaviour:
   - {fileID: 1114260674}
   - {fileID: 1114260671}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 1968617756}
+--- !u!114 &1968617756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968617753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 1968617757}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
+--- !u!82 &1968617757
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968617753}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1969504968
 GameObject:
   m_ObjectHideFlags: 0
@@ -40593,6 +41216,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2118800057}
   - component: {fileID: 2118800058}
+  - component: {fileID: 2118800059}
+  - component: {fileID: 2118800060}
   m_Layer: 0
   m_Name: SmashableOpenCrate
   m_TagString: Untagged
@@ -40639,6 +41264,121 @@ MonoBehaviour:
   - {fileID: 1453078522}
   - {fileID: 1453078519}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 2118800059}
+--- !u!114 &2118800059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118800056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 2118800060}
+  m_AudSrcType: 0
+  m_fVolume: 0
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
+--- !u!82 &2118800060
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118800056}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2121870989
 GameObject:
   m_ObjectHideFlags: 0
@@ -40692,6 +41432,8 @@ MonoBehaviour:
   - {fileID: 1576465530}
   - {fileID: 1576465527}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: 
+  m_AudSrc: {fileID: 0}
 --- !u!1 &2122566819
 GameObject:
   m_ObjectHideFlags: 0
@@ -41268,6 +42010,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3860648525596751014}
   - component: {fileID: 6990108787579249015}
+  - component: {fileID: 612077274992403652}
+  - component: {fileID: 612077274992403653}
   m_Layer: 0
   m_Name: SmashableCrate_01
   m_TagString: Untagged
@@ -41275,6 +42019,119 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &612077274992403652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612077274992403651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a981c44a4f7784b428b4cd8407c2b1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudSrc: {fileID: 612077274992403653}
+  m_AudSrcType: 0
+  m_fVolume: 1
+  m_bIsPlayOnEnabled: 0
+  m_strAudClipID: 
+--- !u!82 &612077274992403653
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612077274992403651}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &730711895326327374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42388,6 +43245,8 @@ MonoBehaviour:
   - {fileID: 181744634204990887}
   - {fileID: 86932320793513492}
   m_bIsPhysicsInUnbrokenObj: 1
+  m_strBreakAudClipID: CrateBreak
+  m_AudSrc: {fileID: 612077274992403652}
 --- !u!23 &7411374970167325537
 MeshRenderer:
   m_ObjectHideFlags: 0

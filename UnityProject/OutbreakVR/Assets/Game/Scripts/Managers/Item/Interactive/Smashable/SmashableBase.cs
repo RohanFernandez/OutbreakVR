@@ -51,6 +51,15 @@ namespace ns_Mashmo
         protected bool m_bIsPhysicsInUnbrokenObj = true;
 
         /// <summary>
+        /// The audio id to play on breaking
+        /// </summary>
+        [SerializeField]
+        private string m_strBreakAudClipID = string.Empty;
+
+        [SerializeField]
+        private UnpooledAudioSource m_AudSrc = null;
+
+        /// <summary>
         /// On smash the physics of the broken pieces are allowed for a certain amount of time
         /// </summary>
         protected bool m_bIsSmashed = false;
@@ -72,6 +81,11 @@ namespace ns_Mashmo
             m_UnbrokenObject.SetActive(false);
             m_ParentBrokenObject.SetActive(true);
             m_bIsSmashed = true;
+
+            if (m_AudSrc != null)
+            {
+                m_AudSrc.play(m_strBreakAudClipID, false, 1.0f);
+            }
         }
 
         public override void resetValues()

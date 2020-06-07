@@ -41,7 +41,7 @@ namespace ns_Mashmo
                 if (l_bIsWeaponAGun)
                 {
                     l_GunWeaponBase = (GunWeaponBase)l_CurrentWeaponBase;
-                    m_txtBulletCount.text = l_GunWeaponBase.BulletCountInFirstMag.ToString() + " / " + l_GunWeaponBase.TotalBullets.ToString();
+                    m_txtBulletCount.text = l_GunWeaponBase.BulletCountInFirstMag.ToString() + "/" + l_GunWeaponBase.TotalBullets.ToString();
                 }
                 else
                 {
