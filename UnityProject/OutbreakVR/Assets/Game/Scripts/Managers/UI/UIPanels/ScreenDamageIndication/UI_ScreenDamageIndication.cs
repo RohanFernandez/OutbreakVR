@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ns_Mashmo
 {
@@ -10,6 +11,30 @@ namespace ns_Mashmo
         /// Singleton instance
         /// </summary>
         private static UI_ScreenDamageIndication s_Instance = null;
+
+        /// <summary>
+        /// the image that holds the blood splatter
+        /// </summary>
+        [SerializeField]
+        private Image m_imgBloodSplatter = null;
+
+        [SerializeField]
+        private Color m_colMaxHealthHigh;
+
+        [SerializeField]
+        private float m_fHealthAtHigh = 60.0f;
+
+        [SerializeField]
+        private Color m_colMaxHealthMid;
+
+        [SerializeField]
+        private float m_fHealthAtMid = 40.0f;
+
+        [SerializeField]
+        private Color m_colMaxHealthLow;
+
+        [SerializeField]
+        private float m_fHealthAtLow = 10.0f;
 
         /// <summary>
         /// initializes, sets singleton to this
@@ -63,8 +88,37 @@ namespace ns_Mashmo
                 hide();
             }
             else
-            { 
-            
+            {
+                show();
+            }
+        }
+
+        void Update()
+        {
+            int l_iHealth = PlayerManager.HealthMeter;
+
+            //Low alpha
+            if ((l_iHealth < m_fHealthAtHigh) && (l_iHealth > m_fHealthAtMid))
+            {
+                m_imgBloodSplatter.color = Color.Lerp(m_colMaxHealthMid, m_colMaxHealthHigh, Mathf.Sin(Time.time));
+            }
+            //mid alpha
+            else if ((l_iHealth < m_fHealthAtMid) && (l_iHealth > m_fHealthAtLow))
+            {
+                m_imgBloodSplatter.color = Color.Lerp(m_colMaxHealthLow, m_colMaxHealthMid, Mathf.Sin(Time.time));
+            }
+            //high alpha
+            else if ((l_iHealth < m_fHealthAtLow) && (l_iHealth > 0))
+            {
+                m_imgBloodSplatter.color = Color.Lerp(Color.red, m_colMaxHealthLow, Mathf.Sin(Time.time));
+            }
+            else if (l_iHealth == 0)
+            {
+                m_imgBloodSplatter.color = Color.red;
+            }
+            else
+            {
+                m_imgBloodSplatter.color = Color.clear;
             }
         }
     }
