@@ -7,7 +7,7 @@ namespace ns_Mashmo
     public abstract class ManagedState : MonoBehaviour
     {
         [SerializeField]
-        private string m_strStateID = string.Empty;
+        protected string m_strStateID = string.Empty;
 
         public string StateID
         {

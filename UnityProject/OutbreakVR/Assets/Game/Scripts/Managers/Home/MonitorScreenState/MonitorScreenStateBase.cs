@@ -13,20 +13,14 @@ namespace ns_Mashmo
         {
             base.onStateEnter(a_strOldState);
             gameObject.SetActive(true);
-            if (!m_Toggle.isOn)
-            {
-                m_Toggle.isOn = true;
-            }
+            m_Toggle.isOn = true;
         }
 
         public override void onStateExit(string a_strNewState)
         {
             base.onStateExit(a_strNewState);
+            m_Toggle.isOn = false;
             gameObject.SetActive(false);
-            if(m_Toggle.isOn)
-            {
-                m_Toggle.isOn = false;
-            }
         }
     }
 }
