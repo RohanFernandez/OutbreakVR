@@ -49,7 +49,7 @@ MonoBehaviour:
         m_strValue: ReturnAll
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnBegin
-    m_iTaskCount: 8
+    m_iTaskCount: 10
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -80,9 +80,9 @@ MonoBehaviour:
       - m_strKey: ObjectiveTrigger
         m_strValue: ChainsawPickup
       - m_strKey: Position
-        m_strValue: 0.939,31.211,-2.194
+        m_strValue: -0.113,31.359,-0.547
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: -80.067,-137.56,-34.11
     - m_strTaskID: 2
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -114,9 +114,9 @@ MonoBehaviour:
       - m_strKey: StrengthPercentage
         m_strValue: 100
       - m_strKey: Position
-        m_strValue: -5.222,30.627,3.958206
+        m_strValue: -3.103,30.544,5.617
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: -13.284,146.4,0.0
     - m_strTaskID: 4
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -167,6 +167,42 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Navigation_Level100_101
+    - m_strTaskID: 8
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthSmall_01
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_SMALL
+      - m_strKey: Position
+        m_strValue: 3.966,31.6706,-3.062
+      - m_strKey: Rotation
+        m_strValue: 0.0,72.798,0.0
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge_01
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 10.458,31.673,2.146
+      - m_strKey: Rotation
+        m_strValue: 0.0,-49.206,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnEnd
     m_iTaskCount: 0
@@ -275,7 +311,7 @@ MonoBehaviour:
         m_strValue: Navigation_Level100_101
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
-    m_iTaskCount: 6
+    m_iTaskCount: 9
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -344,9 +380,9 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 4.052,25.865,15.937
+        m_strValue: -0.5318,26.7721,18.3393
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: -0.066,-36.163,89.676
     - m_strTaskID: 5
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -359,6 +395,66 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level102_PlankTask
+    - m_strTaskID: 6
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: -0.702,26.7978,18.565
+      - m_strKey: Rotation
+        m_strValue: 0.0,11.27,0.0
+    - m_strTaskID: 7
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: -0.624,26.7962,18.583
+      - m_strKey: Rotation
+        m_strValue: 0.0,16.948,0.0
+    - m_strTaskID: 8
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_3
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: -0.624,26.7962,18.583
+      - m_strKey: Rotation
+        m_strValue: 0.0,16.948,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: OnElectricityBoxHit
     m_iTaskCount: 2
