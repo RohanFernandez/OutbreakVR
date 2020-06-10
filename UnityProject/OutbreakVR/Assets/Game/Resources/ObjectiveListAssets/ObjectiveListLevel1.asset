@@ -89,16 +89,33 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_102
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_iObjectiveCount: 2
     m_lstScriptibeObjective:
     - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Obj102_OnHandgunPickedup
+      m_strObjectiveDesc: Find a gun to destroy the electric box.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: HandgunPickup
+      - m_strKey: ObjDesc
+        m_strValue: Find a gun to destroy the electric box.
+      - m_strKey: SequenceOnComplete
+        m_strValue: Obj102_OnHandgunPickedup
+      m_strIsCompulsory: true
+    - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
       m_strObjectiveDesc: Find a way out of the building
       m_iAttributeCount: 4
       m_lstAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID

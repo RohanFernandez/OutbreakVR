@@ -135,14 +135,18 @@
 		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricDamageArea" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricBoxHitCollider" />
-		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Level_102_FN57_1" ItemType="ITEM_FN57" BulletCount="17" Position="-0.5318,26.7721,18.3393" Rotation="-0.066,-36.163,89.676"/>
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Level_102_FN57_1" ItemType="ITEM_FN57" BulletCount="17" Position="-0.5318,26.7721,18.3393" Rotation="-0.066,-36.163,89.676" ObjectiveTrigger="HandgunPickup"/>
 		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_PlankTask" />
 		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.702,26.7978,18.565" Rotation="0.0,11.27,0.0"/>
 		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.624,26.7962,18.583" Rotation="0.0,16.948,0.0"/>
 		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_3" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.624,26.7962,18.583" Rotation="0.0,16.948,0.0"/>
-		
-		
+		<Task ID="9" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level102_DoorLowerFloor" />
 	</Sequence>
+	
+	<!-- on gun picked up-->
+	<Sequence ID = "Obj102_OnHandgunPickedup" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level102_DoorLowerFloor" />
+	</Sequence>	
 	
 	<!-- on shooting the electricity box-->
 	<Sequence ID = "OnElectricityBoxHit" >

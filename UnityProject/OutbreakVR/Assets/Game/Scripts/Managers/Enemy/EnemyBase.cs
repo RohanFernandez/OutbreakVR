@@ -86,18 +86,6 @@ namespace ns_Mashmo
         /// </summary>
         protected System.Action m_actNavStateUpdate = null;
 
-        [SerializeField]
-        private List<Transform> m_lstHitTransformPoint = null;
-        public Transform getRandomHitTransformPoint()
-        {
-            int l_iHitTransformCount = m_lstHitTransformPoint.Count;
-            if (l_iHitTransformCount > 0)
-            {
-                return m_lstHitTransformPoint [Random.Range(0, l_iHitTransformCount)];
-            }
-            return transform;
-        }
-
         /// <summary>
         /// Activates use of enemy
         /// </summary>
@@ -157,21 +145,21 @@ namespace ns_Mashmo
         /// <param name="a_iDamage"></param>
         public void inflictDamage(int a_iDamage, Vector3 a_v3HitPoint, ENEMY_HIT_COLLISION a_EnemyHitCollision = ENEMY_HIT_COLLISION.HIT_COLLISION_DEFAULT)
         {
-            int l_iHitTransformPointCount = m_lstHitTransformPoint.Count;
-            if (l_iHitTransformPointCount > 0)
-            {
-                int l_iRandomIndex = Random.Range(0, l_iHitTransformPointCount);
-                int l_iRandomIndexPlus1 = (l_iRandomIndex + 1) % l_iHitTransformPointCount;
-                Vector3 l_v3CurrentTransform = m_lstHitTransformPoint[l_iRandomIndex].transform.position;
-                Vector3 l_v3CurrentTransformPlus1 = m_lstHitTransformPoint[l_iRandomIndexPlus1].transform.position;
+            //int l_iHitTransformPointCount = m_lstHitTransformPoint.Count;
+            //if (l_iHitTransformPointCount > 0)
+            //{
+            //    int l_iRandomIndex = Random.Range(0, l_iHitTransformPointCount);
+            //    int l_iRandomIndexPlus1 = (l_iRandomIndex + 1) % l_iHitTransformPointCount;
+            //    Vector3 l_v3CurrentTransform = m_lstHitTransformPoint[l_iRandomIndex].transform.position;
+            //    Vector3 l_v3CurrentTransformPlus1 = m_lstHitTransformPoint[l_iRandomIndexPlus1].transform.position;
 
-                Vector3 l_v3PosToSpawnDamageindicator = new Vector3(
-                    Random.Range(l_v3CurrentTransform.x, l_v3CurrentTransformPlus1.x),
-                    Random.Range(l_v3CurrentTransform.y, l_v3CurrentTransformPlus1.y), 
-                    Random.Range(l_v3CurrentTransform.z, l_v3CurrentTransformPlus1.z));
+            //    Vector3 l_v3PosToSpawnDamageindicator = new Vector3(
+            //        Random.Range(l_v3CurrentTransform.x, l_v3CurrentTransformPlus1.x),
+            //        Random.Range(l_v3CurrentTransform.y, l_v3CurrentTransformPlus1.y), 
+            //        Random.Range(l_v3CurrentTransform.z, l_v3CurrentTransformPlus1.z));
 
-                EnemyDamageIndicatorManager.ShowDamageIndicator(l_v3PosToSpawnDamageindicator, a_iDamage);
-            }
+            //    EnemyDamageIndicatorManager.ShowDamageIndicator(l_v3PosToSpawnDamageindicator, a_iDamage);
+            //}
 
             int l_iLifeCounterBeforeInflicted = m_iCurrentLifeCounter;
             m_iCurrentLifeCounter -= a_iDamage;

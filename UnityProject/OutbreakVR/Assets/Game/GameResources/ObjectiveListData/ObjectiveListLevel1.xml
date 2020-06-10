@@ -14,7 +14,8 @@
 	
 	<!-- Reach the balconey and walk the planks to exit the building -->
 	<ObjectiveGroup ID="Level1_102" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggered" ObjDesc="Find a way out of the building"/>
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="HandgunPickup" ObjDesc="Find a gun to destroy the electric box." SequenceOnComplete="Obj102_OnHandgunPickedup"/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggered" ObjDesc="Find a way out of the building"/>
 	</ObjectiveGroup>
 	
 	<!-- Reach the balconey to exit the building -->
