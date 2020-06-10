@@ -11,19 +11,40 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private int m_iDamagePerInterval = 10;
+        public override int getWeaponDamagePerInstance()
+        {
+            return m_iDamagePerInterval;
+        }
 
         /// <summary>
         /// Damage after Interval
         /// </summary>
         [SerializeField]
-        private float m_fDamageAfterInterval = 1.0f;
+        private float m_fTimeBetweenDamageMin = 0.35f;
+
+        /// <summary>
+        /// Damage after Interval
+        /// </summary>
+        [SerializeField]
+        private float m_fTimeBetweenDamageMax = 0.6f;
+
+        /// <summary>
+        /// Damage after Interval
+        /// </summary>
+        [SerializeField]
+        private float m_fTimeBetweenDamageCurrent = 0.5f;
+
+        [SerializeField]
+        private Transform m_transformBlade = null;
 
         private float m_fTimePassedSinceLastDamageInfliction = 0.0f;
 
         /// <summary>
         /// List of enemies currently in trigger
         /// </summary>
-        private Dictionary<string, EnemyBase> m_dictTriggeredEnemies = new Dictionary<string, EnemyBase>(10);
+        private Dictionary<int, Collider> m_dictTriggeredColliders = new Dictionary<int, Collider>(10);
+
+        private Stack<int> m_stackRemoveColliders = new Stack<int>(5);
 
         /// <summary>
         /// On the chainsaw blade's collider is triggerd by an enemy
@@ -34,24 +55,26 @@ namespace ns_Mashmo
             base.OnTriggerEnter(a_Collider);
             if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
-                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER) == a_Collider.gameObject.layer)
+                int l_iColliderInstanceID = a_Collider.gameObject.GetInstanceID();
+                int l_iEnemyHitColliderID = (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER));
+                int l_iSmashableHitColliderID = (LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE));
+
+                if ((l_iEnemyHitColliderID == a_Collider.gameObject.layer) ||
+                    l_iSmashableHitColliderID == a_Collider.gameObject.layer)
                 {
                     EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
-                    if (l_EnemyHitCollider != null)
+                    SmashableHitCollider l_SmashableHitCollider = null;
+                    if (l_EnemyHitCollider == null)
                     {
-                        EnemyBase l_EnemyBase = l_EnemyHitCollider.EnemyBase;
-                        if (!m_dictTriggeredEnemies.ContainsKey(l_EnemyBase.getID()))
-                        {
-                            m_dictTriggeredEnemies.Add(l_EnemyBase.getID(), l_EnemyBase);
-                        }
+                        l_SmashableHitCollider = a_Collider.GetComponent<SmashableHitCollider>();
                     }
-                }
-                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == a_Collider.gameObject.layer)
-                {
-                    SmashableHitCollider l_SmashableHitCollider = a_Collider.GetComponent<SmashableHitCollider>();
-                    if (l_SmashableHitCollider != null)
-                    {
-                        l_SmashableHitCollider.startSmashOnHit();
+
+                    if (l_EnemyHitCollider != null || l_SmashableHitCollider != null)
+                    { 
+                        if (!m_dictTriggeredColliders.ContainsKey(l_iColliderInstanceID))
+                        {
+                            m_dictTriggeredColliders.Add(l_iColliderInstanceID, a_Collider);
+                        }
                     }
                 }
             }
@@ -66,14 +89,10 @@ namespace ns_Mashmo
             base.OnTriggerExit(a_Collider);
             if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
             {
-                EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
-                if (l_EnemyHitCollider != null)
+                int l_iInstanceID = a_Collider.GetInstanceID();
+                if (m_dictTriggeredColliders.ContainsKey(l_iInstanceID))
                 {
-                    EnemyBase l_EnemyBase = l_EnemyHitCollider.EnemyBase;
-                    if (m_dictTriggeredEnemies.ContainsKey(l_EnemyBase.getID()))
-                    {
-                        m_dictTriggeredEnemies.Remove(l_EnemyBase.getID());
-                    }
+                    m_dictTriggeredColliders.Remove(l_iInstanceID);
                 }
             }
         }
@@ -83,13 +102,32 @@ namespace ns_Mashmo
         /// </summary>
         private void Update()
         {
+            if (m_fTimePassedSinceLastDamageInfliction == 0.0f)
+            {
+                m_fTimeBetweenDamageCurrent = Random.Range(m_fTimeBetweenDamageMin, m_fTimeBetweenDamageMax);
+            }
+
             m_fTimePassedSinceLastDamageInfliction += Time.deltaTime;
-            if (m_fTimePassedSinceLastDamageInfliction > m_fDamageAfterInterval)
+            if (m_fTimePassedSinceLastDamageInfliction > m_fTimeBetweenDamageCurrent)
             {
                 m_fTimePassedSinceLastDamageInfliction = 0.0f;
-                foreach (KeyValuePair<string, EnemyBase> l_dictEnemy in m_dictTriggeredEnemies)
+                foreach (KeyValuePair<int, Collider> l_dictItem in m_dictTriggeredColliders)
                 {
-                    l_dictEnemy.Value.inflictDamage(m_iDamagePerInterval, l_dictEnemy.Value.getRandomHitTransformPoint().position);
+                    if (l_dictItem.Value.gameObject.activeInHierarchy &&  l_dictItem.Value.enabled)
+                    {
+                        WeaponManager.OnWeaponHitItem(l_dictItem.Value, this, m_transformBlade.position, m_transformBlade.position, true);
+                        if (l_dictItem.Value.enabled && l_dictItem.Value.gameObject.activeInHierarchy)
+                        {
+                            m_stackRemoveColliders.Push(l_dictItem.Key);
+                        }
+                    }
+                }
+
+                int l_iID = 0;
+                while (m_stackRemoveColliders.Count != 0)
+                {
+                    l_iID = m_stackRemoveColliders.Pop();
+                    m_dictTriggeredColliders.Remove(l_iID);
                 }
             }
         }
@@ -97,19 +135,20 @@ namespace ns_Mashmo
         /// <summary>
         /// clears the dictionary that includes all the enemies
         /// </summary>
-        private void clearRegisteredEnemies()
+        private void clearRegisteredColliders()
         {
-            m_dictTriggeredEnemies.Clear();
+            m_stackRemoveColliders.Clear();
+            m_dictTriggeredColliders.Clear();
         }
 
         private void OnEnable()
         {
-            clearRegisteredEnemies();
+            clearRegisteredColliders();
         }
 
         private void OnDisable()
         {
-            clearRegisteredEnemies();
+            clearRegisteredColliders();
         }
     }
 }

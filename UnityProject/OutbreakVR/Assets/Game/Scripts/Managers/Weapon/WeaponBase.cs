@@ -150,6 +150,11 @@ namespace ns_Mashmo
 
         }
 
+        public virtual int getWeaponDamagePerInstance()
+        {
+            return 0;
+        }
+
         #region AbsComponentHandler
         public override void initialize() { }
         public override void destroy() { }

@@ -25576,6 +25576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1118290072}
+  - {fileID: 2069210544}
   m_Father: {fileID: 1287780560}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25612,7 +25613,8 @@ MonoBehaviour:
   m_ArmMonitorParent_BulletCount: {fileID: 1719148238}
   m_ArmMonitorParent_Health: {fileID: 1164903638}
   m_iDamagePerInterval: 10
-  m_fDamageAfterInterval: 0.5
+  m_iDamageAfterInterval: 5
+  m_transformBlade: {fileID: 2069210544}
 --- !u!1 &995730483
 GameObject:
   m_ObjectHideFlags: 0
@@ -37952,6 +37954,8 @@ MonoBehaviour:
     m_AudClip: {fileID: 8300000, guid: 2aa534842d155f443826832542ba70fc, type: 3}
   - m_strAudioID: SmashWood
     m_AudClip: {fileID: 8300000, guid: 379133eac2df2ce4e8d7fb447b7e2c03, type: 3}
+  - m_strAudioID: WeaponHit
+    m_AudClip: {fileID: 8300000, guid: b11dcc046b89f5240b1f024641322058, type: 3}
   m_ManagedAudioSrcPrefab: {fileID: 9180928869446884030, guid: 0274dfe80706aaa46acc5f28abbcbcdd,
     type: 3}
 --- !u!1 &1673241151 stripped
@@ -42095,6 +42099,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058323863}
   m_CullTransparentMesh: 0
+--- !u!1 &2069210543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069210544}
+  m_Layer: 2
+  m_Name: BladeHitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2069210544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069210543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.145, y: 0, z: 1.191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 994820730}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088084194
 GameObject:
   m_ObjectHideFlags: 0

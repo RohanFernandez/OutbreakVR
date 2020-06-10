@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 namespace ns_Mashmo
 {
@@ -776,35 +777,50 @@ namespace ns_Mashmo
             m_WeaponFireRay.direction = l_transCurrentControllerAnchor.forward;
             Physics.Raycast(m_WeaponFireRay, out l_RaycastHit, m_fWeaponRaycastFireMaxDistance, GunHitInteractionLayer);
 
-            if (l_RaycastHit.collider != null)
+            OnWeaponHitItem(l_RaycastHit.collider, a_GunWeaponBase, l_RaycastHit.point, l_RaycastHit.normal);
+        }
+
+
+        /// <summary>
+        /// On weapon hit item, manage damage infliction and effects
+        /// </summary>
+        /// <param name="a_HitCollider"></param>
+        /// <param name="a_WeaponBase"></param>
+        /// <param name="a_v3HitPoint"></param>
+        /// <param name="a_v3Normal"></param>
+        public static void OnWeaponHitItem(Collider a_HitCollider, WeaponBase a_WeaponBase, Vector3 a_v3HitPoint, Vector3 a_v3Normal, bool l_bIsNormalValid = true)
+        {
+            if (a_HitCollider != null)
             {
                 bool l_bIsShowEffect = false;
 
-                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER) == (l_RaycastHit.collider.gameObject.layer))
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY_HIT_COLLIDER) == (a_HitCollider.gameObject.layer))
                 {
-                    EnemyHitCollider l_EnemyHitCollider = l_RaycastHit.collider.GetComponent<EnemyHitCollider>();
+                    EnemyHitCollider l_EnemyHitCollider = a_HitCollider.GetComponent<EnemyHitCollider>();
                     if (l_EnemyHitCollider != null)
                     {
-                        l_EnemyHitCollider.inflictDamage(a_GunWeaponBase.DamagePerBullet, l_RaycastHit.point);
+                        l_EnemyHitCollider.inflictDamage(a_WeaponBase.getWeaponDamagePerInstance(), a_v3HitPoint);
                     }
                     l_bIsShowEffect = true;
                 }
-                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == (l_RaycastHit.collider.gameObject.layer))
+
+
+                if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENEMY) == (a_HitCollider.gameObject.layer))
                 {
                     l_bIsShowEffect = true;
                 }
-                else if(LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == (l_RaycastHit.collider.gameObject.layer))
+                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE) == (a_HitCollider.gameObject.layer))
                 {
-                    SmashableHitCollider l_SmashableHitCollider = l_RaycastHit.collider.GetComponent<SmashableHitCollider>();
+                    SmashableHitCollider l_SmashableHitCollider = a_HitCollider.GetComponent<SmashableHitCollider>();
                     if (l_SmashableHitCollider != null)
                     {
-                        l_SmashableHitCollider.startSmashOnHit();
+                        l_SmashableHitCollider.inflictDamage(a_WeaponBase.getWeaponDamagePerInstance());
                     }
                     l_bIsShowEffect = true;
                 }
-                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENVIRONMENT_TASK_OBJECT) == (l_RaycastHit.collider.gameObject.layer))
+                else if (LayerMask.NameToLayer(GameConsts.LAYER_NAME_ENVIRONMENT_TASK_OBJECT) == (a_HitCollider.gameObject.layer))
                 {
-                    IEnvironmentTrigger l_EnvTrigger = l_RaycastHit.collider.GetComponent<IEnvironmentTrigger>();
+                    IEnvironmentTrigger l_EnvTrigger = a_HitCollider.GetComponent<IEnvironmentTrigger>();
                     if (l_EnvTrigger != null)
                     {
                         l_EnvTrigger.onObjectHit();
@@ -819,7 +835,14 @@ namespace ns_Mashmo
                 if (l_bIsShowEffect)
                 {
                     EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
-                    l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));
+                    if (l_bIsNormalValid)
+                    {
+                        l_EffectsBase.transform.SetPositionAndRotation(a_v3HitPoint, Quaternion.LookRotation(a_v3Normal));
+                    }
+                    else
+                    {
+                        l_EffectsBase.transform.position = a_v3HitPoint;
+                    }
                 }
             }
         }

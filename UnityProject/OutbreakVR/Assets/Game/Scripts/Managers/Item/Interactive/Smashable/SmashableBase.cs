@@ -74,6 +74,12 @@ namespace ns_Mashmo
         /// </summary>
         protected float m_fCurrentPhysicsTimePassed = 0.0f;
 
+        [SerializeField]
+        private int m_iMaxHealth = 10;
+
+        //The current health of this object
+        protected int m_iHealth = 10;
+
         public virtual void smash()
         {
             m_UnbrokenRigidBody.isKinematic = true;
@@ -90,6 +96,8 @@ namespace ns_Mashmo
 
         public override void resetValues()
         {
+            m_iHealth = m_iMaxHealth;
+
             int l_iPiecesCount = m_lstSmashedPieces.Count;
             for (int l_iPieceIndex = 0; l_iPieceIndex < l_iPiecesCount; l_iPieceIndex++)
             {
@@ -130,6 +138,22 @@ namespace ns_Mashmo
 
                     //deactivate the parent of the pieces
                     m_ParentBrokenObject.gameObject.SetActive(false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reduces the health of this object by the given amount
+        /// </summary>
+        /// <param name="a_iDamage"></param>
+        public virtual void inflictDamage(int a_iDamage)
+        {
+            if (!m_bIsSmashed)
+            {
+                m_iHealth -= a_iDamage;
+                if (m_iHealth == 0 || m_iHealth < 0)
+                {
+                    smash();
                 }
             }
         }

@@ -77,9 +77,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private int m_iDamagePerBullet = 15;
-        public int DamagePerBullet
+
+        public override int getWeaponDamagePerInstance()
         {
-            get { return m_iDamagePerBullet; }
+            return m_iDamagePerBullet;
         }
 
         /// <summary>

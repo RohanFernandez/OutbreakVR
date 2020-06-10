@@ -19,5 +19,10 @@ namespace ns_Mashmo
         {
             m_Smashable.smash();
         }
+
+        public void inflictDamage(int a_iDamage)
+        {
+            m_Smashable.inflictDamage(a_iDamage);
+        }
     }
 }

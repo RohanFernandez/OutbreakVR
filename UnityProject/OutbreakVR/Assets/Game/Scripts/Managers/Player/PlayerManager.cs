@@ -250,7 +250,10 @@ namespace ns_Mashmo
                         }
                 }
                 s_Instance.m_iAudSrcIndex = (s_Instance.m_iAudSrcIndex + 1) % 2;
-                SoundManager.PlayAudio((s_Instance.m_iAudSrcIndex == 0) ? SoundConst.AUD_SRC_PLAYER_1 : SoundConst.AUD_SRC_PLAYER_2, l_strDamageAudClipID, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                if (!string.IsNullOrEmpty(l_strDamageAudClipID))
+                {
+                    SoundManager.PlayAudio((s_Instance.m_iAudSrcIndex == 0) ? SoundConst.AUD_SRC_PLAYER_1 : SoundConst.AUD_SRC_PLAYER_2, l_strDamageAudClipID, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                }
             }
         }
 
