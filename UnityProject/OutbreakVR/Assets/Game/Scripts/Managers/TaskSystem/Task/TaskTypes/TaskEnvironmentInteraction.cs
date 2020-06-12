@@ -65,7 +65,7 @@ namespace ns_Mashmo
                         GameObject l_GameObject = GameObjectManager.GetGameObjectById(m_strGameObjectID);
                         if (l_GameObject != null && l_bIsSmashed)
                         {
-                            SmashableBase l_InteractiveSmashable = l_GameObject.GetComponent<SmashableBase>();
+                            ISmashable l_InteractiveSmashable = l_GameObject.GetComponent<ISmashable>();
                             if (l_InteractiveSmashable != null)
                             {
                                 l_InteractiveSmashable.smash();

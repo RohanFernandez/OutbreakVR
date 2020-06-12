@@ -4,7 +4,12 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class SmashableBase : AbsEnvironmentInteractableObject
+    public interface ISmashable
+    {
+        void smash();
+    }
+
+    public class SmashableBase : AbsEnvironmentInteractableObject, ISmashable
     {
         /// <summary>
         /// The gameobject that holds the unbroken object
