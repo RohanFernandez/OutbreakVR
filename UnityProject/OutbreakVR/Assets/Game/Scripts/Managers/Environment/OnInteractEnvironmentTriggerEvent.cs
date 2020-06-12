@@ -8,7 +8,7 @@ namespace ns_Mashmo
     public class OnInteractEnvironmentTriggerEvent : AbsEnvironmentInteractableObject, IEnvironmentTrigger
     {
         [SerializeField]
-        private OutlineHighlighter m_OutLineHighlighter = null;
+        private OutlineHighlighterBase m_OutLineHighlighter = null;
 
         [SerializeField]
         private string m_strTriggerSequenceOnInteract = string.Empty;
@@ -21,6 +21,9 @@ namespace ns_Mashmo
 
         [SerializeField]
         private Animation m_AnimOnInteract = null;
+
+        [SerializeField]
+        protected Collider m_Collider = null;
 
         public void onObjectHit()
         {
@@ -41,7 +44,7 @@ namespace ns_Mashmo
 
         public void onPointerEnter()
         {
-            if (m_OutLineHighlighter != null && gameObject.activeSelf)
+            if (m_OutLineHighlighter != null && gameObject.activeSelf && m_Collider.enabled)
             {
                 m_OutLineHighlighter.toggleHighlighter(true, GameManager.ColOutlineHighlighterSelected);
             }
@@ -49,7 +52,7 @@ namespace ns_Mashmo
 
         public void onPointerExit()
         {
-            if (m_OutLineHighlighter != null && gameObject.activeSelf)
+            if (m_OutLineHighlighter != null && gameObject.activeSelf && m_Collider.enabled)
             {
                 m_OutLineHighlighter.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
             }
@@ -57,7 +60,10 @@ namespace ns_Mashmo
 
         public virtual void onPointerInteract()
         {
-            TaskManager.ExecuteSequence(m_strTriggerSequenceOnInteract);
+            if (!string.IsNullOrEmpty(m_strTriggerSequenceOnInteract))
+            {
+                TaskManager.ExecuteSequence(m_strTriggerSequenceOnInteract);
+            }
             if (m_OutLineHighlighter != null)
             {
                 m_OutLineHighlighter.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated);

@@ -7,9 +7,6 @@ namespace ns_Mashmo
     public abstract class InteractiveSelectiveLocationBase : OnInteractEnvironmentTriggerEvent
     {
         [SerializeField]
-        protected Collider m_Collider = null;
-
-        [SerializeField]
         protected INVENTORY_ITEM_ID m_InventoryItemIDToPlace;
 
         public override void onPointerInteract()
