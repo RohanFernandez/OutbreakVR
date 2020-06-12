@@ -509,7 +509,7 @@ MonoBehaviour:
         m_strValue: Level102_DoorLowerFloor
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj102_OnHandgunPickedup
-    m_iTaskCount: 1
+    m_iTaskCount: 2
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -525,6 +525,24 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level102_DoorLowerFloor
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Level102_Sentinel1
+      - m_strKey: EnemyType
+        m_strValue: SENTINEL
+      - m_strKey: Position
+        m_strValue: 1.972,25.874,14.67519
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: OnElectricityBoxHit
     m_iTaskCount: 3
