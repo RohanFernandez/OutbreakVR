@@ -141,16 +141,22 @@
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricBoxHitCollider" />
 		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Level_102_FN57_1" ItemType="ITEM_FN57" BulletCount="17" Position="-0.5318,26.7721,18.3393" Rotation="-0.066,-36.163,89.676" ObjectiveTrigger="HandgunPickup"/>
 		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_PlankTask" />
-		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.702,26.7978,18.565" Rotation="0.0,11.27,0.0"/>
-		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.624,26.7962,18.583" Rotation="0.0,16.948,0.0"/>
-		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_3" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="30" Position="-0.624,26.7962,18.583" Rotation="0.0,16.948,0.0"/>
-		<Task ID="9" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level102_DoorLowerFloor" />
+		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="-0.702,26.7978,18.565" Rotation="0.0,11.27,0.0"/>
+		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="-0.7514,26.7962,18.3084" Rotation="0.0,-35.764,0.0"/>
+		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_3" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="-0.5368,26.7962,18.7265" Rotation="0.0,78.053,0.0"/>
+		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_4" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="-0.345,26.521,11.82" Rotation="-7.225,-73.158,-2.18"/>
+		<Task ID="10" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_5" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="10.198,26.133,19.914" Rotation="0.0,45.538,0.0"/>
+		<Task ID="11" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_01" ItemType="ITEM_HEALTH_SMALL" Position="-0.139,26.596,11.831" Rotation="0.0,0.0,-5.522"/>
+		<Task ID="12" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_02" ItemType="ITEM_HEALTH_SMALL" Position="9.313,26.218,19.772" Rotation="0.0,15.124,0.0"/>
+		<Task ID="13" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_01" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="4.003,35.928,9.383" Rotation="-12.613,-70.19,0.0"/>
+		<Task ID="14" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level102_DoorLowerFloor" />
 	</Sequence>
 	
 	<!-- on gun picked up-->
 	<Sequence ID = "Obj102_OnHandgunPickedup" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level102_DoorLowerFloor" />
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level102_Sentinel1" EnemyType="SENTINEL" Position="1.972,25.874,14.67519" Rotation="0.0,0.0,0.0"/>
+		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level102_Sentinel2" EnemyType="SENTINEL" Position="-4.839,25.254,14.324" Rotation="0.0,50.7,0.0"/>
 	</Sequence>	
 	
 	<!-- on shooting the electricity box-->
