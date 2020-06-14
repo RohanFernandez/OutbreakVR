@@ -293,10 +293,16 @@
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret1" EnemyType="AUTOMATED_TURRET" Position="22.74,12.623,12.65" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
 		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret2" EnemyType="AUTOMATED_TURRET" Position="22.896,12.59,22.639" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
 		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level106_C4BrokenWall" />
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level106_C4Location" />
+		<Task ID="6" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_C4BlastParticles" />
 	</Sequence>
 	
 	<Sequence ID = "Level106_OnC4Placed" >
-		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_C4BrokenWall" />
+		<Task ID="0" TaskType="TaskAudio" AudClip="C4BombTimer" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level106_C4Location"/>	
+		<Task ID="1" TaskType="TaskWait" WaitTime="7.0"/>
+		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_C4BrokenWall" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_C4Location" />
+		<Task ID="4" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level106_C4BlastParticles" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_106_OnEnd" >

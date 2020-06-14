@@ -6,6 +6,11 @@ namespace ns_Mashmo
 {
     public class InteractiveC4SelectLocation : InteractiveSelectiveLocationBase
     {
+        public override void resetValues()
+        {
+            base.resetValues();
+        }
+
         public override void onPointerInteract()
         {
             if (isInventoryItemUsed())
