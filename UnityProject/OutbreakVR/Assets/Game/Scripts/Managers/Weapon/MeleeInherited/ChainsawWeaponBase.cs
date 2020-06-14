@@ -53,9 +53,32 @@ namespace ns_Mashmo
         private Animator m_Animator = null;
 
         /// <summary>
+        /// Audio id to be played on saw start
+        /// </summary>
+        [SerializeField]
+        private string m_strSawStartAudID = string.Empty;
+
+        /// <summary>
+        /// Audio id to be played on saw stop
+        /// </summary>
+        [SerializeField]
+        private string m_strSawStopAudID = string.Empty;
+
+        /// <summary>
+        /// Audio id to be played on loop while saw is cutting
+        /// </summary>
+        [SerializeField]
+        private string m_strSawCutLoopAudID = string.Empty;
+
+        /// <summary>
         /// Is the saw currently causing damage
         /// </summary>
         private bool m_bIsSawRotating = false;
+        private bool IsSawRotating
+        {
+            get { return m_bIsSawRotating; }
+            set { m_bIsSawRotating = value; }
+        }
 
         /// <summary>
         /// On new weapon is selected
@@ -64,6 +87,7 @@ namespace ns_Mashmo
         {
             base.onWeaponSelected();
 
+            IsSawRotating = false;
             if (m_Animator != null)
             {
                 m_Animator.SetBool(ANIM_STATE_SHOOT, false);
@@ -138,13 +162,13 @@ namespace ns_Mashmo
                 m_fTimePassedSinceLastDamageInfliction = 0.0f;
                 foreach (KeyValuePair<int, Collider> l_dictItem in m_dictTriggeredColliders)
                 {
-                    if (l_dictItem.Value.gameObject.activeInHierarchy &&  l_dictItem.Value.enabled)
+                    if (l_dictItem.Value.gameObject.activeInHierarchy && l_dictItem.Value.enabled && IsSawRotating)
                     {
                         WeaponManager.OnWeaponHitItem(l_dictItem.Value, this, m_transformBlade.position, m_transformBlade.position, true);
-                        if (l_dictItem.Value.enabled && l_dictItem.Value.gameObject.activeInHierarchy && m_bIsSawRotating)
-                        {
-                            m_stackRemoveColliders.Push(l_dictItem.Key);
-                        }
+                    }
+                    else if (!l_dictItem.Value.enabled || !l_dictItem.Value.gameObject.activeInHierarchy)
+                    {
+                        m_stackRemoveColliders.Push(l_dictItem.Key);
                     }
                 }
 
@@ -178,13 +202,13 @@ namespace ns_Mashmo
 
         public override void startShootingAnim()
         {
-            m_bIsSawRotating = true;
+            IsSawRotating = true;
             m_Animator.SetBool(ANIM_STATE_SHOOT, true);
         }
 
         public override void stopShootingAnim()
         {
-            m_bIsSawRotating = false;
+            IsSawRotating = false;
             m_Animator.SetBool(ANIM_STATE_SHOOT, false);
         }
 

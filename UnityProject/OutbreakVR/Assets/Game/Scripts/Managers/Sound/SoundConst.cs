@@ -54,6 +54,10 @@ namespace ns_Mashmo
         /// </summary>
         public const string AUD_SRC_TURRET_TRIG_ACTIVATE = "AudSrc_TurretTriggerActivate";
 
+        /// <summary>
+        /// The aud src that plays all sounds on the worn helmet
+        /// </summary>
+        public const string AUD_SRC_PLAYER_HELMET = "Helmet";
 
         #endregion AUDIO SOURCE
 

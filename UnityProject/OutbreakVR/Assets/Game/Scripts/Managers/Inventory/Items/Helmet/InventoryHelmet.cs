@@ -60,6 +60,9 @@ namespace ns_Mashmo
         /// </summary>
         public const float MAX_HELMET_STRENGTH = 40;
 
+        [SerializeField]
+        private string m_strHelmetCrackedAudID = string.Empty;
+
         /// <summary>
         /// gets if the helmet is cracked
         /// </summary>
@@ -132,6 +135,7 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onPlayerHelmetCracked()
         {
+            SoundManager.PlayAudio(SoundConst.AUD_SRC_PLAYER_HELMET, m_strHelmetCrackedAudID, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
             updateHelmet();
         }
 
