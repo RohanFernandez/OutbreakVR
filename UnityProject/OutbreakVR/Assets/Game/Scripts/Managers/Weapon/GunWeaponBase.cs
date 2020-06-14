@@ -89,26 +89,6 @@ namespace ns_Mashmo
         [SerializeField]
         protected Animator m_animatorHands = null;
 
-        /// <summary>
-        /// The name of the shoot anim state name
-        /// </summary>
-        private const string ANIM_STATE_SHOOT = "shoot";
-
-        /// <summary>
-        /// The name of the anim state that opens the menu
-        /// </summary>
-        private const string ANIM_STATE_OPEN_MENU = "Menu_1";
-
-        /// <summary>
-        /// The name of the anim state that closes the menu
-        /// </summary>
-        private const string ANIM_STATE_CLOSE_MENU = "Menu_2";
-
-        /// <summary>
-        /// The name of the anim state that closes the menu
-        /// </summary>
-        private const string ANIM_STATE_IDLE_HANDS = "idle";
-
         public int CurrentMagCount
         {
             get

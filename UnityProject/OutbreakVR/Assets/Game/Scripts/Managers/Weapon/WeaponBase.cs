@@ -6,6 +6,26 @@ namespace ns_Mashmo
 {
     public abstract class WeaponBase : AbsComponentHandler
     {
+        /// <summary>
+        /// The name of the shoot anim state name
+        /// </summary>
+        protected const string ANIM_STATE_SHOOT = "shoot";
+
+        /// <summary>
+        /// The name of the anim state that opens the menu
+        /// </summary>
+        protected const string ANIM_STATE_OPEN_MENU = "Menu_1";
+
+        /// <summary>
+        /// The name of the anim state that closes the menu
+        /// </summary>
+        protected const string ANIM_STATE_CLOSE_MENU = "Menu_2";
+
+        /// <summary>
+        /// The name of the anim state that closes the menu
+        /// </summary>
+        protected const string ANIM_STATE_IDLE_HANDS = "idle";
+
         [SerializeField]
         public WEAPON_CATEGORY_TYPE m_WeaponCategoryType;
 

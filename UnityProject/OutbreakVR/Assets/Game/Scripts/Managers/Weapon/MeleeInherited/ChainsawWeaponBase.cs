@@ -47,6 +47,31 @@ namespace ns_Mashmo
         private Stack<int> m_stackRemoveColliders = new Stack<int>(5);
 
         /// <summary>
+        /// the animator that controls the chainsaw
+        /// </summary>
+        [SerializeField]
+        private Animator m_Animator = null;
+
+        /// <summary>
+        /// Is the saw currently causing damage
+        /// </summary>
+        private bool m_bIsSawRotating = false;
+
+        /// <summary>
+        /// On new weapon is selected
+        /// </summary>
+        public override void onWeaponSelected()
+        {
+            base.onWeaponSelected();
+
+            if (m_Animator != null)
+            {
+                m_Animator.SetBool(ANIM_STATE_SHOOT, false);
+                m_Animator.SetTrigger(ANIM_STATE_IDLE_HANDS);
+            }
+        }
+
+        /// <summary>
         /// On the chainsaw blade's collider is triggerd by an enemy
         /// </summary>
         /// <param name="a_Collider"></param>
@@ -116,7 +141,7 @@ namespace ns_Mashmo
                     if (l_dictItem.Value.gameObject.activeInHierarchy &&  l_dictItem.Value.enabled)
                     {
                         WeaponManager.OnWeaponHitItem(l_dictItem.Value, this, m_transformBlade.position, m_transformBlade.position, true);
-                        if (l_dictItem.Value.enabled && l_dictItem.Value.gameObject.activeInHierarchy)
+                        if (l_dictItem.Value.enabled && l_dictItem.Value.gameObject.activeInHierarchy && m_bIsSawRotating)
                         {
                             m_stackRemoveColliders.Push(l_dictItem.Key);
                         }
@@ -149,6 +174,28 @@ namespace ns_Mashmo
         private void OnDisable()
         {
             clearRegisteredColliders();
+        }
+
+        public override void startShootingAnim()
+        {
+            m_bIsSawRotating = true;
+            m_Animator.SetBool(ANIM_STATE_SHOOT, true);
+        }
+
+        public override void stopShootingAnim()
+        {
+            m_bIsSawRotating = false;
+            m_Animator.SetBool(ANIM_STATE_SHOOT, false);
+        }
+
+        public override void onGamePauseToggled(bool a_IsPaused)
+        {
+            base.onGamePauseToggled(a_IsPaused);
+
+            if (m_Animator != null)
+            {
+                m_Animator.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
+            }
         }
     }
 }
