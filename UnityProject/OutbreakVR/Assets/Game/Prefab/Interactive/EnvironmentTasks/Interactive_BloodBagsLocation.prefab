@@ -1,99 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &130673235619527556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 130673235619527552}
-  - component: {fileID: 130673235619527553}
-  - component: {fileID: 130673235619527554}
-  - component: {fileID: 130673235619527555}
-  m_Layer: 8
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &130673235619527552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130673235619527556}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 130673236486456071}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &130673235619527553
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130673235619527556}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &130673235619527554
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130673235619527556}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!114 &130673235619527555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130673235619527556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f87a6830b96a6419d257990c71318c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MeshRenderer: {fileID: 130673235619527554}
-  m_matOutlineHighlighter: {fileID: 2100000, guid: 772b7ac67e953a7449cba5ef1dbc9340,
-    type: 2}
 --- !u!1 &130673236486456122
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 130673236486456071}
-  - component: {fileID: 130673236486456120}
+  - component: {fileID: 6687082858319311893}
   - component: {fileID: 130673236486456121}
   m_Layer: 8
   m_Name: Interactive_BloodBagsLocation
@@ -123,12 +29,11 @@ Transform:
   m_LocalPosition: {x: 24.612612, y: 16.521053, z: 24.996109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 130673235619527552}
   - {fileID: 3135640214676271432}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &130673236486456120
+--- !u!114 &6687082858319311893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,20 +42,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 130673236486456122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0569870ef88b6c84b8d6f708b78f3f9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 018a60bc607279a489c9bc74b6364610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OutLineHighlighter: {fileID: 1935972254169667568}
-  m_strTriggerSequenceOnInteract: 
-  m_EventOnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  m_EventOnEnable:
-    m_PersistentCalls:
-      m_Calls: []
-  m_AnimOnInteract: {fileID: 0}
-  m_Collider: {fileID: 130673236486456121}
   m_InventoryItemIDToPlace: 4
+  m_Collider: {fileID: 130673236486456121}
+  m_strTriggerSequenceOnInteract: 
+  m_OutLineHighlighter: {fileID: 1935972254169667568}
 --- !u!65 &130673236486456121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -224,7 +122,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cbe3d5ba256a1d74fb578c085780bb23,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cbe3d5ba256a1d74fb578c085780bb23,
         type: 3}

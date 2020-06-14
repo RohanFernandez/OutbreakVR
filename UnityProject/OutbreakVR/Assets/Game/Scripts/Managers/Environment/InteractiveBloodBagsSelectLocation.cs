@@ -6,6 +6,12 @@ namespace ns_Mashmo
 {
     public class InteractiveBloodBagsSelectLocation : InteractiveSelectiveLocationBase
     {
-
+        public override void onPointerInteract()
+        {
+            if (isInventoryItemUsed())
+            {
+                base.onPointerInteract();
+            }
+        }
     }
 }

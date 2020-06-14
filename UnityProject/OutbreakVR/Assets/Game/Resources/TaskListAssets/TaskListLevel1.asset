@@ -1565,14 +1565,14 @@ MonoBehaviour:
         m_strValue: Level104_GasValveTurn
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnPowerNodeAttached
-    m_iTaskCount: 1
+    m_iTaskCount: 4
     m_lstTasks:
-    - m_strTaskID: 1
+    - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 1
+        m_strValue: 0
       - m_strKey: TaskType
         m_strValue: TaskEnvironmentInteraction
       - m_strKey: Code
@@ -1581,6 +1581,60 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level104_Torture5LockedDoor
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorStart
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_NodeGenerator
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_NodeGenerator
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnEnd
     m_iTaskCount: 4
@@ -1795,7 +1849,7 @@ MonoBehaviour:
         m_strValue: Level105_InteractiveDoor_2
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnPowerNodeAttached
-    m_iTaskCount: 1
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -1811,6 +1865,60 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level105_InteractiveDoor_1
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorStart
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level105_NodeGenerator
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level105_NodeGenerator
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnEnd
     m_iTaskCount: 1

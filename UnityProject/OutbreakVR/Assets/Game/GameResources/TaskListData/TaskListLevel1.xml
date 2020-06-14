@@ -246,7 +246,10 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnPowerNodeAttached" >
-		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture5LockedDoor" />
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level104_Torture5LockedDoor" />
+		<Task ID="1" TaskType="TaskAudio" AudClip="GeneratorStart" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_NodeGenerator"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="2.0"/>
+		<Task ID="3" TaskType="TaskAudio" AudClip="GeneratorLoop" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_NodeGenerator"/>	
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
@@ -272,6 +275,9 @@
 	<!-- On power node is attached to the generator-->
 	<Sequence ID = "Level1_105_OnPowerNodeAttached" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level105_InteractiveDoor_1" />
+		<Task ID="1" TaskType="TaskAudio" AudClip="GeneratorStart" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level105_NodeGenerator"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="2.0"/>
+		<Task ID="3" TaskType="TaskAudio" AudClip="GeneratorLoop" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level105_NodeGenerator"/>	
 	</Sequence>
 	
 	<Sequence ID = "Level1_105_OnEnd" >
