@@ -36,7 +36,7 @@ namespace ns_Mashmo
                 float l_fDistanceToPlayer = Vector3.Distance(l_v3PlayerPosition, transform.position);
 
                 bool l_bCanFireTohitPlayer = l_bIsPlayerVisibleForShot && (l_fDistanceToPlayer <= m_fMaxDamagePlayerDamageRadius);
-                bool l_bIsFacingPlayer = Vector3.Dot(l_v3DirectionToPlayer, transform.forward) > 0.95f;
+                bool l_bIsFacingPlayer = Vector3.Dot(m_GunTransformRayPoint.forward, transform.forward) > 0.95f;
 
                 ///shoot the player
                 if (l_bCanFireTohitPlayer && l_bIsFacingPlayer)
@@ -44,12 +44,12 @@ namespace ns_Mashmo
                     m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
                     stopNavigation();
                 }
-                else if (l_bCanFireTohitPlayer && !l_bIsFacingPlayer)
-                { 
-                    //m_NavMeshAgent.updateRotation = false;
-                    //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 270.0f * Time.deltaTime);
-                    //m_NavMeshAgent.updateRotation = true;
-                }
+                //else if (l_bCanFireTohitPlayer && !l_bIsFacingPlayer)
+                //{ 
+                //    //m_NavMeshAgent.updateRotation = false;
+                //    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 270.0f * Time.deltaTime);
+                //    //m_NavMeshAgent.updateRotation = true;
+                //}
                 ///Find a better location to shoot from
                 else
                 {
@@ -60,7 +60,7 @@ namespace ns_Mashmo
                         startNavigation();
                     }
                 }
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 360.0f * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(Quaternion.LookRotation(m_GunTransformRayPoint.forward, Vector3.up), Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 360.0f * Time.deltaTime);
             }
         }
 
