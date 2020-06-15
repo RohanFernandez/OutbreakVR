@@ -6,6 +6,8 @@ namespace ns_Mashmo
 {
     public abstract class MeleeAttackEnemy : NonStaticEnemy
     {
+        protected const string ANIM_TRIGGER_IDLE_AGONY = "idle_agony"; //"Suffer";
+
         /// <summary>
         /// Damage inflicted on player on strike
         /// </summary>
@@ -35,7 +37,7 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private string m_strAudClipIDPunch3 = string.Empty;
-        
+
         public override ENEMY_ATTACK_TYPE getEnemyAttackType()
         {
             return ENEMY_ATTACK_TYPE.MELEE;
@@ -63,14 +65,6 @@ namespace ns_Mashmo
         protected override void onIdleStateUpdate()
         {
             base.onIdleStateUpdate();
-        }
-
-        /// <summary>
-        /// update action called when the enemy is in the alert state 
-        /// </summary>
-        protected override void onAlertStateUpdate()
-        {
-            base.onAlertStateUpdate();
         }
 
         /// <summary>
@@ -115,6 +109,58 @@ namespace ns_Mashmo
                 l_v3EnemyToPlayerDot > 0.6f)
             {
                 PlayerManager.InflictDamage(m_iStrikeDamage, DAMAGE_INFLICTION_TYPE.STRIKE);
+            }
+        }
+
+        /// <summary>
+        /// On enemy state changed
+        /// </summary>
+        protected override void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
+        {
+            base.onStateChanged(l_OldNavState, a_NavState);
+            switch (a_NavState)
+            {
+                case ENEMY_STATE.IDLE:
+                    {
+                        // Randomly set the idle animation with the ration of 8 : 2, ANIM_TRIGGER_IDLE  : ANIM_TRIGGER_IDLE_AGONY
+                        m_Animator.SetTrigger((UnityEngine.Random.Range(1, 11) < 9) ? ANIM_TRIGGER_IDLE : ANIM_TRIGGER_IDLE_AGONY);
+                        break;
+                    }
+            }
+        }
+
+
+        /// <summary>
+        /// update action called when the enemy is in the alert state 
+        /// </summary>
+        protected override void onAlertStateUpdate()
+        {
+            base.onAlertStateUpdate();
+            Vector3 l_v3PlayerPosition = PlayerManager.GetPosition();
+            m_fCurrAlertTimeCounter = isPlayerDetected() ? m_fMaxAlertTime : (m_fCurrAlertTimeCounter - Time.deltaTime);
+
+            if (m_fCurrAlertTimeCounter <= 0.0f)
+            {
+                NavState = ENEMY_STATE.IDLE;
+            }
+            else
+            {
+                Vector3 l_v3DirectionToPlayer = (l_v3PlayerPosition - transform.position).normalized;
+
+                if ((Vector3.Distance(l_v3PlayerPosition, transform.position) <= m_fMaxDamagePlayerDamageRadius) &&
+                    (Vector3.Dot(l_v3DirectionToPlayer, transform.forward) > 0.6f))
+                {
+                    m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
+                    m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
+                }
+                else
+                {
+                    setDestination(l_v3PlayerPosition);
+                    m_NavMeshAgent.updateRotation = false;
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 180.0f * Time.deltaTime);
+                    m_NavMeshAgent.updateRotation = true;
+                    m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
+                }
             }
         }
     }

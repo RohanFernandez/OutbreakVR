@@ -6,9 +6,11 @@ namespace ns_Mashmo
 {
     public enum ENEMY_TYPE
     {
-        SENTINEL            = 0,
-        AUTOMATED_TURRET    = 1,
-        PROXIMITY_BOMB      = 2,
+        SENTINEL            =   0,
+        AUTOMATED_TURRET    =   1,
+        PROXIMITY_BOMB      =   2,
+        ZOMBIE              =   3,
+        SHOOTER             =   4
     }
 
     public enum ENEMY_ATTACK_TYPE

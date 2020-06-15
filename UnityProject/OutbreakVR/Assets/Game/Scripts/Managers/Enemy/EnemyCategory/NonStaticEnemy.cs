@@ -12,7 +12,6 @@ namespace ns_Mashmo
         protected const string ANIM_TRIGGER_ATTACK      = "Attack_1";   //"Attack";
         protected const string ANIM_TRIGGER_DIE         = "Die";
         protected const string ANIM_TRIGGER_IDLE        = "Idle";
-        protected const string ANIM_TRIGGER_IDLE_AGONY  = "idle_agony"; //"Suffer";
 
         ///Hit animation
         protected const string ANIM_TRIGGER_HIT_HEAD            = "Hit_head";
@@ -46,47 +45,47 @@ namespace ns_Mashmo
         /// Time that will be spent in the idle state and then transitioning to patrol
         /// </summary>
         [SerializeField]
-        private float m_fMaxIdleTime = 5.0f;
+        protected float m_fMaxIdleTime = 5.0f;
 
         /// <summary>
         /// Current time passed that is spent in the idle state
         /// </summary>
-        private float m_fCurrIdleTimeCounter = 0.0f;
+        protected float m_fCurrIdleTimeCounter = 0.0f;
 
         /// <summary>
         /// max Time in alert modeafter which alert of that enemy will go off
         /// </summary>
         [SerializeField]
-        private float m_fMaxAlertTime = 0.0f;
+        protected float m_fMaxAlertTime = 0.0f;
 
         /// <summary>
         /// Time in alert mode, will start since last scene the player
         /// </summary>
-        private float m_fCurrAlertTimeCounter = 0.0f;
+        protected float m_fCurrAlertTimeCounter = 0.0f;
 
         /// <summary>
         /// Stopping distance when patrolling towards a patrol point
         /// </summary>
         [SerializeField]
-        private float m_fPatrolStoppingDistance = 2.0f;
+        protected float m_fPatrolStoppingDistance = 2.0f;
 
         /// <summary>
         /// The speed of the nav mesh agent while patrolling
         /// </summary>
         [SerializeField]
-        private float m_fPatrollingNavigationSpeed = 0.75f;
+        protected float m_fPatrollingNavigationSpeed = 0.75f;
 
         /// <summary>
         /// Stopping distance when attacking an enemy
         /// </summary>
         [SerializeField]
-        private float m_fAlertStoppingDistance = 1.0f;
+        protected float m_fAlertStoppingDistance = 1.0f;
 
         /// <summary>
         /// The speed of the nav mesh agent while in alert
         /// </summary>
         [SerializeField]
-        private float m_fAlertNavigationSpeed = 1.0f;
+        protected float m_fAlertNavigationSpeed = 1.0f;
 
         /// <summary>
         /// The next patrol point the enemy is traversing to
@@ -102,14 +101,14 @@ namespace ns_Mashmo
         /// Radius under which will go into alert mode attempting to reach the player to attack.
         /// </summary>
         [SerializeField]
-        private float m_fAlertRadius = 15.0f;
+        protected float m_fAlertRadius = 15.0f;
 
         /// <summary>
         /// Radius under which will go into alert mode attempting to reach the player to attack.
         /// This radius is when a gunshot is firedby the player
         /// </summary>
         [SerializeField]
-        private float m_fExtendedAlertRadius = 23.0f;
+        protected float m_fExtendedAlertRadius = 23.0f;
 
         /// <summary>
         /// List of all the enemy hit colliders
@@ -165,7 +164,7 @@ namespace ns_Mashmo
             base.activateEnemy();
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
-            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
+            EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onAnotherEnemyAlertStarted);
 
             if (m_NavMeshPath == null) { m_NavMeshPath = new UnityEngine.AI.NavMeshPath(); }
 
@@ -183,7 +182,7 @@ namespace ns_Mashmo
             toggleRagdoll(false);
 
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_WEAPON_FIRED, onPlayerWeaponFired);
-            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
+            EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onAnotherEnemyAlertStarted);
 
             NavState = ENEMY_STATE.NONE;
         }
@@ -264,8 +263,6 @@ namespace ns_Mashmo
                         stopNavigation();
                         m_fCurrAlertTimeCounter = 0.0f;
                         m_fCurrIdleTimeCounter = 0.0f;
-                        // Randomly set the idle animation with the ration of 8 : 2, ANIM_TRIGGER_IDLE  : ANIM_TRIGGER_IDLE_AGONY
-                        m_Animator.SetTrigger((UnityEngine.Random.Range(1, 11) < 9) ? ANIM_TRIGGER_IDLE : ANIM_TRIGGER_IDLE_AGONY);
                         m_actNavStateUpdate = onIdleStateUpdate;
                         break;
                     }
@@ -380,32 +377,6 @@ namespace ns_Mashmo
         /// </summary>
         protected virtual void onAlertStateUpdate()
         {
-            Vector3 l_v3PlayerPosition = PlayerManager.GetPosition();
-            m_fCurrAlertTimeCounter = isPlayerDetected() ? m_fMaxAlertTime : (m_fCurrAlertTimeCounter - Time.deltaTime);
-            
-            if (m_fCurrAlertTimeCounter <= 0.0f)
-            {
-                NavState = ENEMY_STATE.IDLE;
-            }
-            else
-            {
-                Vector3 l_v3DirectionToPlayer = (l_v3PlayerPosition - transform.position).normalized;
-                
-                if ((Vector3.Distance(l_v3PlayerPosition, transform.position) <= m_fMaxDamagePlayerDamageRadius) &&
-                    (Vector3.Dot(l_v3DirectionToPlayer, transform.forward) > 0.6f))
-                {
-                    m_Animator.ResetTrigger(ANIM_TRIGGER_WALK);
-                    m_Animator.SetTrigger(ANIM_TRIGGER_ATTACK);
-                }
-                else
-                {
-                    setDestination(l_v3PlayerPosition);
-                    m_NavMeshAgent.updateRotation = false;
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(l_v3DirectionToPlayer, Vector3.up), 180.0f * Time.deltaTime);
-                    m_NavMeshAgent.updateRotation = true;
-                    m_Animator.SetTrigger(ANIM_TRIGGER_WALK);
-                }
-            }
         }
 
         /// <summary>
@@ -444,7 +415,7 @@ namespace ns_Mashmo
         /// is the player within range and raycast to player is true
         /// </summary>
         /// <returns></returns>
-        private bool isPlayerDetected()
+        protected bool isPlayerDetected()
         {
             bool l_bIsDetected = false;
 
@@ -481,9 +452,10 @@ namespace ns_Mashmo
         }
 
         /// <summary>
-        /// Callback called on enemy alerted
+        /// Callback called when another enemy has been alerted, alert this enemy as well
+        /// used to force the enemy to the alert state
         /// </summary>
-        protected virtual void onEnemyAlertStarted(EventHash a_EventHash)
+        protected virtual void onAnotherEnemyAlertStarted(EventHash a_EventHash)
         {
             bool l_bIsEnemyAlertForced = (bool)a_EventHash[GameEventTypeConst.ID_FORCED_ENEMY_ALERT];
 
@@ -502,6 +474,7 @@ namespace ns_Mashmo
 
         /// <summary>
         /// Alerts the enemy if the player is within a certain distance from the player
+        /// called to force detect on players gunshots
         /// </summary>
         private void alertEnemyOnPlayerProximity()
         {

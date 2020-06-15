@@ -24,5 +24,13 @@ namespace ns_Mashmo
         {
             m_EnemyBase.onStrikeAttackHitDetection(a_iAttackIndex);
         }
+
+        /// <summary>
+        /// Anim event called when the enemy shoots the gun
+        /// </summary>
+        public void onGunFired()
+        {
+            m_EnemyBase.onGunFired();
+        }
     }
 }
