@@ -6,11 +6,12 @@ namespace ns_Mashmo
 {
     public enum INVENTORY_ITEM_ID
     {
-        INVENTORY_HELMET        = 0,
-        INVENTORY_HEALTH        = 1,
-        INVENTORY_POWER_NODE    = 2,
-        INVENTORY_C4            = 3,
-        INVENTORY_BLOOD_BAGS    = 4,
+        INVENTORY_HELMET            = 0,
+        INVENTORY_HEALTH            = 1,
+        INVENTORY_POWER_NODE        = 2,
+        INVENTORY_C4                = 3,
+        INVENTORY_BLOOD_BAGS        = 4,
+        INVENTORY_CRACKED_HELMET    = 5,
     }
 
     public class InventoryManager : AbsComponentHandler
@@ -164,10 +165,11 @@ namespace ns_Mashmo
                         }
                 }
             }
-            else
-            {
-                Debug.LogError("InventoryManager::PickupItem:: Failed to find item in inventory dict with ID '" + l_InventoryItemID.ToString() + "'");
-            }
+            //}
+            //else
+            //{
+            //    Debug.LogError("InventoryManager::PickupItem:: Failed to find item in inventory dict with ID '" + l_InventoryItemID.ToString() + "'");
+            //}
 
             return l_bIsItemPickedUp;
         }
