@@ -49,6 +49,15 @@ namespace ns_Mashmo
         [SerializeField]
         private UnpooledAudioSource m_AudioSrc = null;
 
+        [SerializeField]
+        private Material m_matAlerted = null;
+
+        [SerializeField]
+        private Material m_matIdle = null;
+
+        [SerializeField]
+        List<Renderer> m_lstRenderers = null;
+
         /// <summary>
         /// THe anim trigger to start detonation of the bomb
         /// </summary>
@@ -82,11 +91,12 @@ namespace ns_Mashmo
             {
                 case ENEMY_STATE.IDLE:
                     m_Animator.SetTrigger(ANIM_TRIGGER_IDLE);
+                    toggleAlertedMat(false);
                     m_actNavStateUpdate = null;
                     break;
 
                 case ENEMY_STATE.ALERT:
-
+                    toggleAlertedMat(true);
                     m_AudioSrc.play(SoundConst.AUD_CLIP_PROXIMITY_BOMB_ARMED, false, 1.0f);
 
                     m_Animator.SetTrigger(ANIM_TRIGGER_START_DETONATE);
@@ -146,6 +156,20 @@ namespace ns_Mashmo
             if (GeneralUtils.IsLayerInLayerMask(m_AttackLayerMask, a_Collider.gameObject.layer) && NavState == ENEMY_STATE.IDLE)
             {
                 NavState = ENEMY_STATE.ALERT;
+            }
+        }
+
+        /// <summary>
+        /// Sets the material of alerted/idle state to all the renderers
+        /// </summary>
+        /// <param name="a_bIsAlerted"></param>
+        private void toggleAlertedMat(bool a_bIsAlerted)
+        {
+            Material l_Mat = a_bIsAlerted ? m_matAlerted : m_matIdle;
+            int l_iRendererCount = m_lstRenderers.Count;
+            for (int l_iMeshRendererIndex = 0; l_iMeshRendererIndex < l_iRendererCount; l_iMeshRendererIndex++)
+            {
+                m_lstRenderers[l_iMeshRendererIndex].material = l_Mat;
             }
         }
     }
