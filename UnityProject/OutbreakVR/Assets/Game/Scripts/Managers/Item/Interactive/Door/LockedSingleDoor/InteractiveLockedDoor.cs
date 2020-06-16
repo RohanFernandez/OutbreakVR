@@ -54,6 +54,46 @@ namespace ns_Mashmo
         private int m_iEnteredEntryCount = 0;
 
         /// <summary>
+        /// The material that displays the light on
+        /// </summary>
+        [SerializeField]
+        private Material m_matLightOn = null;
+
+        /// <summary>
+        /// The material that displays the light off
+        /// </summary>
+        [SerializeField]
+        private Material m_matLightOff = null;
+
+        /// <summary>
+        /// the mesh renderer to display the green light
+        /// </summary>
+        [SerializeField]
+        private MeshRenderer m_GreenLightRenderer = null;
+
+        /// <summary>
+        /// the mesh renderer to display the red light
+        /// </summary>
+        [SerializeField]
+        private MeshRenderer m_RedLightRenderer = null;
+
+        protected override void toggleDoorLock(bool a_bIsLocked)
+        {
+            base.toggleDoorLock(a_bIsLocked);
+
+            if (a_bIsLocked)
+            {
+                m_GreenLightRenderer.material = m_matLightOff;
+                m_RedLightRenderer.material = m_matLightOn;
+            }
+            else
+            {
+                m_GreenLightRenderer.material = m_matLightOn;
+                m_RedLightRenderer.material = m_matLightOff;
+            }
+        }
+
+        /// <summary>
         /// On interactive with the door handle of this door
         /// </summary>
         public override void onDoorHandlePointerInteract()

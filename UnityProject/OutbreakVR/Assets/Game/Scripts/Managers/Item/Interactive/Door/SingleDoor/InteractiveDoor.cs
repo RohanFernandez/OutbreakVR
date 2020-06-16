@@ -59,8 +59,13 @@ namespace ns_Mashmo
             set
             {
                 m_bIsDoorLocked = value;
-                m_DoorKnobColorController.setColor(m_bIsDoorLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
+                toggleDoorLock(m_bIsDoorLocked);
             }
+        }
+
+        protected virtual void toggleDoorLock(bool a_bIsLocked)
+        {
+            m_DoorKnobColorController.setColor(a_bIsLocked ? GameManager.ColOutlineHighlighterRestricted : GameManager.ColOutlineHighlighterNormal);
         }
 
         public bool IsDoorOpen
