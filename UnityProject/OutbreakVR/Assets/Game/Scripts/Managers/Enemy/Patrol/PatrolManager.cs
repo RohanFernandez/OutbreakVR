@@ -42,7 +42,7 @@ namespace ns_Mashmo
         /// </summary>
         public void destroy()
         {
-            if (s_Instance == this)
+            if (s_Instance != this)
             {
                 return;
             }
