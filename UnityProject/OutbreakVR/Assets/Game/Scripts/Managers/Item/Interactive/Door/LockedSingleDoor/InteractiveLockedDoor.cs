@@ -81,15 +81,18 @@ namespace ns_Mashmo
         {
             base.toggleDoorLock(a_bIsLocked);
 
-            if (a_bIsLocked)
+            if ((m_GreenLightRenderer != null) && (m_RedLightRenderer != null))
             {
-                m_GreenLightRenderer.material = m_matLightOff;
-                m_RedLightRenderer.material = m_matLightOn;
-            }
-            else
-            {
-                m_GreenLightRenderer.material = m_matLightOn;
-                m_RedLightRenderer.material = m_matLightOff;
+                if (a_bIsLocked)
+                {
+                    m_GreenLightRenderer.material = m_matLightOff;
+                    m_RedLightRenderer.material = m_matLightOn;
+                }
+                else
+                {
+                    m_GreenLightRenderer.material = m_matLightOn;
+                    m_RedLightRenderer.material = m_matLightOff;
+                }
             }
         }
 
