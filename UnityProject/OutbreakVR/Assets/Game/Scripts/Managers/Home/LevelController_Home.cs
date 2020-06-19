@@ -12,6 +12,12 @@ namespace ns_Mashmo
             m_ContinueCollider.enabled = !string.IsNullOrEmpty(LevelManager.LastCheckpointLevel);
         }
 
+        /// <summary>
+        /// Text component of the wall clock displaying the time
+        /// </summary>
+        [SerializeField]
+        private TMPro.TMP_Text m_txtDigitalWallClock = null;
+
         #region Monitor
 
         [SerializeField]
@@ -97,6 +103,9 @@ namespace ns_Mashmo
 
         #endregion CONTINUEGAME
 
-
+        void Update()
+        {
+            m_txtDigitalWallClock.text = System.DateTime.Now.ToString("HH:mm");
+        }
     }
 }
