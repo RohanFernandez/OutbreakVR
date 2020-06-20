@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 35
+  m_iSequenceCount: 37
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListStart
@@ -1113,6 +1113,10 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level103_LockedDoor
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Obj103_OnTentEntered
+    m_iTaskCount: 0
+    m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnEnd
     m_iTaskCount: 1
@@ -3905,7 +3909,7 @@ MonoBehaviour:
         m_strValue: Level108_InteractiveDoor_1
     - m_strTaskID: 1
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 1
@@ -3917,6 +3921,8 @@ MonoBehaviour:
         m_strValue: Level_109_BloodBags
       - m_strKey: ItemType
         m_strValue: ITEM_BLOOD_BAGS
+      - m_strKey: ObjectiveTrigger
+        m_strValue: Level_109_OnBloodBagsPicked
       - m_strKey: Position
         m_strValue: 130.117,11.116,17.12703
       - m_strKey: Rotation
@@ -3933,6 +3939,10 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level1_109_BloodBagLocation
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_109_OnBloodBagsPicked
+    m_iTaskCount: 0
+    m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBloodBagsApplied
     m_iTaskCount: 2
@@ -3963,7 +3973,7 @@ MonoBehaviour:
         m_strValue: Level1_109_BloodBagLocation
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEmergencyButtonPressed
-    m_iTaskCount: 2
+    m_iTaskCount: 1
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -3977,16 +3987,6 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level109_EmergencyButton
-    - m_strTaskID: 1
-      m_strTaskType: TaskTriggerObjective
-      m_iAttributeCount: 3
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 1
-      - m_strKey: TaskType
-        m_strValue: TaskTriggerObjective
-      - m_strKey: TriggerID
-        m_strValue: Level_109_OnEmergencyButtonPressed
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEnd
     m_iTaskCount: 1

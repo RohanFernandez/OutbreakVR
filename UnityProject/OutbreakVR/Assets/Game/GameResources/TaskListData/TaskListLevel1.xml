@@ -198,6 +198,9 @@
 		<Task ID="19" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level103_LockedDoor"/>
 	</Sequence>
 	
+	<Sequence ID = "Obj103_OnTentEntered" >
+	</Sequence>
+	
 	<Sequence ID = "Level1_103_OnEnd" >
 		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_103" />
 	</Sequence>
@@ -428,8 +431,13 @@
 	<Sequence ID = "Level1_109_OnBegin" >
 		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_109" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level108_InteractiveDoor_1" />
-		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_109_BloodBags" ItemType="ITEM_BLOOD_BAGS" Position="130.117,11.116,17.12703" Rotation="0.0,0.0,0.0"/>
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_109_BloodBags" ItemType="ITEM_BLOOD_BAGS" ObjectiveTrigger="Level_109_OnBloodBagsPicked" Position="130.117,11.116,17.12703" Rotation="0.0,0.0,0.0"/>
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_109_BloodBagLocation" />
+	</Sequence>
+	
+	<!-- Called on blood bags picked-->
+	<Sequence ID = "Level1_109_OnBloodBagsPicked" >
+	
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnBloodBagsApplied" >
@@ -439,7 +447,6 @@
 	
 	<Sequence ID = "Level1_109_OnEmergencyButtonPressed" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_EmergencyButton" />
-		<Task ID="1" TaskType="TaskTriggerObjective" TriggerID="Level_109_OnEmergencyButtonPressed" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEnd" >

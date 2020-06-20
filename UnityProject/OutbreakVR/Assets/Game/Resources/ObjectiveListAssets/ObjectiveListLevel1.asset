@@ -125,16 +125,35 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_103
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_iObjectiveCount: 2
     m_lstScriptibeObjective:
     - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Obj103_OnTentEntered
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 6
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_103_LocationTriggeredOnTentEnter
+      - m_strKey: SequenceOnComplete
+        m_strValue: Obj103_OnTentEntered
+      - m_strKey: ObjDesc
+        m_strValue: 
+      - m_strKey: IsCompulsory
+        m_strValue: false
+      m_strIsCompulsory: false
+    - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
       m_strObjectiveDesc: Find the keycode to get in the building
       m_iAttributeCount: 4
       m_lstAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
@@ -256,20 +275,56 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_109
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_iObjectiveCount: 3
     m_lstScriptibeObjective:
     - m_strID: 0
       m_strType: ObjectiveTrigger
-      m_strSeqOnComplete: 
+      m_strSeqOnComplete: Level1_109_OnBloodBagsPicked
       m_strObjectiveDesc: 
-      m_iAttributeCount: 4
+      m_iAttributeCount: 5
       m_lstAttributes:
       - m_strKey: ID
         m_strValue: 0
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
-        m_strValue: Level_109_OnEmergencyButtonPressed
+        m_strValue: Level_109_OnBloodBagsPicked
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnBloodBagsPicked
+      - m_strKey: ObjDesc
+        m_strValue: 
+      m_strIsCompulsory: true
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnBloodBagsApplied
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnBloodBagsApplied
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnBloodBagsApplied
+      - m_strKey: ObjDesc
+        m_strValue: 
+      m_strIsCompulsory: true
+    - m_strID: 2
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnEmergencyButtonPressed
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnEmergencyButtonPressed
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnEmergencyButtonPressed
       - m_strKey: ObjDesc
         m_strValue: 
       m_strIsCompulsory: true

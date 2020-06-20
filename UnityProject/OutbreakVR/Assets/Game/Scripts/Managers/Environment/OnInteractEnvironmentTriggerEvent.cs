@@ -14,6 +14,9 @@ namespace ns_Mashmo
         private string m_strTriggerSequenceOnInteract = string.Empty;
 
         [SerializeField]
+        private string m_strObjectiveTrigger = string.Empty;
+
+        [SerializeField]
         private UnityEvent m_EventOnInteract = null;
 
         [SerializeField]
@@ -64,6 +67,12 @@ namespace ns_Mashmo
             {
                 TaskManager.ExecuteSequence(m_strTriggerSequenceOnInteract);
             }
+
+            if (!string.IsNullOrEmpty(m_strObjectiveTrigger))
+            {
+                ObjectiveManager.TriggerObjective(m_strObjectiveTrigger);
+            }
+
             if (m_OutLineHighlighter != null)
             {
                 m_OutLineHighlighter.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated);
