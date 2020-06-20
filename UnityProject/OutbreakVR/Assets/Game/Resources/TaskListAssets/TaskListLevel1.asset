@@ -1282,9 +1282,9 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_POWER_NODE
       - m_strKey: Position
-        m_strValue: 29.377,16.429,25.503
+        m_strValue: 23.522,15.518,25.286
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: 0.0,59.999,0.0
     - m_strTaskID: 10
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
@@ -2066,9 +2066,9 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_POWER_NODE
       - m_strKey: Position
-        m_strValue: 31.01244,16.06761,-2.05579
+        m_strValue: 30.621,16.8919,-0.3706
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: -9.956,-0.626,5.105
     - m_strTaskID: 5
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
@@ -2706,9 +2706,9 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_C4
       - m_strKey: Position
-        m_strValue: 22.335,12.75183,10.0106
+        m_strValue: 21.054,13.541,10.793
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: 6.925,165.017,-4.705
     - m_strTaskID: 2
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 8
@@ -3833,7 +3833,7 @@ MonoBehaviour:
         m_strValue: LevelSpecific_107
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_108_OnBegin
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 000
       m_strTaskType: TaskGameObject
@@ -3861,6 +3861,24 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level108_InteractiveDoor_1
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 99.13,-8.9557,8.348
+      - m_strKey: Rotation
+        m_strValue: 0.0,-78.424,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_108_OnEnd
     m_iTaskCount: 1
@@ -3879,7 +3897,7 @@ MonoBehaviour:
         m_strValue: LevelSpecific_108
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBegin
-    m_iTaskCount: 4
+    m_iTaskCount: 9
     m_lstTasks:
     - m_strTaskID: 000
       m_strTaskType: TaskGameObject
@@ -3924,9 +3942,9 @@ MonoBehaviour:
       - m_strKey: ObjectiveTrigger
         m_strValue: Level_109_OnBloodBagsPicked
       - m_strKey: Position
-        m_strValue: 130.117,11.116,17.12703
+        m_strValue: 106.7806,-9.101299,1.9391
       - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
+        m_strValue: 0.0,-15.535,0.0
     - m_strTaskID: 2
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -3939,13 +3957,161 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level1_109_BloodBagLocation
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 105.475,-9.928499,5.868
+      - m_strKey: Rotation
+        m_strValue: 0.0,-262.721,0.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 114.358,-9.928499,7.126999
+      - m_strKey: Rotation
+        m_strValue: 0.0,-155.217,0.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 113.766,-9.928499,20.846
+      - m_strKey: Rotation
+        m_strValue: 0.0,-158.182,0.0
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: 109_Turret1
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 114.165,-9.483999,10.731
+      - m_strKey: Rotation
+        m_strValue: 0.0,85.412,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 7
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: 109_Turret2
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 114.04,-9.483999,15.255
+      - m_strKey: Rotation
+        m_strValue: 0.0,85.414,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBloodBagsPicked
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 102.441,-9.928499,15.639
+      - m_strKey: Rotation
+        m_strValue: 0.0,-592.409,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 111.853,-9.928499,17.545
+      - m_strKey: Rotation
+        m_strValue: 0.0,-520.154,0.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_3
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 111.778,-9.928499,28.435
+      - m_strKey: Rotation
+        m_strValue: 0.0,-526.496,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBloodBagsApplied
-    m_iTaskCount: 2
+    m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -3971,6 +4137,60 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level1_109_BloodBagLocation
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 99.734,-9.928499,24.828
+      - m_strKey: Rotation
+        m_strValue: 0.0,-567.302,0.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 102.113,-9.928499,20.007
+      - m_strKey: Rotation
+        m_strValue: 0.0,-503.687,0.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 109.328,-9.928499,17.755
+      - m_strKey: Rotation
+        m_strValue: 0.0,-575.38,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEmergencyButtonPressed
     m_iTaskCount: 1
