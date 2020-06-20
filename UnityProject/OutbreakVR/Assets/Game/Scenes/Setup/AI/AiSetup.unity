@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -934,7 +934,7 @@ MonoBehaviour:
   m_TracerParticleSystem: {fileID: 724678591}
   m_WeaponAudSrc: {fileID: 724678592}
   m_strWeaponShootAudClipID: Stingray-Fire
-  m_iGunfireDamage: 1
+  m_iGunfireDamage: 10
 --- !u!4 &586352152
 Transform:
   m_ObjectHideFlags: 0
@@ -6701,7 +6701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyType: 1
   m_strEnemyID: 
-  m_fMaxDamagePlayerDamageRadius: 15
+  m_fMaxDamagePlayerDamageRadius: 10
   m_iMaxLifeCapacityCounter: 1
   m_iCurrentLifeCounter: 1
   m_fWaitTimeAfterKilled: 2
@@ -6713,7 +6713,7 @@ MonoBehaviour:
   m_fTimeBetweenShots: 0.4
   m_fLeftMaxZ: 0
   m_fRightMaxZ: 0
-  m_iDamageOnHit: 1
+  m_iDamageOnHit: 25
   m_particleMuzzleFlash1: {fileID: 1495459601}
   m_particleMuzzleFlash2: {fileID: 329750055}
   m_AudioSoure: {fileID: 1067619829}
@@ -21830,7 +21830,7 @@ MonoBehaviour:
   m_fAlertStoppingDistance: 1
   m_fAlertNavigationSpeed: 1.5
   m_fAlertRadius: 5
-  m_fExtendedAlertRadius: 23
+  m_fExtendedAlertRadius: 15
   m_lstEnemyHitColliders:
   - {fileID: 1270992613}
   - {fileID: 1270992618}
@@ -21854,7 +21854,7 @@ MonoBehaviour:
   - {fileID: 1270992606}
   - {fileID: 1270992596}
   - {fileID: 1270992600}
-  m_iStrikeDamage: 7
+  m_iStrikeDamage: 10
   m_ManagedAudioSource: {fileID: 1683605805}
   m_strAudClipIDPunch1: EnemyPunchStrike1
   m_strAudClipIDPunch2: EnemyPunchStrike2
@@ -22335,7 +22335,7 @@ MonoBehaviour:
   m_fAlertStoppingDistance: 1
   m_fAlertNavigationSpeed: 1.5
   m_fAlertRadius: 5
-  m_fExtendedAlertRadius: 23
+  m_fExtendedAlertRadius: 15
   m_lstEnemyHitColliders:
   - {fileID: 1169825720}
   - {fileID: 1169825719}
@@ -22359,7 +22359,7 @@ MonoBehaviour:
   - {fileID: 1169825702}
   - {fileID: 1169825701}
   - {fileID: 1169825678}
-  m_iStrikeDamage: 7
+  m_iStrikeDamage: 14
   m_ManagedAudioSource: {fileID: 1836169048}
   m_strAudClipIDPunch1: EnemyPunchStrike1
   m_strAudClipIDPunch2: EnemyPunchStrike2
@@ -29381,3 +29381,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127188081}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2649095895000211144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 952336027290021867, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyAutomatedTurret (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209623280878440166, guid: 64ca6054708ea4040b4ffb88d57c2d03,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64ca6054708ea4040b4ffb88d57c2d03, type: 3}
