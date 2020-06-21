@@ -65,9 +65,6 @@ namespace ns_Mashmo
         [SerializeField]
         private PatrolManager m_PatrolManager = null;
 
-        [SerializeField]
-        private EnemyDamageIndicatorManager m_EnemyDamageIndicatorManager = null;
-
         /// <summary>
         /// Sets the singleton instance
         /// </summary>
@@ -81,8 +78,6 @@ namespace ns_Mashmo
 
             m_PatrolManager = new PatrolManager();
             m_PatrolManager.initialize();
-
-            m_EnemyDamageIndicatorManager.initialize();
 
             m_lstEnemyDependantBase = new List<EnemyDependantBase>(10);
 
@@ -116,7 +111,6 @@ namespace ns_Mashmo
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
             EventManager.UnsubscribeFrom(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, onEnemyAlertEnded);
             m_PatrolManager.destroy();
-            m_EnemyDamageIndicatorManager.destroy();
             s_Instance = null;
         }
 

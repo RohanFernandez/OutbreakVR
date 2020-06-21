@@ -6,27 +6,20 @@ namespace ns_Mashmo
 {
     public class UI_LoadingPanel : AbsUISingleton
     {
+        public const string LOADING_PANEL_GAME          = "LoadingGame";
+        public const string LOADING_PANEL_QUOTE         = "LoadingQuote";
+        public const string LOADING_PANEL_OUTBREAK_LOGO = "LoadingOutbreakLogo";
+        public const string LOADING_PANEL_COMPANY_LOGO  = "LoadingCompany";
+
         /// <summary>
         /// singleton instance
         /// </summary>
         private static UI_LoadingPanel s_Instance = null;
 
         [SerializeField]
-        private Sprite m_sprGreenBullet = null;
+        private List<LoadingBase> m_lstLoadingBase = null;
 
-        [SerializeField]
-        private Sprite m_spRedBullet = null;
-
-        [SerializeField]
-        private UnityEngine.UI.Image m_imgBulletBackground = null;
-
-        [SerializeField]
-        private UnityEngine.UI.Image m_imgBulletForeground = null;
-
-        [SerializeField]
-        private UnityEngine.UI.Slider m_ReloadSlider = null;
-
-        private float m_fScrollTime = 0.0f;
+        Dictionary<string, LoadingBase> m_dictLoadingPanels = null;
 
         /// <summary>
         /// initializes, sets singleton to this
@@ -38,6 +31,14 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
+            m_dictLoadingPanels = new Dictionary<string, LoadingBase>(3);
+
+            int l_iLoadingPanelBaseCount = m_lstLoadingBase.Count;
+            for (int l_iLoadingPanelBaseIndex = 0; l_iLoadingPanelBaseIndex < l_iLoadingPanelBaseCount; l_iLoadingPanelBaseIndex++)
+            {
+                LoadingBase l_LoadingBase = m_lstLoadingBase[l_iLoadingPanelBaseIndex];
+                m_dictLoadingPanels.Add(l_LoadingBase.LoadingPanelID, l_LoadingBase);
+            }
         }
 
         /// <summary>
@@ -53,9 +54,9 @@ namespace ns_Mashmo
             s_Instance = null;
         }
 
-        public static void Show()
+        public static void Show(string a_strCode = LOADING_PANEL_GAME)
         {
-            s_Instance.show();
+            s_Instance.show(a_strCode);
         }
 
         public static void Hide()
@@ -63,31 +64,30 @@ namespace ns_Mashmo
             s_Instance.hide();
         }
 
-        public override void show(string a_strCode = "")
+        public override void hide()
         {
-            base.show();
-
-            m_imgBulletBackground.sprite = m_spRedBullet;
-            m_imgBulletForeground.sprite = m_sprGreenBullet;
-            m_fScrollTime = 0.0f;
+            base.hide();
+            hideAllLoadingBases();
         }
 
-        void Update()
+        private void hideAllLoadingBases()
         {
-            m_fScrollTime += Time.deltaTime;
-
-            if (m_fScrollTime > 1.0f)
+            foreach (KeyValuePair<string, LoadingBase> l_LoadingBase in m_dictLoadingPanels)
             {
-                m_fScrollTime = 0.0f;
-
-                Sprite l_BgSprite = m_imgBulletBackground.sprite;
-                Sprite l_FgSprite = m_imgBulletForeground.sprite;
-
-                m_imgBulletBackground.sprite = l_FgSprite;
-                m_imgBulletForeground.sprite = l_BgSprite;
+                l_LoadingBase.Value.hide();
             }
+        }
 
-            m_ReloadSlider.value = m_fScrollTime;
+        public override void show(string a_strCode)
+        {
+            s_Instance.hideAllLoadingBases();
+            base.show(a_strCode);
+
+            LoadingBase l_LoadingBase = null;
+            if (m_dictLoadingPanels.TryGetValue(a_strCode, out l_LoadingBase))
+            {
+                l_LoadingBase.show();
+            }
         }
     }
 }

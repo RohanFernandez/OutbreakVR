@@ -6,16 +6,26 @@ namespace ns_Mashmo
 {
     public class InitGameState : ManagedState
     {
+        [SerializeField]
+        private float m_fLoadingTimeOnStart = 3.0f;
+
         public override void onStateEnter(string a_strNewState)
         {
             base.onStateEnter(a_strNewState);
-
-            initializeGame();
+            StartCoroutine(startLoadingCoroutine());
         }
 
         public override void onStateExit(string a_strOldState)
         {
             base.onStateExit(a_strOldState);
+        }
+
+        IEnumerator startLoadingCoroutine()
+        {
+            yield return new WaitForSeconds(0.1f);
+            UI_LoadingPanel.Show(UI_LoadingPanel.LOADING_PANEL_COMPANY_LOGO);
+            yield return new WaitForSeconds(m_fLoadingTimeOnStart);
+            initializeGame();
         }
 
         /// <summary>
