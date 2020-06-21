@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3acee0b2616c2b440af00300046485d0, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 46ab705ce44416241a7b9d72698b1cc0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031371754, g: 0.03337463, b: 0.03153096, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2825,7 +2825,7 @@ MonoBehaviour:
   m_ArmMonitorParent_Health: {fileID: 1937912803}
   m_ChamberBulletRelease: {fileID: 750157935}
   m_MuzzleFlash: {fileID: 36291169}
-  m_iMaxMagazinesAllowed: 10
+  m_iMaxMagazinesAllowed: 5
   m_iMaxSingleMagazineBulletCapacity: 30
   m_TracerParticleSystem: {fileID: 954994690}
   m_strAudClipIDOnShoot: Ak47-Fire
@@ -2833,14 +2833,14 @@ MonoBehaviour:
   m_strAudClipIDOnGunCock: Ak47-Cock
   m_strAudClipIDNoFire: Ak47-NoFire
   m_WeaponHolder: {fileID: 1160426708}
-  m_iBulletCountInFirstMag: 10
-  m_iDamagePerBullet: 20
+  m_iBulletCountInFirstMag: 30
+  m_iDamagePerBullet: 16
   m_animatorHands: {fileID: 281394969}
   m_fWeaponReloadTime: 4.2
   m_iTotalBullets: 25
-  m_fMaxAngleGunRecoilRotX: -13
+  m_fMaxAngleGunRecoilRotX: -15
   m_fPerShotGunRecoilRotXAngle: 4
-  m_fRotResetVelocityAnglePerSec: 13
+  m_fRotResetVelocityAnglePerSec: 25
 --- !u!1 &163776804
 GameObject:
   m_ObjectHideFlags: 0
@@ -4713,7 +4713,7 @@ MonoBehaviour:
   m_ArmMonitorParent_Health: {fileID: 1353581868}
   m_ChamberBulletRelease: {fileID: 1574551473}
   m_MuzzleFlash: {fileID: 126067408}
-  m_iMaxMagazinesAllowed: 10
+  m_iMaxMagazinesAllowed: 5
   m_iMaxSingleMagazineBulletCapacity: 30
   m_TracerParticleSystem: {fileID: 944316892}
   m_strAudClipIDOnShoot: Tommy-Fire
@@ -4721,14 +4721,14 @@ MonoBehaviour:
   m_strAudClipIDOnGunCock: Tommy-Cock
   m_strAudClipIDNoFire: Tommy-NoFire
   m_WeaponHolder: {fileID: 779488562}
-  m_iBulletCountInFirstMag: 10
-  m_iDamagePerBullet: 15
+  m_iBulletCountInFirstMag: 30
+  m_iDamagePerBullet: 10
   m_animatorHands: {fileID: 1591926142}
   m_fWeaponReloadTime: 3
   m_iTotalBullets: 25
-  m_fMaxAngleGunRecoilRotX: -13
-  m_fPerShotGunRecoilRotXAngle: 4
-  m_fRotResetVelocityAnglePerSec: 13
+  m_fMaxAngleGunRecoilRotX: -10
+  m_fPerShotGunRecoilRotXAngle: 2
+  m_fRotResetVelocityAnglePerSec: 20
 --- !u!1 &327654244
 GameObject:
   m_ObjectHideFlags: 0
@@ -26038,7 +26038,7 @@ MonoBehaviour:
   m_GunRayTransformParent: {fileID: 1102341978}
   m_ArmMonitorParent_BulletCount: {fileID: 1719148238}
   m_ArmMonitorParent_Health: {fileID: 1164903638}
-  m_iDamagePerInterval: 10
+  m_iDamagePerInterval: 6
   m_fTimeBetweenDamageMin: 0.35
   m_fTimeBetweenDamageMax: 0.6
   m_fTimeBetweenDamageCurrent: 0.5
@@ -26869,7 +26869,7 @@ MonoBehaviour:
   m_ArmMonitorParent_Health: {fileID: 1455526298}
   m_ChamberBulletRelease: {fileID: 1602666006}
   m_MuzzleFlash: {fileID: 115101344}
-  m_iMaxMagazinesAllowed: 10
+  m_iMaxMagazinesAllowed: 8
   m_iMaxSingleMagazineBulletCapacity: 17
   m_TracerParticleSystem: {fileID: 638119839}
   m_strAudClipIDOnShoot: FN57-Fire
@@ -26877,14 +26877,14 @@ MonoBehaviour:
   m_strAudClipIDOnGunCock: FN57-Cock
   m_strAudClipIDNoFire: FN57-NoFire
   m_WeaponHolder: {fileID: 727711703}
-  m_iBulletCountInFirstMag: 10
-  m_iDamagePerBullet: 10
+  m_iBulletCountInFirstMag: 17
+  m_iDamagePerBullet: 8
   m_animatorHands: {fileID: 198207416}
   m_fWeaponReloadTime: 4
   m_iTotalBullets: 25
-  m_fMaxAngleGunRecoilRotX: -13
+  m_fMaxAngleGunRecoilRotX: -8
   m_fPerShotGunRecoilRotXAngle: 4
-  m_fRotResetVelocityAnglePerSec: 13
+  m_fRotResetVelocityAnglePerSec: 16
 --- !u!1 &1074377799
 GameObject:
   m_ObjectHideFlags: 0
@@ -42470,22 +42470,22 @@ MonoBehaviour:
   m_ArmMonitorParent_Health: {fileID: 157881143}
   m_ChamberBulletRelease: {fileID: 697798004}
   m_MuzzleFlash: {fileID: 269070901}
-  m_iMaxMagazinesAllowed: 10
-  m_iMaxSingleMagazineBulletCapacity: 15
+  m_iMaxMagazinesAllowed: 5
+  m_iMaxSingleMagazineBulletCapacity: 8
   m_TracerParticleSystem: {fileID: 1519032802}
   m_strAudClipIDOnShoot: Stingray-Fire
   m_strAudClipIDReloadStarted: Stingray-Reload
   m_strAudClipIDOnGunCock: Stingray-Cock
   m_strAudClipIDNoFire: Stingray-NoFire
   m_WeaponHolder: {fileID: 2027335400}
-  m_iBulletCountInFirstMag: 10
-  m_iDamagePerBullet: 27
+  m_iBulletCountInFirstMag: 8
+  m_iDamagePerBullet: 35
   m_animatorHands: {fileID: 134450387}
   m_fWeaponReloadTime: 3
   m_iTotalBullets: 25
   m_fMaxAngleGunRecoilRotX: -20
   m_fPerShotGunRecoilRotXAngle: 6
-  m_fRotResetVelocityAnglePerSec: 6
+  m_fRotResetVelocityAnglePerSec: 15
 --- !u!1 &2051060908
 GameObject:
   m_ObjectHideFlags: 0
