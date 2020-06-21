@@ -49,6 +49,19 @@ namespace ns_Mashmo
             }
         }
 
+        void Update()
+        {
+            int l_iTriggerEnteredCount =  m_lstDoorTriggers.Count;
+            for (int l_iTriggerIndex = l_iTriggerEnteredCount; l_iTriggerIndex >= 0; l_iTriggerIndex--)
+            {
+                if (!m_lstDoorTriggers[l_iTriggerIndex].gameObject.activeInHierarchy)
+                {
+                    m_lstDoorTriggers.Remove(m_lstDoorTriggers[l_iTriggerIndex]);
+                }
+            }
+            if (m_lstDoorTriggers.Count == 0 && (l_iTriggerEnteredCount != m_lstDoorTriggers.Count)) { m_InteractiveDoor.closeDoor(); }
+        }
+
         /// <summary>
         /// Resets so that the list of triggers is empty
         /// </summary>
