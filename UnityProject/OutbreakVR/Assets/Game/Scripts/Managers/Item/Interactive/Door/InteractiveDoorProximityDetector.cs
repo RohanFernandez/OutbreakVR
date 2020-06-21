@@ -52,7 +52,7 @@ namespace ns_Mashmo
         void Update()
         {
             int l_iTriggerEnteredCount =  m_lstDoorTriggers.Count;
-            for (int l_iTriggerIndex = l_iTriggerEnteredCount; l_iTriggerIndex >= 0; l_iTriggerIndex--)
+            for (int l_iTriggerIndex = l_iTriggerEnteredCount - 1; l_iTriggerIndex >= 0; l_iTriggerIndex--)
             {
                 if (!m_lstDoorTriggers[l_iTriggerIndex].gameObject.activeInHierarchy)
                 {
