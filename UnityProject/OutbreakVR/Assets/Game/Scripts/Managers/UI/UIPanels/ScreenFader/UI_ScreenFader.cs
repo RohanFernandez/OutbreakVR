@@ -33,6 +33,27 @@ namespace ns_Mashmo
         /// </summary>
         private float m_fTimeTakenInFade = 0.0f;
 
+        private bool m_bIsFadeToBlack = true;
+        private bool IsFadeToBlack
+        {
+            set {
+                m_bIsFadeToBlack = value;
+                if (m_bIsFadeToBlack)
+                {
+                    m_fStartAlpha = 0.0f;
+                    m_fEndAlpha = 1.0f;
+                }
+                else
+                {
+                    m_fStartAlpha = 1.0f;
+                    m_fEndAlpha = 0.0f;
+                }
+            }
+        }
+
+        private float m_fStartAlpha = 0.0f;
+        private float m_fEndAlpha = 1.0f;
+
         /// <summary>
         /// initializes, sets singleton to this
         /// </summary>
@@ -60,19 +81,25 @@ namespace ns_Mashmo
 
         public static void Show()
         {
-            ShowWithActionOnComplete(null);
+            ShowWithActionOnComplete(null, true);
+        }
+
+        public static void ShowFadeToBlack(bool a_bIsFadeToBlack)
+        {
+            ShowWithActionOnComplete(null, a_bIsFadeToBlack);
         }
 
         /// <summary>
         /// Displays the Fader and starts the fader
         /// </summary>
-        public static void ShowWithActionOnComplete(System.Action a_actOnFaderComplete)
+        public static void ShowWithActionOnComplete(System.Action a_actOnFaderComplete, bool a_bIsFadeToBlack = true)
         {
+            s_Instance.IsFadeToBlack = a_bIsFadeToBlack;
             s_Instance.m_actOnFadeComplete = a_actOnFaderComplete;
             s_Instance.m_fTimeTakenInFade = 0.0f;
 
             Color l_FadeColor = s_Instance.m_imgFader.color;
-            s_Instance.m_imgFader.color = new Color(l_FadeColor.r, l_FadeColor.g, l_FadeColor.b, 0.0f);
+            s_Instance.m_imgFader.color = new Color(l_FadeColor.r, l_FadeColor.g, l_FadeColor.b, s_Instance.m_fStartAlpha);
             s_Instance.show();
         }
 
@@ -90,7 +117,7 @@ namespace ns_Mashmo
             m_fTimeTakenInFade += Time.deltaTime;
 
             Color l_FadeColor = m_imgFader.color;
-            m_imgFader.color = new Color(l_FadeColor.r, l_FadeColor.g, l_FadeColor.b, Mathf.Lerp(0.0f, 1.0f, m_fTimeTakenInFade / m_fTotalFadeTime));
+            m_imgFader.color = new Color(l_FadeColor.r, l_FadeColor.g, l_FadeColor.b, Mathf.Lerp(m_fStartAlpha, m_fEndAlpha, m_fTimeTakenInFade / m_fTotalFadeTime));
 
             if (m_fTimeTakenInFade >= m_fTotalFadeTime)
             {
