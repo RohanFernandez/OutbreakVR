@@ -36,6 +36,12 @@ namespace ns_Mashmo
         [SerializeField]
         private Animator m_TurretLeverAnimator = null;
 
+        /// <summary>
+        /// is the turret activated as soon as it is added
+        /// </summary>
+        [SerializeField]
+        private bool m_bIsTurretActivatedOnStart = false;
+
         private const string ANIM_TRIG_LEVER_ON         = "TurretLeverOn";
         private const string ANIM_TRIG_LEVER_ON_TO_OFF  = "TurretLeverOnToOff";
 
@@ -43,7 +49,15 @@ namespace ns_Mashmo
         {
             base.onActivate();
             m_AutomatedTurret = (AutomatedTurret)EnemyManager.GetActiveEnemyWithID(ENEMY_TYPE.AUTOMATED_TURRET, EnemyID);
-            m_AutomatedTurretTrigger.onActivate();
+
+            if (m_bIsTurretActivatedOnStart)
+            {
+                onLeverActivate();
+            }
+            else
+            {
+                m_AutomatedTurretTrigger.onActivate();
+            }
         }
 
         /// <summary>
@@ -53,10 +67,13 @@ namespace ns_Mashmo
         /// </summary>
         public void onLeverActivate()
         {
-            m_colTurretSwitch.enabled = true;
-            m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-            m_AutomatedTurret.onTurretTriggeredToActivate();
-            m_TurretLeverAnimator.SetTrigger(ANIM_TRIG_LEVER_ON);
+            if (!m_colTurretSwitch.enabled)
+            {
+                m_colTurretSwitch.enabled = true;
+                m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
+                m_AutomatedTurret.onTurretTriggeredToActivate();
+                m_TurretLeverAnimator.SetTrigger(ANIM_TRIG_LEVER_ON);
+            }
         }
 
         public override void onDeactivate()
