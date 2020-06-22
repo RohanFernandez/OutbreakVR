@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ns_Mashmo
 {
-    public class LevelController_Cinematic1 : MonoBehaviour
+    public class LevelController_Cinematic : MonoBehaviour
     {
         #region CINEMATIC
 
@@ -39,6 +39,16 @@ namespace ns_Mashmo
         public void showOutbreakLogo()
         {
             UI_LoadingPanel.Show(UI_LoadingPanel.LOADING_PANEL_OUTBREAK_LOGO);
+        }
+
+        public void showCinematicText()
+        {
+            UI_CinematicTextPanel.Show();
+        }
+
+        public void hideCinematicText()
+        {
+            UI_CinematicTextPanel.Hide();
         }
 
         #endregion CINEMATIC

@@ -14,14 +14,15 @@ namespace ns_Mashmo
 
         public enum UI_TYPE
         {
-            PLAYER_HELMET           = 0,
-            LOADING_PANEL           = 1,
-            PAUSE_PANEL             = 2,
-            SCREEN_FADER            = 3,
-            NOTIFICATION_PANEL      = 4,
-            HEALTH_ARM_MONITOR      = 5,
-            SCREEN_DAMAGE_INDICATOR = 6,
-            TRAINING_TIPS           = 7
+            PLAYER_HELMET           =   0,
+            LOADING_PANEL           =   1,
+            PAUSE_PANEL             =   2,
+            SCREEN_FADER            =   3,
+            NOTIFICATION_PANEL      =   4,
+            HEALTH_ARM_MONITOR      =   5,
+            SCREEN_DAMAGE_INDICATOR =   6,
+            TRAINING_TIPS           =   7,
+            CINEMATIC_TEXT          =   8,
         }
 
         /// <summary>
