@@ -33,7 +33,7 @@
 	
 	<!-- LEVEL 100 [CHECKPOINT]  START-->
 	<Sequence ID = "Level1_100_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_100" />
+		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_100_101" />
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="CrashedHelicopter" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Objective_ChainsawPickup" ItemType="ITEM_CHAINSAW" ObjectiveTrigger="ChainsawPickup" Position="-0.113,31.359,-0.547" Rotation="-80.067,-137.56,-34.11"/>
 
@@ -47,10 +47,8 @@
 		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="BeforeBrokenBalcony" />
 		<Task ID="6" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
 		
-		<Task ID="7" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Navigation_Level100_101" />
-		
-		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall" ItemType="ITEM_HEALTH_SMALL" Position="3.966,31.6706,-3.062" Rotation="0.0,72.798,0.0"/>
-		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="10.458,31.673,2.146" Rotation="0.0,-49.206,0.0"/>
+		<Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall" ItemType="ITEM_HEALTH_SMALL" Position="3.966,31.6706,-3.062" Rotation="0.0,72.798,0.0"/>
+		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="10.458,31.673,2.146" Rotation="0.0,-49.206,0.0"/>
 
 
     
@@ -103,7 +101,7 @@
 	</Sequence>
 
   <Sequence ID = "Level1_100_OnEnd">
-	<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_100" />
+	
   </Sequence>
   
 	
@@ -124,7 +122,7 @@
 	<!-- LEVEL 101  End-->
 	
 	<Sequence ID = "Level1_101_OnEnd">
-		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Navigation_Level100_101" />
+		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_100_101" />
 	</Sequence>
 	
 	<!-- LEVEL 101  End-->
