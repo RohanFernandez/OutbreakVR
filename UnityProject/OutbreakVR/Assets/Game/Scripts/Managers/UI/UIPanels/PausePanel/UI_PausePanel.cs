@@ -12,12 +12,6 @@ namespace ns_Mashmo
         private static UI_PausePanel s_Instance = null;
 
         /// <summary>
-        /// THe center camera as the main camera
-        /// </summary>
-        [SerializeField]
-        private Transform m_transformCenterCamera = null;
-
-        /// <summary>
         /// The state machine that manages the pause panel
         /// </summary>
         [SerializeField]
@@ -25,12 +19,6 @@ namespace ns_Mashmo
 
         [SerializeField]
         private MainPauseControlPanel m_MainPauseControlPanel = null;
-
-        /// <summary>
-        /// The distance from the camera this UI should be rendered
-        /// </summary>
-        [SerializeField]
-        private float m_fDistanceFromCam = 0.7f;
 
         #region PAUSE STATE
 
@@ -90,8 +78,6 @@ namespace ns_Mashmo
 
         private void Update()
         {
-            transform.SetPositionAndRotation(m_transformCenterCamera.position + m_transformCenterCamera.forward * m_fDistanceFromCam, m_transformCenterCamera.rotation);
-
             if (ControllerManager.IsPrimaryTriggerBtnUp()
 #if UNITY_EDITOR
                 || Input.GetKeyUp(KeyCode.Space)

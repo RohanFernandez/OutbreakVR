@@ -12,12 +12,6 @@ namespace ns_Mashmo
         private static UI_TrainingTips s_Instance = null;
 
         /// <summary>
-        /// The transform of the camera
-        /// </summary>
-        [SerializeField]
-        private Transform m_CameraTransform = null;
-
-        /// <summary>
         /// The list of tip entities
         /// </summary>
         [SerializeField]
@@ -54,12 +48,12 @@ namespace ns_Mashmo
             s_Instance = null;
         }
 
-        private void Update()
-        {
-            Vector3 l_v3NewPos = new Vector3(m_CameraTransform.forward.x, -1.5f, m_CameraTransform.forward.z).normalized;
-            transform.position = m_CameraTransform.position + l_v3NewPos * 2.0f;
-            transform.rotation = Quaternion.LookRotation((PlayerManager.GetPosition() - transform.position).normalized);
-        }
+        //private void Update()
+        //{
+        //    Vector3 l_v3NewPos = new Vector3(m_CameraTransform.forward.x, -1.5f, m_CameraTransform.forward.z).normalized;
+        //    transform.position = m_CameraTransform.position + l_v3NewPos * 2.0f;
+        //    transform.rotation = Quaternion.LookRotation((PlayerManager.GetPosition() - transform.position).normalized);
+        //}
 
         public static void Show(string a_strCode)
         {
