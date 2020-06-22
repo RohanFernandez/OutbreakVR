@@ -26,9 +26,19 @@ namespace ns_Mashmo
             UI_ScreenFader.ShowFadeToBlack(true);
         }
 
+        public void inflictDamagebreakHelmet()
+        {
+            PlayerManager.InflictDamage(80, DAMAGE_INFLICTION_TYPE.DEFAULT);
+        }
+
         public void endCinematic()
         {
             ObjectiveManager.TriggerObjective(OBJ_TRIGGER_END_CINEMATIC);
+        }
+
+        public void showOutbreakLogo()
+        {
+            UI_LoadingPanel.Show(UI_LoadingPanel.LOADING_PANEL_OUTBREAK_LOGO);
         }
 
         #endregion CINEMATIC
