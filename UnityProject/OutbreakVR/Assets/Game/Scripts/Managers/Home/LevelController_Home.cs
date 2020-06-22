@@ -103,6 +103,15 @@ namespace ns_Mashmo
 
         #endregion CONTINUEGAME
 
+        #region EXIT GAME
+
+        public void exitGame()
+        {
+            SystemManager.ExitApplication();
+        }
+
+        #endregion EXIT GAME
+
         void Update()
         {
             m_txtDigitalWallClock.text = System.DateTime.Now.ToString("HH:mm");

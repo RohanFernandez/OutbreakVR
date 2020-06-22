@@ -456,31 +456,18 @@ namespace ns_Mashmo
         /// </summary>
         private void managerSwipeInteraction_MenuSelection(CONTROLLER_TOUCHPAD_SWIPE a_TouchpadSwipe)
         {
-            Vector2 l_v2CurrentSwipe = ControllerManager.GetSwipe();
-
-            // Swipe from left to right
-            if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.LEFT_TO_RIGHT)
-            {
-                
-            }
-            // Swipe from right to left
-            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.RIGHT_TO_LEFT)
-            {
-                
-            }
-            // Swipe from top to bottom
-            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.TOP_TO_BOTTOM)
+            if (ControllerManager.IsPrimaryTriggerBtnDownThisFrame()
+#if UNITY_EDITOR
+                ||
+                Input.GetKeyDown(KeyCode.Space)
+#endif                
+                )
             {
                 IPointerOver l_IPointerOver = ControllerManager.GetPointerOverObject();
                 if (l_IPointerOver != null)
                 {
                     l_IPointerOver.onPointerInteract();
                 }
-            }
-            // Swipe from bottom to top
-            else if (a_TouchpadSwipe == CONTROLLER_TOUCHPAD_SWIPE.BOTTOM_TO_TOP)
-            {
-
             }
         }
 

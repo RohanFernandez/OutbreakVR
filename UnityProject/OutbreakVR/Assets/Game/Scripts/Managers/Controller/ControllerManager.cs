@@ -417,7 +417,7 @@ namespace ns_Mashmo
         /// Is the primary trigger button down this frame
         /// </summary>
         /// <returns></returns>
-        public static bool IsPrimaryTriggerBtnDownThiFrame()
+        public static bool IsPrimaryTriggerBtnDownThisFrame()
         {
         #if _MASHMO_OVR_
             return OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, GetPlatformControllerType(s_Instance.m_CurrentControllerType));

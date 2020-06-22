@@ -19,7 +19,6 @@ namespace ns_Mashmo
         public override void onStateExit(string a_strNewState)
         {
             base.onStateExit(a_strNewState);
-            m_Toggle.isOn = false;
             gameObject.SetActive(false);
         }
     }

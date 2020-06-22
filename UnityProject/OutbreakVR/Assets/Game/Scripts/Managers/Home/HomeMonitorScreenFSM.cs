@@ -7,9 +7,11 @@ namespace ns_Mashmo
     public class HomeMonitorScreenFSM : StateMachine
     {
         #region STATE NAMES
+        public const string MONITOR_STATE_PROFILE                   = "Profile";
         public const string MONITOR_STATE_CONTROLS                  = "Controls";
         public const string NEW_GAME_CONFIRMATION_STATE_CONTROLS    = "NewGameConfirmation";
         public const string CONTINUE_CONFIRMATION_STATE_CONTROLS    = "ContinueConfirmation";
+        public const string EXIT_CONFIRMATION_STATE                 = "ExitGame"; 
         #endregion STATE NAMES
 
         void Awake()
@@ -29,6 +31,16 @@ namespace ns_Mashmo
         public void transitionToControlsState()
         {
             transitionMonitorScreen(MONITOR_STATE_CONTROLS);
+        }
+
+        public void transitionToProfileState()
+        {
+            transitionMonitorScreen(MONITOR_STATE_PROFILE);
+        }
+
+        public void transitionToExitGameState()
+        {
+            transitionMonitorScreen(EXIT_CONFIRMATION_STATE);
         }
     }
 }
