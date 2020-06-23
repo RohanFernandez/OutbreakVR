@@ -11,6 +11,7 @@
 <!-- Training_100 START-->
 
 	<Sequence ID = "Training_100_OnBegin" >
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="TrainingExitDoor" />
 		<Task ID="0" TaskType="TaskAudio" AudClip="TrainingGreetings" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="TrainingSpeaker"/>
 	
 	    <!-- Helmet -->
@@ -334,6 +335,7 @@
 <!-- Training_117 START - exit the training session through the door -->
 
 	<Sequence ID = "Training_117_OnBegin" >
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="TrainingExitDoor" />
 		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ExitTraining"/>
 		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>

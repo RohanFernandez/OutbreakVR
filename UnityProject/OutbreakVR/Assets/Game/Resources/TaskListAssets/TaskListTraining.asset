@@ -37,8 +37,22 @@ MonoBehaviour:
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_100_OnBegin
-    m_iTaskCount: 26
+    m_iTaskCount: 27
     m_lstTasks:
+    - m_strTaskID: 00
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: TrainingExitDoor
     - m_strTaskID: 0
       m_strTaskType: TaskAudio
       m_iAttributeCount: 9
@@ -2017,8 +2031,22 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_117_OnBegin
-    m_iTaskCount: 3
+    m_iTaskCount: 4
     m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: TrainingExitDoor
     - m_strTaskID: 9
       m_strTaskType: TaskUserInterface
       m_iAttributeCount: 5
