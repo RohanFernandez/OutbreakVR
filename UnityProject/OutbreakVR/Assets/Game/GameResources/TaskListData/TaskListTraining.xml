@@ -11,6 +11,8 @@
 <!-- Training_100 START-->
 
 	<Sequence ID = "Training_100_OnBegin" >
+		<Task ID="0" TaskType="TaskAudio" AudClip="TrainingGreetings" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="TrainingSpeaker"/>
+	
 	    <!-- Helmet -->
 	    <!--Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="ObjectivePickupHelmet_Level_102" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/-->
 		
@@ -85,6 +87,7 @@
 		<Task ID="3" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="LockedDoor"/>
 		<Task ID="4" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="5" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
+		<Task ID="6" TaskType="TaskAudio" AudClip="TrainingProceedToBunker" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="TrainingSpeaker"/>
 	</Sequence>
 	
 	<Sequence ID = "Training_102_OnEnd" >
