@@ -16,12 +16,20 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private string m_strCurrLevelName = string.Empty;
+        public static string CurrentLevelName
+        {
+            get { return s_Instance.m_strCurrLevelName; }
+        }
 
         /// <summary>
         /// The sublevel data of the current sub level the game is in
         /// </summary>
         [SerializeField]
         private string m_strCurrSubLevelName = string.Empty;
+        public static string CurrentSubLevelName
+        {
+            get { return s_Instance.m_strCurrSubLevelName; }
+        }
 
         /// <summary>
         /// The name of the last checkpoint in the game

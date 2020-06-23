@@ -14,6 +14,8 @@ namespace ns_Mashmo
         public const string STATE_NAME_FIRST_LEVEL      = "Level1_100";
         public const string STATE_NAME_LAST_LEVEL       = "Credits_000";
 
+        public const string LEVEL_NAME_LEVEL1           = "Level1";
+
         public const string STATE_NAME_TESTING1_LEVEL   = "TESTING1_000";
         #endregion STATE NAMES
 

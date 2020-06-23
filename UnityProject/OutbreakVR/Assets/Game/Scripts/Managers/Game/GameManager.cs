@@ -186,10 +186,21 @@ namespace ns_Mashmo
         {
             PauseGame(false);
 
-            LevelManager.GoToLevel(LevelManager.LastCheckpointLevel);
+            string l_strRestartLevelName = string.Empty;
+
+            if (LevelManager.CurrentLevelName.Equals(GameConsts.LEVEL_NAME_LEVEL1, System.StringComparison.OrdinalIgnoreCase))
+            {
+                l_strRestartLevelName = LevelManager.LastCheckpointLevel;
+            }
+            else
+            {
+                l_strRestartLevelName = LevelManager.CurrentLevelName + "_" + LevelManager.CurrentSubLevelName;
+            }
+
+            LevelManager.GoToLevel(l_strRestartLevelName);
 
             EventHash l_EventHash = EventManager.GetEventHashtable();
-            l_EventHash.Add(GameEventTypeConst.ID_LEVEL_TYPE, LevelManager.LastCheckpointLevel);
+            l_EventHash.Add(GameEventTypeConst.ID_LEVEL_TYPE, l_strRestartLevelName);
             EventManager.Dispatch(GAME_EVENT_TYPE.ON_LEVEL_RESTARTED, l_EventHash);
         }
 
