@@ -18,7 +18,6 @@
 	    <!--Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="ObjectivePickupHelmet_Level_102" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/-->
 		
 		<!-- Weapons -->
-	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Bunker_Item" ItemType="ITEM_FN57" BulletCount="0" ObjectiveTrigger="ObjectivePickupHandgun_Level_105" Position="-2.6265,-2.4402,22.9345" Rotation="-0.105,127.388,-90.926"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="AK47_Bunker_Item" ItemType="ITEM_AK47" IsInteractive ="false" BulletCount="0" ObjectiveTrigger="ObjectivePickupAssault" Position="-4.4431,-2.119998,26.445" Rotation="-77.244,-82.80801,-12.326"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="Thompson_Bunker_Item" ItemType="ITEM_THOMPSON" IsInteractive ="false" BulletCount="0" ObjectiveTrigger="ObjectivePickupAssault" Position="0.953,-3.16,26.335" Rotation="-4.25,27.066,-91.815"/>
 		
@@ -102,6 +101,7 @@
 <!-- Training_103 START - Go to the shooting range-->
 
 	<Sequence ID = "Training_103_OnBegin" >
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level103_LockedDoor" />
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="WalkToShootingRange"/>
 		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
@@ -116,6 +116,7 @@
 <!-- Training_104 START - Pick up a pistol-->
 
 	<Sequence ID = "Training_104_OnBegin" >
+		<Task ID="00" TaskType="TaskItem" Code="Activate" Item_ID="FN57_Bunker_Item" ItemType="ITEM_FN57" BulletCount="0" ObjectiveTrigger="ObjectivePickupHandgun_Level_105" Position="-2.6265,-2.4402,22.9345" Rotation="-0.105,127.388,-90.926"/>
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupHandgun"/>
 		<Task ID="1" TaskType="TaskWait" WaitTime="15.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
