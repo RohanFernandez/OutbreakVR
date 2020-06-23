@@ -37,7 +37,7 @@ MonoBehaviour:
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_100_OnBegin
-    m_iTaskCount: 26
+    m_iTaskCount: 27
     m_lstTasks:
     - m_strTaskID: 00
       m_strTaskType: TaskEnvironmentInteraction
@@ -53,28 +53,6 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: TrainingExitDoor
-    - m_strTaskID: 0
-      m_strTaskType: TaskAudio
-      m_iAttributeCount: 9
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 0
-      - m_strKey: TaskType
-        m_strValue: TaskAudio
-      - m_strKey: AudClip
-        m_strValue: TrainingGreetings
-      - m_strKey: IsStart
-        m_strValue: true
-      - m_strKey: IsLoop
-        m_strValue: false
-      - m_strKey: Volume
-        m_strValue: 1.0
-      - m_strKey: SrcType
-        m_strValue: AUD_SRC_SFX
-      - m_strKey: IsPooled
-        m_strValue: false
-      - m_strKey: GameObjID
-        m_strValue: TrainingSpeaker
     - m_strTaskID: 2
       m_strTaskType: TaskItem
       m_iAttributeCount: 10
@@ -495,6 +473,38 @@ MonoBehaviour:
         m_strValue: Hide
       - m_strKey: UI
         m_strValue: TRAINING_TIPS
+    - m_strTaskID: 000
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 000
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: TrainingGreetings
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: TrainingSpeaker
+    - m_strTaskID: 00
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 6.0
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -585,14 +595,36 @@ MonoBehaviour:
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_101_OnBegin
-    m_iTaskCount: 4
+    m_iTaskCount: 6
     m_lstTasks:
-    - m_strTaskID: 1
+    - m_strTaskID: 00
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: TrainingProceedToBunker
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: TrainingSpeaker
+    - m_strTaskID: 0
       m_strTaskType: TaskItem
       m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 1
+        m_strValue: 0
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -609,6 +641,16 @@ MonoBehaviour:
         m_strValue: -5.824,0.779,-7.222
       - m_strKey: Rotation
         m_strValue: -9,90,0.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 8.0
     - m_strTaskID: 2
       m_strTaskType: TaskUserInterface
       m_iAttributeCount: 5
@@ -651,7 +693,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_102_OnBegin
-    m_iTaskCount: 6
+    m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskGameObject
@@ -713,28 +755,6 @@ MonoBehaviour:
         m_strValue: Hide
       - m_strKey: UI
         m_strValue: TRAINING_TIPS
-    - m_strTaskID: 6
-      m_strTaskType: TaskAudio
-      m_iAttributeCount: 9
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 6
-      - m_strKey: TaskType
-        m_strValue: TaskAudio
-      - m_strKey: AudClip
-        m_strValue: TrainingProceedToBunker
-      - m_strKey: IsStart
-        m_strValue: true
-      - m_strKey: IsLoop
-        m_strValue: false
-      - m_strKey: Volume
-        m_strValue: 1.0
-      - m_strKey: SrcType
-        m_strValue: AUD_SRC_SFX
-      - m_strKey: IsPooled
-        m_strValue: false
-      - m_strKey: GameObjID
-        m_strValue: TrainingSpeaker
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_102_OnEnd
     m_iTaskCount: 2
@@ -901,7 +921,7 @@ MonoBehaviour:
         m_strValue: TRAINING_TIPS
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_104_OnEnd
-    m_iTaskCount: 1
+    m_iTaskCount: 2
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskUserInterface
@@ -915,6 +935,20 @@ MonoBehaviour:
         m_strValue: Hide
       - m_strKey: UI
         m_strValue: TRAINING_TIPS
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Deactivate
+      - m_strKey: Item_ID
+        m_strValue: FN57_Bunker_Item
+      - m_strKey: ItemType
+        m_strValue: ITEM_FN57
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Training_105_OnBegin
     m_iTaskCount: 8
