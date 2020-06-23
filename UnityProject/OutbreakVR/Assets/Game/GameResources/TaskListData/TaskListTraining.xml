@@ -52,7 +52,7 @@
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_101" />
 		<Task ID="1" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Movement"/>
 		<Task ID="2" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_MOVEMENT"/>
-		<Task ID="3" TaskType="TaskWait" WaitTime="5.0"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="15.0"/>
 		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -69,7 +69,7 @@
 		<!-- Pick up Helmet -->
 	    <Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_Locker_Item" ItemType="ITEM_HELMET" ObjectiveTrigger="ObjectivePickupHelmet_Level_102" StrengthPercentage="100" Position="-5.824,0.779,-7.222" Rotation="-9,90,0.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="Helmet"/>
-		<Task ID="3" TaskType="TaskWait" WaitTime="8.0"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="15.0"/>
 		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -117,7 +117,7 @@
 
 	<Sequence ID = "Training_104_OnBegin" >
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupHandgun"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="15.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -136,7 +136,7 @@
 		<Task ID="3" TaskType="TaskItem" Code="Interaction" Item_ID="FN57Bullets_4" ItemType="ITEM_SECONDARY_BULLETS" IsInteractive ="true" />
 		<Task ID="4" TaskType="TaskItem" Code="Interaction" Item_ID="FN57Bullets_5" ItemType="ITEM_SECONDARY_BULLETS" IsInteractive ="true" />
 		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupHandgunBullets"/>
-		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="10.0"/>
 		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -150,7 +150,7 @@
 
 	<Sequence ID = "Training_106_OnBegin" >
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ReloadHandgun"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="10.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -166,7 +166,7 @@
 		<Task ID="0" TaskType="TaskItem" Code="Interaction" Item_ID="AK47_Bunker_Item" ItemType="ITEM_AK47" IsInteractive ="true" />
 		<Task ID="1" TaskType="TaskItem" Code="Interaction" Item_ID="Thompson_Bunker_Item" ItemType="ITEM_THOMPSON" IsInteractive ="true" />
 		<Task ID="2" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupAssaultWeapon1"/>
-		<Task ID="3" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="4" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -179,7 +179,7 @@
 
 	<Sequence ID = "Training_108_OnBegin" >
 		<Task ID="0" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupAssaultWeapon2"/>
-		<Task ID="1" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="1" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="2" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -201,7 +201,7 @@
 		<Task ID="7" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_8" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>
 		<Task ID="8" TaskType="TaskItem" Code="Interaction" Item_ID="AssaultBullets_9" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" IsInteractive ="true"/>	
 		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="PickupAssaultBullets"/>
-		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -227,7 +227,7 @@
 
 	<Sequence ID = "Training_111_OnBegin" >
 		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="SwitchWeapon"/>
-		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="15.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -242,7 +242,7 @@
 	<Sequence ID = "Training_112_OnBegin" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="ObjectiveTrigger_Level_112" />
 		<Task ID="1" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ShootingRangeHighlighted"/>
-		<Task ID="2" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="3" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -263,7 +263,7 @@
 		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="6.863,-2.9054,24.233" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
 	              
 		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget1"/>
-		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="14.0"/>
 		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -283,7 +283,7 @@
 		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="9.41,-2.9054,23.87" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
 	              
 		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget2"/>
-		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="14.0"/>
 		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -303,7 +303,7 @@
 		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="14.56,-2.9054,24.462" 	Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
 	              
 		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget3"/>
-		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="14.0"/>
 		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -323,7 +323,7 @@
 		<Task ID="4" TaskType="TaskSetTransform" GameObject_ID="DummyTarget5" Position="15.6,-2.9054,24.208" 	 Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
 	
 		<Task ID="5" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="FireAtTarget4"/>
-		<Task ID="6" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="6" TaskType="TaskWait" WaitTime="14.0"/>
 		<Task ID="7" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
@@ -337,7 +337,7 @@
 	<Sequence ID = "Training_117_OnBegin" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="TrainingExitDoor" />
 		<Task ID="9" TaskType="TaskUserInterface" Command="Show" UI="TRAINING_TIPS" Code="ExitTraining"/>
-		<Task ID="10" TaskType="TaskWait" WaitTime="4.0"/>
+		<Task ID="10" TaskType="TaskWait" WaitTime="8.0"/>
 		<Task ID="11" TaskType="TaskUserInterface" Command="Hide" UI="TRAINING_TIPS"/>
 	</Sequence>
 	
