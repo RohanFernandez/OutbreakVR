@@ -10,6 +10,8 @@ namespace ns_Mashmo
         void Awake()
         {
             m_ContinueCollider.enabled = !string.IsNullOrEmpty(LevelManager.LastCheckpointLevel);
+            setCurrentMusicValue();
+            setCurrentSFXValue();
         }
 
         /// <summary>
@@ -31,6 +33,11 @@ namespace ns_Mashmo
         [SerializeField]
         private TMPro.TMP_Text m_txtCurrentSFX = null;
 
+        [SerializeField]
+        private Animator m_SFXWalkieAnimator = null;
+
+        private const string ANIM_SFX_BOOL = "IsSFXOn";
+
         public void onSFXInteract()
         {
             SoundManager.IsSFXOn = !SoundManager.IsSFXOn;
@@ -40,6 +47,7 @@ namespace ns_Mashmo
         public void setCurrentSFXValue()
         {
             m_txtCurrentSFX.text = SoundManager.IsSFXOn ? "ON" : "OFF";
+            m_SFXWalkieAnimator.SetBool(ANIM_SFX_BOOL, SoundManager.IsSFXOn);
         }
 
         #endregion SFX
@@ -47,7 +55,12 @@ namespace ns_Mashmo
         #region MUSIC
 
         [SerializeField]
+        private Animator m_MusicRadioAnimator = null;
+
+        [SerializeField]
         private TMPro.TMP_Text m_txtCurrentMusic = null;
+
+        private const string ANIM_MUSIC_BOOL = "IsMusicOn";
 
         public void onMusicInteract()
         {
@@ -58,6 +71,7 @@ namespace ns_Mashmo
         public void setCurrentMusicValue()
         {
             m_txtCurrentMusic.text = SoundManager.IsMusicOn ? "ON" : "OFF";
+            m_MusicRadioAnimator.SetBool(ANIM_MUSIC_BOOL, SoundManager.IsMusicOn);
         }
 
         #endregion MUSIC
