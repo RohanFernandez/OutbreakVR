@@ -116,7 +116,7 @@ namespace ns_Mashmo
 
         public virtual void onReturnedToPool()
         {
-            
+            NavState = ENEMY_STATE.NONE;
         }
 
         public virtual void onRetrievedFromPool()

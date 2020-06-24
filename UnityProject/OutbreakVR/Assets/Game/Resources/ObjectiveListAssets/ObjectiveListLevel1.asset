@@ -275,7 +275,7 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_109
     m_strType: OrderedObjectiveGroup
-    m_iObjectiveCount: 3
+    m_iObjectiveCount: 4
     m_lstScriptibeObjective:
     - m_strID: 0
       m_strType: ObjectiveTrigger
@@ -313,12 +313,29 @@ MonoBehaviour:
       m_strIsCompulsory: true
     - m_strID: 2
       m_strType: ObjectiveTrigger
-      m_strSeqOnComplete: Level1_109_OnEmergencyButtonPressed
+      m_strSeqOnComplete: Level1_109_OnLeverTurned
       m_strObjectiveDesc: 
       m_iAttributeCount: 5
       m_lstAttributes:
       - m_strKey: ID
         m_strValue: 2
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnLeverTurned
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnLeverTurned
+      - m_strKey: ObjDesc
+        m_strValue: 
+      m_strIsCompulsory: true
+    - m_strID: 3
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnEmergencyButtonPressed
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 3
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID

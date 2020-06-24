@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 37
+  m_iSequenceCount: 38
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListStart
@@ -3787,7 +3787,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBegin
-    m_iTaskCount: 25
+    m_iTaskCount: 27
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -4253,6 +4253,30 @@ MonoBehaviour:
         m_strValue: 136.391,11.18,23.866
       - m_strKey: Rotation
         m_strValue: -79.082,-55.219,-47.495
+    - m_strTaskID: 24
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 24
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_RedLight
+    - m_strTaskID: 25
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 25
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_GreenLight
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBloodBagsPicked
     m_iTaskCount: 3
@@ -4315,18 +4339,6 @@ MonoBehaviour:
     m_strSequenceID: Level1_109_OnBloodBagsApplied
     m_iTaskCount: 5
     m_lstTasks:
-    - m_strTaskID: 0
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 0
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: true
-      - m_strKey: GameObject_ID
-        m_strValue: Level109_EmergencyButton
     - m_strTaskID: 1
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4393,6 +4405,70 @@ MonoBehaviour:
         m_strValue: 133.9424,10.705,30.2879
       - m_strKey: Rotation
         m_strValue: 0.0,-575.38,0.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_Lever
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_109_OnLeverTurned
+    m_iTaskCount: 4
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_EmergencyButton
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_Lever
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_RedLight
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_GreenLight
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEmergencyButtonPressed
     m_iTaskCount: 1

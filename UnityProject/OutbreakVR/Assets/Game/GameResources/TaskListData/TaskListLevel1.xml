@@ -444,6 +444,8 @@
 		<Task ID="21" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="136.03,11.1687,22.351" Rotation="0.0,113.804,0.0"/>
 		<Task ID="22" TaskType="TaskItem" Code="Activate" Item_ID="Assault_1" ItemType="ITEM_STINGRAY" BulletCount="8" Position="82.00499,12.80616,12.852" Rotation="-1.406,39.814,90.012"/>
 		<Task ID="23" TaskType="TaskItem" Code="Activate" Item_ID="Assault_2" ItemType="ITEM_THOMPSON" BulletCount="30" Position="136.391,11.18,23.866" Rotation="-79.082,-55.219,-47.495"/>
+		<Task ID="24" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_RedLight" />
+		<Task ID="25" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLight" />
 	</Sequence>
 	
 	<!-- Called on blood bags picked-->
@@ -455,11 +457,18 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnBloodBagsApplied" >
-		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_EmergencyButton" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level1_109_BloodBagLocation" />
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="124.3484,10.705,37.3609" Rotation="0.0,-567.302,0.0"/>
 		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="126.7274,10.705,32.5399" Rotation="0.0,-503.687,0.0"/>
 		<Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="133.9424,10.705,30.2879" Rotation="0.0,-575.38,0.0"/>
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_Lever" />
+	</Sequence>
+	
+	<Sequence ID = "Level1_109_OnLeverTurned" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_EmergencyButton" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_Lever" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_RedLight" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLight" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEmergencyButtonPressed" >
