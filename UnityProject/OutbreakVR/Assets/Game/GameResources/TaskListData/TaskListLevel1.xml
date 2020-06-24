@@ -33,7 +33,6 @@
 	
 	<!-- LEVEL 100 [CHECKPOINT]  START-->
 	<Sequence ID = "Level1_100_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_100_101" />
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="CrashedHelicopter" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Objective_ChainsawPickup" ItemType="ITEM_CHAINSAW" ObjectiveTrigger="ChainsawPickup" Position="-0.113,31.359,-0.547" Rotation="-80.067,-137.56,-34.11"/>
 
@@ -122,7 +121,6 @@
 	<!-- LEVEL 101  End-->
 	
 	<Sequence ID = "Level1_101_OnEnd">
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_100_101" />
 	</Sequence>
 	
 	<!-- LEVEL 101  End-->
@@ -130,8 +128,6 @@
 	<!-- LEVEL 102 [CHECKPOINT]  START :: Starts on exit apartment 2 locked door  -->
 	
 	<Sequence ID = "Level1_102_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_102" />
-	
 		<!-- Deactivate the helicopter as you cant go back-->
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
 		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
@@ -165,7 +161,6 @@
 	</Sequence>	
 	
 	<Sequence ID = "Level1_102_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_102" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Smashable" IsSmashed="true" GameObject_ID="Level102_PlankTask" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_ElectricBoxParticles" />
 	</Sequence>
@@ -174,7 +169,6 @@
 	
 	<!-- LEVEL 103 [CHECKPOINT]  START :: Starts on reaching the second building and clearing the planks between the 2 buildings-->
 	<Sequence ID = "Level1_103_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_103" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="16.057,19.142,8.444" Rotation="-11.286,124.803,0.0"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Assault_1" ItemType="ITEM_THOMPSON" BulletCount="30" Position="16.063,19.913,15.821" Rotation="-68.273,-274.466,261.063"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="HealthMedium" ItemType="ITEM_HEALTH_MEDIUM" Position="15.528,19.611,17.164" Rotation="0.0,16.695,0.0"/>
@@ -204,13 +198,11 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_103_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_103" />
 	</Sequence>
 	<!-- LEVEL 103 [CHECKPOINT]  END-->
 	
 	<!-- LEVEL 104 [CHECKPOINT]  START :: Starts on entering the second beuilding staircase after crossing the terrace entrance locked door-->
 	<Sequence ID = "Level1_104_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_104" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level103_LockedDoor" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_GasDamageInfliction_Room0" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level104_GasDamageInfliction_Room1" />
@@ -272,7 +264,6 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_104_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_104" />
 		<Task ID="0" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasValveTurn"/>
 		<Task ID="1" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc1"/>
 		<Task ID="2" TaskType="TaskAudio" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level104_GasAudSrc2"/>
@@ -281,7 +272,6 @@
 	
 	<!-- LEVEL 105 [CHECKPOINT]  START :: Find a way out of the gas chamber and kill the enemies-->
 	<Sequence ID = "Level1_105_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_105" />
 		<Task ID="0" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret1" EnemyType="AUTOMATED_TURRET" Position="16.455,15.838,7.668" Rotation="0.0,-169.16,0.0" Params="90.0;-90.0"/>
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret2" EnemyType="AUTOMATED_TURRET" Position="24.036,15.815,6.952" Rotation="0.0,-210,0.0" Params="90.0;-90.0"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="105_Turret3" EnemyType="AUTOMATED_TURRET" Position="27.192,12.603,7.763" Rotation="0.0,-90,0.0" Params="90.0;-90.0"/>
@@ -326,13 +316,11 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_105_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_105" />
 	</Sequence>
 	<!-- LEVEL 105 [CHECKPOINT]  END-->
 	
 	<!-- LEVEL 106 [CHECKPOINT]  START :: Find a way out of the gas chamber and kill the enemies-->
 	<Sequence ID = "Level1_106_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_106" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level105_InteractiveDoor_2" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_106_C4" ItemType="ITEM_C4" Position="21.054,13.541,10.793" Rotation="6.925,165.017,-4.705"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret1" EnemyType="AUTOMATED_TURRET" Position="22.74,12.623,12.65" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
@@ -374,14 +362,12 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_106_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_106" />
 	</Sequence>
 	<!-- LEVEL 106 [CHECKPOINT]  END-->
 	
 	
 		<!-- LEVEL 107 [CHECKPOINT]  START :: Cross the balcony and defend from turrets-->
 	<Sequence ID = "Level1_107_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_107" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="43.968,12.06216,5.779" Rotation="-5.001,-143.369,2.251"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_2" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="87.651,12.42716,11.138" Rotation="-13.834,-129.633,0.0"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_3" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="86.694,13.45216,12.163" Rotation="-10.246,-83.437,0.0"/>
@@ -412,7 +398,6 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_107_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_107" />
 	</Sequence>
 	<!-- LEVEL 107 [CHECKPOINT]  END-->
 	
@@ -420,20 +405,17 @@
 	
 	<!-- LEVEL 108 [CHECKPOINT]  START :: Cross the pipe between Building 3 and 4-->
 	<Sequence ID = "Level1_108_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_108" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level108_InteractiveDoor_1" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="123.7224,11.6846,20.8571" Rotation="0.0,-78.424,0.0"/>
 		
 	</Sequence>
 	
 	<Sequence ID = "Level1_108_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_108" />
 	</Sequence>
 	<!-- LEVEL 108 [CHECKPOINT]  END-->
 	
 	<!-- LEVEL 109 [CHECKPOINT]  START :: Enter the door of building 4-->
 	<Sequence ID = "Level1_109_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_109" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level108_InteractiveDoor_1" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_109_BloodBags" ItemType="ITEM_BLOOD_BAGS" ObjectiveTrigger="Level_109_OnBloodBagsPicked" Position="131.395,11.5322,14.472" Rotation="0.0,-15.535,0.0"/>
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_109_BloodBagLocation" />
@@ -482,7 +464,6 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_109" />
 	</Sequence>
 	<!-- LEVEL 109 [CHECKPOINT]  END-->
 	
