@@ -541,6 +541,13 @@ namespace ns_Mashmo
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
                         break;
                     }
+                case PLAYER_STATE.CINEMATIC:
+                    {
+                        m_actPlayerStateControl = null;
+                        ControllerManager.ToggleLaser(false);
+                        SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        break;
+                    }
                 default:
                     {
                         m_actPlayerStateControl = null;

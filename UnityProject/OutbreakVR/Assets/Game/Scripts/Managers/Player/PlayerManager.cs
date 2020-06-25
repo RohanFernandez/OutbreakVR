@@ -12,6 +12,7 @@ namespace ns_Mashmo
         IN_GAME_HALTED,      //No movement, in game pointer available
         IN_GAME_PAUSED,      //No movement, in game pointer unavailable
         IN_GAME_PARALYSED,   // No movement, no pointer, gravity enabled
+        CINEMATIC,          // No movement, no pointer, gravity disabled, helmet enabled
     }
 
     public enum DAMAGE_INFLICTION_TYPE
