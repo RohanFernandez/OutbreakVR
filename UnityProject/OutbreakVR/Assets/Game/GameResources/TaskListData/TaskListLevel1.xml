@@ -371,6 +371,7 @@
 	
 		<!-- LEVEL 107 [CHECKPOINT]  START :: Cross the balcony and defend from turrets-->
 	<Sequence ID = "Level1_107_OnBegin" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_107_StealthTurrets" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="43.968,12.06216,5.779" Rotation="-5.001,-143.369,2.251"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_2" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="87.651,12.42716,11.138" Rotation="-13.834,-129.633,0.0"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_3" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="86.694,13.45216,12.163" Rotation="-10.246,-83.437,0.0"/>
@@ -401,6 +402,7 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_107_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level1_107_StealthTurrets" />
 	</Sequence>
 	<!-- LEVEL 107 [CHECKPOINT]  END-->
 	
@@ -469,6 +471,7 @@
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_Lever" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_RedLight" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLight" />
+		<Task ID="4" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level109_BloodBagsValve"/>
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEmergencyButtonPressed" >

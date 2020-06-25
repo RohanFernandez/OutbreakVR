@@ -3223,8 +3223,20 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnBegin
-    m_iTaskCount: 27
+    m_iTaskCount: 28
     m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level1_107_StealthTurrets
     - m_strTaskID: 1
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
@@ -3743,8 +3755,20 @@ MonoBehaviour:
         m_strValue: 0.0,-129.622,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnEnd
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level1_107_StealthTurrets
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_108_OnBegin
     m_iTaskCount: 2
@@ -4419,7 +4443,7 @@ MonoBehaviour:
         m_strValue: Level109_Lever
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnLeverTurned
-    m_iTaskCount: 4
+    m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -4469,6 +4493,28 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level109_GreenLight
+    - m_strTaskID: 4
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasValveTurn
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level109_BloodBagsValve
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEmergencyButtonPressed
     m_iTaskCount: 1
