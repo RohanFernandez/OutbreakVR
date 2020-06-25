@@ -45,6 +45,14 @@ namespace ns_Mashmo
             }
         }
 
+        private void OnDisable()
+        {
+            if (m_OutLineHighlighter != null)
+            {
+                m_OutLineHighlighter.toggleHighlighter(true, GameManager.ColOutlineHighlighterDeactivated);
+            }
+        }
+
         public void onPointerEnter()
         {
             if (m_OutLineHighlighter != null && gameObject.activeSelf && m_Collider.enabled)

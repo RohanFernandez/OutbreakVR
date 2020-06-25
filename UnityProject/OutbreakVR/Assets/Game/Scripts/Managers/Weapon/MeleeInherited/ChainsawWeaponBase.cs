@@ -95,6 +95,9 @@ namespace ns_Mashmo
             }
         }
 
+        [SerializeField]
+        private int CountTest = 0;
+
         /// <summary>
         /// On the chainsaw blade's collider is triggerd by an enemy
         /// </summary>
@@ -109,7 +112,7 @@ namespace ns_Mashmo
                 int l_iSmashableHitColliderID = (LayerMask.NameToLayer(GameConsts.LAYER_NAME_SMASHABLE));
 
                 if ((l_iEnemyHitColliderID == a_Collider.gameObject.layer) ||
-                    l_iSmashableHitColliderID == a_Collider.gameObject.layer)
+                   (l_iSmashableHitColliderID == a_Collider.gameObject.layer))
                 {
                     EnemyHitCollider l_EnemyHitCollider = a_Collider.GetComponent<EnemyHitCollider>();
                     SmashableHitCollider l_SmashableHitCollider = null;
@@ -118,7 +121,7 @@ namespace ns_Mashmo
                         l_SmashableHitCollider = a_Collider.GetComponent<SmashableHitCollider>();
                     }
 
-                    if (l_EnemyHitCollider != null || l_SmashableHitCollider != null)
+                    if ((l_EnemyHitCollider != null) || (l_SmashableHitCollider != null))
                     { 
                         if (!m_dictTriggeredColliders.ContainsKey(l_iColliderInstanceID))
                         {
@@ -136,13 +139,10 @@ namespace ns_Mashmo
         protected override void OnTriggerExit(Collider a_Collider)
         {
             base.OnTriggerExit(a_Collider);
-            if (GeneralUtils.IsLayerInLayerMask(WeaponManager.GunHitInteractionLayer, a_Collider.gameObject.layer))
+            int l_iInstanceID = a_Collider.gameObject.GetInstanceID();
+            if (m_dictTriggeredColliders.ContainsKey(l_iInstanceID))
             {
-                int l_iInstanceID = a_Collider.GetInstanceID();
-                if (m_dictTriggeredColliders.ContainsKey(l_iInstanceID))
-                {
-                    m_dictTriggeredColliders.Remove(l_iInstanceID);
-                }
+                m_dictTriggeredColliders.Remove(l_iInstanceID);
             }
         }
 
@@ -151,6 +151,7 @@ namespace ns_Mashmo
         /// </summary>
         private void Update()
         {
+            CountTest = m_dictTriggeredColliders.Count;
             if (m_fTimePassedSinceLastDamageInfliction == 0.0f)
             {
                 m_fTimeBetweenDamageCurrent = Random.Range(m_fTimeBetweenDamageMin, m_fTimeBetweenDamageMax);
