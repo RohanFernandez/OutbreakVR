@@ -10,9 +10,11 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_CODE = "Code";
         private const string ATTRIBUTE_PLAYER_STATE = "PlayerState";
         private const string ATTRIBUTE_PLAYER_HEALTH = "PlayerHealth";
+        private const string ATTRIBUTE_INFLICT_DAMAGE = "InflictDamage";
 
         private const string ATTRIBUTE_VALUE_CODE_PLAYER_STATE = "SetPlayerState";
         private const string ATTRIBUTE_VALUE_CODE_PLAYER_HEALTH = "SetPlayerHealth";
+        private const string ATTRIBUTE_VALUE_CODE_INFLICT_DAMAGE = "InflictDamage";
         #endregion ATTRIBUTE_KEY
 
         /// <summary>
@@ -49,6 +51,11 @@ namespace ns_Mashmo
                         PlayerManager.HealthMeter = getInt(ATTRIBUTE_PLAYER_HEALTH);
 
                         break;
+                    }
+                case ATTRIBUTE_VALUE_CODE_INFLICT_DAMAGE:
+                    {
+                        PlayerManager.InflictDamage(getInt(ATTRIBUTE_INFLICT_DAMAGE), DAMAGE_INFLICTION_TYPE.DEFAULT);
+                        break; ;
                     }
                 default:
                     {

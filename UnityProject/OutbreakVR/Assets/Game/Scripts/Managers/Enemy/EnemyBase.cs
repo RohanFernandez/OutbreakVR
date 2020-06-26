@@ -208,14 +208,23 @@ namespace ns_Mashmo
 
         protected virtual void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
         {
+            Debug.LogError("OLD STATE:" + l_OldNavState.ToString() + ",      NewState:" + a_NavState.ToString());
             /// Specific OLD to NEW state
-            if (l_OldNavState == ENEMY_STATE.ALERT)
+            if ((l_OldNavState == ENEMY_STATE.ALERT ||
+                l_OldNavState == ENEMY_STATE.SUFFER ||
+                l_OldNavState == ENEMY_STATE.DAMAGE_INFLICTED)
+                && 
+                (a_NavState != ENEMY_STATE.ALERT &&
+                a_NavState != ENEMY_STATE.SUFFER &&
+                a_NavState != ENEMY_STATE.DAMAGE_INFLICTED))
             {
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_ENEMY_ALERT_ENDED, l_EventHash);
             }
-            else if(a_NavState == ENEMY_STATE.ALERT)
+            else if(a_NavState == ENEMY_STATE.ALERT ||
+                a_NavState == ENEMY_STATE.SUFFER ||
+                a_NavState == ENEMY_STATE.DAMAGE_INFLICTED)
             {
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_ENEMY_BASE, this);

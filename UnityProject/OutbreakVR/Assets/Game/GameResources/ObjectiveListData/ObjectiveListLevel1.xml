@@ -37,7 +37,8 @@
 	
 	<!-- Pickup the C4 and plant the c4 at the C4 location -->
 	<ObjectiveGroup ID="Level1_106" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_107_LocationTriggered" ObjDesc=""/>
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level106_C4Picked" SequenceOnComplete="Level106_OnC4Picked" ObjDesc=""/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_107_LocationTriggered" ObjDesc=""/>
 	</ObjectiveGroup>
 	
 	<!-- Avoid gunfire from enemies to go through the passage-->

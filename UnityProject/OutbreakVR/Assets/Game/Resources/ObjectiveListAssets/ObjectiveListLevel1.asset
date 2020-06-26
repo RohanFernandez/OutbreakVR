@@ -218,16 +218,33 @@ MonoBehaviour:
       m_strIsCompulsory: true
   - m_strID: Level1_106
     m_strType: UnorderedObjectiveGroup
-    m_iObjectiveCount: 1
+    m_iObjectiveCount: 2
     m_lstScriptibeObjective:
     - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level106_OnC4Picked
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level106_C4Picked
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level106_OnC4Picked
+      - m_strKey: ObjDesc
+        m_strValue: 
+      m_strIsCompulsory: true
+    - m_strID: 1
       m_strType: ObjectiveTrigger
       m_strSeqOnComplete: 
       m_strObjectiveDesc: 
       m_iAttributeCount: 4
       m_lstAttributes:
       - m_strKey: ID
-        m_strValue: 0
+        m_strValue: 1
       - m_strKey: Type
         m_strValue: ObjectiveTrigger
       - m_strKey: TriggerID
