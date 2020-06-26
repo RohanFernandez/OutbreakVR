@@ -49,6 +49,12 @@ namespace ns_Mashmo
         protected bool m_bIsCompulsory = true;
 
         /// <summary>
+        /// Should be included in the listing
+        /// </summary>
+        [SerializeField]
+        protected bool m_bIsIncludedInListing = true;
+
+        /// <summary>
         /// Attributes in this objective
         /// </summary>
         protected Hashtable m_hashAttributes = null;
@@ -67,6 +73,7 @@ namespace ns_Mashmo
             m_strSequenceOnComplete = getString(ScriptableObjective.KEY_SEQUENCE_ON_COMPLETE_ID);
             m_strObjDescription = getString(ScriptableObjective.KEY_OBJECTIVE_DESCRIPTION_ID);
             m_bIsCompulsory = getBool(ScriptableObjective.KEY_OBJECTIVE_IS_COMPULSORY_ID, true);
+            m_bIsIncludedInListing = getBool(ScriptableObjective.KEY_OBJECTIVE_IS_INCLUDED_IN_LISTING, true);
         }
 
         /// <summary>
@@ -90,6 +97,14 @@ namespace ns_Mashmo
         public bool isComplete()
         {
             return m_bIsComplete;
+        }
+
+        /// <summary>
+        /// Is included in listing
+        /// </summary>
+        public bool isIncludedInListing()
+        {
+            return m_bIsIncludedInListing;
         }
 
         /// <summary>

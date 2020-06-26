@@ -129,6 +129,8 @@
 	
 	<Sequence ID = "Level1_102_OnBegin" >
 		<!-- Deactivate the helicopter as you cant go back-->
+		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_LowerStairsTrigger" />
+		<Task ID="00" TaskType="TaskAudio" AudClip="PeopleMurmuring" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level102_TalkMurmursAudSrc"/>
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="CrashedHelicopter" /> 
 		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level101_LockedDoor" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_ElectricDamageArea" />
@@ -145,6 +147,20 @@
 		<Task ID="13" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="4.003,35.928,9.383" Rotation="-12.613,-70.19,0.0"/>
 		<Task ID="14" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level102_DoorLowerFloor" />
 	</Sequence>
+	
+	<!-- on upper stairs triggered, enable lower stairs objecctive trigger -->
+	<Sequence ID = "Obj102_UpperStairsTriggered" >
+		 <Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_LowerStairsTrigger" />
+	</Sequence>	
+	
+	<!-- on lower stairs triggered, show man falling -->
+	<Sequence ID = "Obj102_LowerStairsTriggered" >
+		<Task ID="00" TaskType="TaskAudio" AudClip="PeopleMurmuring" IsStart="false" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level102_TalkMurmursAudSrc"/>
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Level102_FallingPerson" Position="6.61,34.746,8.62946" Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_FallingPerson" />
+		<Task ID="2" TaskType="TaskWait" WaitTime="5.0"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_FallingPerson" />
+	</Sequence>	
 	
 	<!-- on gun picked up-->
 	<Sequence ID = "Obj102_OnHandgunPickedup" >
@@ -163,6 +179,7 @@
 	<Sequence ID = "Level1_102_OnEnd" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Smashable" IsSmashed="true" GameObject_ID="Level102_PlankTask" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_ElectricBoxParticles" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_FallingPerson" />
 	</Sequence>
 	
 	<!-- LEVEL 102 [CHECKPOINT]  END-->
@@ -356,16 +373,19 @@
 	<Sequence ID = "Level106_OnC4Picked" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level106_BombTimer" />
 		<Task ID="1" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level106_InteractiveDoorC4" />
+		<Task ID="2" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
 	</Sequence>
 	
 	<Sequence ID = "Level106_OnBombTimerEnded" >
 		<Task ID="0" TaskType="TaskPlayer" Code="SetPlayerState" PlayerState="IN_GAME_HALTED" />
-		<Task ID="1" TaskType="TaskAudio" AudClip="BombDropExplosion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
-		<Task ID="2" TaskType="TaskWait" WaitTime="2.0"/>
-		<Task ID="3" TaskType="TaskPlayer" Code="InflictDamage" InflictDamage="100" />
+		<Task ID="1" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
+		<Task ID="2" TaskType="TaskAudio" AudClip="BombDropExplosion" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
+		<Task ID="3" TaskType="TaskWait" WaitTime="2.0"/>
+		<Task ID="4" TaskType="TaskPlayer" Code="InflictDamage" InflictDamage="100" />
 	</Sequence>
 	
 	<Sequence ID = "Level106_OnC4Placed" >
+		<Task ID="000" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
 		<Task ID="00" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_BombTimer" />
 		<Task ID="0" TaskType="TaskAudio" AudClip="C4BombTimer" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level106_C4Location"/>	
 		<Task ID="1" TaskType="TaskWait" WaitTime="7.0"/>
@@ -379,6 +399,7 @@
 	
 	<Sequence ID = "Level1_106_OnEnd" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_BombTimer" />
+		<Task ID="1" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
 	</Sequence>
 	<!-- LEVEL 106 [CHECKPOINT]  END-->
 	

@@ -171,7 +171,7 @@ namespace ns_Mashmo
                     }
 
                     EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
-                    l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.transform.position, Quaternion.LookRotation(l_RaycastHit.normal));
+                    l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));
                     m_GunTracerParticleSystem.transform.LookAt(l_RaycastHit.transform);
                 }
             }

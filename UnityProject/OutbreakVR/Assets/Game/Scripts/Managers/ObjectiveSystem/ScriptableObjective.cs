@@ -13,6 +13,7 @@ namespace ns_Mashmo
         public const string KEY_SEQUENCE_ON_COMPLETE_ID = "SequenceOnComplete";
         public const string KEY_OBJECTIVE_DESCRIPTION_ID = "ObjDesc";
         public const string KEY_OBJECTIVE_IS_COMPULSORY_ID = "IsCompulsory";
+        public const string KEY_OBJECTIVE_IS_INCLUDED_IN_LISTING = "IsIncludedInListing";
         #endregion Attribute Keys
 
         /// <summary>
@@ -61,6 +62,11 @@ namespace ns_Mashmo
         /// </summary>
         public string m_strIsCompulsory = string.Empty;
 
+        /// <summary>
+        /// is the objective included in listing
+        /// </summary>
+        public string m_strIsIncludedInListing = string.Empty;
+
         public void initialize()
         {
             m_hashAttributes = new Hashtable(m_iAttributeCount);
@@ -82,6 +88,7 @@ namespace ns_Mashmo
             string l_strSeqOnComplete = string.Empty;
             string l_strObjectiveDesc = string.Empty;
             string l_strObjectiveIsCompulsory = "true";
+            string l_strIsIncludedInListing = "true";
 
             List<KeyValueAttribute> l_lstAttributes = new List<KeyValueAttribute>(l_iAttributeCount);
             for (int l_iAttributeIndex = 0; l_iAttributeIndex < l_iAttributeCount; l_iAttributeIndex++)
@@ -112,6 +119,10 @@ namespace ns_Mashmo
                 {
                     l_strObjectiveIsCompulsory = l_Attribute.m_strValue;
                 }
+                else if (l_Attribute.m_strKey.Equals(KEY_OBJECTIVE_IS_INCLUDED_IN_LISTING, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    l_strIsIncludedInListing = l_Attribute.m_strValue;
+                }
                 l_lstAttributes.Add(l_Attribute);
             }
 
@@ -123,6 +134,7 @@ namespace ns_Mashmo
             l_ScriptableObjective.m_strID = l_strID;
             l_ScriptableObjective.m_strObjectiveDesc = l_strObjectiveDesc;
             l_ScriptableObjective.m_strIsCompulsory = l_strObjectiveIsCompulsory;
+            l_ScriptableObjective.m_strIsIncludedInListing = l_strIsIncludedInListing;
 
             return l_ScriptableObjective;
         }

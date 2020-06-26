@@ -45,8 +45,13 @@ namespace ns_Mashmo
                 else
                 {
                     ObjectiveBase l_ObjectiveBase = l_CurrentLevelObjectiveGroup.m_lstObjectives[l_iObjectiveIndex];
-                    l_PanelObjective.gameObject.SetActive(true);
-                    l_PanelObjective.updateText(l_ObjectiveBase.ObjDescription, l_ObjectiveBase.isComplete(), l_ObjectiveBase.isCompulsory());
+
+                    bool l_bIsIncludedInListing =  l_ObjectiveBase.isIncludedInListing();
+                    l_PanelObjective.gameObject.SetActive(l_bIsIncludedInListing);
+                    if (l_bIsIncludedInListing)
+                    {
+                        l_PanelObjective.updateText(l_ObjectiveBase.ObjDescription, l_ObjectiveBase.isComplete(), l_ObjectiveBase.isCompulsory());
+                    }
                 }
             }
         }

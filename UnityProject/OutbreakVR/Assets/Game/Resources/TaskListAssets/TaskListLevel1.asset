@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 40
+  m_iSequenceCount: 42
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListStart
@@ -287,8 +287,42 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
-    m_iTaskCount: 15
+    m_iTaskCount: 17
     m_lstTasks:
+    - m_strTaskID: 000
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 000
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_LowerStairsTrigger
+    - m_strTaskID: 00
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: PeopleMurmuring
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level102_TalkMurmursAudSrc
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -544,6 +578,98 @@ MonoBehaviour:
       - m_strKey: GameObject_ID
         m_strValue: Level102_DoorLowerFloor
   - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Obj102_UpperStairsTriggered
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_LowerStairsTrigger
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Obj102_LowerStairsTriggered
+    m_iTaskCount: 5
+    m_lstTasks:
+    - m_strTaskID: 00
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: PeopleMurmuring
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level102_TalkMurmursAudSrc
+    - m_strTaskID: 0
+      m_strTaskType: TaskSetTransform
+      m_iAttributeCount: 6
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskSetTransform
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_FallingPerson
+      - m_strKey: Position
+        m_strValue: 6.61,34.746,8.62946
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+      - m_strKey: Scale
+        m_strValue: 1.0,1.0,1.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_FallingPerson
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 5.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_FallingPerson
+  - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj102_OnHandgunPickedup
     m_iTaskCount: 3
     m_lstTasks:
@@ -639,7 +765,7 @@ MonoBehaviour:
         m_strValue: Level102_ElectricBoxParticles
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnEnd
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -667,6 +793,18 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level102_ElectricBoxParticles
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_FallingPerson
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnBegin
     m_iTaskCount: 21
@@ -3129,7 +3267,7 @@ MonoBehaviour:
         m_strValue: Level106_InteractiveDoorC4
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level106_OnC4Picked
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -3157,9 +3295,29 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level106_InteractiveDoorC4
+    - m_strTaskID: 2
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level106_OnBombTimerEnded
-    m_iTaskCount: 4
+    m_iTaskCount: 5
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskPlayer
@@ -3182,6 +3340,26 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskAudio
       - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+    - m_strTaskID: 2
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
         m_strValue: BombDropExplosion
       - m_strKey: IsStart
         m_strValue: true
@@ -3193,22 +3371,22 @@ MonoBehaviour:
         m_strValue: AUD_SRC_SFX
       - m_strKey: IsPooled
         m_strValue: true
-    - m_strTaskID: 2
+    - m_strTaskID: 3
       m_strTaskType: TaskWait
       m_iAttributeCount: 3
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 2
+        m_strValue: 3
       - m_strKey: TaskType
         m_strValue: TaskWait
       - m_strKey: WaitTime
         m_strValue: 2.0
-    - m_strTaskID: 3
+    - m_strTaskID: 4
       m_strTaskType: TaskPlayer
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 3
+        m_strValue: 4
       - m_strKey: TaskType
         m_strValue: TaskPlayer
       - m_strKey: Code
@@ -3217,8 +3395,28 @@ MonoBehaviour:
         m_strValue: 100
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level106_OnC4Placed
-    m_iTaskCount: 9
+    m_iTaskCount: 10
     m_lstTasks:
+    - m_strTaskID: 000
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 000
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
     - m_strTaskID: 00
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -3335,7 +3533,7 @@ MonoBehaviour:
         m_strValue: Level106_C4BlastCollider
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnEnd
-    m_iTaskCount: 1
+    m_iTaskCount: 2
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
@@ -3349,6 +3547,26 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level106_BombTimer
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnBegin
     m_iTaskCount: 28

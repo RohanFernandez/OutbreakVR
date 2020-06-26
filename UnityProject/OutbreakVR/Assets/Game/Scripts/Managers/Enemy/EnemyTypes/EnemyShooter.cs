@@ -60,6 +60,8 @@ namespace ns_Mashmo
                     (LayerMask.NameToLayer(GameConsts.LAYER_NAME_PLAYER) == l_RaycastHit.collider.gameObject.layer))
                 { 
                     PlayerManager.InflictDamage(m_iGunfireDamage, DAMAGE_INFLICTION_TYPE.GUNFIRE);
+                    EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
+                    l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));
                 }
             }
 
