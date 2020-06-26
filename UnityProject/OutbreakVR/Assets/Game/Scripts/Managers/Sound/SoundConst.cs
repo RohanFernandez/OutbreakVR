@@ -55,6 +55,11 @@ namespace ns_Mashmo
         public const string AUD_SRC_TURRET_TRIG_ACTIVATE = "AudSrc_TurretTriggerActivate";
 
         /// <summary>
+        /// Audio source to be played cursor click
+        /// </summary>
+        public const string AUD_SRC_CURSOR_CLICK = "AudSrcClick";
+
+        /// <summary>
         /// The aud src that plays all sounds on the worn helmet
         /// </summary>
         public const string AUD_SRC_PLAYER_HELMET = "Helmet";
@@ -62,6 +67,12 @@ namespace ns_Mashmo
         #endregion AUDIO SOURCE
 
         #region AUDIO CLIP
+
+        /// <summary>
+        /// Audio clip of common cursor click
+        /// </summary>
+        public const string AUD_CLIP_CURSOR_CLICK = "CursorClick";
+
         /// <summary>
         /// Audio source to be played on item picked up
         /// </summary>

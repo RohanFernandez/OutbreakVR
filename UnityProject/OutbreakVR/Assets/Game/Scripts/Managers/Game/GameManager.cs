@@ -355,5 +355,15 @@ namespace ns_Mashmo
                 EventManager.Dispatch(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, l_EventHash);
             }
         }
+
+        public static void PlayClickSound()
+        {
+            s_Instance.playClickSound();
+        }
+
+        public void playClickSound()
+        {
+            SoundManager.PlayAudio(SoundConst.AUD_SRC_CURSOR_CLICK, SoundConst.AUD_CLIP_CURSOR_CLICK, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+        }
     }
 }

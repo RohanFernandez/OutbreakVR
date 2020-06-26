@@ -74,6 +74,7 @@ namespace ns_Mashmo
         {
             if (!IsControlInMainPanel)
             {
+                GameManager.PlayClickSound();
                 m_CurrentPauseState.onLeftPressed();
             }
         }
@@ -82,6 +83,7 @@ namespace ns_Mashmo
         {
             if (!IsControlInMainPanel)
             {
+                GameManager.PlayClickSound();
                 m_CurrentPauseState.onRightPressed();
             }
         }
@@ -96,6 +98,7 @@ namespace ns_Mashmo
                 ///The first time the state is selected
                 if ((l_bControlBeforeSelection != IsControlInMainPanel) && !IsControlInMainPanel)
                 {
+                    GameManager.PlayClickSound();
                     m_CurrentPauseState.onStateSelected();
                 }
                 //the second time the control is in the state panel

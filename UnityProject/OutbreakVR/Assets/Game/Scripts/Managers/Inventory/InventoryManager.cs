@@ -129,16 +129,18 @@ namespace ns_Mashmo
                         }
                     case INVENTORY_ITEM_ID.INVENTORY_HEALTH:
                         {
-                            /// Set health data
-                            InventoryHealth l_HelmetInventoryItem = (InventoryHealth)l_InventoryItem;
-                            PlayerManager.HealthMeter = (PlayerManager.HealthMeter + l_HelmetInventoryItem.getHealthValueWithPickupType(l_ItemType));
+                            if (PlayerManager.HealthMeter != 100)
+                            {
+                                /// Set health data
+                                InventoryHealth l_HelmetInventoryItem = (InventoryHealth)l_InventoryItem;
+                                PlayerManager.HealthMeter = (PlayerManager.HealthMeter + l_HelmetInventoryItem.getHealthValueWithPickupType(l_ItemType));
 
-                            EventHash l_EventHash = EventManager.GetEventHashtable();
-                            l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_TYPE, INVENTORY_ITEM_ID.INVENTORY_HEALTH);
-                            l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_ITEM, l_HelmetInventoryItem);
-                            EventManager.Dispatch(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, l_EventHash);
-
-                            l_bIsItemPickedUp = true;
+                                EventHash l_EventHash = EventManager.GetEventHashtable();
+                                l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_TYPE, INVENTORY_ITEM_ID.INVENTORY_HEALTH);
+                                l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_ITEM, l_HelmetInventoryItem);
+                                EventManager.Dispatch(GAME_EVENT_TYPE.ON_INVENTORY_ITEM_CONSUMED, l_EventHash);
+                                l_bIsItemPickedUp = true;
+                            }
                             break;
                         }
                     case INVENTORY_ITEM_ID.INVENTORY_POWER_NODE:

@@ -130,5 +130,10 @@ namespace ns_Mashmo
         {
             m_txtDigitalWallClock.text = System.DateTime.Now.ToString("HH:mm");
         }
+
+        public void playClickSound()
+        {
+            GameManager.PlayClickSound();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,25 @@ namespace ns_Mashmo
         BLAST           =   3,
         FALL_TO_DEATH   =   4,
         AREA_DAMAGE     =   5
+    }
+
+    [Serializable]
+    public class DAMAGE_TYPE_SOUND
+    {
+        [SerializeField]
+        private DAMAGE_INFLICTION_TYPE m_DamageInflictionType;
+        public DAMAGE_INFLICTION_TYPE DamageInflictionType
+        {
+            get { return m_DamageInflictionType; }
+        }
+
+        [SerializeField]
+        private List<string> m_lstAudClips = null;
+
+        public string getRandomAudClipID()
+        {
+            return (m_lstAudClips.Count > 0) ? m_lstAudClips[UnityEngine.Random.Range(0, m_lstAudClips.Count)] : string.Empty;
+        }
     }
 
     public class PlayerManager : AbsComponentHandler
@@ -70,47 +90,21 @@ namespace ns_Mashmo
             }
         }
 
-        /// <summary>
-        /// Aud clip on damage inclicted by default
-        /// </summary>
         [SerializeField]
-        private string m_strAudClipDAMAGE_DEFAULT = string.Empty;
+        private List<DAMAGE_TYPE_SOUND> m_lstDamageTypeSounds = null;
 
-        /// <summary>
-        /// Aud clip on damage inclicted by strike damage
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_STRIKE_1 = string.Empty;
-
-        /// <summary>
-        /// Aud clip on damage inclicted by strike damage
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_STRIKE_2 = string.Empty;
-
-        /// <summary>
-        /// Aud clip on damage inclicted by gunfire damage
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_GUNFIRE = string.Empty;
-
-        /// <summary>
-        /// Aud clip on damage inclicted by blast damage
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_BLAST = string.Empty;
-
-        /// <summary>
-        /// Aud clip on falling to death
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_FALL_TO_DEATH = string.Empty;
-
-        /// <summary>
-        /// Aud clip on damage inclicted by environment area
-        /// </summary>
-        [SerializeField]
-        private string m_strAudClipDAMAGE_AREA = string.Empty;
+        private string getRandomDamageAudID(DAMAGE_INFLICTION_TYPE a_DamageInflictType)
+        {
+            int l_iDamageLstCount = m_lstDamageTypeSounds.Count;
+            for (int l_iDamageTypeIndex = 0; l_iDamageTypeIndex < l_iDamageLstCount; l_iDamageTypeIndex++)
+            {
+                if (m_lstDamageTypeSounds[l_iDamageTypeIndex].DamageInflictionType == a_DamageInflictType)
+                {
+                    return m_lstDamageTypeSounds[l_iDamageTypeIndex].getRandomAudClipID();
+                }
+            }
+            return string.Empty;
+        }
 
         /// <summary>
         /// The player audio src used
@@ -220,36 +214,8 @@ namespace ns_Mashmo
 
             if (HealthMeter > 0)
             {
-                string l_strDamageAudClipID = string.Empty;
+                string l_strDamageAudClipID = s_Instance.getRandomDamageAudID(a_DmgInflictionType);
 
-                switch (a_DmgInflictionType)
-                {
-                    case DAMAGE_INFLICTION_TYPE.BLAST:
-                        {
-                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_BLAST;
-                            break;
-                        }
-                    case DAMAGE_INFLICTION_TYPE.GUNFIRE:
-                        {
-                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_GUNFIRE;
-                            break;
-                        }
-                    case DAMAGE_INFLICTION_TYPE.STRIKE:
-                        {
-                            l_strDamageAudClipID = (Random.Range(0, 2) < 1) ? s_Instance.m_strAudClipDAMAGE_STRIKE_1 : s_Instance.m_strAudClipDAMAGE_STRIKE_2;
-                            break;
-                        }
-                    case DAMAGE_INFLICTION_TYPE.FALL_TO_DEATH:
-                        {
-                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_FALL_TO_DEATH;
-                            break;
-                        }
-                    case DAMAGE_INFLICTION_TYPE.DEFAULT:
-                        {
-                            l_strDamageAudClipID = s_Instance.m_strAudClipDAMAGE_DEFAULT;
-                            break;
-                        }
-                }
                 s_Instance.m_iAudSrcIndex = (s_Instance.m_iAudSrcIndex + 1) % 2;
                 if (!string.IsNullOrEmpty(l_strDamageAudClipID))
                 {
