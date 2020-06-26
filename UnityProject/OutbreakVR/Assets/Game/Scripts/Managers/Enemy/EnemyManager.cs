@@ -238,7 +238,10 @@ namespace ns_Mashmo
                 EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
                 if (l_AlertedEnemy != null)
                 {
-                    m_lstAlertedEnemies.Add(l_AlertedEnemy);
+                    if (!m_lstAlertedEnemies.Contains(l_AlertedEnemy))
+                    {
+                        m_lstAlertedEnemies.Add(l_AlertedEnemy);
+                    }
                 }
 
                 l_iNewAlertedEnemyCount = m_lstAlertedEnemies.Count;

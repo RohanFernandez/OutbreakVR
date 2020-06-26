@@ -208,7 +208,6 @@ namespace ns_Mashmo
 
         protected virtual void onStateChanged(ENEMY_STATE l_OldNavState, ENEMY_STATE a_NavState)
         {
-            Debug.LogError("OLD STATE:" + l_OldNavState.ToString() + ",      NewState:" + a_NavState.ToString());
             /// Specific OLD to NEW state
             if ((l_OldNavState == ENEMY_STATE.ALERT ||
                 l_OldNavState == ENEMY_STATE.SUFFER ||
