@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +54,18 @@ namespace ns_Mashmo
         private Animator m_Animator = null;
 
         /// <summary>
+        /// Audio id to be played on idle
+        /// </summary>
+        [SerializeField]
+        private string m_strSawNonRotateIdleAudID = string.Empty;
+
+        /// <summary>
+        /// Audio id to be played on rotating but not cutting anybody
+        /// </summary>
+        [SerializeField]
+        private string m_strSawRotateIdleAudID = string.Empty;
+
+        /// <summary>
         /// Audio id to be played on saw start
         /// </summary>
         [SerializeField]
@@ -70,14 +83,27 @@ namespace ns_Mashmo
         [SerializeField]
         private string m_strSawCutLoopAudID = string.Empty;
 
-        /// <summary>
-        /// Is the saw currently causing damage
-        /// </summary>
-        private bool m_bIsSawRotating = false;
-        private bool IsSawRotating
-        {
-            get { return m_bIsSawRotating; }
-            set { m_bIsSawRotating = value; }
+        [SerializeField]
+        private UnpooledAudioSource m_UnpooledAudSrc = null;
+
+        private float m_fTimeInCurrentState = 0.0f;
+
+        [SerializeField]
+        private float m_fTimeInStartState = 1.0f;
+
+        [SerializeField]
+        private float m_fTimeInStopState = 1.0f;
+
+        private Action m_ActionStateUpdate = null;
+
+        private enum CHAINSAW_STATE
+        { 
+            NONE            =   0,   
+            STATIC          =   1,
+            ROTATE_START    =   2,
+            ROTATE_STOP     =   3,
+            ROTATE_IDLE     =   4,
+            ROTATE_CUTTING  =   5,
         }
 
         /// <summary>
@@ -86,8 +112,8 @@ namespace ns_Mashmo
         public override void onWeaponSelected()
         {
             base.onWeaponSelected();
-
-            IsSawRotating = false;
+            CurrentChainsawState = CHAINSAW_STATE.NONE;
+            CurrentChainsawState = CHAINSAW_STATE.STATIC;
             if (m_Animator != null)
             {
                 m_Animator.SetBool(ANIM_STATE_SHOOT, false);
@@ -95,8 +121,23 @@ namespace ns_Mashmo
             }
         }
 
+        /// <summary>
+        /// The current state of the saw
+        /// </summary>
         [SerializeField]
-        private int CountTest = 0;
+        private CHAINSAW_STATE m_CurrentChainsawState = CHAINSAW_STATE.NONE;
+        private CHAINSAW_STATE CurrentChainsawState
+        {
+            get { return m_CurrentChainsawState; }
+            set { 
+                if(m_CurrentChainsawState != value)
+                {
+                    m_CurrentChainsawState = value;
+                    setState(m_CurrentChainsawState);
+                }
+            }
+                    
+        }
 
         /// <summary>
         /// On the chainsaw blade's collider is triggerd by an enemy
@@ -151,34 +192,26 @@ namespace ns_Mashmo
         /// </summary>
         private void Update()
         {
-            CountTest = m_dictTriggeredColliders.Count;
-            if (m_fTimePassedSinceLastDamageInfliction == 0.0f)
+            m_fTimeInCurrentState += Time.deltaTime;
+
+            foreach (KeyValuePair<int, Collider> l_dictItem in m_dictTriggeredColliders)
             {
-                m_fTimeBetweenDamageCurrent = Random.Range(m_fTimeBetweenDamageMin, m_fTimeBetweenDamageMax);
+                if (!l_dictItem.Value.enabled || !l_dictItem.Value.gameObject.activeInHierarchy)
+                {
+                    m_stackRemoveColliders.Push(l_dictItem.Key);
+                }
             }
 
-            m_fTimePassedSinceLastDamageInfliction += Time.deltaTime;
-            if (m_fTimePassedSinceLastDamageInfliction > m_fTimeBetweenDamageCurrent)
+            int l_iID = 0;
+            while (m_stackRemoveColliders.Count > 0)
             {
-                m_fTimePassedSinceLastDamageInfliction = 0.0f;
-                foreach (KeyValuePair<int, Collider> l_dictItem in m_dictTriggeredColliders)
-                {
-                    if (l_dictItem.Value.gameObject.activeInHierarchy && l_dictItem.Value.enabled && IsSawRotating)
-                    {
-                        WeaponManager.OnWeaponHitItem(l_dictItem.Value, this, m_transformBlade.position, m_transformBlade.position, true);
-                    }
-                    else if (!l_dictItem.Value.enabled || !l_dictItem.Value.gameObject.activeInHierarchy)
-                    {
-                        m_stackRemoveColliders.Push(l_dictItem.Key);
-                    }
-                }
+                l_iID = m_stackRemoveColliders.Pop();
+                m_dictTriggeredColliders.Remove(l_iID);
+            }
 
-                int l_iID = 0;
-                while (m_stackRemoveColliders.Count != 0)
-                {
-                    l_iID = m_stackRemoveColliders.Pop();
-                    m_dictTriggeredColliders.Remove(l_iID);
-                }
+            if (m_ActionStateUpdate != null)
+            {
+                m_ActionStateUpdate();
             }
         }
 
@@ -203,16 +236,28 @@ namespace ns_Mashmo
 
         public override void startShootingAnim()
         {
-            IsSawRotating = true;
-            m_Animator.SetBool(ANIM_STATE_SHOOT, true);
+            if (CurrentChainsawState == CHAINSAW_STATE.STATIC ||
+                CurrentChainsawState == CHAINSAW_STATE.ROTATE_STOP)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.ROTATE_START;
+                m_Animator.SetBool(ANIM_STATE_SHOOT, true);
+            }
         }
 
         public override void stopShootingAnim()
         {
-            IsSawRotating = false;
-            m_Animator.SetBool(ANIM_STATE_SHOOT, false);
+            if (CurrentChainsawState != CHAINSAW_STATE.STATIC)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.ROTATE_STOP;
+                m_Animator.SetBool(ANIM_STATE_SHOOT, false);
+            }
         }
 
+        /// <summary>
+        /// The game is paused/unpaused
+        /// play animation of the arm monitor
+        /// </summary>
+        /// <param name="a_IsPaused"></param>
         public override void onGamePauseToggled(bool a_IsPaused)
         {
             base.onGamePauseToggled(a_IsPaused);
@@ -220,6 +265,101 @@ namespace ns_Mashmo
             if (m_Animator != null)
             {
                 m_Animator.SetTrigger(a_IsPaused ? ANIM_STATE_OPEN_MENU : ANIM_STATE_CLOSE_MENU);
+            }
+
+            m_UnpooledAudSrc.stop();
+        }
+
+        private void setState(CHAINSAW_STATE a_CurrentChainsawState)
+        {
+            m_fTimeInCurrentState = 0.0f;
+            switch (a_CurrentChainsawState)
+            {
+                case CHAINSAW_STATE.NONE:
+                    {
+                        m_ActionStateUpdate = null;
+                        break;
+                    }
+                case CHAINSAW_STATE.STATIC:
+                    {
+                        m_ActionStateUpdate = null;
+                        m_UnpooledAudSrc.play(m_strSawNonRotateIdleAudID, true, 1.0f);
+                        break;
+                    }
+                case CHAINSAW_STATE.ROTATE_IDLE:
+                    {
+                        m_ActionStateUpdate = rotateIdleStateUpdate;
+                        m_UnpooledAudSrc.play(m_strSawRotateIdleAudID, true, 1.0f);
+                        break;
+                    }
+                case CHAINSAW_STATE.ROTATE_START:
+                    {
+                        m_ActionStateUpdate = rotateStartStateUpdate;
+                        m_UnpooledAudSrc.play(m_strSawStartAudID, true, 1.0f);
+                        break;
+                    }
+                case CHAINSAW_STATE.ROTATE_STOP:
+                    {
+                        m_ActionStateUpdate = rotateStopStateUpdate;
+                        m_UnpooledAudSrc.play(m_strSawStopAudID, true, 1.0f);
+                        break;
+                    }
+                case CHAINSAW_STATE.ROTATE_CUTTING:
+                    {
+                        m_ActionStateUpdate = rotateCuttingStateUpdate;
+                        m_UnpooledAudSrc.play(m_strSawCutLoopAudID, true, 1.0f);
+                        break;
+                    }
+            }
+        }
+
+
+        private void rotateIdleStateUpdate()
+        {
+            if (m_dictTriggeredColliders.Count > 0)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.ROTATE_CUTTING;
+            }
+        }
+
+        private void rotateStartStateUpdate()
+        {
+            if (m_fTimeInCurrentState > m_fTimeInStartState)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.ROTATE_IDLE;
+            }
+        }
+
+        private void rotateStopStateUpdate()
+        {
+            if (m_fTimeInCurrentState > m_fTimeInStopState)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.STATIC;
+            }
+        }
+
+        private void rotateCuttingStateUpdate()
+        {
+            if (m_dictTriggeredColliders.Count == 0)
+            {
+                CurrentChainsawState = CHAINSAW_STATE.ROTATE_IDLE;
+            }
+            else
+            {
+                if (m_fTimePassedSinceLastDamageInfliction == 0.0f)
+                {
+                    m_fTimeBetweenDamageCurrent = UnityEngine.Random.Range(m_fTimeBetweenDamageMin, m_fTimeBetweenDamageMax);
+                }
+
+                m_fTimePassedSinceLastDamageInfliction += Time.deltaTime;
+                if (m_fTimePassedSinceLastDamageInfliction > m_fTimeBetweenDamageCurrent)
+                {
+                    m_fTimePassedSinceLastDamageInfliction = 0.0f;
+                    foreach (KeyValuePair<int, Collider> l_dictItem in m_dictTriggeredColliders)
+                    {
+                        WeaponManager.OnWeaponHitItem(l_dictItem.Value, this, m_transformBlade.position, m_transformBlade.position, true);
+                    }
+                }
             }
         }
     }

@@ -502,10 +502,16 @@ namespace ns_Mashmo
             SubLevelData l_CurrentSubLevelData = null;
 
             string l_strGameState = (string)a_EventHash[GameEventTypeConst.ID_NEW_GAME_STATE];
+            string l_strOldGameState = (string)a_EventHash[GameEventTypeConst.ID_OLD_GAME_STATE];
+
+            LevelData l_OldLevelData = null;
+            SubLevelData l_OldSubLevelData = null;
+            s_Instance.getLevelAndSubLevelDataFromName(l_strOldGameState, ref l_OldLevelData, ref l_OldSubLevelData);
 
             if (s_Instance.getLevelAndSubLevelDataFromName(l_strGameState, ref l_CurrentLevelData, ref l_CurrentSubLevelData))
             {
-                if (l_CurrentSubLevelData.IsCheckpoint)
+                if (l_CurrentSubLevelData.IsCheckpoint || 
+                    ((l_OldLevelData != null) && (l_CurrentLevelData != null) && (l_OldLevelData.LevelDataIndex != l_CurrentLevelData.LevelDataIndex)))
                 {
                     GameManager.ReturnAllReusables();
                 }
