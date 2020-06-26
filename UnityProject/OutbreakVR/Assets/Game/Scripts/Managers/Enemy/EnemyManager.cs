@@ -37,8 +37,7 @@ namespace ns_Mashmo
         /// <summary>
         /// List of all enemies that are alerted at the moment
         /// </summary>
-        [SerializeField]
-        private List<EnemyBase> m_lstAlertedEnemies = null;
+        private Dictionary<string, EnemyBase> m_dictAlertedEnemies = null;
 
         /// <summary>
         /// The list of all enemy dependants in the scene
@@ -81,7 +80,7 @@ namespace ns_Mashmo
 
             m_lstEnemyDependantBase = new List<EnemyDependantBase>(10);
 
-            m_lstAlertedEnemies = new List<EnemyBase>(10);
+            m_dictAlertedEnemies = new Dictionary<string, EnemyBase>(15);
 
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_GAMEPLAY_ENDED, onGameplayEnded);
             EventManager.SubscribeTo(GAME_EVENT_TYPE.ON_ENEMY_ALERT_STARTED, onEnemyAlertStarted);
@@ -229,7 +228,7 @@ namespace ns_Mashmo
         {
             bool l_bIsForcedEnemyAlert =  (bool)a_EventHash[GameEventTypeConst.ID_FORCED_ENEMY_ALERT];
 
-            int l_iOldAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            int l_iOldAlertedEnemyCount = m_dictAlertedEnemies.Count;
             int l_iNewAlertedEnemyCount = l_iOldAlertedEnemyCount;
 
             ///if an enemy has actually been alerted by finding the player then alert, else if it is only forced then enemy will be null
@@ -238,13 +237,13 @@ namespace ns_Mashmo
                 EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
                 if (l_AlertedEnemy != null)
                 {
-                    if (!m_lstAlertedEnemies.Contains(l_AlertedEnemy))
+                    if (!m_dictAlertedEnemies.ContainsKey(l_AlertedEnemy.getID()))
                     {
-                        m_lstAlertedEnemies.Add(l_AlertedEnemy);
+                        m_dictAlertedEnemies.Add(l_AlertedEnemy.getID(),l_AlertedEnemy);
                     }
                 }
 
-                l_iNewAlertedEnemyCount = m_lstAlertedEnemies.Count;
+                l_iNewAlertedEnemyCount = m_dictAlertedEnemies.Count;
             }
             onEnemyAlertListChanged(l_iOldAlertedEnemyCount, l_iNewAlertedEnemyCount);
         }
@@ -255,16 +254,16 @@ namespace ns_Mashmo
         /// <param name="a_EventHash"></param>
         private void onEnemyAlertEnded(EventHash a_EventHash)
         {
-            int l_iOldAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            int l_iOldAlertedEnemyCount = m_dictAlertedEnemies.Count;
             int l_iNewAlertedEnemyCount = l_iOldAlertedEnemyCount;
 
             EnemyBase l_AlertedEnemy = (EnemyBase)a_EventHash[GameEventTypeConst.ID_ENEMY_BASE];
             if (l_AlertedEnemy != null)
             {
-                m_lstAlertedEnemies.Remove(l_AlertedEnemy);
+                m_dictAlertedEnemies.Remove(l_AlertedEnemy.getID());
             }
 
-            l_iNewAlertedEnemyCount = m_lstAlertedEnemies.Count;
+            l_iNewAlertedEnemyCount = m_dictAlertedEnemies.Count;
             onEnemyAlertListChanged(l_iOldAlertedEnemyCount, l_iNewAlertedEnemyCount);
         }
 
