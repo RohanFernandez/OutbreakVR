@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaskListLevel1
   m_EditorClassIdentifier: 
   m_strName: Level1
-  m_iSequenceCount: 42
+  m_iSequenceCount: 43
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListStart
@@ -287,7 +287,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
-    m_iTaskCount: 17
+    m_iTaskCount: 18
     m_lstTasks:
     - m_strTaskID: 000
       m_strTaskType: TaskGameObject
@@ -577,6 +577,18 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level102_DoorLowerFloor
+    - m_strTaskID: 15
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 15
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_TVVideoPlayer
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj102_UpperStairsTriggered
     m_iTaskCount: 1
@@ -671,7 +683,7 @@ MonoBehaviour:
         m_strValue: Level102_FallingPerson
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj102_OnHandgunPickedup
-    m_iTaskCount: 3
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -723,6 +735,18 @@ MonoBehaviour:
         m_strValue: -3.299189,25.25543,15.11888
       - m_strKey: Rotation
         m_strValue: 0.0,97.983,0.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_TVVideoPlayer
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: OnElectricityBoxHit
     m_iTaskCount: 3
@@ -765,7 +789,7 @@ MonoBehaviour:
         m_strValue: Level102_ElectricBoxParticles
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnEnd
-    m_iTaskCount: 3
+    m_iTaskCount: 4
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -805,9 +829,21 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level102_FallingPerson
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level102_TVVideoPlayer
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnBegin
-    m_iTaskCount: 21
+    m_iTaskCount: 23
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskItem
@@ -1203,6 +1239,32 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level103_LockedDoor
+    - m_strTaskID: 22
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 22
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 23
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 23
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_MissileStrikeTask
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level103_OnMissileHit
+    m_iTaskCount: 0
+    m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Obj103_OnTentEntered
     m_iTaskCount: 2
@@ -1245,8 +1307,20 @@ MonoBehaviour:
         m_strValue: 0.0,186.938,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnEnd
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_MissileStrikeTask
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnBegin
     m_iTaskCount: 27

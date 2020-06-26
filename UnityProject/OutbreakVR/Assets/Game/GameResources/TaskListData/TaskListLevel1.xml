@@ -146,6 +146,7 @@
 		<Task ID="12" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_2" ItemType="ITEM_HEALTH_SMALL" Position="9.313,26.218,19.772" Rotation="0.0,15.124,0.0"/>
 		<Task ID="13" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="4.003,35.928,9.383" Rotation="-12.613,-70.19,0.0"/>
 		<Task ID="14" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level102_DoorLowerFloor" />
+		<Task ID="15" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_TVVideoPlayer" />
 	</Sequence>
 	
 	<!-- on upper stairs triggered, enable lower stairs objecctive trigger -->
@@ -167,6 +168,7 @@
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level102_DoorLowerFloor" />
 		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_1" EnemyType="SHOOTER" Position="5.492,25.55543,14.367" Rotation="0.0,-48.462,0.0"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_2" EnemyType="SENTINEL" Position="-3.299189,25.25543,15.11888" Rotation="0.0,97.983,0.0"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level102_TVVideoPlayer" />
 	</Sequence>	
 	
 	<!-- on shooting the electricity box-->
@@ -180,6 +182,7 @@
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Smashable" IsSmashed="true" GameObject_ID="Level102_PlankTask" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_ElectricBoxParticles" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_FallingPerson" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level102_TVVideoPlayer" />
 	</Sequence>
 	
 	<!-- LEVEL 102 [CHECKPOINT]  END-->
@@ -207,6 +210,16 @@
 		<Task ID="19" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="17.37,18.6426,9.088" Rotation="0.0,-83.50401,0.0"/>
 		<Task ID="20" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_3" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="16.727,18.64,8.681" Rotation="0.0,-156.239,0.0"/>
 		<Task ID="21" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level103_LockedDoor"/>
+		
+		<!-- Missile strike task cutscene-->
+		
+		<Task ID="22" TaskType="TaskWait" WaitTime="2.0"/>
+		<Task ID="23" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level103_MissileStrikeTask" />
+	</Sequence>
+	
+	<Sequence ID = "Level103_OnMissileHit" >
+		<Task ID="0" TaskType="TaskWait" WaitTime="3.0"/>
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level103_MissileStrikeTask" />
 	</Sequence>
 	
 	<Sequence ID = "Obj103_OnTentEntered" >
@@ -215,6 +228,7 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_103_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level103_MissileStrikeTask" />
 	</Sequence>
 	<!-- LEVEL 103 [CHECKPOINT]  END-->
 	
