@@ -56,13 +56,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788906415980925301}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55, y: -1.585, z: -0}
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -0.022, y: -0.731, z: -0}
   m_LocalScale: {x: 1.0855737, y: 0.6, z: 1.6566117}
   m_Children: []
   m_Father: {fileID: 6788906416333735906}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
 --- !u!33 &6788906415980925310
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -227,6 +227,8 @@ MonoBehaviour:
   m_goDoorSide2: {fileID: 6788906417545223909}
   m_colDoorProximity: {fileID: 6788906415980925296}
   m_DoorProximityDetector: {fileID: 6788906415980925299}
+  m_strAudClipDoorOpening: AudClip_DoorOpen
+  m_strAudClipDoorClosing: AudClip_DoorClose
   m_bIsDoorLocked: 0
 --- !u!114 &6788906416333735904
 MonoBehaviour:
@@ -521,8 +523,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788906417657458559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.096, y: 0, z: -0.256}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.043, y: -0.271, z: -0.066}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 6788906416386690232}
   m_RootOrder: 1
@@ -653,8 +655,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788906417857442767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.096, y: 0, z: 0.408}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.043, y: -0.271, z: 0.166}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 6788906416386690232}
   m_RootOrder: 0
@@ -805,6 +807,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 43983fdc73426a74699522c4c28f184b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e522b6d7f0e7c541b95b5ca08feab96, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43983fdc73426a74699522c4c28f184b, type: 3}
 --- !u!1 &6788906415815004652 stripped
