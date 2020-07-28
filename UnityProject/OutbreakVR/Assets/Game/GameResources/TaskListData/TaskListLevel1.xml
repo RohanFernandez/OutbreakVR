@@ -475,18 +475,17 @@
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_109_BloodBagLocation" />
 		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="130.0894,10.705,18.4009" Rotation="0.0,-262.721,0.0"/>
 		<Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="138.3804,10.705,19.6599" Rotation="0.0,-155.217,0.0"/>
-		<Task ID="5" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="138.3804,10.705,33.3789" Rotation="0.0,-158.182,0.0"/>
-		<Task ID="6" TaskType="TaskEnemy" Code="Activate" Enemy_ID="109_Turret1" EnemyType="AUTOMATED_TURRET" Position="138.7794,11.168,23.155" Rotation="0.0,85.412,0.0" Params="90.0;-90.0"/>
-		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="109_Turret2" EnemyType="AUTOMATED_TURRET" Position="138.6544,11.168,27.7879" Rotation="0.0,85.414,0.0" Params="90.0;-90.0"/>
-		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_1" EnemyType="PROXIMITY_BOMB" Position="137.881,10.70275,29.577" Rotation="0.0,85.867,0.0"/>
-		<Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_2" EnemyType="PROXIMITY_BOMB" Position="136.613,10.70275,32.667" Rotation="0.0,-9.319,0.0"/>
-		<Task ID="10" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_3" EnemyType="PROXIMITY_BOMB" Position="134.757,11.686,39.203" Rotation="0.789,83.233,6.62"/>
-		<Task ID="11" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_4" EnemyType="PROXIMITY_BOMB" Position="140.102,10.70275,14.93" Rotation="0.0,-4.881,0.0"/>
+		<Task ID="5" TaskType="TaskEnemy" Code="Activate" Enemy_ID="109_Turret1" EnemyType="AUTOMATED_TURRET" Position="138.7794,11.168,23.155" Rotation="0.0,85.412,0.0" Params="90.0;-90.0"/>
+		<Task ID="6" TaskType="TaskEnemy" Code="Activate" Enemy_ID="109_Turret2" EnemyType="AUTOMATED_TURRET" Position="138.6544,11.168,27.7879" Rotation="0.0,85.414,0.0" Params="90.0;-90.0"/>
+		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_1" EnemyType="PROXIMITY_BOMB" Position="137.881,10.70275,29.577" Rotation="0.0,85.867,0.0"/>
+		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_2" EnemyType="PROXIMITY_BOMB" Position="136.613,10.70275,32.667" Rotation="0.0,-9.319,0.0"/>
+		<Task ID="9" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_3" EnemyType="PROXIMITY_BOMB" Position="134.757,11.686,39.203" Rotation="0.789,83.233,6.62"/>
+		<Task ID="10" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_4" EnemyType="PROXIMITY_BOMB" Position="140.102,10.70275,14.93" Rotation="0.0,-4.881,0.0"/>
 		<Task ID="11" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_5" EnemyType="PROXIMITY_BOMB" Position="138.676,10.70275,14.822" Rotation="0.0,-4.881,0.0"/>
 		<Task ID="12" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="131.3979,11.133,32.81284" Rotation="-14.687,-116.388,0.0"/>
 		<Task ID="13" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_1" ItemType="ITEM_HEALTH_SMALL" Position="137.201,11.2359,22.2775" Rotation="0.0,-55.175,0.0"/>
-		<Task ID="14" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_2" ItemType="ITEM_HEALTH_SMALL" Position="139.198,11.4172,29.633" Rotation="0.0,-104.965,0.0"/>
-		<Task ID="15" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_3" ItemType="ITEM_HEALTH_SMALL" Position="132.0136,11.7043,32.1654" Rotation="0.0,-73.64001,0.0"/>
+		<Task ID="14" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge_1" ItemType="ITEM_HEALTH_LARGE" Position="139.198,11.4172,29.633" Rotation="0.0,-104.965,0.0"/>
+		<Task ID="15" TaskType="TaskItem" Code="Activate" Item_ID="HealthSmall_2" ItemType="ITEM_HEALTH_SMALL" Position="132.0136,11.7043,32.1654" Rotation="0.0,-73.64001,0.0"/>
 		<Task ID="16" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="136.768,11.1482,22.33712" Rotation="0.0,-115.689,0.0"/>
 		<Task ID="17" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="136.568,11.1482,22.293" Rotation="0.0,-48.896,0.0"/>
 		<Task ID="18" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_3" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="137.005,11.1482,22.421" Rotation="0.0,-163.807,0.0"/>
@@ -501,9 +500,8 @@
 	
 	<!-- Called on blood bags picked-->
 	<Sequence ID = "Level1_109_OnBloodBagsPicked" >
-		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="127.0554,10.705,28.1719" Rotation="0.0,-592.409,0.0"/>
-		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="136.4674,10.705,30.0779" Rotation="0.0,-520.154,0.0"/>
-		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_3" EnemyType="ZOMBIE" Position="136.3924,10.705,40.9679" Rotation="0.0,-526.496,0.0"/>
+		<Task ID="1" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="133.9424,10.705,30.2879" Rotation="0.0,-575.38,0.0"/>
+		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="136.3924,10.705,40.9679" Rotation="0.0,-526.496,0.0"/>
 	
 	</Sequence>
 	
@@ -511,7 +509,6 @@
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level1_109_BloodBagLocation" />
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="124.3484,10.705,37.3609" Rotation="0.0,-567.302,0.0"/>
 		<Task ID="3" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="126.7274,10.705,32.5399" Rotation="0.0,-503.687,0.0"/>
-		<Task ID="4" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_2" EnemyType="ZOMBIE" Position="133.9424,10.705,30.2879" Rotation="0.0,-575.38,0.0"/>
 		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_Lever" />
 	</Sequence>
 	
