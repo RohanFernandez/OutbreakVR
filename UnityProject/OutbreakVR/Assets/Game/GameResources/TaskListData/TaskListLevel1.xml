@@ -196,7 +196,7 @@
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="Assault_1" ItemType="ITEM_THOMPSON" BulletCount="30" Position="16.063,19.913,15.821" Rotation="-68.273,-274.466,261.063"/>
 		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="HealthMedium" ItemType="ITEM_HEALTH_MEDIUM" Position="15.528,19.611,17.164" Rotation="0.0,16.695,0.0"/>
 		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="15.166,19.611,17.042" Rotation="0.0,-33.069,0.0"/>
-		<Task ID="5" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_1" EnemyType="SENTINEL" Position="17.612,18.53519,6.566" Rotation="0.0,81.97401,0.0"/>
+		<Task ID="5" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_1" EnemyType="SENTINEL" Position="17.66,18.53519,6.114" Rotation="0.0,87.47301,0.0"/>
 		<Task ID="6" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_2" EnemyType="SHOOTER" Position="26.878,18.53519,22.183" Rotation="0.0,178.512,0.0"/>
 		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_3" EnemyType="SHOOTER" Position="29.68,18.53519,8.33" Rotation="0.0,-42.094,0.0"/>
 		<Task ID="8" TaskType="TaskEnemy" Code="Activate" Enemy_ID="ProximityBomb_1" EnemyType="PROXIMITY_BOMB" Position="15.522,19.48519,10.53" Rotation="0.0,0.0,0.0"/>
@@ -379,8 +379,8 @@
 		<Task ID="23" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_2" EnemyType="SENTINEL" Position="28.33515,12.13,27.35375" Rotation="0.0,-46.894,0.0"/>
 		<Task ID="24" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Sentinel_3" EnemyType="SENTINEL" Position="31.63024,12.13,29.15759" Rotation="0.0,-134.265,0.0"/>
 		<Task ID="25" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_1" EnemyType="SHOOTER" Position="18.062,12.13,12.631" Rotation="0.0,-98.772,0.0"/>	
-		<Task ID="26" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_2" EnemyType="SHOOTER" Position="28.15178,12.13,19.83657" Rotation="0.0,-113.07,0.0"/>
-		<Task ID="27" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_3" EnemyType="SHOOTER" Position="28.391,12.13,15.069" Rotation="0.0,-86.65601,0.0"/>	
+		<Task ID="26" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_2" EnemyType="SHOOTER" Position="28.415,12.13,23.359" Rotation="0.0,-143.631,0.0"/>
+		<Task ID="27" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_3" EnemyType="SHOOTER" Position="28.353,12.13,11.971" Rotation="0.0,-1.321,0.0"/>	
 		<Task ID="28" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_InteractiveDoorC4" />
 	</Sequence>
 	
@@ -461,10 +461,13 @@
 	<Sequence ID = "Level1_108_OnBegin" >
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level108_InteractiveDoor_1" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="123.7224,11.6846,20.8571" Rotation="0.0,-78.424,0.0"/>
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="108CrateBlockers" />
+		
 		
 	</Sequence>
 	
 	<Sequence ID = "Level1_108_OnEnd" >
+	<Task ID="26" TaskType="TaskGameObject" IsActive="false" GameObject_ID="108CrateBlockers" />
 	</Sequence>
 	<!-- LEVEL 108 [CHECKPOINT]  END-->
 	

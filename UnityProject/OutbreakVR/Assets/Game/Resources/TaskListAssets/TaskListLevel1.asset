@@ -972,9 +972,9 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SENTINEL
       - m_strKey: Position
-        m_strValue: 17.612,18.53519,6.566
+        m_strValue: 17.66,18.53519,6.114
       - m_strKey: Rotation
-        m_strValue: 0.0,81.97401,0.0
+        m_strValue: 0.0,87.47301,0.0
     - m_strTaskID: 6
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
@@ -3308,9 +3308,9 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 28.15178,12.13,19.83657
+        m_strValue: 28.415,12.13,23.359
       - m_strKey: Rotation
-        m_strValue: 0.0,-113.07,0.0
+        m_strValue: 0.0,-143.631,0.0
     - m_strTaskID: 27
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
@@ -3326,9 +3326,9 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 28.391,12.13,15.069
+        m_strValue: 28.353,12.13,11.971
       - m_strKey: Rotation
-        m_strValue: 0.0,-86.65601,0.0
+        m_strValue: 0.0,-1.321,0.0
     - m_strTaskID: 28
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
@@ -4195,7 +4195,7 @@ MonoBehaviour:
         m_strValue: Level1_107_StealthTurrets
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_108_OnBegin
-    m_iTaskCount: 2
+    m_iTaskCount: 3
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -4229,10 +4229,34 @@ MonoBehaviour:
         m_strValue: 123.7224,11.6846,20.8571
       - m_strKey: Rotation
         m_strValue: 0.0,-78.424,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: 108CrateBlockers
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_108_OnEnd
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 26
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 26
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: 108CrateBlockers
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBegin
     m_iTaskCount: 26
