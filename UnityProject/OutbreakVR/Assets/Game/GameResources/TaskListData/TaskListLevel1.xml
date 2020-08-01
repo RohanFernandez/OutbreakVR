@@ -382,6 +382,7 @@
 		<Task ID="26" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_2" EnemyType="SHOOTER" Position="28.415,12.13,23.359" Rotation="0.0,-143.631,0.0"/>
 		<Task ID="27" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Shooter_3" EnemyType="SHOOTER" Position="28.353,12.13,11.971" Rotation="0.0,-1.321,0.0"/>	
 		<Task ID="28" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_InteractiveDoorC4" />
+		<Task ID="29" TaskType="TaskGameObject" IsActive="true" GameObject_ID="106_WalkieTask" />
 	</Sequence>
 	
 	<Sequence ID = "Level106_OnC4Picked" >
@@ -414,6 +415,7 @@
 	<Sequence ID = "Level1_106_OnEnd" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_BombTimer" />
 		<Task ID="1" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
+		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="106_WalkieTask" />
 	</Sequence>
 	<!-- LEVEL 106 [CHECKPOINT]  END-->
 	
