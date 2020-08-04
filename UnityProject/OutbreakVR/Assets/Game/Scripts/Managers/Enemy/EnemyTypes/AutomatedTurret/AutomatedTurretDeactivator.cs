@@ -48,15 +48,13 @@ namespace ns_Mashmo
         public override void onActivate()
         {
             base.onActivate();
+            onDeactivate();
             m_AutomatedTurret = (AutomatedTurret)EnemyManager.GetActiveEnemyWithID(ENEMY_TYPE.AUTOMATED_TURRET, EnemyID);
 
+            m_AutomatedTurretTrigger.onActivate();
             if (m_bIsTurretActivatedOnStart)
             {
                 onLeverActivate();
-            }
-            else
-            {
-                m_AutomatedTurretTrigger.onActivate();
             }
         }
 
@@ -71,9 +69,13 @@ namespace ns_Mashmo
             {
                 m_colTurretSwitch.enabled = true;
                 m_OutlineHighlighterGrp.toggleHighlighter(true, GameManager.ColOutlineHighlighterNormal);
-                m_AutomatedTurret.onTurretTriggeredToActivate();
                 m_TurretLeverAnimator.SetTrigger(ANIM_TRIG_LEVER_ON);
             }
+        }
+
+        public void activateTurret()
+        {
+            m_AutomatedTurret.onTurretTriggeredToActivate();
         }
 
         public override void onDeactivate()
@@ -88,6 +90,7 @@ namespace ns_Mashmo
             base.onInteract();
             if (m_AutomatedTurret != null)
             {
+                m_AutomatedTurretTrigger.onDeactivate();
                 m_AutomatedTurret.onSwitchedOff();
                 m_TurretLeverAnimator.SetTrigger(ANIM_TRIG_LEVER_ON_TO_OFF);
                 SoundManager.PlayAudio(SoundConst.AUD_SRC_TURRET_LEVER, SoundConst.AUD_CLIP_TURRET_LEVER, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);

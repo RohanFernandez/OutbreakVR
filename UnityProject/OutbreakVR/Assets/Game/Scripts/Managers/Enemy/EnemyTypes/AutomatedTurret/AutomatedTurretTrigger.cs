@@ -29,10 +29,9 @@ namespace ns_Mashmo
         /// <summary>
         /// Deactivating the turret trigger
         /// </summary>
-        private void onDeactivate()
+        public void onDeactivate()
         {
             m_colTrigger.enabled = false;
-            m_TurretDeactivator.onLeverActivate();
             SoundManager.PlayAudio(SoundConst.AUD_SRC_TURRET_TRIG_ACTIVATE, SoundConst.AUD_CLIP_TURRET_TRIG_ACTIVATE, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
         }
 
@@ -48,6 +47,8 @@ namespace ns_Mashmo
                 if (m_TurretDeactivator != null)
                 {
                     onDeactivate();
+                    m_TurretDeactivator.activateTurret();
+                    m_TurretDeactivator.onLeverActivate();
                 }
             }
         }
