@@ -69,6 +69,12 @@ namespace ns_Mashmo
         [SerializeField]
         private ParticleSystem m_GunTracerParticleSystem = null;
 
+        /// <summary>
+        /// the audio clip to be played on bullet hits an item
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipOnHitObject = string.Empty;
+
         void OnEnable()
         {
             CurrentShootState = SHOOT_STATE.START_DELAY;
@@ -171,6 +177,7 @@ namespace ns_Mashmo
                     }
 
                     EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
+                    l_EffectsBase.playAudioID(m_strAudClipOnHitObject, 1.0f, false);
                     l_EffectsBase.transform.SetPositionAndRotation(l_RaycastHit.point, Quaternion.LookRotation(l_RaycastHit.normal));
                     m_GunTracerParticleSystem.transform.LookAt(l_RaycastHit.transform);
                 }

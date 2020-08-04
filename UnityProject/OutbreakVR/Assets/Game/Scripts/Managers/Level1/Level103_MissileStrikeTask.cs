@@ -68,8 +68,6 @@ namespace ns_Mashmo
             {
                 float l_fFactor = m_fTimeSinceStart / m_fTimeToStrike;
 
-                Debug.LogError(l_fFactor);
-
                 m_transMissile.position = m_transMissile.parent.position + m_v3MissileDirection * (m_fMissileDistance * l_fFactor);
                 m_transAirplane.position = m_transAirplane.parent.position + m_v3PlaneDirection * (m_fPlaneDistance * l_fFactor);
 

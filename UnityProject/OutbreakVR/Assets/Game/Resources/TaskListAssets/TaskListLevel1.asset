@@ -17,8 +17,50 @@ MonoBehaviour:
   m_lstSequences:
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListStart
-    m_iTaskCount: 0
-    m_lstTasks: []
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
+    - m_strTaskID: 1
+      m_strTaskType: TaskSetTransform
+      m_iAttributeCount: 6
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskSetTransform
+      - m_strKey: GameObject_ID
+        m_strValue: Player
+      - m_strKey: Position
+        m_strValue: 0.0,100.0,0.0
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+      - m_strKey: Scale
+        m_strValue: 1.0,1.0,1.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level1CommonGoundDamageCollider
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_OnListEnd
     m_iTaskCount: 0
@@ -2825,8 +2867,22 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnBegin
-    m_iTaskCount: 30
+    m_iTaskCount: 31
     m_lstTasks:
+    - m_strTaskID: 00
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
@@ -3485,8 +3541,22 @@ MonoBehaviour:
         m_strValue: 100
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level106_OnC4Placed
-    m_iTaskCount: 10
+    m_iTaskCount: 11
     m_lstTasks:
+    - m_strTaskID: 0000
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0000
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
     - m_strTaskID: 000
       m_strTaskType: TaskAudio
       m_iAttributeCount: 8
@@ -3671,8 +3741,22 @@ MonoBehaviour:
         m_strValue: 106_WalkieTask
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnBegin
-    m_iTaskCount: 28
+    m_iTaskCount: 29
     m_lstTasks:
+    - m_strTaskID: 00
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4283,8 +4367,34 @@ MonoBehaviour:
         m_strValue: 108CrateBlockers
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBegin
-    m_iTaskCount: 26
+    m_iTaskCount: 28
     m_lstTasks:
+    - m_strTaskID: 000
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 000
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level110_PreTVVideoPlayer
+    - m_strTaskID: 00
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_DoubleDoorSchoolDivider
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
@@ -4951,24 +5061,8 @@ MonoBehaviour:
         m_strValue: Level109_EmergencyButton
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnEnd
-    m_iTaskCount: 0
-    m_lstTasks: []
-  - m_strSequenceType: SimpleSequence
-    m_strSequenceID: Level1_110_OnBegin
-    m_iTaskCount: 3
+    m_iTaskCount: 1
     m_lstTasks:
-    - m_strTaskID: 000
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 000
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: true
-      - m_strKey: GameObject_ID
-        m_strValue: LevelSpecific_110
     - m_strTaskID: 0
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4978,15 +5072,45 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level110_PreTVVideoPlayer
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_110_OnBegin
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
         m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level110_TVVideoPlayer
-    - m_strTaskID: 5
+        m_strValue: Level109_DoubleDoorSchoolDivider
+    - m_strTaskID: 1
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 5
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level110_PostTVVideoPlayer
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
@@ -4997,24 +5121,24 @@ MonoBehaviour:
     m_strSequenceID: Level1_110_OnEnd
     m_iTaskCount: 2
     m_lstTasks:
-    - m_strTaskID: 000
+    - m_strTaskID: 0
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 000
+        m_strValue: 0
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
         m_strValue: false
       - m_strKey: GameObject_ID
-        m_strValue: LevelSpecific_110
-    - m_strTaskID: 5
+        m_strValue: Level110_PostTVVideoPlayer
+    - m_strTaskID: 1
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 5
+        m_strValue: 1
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive

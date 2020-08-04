@@ -17,6 +17,9 @@ namespace ns_Mashmo
         /// </summary>
         private float m_fCurrentReturnTimer = 0.0f;
 
+        [SerializeField]
+        private UnpooledAudioSource m_UnpooledAudSrc = null;
+
         public void onReturnedToPool()
         {
             gameObject.SetActive(false);
@@ -34,6 +37,14 @@ namespace ns_Mashmo
             if (m_fCurrentReturnTimer >= m_fReturnAfterTime)
             {
                 EffectsManager.returnEffectToPool(this);
+            }
+        }
+
+        public void playAudioID(string a_strAudioID, float a_fVolume = 1.0f, bool a_bIsLoop = false)
+        {
+            if (m_UnpooledAudSrc != null)
+            {
+                m_UnpooledAudSrc.play(a_strAudioID, a_bIsLoop, a_fVolume);
             }
         }
     }

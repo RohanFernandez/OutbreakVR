@@ -11,6 +11,10 @@ namespace ns_Mashmo
         /// </summary>
         [SerializeField]
         private List<AbsEnvironmentInteractableObject> m_lstInteractableObjects = null;
+        public List<AbsEnvironmentInteractableObject> LstInteractableObjects
+        {
+            get { return m_lstInteractableObjects; }
+        }
 
         /// <summary>
         /// Can reset the interactable value to default state

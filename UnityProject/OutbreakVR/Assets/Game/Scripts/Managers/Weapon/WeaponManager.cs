@@ -179,6 +179,18 @@ namespace ns_Mashmo
         }
 
         /// <summary>
+        /// The aud clip to be played on gun weapon shoots an object
+        /// </summary>
+        [SerializeField]
+        private string m_strGunWeaponHitAudID = string.Empty;
+
+        /// <summary>
+        /// The aud clip to be played on melee weapon hits an object
+        /// </summary>
+        [SerializeField]
+        private string m_strMeleeWeaponHitAudID = string.Empty;
+
+        /// <summary>
         /// The ray used to fire bullets
         /// </summary>
         private Ray m_WeaponFireRay = new Ray();
@@ -835,6 +847,8 @@ namespace ns_Mashmo
                 if (l_bIsShowEffect)
                 {
                     EffectsBase l_EffectsBase = EffectsManager.getEffectsBase();
+                    l_EffectsBase.playAudioID((a_WeaponBase.m_WeaponCategoryType == WEAPON_CATEGORY_TYPE.MELEE) ? s_Instance.m_strMeleeWeaponHitAudID : s_Instance.m_strGunWeaponHitAudID, 1.0f, false);
+
                     if (l_bIsNormalValid)
                     {
                         l_EffectsBase.transform.SetPositionAndRotation(a_v3HitPoint, Quaternion.LookRotation(a_v3Normal));

@@ -54,6 +54,24 @@ namespace ns_Mashmo
                             {
                                 l_InteractiveDoor.lockDoor(l_bIsDoorLocked);
                             }
+                            else
+                            {
+                                EnvironmentInteractableObjectGroup l_EnvInteractiveObjGroup = l_GameObject.GetComponent<EnvironmentInteractableObjectGroup>();
+                                if (l_EnvInteractiveObjGroup != null)
+                                {
+                                    List<AbsEnvironmentInteractableObject> lstEnvInteractableObjects = l_EnvInteractiveObjGroup.LstInteractableObjects;
+                                    int l_iEnvInteractableObjCount = lstEnvInteractableObjects.Count;
+                                    for (int l_iEnvInteractableObjIndex = 0; l_iEnvInteractableObjIndex < l_iEnvInteractableObjCount; l_iEnvInteractableObjIndex++)
+                                    {
+                                        AbsEnvironmentInteractableObject l_CurrentEnvInteractObj = lstEnvInteractableObjects[l_iEnvInteractableObjIndex];
+                                        InteractiveDoor l_CurrentInteractiveDoor = l_CurrentEnvInteractObj.GetComponent<InteractiveDoor>();
+                                        if (l_CurrentInteractiveDoor != null)
+                                        {
+                                            l_CurrentInteractiveDoor.lockDoor(l_bIsDoorLocked);
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         break;

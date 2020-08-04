@@ -2,7 +2,12 @@
 <TaskList Name = "Level1" >
 	
 	<Sequence ID = "Level1_OnListStart" >
+		<!-- Lock the C4 door, will be unlocked on the start of level 106 -->
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_C4Door" />
 		
+		<!-- To avoid the player to collide with the common level 1 damage collider, the collider is deactivated initially and the player is moved and then the collider is turned on, because the players initial position collides with the collider -->
+		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="Player" Position="0.0,100.0,0.0" Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1CommonGoundDamageCollider" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_OnListEnd" >
@@ -353,6 +358,7 @@
 	
 	<!-- LEVEL 106 [CHECKPOINT]  START :: Find a way out of the gas chamber and kill the enemies-->
 	<Sequence ID = "Level1_106_OnBegin" >
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level106_C4Door" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level105_InteractiveDoor_2" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_106_C4" ItemType="ITEM_C4" ObjectiveTrigger="Level106_C4Picked" Position="23.093,13.541,10.793" Rotation="6.925,165.017,-4.705"/>
 		<Task ID="2" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Level106_Turret1" EnemyType="AUTOMATED_TURRET" Position="22.74,12.623,12.65" Rotation="0.0,90.0,0.0" Params="90.0;-90.0"/>
@@ -400,6 +406,7 @@
 	</Sequence>
 	
 	<Sequence ID = "Level106_OnC4Placed" >
+		<Task ID="0000" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_C4Door" />
 		<Task ID="000" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
 		<Task ID="00" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_BombTimer" />
 		<Task ID="0" TaskType="TaskAudio" AudClip="C4BombTimer" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level106_C4Location"/>	
@@ -422,6 +429,7 @@
 	
 		<!-- LEVEL 107 [CHECKPOINT]  START :: Cross the balcony and defend from turrets-->
 	<Sequence ID = "Level1_107_OnBegin" >
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_C4Door" />
 		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_107_StealthTurrets" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="43.968,12.06216,5.779" Rotation="-5.001,-143.369,2.251"/>
 		<Task ID="2" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_2" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="87.651,12.42716,11.138" Rotation="-13.834,-129.633,0.0"/>
@@ -475,6 +483,8 @@
 	
 	<!-- LEVEL 109 [CHECKPOINT]  START :: Enter the door of building 4-->
 	<Sequence ID = "Level1_109_OnBegin" >
+		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PreTVVideoPlayer" />
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="false" GameObject_ID="Level109_DoubleDoorSchoolDivider" />
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level108_InteractiveDoor_1" />
 		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="Level_109_BloodBags" ItemType="ITEM_BLOOD_BAGS" ObjectiveTrigger="Level_109_OnBloodBagsPicked" Position="131.395,11.5322,14.472" Rotation="0.0,-15.535,0.0"/>
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_109_BloodBagLocation" />
@@ -530,19 +540,20 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PreTVVideoPlayer" />
 	</Sequence>
 	<!-- LEVEL 109 [CHECKPOINT]  END-->
 	
 	<!-- LEVEL 110 [CHECKPOINT]  START :: Starts on pressing the alarm button-->
 	<Sequence ID = "Level1_110_OnBegin" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="true" GameObject_ID="LevelSpecific_110" />
-		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_TVVideoPlayer" />
-		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110PostAlarm" />
+		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level109_DoubleDoorSchoolDivider" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PostTVVideoPlayer" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110PostAlarm" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_110_OnEnd" >
-		<Task ID="000" TaskType="TaskGameObject" IsActive="false" GameObject_ID="LevelSpecific_110" />
-		<Task ID="5" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110PostAlarm" />
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PostTVVideoPlayer" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110PostAlarm" />
 	</Sequence>
 	<!-- LEVEL 110 [CHECKPOINT]  END-->
 	
