@@ -64,6 +64,12 @@ namespace ns_Mashmo
         private string m_strHelmetCrackedAudID = string.Empty;
 
         /// <summary>
+        /// Aud clip id to play on low helmet strength
+        /// </summary>
+        [SerializeField]
+        private string m_strAudClipOnLowHelmetStrength = string.Empty;
+
+        /// <summary>
         /// gets if the helmet is cracked
         /// </summary>
         public bool IsHelmetCracked
@@ -242,7 +248,21 @@ namespace ns_Mashmo
         private void onDamageInflictedToPlayer(EventHash a_EventHash)
         {
             int l_iDamageInflicted = (int)a_EventHash[GameEventTypeConst.ID_DAMAGE_INFLICTED];
+            int l_iOldStrength = CurrentStrength;
             CurrentStrength -= l_iDamageInflicted;
+
+            if (l_iOldStrength != CurrentStrength)
+            {
+                HelmetStrengthIndicator l_CurrentStrengthIndication = GetHelmetStrengthIndicatorFromPercentage(GetPercentageFromHelmetCondition(CurrentStrength));
+                HelmetStrengthIndicator l_OldStrengthIndication = GetHelmetStrengthIndicatorFromPercentage(GetPercentageFromHelmetCondition(l_iOldStrength));
+
+                if ((l_CurrentStrengthIndication == HelmetStrengthIndicator.HELMET_STRENGTH_WEAK) &&
+                    (l_OldStrengthIndication == HelmetStrengthIndicator.HELMET_STRENGTH_WEAK))
+                {
+                    SoundManager.PlayAudio(SoundConst.AUD_SRC_PLAYER_HELMET, m_strAudClipOnLowHelmetStrength, false, 1.0f, AUDIO_SRC_TYPES.AUD_SRC_SFX);
+                }
+            }    
+
             updateHelmet();
         }
 
