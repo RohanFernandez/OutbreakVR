@@ -137,7 +137,7 @@ namespace ns_Mashmo
             Vector3 l_v3PlayerToDoorDirection = (m_InteractiveDoorHandle.transform.position - l_v3PlayerPos).normalized;
 
             ///Is player facing the door so the door has to be opened in side 1, else its in side 2
-            bool l_bIsPlayerInSide1 = Vector3.Dot(l_v3PlayerToDoorDirection, (m_InteractiveDoorHandle.transform.position - m_goDoorSide1.transform.position).normalized) > 0.3f;
+            bool l_bIsPlayerInSide1 = Vector3.Dot(l_v3PlayerToDoorDirection, (m_InteractiveDoorHandle.transform.position - m_goDoorSide1.transform.position).normalized) > 0.05f;
             
             if (l_bIsPlayerInSide1)
             {
