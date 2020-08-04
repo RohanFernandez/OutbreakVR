@@ -182,6 +182,7 @@ namespace ns_Mashmo
                     m_GunTracerParticleSystem.transform.LookAt(l_RaycastHit.transform);
                 }
             }
+            m_GunTracerParticleSystem.Play(true);
         }
 
         public void onTriggerEnterCallback(Collider a_Collider)

@@ -74,9 +74,14 @@ namespace ns_Mashmo
         public const string AUD_CLIP_CURSOR_CLICK = "CursorClick";
 
         /// <summary>
-        /// Audio source to be played on item picked up
+        /// Audio clip to be played on item picked up
         /// </summary>
         public const string AUD_CLIP_ITEM_PICKUP = "AudClip_ItemPickUp";
+
+        /// <summary>
+        /// Audio clip to be played on helmet picked up
+        /// </summary>
+        public const string AUD_CLIP_HELMET_PICKUP = "HelmetPickUp";
 
         /// <summary>
         /// Audio clip to be played on enemy is in alert mode
