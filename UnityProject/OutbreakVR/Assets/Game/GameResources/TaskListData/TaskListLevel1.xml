@@ -2,12 +2,9 @@
 <TaskList Name = "Level1" >
 	
 	<Sequence ID = "Level1_OnListStart" >
-		<!-- Lock the C4 door, will be unlocked on the start of level 106 -->
-		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_C4Door" />
-		
 		<!-- To avoid the player to collide with the common level 1 damage collider, the collider is deactivated initially and the player is moved and then the collider is turned on, because the players initial position collides with the collider -->
-		<Task ID="1" TaskType="TaskSetTransform" GameObject_ID="Player" Position="0.0,100.0,0.0" Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
-		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1CommonGoundDamageCollider" />
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="0.0,100.0,0.0" Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1CommonGoundDamageCollider" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_OnListEnd" >
@@ -423,6 +420,7 @@
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_BombTimer" />
 		<Task ID="1" TaskType="TaskAudio" AudClip="BombTimerClick" IsStart="false" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="true"/>
 		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="106_WalkieTask" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level106_C4Location" />
 	</Sequence>
 	<!-- LEVEL 106 [CHECKPOINT]  END-->
 	
@@ -511,6 +509,8 @@
 		<Task ID="23" TaskType="TaskItem" Code="Activate" Item_ID="Assault_2" ItemType="ITEM_THOMPSON" BulletCount="30" Position="136.391,11.18,23.866" Rotation="-79.082,-55.219,-47.495"/>
 		<Task ID="24" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_RedLight" />
 		<Task ID="25" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLight" />
+		<Task ID="26" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PostDoubleDoors" />
+		<Task ID="27" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PreDoubleDoors" />
 	</Sequence>
 	
 	<!-- Called on blood bags picked-->
@@ -549,6 +549,8 @@
 		<Task ID="0" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level109_DoubleDoorSchoolDivider" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PostTVVideoPlayer" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110PostAlarm" />
+		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PostDoubleDoors" />
+		<Task ID="4" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PreDoubleDoors" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_110_OnEnd" >
