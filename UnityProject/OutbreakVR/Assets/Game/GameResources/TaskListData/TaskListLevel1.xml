@@ -507,10 +507,18 @@
 		<Task ID="21" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="136.03,11.1687,22.351" Rotation="0.0,113.804,0.0"/>
 		<Task ID="22" TaskType="TaskItem" Code="Activate" Item_ID="Assault_1" ItemType="ITEM_STINGRAY" BulletCount="8" Position="82.00499,12.80616,12.852" Rotation="-1.406,39.814,90.012"/>
 		<Task ID="23" TaskType="TaskItem" Code="Activate" Item_ID="Assault_2" ItemType="ITEM_THOMPSON" BulletCount="30" Position="136.391,11.18,23.866" Rotation="-79.082,-55.219,-47.495"/>
-		<Task ID="24" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_RedLight" />
-		<Task ID="25" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLight" />
+		<Task ID="24" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLightTank1" />
+		<Task ID="25" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLightTank2" />
 		<Task ID="26" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PostDoubleDoors" />
 		<Task ID="27" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PreDoubleDoors" />
+		<Task ID="28" TaskType="TaskAnimation" GameObject_ID="Level109_BloodTank" TriggerBoolID="OpenLid" TriggerBool="true" />
+		<Task ID="29" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_YellowLight_Emissive"/>
+		<Task ID="30" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_GreenLight_Emissive"/>
+		<Task ID="31" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_YellowLight_NonEmissive"/>
+		<Task ID="32" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_GreenLight_NonEmissive"/>
+		<Task ID="33" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_NonEmissive"/>
+		<Task ID="34" TaskType="TaskAnimation" GameObject_ID="EmergencyBtn_Emissive" TriggerBoolID="IsBtnPressed" TriggerBool="false" />
+		<Task ID="35" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_Emissive"/>
 	</Sequence>
 	
 	<!-- Called on blood bags picked-->
@@ -528,15 +536,32 @@
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnLeverTurned" >
-		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_EmergencyButton" />
 		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_Lever" />
+		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_Lever2" />
+		<Task ID="3" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level109_BloodBagsValve"/>
+		<Task ID="4" TaskType="TaskAnimation" GameObject_ID="Level109_BloodTank" TriggerBoolID="OpenLid" TriggerBool="false" />
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_YellowLight_Emissive"/>
+		<Task ID="6" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_YellowLight_NonEmissive"/>
+	</Sequence>
+	
+	<Sequence ID = "Level1_109_OnLeverTurned2" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_EmergencyButton" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_Lever2" />
 		<Task ID="2" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_RedLight" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLight" />
-		<Task ID="4" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level109_BloodBagsValve"/>
+		<Task ID="4" TaskType="TaskAudio" AudClip="GasValveTurn" IsStart="true" IsLoop="false" Volume="1.0" SrcType="AUD_SRC_SFX" IsPooled="false" GameObjID="Level109_BloodBagsValve2"/>
+		<Task ID="5" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_GreenLight_Emissive"/>
+		<Task ID="6" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_GreenLight_NonEmissive"/>
+		<Task ID="7" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_NonEmissive"/>
+		<Task ID="8" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_Emissive"/>
+		<Task ID="9" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLightTank1" />
+		<Task ID="10" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLightTank2" />
+		<Task ID="11" TaskType="TaskAnimation" GameObject_ID="EmergencyBtn_Emissive" TriggerBoolID="IsBtnPressed" TriggerBool="false" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEmergencyButtonPressed" >
 		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_EmergencyButton" />
+		<Task ID="1" TaskType="TaskAnimation" GameObject_ID="EmergencyBtn_Emissive" TriggerBoolID="IsBtnPressed" TriggerBool="true" />
 	</Sequence>
 	
 	<Sequence ID = "Level1_109_OnEnd" >
@@ -551,6 +576,17 @@
 		<Task ID="2" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110PostAlarm" />
 		<Task ID="3" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level110_PostDoubleDoors" />
 		<Task ID="4" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level110_PreDoubleDoors" />
+		<Task ID="5" TaskType="TaskAnimation" GameObject_ID="Level109_BloodTank" TriggerBoolID="OpenLid" TriggerBool="false" />
+		<Task ID="6" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_YellowLight_Emissive"/>
+		<Task ID="7" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_GreenLight_Emissive"/>
+		<Task ID="8" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_YellowLight_NonEmissive"/>
+		<Task ID="9" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_GreenLight_NonEmissive"/>
+		<Task ID="10" TaskType="TaskGameObject" IsActive="false" GameObject_ID="EmergencyBtn_NonEmissive"/>
+		<Task ID="11" TaskType="TaskGameObject" IsActive="true" GameObject_ID="EmergencyBtn_Emissive"/>
+		<Task ID="12" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level109_GreenLightTank1" />
+		<Task ID="13" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level109_GreenLightTank2" />
+		<Task ID="14" TaskType="TaskAnimation" GameObject_ID="EmergencyBtn_Emissive" TriggerBoolID="IsBtnPressed" TriggerBool="true" />
+		
 	</Sequence>
 	
 	<Sequence ID = "Level1_110_OnEnd" >
