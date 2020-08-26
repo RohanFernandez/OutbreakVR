@@ -1,3 +1,9 @@
+#if UNITY_EDITOR
+
+// Disable 'obsolete' warnings
+#pragma warning disable 0618
+#pragma warning disable 0612
+
 using System;
 using UnityEngine;
 
@@ -70,6 +76,7 @@ namespace UnityEditor
             public static GUIContent shnLabel = new GUIContent("Non-linear SH", "This option can enhance contrast (closer to ground truth), but it makes the shader a bit slower.");
             public static GUIContent specLabel = new GUIContent("Enable Lightmap Specular", "Enables baked specular for all directional modes.");
             public static GUIContent bicubicLabel = new GUIContent("Force Bicubic Filter", "Enables bicubic filtering for all lightmaps (color/shadowmask/direction/etc) used in the material.");
+            public static GUIContent pshnLabel = new GUIContent("Non-linear Light Probe SH", "Prevents negative values in light probes. This is recommended when baking probes in L1 mode. Can slow down the shader a bit.");
         }
 
         MaterialProperty blendMode = null;
@@ -109,6 +116,7 @@ namespace UnityEditor
         MaterialProperty enableRNM = null;
         MaterialProperty enableSpec = null;
         MaterialProperty enableBicubic = null;
+        MaterialProperty enablePSHN = null;
 
         MaterialEditor m_MaterialEditor;
         WorkflowMode m_WorkflowMode = WorkflowMode.Specular;
@@ -161,6 +169,7 @@ namespace UnityEditor
             enableRNM = FindProperty("_BAKERY_RNM", props);
             enableSpec = FindProperty("_BAKERY_LMSPEC", props);
             enableBicubic = FindProperty("_BAKERY_BICUBIC", props);
+            enablePSHN = FindProperty("_BAKERY_PROBESHNONLINEAR", props);
         }
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
@@ -248,6 +257,7 @@ namespace UnityEditor
                     m_MaterialEditor.ShaderProperty(enableSHN, Styles.shnLabel);
                 m_MaterialEditor.ShaderProperty(enableSpec, Styles.specLabel);
                 m_MaterialEditor.ShaderProperty(enableBicubic, Styles.bicubicLabel);
+                m_MaterialEditor.ShaderProperty(enablePSHN, Styles.pshnLabel);
 
                 EditorGUILayout.Space();
             }
@@ -501,3 +511,5 @@ namespace UnityEditor
         }
     }
 }
+
+#endif

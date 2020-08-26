@@ -143,7 +143,8 @@ public class ftUVGBufferGen
         Shader.SetGlobalFloat("unity_UseLinearSpace", PlayerSettings.colorSpace == ColorSpace.Linear ? 1.0f : 0.0f);
     }
 
-    static public void RenderUVGBuffer(Mesh mesh, Material[] materials, Vector4 scaleOffset, Matrix4x4 worldMatrix, bool vertexBake, Vector2[] uvOverride)
+    static public void RenderUVGBuffer(Mesh mesh, Material[] materials, Vector4 scaleOffset, Matrix4x4 worldMatrix, bool vertexBake,
+        Vector2[] uvOverride, bool terrainNormals = false)
     {
         var m = mesh;
         if (uvOverride != null)
@@ -196,11 +197,13 @@ public class ftUVGBufferGen
             {
                 if (materials.Length <= i) break;
                 if (materials[i] ==  null) continue;
+                if (materials[i].shader ==  null) continue;
 
                 // Optionally skip emission
                 bool passAsBlack = (pass == 1 && materials[i].globalIlluminationFlags != MaterialGlobalIlluminationFlags.BakedEmissive);
 
-                bool isHDRP = materials[i].HasProperty("_HdrpVersion");
+                var rpTag = materials[i].GetTag("RenderPipeline", true, "");
+                bool isHDRP = rpTag == "HDRenderPipeline";
                 if (pass == 2) isHDRP = false;
                 int bakeryPass = -1;
 
@@ -223,7 +226,7 @@ public class ftUVGBufferGen
                             }
                         }
                     }
-                    Shader.SetGlobalVector("unity_LightmapST", isHDRP ? scaleOffsetFlipped : scaleOffset);
+                    Shader.SetGlobalVector("unity_LightmapST", (isHDRP) ? scaleOffsetFlipped : scaleOffset);
                     Shader.SetGlobalVector("unity_MetaFragmentControl", pass == 0 ? metaControlAlbedo : metaControlEmission);
 
                     if (metaPass >= 0)
@@ -271,7 +274,7 @@ public class ftUVGBufferGen
                     {
                         texBestFit = new Texture2D(1024, 1024, TextureFormat.RGBA32, false, true);
                         var edPath = ftLightmaps.GetEditorPath();
-                        var fbestfit = new BinaryReader(File.Open(edPath + "NormalsFittingTexture_dds", FileMode.Open));
+                        var fbestfit = new BinaryReader(File.Open(edPath + "NormalsFittingTexture_dds", FileMode.Open, FileAccess.Read));
                         fbestfit.BaseStream.Seek(128, SeekOrigin.Begin);
                         var bytes = fbestfit.ReadBytes(1024 * 1024 * 4);
                         fbestfit.Close();
@@ -298,6 +301,7 @@ public class ftUVGBufferGen
                         {
                             normalMat.SetTexture("_BumpMap", null);
                         }
+                        normalMat.SetFloat("_IsTerrain", terrainNormals ? 1.0f : 0.0f);
                         normalMat.SetTexture("bestFitNormalMap", texBestFit);
                         normalMat.SetPass(0);
                     }
@@ -322,7 +326,7 @@ public class ftUVGBufferGen
                         else
                         {
                             // TODO: use in HDRP as well
-                            var srcVec = isHDRP ? scaleOffsetFlipped : scaleOffset;
+                            var srcVec = (isHDRP) ? scaleOffsetFlipped : scaleOffset;
                             var vec = new Vector4(srcVec.x, srcVec.y, srcVec.z + uvOffset[j*2] * texelSize, srcVec.w + uvOffset[j*2+1] * texelSize);
                             Shader.SetGlobalVector("unity_LightmapST", vec);
                             if (bakeryPass >= 0)
@@ -388,32 +392,6 @@ public class ftUVGBufferGen
 
         return tex;
     }
-
-    /*
-    static public Texture2D GetAlbedoWithoutEmissive(Texture2D albedo, Texture2D emissive)
-    {
-        var rt = new RenderTexture(albedo.width, albedo.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-        var tex = new Texture2D(albedo.width, albedo.height, TextureFormat.RGBA32, false, false);
-
-        //rt = new RenderTexture(albedo.width, albedo.height, 0, RenderTextureFormat.ARGBHalf, RenderTextureReadWrite.Linear);
-        //tex = new Texture2D(albedo.width, albedo.height, TextureFormat.RGBAHalf, false, true);
-
-        if (matSubtract == null) matSubtract = new Material(Shader.Find("Hidden/ftSubtract"));
-        matSubtract.SetTexture("texA", albedo);
-        matSubtract.SetTexture("texB", emissive);
-
-        Graphics.SetRenderTarget(rt);
-        GL.Clear(true, true, new Color(0,0,0,0));
-        GL.sRGBWrite = true;
-
-        Graphics.Blit(albedo, rt, matSubtract);
-
-        tex.ReadPixels(new Rect(0,0,rt.width,rt.height), 0, 0, false);
-        tex.Apply();
-
-        return tex;
-    }
-    */
 
     static public void Dilate(Texture2D albedo)
     {

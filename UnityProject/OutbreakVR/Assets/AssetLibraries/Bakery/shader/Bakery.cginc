@@ -25,6 +25,14 @@ float bakeryLightmapMode;
     #undef BAKERY_VERTEXLM
 #endif
 
+#ifndef _NORMALMAP
+    #undef BAKERY_RNM
+    //#undef BAKERY_SH
+#endif
+
+#ifndef UNITY_SHOULD_SAMPLE_SH
+    #undef BAKERY_PROBESHNONLINEAR
+#endif
 
 #if defined(BAKERY_RNM) && defined(BAKERY_LMSPEC)
 #define BAKERY_RNMSPEC
@@ -38,7 +46,7 @@ float bakeryLightmapMode;
 
 #define lumaConv float3(0.2125f, 0.7154f, 0.0721f)
 
-#if defined(BAKERY_SH) || defined(BAKERY_VERTEXLMSH)
+#if defined(BAKERY_SH) || defined(BAKERY_VERTEXLMSH) || defined(BAKERY_PROBESHNONLINEAR)
 float shEvaluateDiffuseL1Geomerics(float L0, float3 L1, float3 n)
 {
     // average energy
@@ -284,7 +292,7 @@ struct BakeryVertexOutputForwardBase
 #endif
 
     // next ones would not fit into SM2.0 limits, but they are always for SM3.0+
-#if UNITY_SPECCUBE_BOX_PROJECTION || UNITY_LIGHT_PROBE_PROXY_VOLUME
+#if UNITY_SPECCUBE_BOX_PROJECTION || UNITY_LIGHT_PROBE_PROXY_VOLUME || (UNITY_REQUIRE_FRAG_WORLDPOS && !UNITY_PACK_WORLDPOS_WITH_TANGENT)
     float3 posWorld                 : TEXCOORD8;
 #endif
 
@@ -629,6 +637,13 @@ half4 bakeryFragForwardBase(BakeryVertexOutputForwardBase i) : SV_Target
     half occlusion = Occlusion(i.tex.xy);
     UnityGI gi = FragmentGI(s, occlusion, i.ambientOrLightmapUV, atten, mainLight);
 
+#ifdef BAKERY_PROBESHNONLINEAR
+    float3 L0 = float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w);
+    gi.indirect.diffuse.r = shEvaluateDiffuseL1Geomerics(L0.r, unity_SHAr.xyz, s.normalWorld);
+    gi.indirect.diffuse.g = shEvaluateDiffuseL1Geomerics(L0.g, unity_SHAg.xyz, s.normalWorld);
+    gi.indirect.diffuse.b = shEvaluateDiffuseL1Geomerics(L0.b, unity_SHAb.xyz, s.normalWorld);
+#endif
+
 #ifdef DIRLIGHTMAP_COMBINED
 #ifdef BAKERY_LMSPEC
     if (bakeryLightmapMode == BAKERYMODE_DEFAULT)
@@ -660,7 +675,7 @@ half4 bakeryFragForwardBase(BakeryVertexOutputForwardBase i) : SV_Target
         #ifdef BAKERY_SSBUMP
             float3 normalMap = tex2D(_BumpMap, i.tex.xy).xyz;
         #else
-            float3 normalMap = UnpackNormal(tex2D(_BumpMap, i.tex.xy));
+            float3 normalMap = NormalInTangentSpace(i.tex);
         #endif
 
         float3 eyeVecT = 0;
@@ -826,7 +841,7 @@ struct BakeryVertexOutputDeferred
     #endif
 #endif
 
-#if UNITY_SPECCUBE_BOX_PROJECTION || UNITY_LIGHT_PROBE_PROXY_VOLUME
+#if UNITY_SPECCUBE_BOX_PROJECTION || UNITY_LIGHT_PROBE_PROXY_VOLUME || (UNITY_REQUIRE_FRAG_WORLDPOS && !UNITY_PACK_WORLDPOS_WITH_TANGENT)
     float3 posWorld                     : TEXCOORD6;
 #endif
 
@@ -966,6 +981,13 @@ void bakeryFragDeferred(
 
     UnityGI gi = FragmentGI(s, occlusion, i.ambientOrLightmapUV, atten, dummyLight, sampleReflectionsInDeferred);
 
+#ifdef BAKERY_PROBESHNONLINEAR
+    float3 L0 = float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w);
+    gi.indirect.diffuse.r = shEvaluateDiffuseL1Geomerics(L0.r, unity_SHAr.xyz, s.normalWorld);
+    gi.indirect.diffuse.g = shEvaluateDiffuseL1Geomerics(L0.g, unity_SHAg.xyz, s.normalWorld);
+    gi.indirect.diffuse.b = shEvaluateDiffuseL1Geomerics(L0.b, unity_SHAb.xyz, s.normalWorld);
+#endif
+
 #ifdef DIRLIGHTMAP_COMBINED
 #ifdef BAKERY_LMSPEC
     if (bakeryLightmapMode == BAKERYMODE_DEFAULT)
@@ -997,7 +1019,7 @@ void bakeryFragDeferred(
         #ifdef BAKERY_SSBUMP
             float3 normalMap = tex2D(_BumpMap, i.tex.xy).xyz;
         #else
-            float3 normalMap = UnpackNormal(tex2D(_BumpMap, i.tex.xy));
+            float3 normalMap = NormalInTangentSpace(i.tex);
         #endif
 
         float3 eyeVecT = 0;

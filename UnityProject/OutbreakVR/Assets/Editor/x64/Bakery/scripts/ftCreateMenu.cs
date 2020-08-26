@@ -3,7 +3,7 @@ using UnityEditor;
 
 public class ftCreateMenu
 {
-    [MenuItem("Bakery/Create/Directional Light")]
+    [MenuItem("Bakery/Create/Directional Light", false, 20)]
     private static void CreateDirectionalLight()
     {
         var go = new GameObject();
@@ -18,7 +18,7 @@ public class ftCreateMenu
         Selection.objects = arr;
     }
 
-    [MenuItem("Bakery/Create/Skylight")]
+    [MenuItem("Bakery/Create/Skylight", false, 20)]
     private static void CreateSkyLight()
     {
         var go = new GameObject();
@@ -32,7 +32,7 @@ public class ftCreateMenu
         Selection.objects = arr;
     }
 
-    [MenuItem("Bakery/Create/Point Light")]
+    [MenuItem("Bakery/Create/Point Light", false, 20)]
     private static void CreatePointLight()
     {
         var go = new GameObject();
@@ -46,7 +46,7 @@ public class ftCreateMenu
         Selection.objects = arr;
     }
 
-    [MenuItem("Bakery/Create/Area Light (Example)")]
+    [MenuItem("Bakery/Create/Area Light (Example)", false, 20)]
     private static void CreateAreaLight()
     {
         var go = GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -63,7 +63,7 @@ public class ftCreateMenu
         Selection.objects = arr;
     }
 
-    [MenuItem("Bakery/Create/Spotlight")]
+    [MenuItem("Bakery/Create/Spotlight", false, 20)]
     private static void CreateSpotLight()
     {
         var go = new GameObject();

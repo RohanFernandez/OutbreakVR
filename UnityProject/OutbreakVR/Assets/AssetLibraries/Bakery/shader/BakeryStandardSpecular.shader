@@ -54,6 +54,7 @@
         [Toggle(BAKERY_RNM)] _BAKERY_RNM ("Enable RNM", Float) = 0
         [Toggle(BAKERY_LMSPEC)] _BAKERY_LMSPEC ("Enable Lightmap Specular", Float) = 0
         [Toggle(BAKERY_BICUBIC)] _BAKERY_BICUBIC ("Enable Bicubic Filter", Float) = 0
+        [Toggle(BAKERY_PROBESHNONLINEAR)] _BAKERY_PROBESHNONLINEAR ("Use non-linear SH for light probes", Float) = 0
 	}
 
 	CGINCLUDE
@@ -101,6 +102,7 @@
             #pragma shader_feature BAKERY_RNM
             #pragma shader_feature BAKERY_LMSPEC
             #pragma shader_feature BAKERY_BICUBIC
+            #pragma shader_feature BAKERY_PROBESHNONLINEAR
 
 			#pragma multi_compile_fwdbase
 			#pragma multi_compile_fog
@@ -184,6 +186,8 @@
 			Name "DEFERRED"
 			Tags { "LightMode" = "Deferred" }
 
+            Cull [_BAKERY_2SIDED]
+
 			CGPROGRAM
 			#pragma target 3.0
 			#pragma exclude_renderers nomrt
@@ -209,6 +213,7 @@
             #pragma shader_feature BAKERY_RNM
             #pragma shader_feature BAKERY_LMSPEC
             #pragma shader_feature BAKERY_BICUBIC
+            #pragma shader_feature BAKERY_PROBESHNONLINEAR
 
             #pragma multi_compile_prepassfinal
             #pragma multi_compile_instancing

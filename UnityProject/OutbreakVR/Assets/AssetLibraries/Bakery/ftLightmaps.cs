@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Disable 'obsolete' warnings
+#pragma warning disable 0618
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.IO;
 #endif
 
 using UnityEngine.SceneManagement;
@@ -24,7 +28,7 @@ public class ftLightmaps {
 
     static List<int> lightmapRefCount;
     static List<LightmapAdditionalData> globalMapsAdditional;
-    static bool directionalMode;
+    static int directionalMode; // -1 undefined, 0 off, 1 on
     //static List<ftLightmapsStorage> loadedStorages;
 
 #if UNITY_EDITOR
@@ -40,6 +44,7 @@ public class ftLightmaps {
         if (_bakeryRuntimePath.Length == 0)
         {
             // Try default path
+            // (start with AssetDatabase assuming it's faster than GetFiles)
             var a = AssetDatabase.LoadAssetAtPath("Assets/Bakery/ftDefaultAreaLightMat.mat", typeof(Texture2D)) as Texture2D;
             if (a == null)
             {
@@ -47,8 +52,14 @@ public class ftLightmaps {
                 var assetGUIDs = AssetDatabase.FindAssets("ftDefaultAreaLightMat", null);
                 if (assetGUIDs.Length == 0)
                 {
-                    Debug.LogError("Can't locate Bakery folder");
-                    return "";
+                    // No extra data present - find the script at least
+                    var res = Directory.GetFiles(Application.dataPath, "ftLightmaps.cs", SearchOption.AllDirectories);
+                    if (res.Length == 0)
+                    {
+                        Debug.LogError("Can't locate Bakery folder");
+                        return "";
+                    }
+                    return "Assets" + res[0].Replace("ftLightmaps.cs", "").Replace("\\", "/").Replace(Application.dataPath, "");
                 }
                 if (assetGUIDs.Length > 1)
                 {
@@ -75,8 +86,14 @@ public class ftLightmaps {
                 var assetGUIDs = AssetDatabase.FindAssets("NormalsFittingTexture_dds", null);
                 if (assetGUIDs.Length == 0)
                 {
-                    Debug.LogError("Can't locate Bakery editor folder");
-                    return "";
+                    // No extra data present - find ftModelPostProcessor at least (minimum required editor script)
+                    var res = Directory.GetFiles(Application.dataPath, "ftModelPostProcessor.cs", SearchOption.AllDirectories);
+                    if (res.Length == 0)
+                    {
+                        Debug.LogError("Can't locate Bakery folder");
+                        return "";
+                    }
+                    return "Assets" + res[0].Replace("ftModelPostProcessor.cs", "").Replace("\\", "/").Replace(Application.dataPath, "");
                 }
                 if (assetGUIDs.Length > 1)
                 {
@@ -278,9 +295,14 @@ public class ftLightmaps {
     }
 #endif
 
+    static void SetDirectionalMode()
+    {
+        if (directionalMode >= 0) LightmapSettings.lightmapsMode =  directionalMode==1 ? LightmapsMode.CombinedDirectional : LightmapsMode.NonDirectional;
+    }
+
     static void OnSceneChangedPlay(Scene prev, Scene next) {
         //if (Lightmapping.lightingDataAsset == null) {
-            LightmapSettings.lightmapsMode =  directionalMode ? LightmapsMode.CombinedDirectional : LightmapsMode.NonDirectional;
+            SetDirectionalMode();
         //}
     }
 
@@ -289,7 +311,7 @@ public class ftLightmaps {
         // Unity can modify directional mode on scene change, have to force the correct one
         // activeSceneChangedInEditMode isn't always available
         //if (Lightmapping.lightingDataAsset == null) {
-            LightmapSettings.lightmapsMode =  directionalMode ? LightmapsMode.CombinedDirectional : LightmapsMode.NonDirectional;
+            SetDirectionalMode();
         //}
     }
 
@@ -297,6 +319,7 @@ public class ftLightmaps {
         //Refresh();
         if (scene.name == "_tempScene") return;
         mustReloadRenderSettings = true;
+        directionalMode = -1;
         /*if (!finalInitDone)
         {
             CreateGlobalStorageAsset();
@@ -391,17 +414,16 @@ public class ftLightmaps {
 
         // Decide which global engine lightmapping mode to use
         // TODO: allow mixing different modes
-        directionalMode = storage.dirMaps.Count != 0;
+        directionalMode = storage.dirMaps.Count != 0 ? 1 : 0;
         bool patchedDirection = false;
-        LightmapSettings.lightmapsMode =  directionalMode ? LightmapsMode.CombinedDirectional : LightmapsMode.NonDirectional;
-
+        SetDirectionalMode();
 
         // Set dummy directional tex for non-directional lightmaps in directional mode
-        if (directionalMode)
+        if (directionalMode == 1)
         {
             for(int i=0; i<existingLmaps.Length; i++)
             {
-                if (directionalMode && existingLmaps[i].lightmapDir == null)
+                if (existingLmaps[i].lightmapDir == null)
                 {
                     var lm = existingLmaps[i];
                     lm.lightmapDir = GetEmptyDirectionTex(storage);
@@ -522,7 +544,7 @@ public class ftLightmaps {
                     {
                         lm.lightmapDir = texdir;
                     }
-                    else if (directionalMode)
+                    else if (directionalMode == 1)
                     {
                         lm.lightmapDir = GetEmptyDirectionTex(storage);
                     }
@@ -584,7 +606,7 @@ public class ftLightmaps {
         // Set editor lighting mode
         Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
         Lightmapping.realtimeGI = storage.usesRealtimeGI;
-        Lightmapping.bakedGI = true;
+        //Lightmapping.bakedGI = true; // ? only used for enlighten ? makes editor laggy ?
 #endif
 
         // Replace the lightmap array if needed
@@ -652,11 +674,19 @@ public class ftLightmaps {
 
             if (vmesh != null)
             {
-                r.additionalVertexStreams = vmesh;
-                r.lightmapIndex = 0xFFFF;
-                var prop = new MaterialPropertyBlock();
-                prop.SetFloat("bakeryLightmapMode", 1);
-                r.SetPropertyBlock(prop);
+                var r2 = r as MeshRenderer;
+                if (r2 == null)
+                {
+                    Debug.LogError("Unity cannot use additionalVertexStreams on non-MeshRenderer");
+                }
+                else
+                {
+                    r2.additionalVertexStreams = vmesh;
+                    r2.lightmapIndex = 0xFFFF;
+                    var prop = new MaterialPropertyBlock();
+                    prop.SetFloat("bakeryLightmapMode", 1);
+                    r2.SetPropertyBlock(prop);
+                }
                 continue;
             }
 
@@ -716,15 +746,23 @@ public class ftLightmaps {
         for(int i=0; i<storage.bakedLights.Count; i++)
         {
 #if UNITY_2017_3_OR_NEWER
+            if (storage.bakedLights[i] == null) continue;
+
+            int channel = storage.bakedLightChannels[i];
             var output = new LightBakingOutput();
             output.isBaked = true;
-            output.lightmapBakeType = LightmapBakeType.Mixed;
-            output.mixedLightingMode = MixedLightingMode.Shadowmask;
-            output.occlusionMaskChannel = storage.bakedLightChannels[i];
-            output.probeOcclusionLightIndex  = storage.bakedLights[i].bakingOutput.probeOcclusionLightIndex;
+            if (channel < 0)
+            {
+                output.lightmapBakeType = LightmapBakeType.Baked;
+            }
+            else
+            {
+                output.lightmapBakeType = LightmapBakeType.Mixed;
+                output.mixedLightingMode = channel > 100 ? MixedLightingMode.Subtractive : MixedLightingMode.Shadowmask;
+                output.occlusionMaskChannel = channel > 100 ? -1 : channel;
+                output.probeOcclusionLightIndex  = storage.bakedLights[i].bakingOutput.probeOcclusionLightIndex;
+            }
             storage.bakedLights[i].bakingOutput = output;
-            //#else
-            //var light = storage.bakedLights[i];
 #endif
         }
 
@@ -816,7 +854,7 @@ public class ftLightmaps {
     }
 
     public static void RefreshScene2(Scene scene, ftLightmapsStorage storage) {
-        MeshRenderer r;
+        Renderer r;
         int id;
         for(int i=0; i<storage.bakedRenderers.Count; i++)
         {

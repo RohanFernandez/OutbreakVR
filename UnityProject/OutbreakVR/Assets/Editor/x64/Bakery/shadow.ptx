@@ -100,6 +100,9 @@
 
 	mov.u32 	%r1, 0;
 	st.global.u32 	[payload], %r1;
+	// inline asm
+	call _rt_terminate_ray, ();
+	// inline asm
 	ret;
 }
 

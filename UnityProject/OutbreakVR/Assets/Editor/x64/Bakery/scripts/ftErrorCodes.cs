@@ -119,6 +119,39 @@ public class ftErrorCodes
         {8, "Can't save texture"}
     };
 
+    static Dictionary<int, string> serverMap = new Dictionary<int, string>
+    {
+        {ftClient.SERVERERROR_IDLE, "Idle"},
+        {ftClient.SERVERERROR_COPY, "File copying failed"},
+        {ftClient.SERVERERROR_GIPARAMS, "Failed to generate GI parameters"},
+        {ftClient.SERVERERROR_NOTIMPLEMENTED, "Feature is not implemented"},
+        {ftClient.SERVERERROR_UNKNOWNTASK, "Unknown task submitted"},
+        {ftClient.SERVERERROR_SCENENAMETOOLONG, "Scene name is too long"},
+        {ftClient.SERVERERROR_FILENOTFOUND, "File not found"},
+        {ftClient.SERVERERROR_FILEHASZEROSIZE, "File has zero size"},
+        {ftClient.SERVERERROR_NOMEM, "Out of memory"},
+        {ftClient.SERVERERROR_INCORRECT, "Incorrect request"},
+        {ftClient.SERVERERROR_INCORRECTFILENAME, "Incorrect filename"},
+        {ftClient.SERVERERROR_WRITEFAILED, "write failed"},
+        {ftClient.SERVERERROR_INCORRECTARGS, "incorrect arguments"},
+        {ftClient.SERVERERROR_FILESIZE, "file size is too large"},
+        {ftClient.SERVERERROR_STATUSLIMIT, "status message can't fit filename"}
+    };
+
+    static Dictionary<int, string> serverAppMap = new Dictionary<int, string>
+    {
+        {ftClient.SERVERTASK_FTRACE, "ftrace"},
+        {ftClient.SERVERTASK_FTRACERTX, "ftraceRTX"},
+        {ftClient.SERVERTASK_COMBINEMASKS, "combineMasks"},
+        {ftClient.SERVERTASK_DENOISEDIR, "denoiseDir"},
+        {ftClient.SERVERTASK_DENOISEMASK, "denoiseMask"},
+        {ftClient.SERVERTASK_DENOISE, "denoiser"},
+        {ftClient.SERVERTASK_DENOISESH, "denoiseSH"},
+        {ftClient.SERVERTASK_HF2HDR, "halffloat2hdr"},
+        {ftClient.SERVERTASK_RGBA2TGA, "rgba2tga"},
+        {ftClient.SERVERTASK_SEAMFIX, "seamfixer"}
+    };
+
     public static string TranslateFtrace(int code)
     {
         string text;
@@ -168,9 +201,40 @@ public class ftErrorCodes
         return text + " (" + code + ")";
     }
 
+    public static string TranslateServerApp(int app)
+    {
+        string text;
+        if (!serverAppMap.TryGetValue(app, out text)) text = "Unknown executable " + " (" + app + ")";
+        return text;
+    }
+
+    public static string TranslateServer(int code, int app=0, int appCode=0)
+    {
+        string text;
+        if (code == ftClient.SERVERERROR_BUSY)
+        {
+            text = "Busy (" + app + "/" + appCode + ")";
+        }
+        else if (code == ftClient.SERVERERROR_APPERR)
+        {
+            var appName = TranslateServerApp(app);
+            text = appName + " error: " + Translate(appName, appCode);
+        }
+        else if (code == ftClient.SERVERERROR_EXEC)
+        {
+            text = "Failed to run " + TranslateServerApp(app);
+        }
+        else
+        {
+            if (!serverMap.TryGetValue(code, out text)) text = "Unknown error (" + code + ")";
+        }
+        return text;
+    }
+
     public static string Translate(string app, int code)
     {
         if (app == "ftrace") return TranslateFtrace(code);
+        if (app == "ftraceRTX") return TranslateFtrace(code);
         if (app == "combineMasks") return TranslateCombineMasks(code);
         if (app == "denoiseDir") return TranslateDenoiser(code);
         if (app == "denoiseMask") return TranslateDenoiser(code);

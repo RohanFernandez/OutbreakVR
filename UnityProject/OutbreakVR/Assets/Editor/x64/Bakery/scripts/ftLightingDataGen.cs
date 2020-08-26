@@ -12,7 +12,7 @@ using System.Reflection;
 public class ftLightingDataGen
 {
     // Generates LightingDataAsset for all lights with baked occlusionMaskChannel
-    public static bool GenerateShadowmaskLightingData(string outName, ref List<Light> lights)
+    public static bool GenerateShadowmaskLightingData(string outName, ref List<Light> lights, bool subtractive)
     {
         Debug.Log("Generating LightingDataAsset for " + lights.Count + " lights");
 
@@ -60,9 +60,12 @@ public class ftLightingDataGen
                 var so = new SerializedObject(lights[i]);
                 var channel = so.FindProperty("m_BakingOutput").FindPropertyRelative("occlusionMaskChannel").intValue;
 
-                f.Write(-1);
+                int val1 = subtractive ? 0 : -1;
+                int val2 = subtractive ? 131076 : 131080;
+
+                f.Write(val1);
                 f.Write(channel);
-                f.Write(131080);
+                f.Write(val2);
             }
             f.Write(bytesP3);
             f.Close();
@@ -79,13 +82,15 @@ public class ftLightingDataGen
 #if UNITY_2017_3_OR_NEWER
 #else
     // Patches existing LightingDataAsset shadowmask channels
-    public static void PatchShadowmaskLightingData(string inName, string outName, ref Dictionary<long,long> inID2OutID, ref Dictionary<long,int> outIDChannel)
+    public static bool PatchShadowmaskLightingData(string inName, string outName, ref Dictionary<long,long> inID2OutID, ref Dictionary<long,int> outIDChannel, bool subtractive)
     {
         try
         {
             var bytesIn = File.ReadAllBytes(inName);
 
             var lightCount = inID2OutID.Count;
+            if (lightCount == 0) return false;
+
             var inIDsAsBytes = new byte[lightCount][];
             var outIDsAsBytes = new byte[lightCount][];
             var outChannelsAsBytes = new byte[lightCount][];
@@ -141,13 +146,13 @@ public class ftLightingDataGen
             if (firstAddressReplaced == bytesIn.Length)
             {
                 ftRenderLightmap.DebugLogError("Failed to patch LightingDataAsset: unabled to replace light IDs");
-                return;
+                return false;
             }
 
             if (lightsAsWrittenCounter != lightCount)
             {
                 ftRenderLightmap.DebugLogError("Failed to patch LightingDataAsset: light count differs in temp/real scenes (" + lightsAsWrittenCounter + " vs " + lightCount + ")");
-                return;
+                return false;
             }
 
             // IDs are patched. Now replace channels.
@@ -156,9 +161,25 @@ public class ftLightingDataGen
             {
                 int id = lightsAsWritten[i];
                 var channelBytes = outChannelsAsBytes[id];
+                int channelStartAddr = firstAddressReplaced + 16 * lightCount + 4 + 12 * i + 4;
+                if (subtractive)
+                {
+                    for(int j=0; j<4; j++)
+                    {
+                        bytesIn[channelStartAddr + j - 4] = 0;
+                    }
+                }
                 for(int j=0; j<4; j++)
                 {
-                    bytesIn[firstAddressReplaced + 16 * lightCount + 4 + 12 * i + 4 + j] = channelBytes[j];
+                    bytesIn[channelStartAddr + j] = channelBytes[j];
+                }
+                if (subtractive)
+                {
+                    var val2 = BitConverter.GetBytes(131076);
+                    for(int j=0; j<4; j++)
+                    {
+                        bytesIn[channelStartAddr + j + 4] = val2[j];
+                    }
                 }
             }
 
@@ -170,8 +191,10 @@ public class ftLightingDataGen
         catch
         {
             ftRenderLightmap.DebugLogError("Failed to patch LightingDataAsset");
-            throw;
+            return false;
         }
+
+        return true;
     }
 #endif
 }

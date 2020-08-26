@@ -17,7 +17,8 @@ public class BakeryPointLight : MonoBehaviour
         Omni = 0,
         Cookie = 1,
         Cubemap = 2,
-        IES = 3
+        IES = 3,
+        Cone = 4
     };
 
     public int UID;
@@ -30,14 +31,35 @@ public class BakeryPointLight : MonoBehaviour
     public ftLightProjectionMode projMode;
     public Texture2D cookie;
     public float angle = 30.0f;
+    public float innerAngle = 0;
     public Cubemap cubemap;
     public UnityEngine.Object iesFile;
     public int bitmask = 1;
     public bool bakeToIndirect = false;
     public bool shadowmask = false;
     public float indirectIntensity = 1.0f;
+    public float falloffMinRadius = 1.0f;
+
+    const float GIZMO_MAXSIZE = 0.1f;
+    const float GIZMO_SCALE = 0.01f;
+    float screenRadius = GIZMO_MAXSIZE;
+
+    public static int lightsChanged = 0; // 1 = const, 2 = full
 
 #if UNITY_EDITOR
+    void OnValidate()
+    {
+        if (lightsChanged == 0) lightsChanged = 1;
+    }
+    void OnEnable()
+    {
+        lightsChanged = 2;
+    }
+    void OnDisable()
+    {
+        lightsChanged = 2;
+    }
+
     void Start()
     {
         if (gameObject.GetComponent<BakeryDirectLight>() != null ||
@@ -74,8 +96,13 @@ public class BakeryPointLight : MonoBehaviour
 
     void OnDrawGizmos()
     {
-      Gizmos.color = color;//Color.yellow;
-      Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.color = color;
+        var curCam = Camera.current;
+        if (curCam != null)
+        {
+            screenRadius = Mathf.Min((transform.position - curCam.transform.position).magnitude * GIZMO_SCALE, GIZMO_MAXSIZE);
+        }
+        Gizmos.DrawSphere(transform.position, screenRadius);
     }
 
     void DrawArrow(Vector3 a, Vector3 b)
@@ -92,13 +119,13 @@ public class BakeryPointLight : MonoBehaviour
       Gizmos.DrawWireSphere(transform.position, shadowSpread);
 
       Gizmos.color = new Color(color.r, color.g, color.b, 0.25f);//Color.gray;
-      if (projMode != ftLightProjectionMode.Cookie) Gizmos.DrawWireSphere(transform.position, cutoff);
+      if (projMode != ftLightProjectionMode.Cookie && projMode != ftLightProjectionMode.Cone) Gizmos.DrawWireSphere(transform.position, cutoff);
 
       if (projMode != 0)
       {
           Gizmos.color = color;//Color.yellow;
           Vector3 endPoint;
-          if (projMode == ftLightProjectionMode.Cookie)
+          if (projMode == ftLightProjectionMode.Cookie || projMode == ftLightProjectionMode.Cone)
           {
             endPoint = transform.forward * 2;
             Gizmos.DrawRay(transform.position, endPoint);

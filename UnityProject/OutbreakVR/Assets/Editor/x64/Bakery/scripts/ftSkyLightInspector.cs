@@ -34,10 +34,38 @@ public class ftSkyLightInspector : UnityEditor.Editor
     SerializedProperty ftraceLightIndirectIntensity;
     SerializedProperty ftraceTangentSH;
 
+    int texCached = -1;
+
+    void TestPreviewRefreshProperty(ref int cached, int newVal)
+    {
+        if (cached >= 0)
+        {
+            if (cached != newVal)
+            {
+                BakerySkyLight.lightsChanged = 2;
+            }
+        }
+        cached = newVal;
+    }
+
+    void TestPreviewRefreshProperty(ref int cached, UnityEngine.Object newVal)
+    {
+        if (newVal == null)
+        {
+            TestPreviewRefreshProperty(ref cached, 0);
+            return;
+        }
+        TestPreviewRefreshProperty(ref cached, newVal.GetInstanceID());
+    }
+
     static string ftSkyboxShaderName = "Skybox/Bakery Skybox";
+
+    ftLightmapsStorage storage;
 
     static string[] selStrings = new string[] {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16",
                                                 "17","18","19","20","21","22","23","24","25","26","27","28","29","30"};//,"31"};
+
+    static public string[] directContributionOptions = new string[] {"Direct And Indirect (recommended)", "Indirect only"};
 
     bool showExperimental = false;
 
@@ -58,6 +86,8 @@ public class ftSkyLightInspector : UnityEditor.Editor
         {
             serializedObject.Update();
 
+            TestPreviewRefreshProperty(ref texCached, ftraceLightTexture.objectReferenceValue);
+
             EditorGUILayout.PropertyField(ftraceLightColor, new GUIContent("Color", "Sky color. Multiplies texture color."));
             EditorGUILayout.PropertyField(ftraceLightIntensity, new GUIContent("Intensity", "Color multiplier"));
             EditorGUILayout.PropertyField(ftraceLightTexture, new GUIContent("Sky texture", "Cubemap"));
@@ -77,7 +107,37 @@ public class ftSkyLightInspector : UnityEditor.Editor
             int newVal = EditorGUILayout.MaskField(new GUIContent("Bitmask", "Lights only affect renderers with overlapping bits"), ftraceLightBitmask.intValue, selStrings);
             if (prevVal != newVal) ftraceLightBitmask.intValue = newVal;
 
-            EditorGUILayout.PropertyField(ftraceLightBakeToIndirect, new GUIContent("Bake to indirect", "Add direct contribution from this light to indirect-only lightmaps"));
+            //EditorGUILayout.PropertyField(ftraceLightBakeToIndirect, new GUIContent("Bake to indirect", "Add direct contribution from this light to indirect-only lightmaps"));
+
+            if (storage == null) storage = ftRenderLightmap.FindRenderSettingsStorage();
+            var rmode = storage.renderSettingsUserRenderMode;
+            if (rmode != (int)ftRenderLightmap.RenderMode.FullLighting)
+            {
+                ftDirectLightInspector.BakeWhat contrib;
+                if (ftraceLightBakeToIndirect.boolValue)
+                {
+                    contrib = ftDirectLightInspector.BakeWhat.DirectAndIndirect;
+                }
+                else
+                {
+                    contrib = ftDirectLightInspector.BakeWhat.IndirectOnly;
+                }
+                var prevContrib = contrib;
+
+                contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.Popup("Baked contribution", (int)contrib, directContributionOptions);
+
+                if (prevContrib != contrib)
+                {
+                    if (contrib == ftDirectLightInspector.BakeWhat.IndirectOnly)
+                    {
+                        ftraceLightBakeToIndirect.boolValue = false;
+                    }
+                    else
+                    {
+                        ftraceLightBakeToIndirect.boolValue = true;
+                    }
+                }
+            }
 
             EditorGUILayout.PropertyField(ftraceLightIndirectIntensity, new GUIContent("Indirect intensity", "Non-physical GI multiplier for this light"));
 

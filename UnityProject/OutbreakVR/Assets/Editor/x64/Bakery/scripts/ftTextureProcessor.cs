@@ -15,6 +15,7 @@ public class ftTextureProcessor : AssetPostprocessor
     {
         TextureImporter importer = assetImporter as TextureImporter;
         Vector2 settings;
+
         if (!texSettings.TryGetValue(importer.assetPath, out settings)) return;
 
         importer.maxTextureSize = (int)settings.x;

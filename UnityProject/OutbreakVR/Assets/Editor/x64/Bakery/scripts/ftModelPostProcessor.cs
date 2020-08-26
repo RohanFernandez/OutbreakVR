@@ -1,9 +1,28 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using System.IO;
+using System.Collections.Generic;
 
-public class ftModelPostProcessor : AssetPostprocessor
+public class ftModelPostProcessorInternal : AssetPostprocessor
 {
+    public virtual void UnwrapXatlas(Mesh m, UnwrapParam param)
+    {
+    }
+}
+
+public partial class ftModelPostProcessor : ftModelPostProcessorInternal
+{
+    public static bool unwrapError = false;
+    public static string lastUnwrapErrorAsset = "";
+
+    // Deprecated but leave it for now just in case
+    public class ftSavedPadding : ScriptableObject
+    {
+        [SerializeField]
+        public ftGlobalStorage.AdjustedMesh data;
+    }
+
     static ftGlobalStorage storage;
     UnwrapParam uparams;
     const int res = 1024;
@@ -11,10 +30,18 @@ public class ftModelPostProcessor : AssetPostprocessor
     public static RenderTexture rt;
     public static Texture2D tex;
 
+    static Dictionary<string, bool> assetHasPaddingAdjustment = new Dictionary<string, bool>();
+    static Dictionary<string, ftSavedPadding2> assetSavedPaddingAdjustment = new Dictionary<string, ftSavedPadding2>();
+
 #if UNITY_2017_1_OR_NEWER
     bool deserializedSuccess = false;
     ftGlobalStorage.AdjustedMesh deserialized;
 #endif
+
+    public static double GetTime()
+    {
+        return (System.DateTime.Now.Ticks / System.TimeSpan.TicksPerMillisecond) / 1000.0;
+    }
 
     public static void Init()
     {
@@ -23,20 +50,50 @@ public class ftModelPostProcessor : AssetPostprocessor
         //ftLightmaps.AddTag("BakeryProcessed");
     }
 
-    void OnPostprocessModel(GameObject g)
+    void OnPreprocessModel()
     {
         Init();
-        //if (storage == null) return;
+
+        assetHasPaddingAdjustment[assetPath] = false;
+        assetSavedPaddingAdjustment[assetPath] = null;
+
+        if (storage == null) return;
+        bool hasGlobalPaddingAdjustment = storage.modifiedAssetPathList.IndexOf(assetPath) >= 0;
+        var savedAdjustment = AssetDatabase.LoadAssetAtPath(
+            Path.GetDirectoryName(assetPath) + "/" + Path.GetFileNameWithoutExtension(assetPath) + "_padding.asset", typeof(ftSavedPadding2)) as ftSavedPadding2;
+        if (!hasGlobalPaddingAdjustment && savedAdjustment == null) return;
 
         ModelImporter importer = (ModelImporter)assetImporter;
-        if (importer.generateSecondaryUV)
+        assetHasPaddingAdjustment[assetPath] = importer.generateSecondaryUV;
+        importer.generateSecondaryUV = false; // disable built-in unwrapping for models with padding adjustment
+        assetSavedPaddingAdjustment[assetPath] = savedAdjustment;
+    }
+
+    void OnPostprocessModel(GameObject g)
+    {
+        ModelImporter importer = (ModelImporter)assetImporter;
+        if (importer.generateSecondaryUV || assetHasPaddingAdjustment[assetPath])
         {
+            if (!importer.generateSecondaryUV)
+            {
+                importer.generateSecondaryUV = true; // set "generate lightmap UVs" checkbox back
+                EditorUtility.SetDirty(importer);
+            }
+
             // Auto UVs: Adjust UV padding per mesh
             //if (!storage.modifiedAssetPathList.Contains(assetPath) && g.tag == "BakeryProcessed") return;
             //if (ftLightmaps.IsModelProcessed(assetPath)) return;
 
             //g.tag = "BakeryProcessed";
-            Debug.Log("Bakery: processing auto-unwrapped asset " + assetPath);
+            var saved = assetSavedPaddingAdjustment[assetPath];
+            if (saved != null)
+            {
+                Debug.Log("Bakery: processing auto-unwrapped asset (saved UV padding) " + assetPath);
+            }
+            else
+            {
+                Debug.Log("Bakery: processing auto-unwrapped asset " + assetPath);
+            }
             if (storage != null) ftLightmaps.MarkModelProcessed(assetPath, true);
 
             uparams = new UnwrapParam();
@@ -61,7 +118,9 @@ public class ftModelPostProcessor : AssetPostprocessor
 #endif
             if (storage != null) storage.InitModifiedMeshMap(assetPath);
 
-            AdjustUV(g.transform);
+            var tt = GetTime();
+            AdjustUV(g.transform, saved);
+            Debug.Log("UV adjustment time: " + (GetTime() - tt));
         }
         else
         {
@@ -79,7 +138,7 @@ public class ftModelPostProcessor : AssetPostprocessor
         if (g.tag == "BakeryProcessed") g.tag = ""; // remove legacy mark
     }
 
-    public static void InitOverlapCheck()
+    public static bool InitOverlapCheck()
     {
         rt = new RenderTexture(res, res, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
         tex = new Texture2D(res, res, TextureFormat.ARGB32, false, true);
@@ -90,11 +149,12 @@ public class ftModelPostProcessor : AssetPostprocessor
             shdr = AssetDatabase.LoadAssetAtPath(bakeryRuntimePath + "ftOverlapTest.shader", typeof(Shader)) as Shader;
             if (shdr == null)
             {
-                Debug.LogError("Can't load overlap testing shader");
-                return;
+                Debug.Log("No overlap testing shader present");
+                return false;
             }
         }
         mat = new Material(shdr);
+        return true;
     }
 
     // -1 = No UVs
@@ -144,7 +204,9 @@ public class ftModelPostProcessor : AssetPostprocessor
 
     public static void CheckUVOverlap(GameObject g, string assetPath)
     {
-        InitOverlapCheck();
+        bool canCheck = InitOverlapCheck();
+        if (!canCheck) return;
+
         int overlap = DoOverlapCheck(g, true);
         EndOverlapCheck();
 
@@ -178,25 +240,57 @@ public class ftModelPostProcessor : AssetPostprocessor
         }
     }
 
-    void AdjustUV(Transform t)
+    bool ValidateMesh(Mesh m, ftGlobalStorage.Unwrapper unwrapper)
+    {
+#if UNITY_2017_3_OR_NEWER
+    #if UNITY_2018_4_OR_NEWER
+        // Bug was fixed in 2018.3.5, but the closest define is for 2018.4
+    #else
+        if (m.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32 && unwrapper == ftGlobalStorage.Unwrapper.Default)
+        {
+            Debug.LogError("Can't adjust UV padding for " + m.name + " due to Unity bug. Please set Index Format to 16-bit on the asset or use xatlas.");
+            return false;
+        }
+    #endif
+#endif
+        return true;
+    }
+
+    void AdjustUV(Transform t, ftSavedPadding2 saved = null)
     {
         var mf = t.GetComponent<MeshFilter>();
         if (mf != null && mf.sharedMesh != null)
         {
             var m = mf.sharedMesh;
-
-#if UNITY_2017_3_OR_NEWER
-            if (m.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32)
-            {
-                Debug.LogError("Can't adjust UV padding for " + t.name + " due to Unity bug. Please set Index Format to 16-bit on the asset.");
-                return;
-            }
-#endif
-
             var nm = m.name;
+            int modifiedMeshID;
 
+            if (saved != null)
+            {
+                // Get padding from asset
+                int mindex = saved.data.meshName.IndexOf(nm);
+                if (mindex < 0)
+                {
+                    //Debug.LogError("Unable to find padding value for mesh " + nm);
+                    // This is fine. Apparently caused by parts of models being lightmapped,
+                    // while other parts are not baked, yet still a part of the model.
+                }
+                else
+                {
+                    var padding = saved.data.padding[mindex];
+
+                    ftGlobalStorage.Unwrapper unwrapper = ftGlobalStorage.Unwrapper.Default;
+                    if (saved.data.unwrapper != null && saved.data.unwrapper.Count > mindex)
+                        unwrapper = (ftGlobalStorage.Unwrapper)saved.data.unwrapper[mindex];
+
+                    if (!ValidateMesh(m, unwrapper)) return;
+
+                    uparams.packMargin = padding/1024.0f;
+                    Unwrap(m, uparams, unwrapper);
+                }
+            }
 #if UNITY_2017_1_OR_NEWER
-            if (deserializedSuccess && deserialized.meshName != null && deserialized.padding != null)
+            else if (deserializedSuccess && deserialized.meshName != null && deserialized.padding != null)
             {
                 // Get padding from extraUserProperties (new)
                 int mindex = deserialized.meshName.IndexOf(nm);
@@ -209,33 +303,54 @@ public class ftModelPostProcessor : AssetPostprocessor
                 else
                 {
                     var padding = deserialized.padding[mindex];
+
+                    ftGlobalStorage.Unwrapper unwrapper = ftGlobalStorage.Unwrapper.Default;
+                    if (deserialized.unwrapper != null && deserialized.unwrapper.Count > mindex)
+                        unwrapper = (ftGlobalStorage.Unwrapper)deserialized.unwrapper[mindex];
+
+                    if (!ValidateMesh(m, unwrapper)) return;
+
                     uparams.packMargin = padding/1024.0f;
-                    Unwrapping.GenerateSecondaryUVSet(m, uparams);
+                    Unwrap(m, uparams, unwrapper);
                 }
             }
             else
             {
                 // Get padding from GlobalStorage (old)
-                if (storage != null && storage.modifiedMeshPaddingMap.ContainsKey(nm))
+                if (storage != null && storage.modifiedMeshMap.TryGetValue(nm, out modifiedMeshID))
                 {
-                    var padding = storage.modifiedMeshPaddingMap[nm];
+                    var padding = storage.modifiedMeshPaddingArray[modifiedMeshID];
+
+                    ftGlobalStorage.Unwrapper unwrapper = ftGlobalStorage.Unwrapper.Default;
+                    if (storage.modifiedMeshUnwrapperArray != null && storage.modifiedMeshUnwrapperArray.Count > modifiedMeshID)
+                        unwrapper = (ftGlobalStorage.Unwrapper)storage.modifiedMeshUnwrapperArray[modifiedMeshID];
+
+                    if (!ValidateMesh(m, unwrapper)) return;
+
                     uparams.packMargin = padding/1024.0f;
-                    Unwrapping.GenerateSecondaryUVSet(m, uparams);
+                    Unwrap(m, uparams, unwrapper);
                 }
             }
 #else
-            if (storage != null && storage.modifiedMeshPaddingMap.ContainsKey(nm))
+            else if (storage != null && storage.modifiedMeshMap.TryGetValue(nm, out modifiedMeshID))
             {
-                var padding = storage.modifiedMeshPaddingMap[nm];
+                var padding = storage.modifiedMeshPaddingArray[modifiedMeshID];
+
+                ftGlobalStorage.Unwrapper unwrapper = ftGlobalStorage.Unwrapper.Default;
+                if (storage.modifiedMeshUnwrapperArray != null && storage.modifiedMeshUnwrapperArray.Count > modifiedMeshID)
+                    unwrapper = (ftGlobalStorage.Unwrapper)storage.modifiedMeshUnwrapperArray[modifiedMeshID];
+
+                if (!ValidateMesh(m, unwrapper)) return;
+
                 uparams.packMargin = padding/1024.0f;
-                Unwrapping.GenerateSecondaryUVSet(m, uparams);
+                Unwrap(m, uparams, unwrapper);
             }
 #endif
         }
 
         // Recurse
         foreach (Transform child in t)
-            AdjustUV(child);
+            AdjustUV(child, saved);
     }
 
     static bool RenderMeshes(Transform t, bool deep)
@@ -265,4 +380,25 @@ public class ftModelPostProcessor : AssetPostprocessor
 
         return true;
     }
+
+    void Unwrap(Mesh m, UnwrapParam uparams, ftGlobalStorage.Unwrapper unwrapper)
+    {
+        if (unwrapper == ftGlobalStorage.Unwrapper.xatlas)
+        {
+            UnwrapXatlas(m, uparams);
+        }
+        else
+        {
+            var tt = GetTime();
+            Unwrapping.GenerateSecondaryUVSet(m, uparams);
+            if (m.uv2 == null || m.uv2.Length == 0)
+            {
+                Debug.LogError("Unity failed to unwrap mesh. Options: a) Use 32-bit indices and Unity >= 2018.4. b) Split it into multiple chunks. c) Disable 'Adjust UV Padding'.");
+                unwrapError = true;
+                lastUnwrapErrorAsset = assetPath;
+            }
+            Debug.Log("Unity unwrap time: " + (GetTime() - tt));
+        }
+    }
 }
+

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ftClearMenu
 {
-    [MenuItem("Bakery/Clear baked data")]
+    [MenuItem("Bakery/Utilities/Clear baked data", false, 44)]
     private static void ClearBakedData()
     {
         if (EditorUtility.DisplayDialog("Bakery", "Clear all Bakery data for currently loaded scenes?", "OK", "Cancel"))

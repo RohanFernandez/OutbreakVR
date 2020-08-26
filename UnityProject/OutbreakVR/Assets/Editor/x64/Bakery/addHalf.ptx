@@ -92,7 +92,7 @@
 )
 {
 	.reg .b16 	%rs<13>;
-	.reg .f32 	%f<13>;
+	.reg .f32 	%f<16>;
 	.reg .b32 	%r<55>;
 	.reg .b64 	%rd<57>;
 
@@ -192,9 +192,12 @@
 	{  cvt.f32.f16 %f8, %rs8;}
 
 	// inline asm
-	add.f32 	%f9, %f2, %f6;
-	add.f32 	%f10, %f3, %f7;
-	add.f32 	%f11, %f4, %f8;
+	add.f32 	%f13, %f2, %f6;
+	add.f32 	%f14, %f3, %f7;
+	add.f32 	%f15, %f4, %f8;
+	mul.f32 	%f9, %f1, %f13;
+	mul.f32 	%f10, %f1, %f14;
+	mul.f32 	%f11, %f1, %f15;
 	min.f32 	%f12, %f1, %f5;
 	ld.global.v2.u32 	{%r51, %r52}, [pixelID];
 	cvt.u64.u32	%rd51, %r51;

@@ -21,6 +21,7 @@ Shader "Hidden/ftUVNormalMap"
             Texture2D bestFitNormalMap;
             //sampler2D _BumpMap;
             float4 _BumpMap_scaleOffset;
+            float _IsTerrain;
 
             struct v2f_meta2
             {
@@ -38,8 +39,17 @@ Shader "Hidden/ftUVNormalMap"
                 //  UnityMetaVertexPosition(v.vertex, v.uv1.xy, v.uv2.xy, unity_LightmapST, unity_DynamicLightmapST);
                 o.uv = v.uv0 * _BumpMap_scaleOffset.xy + _BumpMap_scaleOffset.zw;
                 o.normal = normalize(mul((float3x3)unity_ObjectToWorld, v.normal).xyz);
-                o.tangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz).xyz);
-                o.binormal = cross(o.normal, o.tangent) * v.tangent.w;
+
+                if (_IsTerrain == 0.0f)
+                {
+                    o.tangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz).xyz);
+                    o.binormal = cross(o.normal, o.tangent) * v.tangent.w;
+                }
+                else
+                {
+                    o.tangent = cross(o.normal, float3(0,0,1));
+                    o.binormal = cross(o.normal, o.tangent) * -1;
+                }
                 return o;
             }
 
@@ -63,8 +73,7 @@ Shader "Hidden/ftUVNormalMap"
             float4 frag_meta2 (v2f_meta2 i): SV_Target
             {
                 float3 normalMap = UnpackNormal(tex2D(_BumpMap, i.uv));
-                float3x3 TBN = float3x3(normalize(i.tangent), normalize(i.binormal), normalize(i.normal));
-                float3 normal = mul(normalMap, TBN);
+                float3 normal = normalize(i.tangent * normalMap.x + i.binormal * normalMap.y + i.normal * normalMap.z);
                 return float4(EncodeNormalBestFit(normal),1);
             }
 

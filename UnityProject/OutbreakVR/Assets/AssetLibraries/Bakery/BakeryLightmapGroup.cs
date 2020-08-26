@@ -7,14 +7,19 @@ using UnityEditor;
 public struct BakeryLightmapGroupPlain
 {
     public string name;
-    public int resolution, id, renderMode, renderDirMode;
+    public int resolution, id, renderMode, renderDirMode, atlasPacker;
     public bool vertexBake;
     public bool containsTerrains;
+    public bool probes;
     public bool isImplicit;
     public bool computeSSS;
     public int sssSamples;
     public float sssDensity;
     public float sssR, sssG, sssB;
+    public float fakeShadowBias;
+    public bool transparentSelfShadow;
+    public bool flipNormal;
+    public string parentName;
 };
 
 [CreateAssetMenu(menuName = "Bakery lightmap group")]
@@ -32,6 +37,8 @@ public class BakeryLightmapGroup : ScriptableObject
         FullLighting = 0,
         Indirect = 1,
         Shadowmask = 2,
+        Subtractive = 3,
+        AmbientOcclusionOnly = 4,
         Auto = 1000
     };
 
@@ -42,6 +49,14 @@ public class BakeryLightmapGroup : ScriptableObject
         DominantDirection = 2,
         RNM = 3,
         SH = 4,
+        ProbeSH = 5,
+        Auto = 1000
+    };
+
+    public enum AtlasPacker
+    {
+        Default = 0,
+        xatlas = 1,
         Auto = 1000
     };
 
@@ -53,6 +68,8 @@ public class BakeryLightmapGroup : ScriptableObject
 
     [SerializeField]
     public int id = -1;
+
+    public int sortingID = -1;
 
     [SerializeField]
     public bool isImplicit = false;
@@ -76,6 +93,9 @@ public class BakeryLightmapGroup : ScriptableObject
     public bool containsTerrains;
 
     [SerializeField]
+    public bool probes;
+
+    [SerializeField]
     public ftLMGroupMode mode = ftLMGroupMode.PackAtlas;
 
     [SerializeField]
@@ -83,6 +103,9 @@ public class BakeryLightmapGroup : ScriptableObject
 
     [SerializeField]
     public RenderDirMode renderDirMode = RenderDirMode.Auto;
+
+    [SerializeField]
+    public AtlasPacker atlasPacker = AtlasPacker.Auto;
 
     //[SerializeField]
     //public bool aoIsThickness = false;
@@ -99,6 +122,21 @@ public class BakeryLightmapGroup : ScriptableObject
     [SerializeField]
     public Color sssColor = Color.white;
 
+    [SerializeField]
+    public float fakeShadowBias = 0.0f;
+
+    [SerializeField]
+    public bool transparentSelfShadow = false;
+
+    [SerializeField]
+    public bool flipNormal = false;
+
+    [SerializeField]
+    public string parentName;
+
+    [SerializeField]
+    public string overridePath = "";
+
     public BakeryLightmapGroupPlain GetPlainStruct()
     {
         BakeryLightmapGroupPlain str;
@@ -109,6 +147,7 @@ public class BakeryLightmapGroup : ScriptableObject
         str.isImplicit = isImplicit;
         str.renderMode = (int)renderMode;
         str.renderDirMode = (int)renderDirMode;
+        str.atlasPacker = (int)atlasPacker;
         str.computeSSS = computeSSS;
         str.sssSamples = sssSamples;
         str.sssDensity = sssDensity;
@@ -116,6 +155,11 @@ public class BakeryLightmapGroup : ScriptableObject
         str.sssG = sssColor.g;
         str.sssB = sssColor.b;
         str.containsTerrains = containsTerrains;
+        str.probes = probes;
+        str.fakeShadowBias = fakeShadowBias;
+        str.transparentSelfShadow = transparentSelfShadow;
+        str.flipNormal = flipNormal;
+        str.parentName = parentName;
         return str;
     }
 }
