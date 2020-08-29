@@ -23,6 +23,11 @@ namespace ns_Mashmo
             base.onStateExit(a_strState);
         }
 
+        void OnEnable()
+        {
+            refreshObjectives();
+        }
+
         /// <summary>
         /// Resets the objectives in the panel as per the current level
         /// </summary>
