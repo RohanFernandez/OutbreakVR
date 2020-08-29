@@ -23,14 +23,14 @@
 	
 	<!-- Reach the balconey to exit the building -->
 	<ObjectiveGroup ID="Level1_103" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggeredOnTentEnter" SequenceOnComplete="Obj103_OnTentEntered" ObjDesc="" IsCompulsory="false"/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_104_LocationTriggered" ObjDesc="Search the area for weapons and keycode to get in the building."/>
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggeredOnTentEnter" SequenceOnComplete="Obj103_OnTentEntered" ObjDesc="" IsIncludedInListing="false" IsCompulsory="false"/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_104_LocationTriggered" ObjDesc="Search the area for weapons and a keycode to get in the building."/>
 	</ObjectiveGroup>
 	
 	<!-- Pass the Gas chambers to get out of the room -->
 	<ObjectiveGroup ID="Level1_104" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_1_LocationTriggered" ObjDesc="Avoid the gas and find the gas valves to stop the gas flow" SequenceOnComplete="Level1_104_OnTortureRoomReached"/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_105_LocationTriggered" ObjDesc="Utilise the power node to energize the gates."/>
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_1_LocationTriggered" ObjDesc="Avoid the gas and find the valves to stop the gas flow" SequenceOnComplete="Level1_104_OnTortureRoomReached"/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_105_LocationTriggered" ObjDesc="Utilize the power node to energize the gates."/>
 	</ObjectiveGroup>
 	
 	<!-- Go through the hole in the ground, kill the enemies -->
