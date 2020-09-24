@@ -23,6 +23,7 @@ namespace ns_Mashmo
             SCREEN_DAMAGE_INDICATOR =   6,
             TRAINING_TIPS           =   7,
             CINEMATIC_TEXT          =   8,
+            FPS_COUNTER             =   9,
         }
 
         /// <summary>
