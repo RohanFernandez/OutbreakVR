@@ -50,6 +50,12 @@ namespace ns_Mashmo
         private Color m_colorOutlineHighlighted;
 
         /// <summary>
+        /// Min distance from the player this mesh renderer will be active
+        /// </summary>
+        [SerializeField]
+        private float m_fMinDefaultViewableDistance = 5.0f;
+
+        /// <summary>
         /// Objective id to be triggered on item pickup
         /// </summary>
         [SerializeField]
@@ -72,12 +78,30 @@ namespace ns_Mashmo
 
         public virtual void Update()
         {
-            //m_goItemModel.transform.Rotate(m_goItemModel.transform.up, ROTATION_SPEED * Time.deltaTime);
-            if ((m_goItemTitle != null) && m_goItemTitle.activeSelf)
+            if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) < m_fMinDefaultViewableDistance)
             {
-                m_goItemTitle.transform.LookAt(ControllerManager.GetHeadsetAnchor().transform);
+                if ((m_goItemTitle != null))
+                {
+                    m_goItemTitle.SetActive(true);
+                    m_goItemTitle.transform.LookAt(ControllerManager.GetHeadsetAnchor().transform);
+                }
+                m_goItemModel.SetActive(true);
             }
+            else
+            {
+                if ((m_goItemTitle != null))
+                {
+                    m_goItemTitle.SetActive(false);
+                }
+                m_goItemModel.SetActive(false);
+            }
+
+
+            //m_goItemModel.transform.Rotate(m_goItemModel.transform.up, ROTATION_SPEED * Time.deltaTime);
+            
         }
+
+
 
         public virtual void onReturnedToPool()
         {
