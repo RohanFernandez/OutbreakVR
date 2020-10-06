@@ -14,6 +14,7 @@ namespace ns_Mashmo
         private const string ATTRIBUTE_TRIGGER_ID       = "ObjectiveTrigger";
         private const string ATTRIBUTE_PARENT_ID        = "ParentID";
         private const string ATTRIBUTE_IS_INTERACTIVE   = "IsInteractive";
+        private const string ATTRIBUTE_MIN_VIEWABLE_DISTANCE = "MinViewDistance";
 
         #region ITEM SPECIFIC
         private const string ATTRIBUTE_BULLET_COUNT = "BulletCount";
@@ -47,6 +48,7 @@ namespace ns_Mashmo
         private string m_strParentID = string.Empty;
         private string m_strObjectiveTriggerOnPickup = string.Empty;
         private bool m_bIsInteractive = true;
+        private float m_fMinViewDistance = 0.0f;
 
         public override void onInitialize()
         {
@@ -60,6 +62,8 @@ namespace ns_Mashmo
             m_strItemID = getString(ATTRIBUTE_ITEM_ID);
             m_strParentID = getString(ATTRIBUTE_PARENT_ID);
             m_bIsInteractive = getBool(ATTRIBUTE_IS_INTERACTIVE, true);
+
+            m_fMinViewDistance = getFloat(ATTRIBUTE_MIN_VIEWABLE_DISTANCE);
 
             m_strObjectiveTriggerOnPickup = getString(ATTRIBUTE_TRIGGER_ID);
 
@@ -105,6 +109,7 @@ namespace ns_Mashmo
                         }
 
                         l_Item.ObjectiveTriggerOnPickup = m_strObjectiveTriggerOnPickup;
+                        l_Item.MinViewableDistance = m_fMinViewDistance;
 
                         ITEM_CATEGORY l_ItemCategory = l_Item.getItemCategoryType();
                         int l_iBullets = getInt(ATTRIBUTE_BULLET_COUNT);

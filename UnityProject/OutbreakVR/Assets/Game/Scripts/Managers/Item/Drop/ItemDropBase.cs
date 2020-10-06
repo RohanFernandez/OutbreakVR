@@ -55,6 +55,18 @@ namespace ns_Mashmo
         [SerializeField]
         private float m_fMinDefaultViewableDistance = 5.0f;
 
+        [SerializeField]
+        private float m_fCurrentViewableDistance = 5.0f;
+
+        public float MinViewableDistance
+        {
+            get { return m_fCurrentViewableDistance; }
+            set
+            {
+                m_fCurrentViewableDistance = (value < 0.5f) ? m_fMinDefaultViewableDistance : value;
+            }
+        }
+
         /// <summary>
         /// Objective id to be triggered on item pickup
         /// </summary>
@@ -78,7 +90,7 @@ namespace ns_Mashmo
 
         public virtual void Update()
         {
-            if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) < m_fMinDefaultViewableDistance)
+            if (Vector3.Distance(PlayerManager.GetPosition(), transform.position) < MinViewableDistance)
             {
                 if ((m_goItemTitle != null))
                 {
