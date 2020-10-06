@@ -53,7 +53,7 @@ namespace ns_Mashmo
         /// Min distance from the player this mesh renderer will be active
         /// </summary>
         [SerializeField]
-        private float m_fMinDefaultViewableDistance = 5.0f;
+        private float m_fDefaultMinViewableDistance = 10.0f;
 
         [SerializeField]
         private float m_fCurrentViewableDistance = 5.0f;
@@ -63,7 +63,7 @@ namespace ns_Mashmo
             get { return m_fCurrentViewableDistance; }
             set
             {
-                m_fCurrentViewableDistance = (value < 0.5f) ? m_fMinDefaultViewableDistance : value;
+                m_fCurrentViewableDistance = (value < 0.5f) ? m_fDefaultMinViewableDistance : value;
             }
         }
 
