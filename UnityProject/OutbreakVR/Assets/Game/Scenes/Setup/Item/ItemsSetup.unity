@@ -213,9 +213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lstOutlineHighlighter:
   - {fileID: 1622054208}
-  - {fileID: 1007383306}
-  - {fileID: 999458797}
-  - {fileID: 2051760380}
 --- !u!1 &12442916
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &37130469
 Transform:
   m_ObjectHideFlags: 0
@@ -832,6 +829,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2220,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.010299999
@@ -2945,6 +2950,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3681,9 +3690,11 @@ MonoBehaviour:
   renderSettingsOverwriteWarning: 0
   renderSettingsAutoAtlas: 1
   renderSettingsUnwrapUVs: 1
+  renderSettingsForceDisableUnwrapUVs: 0
   renderSettingsMaxAutoResolution: 4096
   renderSettingsMinAutoResolution: 16
   renderSettingsUnloadScenes: 1
+  renderSettingsAdjustSamples: 1
   renderSettingsGILODMode: 0
   renderSettingsGILODModeEnabled: 1
   renderSettingsCheckOverlaps: 0
@@ -3700,6 +3711,7 @@ MonoBehaviour:
   renderSettingsShowTasks: 1
   renderSettingsShowTasks2: 0
   renderSettingsShowPaths: 1
+  renderSettingsShowNet: 1
   renderSettingsOcclusionProbes: 0
   renderSettingsTexelsPerMap: 0
   renderSettingsTexelsColor: 1
@@ -3712,8 +3724,25 @@ MonoBehaviour:
   renderSettingsPrefabWarning: 1
   renderSettingsSplitByScene: 0
   renderSettingsUVPaddingMax: 0
+  renderSettingsPostPacking: 1
+  renderSettingsHoleFilling: 0
   renderSettingsBeepOnFinish: 0
   renderSettingsExportTerrainAsHeightmap: 1
+  renderSettingsRTXMode: 0
+  renderSettingsLightProbeMode: 1
+  renderSettingsClientMode: 0
+  renderSettingsServerAddress: 127.0.0.1
+  renderSettingsUnwrapper: 0
+  renderSettingsExportTerrainTrees: 0
+  renderSettingsShowPerf: 1
+  renderSettingsSampleDiv: 1
+  renderSettingsLegacyDenoiser: 0
+  renderSettingsAtlasPacker: 1
+  renderSettingsBatchPoints: 1
+  renderSettingsRTPVExport: 1
+  renderSettingsRTPVSceneView: 0
+  renderSettingsRTPVWidth: 640
+  renderSettingsRTPVHeight: 360
   lastBakeTime: 0
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
@@ -3733,6 +3762,13 @@ MonoBehaviour:
   lmGroupLODResFlags: 
   lmGroupMinLOD: 
   lmGroupLODMatrix: 
+  serverGetFileList: []
+  lightmapHasColor: 
+  lightmapHasMask: 
+  lightmapHasDir: 
+  lightmapHasRNM: 
+  modifiedAssetPathList: []
+  modifiedAssets: []
   debugTex: {fileID: 0}
   debugRT: {fileID: 0}
   maps: []
@@ -4121,7 +4157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_Layer
@@ -4369,7 +4405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_Layer
@@ -5319,6 +5355,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51c154d7d03906640be80c45578f40a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7593,10 +7633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lstOutlineHighlighter:
   - {fileID: 1005097207}
-  - {fileID: 555766467}
-  - {fileID: 439652196}
-  - {fileID: 83202218}
-  - {fileID: 1305303999}
 --- !u!1 &1915512694
 GameObject:
   m_ObjectHideFlags: 0
@@ -8260,7 +8296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 87d55afcc26c10b42940c7fc48dddfbe, type: 3}
       propertyPath: m_Layer
