@@ -125,7 +125,7 @@ MonoBehaviour:
         m_strValue: CrashedHelicopter
     - m_strTaskID: 3
       m_strTaskType: TaskItem
-      m_iAttributeCount: 9
+      m_iAttributeCount: 10
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 3
@@ -142,9 +142,11 @@ MonoBehaviour:
       - m_strKey: StrengthPercentage
         m_strValue: 100
       - m_strKey: Position
-        m_strValue: -2.836,30.502,5.465
+        m_strValue: 1.059007,31.32,-0.2940578
       - m_strKey: Rotation
-        m_strValue: -16.653,205.82,0.0
+        m_strValue: -23.405,-188.245,0.753
+      - m_strKey: MinViewDistance
+        m_strValue: 15.0
     - m_strTaskID: 4
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -228,9 +230,9 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 10.458,31.673,2.146
+        m_strValue: 10.527,31.6814,7.923
       - m_strKey: Rotation
-        m_strValue: 0.0,-49.206,0.0
+        m_strValue: 0.0,-144.774,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_100_OnEnd
     m_iTaskCount: 0
@@ -351,7 +353,7 @@ MonoBehaviour:
         m_strValue: Lvl100DustParticles
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_102_OnBegin
-    m_iTaskCount: 18
+    m_iTaskCount: 15
     m_lstTasks:
     - m_strTaskID: 000
       m_strTaskType: TaskGameObject
@@ -522,26 +524,6 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: FN57Bullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: -0.5368,26.7962,18.7265
-      - m_strKey: Rotation
-        m_strValue: 0.0,78.053,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
         m_strValue: FN57Bullets_4
       - m_strKey: ItemType
         m_strValue: ITEM_SECONDARY_BULLETS
@@ -551,6 +533,24 @@ MonoBehaviour:
         m_strValue: -0.345,26.521,11.82
       - m_strKey: Rotation
         m_strValue: -7.225,-73.158,-2.18
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthSmall_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_SMALL
+      - m_strKey: Position
+        m_strValue: 10.10347,26.518,19.58526
+      - m_strKey: Rotation
+        m_strValue: 0.0,-41.76,0.0
     - m_strTaskID: 10
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
@@ -562,77 +562,21 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: FN57Bullets_5
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 10.198,26.133,19.914
-      - m_strKey: Rotation
-        m_strValue: 0.0,45.538,0.0
-    - m_strTaskID: 11
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 11
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_1
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 7.973,26.7413,18.826
-      - m_strKey: Rotation
-        m_strValue: 0.0,35.639,0.0
-    - m_strTaskID: 12
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 12
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 9.313,26.218,19.772
-      - m_strKey: Rotation
-        m_strValue: 0.0,15.124,0.0
-    - m_strTaskID: 13
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 13
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
         m_strValue: HELMET_1
       - m_strKey: ItemType
         m_strValue: ITEM_HELMET
       - m_strKey: StrengthPercentage
         m_strValue: 100
       - m_strKey: Position
-        m_strValue: 4.003,35.928,9.383
+        m_strValue: 3.694,35.928,7.175
       - m_strKey: Rotation
-        m_strValue: -12.613,-70.19,0.0
-    - m_strTaskID: 14
+        m_strValue: -12.613,-17.364,0.0
+    - m_strTaskID: 11
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 14
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskEnvironmentInteraction
       - m_strKey: Code
@@ -641,12 +585,12 @@ MonoBehaviour:
         m_strValue: false
       - m_strKey: GameObject_ID
         m_strValue: Level102_DoorLowerFloor
-    - m_strTaskID: 15
+    - m_strTaskID: 12
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 15
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
@@ -907,7 +851,7 @@ MonoBehaviour:
         m_strValue: Level102_TVVideoPlayer
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_103_OnBegin
-    m_iTaskCount: 21
+    m_iTaskCount: 14
     m_lstTasks:
     - m_strTaskID: 1
       m_strTaskType: TaskItem
@@ -946,9 +890,9 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 16.063,19.913,15.821
+        m_strValue: 16.951,19.913,13.561
       - m_strKey: Rotation
-        m_strValue: -68.273,-274.466,261.063
+        m_strValue: -82.055,60.861,-91.161
     - m_strTaskID: 3
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
@@ -964,9 +908,9 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_HEALTH_MEDIUM
       - m_strKey: Position
-        m_strValue: 15.528,19.611,17.164
+        m_strValue: 16.99,18.691,8.886
       - m_strKey: Rotation
-        m_strValue: 0.0,16.695,0.0
+        m_strValue: 0.0,-44.664,0.0
     - m_strTaskID: 4
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
@@ -982,7 +926,7 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 15.166,19.611,17.042
+        m_strValue: 16.557,19.611,14.494
       - m_strKey: Rotation
         m_strValue: 0.0,-33.069,0.0
     - m_strTaskID: 5
@@ -998,11 +942,11 @@ MonoBehaviour:
       - m_strKey: Enemy_ID
         m_strValue: Sentinel_1
       - m_strKey: EnemyType
-        m_strValue: SENTINEL
+        m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 17.66,18.53519,6.114
+        m_strValue: 26.878,18.53519,22.183
       - m_strKey: Rotation
-        m_strValue: 0.0,87.47301,0.0
+        m_strValue: 0.0,178.512,0.0
     - m_strTaskID: 6
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
@@ -1018,87 +962,15 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 26.878,18.53519,22.183
-      - m_strKey: Rotation
-        m_strValue: 0.0,178.512,0.0
-    - m_strTaskID: 7
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 7
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Sentinel_3
-      - m_strKey: EnemyType
-        m_strValue: SHOOTER
-      - m_strKey: Position
         m_strValue: 29.68,18.53519,8.33
       - m_strKey: Rotation
         m_strValue: 0.0,-42.094,0.0
-    - m_strTaskID: 8
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 8
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_1
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 15.522,19.48519,10.53
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_2
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 16.424,19.48519,14.078
-      - m_strKey: Rotation
-        m_strValue: 0.0,0,0,0.0
-    - m_strTaskID: 10
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 10
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_3
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 32.346,18.5331,23.748
-      - m_strKey: Rotation
-        m_strValue: 0.0,-90.311,0.0
-    - m_strTaskID: 12
+    - m_strTaskID: 7
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 12
+        m_strValue: 7
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1110,15 +982,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 16.954,20.492,25.151
+        m_strValue: 19.3891,21.5719,28.0011
       - m_strKey: Rotation
-        m_strValue: 0.0,-35.088,0.0
-    - m_strTaskID: 13
+        m_strValue: 0.0,-141.944,0.0
+    - m_strTaskID: 8
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 13
+        m_strValue: 8
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1130,15 +1002,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 16.751,20.492,24.861
+        m_strValue: 26.118,19.286,23.714
       - m_strKey: Rotation
-        m_strValue: 0.0,8.037001,0.0
-    - m_strTaskID: 14
+        m_strValue: 0.0,-96.61101,0.0
+    - m_strTaskID: 9
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 14
+        m_strValue: 9
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1150,55 +1022,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 31.0935,22.1682,30.3183
+        m_strValue: 19.3891,19.9062,9.1404
       - m_strKey: Rotation
-        m_strValue: 0.0,-44.083,0.0
-    - m_strTaskID: 15
+        m_strValue: 0.0,-53.874,0.0
+    - m_strTaskID: 10
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 15
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 15.953,19.517,15.634
-      - m_strKey: Rotation
-        m_strValue: 0.0,44.69,0.0
-    - m_strTaskID: 16
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 16
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_5
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 17.219,18.623,9.053
-      - m_strKey: Rotation
-        m_strValue: 0.0,-119.756,0.0
-    - m_strTaskID: 17
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 17
+        m_strValue: 10
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1213,12 +1045,12 @@ MonoBehaviour:
         m_strValue: 15.891,19.5451,15.242
       - m_strKey: Rotation
         m_strValue: 0.0,53.593,0.0
-    - m_strTaskID: 18
+    - m_strTaskID: 11
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 18
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1233,32 +1065,12 @@ MonoBehaviour:
         m_strValue: 17.37,18.6426,9.088
       - m_strKey: Rotation
         m_strValue: 0.0,-83.50401,0.0
-    - m_strTaskID: 19
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 19
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: AssaultBullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 30
-      - m_strKey: Position
-        m_strValue: 16.727,18.64,8.681
-      - m_strKey: Rotation
-        m_strValue: 0.0,-156.239,0.0
-    - m_strTaskID: 20
+    - m_strTaskID: 12
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 20
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskEnvironmentInteraction
       - m_strKey: Code
@@ -1373,7 +1185,7 @@ MonoBehaviour:
         m_strValue: Level103_MissileStrikeTask
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_104_OnBegin
-    m_iTaskCount: 27
+    m_iTaskCount: 25
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnvironmentInteraction
@@ -1600,13 +1412,13 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthMedium
+        m_strValue: HealthSmall
       - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_MEDIUM
+        m_strValue: ITEM_HEALTH_SMALL
       - m_strKey: Position
-        m_strValue: 22.632,16.697,12.65
+        m_strValue: 32.596,15.462,27.139
       - m_strKey: Rotation
-        m_strValue: 0.0,110,0.0
+        m_strValue: 0.0,-35.211,0.0
     - m_strTaskID: 15
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
@@ -1618,9 +1430,9 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthSmall
+        m_strValue: HealthLarge
       - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
+        m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
         m_strValue: 26.78975,15.47975,30.55541
       - m_strKey: Rotation
@@ -1703,32 +1515,12 @@ MonoBehaviour:
         m_strValue: 22.35,16.6121,11.918
       - m_strKey: Rotation
         m_strValue: 0.0,14.305,0.0
-    - m_strTaskID: 20
+    - m_strTaskID: 19
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 20
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 32.168,16.288,30.469
-      - m_strKey: Rotation
-        m_strValue: 0.0,-51.635,0.0
-    - m_strTaskID: 21
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 21
+        m_strValue: 19
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1743,12 +1535,12 @@ MonoBehaviour:
         m_strValue: 27.49279,16.19515,25.38141
       - m_strKey: Rotation
         m_strValue: 0.0,-71.83601,0.0
-    - m_strTaskID: 22
+    - m_strTaskID: 20
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 22
+        m_strValue: 20
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -1763,12 +1555,12 @@ MonoBehaviour:
         m_strValue: 28.34975,16.19775,25.30381
       - m_strKey: Rotation
         m_strValue: 0.0,62.597,0.0
-    - m_strTaskID: 23
+    - m_strTaskID: 21
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 23
+        m_strValue: 21
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -1781,12 +1573,12 @@ MonoBehaviour:
         m_strValue: 26.343,15.34076,25.998
       - m_strKey: Rotation
         m_strValue: 0.0,47.054,0.0
-    - m_strTaskID: 24
+    - m_strTaskID: 22
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 24
+        m_strValue: 22
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -1796,39 +1588,21 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: ZOMBIE
       - m_strKey: Position
-        m_strValue: 20.252,15.34076,28.986
+        m_strValue: 19.974,15.34076,25.44
       - m_strKey: Rotation
-        m_strValue: 0.0,133.351,0.0
-    - m_strTaskID: 25
+        m_strValue: 0.0,45.814,0.0
+    - m_strTaskID: 23
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 25
+        m_strValue: 23
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Enemy_ID
         m_strValue: Zombie_3
-      - m_strKey: EnemyType
-        m_strValue: ZOMBIE
-      - m_strKey: Position
-        m_strValue: 19.974,15.34076,25.44
-      - m_strKey: Rotation
-        m_strValue: 0.0,45.814,0.0
-    - m_strTaskID: 26
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 26
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie_4
       - m_strKey: EnemyType
         m_strValue: ZOMBIE
       - m_strKey: Position
@@ -2177,7 +1951,7 @@ MonoBehaviour:
         m_strValue: Level104_GasAudSrc2
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_105_OnBegin
-    m_iTaskCount: 32
+    m_iTaskCount: 21
     m_lstTasks:
     - m_strTaskID: 0
       m_strTaskType: TaskEnemy
@@ -2321,7 +2095,7 @@ MonoBehaviour:
         m_strValue: -11.286,249.344,0.0
     - m_strTaskID: 8
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 8
@@ -2330,39 +2104,19 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HELMET_2
+        m_strValue: HealthSmall_1
       - m_strKey: ItemType
-        m_strValue: ITEM_HELMET
-      - m_strKey: StrengthPercentage
-        m_strValue: 100
+        m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 30.783,12.292,5.214
+        m_strValue: 26.435,13.1546,0.7460003
       - m_strKey: Rotation
-        m_strValue: -11.286,295.444,0.0
+        m_strValue: 0.0,54.087,0.0
     - m_strTaskID: 9
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_1
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 26.435,13.1546,0.7460003
-      - m_strKey: Rotation
-        m_strValue: 0.0,54.087,0.0
-    - m_strTaskID: 10
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 10
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2375,12 +2129,12 @@ MonoBehaviour:
         m_strValue: 23.9099,15.4651,7.967
       - m_strKey: Rotation
         m_strValue: 0.0,92.523,0.0
-    - m_strTaskID: 11
+    - m_strTaskID: 10
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 11
+        m_strValue: 10
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2393,84 +2147,12 @@ MonoBehaviour:
         m_strValue: 31.7799,15.4651,-1.204
       - m_strKey: Rotation
         m_strValue: 0.0,42.517,0.0
-    - m_strTaskID: 12
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 12
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_1
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 19.8079,15.3341,1.029999
-      - m_strKey: Rotation
-        m_strValue: 0.0,-28.33,0.0
-    - m_strTaskID: 13
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 13
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_2
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: -3.754999,15.3341,-0.2010006
-      - m_strKey: Rotation
-        m_strValue: 0.0,-166.212,0.0
-    - m_strTaskID: 14
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 14
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_3
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 18.0789,15.3341,-0.1010002
-      - m_strKey: Rotation
-        m_strValue: 0.0,31.508,0.0
-    - m_strTaskID: 15
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 15
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_4
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 30.0199,15.3341,-1.193
-      - m_strKey: Rotation
-        m_strValue: 0.0,-35.148,0.0
-    - m_strTaskID: 16
+    - m_strTaskID: 11
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 16
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2485,12 +2167,12 @@ MonoBehaviour:
         m_strValue: 30.7179,15.6914,-0.7740006
       - m_strKey: Rotation
         m_strValue: 0.0,-115.736,0.0
-    - m_strTaskID: 17
+    - m_strTaskID: 12
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 17
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2505,12 +2187,12 @@ MonoBehaviour:
         m_strValue: 30.9518,15.6914,-0.7431006
       - m_strKey: Rotation
         m_strValue: 0.0,-70.123,0.0
-    - m_strTaskID: 18
+    - m_strTaskID: 13
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 18
+        m_strValue: 13
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2522,15 +2204,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 31.168,15.691,-0.841
+        m_strValue: 17.656,13.0595,-4.240999
       - m_strKey: Rotation
-        m_strValue: 0.0,-58.404,0.0
-    - m_strTaskID: 19
+        m_strValue: 0.0,129.324,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 14
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 19
+        m_strValue: 14
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2542,55 +2226,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 30.4749,-16.1165,-4.301001
-      - m_strKey: Rotation
-        m_strValue: 11.553,28.725,6.276
-    - m_strTaskID: 20
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 20
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: AssaultBullets_5
-      - m_strKey: ItemType
-        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 30
-      - m_strKey: Position
-        m_strValue: 17.656,13.0595,-4.240999
-      - m_strKey: Rotation
-        m_strValue: 0.0,129.324,0.0
-    - m_strTaskID: 21
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 21
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: AssaultBullets_6
-      - m_strKey: ItemType
-        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 30
-      - m_strKey: Position
         m_strValue: 17.588,13.0595,-3.896999
       - m_strKey: Rotation
         m_strValue: 0.0,178.716,0.0
-    - m_strTaskID: 22
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 15
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 22
+        m_strValue: 15
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2605,72 +2251,12 @@ MonoBehaviour:
         m_strValue: 32.2034,16.1197,-2.6317
       - m_strKey: Rotation
         m_strValue: 0.0,-151.856,0.0
-    - m_strTaskID: 23
+    - m_strTaskID: 16
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 23
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 31.28494,16.10805,-0.4415121
-      - m_strKey: Rotation
-        m_strValue: 2.757,106.353,-6.078
-    - m_strTaskID: 24
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 24
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 23.1227,12.9408,2.685801
-      - m_strKey: Rotation
-        m_strValue: 0.0,-84.11301,0.0
-    - m_strTaskID: 25
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 25
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 20.801,13.7369,-0.395999
-      - m_strKey: Rotation
-        m_strValue: 0.0,-179.901,0.0
-    - m_strTaskID: 26
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 26
+        m_strValue: 16
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -2685,12 +2271,12 @@ MonoBehaviour:
         m_strValue: 30.93826,15.67285,-1.115588
       - m_strKey: Rotation
         m_strValue: -0.627,-90.16801,-74.999
-    - m_strTaskID: 27
+    - m_strTaskID: 17
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 27
+        m_strValue: 17
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -2703,12 +2289,12 @@ MonoBehaviour:
         m_strValue: 30.8919,15.3351,-2.104001
       - m_strKey: Rotation
         m_strValue: 0.0,211.047,0.0
-    - m_strTaskID: 28
+    - m_strTaskID: 18
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 28
+        m_strValue: 18
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -2721,30 +2307,12 @@ MonoBehaviour:
         m_strValue: 25.7949,15.3351,-3.433001
       - m_strKey: Rotation
         m_strValue: 0.0,271.49,0.0
-    - m_strTaskID: 29
+    - m_strTaskID: 19
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 29
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Sentinel_3
-      - m_strKey: EnemyType
-        m_strValue: SENTINEL
-      - m_strKey: Position
-        m_strValue: 25.12824,12.12105,-3.053412
-      - m_strKey: Rotation
-        m_strValue: 0.0,271.49,0.0
-    - m_strTaskID: 30
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 30
+        m_strValue: 19
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -2757,12 +2325,12 @@ MonoBehaviour:
         m_strValue: 18.14,12.13,3.028001
       - m_strKey: Rotation
         m_strValue: 0.0,-180,0.0
-    - m_strTaskID: 31
+    - m_strTaskID: 20
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 31
+        m_strValue: 20
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -2853,7 +2421,7 @@ MonoBehaviour:
     m_lstTasks: []
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_106_OnBegin
-    m_iTaskCount: 31
+    m_iTaskCount: 22
     m_lstTasks:
     - m_strTaskID: 00
       m_strTaskType: TaskEnvironmentInteraction
@@ -2981,7 +2549,7 @@ MonoBehaviour:
         m_strValue: Level106_C4BlastParticles
     - m_strTaskID: 7
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 7
@@ -2996,12 +2564,14 @@ MonoBehaviour:
       - m_strKey: StrengthPercentage
         m_strValue: 100
       - m_strKey: Position
-        m_strValue: 23.631,12.9718,8.024001
+        m_strValue: 22.577,13.158,6.659
       - m_strKey: Rotation
-        m_strValue: -19.136,-134.564,0.0
+        m_strValue: -19.136,-75.55601,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
     - m_strTaskID: 8
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 8
@@ -3016,12 +2586,14 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 18.614,13.088,10.533
+        m_strValue: 22.525,13.066,6.383
       - m_strKey: Rotation
-        m_strValue: -7.471,-89.623,-62.898
+        m_strValue: 0.063,44.402,-89.109
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
     - m_strTaskID: 9
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 9
@@ -3030,37 +2602,21 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthSmall_1
+        m_strValue: Healthlarge
       - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
+        m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 24.565,13.6478,7.163001
+        m_strValue: 22.365,13.182,5.85
       - m_strKey: Rotation
-        m_strValue: 0.0,49.196,0.0
+        m_strValue: 0.0,60.046,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
     - m_strTaskID: 10
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 10
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 24.633,13.2468,6.562001
-      - m_strKey: Rotation
-        m_strValue: 0.0,94.68401,0.0
-    - m_strTaskID: 11
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -3073,12 +2629,14 @@ MonoBehaviour:
         m_strValue: 27.8588,13.1179,25.0304
       - m_strKey: Rotation
         m_strValue: 0.0,-36.347,0.0
-    - m_strTaskID: 12
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 11
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 12
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -3090,55 +2648,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 23.797,13.4518,8.713001
+        m_strValue: 23.797,13.4518,8.754
       - m_strKey: Rotation
         m_strValue: 0.0,-90.256,0.0
-    - m_strTaskID: 13
+    - m_strTaskID: 12
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 13
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 29.6776,13.0518,25.6875
-      - m_strKey: Rotation
-        m_strValue: 0.0,9.055,0.0
-    - m_strTaskID: 14
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 14
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 29.941,13.0518,25.66
-      - m_strKey: Rotation
-        m_strValue: 0.0,-35.007,0.0
-    - m_strTaskID: 15
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 15
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -3150,15 +2668,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 24.6465,13.1819,6.9078
+        m_strValue: 22.655,13.114,5.961
       - m_strKey: Rotation
-        m_strValue: 0.0,4.077,0.0
-    - m_strTaskID: 16
+        m_strValue: 0.0,35.195,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 13
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 16
+        m_strValue: 13
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -3170,87 +2690,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 24.6143,13.1819,7.142801
+        m_strValue: 22.663,13.114,6.166
       - m_strKey: Rotation
         m_strValue: 0.0,-15.624,0.0
-    - m_strTaskID: 17
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 14
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 17
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_1
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 20.732,12.13,25.682
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 18
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 18
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_2
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 28.398,12.13,26.18
-      - m_strKey: Rotation
-        m_strValue: 0.0,6.77,0.0
-    - m_strTaskID: 19
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 19
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_3
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 27.13,12.13,26.156
-      - m_strKey: Rotation
-        m_strValue: 0.0,-7.971,0.0
-    - m_strTaskID: 20
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 20
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_4
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 19.564,12.13,28.144
-      - m_strKey: Rotation
-        m_strValue: 0.0,0.0,0.0
-    - m_strTaskID: 21
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 21
+        m_strValue: 14
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -3263,66 +2713,12 @@ MonoBehaviour:
         m_strValue: 23.987,12.13,9.800001
       - m_strKey: Rotation
         m_strValue: 0.0,-93.41701,0.0
-    - m_strTaskID: 22
+    - m_strTaskID: 15
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 22
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Sentinel_1
-      - m_strKey: EnemyType
-        m_strValue: SENTINEL
-      - m_strKey: Position
-        m_strValue: 22.976,12.13,28.386
-      - m_strKey: Rotation
-        m_strValue: 0.0,126.101,0.0
-    - m_strTaskID: 23
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 23
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Sentinel_2
-      - m_strKey: EnemyType
-        m_strValue: SENTINEL
-      - m_strKey: Position
-        m_strValue: 28.33515,12.13,27.35375
-      - m_strKey: Rotation
-        m_strValue: 0.0,-46.894,0.0
-    - m_strTaskID: 24
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 24
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Sentinel_3
-      - m_strKey: EnemyType
-        m_strValue: SENTINEL
-      - m_strKey: Position
-        m_strValue: 31.63024,12.13,29.15759
-      - m_strKey: Rotation
-        m_strValue: 0.0,-134.265,0.0
-    - m_strTaskID: 25
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 25
+        m_strValue: 15
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -3332,15 +2728,15 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 18.062,12.13,12.631
+        m_strValue: 22.976,12.13,28.386
       - m_strKey: Rotation
-        m_strValue: 0.0,-98.772,0.0
-    - m_strTaskID: 26
+        m_strValue: 0.0,126.101,0.0
+    - m_strTaskID: 16
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 26
+        m_strValue: 16
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -3350,15 +2746,15 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
-        m_strValue: 28.415,12.13,23.359
+        m_strValue: 18.062,12.13,12.631
       - m_strKey: Rotation
-        m_strValue: 0.0,-143.631,0.0
-    - m_strTaskID: 27
+        m_strValue: 0.0,-98.772,0.0
+    - m_strTaskID: 17
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 27
+        m_strValue: 17
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -3368,15 +2764,33 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: SHOOTER
       - m_strKey: Position
+        m_strValue: 28.415,12.13,23.359
+      - m_strKey: Rotation
+        m_strValue: 0.0,-143.631,0.0
+    - m_strTaskID: 18
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 18
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_4
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
         m_strValue: 28.353,12.13,11.971
       - m_strKey: Rotation
         m_strValue: 0.0,-1.321,0.0
-    - m_strTaskID: 28
+    - m_strTaskID: 19
       m_strTaskType: TaskEnvironmentInteraction
       m_iAttributeCount: 5
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 28
+        m_strValue: 19
       - m_strKey: TaskType
         m_strValue: TaskEnvironmentInteraction
       - m_strKey: Code
@@ -3385,12 +2799,12 @@ MonoBehaviour:
         m_strValue: true
       - m_strKey: GameObject_ID
         m_strValue: Level106_InteractiveDoorC4
-    - m_strTaskID: 29
+    - m_strTaskID: 20
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 29
+        m_strValue: 20
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
@@ -3739,7 +3153,7 @@ MonoBehaviour:
         m_strValue: Level106_C4Location
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnBegin
-    m_iTaskCount: 29
+    m_iTaskCount: 15
     m_lstTasks:
     - m_strTaskID: 00
       m_strTaskType: TaskEnvironmentInteraction
@@ -3769,7 +3183,7 @@ MonoBehaviour:
         m_strValue: Level1_107_StealthTurrets
     - m_strTaskID: 1
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 1
@@ -3787,26 +3201,8 @@ MonoBehaviour:
         m_strValue: 43.968,12.06216,5.779
       - m_strKey: Rotation
         m_strValue: -5.001,-143.369,2.251
-    - m_strTaskID: 2
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 2
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HELMET_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_HELMET
-      - m_strKey: StrengthPercentage
-        m_strValue: 100
-      - m_strKey: Position
-        m_strValue: 87.651,12.42716,11.138
-      - m_strKey: Rotation
-        m_strValue: -13.834,-129.633,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
     - m_strTaskID: 3
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
@@ -3818,7 +3214,7 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HELMET_3
+        m_strValue: HELMET_2
       - m_strKey: ItemType
         m_strValue: ITEM_HELMET
       - m_strKey: StrengthPercentage
@@ -3889,7 +3285,7 @@ MonoBehaviour:
         m_strValue: -1.406,39.814,90.012
     - m_strTaskID: 7
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 7
@@ -3898,13 +3294,15 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthSmall_1
+        m_strValue: HealthLarge
       - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
+        m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 45.82199,12.19116,5.534
+        m_strValue: 44.278,12.029,5.622
       - m_strKey: Rotation
-        m_strValue: 0.0,-40.615,0.0
+        m_strValue: 0.0,-64.339,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
     - m_strTaskID: 8
       m_strTaskType: TaskItem
       m_iAttributeCount: 7
@@ -3916,91 +3314,19 @@ MonoBehaviour:
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthSmall_2
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 67.99269,12.42416,8.166904
-      - m_strKey: Rotation
-        m_strValue: 0.0,91.39001,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 81.9471,13.42816,13.57175
-      - m_strKey: Rotation
-        m_strValue: 0.0,-43.898,0.0
-    - m_strTaskID: 10
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 10
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 85.59099,12.97816,11.896
-      - m_strKey: Rotation
-        m_strValue: 0.0,-21.138,0.0
-    - m_strTaskID: 11
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 11
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
         m_strValue: HealthMedium
       - m_strKey: ItemType
         m_strValue: ITEM_HEALTH_MEDIUM
       - m_strKey: Position
-        m_strValue: 33.29399,12.26216,14.405
+        m_strValue: 81.9471,13.42816,13.57175
       - m_strKey: Rotation
-        m_strValue: 0.0,-33.834,0.0
-    - m_strTaskID: 12
+        m_strValue: 0.0,-43.898,0.0
+    - m_strTaskID: 9
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 12
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthLarge
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_LARGE
-      - m_strKey: Position
-        m_strValue: 86.871,12.41516,10.904
-      - m_strKey: Rotation
-        m_strValue: 0.0,54.099,0.0
-    - m_strTaskID: 13
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 13
+        m_strValue: 9
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4015,12 +3341,14 @@ MonoBehaviour:
         m_strValue: 45.276,11.05546,4.966001
       - m_strKey: Rotation
         m_strValue: 0.0,-22.188,0.0
-    - m_strTaskID: 14
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 10
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 14
+        m_strValue: 10
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4035,52 +3363,12 @@ MonoBehaviour:
         m_strValue: 44.91,11.05546,4.444001
       - m_strKey: Rotation
         m_strValue: 0.0,61.915,0.0
-    - m_strTaskID: 15
+    - m_strTaskID: 11
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 15
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 87.41339,12.33187,9.696602
-      - m_strKey: Rotation
-        m_strValue: 0.0,45.649,0.0
-    - m_strTaskID: 16
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 16
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 87.215,12.33187,9.586
-      - m_strKey: Rotation
-        m_strValue: 0.0,85.916,0.0
-    - m_strTaskID: 17
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 17
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4095,12 +3383,14 @@ MonoBehaviour:
         m_strValue: 45.16164,11.07256,4.635342
       - m_strKey: Rotation
         m_strValue: 0.0,36.965,0.0
-    - m_strTaskID: 18
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 12
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 18
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4112,15 +3402,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 52.0014,13.13016,5.5922
+        m_strValue: 52.969,13.23,6.093
       - m_strKey: Rotation
         m_strValue: 0.0,31.55,0.0
-    - m_strTaskID: 19
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 13
       m_strTaskType: TaskItem
       m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 19
+        m_strValue: 13
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4132,127 +3424,15 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 30
       - m_strKey: Position
-        m_strValue: 87.8,12.34926,9.883001
-      - m_strKey: Rotation
-        m_strValue: 0.0,14.149,0.0
-    - m_strTaskID: 20
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 20
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: AssaultBullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 30
-      - m_strKey: Position
-        m_strValue: 88.101,12.34926,10.969
-      - m_strKey: Rotation
-        m_strValue: 0.0,-27.522,0.0
-    - m_strTaskID: 21
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 21
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: AssaultBullets_5
-      - m_strKey: ItemType
-        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 30
-      - m_strKey: Position
         m_strValue: 87.375,13.24396,14.635
       - m_strKey: Rotation
         m_strValue: 0.0,-70.241,0.0
-    - m_strTaskID: 22
+    - m_strTaskID: 14
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 22
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_1
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 92.17799,12.291,10.953
-      - m_strKey: Rotation
-        m_strValue: 0.0,84.304,0.0
-    - m_strTaskID: 23
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 23
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_2
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 81.396,12.291,10.264
-      - m_strKey: Rotation
-        m_strValue: 0.0,-95.69601,0.0
-    - m_strTaskID: 24
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 24
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_3
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 65.222,12.291,8.505001
-      - m_strKey: Rotation
-        m_strValue: 0.0,-186.261,0.0
-    - m_strTaskID: 25
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 25
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_4
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 55.978,12.291,6.04
-      - m_strKey: Rotation
-        m_strValue: 0.0,-273.409,0.0
-    - m_strTaskID: 26
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 26
+        m_strValue: 14
       - m_strKey: TaskType
         m_strValue: TaskEnemy
       - m_strKey: Code
@@ -4265,24 +3445,6 @@ MonoBehaviour:
         m_strValue: 91.78,12.29126,13.888
       - m_strKey: Rotation
         m_strValue: 0.0,-104.016,0.0
-    - m_strTaskID: 27
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 27
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: Zombie_2
-      - m_strKey: EnemyType
-        m_strValue: ZOMBIE
-      - m_strKey: Position
-        m_strValue: 85.784,12.29126,13.078
-      - m_strKey: Rotation
-        m_strValue: 0.0,-129.622,0.0
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_107_OnEnd
     m_iTaskCount: 1
@@ -4365,7 +3527,7 @@ MonoBehaviour:
         m_strValue: 108CrateBlockers
   - m_strSequenceType: SimpleSequence
     m_strSequenceID: Level1_109_OnBegin
-    m_iTaskCount: 40
+    m_iTaskCount: 34
     m_lstTasks:
     - m_strTaskID: 000
       m_strTaskType: TaskGameObject
@@ -4530,9 +3692,9 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: PROXIMITY_BOMB
       - m_strKey: Position
-        m_strValue: 137.881,10.70275,29.577
+        m_strValue: 140.102,10.70275,14.93
       - m_strKey: Rotation
-        m_strValue: 0.0,85.867,0.0
+        m_strValue: 0.0,-4.881,0.0
     - m_strTaskID: 8
       m_strTaskType: TaskEnemy
       m_iAttributeCount: 7
@@ -4548,69 +3710,15 @@ MonoBehaviour:
       - m_strKey: EnemyType
         m_strValue: PROXIMITY_BOMB
       - m_strKey: Position
-        m_strValue: 136.613,10.70275,32.667
-      - m_strKey: Rotation
-        m_strValue: 0.0,-9.319,0.0
-    - m_strTaskID: 9
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 9
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_3
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 134.757,11.686,39.203
-      - m_strKey: Rotation
-        m_strValue: 0.789,83.233,6.62
-    - m_strTaskID: 10
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 10
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_4
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
-        m_strValue: 140.102,10.70275,14.93
-      - m_strKey: Rotation
-        m_strValue: 0.0,-4.881,0.0
-    - m_strTaskID: 11
-      m_strTaskType: TaskEnemy
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 11
-      - m_strKey: TaskType
-        m_strValue: TaskEnemy
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Enemy_ID
-        m_strValue: ProximityBomb_5
-      - m_strKey: EnemyType
-        m_strValue: PROXIMITY_BOMB
-      - m_strKey: Position
         m_strValue: 138.676,10.70275,14.822
       - m_strKey: Rotation
         m_strValue: 0.0,-4.881,0.0
-    - m_strTaskID: 12
+    - m_strTaskID: 9
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 12
+        m_strValue: 9
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4625,30 +3733,14 @@ MonoBehaviour:
         m_strValue: 131.3979,11.133,32.81284
       - m_strKey: Rotation
         m_strValue: -14.687,-116.388,0.0
-    - m_strTaskID: 13
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 10
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 13
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: HealthSmall_1
-      - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
-      - m_strKey: Position
-        m_strValue: 137.201,11.2359,22.2775
-      - m_strKey: Rotation
-        m_strValue: 0.0,-55.175,0.0
-    - m_strTaskID: 14
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 7
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 14
+        m_strValue: 10
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4658,33 +3750,37 @@ MonoBehaviour:
       - m_strKey: ItemType
         m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 139.198,11.4172,29.633
+        m_strValue: 137.201,11.2359,22.2775
       - m_strKey: Rotation
-        m_strValue: 0.0,-104.965,0.0
-    - m_strTaskID: 15
+        m_strValue: 0.0,-55.175,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 11
       m_strTaskType: TaskItem
-      m_iAttributeCount: 7
+      m_iAttributeCount: 8
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 15
+        m_strValue: 11
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
-        m_strValue: HealthSmall_2
+        m_strValue: HealthLarge_2
       - m_strKey: ItemType
-        m_strValue: ITEM_HEALTH_SMALL
+        m_strValue: ITEM_HEALTH_LARGE
       - m_strKey: Position
-        m_strValue: 132.0136,11.7043,32.1654
+        m_strValue: 139.198,11.4172,29.633
       - m_strKey: Rotation
-        m_strValue: 0.0,-73.64001,0.0
-    - m_strTaskID: 16
+        m_strValue: 0.0,-104.965,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 12
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 16
+        m_strValue: 12
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4699,12 +3795,14 @@ MonoBehaviour:
         m_strValue: 136.768,11.1482,22.33712
       - m_strKey: Rotation
         m_strValue: 0.0,-115.689,0.0
-    - m_strTaskID: 17
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 13
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 17
+        m_strValue: 13
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4716,55 +3814,17 @@ MonoBehaviour:
       - m_strKey: BulletCount
         m_strValue: 17
       - m_strKey: Position
-        m_strValue: 136.568,11.1482,22.293
-      - m_strKey: Rotation
-        m_strValue: 0.0,-48.896,0.0
-    - m_strTaskID: 18
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 18
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_3
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
-        m_strValue: 137.005,11.1482,22.421
-      - m_strKey: Rotation
-        m_strValue: 0.0,-163.807,0.0
-    - m_strTaskID: 19
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 19
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: FN57Bullets_4
-      - m_strKey: ItemType
-        m_strValue: ITEM_SECONDARY_BULLETS
-      - m_strKey: BulletCount
-        m_strValue: 17
-      - m_strKey: Position
         m_strValue: 131.4157,11.708,38.4951
       - m_strKey: Rotation
         m_strValue: 0.0,-209.95,0.0
-    - m_strTaskID: 20
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 14
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 20
+        m_strValue: 14
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4779,12 +3839,14 @@ MonoBehaviour:
         m_strValue: 136.285,11.1687,22.47
       - m_strKey: Rotation
         m_strValue: 0.0,45.495,0.0
-    - m_strTaskID: 21
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 15
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 21
+        m_strValue: 15
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
@@ -4799,38 +3861,42 @@ MonoBehaviour:
         m_strValue: 136.03,11.1687,22.351
       - m_strKey: Rotation
         m_strValue: 0.0,113.804,0.0
-    - m_strTaskID: 22
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 16
       m_strTaskType: TaskItem
-      m_iAttributeCount: 8
+      m_iAttributeCount: 9
       m_lstTaskAttributes:
       - m_strKey: ID
-        m_strValue: 22
+        m_strValue: 16
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_3
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 131.4716.11.37.755
+      - m_strKey: Rotation
+        m_strValue: 0.0,28.887,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 17
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 17
       - m_strKey: TaskType
         m_strValue: TaskItem
       - m_strKey: Code
         m_strValue: Activate
       - m_strKey: Item_ID
         m_strValue: Assault_1
-      - m_strKey: ItemType
-        m_strValue: ITEM_STINGRAY
-      - m_strKey: BulletCount
-        m_strValue: 8
-      - m_strKey: Position
-        m_strValue: 82.00499,12.80616,12.852
-      - m_strKey: Rotation
-        m_strValue: -1.406,39.814,90.012
-    - m_strTaskID: 23
-      m_strTaskType: TaskItem
-      m_iAttributeCount: 8
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 23
-      - m_strKey: TaskType
-        m_strValue: TaskItem
-      - m_strKey: Code
-        m_strValue: Activate
-      - m_strKey: Item_ID
-        m_strValue: Assault_2
       - m_strKey: ItemType
         m_strValue: ITEM_THOMPSON
       - m_strKey: BulletCount
@@ -4839,6 +3905,82 @@ MonoBehaviour:
         m_strValue: 136.391,11.18,23.866
       - m_strKey: Rotation
         m_strValue: -79.082,-55.219,-47.495
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 18
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 18
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_GreenLightTank1
+    - m_strTaskID: 19
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 19
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_GreenLightTank2
+    - m_strTaskID: 20
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 20
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level110_PostDoubleDoors
+    - m_strTaskID: 21
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 21
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level110_PreDoubleDoors
+    - m_strTaskID: 22
+      m_strTaskType: TaskAnimation
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 22
+      - m_strKey: TaskType
+        m_strValue: TaskAnimation
+      - m_strKey: GameObject_ID
+        m_strValue: Level109_BloodTank
+      - m_strKey: TriggerBoolID
+        m_strValue: OpenLid
+      - m_strKey: TriggerBool
+        m_strValue: true
+    - m_strTaskID: 23
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 23
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: EmergencyBtn_YellowLight_Emissive
     - m_strTaskID: 24
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4850,7 +3992,7 @@ MonoBehaviour:
       - m_strKey: IsActive
         m_strValue: false
       - m_strKey: GameObject_ID
-        m_strValue: Level109_GreenLightTank1
+        m_strValue: EmergencyBtn_GreenLight_Emissive
     - m_strTaskID: 25
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4862,7 +4004,7 @@ MonoBehaviour:
       - m_strKey: IsActive
         m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level109_GreenLightTank2
+        m_strValue: EmergencyBtn_YellowLight_NonEmissive
     - m_strTaskID: 26
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4872,9 +4014,9 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
-        m_strValue: false
+        m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level110_PostDoubleDoors
+        m_strValue: EmergencyBtn_GreenLight_NonEmissive
     - m_strTaskID: 27
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4886,7 +4028,7 @@ MonoBehaviour:
       - m_strKey: IsActive
         m_strValue: true
       - m_strKey: GameObject_ID
-        m_strValue: Level110_PreDoubleDoors
+        m_strValue: EmergencyBtn_NonEmissive
     - m_strTaskID: 28
       m_strTaskType: TaskAnimation
       m_iAttributeCount: 5
@@ -4896,11 +4038,11 @@ MonoBehaviour:
       - m_strKey: TaskType
         m_strValue: TaskAnimation
       - m_strKey: GameObject_ID
-        m_strValue: Level109_BloodTank
+        m_strValue: EmergencyBtn_Emissive
       - m_strKey: TriggerBoolID
-        m_strValue: OpenLid
+        m_strValue: IsBtnPressed
       - m_strKey: TriggerBool
-        m_strValue: true
+        m_strValue: false
     - m_strTaskID: 29
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4912,7 +4054,7 @@ MonoBehaviour:
       - m_strKey: IsActive
         m_strValue: false
       - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_YellowLight_Emissive
+        m_strValue: EmergencyBtn_Emissive
     - m_strTaskID: 30
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
@@ -4924,87 +4066,13 @@ MonoBehaviour:
       - m_strKey: IsActive
         m_strValue: false
       - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_GreenLight_Emissive
+        m_strValue: Level109_Lever
     - m_strTaskID: 31
       m_strTaskType: TaskGameObject
       m_iAttributeCount: 4
       m_lstTaskAttributes:
       - m_strKey: ID
         m_strValue: 31
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: true
-      - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_YellowLight_NonEmissive
-    - m_strTaskID: 32
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 32
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: true
-      - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_GreenLight_NonEmissive
-    - m_strTaskID: 33
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 33
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: true
-      - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_NonEmissive
-    - m_strTaskID: 34
-      m_strTaskType: TaskAnimation
-      m_iAttributeCount: 5
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 34
-      - m_strKey: TaskType
-        m_strValue: TaskAnimation
-      - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_Emissive
-      - m_strKey: TriggerBoolID
-        m_strValue: IsBtnPressed
-      - m_strKey: TriggerBool
-        m_strValue: false
-    - m_strTaskID: 35
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 35
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: false
-      - m_strKey: GameObject_ID
-        m_strValue: EmergencyBtn_Emissive
-    - m_strTaskID: 36
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 36
-      - m_strKey: TaskType
-        m_strValue: TaskGameObject
-      - m_strKey: IsActive
-        m_strValue: false
-      - m_strKey: GameObject_ID
-        m_strValue: Level109_Lever
-    - m_strTaskID: 37
-      m_strTaskType: TaskGameObject
-      m_iAttributeCount: 4
-      m_lstTaskAttributes:
-      - m_strKey: ID
-        m_strValue: 37
       - m_strKey: TaskType
         m_strValue: TaskGameObject
       - m_strKey: IsActive
