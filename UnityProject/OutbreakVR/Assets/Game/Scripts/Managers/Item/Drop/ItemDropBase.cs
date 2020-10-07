@@ -49,13 +49,8 @@ namespace ns_Mashmo
         [SerializeField]
         private Color m_colorOutlineHighlighted;
 
-        /// <summary>
-        /// Min distance from the player this mesh renderer will be active
-        /// </summary>
-        [SerializeField]
         private float m_fDefaultMinViewableDistance = 10.0f;
 
-        [SerializeField]
         private float m_fCurrentViewableDistance = 5.0f;
 
         public float MinViewableDistance
