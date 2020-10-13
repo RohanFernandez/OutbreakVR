@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ObjectiveList Name = "Level2" >
+<!-- Reach the balconey to exit the building -->
+	<ObjectiveGroup ID="Level2_103" Type="UnorderedObjectiveGroup">
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggeredOnTentEnter" SequenceOnComplete="Obj103_OnTentEntered" ObjDesc="" IsIncludedInListing="false" IsCompulsory="false"/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_104_LocationTriggered" ObjDesc="Search the area for weapons and a keycode to get in the building."/>
+	</ObjectiveGroup>
+	
+	<!-- Pass the Gas chambers to get out of the room -->
+	<ObjectiveGroup ID="Level2_104" Type="UnorderedObjectiveGroup">
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_1_LocationTriggered" ObjDesc="Avoid the gas and find the valves to stop the gas flow" SequenceOnComplete="Level1_104_OnTortureRoomReached"/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_105_LocationTriggered" ObjDesc="Utilize the power node to energize the gates."/>
+	</ObjectiveGroup>
+	
+	<!-- Go through the hole in the ground, kill the enemies -->
+	<ObjectiveGroup ID="Level2_105" Type="UnorderedObjectiveGroup">
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_106_LocationTriggered" ObjDesc="Beware of traps and find a way down to the next floor."/>
+	</ObjectiveGroup>
+	
+	<!-- Pickup the C4 and plant the c4 at the C4 location -->
+	<ObjectiveGroup ID="Level2_106" Type="UnorderedObjectiveGroup">
+		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level106_C4Picked" SequenceOnComplete="Level106_OnC4Picked" ObjDesc="Find an explosive that can be used to clear out the barriers."/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_106_LocationTriggered_1" ObjDesc="Locate the bomb site and plant the bomb within 2.30 mins before the building gets bombed."/>
+	</ObjectiveGroup>
+	
+</ObjectiveList>

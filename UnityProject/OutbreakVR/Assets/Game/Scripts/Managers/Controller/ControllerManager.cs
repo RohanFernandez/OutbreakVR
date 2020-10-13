@@ -654,6 +654,7 @@ namespace ns_Mashmo
             updateControllerSource(m_CurrentControllerType);
             updateControllerPointer();
             updateControllerSwipe();
+            //OVRInput.GetControllerWasRecentered
         }
     }
 }

@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae47a542ac60a845b13e465512ca98e, type: 3}
+  m_Name: ObjectiveListLevel2
+  m_EditorClassIdentifier: 
+  m_strName: Level2
+  m_iObjectiveGroupCount: 4
+  m_lstObjectiveGroup:
+  - m_strID: Level2_103
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 2
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Obj103_OnTentEntered
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 7
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_103_LocationTriggeredOnTentEnter
+      - m_strKey: SequenceOnComplete
+        m_strValue: Obj103_OnTentEntered
+      - m_strKey: ObjDesc
+        m_strValue: 
+      - m_strKey: IsIncludedInListing
+        m_strValue: false
+      - m_strKey: IsCompulsory
+        m_strValue: false
+      m_strIsCompulsory: false
+      m_strIsIncludedInListing: false
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Search the area for weapons and a keycode to get in the
+        building.
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_104_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Search the area for weapons and a keycode to get in the building.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+  - m_strID: Level2_104
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 2
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_104_OnTortureRoomReached
+      m_strObjectiveDesc: Avoid the gas and find the valves to stop the gas flow
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_104_1_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Avoid the gas and find the valves to stop the gas flow
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_104_OnTortureRoomReached
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Utilize the power node to energize the gates.
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_105_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Utilize the power node to energize the gates.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+  - m_strID: Level2_105
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Beware of traps and find a way down to the next floor.
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_106_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: Beware of traps and find a way down to the next floor.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+  - m_strID: Level2_106
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 2
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level106_OnC4Picked
+      m_strObjectiveDesc: Find an explosive that can be used to clear out the barriers.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level106_C4Picked
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level106_OnC4Picked
+      - m_strKey: ObjDesc
+        m_strValue: Find an explosive that can be used to clear out the barriers.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Locate the bomb site and plant the bomb within 2.30 mins
+        before the building gets bombed.
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_106_LocationTriggered_1
+      - m_strKey: ObjDesc
+        m_strValue: Locate the bomb site and plant the bomb within 2.30 mins before
+          the building gets bombed.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true

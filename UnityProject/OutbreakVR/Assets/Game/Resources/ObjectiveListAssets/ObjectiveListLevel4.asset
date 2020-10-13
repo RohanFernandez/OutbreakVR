@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae47a542ac60a845b13e465512ca98e, type: 3}
+  m_Name: ObjectiveListLevel4
+  m_EditorClassIdentifier: 
+  m_strName: Level4
+  m_iObjectiveGroupCount: 3
+  m_lstObjectiveGroup:
+  - m_strID: Level4_108
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: 
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_109_LocationTriggered
+      - m_strKey: ObjDesc
+        m_strValue: 
+      - m_strKey: IsIncludedInListing
+        m_strValue: false
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: false
+  - m_strID: Level4_109
+    m_strType: OrderedObjectiveGroup
+    m_iObjectiveCount: 5
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnBloodBagsPicked
+      m_strObjectiveDesc: Search for functional items in the apartment and beware
+        of traps.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_109_OnBloodBagsPicked
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnBloodBagsPicked
+      - m_strKey: ObjDesc
+        m_strValue: Search for functional items in the apartment and beware of traps.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+    - m_strID: 1
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnBloodBagsApplied
+      m_strObjectiveDesc: Use the blood bags in the sprinkler water tank.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnBloodBagsApplied
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnBloodBagsApplied
+      - m_strKey: ObjDesc
+        m_strValue: Use the blood bags in the sprinkler water tank.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+    - m_strID: 2
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnLeverTurned
+      m_strObjectiveDesc: ' '
+      m_iAttributeCount: 6
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnLeverTurned
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnLeverTurned
+      - m_strKey: ObjDesc
+        m_strValue: ' '
+      - m_strKey: IsIncludedInListing
+        m_strValue: false
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: false
+    - m_strID: 3
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnLeverTurned2
+      m_strObjectiveDesc: ' '
+      m_iAttributeCount: 6
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnLeverTurned2
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnLeverTurned2
+      - m_strKey: ObjDesc
+        m_strValue: ' '
+      - m_strKey: IsIncludedInListing
+        m_strValue: false
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: false
+    - m_strID: 4
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: Level1_109_OnEmergencyButtonPressed
+      m_strObjectiveDesc: Use the emergency button to trigger the sprinklers and turrets
+        in the auditorium.
+      m_iAttributeCount: 5
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Obj109_OnEmergencyButtonPressed
+      - m_strKey: SequenceOnComplete
+        m_strValue: Level1_109_OnEmergencyButtonPressed
+      - m_strKey: ObjDesc
+        m_strValue: Use the emergency button to trigger the sprinklers and turrets
+          in the auditorium.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true
+  - m_strID: Level4_110
+    m_strType: UnorderedObjectiveGroup
+    m_iObjectiveCount: 1
+    m_lstScriptibeObjective:
+    - m_strID: 0
+      m_strType: ObjectiveTrigger
+      m_strSeqOnComplete: 
+      m_strObjectiveDesc: Exit the building.
+      m_iAttributeCount: 4
+      m_lstAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: Type
+        m_strValue: ObjectiveTrigger
+      - m_strKey: TriggerID
+        m_strValue: Level_111_OnEmergencyButtonPressed
+      - m_strKey: ObjDesc
+        m_strValue: Exit the building.
+      m_strIsCompulsory: true
+      m_strIsIncludedInListing: true

@@ -145,19 +145,19 @@ namespace ns_Mashmo
                         }
                     case INVENTORY_ITEM_ID.INVENTORY_POWER_NODE:
                         {
-                            l_InventoryItem.ItemsInInventory++;
+                            l_InventoryItem.ItemsInInventory = l_InventoryItem.ItemsInInventory + 1;
                             l_bIsItemPickedUp = true;
                             break;
                         }
                     case INVENTORY_ITEM_ID.INVENTORY_C4:
                         {
-                            l_InventoryItem.ItemsInInventory++;
+                            l_InventoryItem.ItemsInInventory = l_InventoryItem.ItemsInInventory + 1;
                             l_bIsItemPickedUp = true;
                             break;
                         }
                     case INVENTORY_ITEM_ID.INVENTORY_BLOOD_BAGS:
                         {
-                            l_InventoryItem.ItemsInInventory++;
+                            l_InventoryItem.ItemsInInventory = l_InventoryItem.ItemsInInventory + 1;
                             l_bIsItemPickedUp = true;
                             break;
                         }
@@ -275,7 +275,7 @@ namespace ns_Mashmo
             if ((l_InventoryItem != null) &&
                 (l_InventoryItem.ItemsInInventory > 0))
             {
-                l_InventoryItem.ItemsInInventory--;
+                l_InventoryItem.ItemsInInventory = l_InventoryItem.ItemsInInventory - 1;
 
                 EventHash l_EventHash = EventManager.GetEventHashtable();
                 l_EventHash.Add(GameEventTypeConst.ID_INVENTORY_TYPE, a_InventoryItemID);

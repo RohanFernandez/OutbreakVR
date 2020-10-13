@@ -1,0 +1,2379 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4595f7ab941f18d4e8222cedf8cc9054, type: 3}
+  m_Name: TaskListLevel2
+  m_EditorClassIdentifier: 
+  m_strName: Level2
+  m_iSequenceCount: 21
+  m_lstSequences:
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_OnListStart
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskSetTransform
+      m_iAttributeCount: 6
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskSetTransform
+      - m_strKey: GameObject_ID
+        m_strValue: Player
+      - m_strKey: Position
+        m_strValue: 0.0,100.0,0.0
+      - m_strKey: Rotation
+        m_strValue: 0.0,0.0,0.0
+      - m_strKey: Scale
+        m_strValue: 1.0,1.0,1.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level1CommonGoundDamageCollider
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_OnListEnd
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: ReturnItems
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: ReturnAll
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: ReturnAll
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_103_OnBegin
+    m_iTaskCount: 14
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HELMET_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: 16.057,19.142,8.444
+      - m_strKey: Rotation
+        m_strValue: -11.286,124.803,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Assault_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_THOMPSON
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 16.951,19.913,13.561
+      - m_strKey: Rotation
+        m_strValue: -82.055,60.861,-91.161
+    - m_strTaskID: 3
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthMedium
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_MEDIUM
+      - m_strKey: Position
+        m_strValue: 16.99,18.691,8.886
+      - m_strKey: Rotation
+        m_strValue: 0.0,-44.664,0.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 16.557,19.611,14.494
+      - m_strKey: Rotation
+        m_strValue: 0.0,-33.069,0.0
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_1
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 26.878,18.53519,22.183
+      - m_strKey: Rotation
+        m_strValue: 0.0,178.512,0.0
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_2
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 29.68,18.53519,8.33
+      - m_strKey: Rotation
+        m_strValue: 0.0,-42.094,0.0
+    - m_strTaskID: 7
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 19.3891,21.5719,28.0011
+      - m_strKey: Rotation
+        m_strValue: 0.0,-141.944,0.0
+    - m_strTaskID: 8
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 26.118,19.286,23.714
+      - m_strKey: Rotation
+        m_strValue: 0.0,-96.61101,0.0
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_3
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 19.3891,19.9062,9.1404
+      - m_strKey: Rotation
+        m_strValue: 0.0,-53.874,0.0
+    - m_strTaskID: 10
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 10
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 15.891,19.5451,15.242
+      - m_strKey: Rotation
+        m_strValue: 0.0,53.593,0.0
+    - m_strTaskID: 11
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 11
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 17.37,18.6426,9.088
+      - m_strKey: Rotation
+        m_strValue: 0.0,-83.50401,0.0
+    - m_strTaskID: 12
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 12
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_LockedDoor
+    - m_strTaskID: 22
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 22
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 23
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 23
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_MissileStrikeTask
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level103_OnMissileHit
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 3.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_MissileStrikeTask
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Obj103_OnTentEntered
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_2
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 25.15,21.39692,25.42
+      - m_strKey: Rotation
+        m_strValue: 0.0,-163.134,0.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_3
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 25.66,18.53519,20.29
+      - m_strKey: Rotation
+        m_strValue: 0.0,186.938,0.0
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_103_OnEnd
+    m_iTaskCount: 1
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_MissileStrikeTask
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_104_OnBegin
+    m_iTaskCount: 25
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level103_LockedDoor
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room0
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room1
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Trigger_Valve1
+    - m_strTaskID: 4
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Trigger_Valve2
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture1LockedDoor
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture2LockedDoor
+    - m_strTaskID: 7
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture3LockedDoor
+    - m_strTaskID: 8
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture4LockedDoor
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Level_104_PowerNode
+      - m_strKey: ItemType
+        m_strValue: ITEM_POWER_NODE
+      - m_strKey: Position
+        m_strValue: 23.522,15.518,25.286
+      - m_strKey: Rotation
+        m_strValue: 0.0,59.999,0.0
+    - m_strTaskID: 10
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 10
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture5LockedDoor
+    - m_strTaskID: 11
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 11
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc1
+    - m_strTaskID: 12
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 12
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc2
+    - m_strTaskID: 13
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 13
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HELMET_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: 24.7632,15.473,12.9194
+      - m_strKey: Rotation
+        m_strValue: -11.286,212.319,0.0
+    - m_strTaskID: 14
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 14
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthSmall
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_SMALL
+      - m_strKey: Position
+        m_strValue: 32.596,15.462,27.139
+      - m_strKey: Rotation
+        m_strValue: 0.0,-35.211,0.0
+    - m_strTaskID: 15
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 15
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 26.78975,15.47975,30.55541
+      - m_strKey: Rotation
+        m_strValue: 34.365,-0.356,-9.364
+    - m_strTaskID: 16
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 16
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: ProximityBomb_1
+      - m_strKey: EnemyType
+        m_strValue: PROXIMITY_BOMB
+      - m_strKey: Position
+        m_strValue: 23.806,15.338,12.173
+      - m_strKey: Rotation
+        m_strValue: 0.0,-90.0000,0.0
+    - m_strTaskID: 17
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 17
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 18.7399,16.0108,27.3673
+      - m_strKey: Rotation
+        m_strValue: 0.0,-157.097,0.0
+    - m_strTaskID: 18
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 18
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 22.478,16.6121,11.691
+      - m_strKey: Rotation
+        m_strValue: 0.0,-29.111,0.0
+    - m_strTaskID: 19
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 19
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_3
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 22.35,16.6121,11.918
+      - m_strKey: Rotation
+        m_strValue: 0.0,14.305,0.0
+    - m_strTaskID: 19
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 19
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 27.49279,16.19515,25.38141
+      - m_strKey: Rotation
+        m_strValue: 0.0,-71.83601,0.0
+    - m_strTaskID: 20
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 20
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 28.34975,16.19775,25.30381
+      - m_strKey: Rotation
+        m_strValue: 0.0,62.597,0.0
+    - m_strTaskID: 21
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 21
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 26.343,15.34076,25.998
+      - m_strKey: Rotation
+        m_strValue: 0.0,47.054,0.0
+    - m_strTaskID: 22
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 22
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_2
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 19.974,15.34076,25.44
+      - m_strKey: Rotation
+        m_strValue: 0.0,45.814,0.0
+    - m_strTaskID: 23
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 23
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_3
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 17.41124,15.34076,29.57859
+      - m_strKey: Rotation
+        m_strValue: 0.0,90.71201,0.0
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnTortureRoomReached
+    m_iTaskCount: 2
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture1LockedDoor
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture2LockedDoor
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnValveTurned1
+    m_iTaskCount: 5
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Trigger_Valve1
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture3LockedDoor
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasTurnOff
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc1
+    - m_strTaskID: 4
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasValveTurn
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasValveTurn
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnValveTurned2
+    m_iTaskCount: 5
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Trigger_Valve2
+    - m_strTaskID: 1
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_GasDamageInfliction_Room1
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture4LockedDoor
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasTurnOff
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc2
+    - m_strTaskID: 4
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GasValveTurn
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasValveTurn
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_104_OnPowerNodeAttached
+    m_iTaskCount: 4
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture5LockedDoor
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorStart
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_NodeGenerator
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_NodeGenerator
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_104_OnEnd
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasValveTurn
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc1
+    - m_strTaskID: 2
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level104_GasAudSrc2
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_105_OnBegin
+    m_iTaskCount: 21
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: 105_Turret1
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 16.455,15.838,7.668
+      - m_strKey: Rotation
+        m_strValue: 0.0,-169.16,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: 105_Turret2
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 24.036,15.815,6.952
+      - m_strKey: Rotation
+        m_strValue: 0.0,-210,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: 105_Turret3
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 26.475,12.61668,7.979
+      - m_strKey: Rotation
+        m_strValue: 0.0,-89.367,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level104_Torture5LockedDoor
+    - m_strTaskID: 4
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Level_105_PowerNode
+      - m_strKey: ItemType
+        m_strValue: ITEM_POWER_NODE
+      - m_strKey: Position
+        m_strValue: 30.621,16.8919,-0.3706
+      - m_strKey: Rotation
+        m_strValue: -9.956,-0.626,5.105
+    - m_strTaskID: 5
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level105_InteractiveDoor_1
+    - m_strTaskID: 6
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level105_InteractiveDoor_2
+    - m_strTaskID: 7
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HELMET_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: 31.9519,15.4741,-2.375
+      - m_strKey: Rotation
+        m_strValue: -11.286,249.344,0.0
+    - m_strTaskID: 8
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthSmall_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 26.435,13.1546,0.7460003
+      - m_strKey: Rotation
+        m_strValue: 0.0,54.087,0.0
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 23.9099,15.4651,7.967
+      - m_strKey: Rotation
+        m_strValue: 0.0,92.523,0.0
+    - m_strTaskID: 10
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 10
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthLarge_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 31.7799,15.4651,-1.204
+      - m_strKey: Rotation
+        m_strValue: 0.0,42.517,0.0
+    - m_strTaskID: 11
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 11
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 30.7179,15.6914,-0.7740006
+      - m_strKey: Rotation
+        m_strValue: 0.0,-115.736,0.0
+    - m_strTaskID: 12
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 12
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 30.9518,15.6914,-0.7431006
+      - m_strKey: Rotation
+        m_strValue: 0.0,-70.123,0.0
+    - m_strTaskID: 13
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 13
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_3
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 17.656,13.0595,-4.240999
+      - m_strKey: Rotation
+        m_strValue: 0.0,129.324,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 14
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 14
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_4
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 17.588,13.0595,-3.896999
+      - m_strKey: Rotation
+        m_strValue: 0.0,178.716,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 15
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 15
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 32.2034,16.1197,-2.6317
+      - m_strKey: Rotation
+        m_strValue: 0.0,-151.856,0.0
+    - m_strTaskID: 16
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 16
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Assault_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_STINGRAY
+      - m_strKey: BulletCount
+        m_strValue: 8
+      - m_strKey: Position
+        m_strValue: 30.93826,15.67285,-1.115588
+      - m_strKey: Rotation
+        m_strValue: -0.627,-90.16801,-74.999
+    - m_strTaskID: 17
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 17
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 30.8919,15.3351,-2.104001
+      - m_strKey: Rotation
+        m_strValue: 0.0,211.047,0.0
+    - m_strTaskID: 18
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 18
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Sentinel_2
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 25.7949,15.3351,-3.433001
+      - m_strKey: Rotation
+        m_strValue: 0.0,271.49,0.0
+    - m_strTaskID: 19
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 19
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_1
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 18.14,12.13,3.028001
+      - m_strKey: Rotation
+        m_strValue: 0.0,-180,0.0
+    - m_strTaskID: 20
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 20
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_2
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 22.183,12.13,1.057001
+      - m_strKey: Rotation
+        m_strValue: 0.0,-180,0.0
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level1_105_OnPowerNodeAttached
+    m_iTaskCount: 4
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level105_InteractiveDoor_1
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorStart
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level105_NodeGenerator
+    - m_strTaskID: 2
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: GeneratorLoop
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level105_NodeGenerator
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_105_OnEnd
+    m_iTaskCount: 0
+    m_lstTasks: []
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_106_OnBegin
+    m_iTaskCount: 22
+    m_lstTasks:
+    - m_strTaskID: 00
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
+    - m_strTaskID: 0
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level105_InteractiveDoor_2
+    - m_strTaskID: 1
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Level_106_C4
+      - m_strKey: ItemType
+        m_strValue: ITEM_C4
+      - m_strKey: ObjectiveTrigger
+        m_strValue: Level106_C4Picked
+      - m_strKey: Position
+        m_strValue: 23.093,13.541,10.793
+      - m_strKey: Rotation
+        m_strValue: 6.925,165.017,-4.705
+    - m_strTaskID: 2
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Level106_Turret1
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.74,12.623,12.65
+      - m_strKey: Rotation
+        m_strValue: 0.0,90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 3
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Level106_Turret2
+      - m_strKey: EnemyType
+        m_strValue: AUTOMATED_TURRET
+      - m_strKey: Position
+        m_strValue: 22.896,12.59,22.639
+      - m_strKey: Rotation
+        m_strValue: 0.0,90.0,0.0
+      - m_strKey: Params
+        m_strValue: 90.0;-90.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BrokenWall
+    - m_strTaskID: 5
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Location
+    - m_strTaskID: 6
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BlastParticles
+    - m_strTaskID: 7
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HELMET_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_HELMET
+      - m_strKey: StrengthPercentage
+        m_strValue: 100
+      - m_strKey: Position
+        m_strValue: 22.577,13.158,6.659
+      - m_strKey: Rotation
+        m_strValue: -19.136,-75.55601,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 8
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 8
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Assault_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_AK47
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 22.525,13.066,6.383
+      - m_strKey: Rotation
+        m_strValue: 0.063,44.402,-89.109
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 9
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 9
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: Healthlarge
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_LARGE
+      - m_strKey: Position
+        m_strValue: 22.365,13.182,5.85
+      - m_strKey: Rotation
+        m_strValue: 0.0,60.046,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 10
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 10
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: HealthMedium
+      - m_strKey: ItemType
+        m_strValue: ITEM_HEALTH_MEDIUM
+      - m_strKey: Position
+        m_strValue: 27.8588,13.1179,25.0304
+      - m_strKey: Rotation
+        m_strValue: 0.0,-36.347,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 11
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 11
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: FN57Bullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_SECONDARY_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 17
+      - m_strKey: Position
+        m_strValue: 23.797,13.4518,8.754
+      - m_strKey: Rotation
+        m_strValue: 0.0,-90.256,0.0
+    - m_strTaskID: 12
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 12
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_1
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 22.655,13.114,5.961
+      - m_strKey: Rotation
+        m_strValue: 0.0,35.195,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 13
+      m_strTaskType: TaskItem
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 13
+      - m_strKey: TaskType
+        m_strValue: TaskItem
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Item_ID
+        m_strValue: AssaultBullets_2
+      - m_strKey: ItemType
+        m_strValue: ITEM_PRIMARY_ASSAULT_BULLETS
+      - m_strKey: BulletCount
+        m_strValue: 30
+      - m_strKey: Position
+        m_strValue: 22.663,13.114,6.166
+      - m_strKey: Rotation
+        m_strValue: 0.0,-15.624,0.0
+      - m_strKey: MinViewDistance
+        m_strValue: 20.0
+    - m_strTaskID: 14
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 14
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Zombie_1
+      - m_strKey: EnemyType
+        m_strValue: ZOMBIE
+      - m_strKey: Position
+        m_strValue: 23.987,12.13,9.800001
+      - m_strKey: Rotation
+        m_strValue: 0.0,-93.41701,0.0
+    - m_strTaskID: 15
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 15
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_1
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 22.976,12.13,28.386
+      - m_strKey: Rotation
+        m_strValue: 0.0,126.101,0.0
+    - m_strTaskID: 16
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 16
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_2
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 18.062,12.13,12.631
+      - m_strKey: Rotation
+        m_strValue: 0.0,-98.772,0.0
+    - m_strTaskID: 17
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 17
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_3
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 28.415,12.13,23.359
+      - m_strKey: Rotation
+        m_strValue: 0.0,-143.631,0.0
+    - m_strTaskID: 18
+      m_strTaskType: TaskEnemy
+      m_iAttributeCount: 7
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 18
+      - m_strKey: TaskType
+        m_strValue: TaskEnemy
+      - m_strKey: Code
+        m_strValue: Activate
+      - m_strKey: Enemy_ID
+        m_strValue: Shooter_4
+      - m_strKey: EnemyType
+        m_strValue: SHOOTER
+      - m_strKey: Position
+        m_strValue: 28.353,12.13,11.971
+      - m_strKey: Rotation
+        m_strValue: 0.0,-1.321,0.0
+    - m_strTaskID: 19
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 19
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_InteractiveDoorC4
+    - m_strTaskID: 20
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 20
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: 106_WalkieTask
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level106_OnC4Picked
+    m_iTaskCount: 3
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_BombTimer
+    - m_strTaskID: 1
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_InteractiveDoorC4
+    - m_strTaskID: 2
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: true
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level106_OnBombTimerEnded
+    m_iTaskCount: 5
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskPlayer
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskPlayer
+      - m_strKey: Code
+        m_strValue: SetPlayerState
+      - m_strKey: PlayerState
+        m_strValue: IN_GAME_HALTED
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+    - m_strTaskID: 2
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombDropExplosion
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+    - m_strTaskID: 3
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 2.0
+    - m_strTaskID: 4
+      m_strTaskType: TaskPlayer
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskPlayer
+      - m_strKey: Code
+        m_strValue: InflictDamage
+      - m_strKey: InflictDamage
+        m_strValue: 100
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level106_OnC4Placed
+    m_iTaskCount: 11
+    m_lstTasks:
+    - m_strTaskID: 0000
+      m_strTaskType: TaskEnvironmentInteraction
+      m_iAttributeCount: 5
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0000
+      - m_strKey: TaskType
+        m_strValue: TaskEnvironmentInteraction
+      - m_strKey: Code
+        m_strValue: Door
+      - m_strKey: IsLocked
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Door
+    - m_strTaskID: 000
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 000
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+    - m_strTaskID: 00
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 00
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_BombTimer
+    - m_strTaskID: 0
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 9
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: C4BombTimer
+      - m_strKey: IsStart
+        m_strValue: true
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: false
+      - m_strKey: GameObjID
+        m_strValue: Level106_C4Location
+    - m_strTaskID: 1
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 7.0
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BrokenWall
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Location
+    - m_strTaskID: 4
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 4
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BlastParticles
+    - m_strTaskID: 5
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 5
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: true
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BlastCollider
+    - m_strTaskID: 6
+      m_strTaskType: TaskWait
+      m_iAttributeCount: 3
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 6
+      - m_strKey: TaskType
+        m_strValue: TaskWait
+      - m_strKey: WaitTime
+        m_strValue: 0.7
+    - m_strTaskID: 7
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 7
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4BlastCollider
+  - m_strSequenceType: SimpleSequence
+    m_strSequenceID: Level2_106_OnEnd
+    m_iTaskCount: 4
+    m_lstTasks:
+    - m_strTaskID: 0
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 0
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_BombTimer
+    - m_strTaskID: 1
+      m_strTaskType: TaskAudio
+      m_iAttributeCount: 8
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 1
+      - m_strKey: TaskType
+        m_strValue: TaskAudio
+      - m_strKey: AudClip
+        m_strValue: BombTimerClick
+      - m_strKey: IsStart
+        m_strValue: false
+      - m_strKey: IsLoop
+        m_strValue: false
+      - m_strKey: Volume
+        m_strValue: 1.0
+      - m_strKey: SrcType
+        m_strValue: AUD_SRC_SFX
+      - m_strKey: IsPooled
+        m_strValue: true
+    - m_strTaskID: 2
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 2
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: 106_WalkieTask
+    - m_strTaskID: 3
+      m_strTaskType: TaskGameObject
+      m_iAttributeCount: 4
+      m_lstTaskAttributes:
+      - m_strKey: ID
+        m_strValue: 3
+      - m_strKey: TaskType
+        m_strValue: TaskGameObject
+      - m_strKey: IsActive
+        m_strValue: false
+      - m_strKey: GameObject_ID
+        m_strValue: Level106_C4Location

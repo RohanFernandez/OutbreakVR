@@ -15,57 +15,9 @@
 	<!-- Reach the balconey and walk the planks to exit the building -->
 	<ObjectiveGroup ID="Level1_102" Type="UnorderedObjectiveGroup">
 		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="HandgunPickup" ObjDesc="Search for items hidden in the apartment." SequenceOnComplete="Obj102_OnHandgunPickedup"/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggered" ObjDesc="Find and destroy the power source to clear your way and proceed to the next apartment. "/>
+		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_102_LocationTriggered_3" ObjDesc="Find and destroy the power source to clear your way and proceed to the next apartment. "/>
 		
 		<Objective ID="2" Type="ObjectiveTrigger" TriggerID="Obj102_UpperStairsTriggered" ObjDesc="" IsIncludedInListing="false" SequenceOnComplete="Obj102_UpperStairsTriggered" IsCompulsory="false"/>
 		<Objective ID="3" Type="ObjectiveTrigger" TriggerID="Obj102_LowerStairsTriggered" ObjDesc="" IsIncludedInListing="false" SequenceOnComplete="Obj102_LowerStairsTriggered" IsCompulsory="false"/>
 	</ObjectiveGroup>
-	
-	<!-- Reach the balconey to exit the building -->
-	<ObjectiveGroup ID="Level1_103" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_103_LocationTriggeredOnTentEnter" SequenceOnComplete="Obj103_OnTentEntered" ObjDesc="" IsIncludedInListing="false" IsCompulsory="false"/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_104_LocationTriggered" ObjDesc="Search the area for weapons and a keycode to get in the building."/>
-	</ObjectiveGroup>
-	
-	<!-- Pass the Gas chambers to get out of the room -->
-	<ObjectiveGroup ID="Level1_104" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_104_1_LocationTriggered" ObjDesc="Avoid the gas and find the valves to stop the gas flow" SequenceOnComplete="Level1_104_OnTortureRoomReached"/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_105_LocationTriggered" ObjDesc="Utilize the power node to energize the gates."/>
-	</ObjectiveGroup>
-	
-	<!-- Go through the hole in the ground, kill the enemies -->
-	<ObjectiveGroup ID="Level1_105" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_106_LocationTriggered" ObjDesc="Beware of traps and find a way down to the next floor."/>
-	</ObjectiveGroup>
-	
-	<!-- Pickup the C4 and plant the c4 at the C4 location -->
-	<ObjectiveGroup ID="Level1_106" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level106_C4Picked" SequenceOnComplete="Level106_OnC4Picked" ObjDesc="Find an explosive that can be used to clear out the barriers."/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Level_107_LocationTriggered" ObjDesc="Locate the bomb site and plant the bomb within 2.30 mins before the building gets bombed."/>
-	</ObjectiveGroup>
-	
-	<!-- Avoid gunfire from enemies to go through the passage-->
-	<ObjectiveGroup ID="Level1_107" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_108_LocationTriggered" ObjDesc="Avoid the shooting turrets and proceed through the passage safely."/>
-	</ObjectiveGroup>
-	
-	<!-- Cross the plank from building 3 - 4 and enter the room -->
-	<ObjectiveGroup ID="Level1_108" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_109_LocationTriggered" ObjDesc="" IsIncludedInListing="false"/>
-	</ObjectiveGroup>
-	
-	<!-- Pick up the blood bags and add it to the tanks, press the emergency button -->
-	<ObjectiveGroup ID="Level1_109" Type="OrderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_109_OnBloodBagsPicked" SequenceOnComplete="Level1_109_OnBloodBagsPicked" ObjDesc="Search for functional items in the apartment and beware of traps."/>
-		<Objective ID="1" Type="ObjectiveTrigger" TriggerID="Obj109_OnBloodBagsApplied" SequenceOnComplete="Level1_109_OnBloodBagsApplied" ObjDesc="Use the blood bags in the sprinkler water tank."/>
-		<Objective ID="2" Type="ObjectiveTrigger" TriggerID="Obj109_OnLeverTurned" SequenceOnComplete="Level1_109_OnLeverTurned" ObjDesc=" " IsIncludedInListing="false"/>
-		<Objective ID="3" Type="ObjectiveTrigger" TriggerID="Obj109_OnLeverTurned2" SequenceOnComplete="Level1_109_OnLeverTurned2" ObjDesc=" " IsIncludedInListing="false"/>
-		<Objective ID="4" Type="ObjectiveTrigger" TriggerID="Obj109_OnEmergencyButtonPressed" SequenceOnComplete="Level1_109_OnEmergencyButtonPressed" ObjDesc="Use the emergency button to trigger the sprinklers and turrets in the auditorium."/>
-	</ObjectiveGroup>
-	
-	<!--  -->
-	<ObjectiveGroup ID="Level1_110" Type="UnorderedObjectiveGroup">
-		<Objective ID="0" Type="ObjectiveTrigger" TriggerID="Level_111_OnEmergencyButtonPressed" ObjDesc="Exit the building."/>
-	</ObjectiveGroup>
-	
 </ObjectiveList>

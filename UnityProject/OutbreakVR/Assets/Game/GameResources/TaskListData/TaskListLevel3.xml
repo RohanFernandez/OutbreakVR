@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TaskList Name = "Level3" >
+	
+	<Sequence ID = "Level3_OnListStart" >
+		<!-- To avoid the player to collide with the common level 1 damage collider, the collider is deactivated initially and the player is moved and then the collider is turned on, because the players initial position collides with the collider -->
+		<Task ID="0" TaskType="TaskSetTransform" GameObject_ID="Player" Position="0.0,100.0,0.0" Rotation="0.0,0.0,0.0" Scale="1.0,1.0,1.0" />
+		<Task ID="1" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1CommonGoundDamageCollider" />
+	</Sequence>
+	
+	<Sequence ID = "Level3_OnListEnd" >
+		
+	</Sequence>
+	
+	<!--Sequence ID = "StartGame" >
+		<Task ID="1" TaskType="TaskAudio" AudSrc="Ambient" AudClip="AudClip_Ambient" IsStart="true" IsLoop="true" Volume="1.0" SrcType="AUD_SRC_SFX"/>
+		<Task ID="2" TaskType="TaskWait" WaitTime="10.0"/>
+		<Task ID="3" TaskType="TaskGameObject" IsActive="false" GameObject_ID="TestGameObj" />
+		<Task ID="4" TaskType="TaskAudio" AudSrc="Ambient" IsStart="false"/>
+		<Task ID="5" TaskType="TaskItem" ItemType="ITEM_FN57" BulletCount="20" Position="1.0,-13.5,1.0"/>
+		<Task ID="6" TaskType="TaskFunctionCall" ClassName="TestUserInput" Parameters="abc,def,ghi" FunctionName="PrintThis" GameObject_ID="TestGameObj"/>
+	</Sequence>
+	
+	<Sequence ID = "SpawnEnemy" >
+		<Task ID="7" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Officer1" EnemyType="SENTINEL" Position="1.0,-13.5,1.0" Rotation="0.0,180.0,0.0"/>
+	</Sequence>
+	
+	<Sequence ID = "DestroyEnemy" >
+		<Task ID="7" TaskType="TaskEnemy" Code="Deactivate" Enemy_ID="Officer1" EnemyType="SENTINEL" />
+	</Sequence-->
+	
+	<Sequence ID = "ReturnItems" >
+		<Task ID="1" TaskType="TaskItem" Code="ReturnAll"/>
+		<Task ID="2" TaskType="TaskEnemy" Code="ReturnAll"/>
+	</Sequence>
+	
+	
+	<!-- LEVEL 107 [CHECKPOINT]  START :: Cross the balcony and defend from turrets-->
+	<Sequence ID = "Level3_107_OnBegin" >
+		<Task ID="00" TaskType="TaskEnvironmentInteraction" Code="Door" IsLocked="true" GameObject_ID="Level106_C4Door" />
+		<Task ID="0" TaskType="TaskGameObject" IsActive="true" GameObject_ID="Level1_107_StealthTurrets" />
+		<Task ID="1" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_1" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="43.968,12.06216,5.779" Rotation="-5.001,-143.369,2.251" MinViewDistance="20.0"/>
+		<Task ID="3" TaskType="TaskItem" Code="Activate" Item_ID="HELMET_2" ItemType="ITEM_HELMET" StrengthPercentage="100" Position="86.694,13.45216,12.163" Rotation="-10.246,-83.437,0.0"/>
+		<Task ID="4" TaskType="TaskItem" Code="Activate" Item_ID="Assault_1" ItemType="ITEM_AK47" BulletCount="30" Position="87.519,12.73216,12.231" Rotation="-52.955,-128.46,112.836"/>
+		<Task ID="5" TaskType="TaskItem" Code="Activate" Item_ID="Assault_2" ItemType="ITEM_THOMPSON" BulletCount="30" Position="85.28999,12.87617,11.943" Rotation="-0.524,-126.061,88.41601"/>
+		<Task ID="6" TaskType="TaskItem" Code="Activate" Item_ID="Assault_3" ItemType="ITEM_STINGRAY" BulletCount="8" Position="82.00499,12.80616,12.852" Rotation="-1.406,39.814,90.012"/>
+        <Task ID="7" TaskType="TaskItem" Code="Activate" Item_ID="HealthLarge" ItemType="ITEM_HEALTH_LARGE" Position="44.278,12.029,5.622" Rotation="0.0,-64.339,0.0" MinViewDistance="20.0"/>
+		<Task ID="8" TaskType="TaskItem" Code="Activate" Item_ID="HealthMedium" ItemType="ITEM_HEALTH_MEDIUM" Position="81.9471,13.42816,13.57175" Rotation="0.0,-43.898,0.0"/>
+		<Task ID="9" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_1" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="45.276,11.05546,4.966001" Rotation="0.0,-22.188,0.0" MinViewDistance="20.0"/>
+		<Task ID="10" TaskType="TaskItem" Code="Activate" Item_ID="FN57Bullets_2" ItemType="ITEM_SECONDARY_BULLETS" BulletCount="17" Position="44.91,11.05546,4.444001" Rotation="0.0,61.915,0.0"/>
+	    <Task ID="11" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_1" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="45.16164,11.07256,4.635342" Rotation="0.0,36.965,0.0" MinViewDistance="20.0"/>
+		<Task ID="12" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_2" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="52.969,13.23,6.093" Rotation="0.0,31.55,0.0" MinViewDistance="20.0"/>
+		<Task ID="13" TaskType="TaskItem" Code="Activate" Item_ID="AssaultBullets_3" ItemType="ITEM_PRIMARY_ASSAULT_BULLETS" BulletCount="30" Position="87.375,13.24396,14.635" Rotation="0.0,-70.241,0.0"/>
+		<Task ID="14" TaskType="TaskEnemy" Code="Activate" Enemy_ID="Zombie_1" EnemyType="ZOMBIE" Position="91.78,12.29126,13.888" Rotation="0.0,-104.016,0.0"/>
+	</Sequence>
+	
+	<Sequence ID = "Level3_107_OnEnd" >
+		<Task ID="0" TaskType="TaskGameObject" IsActive="false" GameObject_ID="Level1_107_StealthTurrets" />
+	</Sequence>
+	<!-- LEVEL 107 [CHECKPOINT]  END-->
+	
+</TaskList>
