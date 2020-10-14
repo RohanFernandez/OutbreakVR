@@ -23,31 +23,31 @@ namespace ns_Mashmo
 
         private float m_fScrollTime = 0.0f;
 
-        public override void show()
-        {
-            base.show();
+        //public override void show()
+        //{
+        //    base.show();
 
-            m_imgBulletBackground.sprite = m_spRedBullet;
-            m_imgBulletForeground.sprite = m_sprGreenBullet;
-            m_fScrollTime = 0.0f;
-        }
+        //    m_imgBulletBackground.sprite = m_spRedBullet;
+        //    m_imgBulletForeground.sprite = m_sprGreenBullet;
+        //    m_fScrollTime = 0.0f;
+        //}
 
-        void Update()
-        {
-            m_fScrollTime += Time.deltaTime;
+        //void Update()
+        //{
+        //    m_fScrollTime += Time.deltaTime;
 
-            if (m_fScrollTime > 1.0f)
-            {
-                m_fScrollTime = 0.0f;
+        //    if (m_fScrollTime > 1.0f)
+        //    {
+        //        m_fScrollTime = 0.0f;
 
-                Sprite l_BgSprite = m_imgBulletBackground.sprite;
-                Sprite l_FgSprite = m_imgBulletForeground.sprite;
+        //        Sprite l_BgSprite = m_imgBulletBackground.sprite;
+        //        Sprite l_FgSprite = m_imgBulletForeground.sprite;
 
-                m_imgBulletBackground.sprite = l_FgSprite;
-                m_imgBulletForeground.sprite = l_BgSprite;
-            }
+        //        m_imgBulletBackground.sprite = l_FgSprite;
+        //        m_imgBulletForeground.sprite = l_BgSprite;
+        //    }
 
-            m_ReloadSlider.value = m_fScrollTime;
-        }
+        //    m_ReloadSlider.value = m_fScrollTime;
+        //}
     }
 }

@@ -132,7 +132,7 @@ namespace ns_Mashmo
         {
             if (m_OutlineGroupHighlighterBase != null)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+                m_OutlineGroupHighlighterBase.toggleHighlighter(false, m_colorOutlineNormal);
             }
         }
 
@@ -168,7 +168,7 @@ namespace ns_Mashmo
         {
             if (m_OutlineGroupHighlighterBase != null)
             {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(true, m_colorOutlineNormal);
+                m_OutlineGroupHighlighterBase.toggleHighlighter(false, m_colorOutlineNormal);
             }
         }
 
@@ -190,10 +190,10 @@ namespace ns_Mashmo
             if (a_bIsActive == IsColliderActive()){ return; }
 
             m_Collider.enabled = a_bIsActive;
-            if (m_OutlineGroupHighlighterBase != null)
-            {
-                m_OutlineGroupHighlighterBase.toggleHighlighter(a_bIsActive, m_colorOutlineNormal);
-            }
+            //if (m_OutlineGroupHighlighterBase != null)
+            //{
+            //    m_OutlineGroupHighlighterBase.toggleHighlighter(a_bIsActive, m_colorOutlineNormal);
+            //}
 
             if (m_goItemTitle != null)
             {
