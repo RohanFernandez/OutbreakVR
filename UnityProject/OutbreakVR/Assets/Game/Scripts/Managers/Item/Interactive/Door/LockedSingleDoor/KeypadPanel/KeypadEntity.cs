@@ -45,12 +45,21 @@ namespace ns_Mashmo
         private Sprite m_sprNormal = null;
 
         [SerializeField]
-        private SpriteRenderer m_KeyBackground = null; 
+        private SpriteRenderer m_KeyBackground = null;
 
         [SerializeField]
-        private TextMeshPro m_txtKeyCode = null;
+        private Sprite m_sprStarButtonSelected = null;
 
-        private const string SELECTED_INDICATED = "*";
+        [SerializeField]
+        private SpriteRenderer m_sprrendButtonSelected = null;
+        private Sprite SprBtnSelected
+        {
+            set 
+            {
+                m_sprrendButtonSelected.sprite = value;
+                m_sprrendButtonSelected.gameObject.SetActive(m_sprrendButtonSelected != null);
+            }
+        }
 
         /// <summary>
         /// Is the button selected
@@ -81,7 +90,7 @@ namespace ns_Mashmo
             IsSelected = false;
             m_colDoorButton.enabled = true;
             m_KeyBackground.sprite = m_sprNormal;
-            m_txtKeyCode.text = string.Empty;
+            SprBtnSelected = null;
         }
 
         /// <summary>
@@ -98,7 +107,7 @@ namespace ns_Mashmo
             if (!IsSelected)
             {
                 m_KeyBackground.sprite = m_sprHovered;
-                m_txtKeyCode.text = string.Empty;
+                SprBtnSelected = null;
             }
         }
 
@@ -107,7 +116,7 @@ namespace ns_Mashmo
             if (!IsSelected)
             {
                 m_KeyBackground.sprite = m_sprNormal;
-                m_txtKeyCode.text = string.Empty;
+                SprBtnSelected = null;
             }
         }
 
@@ -118,7 +127,7 @@ namespace ns_Mashmo
             if (IsSelected)
             {
                 m_KeyBackground.sprite = m_sprSelected;
-                m_txtKeyCode.text = SELECTED_INDICATED;
+                SprBtnSelected = m_sprStarButtonSelected;
             }
         }
 
