@@ -120,7 +120,7 @@ namespace ns_Mashmo
                 return;
             }
             s_Instance = this;
-            m_AudioSrcPool = new ManagedAudioSrcPool(m_ManagedAudioSrcPrefab, this.gameObject);
+            m_AudioSrcPool = new ManagedAudioSrcPool(m_ManagedAudioSrcPrefab, this.gameObject, 10);
         }
 
         /// <summary>

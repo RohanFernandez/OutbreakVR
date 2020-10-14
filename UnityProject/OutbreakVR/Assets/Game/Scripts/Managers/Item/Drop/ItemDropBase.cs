@@ -22,6 +22,16 @@ namespace ns_Mashmo
         private GameObject m_goItemModel = null;
 
         /// <summary>
+        /// The start size of the item pool. That many objects will be created on start.
+        /// </summary>
+        [SerializeField]
+        private int m_iStartPoolCreatedSize = 2;
+        public int StartPoolCreatedSize
+        {
+            get { return m_iStartPoolCreatedSize; }
+        }
+
+        /// <summary>
         /// the unique type of item
         /// </summary>
         [SerializeField]

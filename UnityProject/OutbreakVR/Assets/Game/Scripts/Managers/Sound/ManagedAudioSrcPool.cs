@@ -6,8 +6,8 @@ namespace ns_Mashmo
 {
     public class ManagedAudioSrcPool : MonoObjectPool<PooledAudioSource>
     {
-        public ManagedAudioSrcPool(PooledAudioSource a_ManagedAudSrcPrefab, GameObject a_Parent)
-            : base(a_ManagedAudSrcPrefab, a_Parent)
+        public ManagedAudioSrcPool(PooledAudioSource a_ManagedAudSrcPrefab, GameObject a_Parent, int a_iStartSize = 0)
+            : base(a_ManagedAudSrcPrefab, a_Parent, a_iStartSize)
         {
 
         }

@@ -105,7 +105,7 @@ namespace ns_Mashmo
             for (int l_iItemDropIndex = 0; l_iItemDropIndex < l_iItemDropTypeCount; l_iItemDropIndex++)
             {
                 ItemDropBase l_ItemDropType = m_lstItemDropObjects[l_iItemDropIndex];
-                m_dictItemDropPool.Add(l_ItemDropType.getItemType(), new ItemDropPool( l_ItemDropType, this.gameObject));
+                m_dictItemDropPool.Add(l_ItemDropType.getItemType(), new ItemDropPool( l_ItemDropType, this.gameObject, l_ItemDropType.StartPoolCreatedSize));
             }
         }
 

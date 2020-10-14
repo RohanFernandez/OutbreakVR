@@ -22,11 +22,16 @@ namespace ns_Mashmo
         /// </summary>
         /// <param name="a_Prefab"></param>
         /// <param name="a_iStartPoolCapacity"></param>
-        public MonoObjectPool(T a_Prefab, GameObject a_Parent)
+        public MonoObjectPool(T a_Prefab, GameObject a_Parent, int a_iStartSize = 0)
             :  base(typeof(T).ToString())
         {
             m_goPrefab = a_Prefab;
             m_goParent = a_Parent;
+
+            for (int l_iIndex = 0; l_iIndex < a_iStartSize; l_iIndex++)
+            {
+                createObj();
+            }
         }
 
         /// <summary>

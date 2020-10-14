@@ -92,7 +92,7 @@ namespace ns_Mashmo
             for (int l_iEnemyPrefabIndex = 0; l_iEnemyPrefabIndex < l_iEnemyPrefabCount; l_iEnemyPrefabIndex++)
             {
                 EnemyBase l_CurrentEnemyPrefab = m_lstEnemyPrefabs[l_iEnemyPrefabIndex];
-                m_dictEnemyPools.Add(l_CurrentEnemyPrefab.getEnemyType(), new EnemyPool(l_CurrentEnemyPrefab, this.gameObject ));
+                m_dictEnemyPools.Add(l_CurrentEnemyPrefab.getEnemyType(), new EnemyPool(l_CurrentEnemyPrefab, this.gameObject, 2));
             }
         }
 

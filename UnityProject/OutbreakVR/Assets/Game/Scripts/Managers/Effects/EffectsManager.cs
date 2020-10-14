@@ -33,7 +33,7 @@ namespace ns_Mashmo
             }
             s_Instance = this;
 
-            m_EffectsPool = new EffectsPool(m_EffectPrefab, gameObject);
+            m_EffectsPool = new EffectsPool(m_EffectPrefab, gameObject, 5);
         }
 
         /// <summary>
