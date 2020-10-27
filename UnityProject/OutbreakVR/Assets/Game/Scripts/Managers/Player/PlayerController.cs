@@ -502,6 +502,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(true);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(false);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_MOVEMENT:
@@ -509,6 +510,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = managePlayerState_InGameMovement;
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(true);
+                        ControllerManager.ReorientHMDOnRecenter(false);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_PARALYSED:
@@ -517,6 +519,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(false);
                         m_CustomPointer.setPointerAsCrosshair(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(false);
                         break;
                     }
                 case PLAYER_STATE.MENU_SELECTION:
@@ -525,6 +528,7 @@ namespace ns_Mashmo
                         ControllerManager.ToggleLaser(true);
                         m_CustomPointer.setPointerAsCrosshair(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(true);
                         break;
                     }
                 case PLAYER_STATE.NO_INTERACTION:
@@ -532,6 +536,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(false);
                         break;
                     }
                 case PLAYER_STATE.IN_GAME_PAUSED:
@@ -539,6 +544,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(false);
                         break;
                     }
                 case PLAYER_STATE.CINEMATIC:
@@ -546,6 +552,7 @@ namespace ns_Mashmo
                         m_actPlayerStateControl = null;
                         ControllerManager.ToggleLaser(false);
                         SoundManager.StopAudioSrcWithID(SoundConst.AUD_SRC_PLAYER_FOOTSTEPS);
+                        ControllerManager.ReorientHMDOnRecenter(true);
                         break;
                     }
                 default:

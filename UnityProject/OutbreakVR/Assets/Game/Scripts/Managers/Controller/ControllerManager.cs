@@ -29,6 +29,9 @@ namespace ns_Mashmo
 #if _MASHMO_OVR_
         [SerializeField]
         private UnityEngine.EventSystems.OVRInputModule m_OVRInputModule = null;
+
+        [SerializeField]
+        private OVRManager m_OvrManager = null;
 #endif
         /// <summary>
         /// The ray that interacts with objects from the controller
@@ -640,6 +643,13 @@ namespace ns_Mashmo
             }
         }
 
+        public static void ReorientHMDOnRecenter(bool a_bIsReorientOnReset)
+        {
+    #if _MASHMO_OVR_
+            s_Instance.m_OvrManager.reorientHMDOnControllerRecenter = a_bIsReorientOnReset;
+    #endif
+        }
+
 #endregion Controller laser pointer
 
         private void Update()
@@ -654,7 +664,6 @@ namespace ns_Mashmo
             updateControllerSource(m_CurrentControllerType);
             updateControllerPointer();
             updateControllerSwipe();
-            //OVRInput.GetControllerWasRecentered
         }
     }
 }
