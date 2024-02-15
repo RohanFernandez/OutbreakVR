@@ -1,2 +1,2 @@
 # OutbreakVR
-Mashmo games private repository for the VR game Outbreak.
+Mashmo games repository for the VR game Outbreak.
